@@ -3623,11 +3623,11 @@ Perform the domain layer related settings of the Todo application in \ :file:`to
         <!-- AOP. -->
         <bean id="resultMessagesLoggingInterceptor"
             class="org.terasoluna.gfw.common.exception.ResultMessagesLoggingInterceptor">
-              <property name="exceptionLogger" ref="exceptionLogger" />
+            <property name="exceptionLogger" ref="exceptionLogger" />
         </bean>
         <aop:config>
             <aop:advisor advice-ref="resultMessagesLoggingInterceptor"
-                         pointcut="@within(org.springframework.stereotype.Service)" />
+                pointcut="@within(org.springframework.stereotype.Service)" />
         </aop:config>
 
     </beans>
