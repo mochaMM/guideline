@@ -392,7 +392,7 @@ web.xmlの修正
             <filter-name>MDCClearFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>exceptionLoggingFilter</filter-name>
             <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -401,7 +401,7 @@ web.xmlの修正
             <filter-name>exceptionLoggingFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>XTrackMDCPutFilter</filter-name>
             <filter-class>org.terasoluna.gfw.web.logging.mdc.XTrackMDCPutFilter</filter-class>
@@ -410,7 +410,7 @@ web.xmlの修正
             <filter-name>XTrackMDCPutFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>CharacterEncodingFilter</filter-name>
             <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -427,7 +427,7 @@ web.xmlの修正
             <filter-name>CharacterEncodingFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>springSecurityFilterChain</filter-name>
             <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -436,7 +436,7 @@ web.xmlの修正
             <filter-name>springSecurityFilterChain</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <!-- (1) -->
         <servlet>
             <servlet-name>restApiServlet</servlet-name>
@@ -448,13 +448,13 @@ web.xmlの修正
             </init-param>
             <load-on-startup>1</load-on-startup>
         </servlet>
-
+    
         <!-- (2) -->
         <servlet-mapping>
             <servlet-name>restApiServlet</servlet-name>
             <url-pattern>/api/v1/*</url-pattern>
         </servlet-mapping>
-
+    
         <servlet>
             <servlet-name>appServlet</servlet-name>
             <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -469,7 +469,7 @@ web.xmlの修正
             <servlet-name>appServlet</servlet-name>
             <url-pattern>/</url-pattern>
         </servlet-mapping>
-
+    
         <jsp-config>
             <jsp-property-group>
                 <url-pattern>*.jsp</url-pattern>
@@ -479,7 +479,7 @@ web.xmlの修正
                 <include-prelude>/WEB-INF/views/common/include.jsp</include-prelude>
             </jsp-property-group>
         </jsp-config>
-
+    
         <error-page>
             <error-code>500</error-code>
             <location>/WEB-INF/views/common/error/systemError.jsp</location>
@@ -494,7 +494,7 @@ web.xmlの修正
             <exception-type>java.lang.Exception</exception-type>
             <location>/WEB-INF/views/common/error/unhandledSystemError.html</location>
         </error-page>
-
+    
         <session-config>
             <!-- 30min -->
             <session-timeout>30</session-timeout>
@@ -504,7 +504,7 @@ web.xmlの修正
             </cookie-config>
             <tracking-mode>COOKIE</tracking-mode>
         </session-config>
-
+    
     </web-app>
 
 
