@@ -3958,7 +3958,7 @@ Furthermore, the \ :file:`todo-env.xml` \ is not created while creating blank pr
 
         <!-- (2) -->
         <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-        <constructor-arg index="0" ref="realDataSource" />
+            <constructor-arg index="0" ref="realDataSource" />
         </bean>
 
         <jdbc:initialize-database data-source="dataSource"

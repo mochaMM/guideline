@@ -369,7 +369,7 @@ web.xmlの修正
         version="3.0">
 
         <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+            <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
         </listener>
         <context-param>
             <param-name>contextConfigLocation</param-name>
