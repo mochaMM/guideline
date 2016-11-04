@@ -381,7 +381,7 @@ Modification of web.xml
                 classpath*:META-INF/spring/spring-security.xml
             </param-value>
         </context-param>
-
+    
         <filter>
             <filter-name>MDCClearFilter</filter-name>
             <filter-class>org.terasoluna.gfw.web.logging.mdc.MDCClearFilter</filter-class>
@@ -390,7 +390,7 @@ Modification of web.xml
             <filter-name>MDCClearFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>exceptionLoggingFilter</filter-name>
             <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -399,7 +399,7 @@ Modification of web.xml
             <filter-name>exceptionLoggingFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>XTrackMDCPutFilter</filter-name>
             <filter-class>org.terasoluna.gfw.web.logging.mdc.XTrackMDCPutFilter</filter-class>
@@ -408,7 +408,7 @@ Modification of web.xml
             <filter-name>XTrackMDCPutFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>CharacterEncodingFilter</filter-name>
             <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -425,17 +425,17 @@ Modification of web.xml
             <filter-name>CharacterEncodingFilter</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <filter>
             <filter-name>springSecurityFilterChain</filter-name>
             <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
         </filter>
-
+    
         <filter-mapping>
             <filter-name>springSecurityFilterChain</filter-name>
             <url-pattern>/*</url-pattern>
         </filter-mapping>
-
+    
         <!-- (1) -->
         <servlet>
             <servlet-name>restApiServlet</servlet-name>
@@ -447,13 +447,13 @@ Modification of web.xml
             </init-param>
             <load-on-startup>1</load-on-startup>
         </servlet>
-
+    
         <!-- (2) -->
         <servlet-mapping>
             <servlet-name>restApiServlet</servlet-name>
             <url-pattern>/api/v1/*</url-pattern>
         </servlet-mapping>
-
+    
         <servlet>
             <servlet-name>appServlet</servlet-name>
             <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -480,7 +480,7 @@ Modification of web.xml
             <servlet-name>appServlet</servlet-name>
             <url-pattern>/</url-pattern>
         </servlet-mapping>
-
+    
         <jsp-config>
             <jsp-property-group>
                 <url-pattern>*.jsp</url-pattern>
@@ -490,7 +490,7 @@ Modification of web.xml
                 <include-prelude>/WEB-INF/views/common/include.jsp</include-prelude>
             </jsp-property-group>
         </jsp-config>
-
+    
         <error-page>
             <error-code>500</error-code>
             <location>/WEB-INF/views/common/error/systemError.jsp</location>
@@ -503,7 +503,7 @@ Modification of web.xml
             <exception-type>java.lang.Exception</exception-type>
             <location>/WEB-INF/views/common/error/unhandledSystemError.html</location>
         </error-page>
-
+    
         <session-config>
             <!-- 30min -->
             <session-timeout>30</session-timeout>
@@ -513,7 +513,7 @@ Modification of web.xml
             </cookie-config>
             <tracking-mode>COOKIE</tracking-mode>
         </session-config>
-
+    
     </web-app>
 
 
