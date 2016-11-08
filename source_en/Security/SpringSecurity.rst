@@ -392,25 +392,25 @@ XML file is created as below to define a bean for the component of Spring Securi
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         "> <!-- (1) -->
 
-        <sec:http pattern="/resources/**" security="none"/> <!-- (2) (3) -->
-        <sec:http> <!-- (4) -->
-            <sec:form-login /> <!-- (5) -->
-            <sec:logout /> <!-- (6) -->
-            <sec:access-denied-handler ref="accessDeniedHandler"/> <!-- (7) -->
-            <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/> <!-- (8) -->
-            <sec:session-management /> <!-- (9) -->
+        <sec:http pattern="/resources/**" security="none"/> <!-- (2) -->
+        <sec:http> <!-- (3) -->
+            <sec:form-login /> <!-- (4) -->
+            <sec:logout /> <!-- (5) -->
+            <sec:access-denied-handler ref="accessDeniedHandler"/> <!-- (6) -->
+            <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/> <!-- (7) -->
+            <sec:session-management /> <!-- (8) -->
         </sec:http>
 
-        <sec:authentication-manager /> <!-- (10) -->
+        <sec:authentication-manager /> <!-- (9) -->
 
         <!-- CSRF Protection -->
         <bean id="accessDeniedHandler"
-            class="org.springframework.security.web.access.DelegatingAccessDeniedHandler"> <!-- (11) -->
+            class="org.springframework.security.web.access.DelegatingAccessDeniedHandler"> <!-- (10) -->
             <!-- omitted -->
         </bean>
 
         <!-- Put UserID into MDC -->
-        <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">  <!-- (12) -->
+        <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">  <!-- (11) -->
         </bean>
 
     </beans>
@@ -427,32 +427,32 @@ XML file is created as below to define a bean for the component of Spring Securi
       - Enable XML namespace provided by Spring Security.
         A name \ ``sec``\  is assigned in the above example.
         A bean for component of Spring Security can be defined easily if XML namespace is used.
-    * - \ (2) (3)
-      - The resource path (like the path to access css file or image file) for which the security countermeasures are not required,
+    * - \ (2)
+      - Define \ ``<sec:http>``\  tag and perform settings related to the resource path for which the security countermeasures are not required,
         Refer \ :ref:`SpringSecurityNotApply` for details.
-    * - \ (4)
+    * - \ (3)
       - Define \ ``<sec:http>``\  tag.
         A bean for the component required to use Spring Security is automatically defined if \ ``<sec:http>``\  tag is defined.
-    * - \ (5)
+    * - \ (4)
       - Define \ ``<sec:form-login>``\  tag and perform settings related to login where form authentication is used.
         Refer \ :ref:`form-login` for details
-    * - \ (6)
+    * - \ (5)
       - Define \ ``<sec:logout>``\  tag and perform settings related to logout.
         Refer \ :ref:`SpringSecurityAuthenticationLogout` for details.
-    * - \ (7)
+    * - \ (6)
       - Define \ ``<sec:access-denied-handler>``\  tag and define settings to control at the time of access error.
         Refer \ :ref:`SpringSecurityAuthorizationAccessDeniedHandler` and :ref:`SpringSecurityAuthorizationOnError` for details.
-    * - \ (8)
+    * - \ (7)
       - Define a filter for common library to store the user information to be output in a log, in MDC.
-    * - \ (9)
+    * - \ (8)
       - Define \ ``<sec:session-management>``\  tag and perform settings related to session management.
         \ Refer :ref:`SpringSecuritySessionManagement` for details
-    * - \ (10)
+    * - \ (9)
       - Define \ ``<sec:authentication-manager>``\  tag and define a bean for component for authentication function.
         Error occurs at the time of starting a server if this tag is not defined.
-    * - \ (11)
+    * - \ (10)
       - \ Define a bean for the component that handles access error.
-    * - \ (12)
+    * - \ (11)
       - \ Define a bean for the component of common library to store the user information to be output in a log in MDC.
 
 |
