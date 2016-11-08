@@ -392,25 +392,25 @@ Spring Securityのコンポーネントをbean定義するため、以下のよ�
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         "> <!-- (1) -->
 
-        <sec:http pattern="/resources/**" security="none"/> <!-- (2) (3) -->
-        <sec:http> <!-- (4) -->
-            <sec:form-login /> <!-- (5) -->
-            <sec:logout /> <!-- (6) -->
-            <sec:access-denied-handler ref="accessDeniedHandler"/> <!-- (7) -->
-            <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/> <!-- (8) -->
-            <sec:session-management /> <!-- (9) -->
+        <sec:http pattern="/resources/**" security="none"/> <!-- (2) -->
+        <sec:http> <!-- (3) -->
+            <sec:form-login /> <!-- (4) -->
+            <sec:logout /> <!-- (5) -->
+            <sec:access-denied-handler ref="accessDeniedHandler"/> <!-- (6) -->
+            <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/> <!-- (7) -->
+            <sec:session-management /> <!-- (8) -->
         </sec:http>
 
-        <sec:authentication-manager /> <!-- (10) -->
+        <sec:authentication-manager /> <!-- (9) -->
 
         <!-- CSRF Protection -->
         <bean id="accessDeniedHandler"
-            class="org.springframework.security.web.access.DelegatingAccessDeniedHandler"> <!-- (11) -->
+            class="org.springframework.security.web.access.DelegatingAccessDeniedHandler"> <!-- (10) -->
             <!-- omitted -->
         </bean>
 
         <!-- Put UserID into MDC -->
-        <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">  <!-- (12) -->
+        <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">  <!-- (11) -->
         </bean>
 
     </beans>
@@ -427,32 +427,32 @@ Spring Securityのコンポーネントをbean定義するため、以下のよ�
       - Spring Securityから提供されているXMLネームスペースを有効する。
         上記例では、\ ``sec``\ という名前を割り当てている。
         XMLネームスペースを使用すると、Spring Securityのコンポーネントのbean定義を簡単に行うことができる。
-    * - \ (2) (3)
-      - セキュリティ対策が不要なリソースのパス(cssファイルやimageファイルにアクセスするためのパスなど)に対しては、
-        \ 詳細は、:ref:`SpringSecurityNotApply` を参照されたい。
-    * - \ (4)
+    * - \ (2)
+      - \ ``<sec:http>``\ タグを定義し、セキュリティ対策が不要なリソースパスの設定を行う。
+        \ 詳細は :ref:`SpringSecurityNotApply` を参照されたい。
+    * - \ (3)
       - \ ``<sec:http>``\ タグを定義する。
         \ ``<sec:http>``\ タグを定義すると、Spring Securityを利用するために必要となるコンポーネントのbean定義が自動的に行われる。
-    * - \ (5)
+    * - \ (4)
       - \ ``<sec:form-login>``\ タグを定義し、フォーム認証を使用したログインに関する設定行う。
         \ 詳細は :ref:`form-login` を参照されたい
-    * - \ (6)
+    * - \ (5)
       - \ ``<sec:logout>``\ タグ を定義し、ログアウトに関する設定を行う。
         \ 詳細は :ref:`SpringSecurityAuthenticationLogout` を参照されたい。
-    * - \ (7)
+    * - \ (6)
       - \ ``<sec:access-denied-handler>``\ タグを定義し、アクセスエラー時の制御を行うための設定を定義する。
         \ 詳細は :ref:`SpringSecurityAuthorizationAccessDeniedHandler` 、 :ref:`SpringSecurityAuthorizationOnError` を参照されたい。
-    * - \ (8)
+    * - \ (7)
       - ログ出力するユーザ情報をMDCに格納するための共通ライブラリのフィルタを定義する。
-    * - \ (9)
+    * - \ (8)
       - \ ``<sec:session-management>``\ タグ を定義し、セッション管理に関する設定を行う。
         \ 詳細は :ref:`SpringSecuritySessionManagement` を参照されたい
-    * - \ (10)
+    * - \ (9)
       - \ ``<sec:authentication-manager>``\ タグを定義して、認証機能用のコンポーネントをbean定義する。
         このタグを定義しておかないとサーバ起動時にエラーが発生する。
-    * - \ (11)
+    * - \ (10)
       - \ アクセスエラー時のエラーハンドリングを行うコンポーネントをbean定義する。
-    * - \ (12)
+    * - \ (11)
       - \ ログ出力するユーザ情報をMDCにする共通ライブラリのコンポーネントをbean定義する。
 
 
