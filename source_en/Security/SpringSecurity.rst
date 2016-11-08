@@ -427,15 +427,9 @@ XML file is created as below to define a bean for the component of Spring Securi
       - Enable XML namespace provided by Spring Security.
         A name \ ``sec``\  is assigned in the above example.
         A bean for component of Spring Security can be defined easily if XML namespace is used.
-    * - \ (2)
+    * - \ (2) (3)
       - The resource path (like the path to access css file or image file) for which the security countermeasures are not required,
-        can be controlled using \ ``<sec:http>``\  tag so that the security function (Security Filter) of Spring Security is not applied.
-
-        Specify the pattern of the path where the security function is not applied in \ ``pattern``\  attribute.
-    * - \ (3)
-      - Specify \ ``none``\  in \ ``security``\  attribute.
-
-        The security function (Security Filter) of Spring Security is not applied if \ ``none``\  is specified.
+        Refer \ :ref:`SpringSecurityNotApply` for details.
     * - \ (4)
       - Define \ ``<sec:http>``\  tag.
         A bean for the component required to use Spring Security is automatically defined if \ ``<sec:http>``\  tag is defined.
@@ -536,6 +530,35 @@ Finally, the servlet filter class (\ ``FilterChainProxy``\ ) provided by Spring 
 
 |
 
+.. _SpringSecurityNotApply:
+
+Settings not to apply security countermeasures
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The resource path (like the path to access css file or image file) for which the security countermeasures are not required,
+can be controlled using \ ``<sec:http>``\  tag so that the security function (Security Filter) of Spring Security is not applied.
+
+* Definition example of xxx-web/src/main/resources/META-INF/spring/spring-security.xml
+
+.. code-block:: xml
+  
+    <sec:http pattern="/resources/**" security="none"/>  <!-- (1) (2) -->
+    <sec:http>
+        <!-- omitted -->
+    </sec:http>
+  
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+  
+    * - Sr. No.
+      - Description
+    * - | (1)
+      - | Specify the pattern of the path where the security function is not applied in \ ``pattern``\  attribute.
+    * - | (2)
+      - | Specify \ ``none``\  in \ ``security``\  attribute.
+        | The security function (Security Filter) of Spring Security is not applied if \ ``none``\  is specified.
 
 .. raw:: latex
 
