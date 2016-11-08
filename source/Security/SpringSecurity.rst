@@ -427,15 +427,9 @@ Spring Securityのコンポーネントをbean定義するため、以下のよ�
       - Spring Securityから提供されているXMLネームスペースを有効する。
         上記例では、\ ``sec``\ という名前を割り当てている。
         XMLネームスペースを使用すると、Spring Securityのコンポーネントのbean定義を簡単に行うことができる。
-    * - \ (2)
+    * - \ (2) (3)
       - セキュリティ対策が不要なリソースのパス(cssファイルやimageファイルにアクセスするためのパスなど)に対しては、
-        \ ``<sec:http>``\ タグを使用して、Spring Securityのセキュリティ機能(Security Filter)が適用されないように制御することができる。
-
-        \ ``pattern``\ 属性にセキュリティ機能を適用しないパスのパターンを指定する。
-    * - \ (3)
-      - \ ``security``\ 属性に\ ``none``\ を指定する。
-
-        \ ``none``\ を指定すると、Spring Securityのセキュリティ機能(Security Filter)が適用されない。
+        \ 詳細は、:ref:`SpringSecurityNotApply` を参照されたい。
     * - \ (4)
       - \ ``<sec:http>``\ タグを定義する。
         \ ``<sec:http>``\ タグを定義すると、Spring Securityを利用するために必要となるコンポーネントのbean定義が自動的に行われる。
@@ -536,6 +530,36 @@ Spring Securityのコンポーネントをbean定義するため、以下のよ�
         上記例では、すべてのリクエストに対してSpring Securityを適用する。
 
 |
+
+.. _SpringSecurityNotApply:
+
+セキュリティ対策を適用しないため設定
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+セキュリティ対策が不要なリソースのパス(cssファイルやimageファイルにアクセスするためのパスなど)に対しては、
+\ ``<sec:http>``\ タグを使用して、Spring Securityのセキュリティ機能(Security Filter)が適用されないように制御することができる。
+
+* xxx-web/src/main/resources/META-INF/spring/spring-security.xmlの定義例
+
+.. code-block:: xml
+  
+    <sec:http pattern="/resources/**" security="none"/>  <!-- (1) (2) -->
+    <sec:http>
+        <!-- omitted -->
+    </sec:http>
+  
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+  
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``pattern``\ 属性にセキュリティ機能を適用しないパスのパターンを指定する。
+    * - | (2)
+      - | \ ``security``\ 属性に\ ``none``\ を指定する。
+        | \ ``none``\ を指定すると、Spring Securityのセキュリティ機能(Security Filter)が適用されない。
 
 .. raw:: latex
 
