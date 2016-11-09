@@ -463,18 +463,7 @@ web.xmlの修正
             </init-param>
             <load-on-startup>1</load-on-startup>
         </servlet>
-
-        <servlet>
-            <servlet-name>appServlet</servlet-name>
-            <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-            <init-param>
-                <param-name>contextConfigLocation</param-name>
-                <!-- ApplicationContext for Spring MVC -->
-                <param-value>classpath*:META-INF/spring/spring-mvc.xml</param-value>
-            </init-param>
-            <load-on-startup>1</load-on-startup>
-        </servlet>
-
+    
         <servlet-mapping>
             <servlet-name>appServlet</servlet-name>
             <url-pattern>/</url-pattern>
