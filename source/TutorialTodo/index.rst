@@ -486,7 +486,7 @@ Todoアプリケーションの開発を始める前に、プロジェクトの�
 ブランクプロジェクトでは、トップページを表示するためのControllerとJSPの実装が用意されているため、
 トップページを表示する事で動作確認を行う事ができる。
 
-ブランクプロジェクトから提供されているController(\ :file:`src/main/java/todo/app/welcome/HomeController.java`\ )は、
+ブランクプロジェクトから提供されているController(\ :file:`src/main/java/todo/app/welcome/HelloController.java`\ )は、
 以下のような実装となっている。
 
 .. code-block:: java
@@ -510,11 +510,11 @@ Todoアプリケーションの開発を始める前に、プロジェクトの�
      */
     // (1)
     @Controller
-    public class HomeController {
+    public class HelloController {
 
         // (2)
         private static final Logger logger = LoggerFactory
-                .getLogger(HomeController.class);
+                .getLogger(HelloController.class);
 
         /**
          * Simply selects the home view to render by returning its name.
@@ -622,7 +622,7 @@ todoが「Configured」に含まれていることを確認して「Finish」を
 |
 
 起動すると以下のようなログが出力される。
-\ ``"/"``\ というパスに対して\ ``todo.app.welcome.HomeController``\ のhelloメソッドがマッピングされていることが分かる。
+\ ``"/"``\ というパスに対して\ ``todo.app.welcome.HelloController``\ のhelloメソッドがマッピングされていることが分かる。
 
 
 .. code-block:: console
@@ -630,7 +630,7 @@ todoが「Configured」に含まれていることを確認して「Finish」を
 
     date:2015-01-16 21:32:05	thread:localhost-startStop-1	X-Track:	level:INFO 	logger:o.springframework.web.servlet.DispatcherServlet 	message:FrameworkServlet 'appServlet': initialization started
     date:2015-01-16 21:32:07	thread:localhost-startStop-1	X-Track:	level:DEBUG	logger:o.t.gfw.web.codelist.CodeListInterceptor        	message:registered codeList : []
-    date:2015-01-16 21:32:07	thread:localhost-startStop-1	X-Track:	level:INFO 	logger:o.s.w.s.m.m.a.RequestMappingHandlerMapping      	message:Mapped "{[/],methods=[GET || POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String todo.app.welcome.HomeController.home(java.util.Locale,org.springframework.ui.Model)
+    date:2015-01-16 21:32:07	thread:localhost-startStop-1	X-Track:	level:INFO 	logger:o.s.w.s.m.m.a.RequestMappingHandlerMapping      	message:Mapped "{[/],methods=[GET || POST],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String todo.app.welcome.HelloController.home(java.util.Locale,org.springframework.ui.Model)
     date:2015-01-16 21:32:11	thread:localhost-startStop-1	X-Track:	level:INFO 	logger:o.s.w.s.m.m.a.RequestMappingHandlerAdapter      	message:Looking for @ControllerAdvice: WebApplicationContext for namespace 'appServlet-servlet': startup date [Fri Jan 16 21:32:05 JST 2015]; parent: Root WebApplicationContext
     date:2015-01-16 21:32:12	thread:localhost-startStop-1	X-Track:	level:INFO 	logger:o.s.w.s.m.m.a.RequestMappingHandlerAdapter      	message:Looking for @ControllerAdvice: WebApplicationContext for namespace 'appServlet-servlet': startup date [Fri Jan 16 21:32:05 JST 2015]; parent: Root WebApplicationContext
     date:2015-01-16 21:32:12	thread:localhost-startStop-1	X-Track:	level:INFO 	logger:o.s.web.servlet.handler.SimpleUrlHandlerMapping 	message:Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
@@ -655,11 +655,11 @@ todoが「Configured」に含まれていることを確認して「Finish」を
 .. code-block:: console
    :emphasize-lines: 1-2,4-5
 
-    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:TRACE	logger:o.t.gfw.web.logging.TraceLoggingInterceptor     	message:[START CONTROLLER] HomeController.home(Locale,Model)
-    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:INFO 	logger:todo.app.welcome.HomeController                 	message:Welcome home! The client locale is en_US.
+    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:TRACE	logger:o.t.gfw.web.logging.TraceLoggingInterceptor     	message:[START CONTROLLER] HelloController.home(Locale,Model)
+    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:INFO 	logger:todo.app.welcome.HelloController                 	message:Welcome home! The client locale is en_US.
     date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:DEBUG	logger:o.t.gfw.web.codelist.CodeListInterceptor        	message:locale for I18nCodelist is 'en_US'.
-    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:TRACE	logger:o.t.gfw.web.logging.TraceLoggingInterceptor     	message:[END CONTROLLER  ] HomeController.home(Locale,Model)-> view=welcome/home, model={serverTime=January 16, 2015 9:36:36 PM JST}
-    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:TRACE	logger:o.t.gfw.web.logging.TraceLoggingInterceptor     	message:[HANDLING TIME   ] HomeController.home(Locale,Model)-> 983,574 ns
+    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:TRACE	logger:o.t.gfw.web.logging.TraceLoggingInterceptor     	message:[END CONTROLLER  ] HelloController.home(Locale,Model)-> view=welcome/home, model={serverTime=January 16, 2015 9:36:36 PM JST}
+    date:2015-01-16 21:36:36	thread:tomcat-http--11	X-Track:2c4902f4fe5a477b8ad8aefb10973c04	level:TRACE	logger:o.t.gfw.web.logging.TraceLoggingInterceptor     	message:[HANDLING TIME   ] HelloController.home(Locale,Model)-> 983,574 ns
 
 .. note::
  
@@ -3193,7 +3193,7 @@ web.xml
 作成したブランクプロジェクトの\ :file:`src/main/webapp/WEB-INF/web.xml`\ は、以下のような設定となっている。
 
 .. code-block:: xml
-    :emphasize-lines: 2, 6, 22, 78, 95, 106, 120
+    :emphasize-lines: 2, 6, 22, 77, 94, 105, 119
 
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -3272,7 +3272,6 @@ web.xml
             <url-pattern>/*</url-pattern>
         </filter-mapping>
 
-
         <!-- (4) -->
         <servlet>
             <servlet-name>appServlet</servlet-name>
@@ -3319,6 +3318,11 @@ web.xml
         <session-config>
             <!-- 30min -->
             <session-timeout>30</session-timeout>
+            <cookie-config>
+                <http-only>true</http-only>
+                <!-- <secure>true</secure> -->
+            </cookie-config>
+            <tracking-mode>COOKIE</tracking-mode>
         </session-config>
 
     </web-app>
@@ -3407,8 +3411,8 @@ web.xml
     <!-- (4) -->
     <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
     <!-- (5) -->
-    <%@ taglib uri="http://terasoluna.org/functions" prefix="f"%>
     <%@ taglib uri="http://terasoluna.org/tags" prefix="t"%>
+    <%@ taglib uri="http://terasoluna.org/functions" prefix="f"%>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -3655,6 +3659,7 @@ O/R Mapperに依存しないブランクプロジェクトを作成した場合�
 
     </beans>
 
+
 MyBatis3用のブランクプロジェクトを作成した場合のtodo-infra.xml
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -3739,8 +3744,11 @@ MyBatis3用のブランクプロジェクトを作成した場合、以下のよ
         <!--
                 <setting name="defaultExecutorType" value="REUSE" />
                 <setting name="jdbcTypeForNull" value="NULL" />
-                <setting name="proxyFactory" value="JAVASSIST" />
                 <setting name="localCacheScope" value="STATEMENT" />
+        -->
+        <!-- Defaul value for proxyFactory has chenged to JAVASSIST since mybatis 3.3.0 .
+             To use CGLIB as a proxyFactory, remove this comment and add dependency for CGLIB in pom.xml
+                <setting name="proxyFactory" value="CGLIB" />
         -->
             </settings>
 
@@ -3854,7 +3862,7 @@ O/R Mapperに依存しないブランクプロジェクトを作成した際は�
 
     # (1)
     database=H2
-    database.url=jdbc:h2:mem:todo;DB_CLOSE_DELAY=-1;
+    database.url=jdbc:h2:mem:todo;DB_CLOSE_DELAY=-1
     database.username=sa
     database.password=
     database.driverClassName=org.h2.Driver
@@ -3897,12 +3905,15 @@ todo-env.xml
 なお、データベースにアクセスしないブランクプロジェクトを作成した際は、\ :file:`todo-env.xml`\ は作成されない。
 
 .. code-block:: xml
-    :emphasize-lines: 8, 22, 39
+    :emphasize-lines: 11, 26, 43
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+        xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
         <bean id="dateFactory" class="org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory" />
 
@@ -3920,10 +3931,17 @@ todo-env.xml
             <property name="maxWaitMillis" value="${cp.maxWait}" />
         </bean>
 
+
         <!-- (2) -->
         <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
             <constructor-arg index="0" ref="realDataSource" />
         </bean>
+
+        <jdbc:initialize-database data-source="dataSource"
+            ignore-failures="ALL">
+            <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
+            <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
+        </jdbc:initialize-database>
 
         <!--  REMOVE THIS LINE IF YOU USE JPA
         <bean id="transactionManager"
@@ -3931,12 +3949,6 @@ todo-env.xml
             <property name="entityManagerFactory" ref="entityManagerFactory" />
         </bean>
               REMOVE THIS LINE IF YOU USE JPA  -->
-        <!--  REMOVE THIS LINE IF YOU USE MyBatis2
-        <bean id="transactionManager"
-            class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-            <property name="dataSource" ref="dataSource" />
-        </bean>
-              REMOVE THIS LINE IF YOU USE MyBatis2  -->
         <!-- (3) -->
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -3988,7 +4000,7 @@ spring-mvc.xml
 | なお、チュートリアルで使用しないコンポーネントについての説明は割愛する。
 
 .. code-block:: xml
-    :emphasize-lines: 12, 16, 28, 31, 37, 71
+    :emphasize-lines: 12, 16, 30, 33, 39, 73
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -4013,6 +4025,8 @@ spring-mvc.xml
                 <bean
                     class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver" />
             </mvc:argument-resolvers>
+            <!-- workarround to CVE-2016-5007. -->
+            <mvc:path-matching path-matcher="pathMatcher" />
         </mvc:annotation-driven>
 
         <mvc:default-servlet-handler />
@@ -4070,7 +4084,8 @@ spring-mvc.xml
             class="org.terasoluna.gfw.web.mvc.support.CompositeRequestDataValueProcessor">
             <constructor-arg>
                 <util:list>
-                    <bean class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor" />
+                    <bean
+                        class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor" />
                     <bean
                         class="org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor" />
                 </util:list>
@@ -4111,6 +4126,11 @@ spring-mvc.xml
             <aop:advisor advice-ref="handlerExceptionResolverLoggingInterceptor"
                 pointcut="execution(* org.springframework.web.servlet.HandlerExceptionResolver.resolveException(..))" />
         </aop:config>
+
+        <!-- Setting PathMatcher. -->
+        <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher">
+            <property name="trimTokens" value="false" />
+        </bean>
 
     </beans>
 
@@ -4214,10 +4234,9 @@ spring-security.xml
             <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
             <sec:session-management />
         </sec:http>
-
         <sec:authentication-manager></sec:authentication-manager>
 
-        <!-- Change View for CSRF or AccessDenied -->
+        <!-- CSRF Protection -->
         <bean id="accessDeniedHandler"
             class="org.springframework.security.web.access.DelegatingAccessDeniedHandler">
             <constructor-arg index="0">
