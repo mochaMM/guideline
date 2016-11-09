@@ -385,31 +385,32 @@ XML file is created as below to define a bean for the component of Spring Securi
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:sec="http://www.springframework.org/schema/security"
-           xsi:schemaLocation="
-            http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/security
-            http://www.springframework.org/schema/security/spring-security.xsd
-           "> <!-- (1) -->
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:sec="http://www.springframework.org/schema/security"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        "> <!-- (1) -->
 
-        <sec:http> <!-- (2) -->
-            <sec:form-login /> <!-- (3) -->
-            <sec:logout /> <!-- (4) -->
-            <sec:access-denied-handler ref="accessDeniedHandler"/> <!-- (5) -->
-            <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/> <!-- (6) -->
-            <sec:session-management /> <!-- (7) -->
+        <sec:http pattern="/resources/**" security="none"/> <!-- (2) -->
+        <sec:http> <!-- (3) -->
+            <sec:form-login /> <!-- (4) -->
+            <sec:logout /> <!-- (5) -->
+            <sec:access-denied-handler ref="accessDeniedHandler"/> <!-- (6) -->
+            <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/> <!-- (7) -->
+            <sec:session-management /> <!-- (8) -->
         </sec:http>
 
-        <sec:authentication-manager /> <!-- (8) -->
+        <sec:authentication-manager /> <!-- (9) -->
 
-        <bean id="accessDeniedHandler" class="org.springframework.security.web.access.DelegatingAccessDeniedHandler"> <!-- (9) -->
+        <!-- CSRF Protection -->
+        <bean id="accessDeniedHandler"
+            class="org.springframework.security.web.access.DelegatingAccessDeniedHandler"> <!-- (10) -->
             <!-- omitted -->
         </bean>
 
-        <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">  <!-- (10) -->
-            <!-- omitted -->
+        <!-- Put UserID into MDC -->
+        <bean id="userIdMDCPutFilter" class="org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter">  <!-- (11) -->
         </bean>
 
     </beans>
@@ -427,35 +428,32 @@ XML file is created as below to define a bean for the component of Spring Securi
         A name \ ``sec``\  is assigned in the above example.
         A bean for component of Spring Security can be defined easily if XML namespace is used.
     * - \ (2)
+      - Define \ ``<sec:http>``\  tag and perform settings related to the resource path for which the security countermeasures are not required,
+        Refer \ :ref:`SpringSecurityNotApply` for details.
+    * - \ (3)
       - Define \ ``<sec:http>``\  tag.
         A bean for the component required to use Spring Security is automatically defined if \ ``<sec:http>``\  tag is defined.
-    * - \ (3)
+    * - \ (4)
       - Define \ ``<sec:form-login>``\  tag and perform settings related to login where form authentication is used.
         Refer \ :ref:`form-login` for details
-    * - \ (4)
+    * - \ (5)
       - Define \ ``<sec:logout>``\  tag and perform settings related to logout.
         Refer \ :ref:`SpringSecurityAuthenticationLogout` for details.
-    * - \ (5)
+    * - \ (6)
       - Define \ ``<sec:access-denied-handler>``\  tag and define settings to control at the time of access error.
         Refer \ :ref:`SpringSecurityAuthorizationAccessDeniedHandler` and :ref:`SpringSecurityAuthorizationOnError` for details.
-    * - \ (6)
-      - Define a filter for common library to store the user information to be output in a log, in MDC.
     * - \ (7)
+      - Define a filter for common library to store the user information to be output in a log, in MDC.
+    * - \ (8)
       - Define \ ``<sec:session-management>``\  tag and perform settings related to session management.
         \ Refer :ref:`SpringSecuritySessionManagement` for details
-    * - \ (8)
+    * - \ (9)
       - Define \ ``<sec:authentication-manager>``\  tag and define a bean for component for authentication function.
         Error occurs at the time of starting a server if this tag is not defined.
-    * - \ (9)
-      - \ Define a bean for the component that handles access error.
     * - \ (10)
+      - \ Define a bean for the component that handles access error.
+    * - \ (11)
       - \ Define a bean for the component of common library to store the user information to be output in a log in MDC.
-
-
-.. note:: **Access to static resources**
-
-    When the static resources like CSS are used in JSF, the access rights must be assigned to the folder where they are stored.
-    Refer :ref:`SpringSecurityNotApply` for details.
 
 |
 
