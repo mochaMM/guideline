@@ -1780,7 +1780,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
  .. code-block:: java
 
-        public class SessionArticleSearchForm  implements Serializable {
+        public class SessionArticleSearchForm implements Serializable {
 
             // omitted
 
@@ -1866,9 +1866,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
             @RequestMapping(value="sessionArticleSearch", params = "back") // (7)
             public String page(
                     @ModelAttribute SessionArticleSearchForm sessionArticleSearchForm,
-                    @ModelAttribute Pageable pageable, 
-                    BindingResult result,
-                    Model model) {
+                    @ModelAttribute Pageable pageable, Model model) {
 
                 ArticleSearchCriteria criteria = beanMapper.map(sessionArticleSearchForm,
                         ArticleSearchCriteria.class);
@@ -1925,12 +1923,12 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
         <%-- (1) --%>
         <div id="criteriaPart">
-          <form:form action="${pageContext.request.contextPath}/article/list"
-                     method="post" modelAttribute="articleSearchCriteriaForm">
+          <form:form action="${pageContext.request.contextPath}/article/sessionArticleSearch"
+                     method="post" modelAttribute="sessionArticleSearchForm">
             <form:input path="word" />
             <form:select path="sort">
-              <form:option value="publishedDate,DESC">Newest</form:option>
-              <form:option value="publishedDate,ASC">Oldest</form:option>
+              <form:option value="article_id,DESC">No. DESC</form:option>
+              <form:option value="article_id,ASC">No. ASC</form:option>
             </form:select>
             <form:button>Search</form:button>
           </form:form>
