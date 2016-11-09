@@ -773,12 +773,6 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
 
 |
 
-    .. note:: 
-
-        上記設定例は、依存ライブラリのバージョンを親プロジェクトで管理する前提であるため、pom.xmlでのバージョンの指定は不要である。
-
-|
-
 .. _CreateWebApplicationProjectConfiguration:
 
 開発プロジェクトの構成
