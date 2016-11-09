@@ -85,19 +85,7 @@ pom.xmlの設定
 |
 
     .. note::
-        pom.xmlは、以下のようにterasoluna-gfw-parentの設定がされている前提である。
-
-|
-
-      .. code-block:: xml
-
-          <parent>
-              <groupId>org.terasoluna.gfw</groupId>
-              <artifactId>terasoluna-gfw-parent</artifactId>
-              <version>x.y.z</version>
-          </parent>
-
-    そのため、terasoluna-gfw-recommended-web-dependenciesの ``<version>`` の指定は不要である。
+        上記設定例は、依存ライブラリのバージョンを親プロジェクトである terasoluna-gfw-parent で管理する前提であるため、pom.xmlでのバージョンの指定は不要である。
 
 |
 
