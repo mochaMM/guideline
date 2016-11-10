@@ -371,7 +371,7 @@ Spring Securityと共通ライブラリの関連については、:ref:`framewor
 
 .. note::
 
-    本ガイドラインでは、Spring IO Platformを使用してライブラリのバージョンを管理する前提で記載しているため、\ ``<version>``\ 要素は省略している。
+    上記設定例は、依存ライブラリのバージョンを親プロジェクトである terasoluna-gfw-parent で管理する前提であるため、pom.xmlでのバージョンの指定は不要である。
 
 |
 
