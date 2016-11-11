@@ -1764,7 +1764,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
     * - 項番
       - 説明
     * - | (1)
-      - | 検索条件（\ ``word``\, \ ``sort``\）を用いて検索処理を行う。
+      - | 検索条件（\ ``title``\, \ ``sort``\）を用いて検索処理を行う。
         | 検索条件とページ検索用のリクエストパラメータをセッションに保持する。
     * - | (2)
       - | セッションに保持した検索条件とページ検索用のリクエストパラメータを使用して検索処理を行う。
@@ -1784,7 +1784,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
             // omitted
 
-            private String word; // (1)
+            private String title; // (1)
 
             private String sort; // (2)
 
@@ -1800,7 +1800,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
     * - 項番
       - 説明
     * - | (1)
-      - | 検索条件（\ ``word``\）を指定するためのパラメータ。
+      - | 検索条件（\ ``title``\）を指定するためのパラメータ。
     * - | (2)
       - | 検索条件（\ ``sort``\）を指定するためのパラメータ。
 
@@ -1830,7 +1830,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
         import org.springframework.web.bind.support.SessionStatus;
 
         @Controller
-        @RequestMapping("article")
+        @RequestMapping("pgnt")
         @SessionAttributes(value = { "sessionArticleSearchForm", "pageable" }) // (1)
         public class SessionArticleSearchController {
 
@@ -1844,7 +1844,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
             @RequestMapping(value = "init", method = RequestMethod.GET) 
             public String initializeSessionArticleSearchForm(SessionStatus sessionStatus) {
                 sessionStatus.setComplete(); // (3)
-                return "redirect:/article/sessionArticleSearch";
+                return "redirect:/pgnt/sessionArticleSearch";
             }
 
             @RequestMapping("sessionArticleSearch")  // (4)
@@ -1860,7 +1860,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
                 model.addAttribute("page", page);
                 model.addAttribute("pageable", pageable); // (6)
 
-                return "article/sessionArticleList";
+                return "pgnt/sessionArticleList";
             }
 
             @RequestMapping(value="sessionArticleSearch", params = "back") // (7)
@@ -1874,7 +1874,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
                 model.addAttribute("page", page);
 
-                return "article/sessionArticleList";
+                return "pgnt/sessionArticleList";
             }
 
             // omitted
@@ -1923,9 +1923,9 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
         <%-- (1) --%>
         <div id="criteriaPart">
-          <form:form action="${pageContext.request.contextPath}/article/sessionArticleSearch"
+          <form:form action="${pageContext.request.contextPath}/pgnt/sessionArticleSearch"
                      method="post" modelAttribute="sessionArticleSearchForm">
-            <form:input path="word" />
+            <form:input path="title" />
             <form:select path="sort">
               <form:option value="article_id,DESC">No. DESC</form:option>
               <form:option value="article_id,ASC">No. ASC</form:option>
@@ -1948,9 +1948,9 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
     * - 項番
       - 説明
     * - | (1)
-      - | 検索条件(\ ``word`` \、\ ``sort`` \）をHTTP POSTで送信する。これらの情報を保持したフォームオブジェクトをセッションに格納し、ページを跨いで引き継げるようにする。
+      - | 検索条件(\ ``title`` \、\ ``sort`` \）をHTTP POSTで送信する。これらの情報を保持したフォームオブジェクトをセッションに格納し、ページを跨いで引き継げるようにする。
     * - | (2)
-      - | 検索条件(\ ``word`` \、\ ``sort`` \）はセッションに格納されているため、 \ ``criteriaQuery``\パラメータに検索条件のクエリ文字列は指定しない。
+      - | 検索条件(\ ``title`` \、\ ``sort`` \）はセッションに格納されているため、 \ ``criteriaQuery``\パラメータに検索条件のクエリ文字列は指定しない。
         | \ ``page`` \、\ ``size`` \、\ ``sort`` \ の値はページリンクごとに、アンカータグのリンク先URLに出力される。
         | 上記例の場合、 \ ``"?page=ページ位置&size=取得件数&sort=ソート条件"``\という形式のクエリ文字列が生成される。
 
