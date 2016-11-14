@@ -1864,7 +1864,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
             }
 
             @RequestMapping(value="sessionArticleSearch", params = "back") // (7)
-            public String page(
+            public String back(
                     @ModelAttribute SessionArticleSearchForm sessionArticleSearchForm,
                     @ModelAttribute Pageable pageable, Model model) {
 
