@@ -1855,7 +1855,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
                 ArticleSearchCriteria criteria = beanMapper.map(sessionArticleSearchForm,
                         ArticleSearchCriteria.class);
-                Page<Article> page = articleService.getArticles(criteria, pageable);
+                Page<Article> page = articleService.searchArticle(criteria, pageable);
 
                 model.addAttribute("page", page);
                 model.addAttribute("pageable", pageable); // (6)
