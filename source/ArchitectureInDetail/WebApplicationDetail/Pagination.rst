@@ -1868,13 +1868,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
                     @ModelAttribute SessionArticleSearchForm sessionArticleSearchForm,
                     @ModelAttribute Pageable pageable, Model model) {
 
-                ArticleSearchCriteria criteria = beanMapper.map(sessionArticleSearchForm,
-                        ArticleSearchCriteria.class);
-                Page<Article> page = articleService.searchArticle(criteria, pageable);
-
-                model.addAttribute("page", page);
-
-                return "pgnt/sessionArticleList";
+                return list(sessionArticleSearchForm, pageable, model);
             }
 
             // omitted
