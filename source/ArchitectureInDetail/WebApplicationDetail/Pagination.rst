@@ -1925,6 +1925,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
         <div id="criteriaPart">
           <form:form action="${pageContext.request.contextPath}/pgnt/sessionArticleSearch"
                      method="post" modelAttribute="sessionArticleSearchForm">
+            <form:label path="title">Title</form:label>
             <form:input path="title" />
             <form:select path="sort">
               <form:option value="article_id,DESC">No. DESC</form:option>
