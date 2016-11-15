@@ -1831,7 +1831,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
         @Controller
         @RequestMapping("pgnt")
-        @SessionAttributes(value = { "sessionArticleSearchForm", "pageable" }) // (1)
+        @SessionAttributes(value = { "sessionArticleSearchForm", "sessionArticleSearchPageable" }) // (1)
         public class SessionArticleSearchController {
 
             // omitted
@@ -1858,7 +1858,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
                 Page<Article> page = articleService.searchArticle(criteria, pageable);
 
                 model.addAttribute("page", page);
-                model.addAttribute("pageable", pageable); // (6)
+                model.addAttribute("sessionArticleSearchPageable", pageable); // (6)
 
                 return "pgnt/sessionArticleList";
             }
@@ -1866,7 +1866,7 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
             @RequestMapping(value="sessionArticleSearch", params = "back") // (7)
             public String back(
                     @ModelAttribute SessionArticleSearchForm sessionArticleSearchForm,
-                    @ModelAttribute Pageable pageable, Model model) {
+                    @ModelAttribute("sessionArticleSearchPageable") Pageable pageable, Model model) {
 
                 return list(sessionArticleSearchForm, pageable, model);
             }
