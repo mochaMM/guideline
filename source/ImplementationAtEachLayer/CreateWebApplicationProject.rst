@@ -693,9 +693,13 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
 
         * ``artifactId/pom.xml``
         * ``artifactId/artifactId-domain/pom.xml``
+        * ``artifactId/artifactId-selenium/pom.xml``
+        * ``artifactId/artifactId-web/pom.xml``
       - インメモリデータベース(H2 Database)のJDBCドライバを依存ライブラリから削除する。
 
         アプリケーション稼働時に利用するデータベースにアクセスするためのJDBCドライバを依存ライブラリに追加する。
+
+        domainプロジェクトとseleniumプロジェクトのJDBCドライバはそれぞれのプロジェクトのテスト時のみ依存ライブラリに追加する。
 
     * - 2.
       - 環境依存する設定値を定義するプロパティファイル
@@ -763,12 +767,42 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
                      <dependency>
                          <groupId>org.postgresql</groupId>
                          <artifactId>postgresql</artifactId>
-                         <scope>provided</scope>
+                         <scope>test</scope>
                      </dependency>
         <!--         <dependency> -->
         <!--             <groupId>com.oracle</groupId> -->
         <!--             <artifactId>ojdbc7</artifactId> -->
-        <!--             <scope>provided</scope> -->
+        <!--             <scope>test</scope> -->
+        <!--         </dependency> -->
+        
+    * ``artifactId/artifactId-selenium/pom.xml``
+
+     .. code-block:: xml
+
+                     <dependency>
+                         <groupId>org.postgresql</groupId>
+                         <artifactId>postgresql</artifactId>
+                         <scope>test</scope>
+                     </dependency>
+        <!--         <dependency> -->
+        <!--             <groupId>com.oracle</groupId> -->
+        <!--             <artifactId>ojdbc7</artifactId> -->
+        <!--             <scope>test</scope> -->
+        <!--         </dependency> -->
+
+    * ``artifactId/artifactId-web/pom.xml``
+
+     .. code-block:: xml
+
+                     <dependency>
+                         <groupId>org.postgresql</groupId>
+                         <artifactId>postgresql</artifactId>
+                         <scope>runtime</scope>
+                     </dependency>
+        <!--         <dependency> -->
+        <!--             <groupId>com.oracle</groupId> -->
+        <!--             <artifactId>ojdbc7</artifactId> -->
+        <!--             <scope>runtime</scope> -->
         <!--         </dependency> -->
 
 |
