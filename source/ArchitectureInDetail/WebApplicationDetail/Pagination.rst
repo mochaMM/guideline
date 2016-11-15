@@ -1831,7 +1831,8 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
 
         @Controller
         @RequestMapping("pgnt")
-        @SessionAttributes(value = { "sessionArticleSearchForm", "sessionArticleSearchPageable" }) // (1)
+        @SessionAttributes(value = { "sessionArticleSearchForm",
+                "sessionArticleSearchPageable" }) // (1)
         public class SessionArticleSearchController {
 
             // omitted
@@ -1866,9 +1867,10 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
             @RequestMapping(value="sessionArticleSearch", params = "back") // (7)
             public String back(
                     @ModelAttribute SessionArticleSearchForm sessionArticleSearchForm,
-                    @ModelAttribute("sessionArticleSearchPageable") Pageable pageable, Model model) {
+                    @ModelAttribute("sessionArticleSearchPageable") Pageable pageable,
+                    Model model) {
 
-                return list(sessionArticleSearchForm, pageable, model);
+                return list(sessionArticleSearchForm, pageable, model); // (8)
             }
 
             // omitted
@@ -1883,22 +1885,31 @@ HTTP POSTメソッドとセッションを用いたページネーションの�
     * - 項番
       - 説明
     * - | (1)
-      - | \ ``@SessionAttributes``\ アノテーションの\ ``value``\ 属性に、セッションに格納する検索条件（\ ``SessionArticleSearchForm``\）やページ検索用のリクエストパラメータ（\ ``Pageable``\）を指定する。
+      - | \ ``@SessionAttributes``\ アノテーションの\ ``value``\ 属性に、セッションに格納する検索条件（\ ``SessionArticleSearchForm``\）やページ検索用のリクエストパラメータ（\ ``Pageable``\）の属性名を指定する。
     * - | (2)
       - | \ ``@ModelAttribute``\ アノテーションを使用して、\ ``value``\ 属性で指定した \ ``"sessionArticleSearchForm"``\ のオブジェクトをセッションに格納する。
     * - | (3)
-      - | \ ``@SessionAttributes``\ を用いてセッションに格納した検索条件（\ ``SessionArticleSearchForm``\）やページ検索用のリクエストパラメータ（\ ``Pageable``\）を削除する。
+      - | \ ``SessionStatus``\ のsetCompleteメソッドを呼び出し、\ ``@SessionAttributes``\ を用いてセッションに格納した検索条件（\ ``SessionArticleSearchForm``\）やページ検索用のリクエストパラメータ（\ ``Pageable``\）を削除する。
 
         * 画面操作の途中でブラウザやタブを閉じた場合、セッションに格納されているフォームオブジェクトに入力途中の情報が残るため、初期表示時に削除しないと、不具合を引き起こす原因を防ぐためである。
 
     * - | (4)
-      - | 検索ボタンを押下した際はHTTP POSTメソッドで受信する。セッションに検索条件（\ ``SessionArticleSearchForm``\）が格納される。
+      - | 検索ボタン及びページネーションリンクのリクエストを処理する。
+
+        * 検索ボタンを押下した際はHTTP POSTメソッドで受信する。
+        * ページネーションリンクを押下した際はHTTP GETメソッドで受信する。
+
     * - | (5)
       - | \ ``@SortDefault``\ アノテーションを使用して \ ``Pageable`` \ の\ ``sort`` \ 初期値を設定する。
     * - | (6)
-      - | ページ検索用のリクエストパラメータ（\ ``Pageable`` \）をセッションに保持する。
+      - | \ ``Model``\オブジェクトのaddAttributeメソッドを使用して、ページ検索用のリクエストパラメータ（\ ``Pageable`` \）を セッションに格納する。属性名は \ ``"sessionArticleSearchPageable"``\ で指定する。
     * - | (7)
-      - | セッションに保持した検索条件（\ ``SessionArticleSearchForm``\）とページ検索用のリクエストパラメータ（\ ``Pageable`` \）を使用して検索処理を行う。
+      - | ページネーション対象のページへ戻る処理を行う。\ ``@ModelAttribute``\を指定してセッションに格納した検索条件（\ ``SessionArticleSearchForm``\）とページ検索用のリクエストパラメータ（\ ``Pageable`` \）を受け取る。
+
+        * \ ``@ModelAttribute("sessionArticleSearchPageable")``\を省略した場合は、デフォルト値のページ検索用のリクエストパラメータが適用される。
+
+    * - | (8)
+      - | セッションから受け取った、検索条件（\ ``SessionArticleSearchForm``\）とページ検索用のリクエストパラメータ（\ ``Pageable`` \）をlistメソッドのパラメータに指定して遷移する。
 
  .. note:: **セッションオブジェクトの削除について**
 
