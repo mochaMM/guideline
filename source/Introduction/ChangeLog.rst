@@ -28,6 +28,12 @@
 
         * JavaMailで発生する問題とその回避方法を追加(\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
 
+    * -
+      - :doc:`../Security/Authentication`
+      - 記載内容の追加
+
+        * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
