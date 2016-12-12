@@ -3940,7 +3940,8 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
             
    * - \ ``@URL``\
      - 任意の\ ``CharSequence``\ インタフェースの実装クラスに適用可能
-     - RFC2396に準拠しているかどうか検証する。
+     - URLとして妥当であること検証する。\ ``java.net.URL``\ のコンストラクタを使用して文字列検証を行っており、
+       URLとして妥当とされるプロトコルはJVMがサポートするプロトコル(\ ``http``\ ,\ ``https``\ ,\ ``file``\ ,\ ``jar``\ など)に依存する。
      - .. code-block:: java
 
             @URL
@@ -3962,6 +3963,61 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
 
             @NotEmpty
             private String password;
+
+.. tip::
+
+     \ ``@URL``\ にて、JVMがサポートしていないプロトコルについても妥当として検証したい場合、制約定義にてHibernateから提供されている\ ``RegexpURLValidator``\ を検証クラスに変更する。
+     当該クラスはURL形式であるかを正規表現で検証しており、JVMがサポートしていないプロトコルについても妥当として検証可能である。
+
+     \ ``@URL``\ の制約定義変更例を以下に示す。
+
+     * :file:`META-INF/validation.xml`
+         .. code-block:: xml
+
+               <validation-config xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
+                             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                             xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.1.xsd">
+
+                   <!-- (1) -->
+                   <constraint-mapping>META-INF/validation/constraint-mappings.xml</constraint-mapping>
+
+               </validation-config>
+
+       .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+       .. list-table::
+            :header-rows: 1
+            :widths: 10 80
+
+            * - 項番
+              - 説明
+            * - | (1)
+              - 制約マッピングファイルを指定する。
+
+     * :file:`制約マッピングファイル`
+          .. code-block:: xml
+
+               <constraint-mappings
+                       xmlns="http://jboss.org/xml/ns/javax/validation/mapping"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd">
+
+                   <constraint-definition annotation="org.hibernate.validator.constraints.URL">
+                       <validated-by include-existing-validators="false">
+                           <!-- (1) -->
+                           <value>org.hibernate.validator.constraintvalidators.RegexpURLValidator</value>
+                       </validated-by>
+                   </constraint-definition>
+               </constraint-mappings>
+
+       .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+       .. list-table::
+            :header-rows: 1
+            :widths: 10 80
+
+            * - 項番
+              - 説明
+            * - | (1)
+              - 検証クラスに\ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\を定義する。
 
 .. _Validation_default_message_in_hibernate_validator:
 
