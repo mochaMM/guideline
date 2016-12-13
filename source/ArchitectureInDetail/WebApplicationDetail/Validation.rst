@@ -3969,12 +3969,13 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
      \ ``@URL``\ にて、JVMがサポートしていないプロトコルについても妥当として検証したい場合、Hibernateから提供されている\ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\ を使用する。
      当該クラスはURL形式であるかを正規表現で検証しており、JVMがサポートしていないプロトコルについても妥当として検証可能である。
 
-     * \ `JavaDoc <https://docs.jboss.org/hibernate/validator/5.2/api/org/hibernate/validator/constraints/URL.html>`_\ に記載されているように、XMLにて@URLのValidatorクラスを\ ``RegexpURLValidator``\ に変更し、プロジェクト全体に適用する。
-     * \ ``RegexpURLValidator``\ を使用した入力チェックアノテーションを作成し、必要な要素に作成したアノテーションによる検証を適用する。
+     * アプリケーション全体の\ ``@URL``\ のチェックルールを変更してもよい場合には、\ `JavaDoc <https://docs.jboss.org/hibernate/validator/5.2/api/org/hibernate/validator/constraints/URL.html>`_\ に記載されているように、
+       XMLにてValidatorクラスを\ ``RegexpURLValidator``\ に変更する。
+     * 一部の項目だけに正規表現による検証を適用し、\ ``@URL``\ はデフォルトのルールを使用する場合には、\ ``RegexpURLValidator``\ を使用した入力チェックアノテーションを作成し、必要な項目に作成したアノテーションによる検証を適用する。
 
      など、用途に応じた適用を行えばよい。
 
-     XMLによる適用の詳細については\ `Hibernateのリファレンス <https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch07.html#section-configuration-validation-xml>`_\ を、
+     XMLによるチェックルール変更の詳細については\ `Hibernateのリファレンス <https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch07.html#section-configuration-validation-xml>`_\ を、
      新規アノテーションの作成方法については、\ :ref:`Validation_implement_new_constraint`\ をそれぞれ参照されたい。
 
 .. _Validation_default_message_in_hibernate_validator:
