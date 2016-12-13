@@ -3971,7 +3971,11 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
 
      * \ `JavaDoc <https://docs.jboss.org/hibernate/validator/5.2/api/org/hibernate/validator/constraints/URL.html>`_\ に記載されているように、XMLにて@URLのValidatorクラスを\ ``RegexpURLValidator``\ に変更し、プロジェクト全体に適用する。
      * \ ``RegexpURLValidator``\ を使用した入力チェックアノテーションを作成し、必要な要素に作成したアノテーションによる検証を適用する。
+
      など、用途に応じた適用を行えばよい。
+
+     XMLによる適用の詳細については\ `Hibernateのリファレンス <https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch07.html#section-configuration-validation-xml>`_\ を、
+     新規アノテーションの作成方法については、\ :ref:`Validation_implement_new_constraint`\ をそれぞれ参照されたい。
 
 .. _Validation_default_message_in_hibernate_validator:
 
