@@ -3966,58 +3966,12 @@ Hibernate Validatorの代表的なアノテーション(\ ``org.hibernate.valida
 
 .. tip::
 
-     \ ``@URL``\ にて、JVMがサポートしていないプロトコルについても妥当として検証したい場合、制約定義にてHibernateから提供されている\ ``RegexpURLValidator``\ を検証クラスに変更する。
+     \ ``@URL``\ にて、JVMがサポートしていないプロトコルについても妥当として検証したい場合、Hibernateから提供されている\ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\ を使用する。
      当該クラスはURL形式であるかを正規表現で検証しており、JVMがサポートしていないプロトコルについても妥当として検証可能である。
 
-     \ ``@URL``\ の制約定義変更例を以下に示す。
-
-     * :file:`META-INF/validation.xml`
-         .. code-block:: xml
-
-               <validation-config xmlns="http://jboss.org/xml/ns/javax/validation/configuration"
-                             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                             xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/configuration validation-configuration-1.1.xsd">
-
-                   <!-- (1) -->
-                   <constraint-mapping>META-INF/validation/constraint-mappings.xml</constraint-mapping>
-
-               </validation-config>
-
-       .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-       .. list-table::
-            :header-rows: 1
-            :widths: 10 80
-
-            * - 項番
-              - 説明
-            * - | (1)
-              - 制約マッピングファイルを指定する。
-
-     * :file:`制約マッピングファイル`
-          .. code-block:: xml
-
-               <constraint-mappings
-                       xmlns="http://jboss.org/xml/ns/javax/validation/mapping"
-                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                       xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.1.xsd">
-
-                   <constraint-definition annotation="org.hibernate.validator.constraints.URL">
-                       <validated-by include-existing-validators="false">
-                           <!-- (1) -->
-                           <value>org.hibernate.validator.constraintvalidators.RegexpURLValidator</value>
-                       </validated-by>
-                   </constraint-definition>
-               </constraint-mappings>
-
-       .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-       .. list-table::
-            :header-rows: 1
-            :widths: 10 80
-
-            * - 項番
-              - 説明
-            * - | (1)
-              - 検証クラスに\ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\を定義する。
+     * \ `JavaDoc <https://docs.jboss.org/hibernate/validator/5.2/api/org/hibernate/validator/constraints/URL.html>`_\ に記載されているように、XMLにて@URLのValidatorクラスを\ ``RegexpURLValidator``\ に変更し、プロジェクト全体に適用する。
+     * \ ``RegexpURLValidator``\ を使用した入力チェックアノテーションを作成し、必要な要素に作成したアノテーションによる検証を適用する。
+     など、用途に応じた適用を行えばよい。
 
 .. _Validation_default_message_in_hibernate_validator:
 
