@@ -34,6 +34,12 @@
 
         * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - 記載内容の削除
+
+        * Mybatis 3.4.Xへのバージョンアップに伴い、JSR-310のTypeHandlerの設定方法とTipを削除(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
