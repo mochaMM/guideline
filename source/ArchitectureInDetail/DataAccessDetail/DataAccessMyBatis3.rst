@@ -1099,14 +1099,12 @@ MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻�
 
 具体的には、
 
-* 容量の大きいファイルデータ(バイナリデータ)を\ ``java.io.InputStream`` \型で保持し、JDBC型の\ ``BLOB`` \型にマッピングする
-* 容量の大きいテキストデータを\ ``java.io.Reader`` \型として保持し、JDBC型の\ ``CLOB`` \型にマッピングする
 * 本ガイドラインで利用を推奨している「:doc:`../GeneralFuncDetail/JodaTime`」の\ ``org.joda.time.DateTime`` \型と、JDBC型の\ ``TIMESTAMP`` \型をマッピングする
 * etc ...
 
 場合に、\ ``TypeHandler`` \の作成が必要となる。
 
-上記にあげた3つの\ ``TypeHandler`` \の作成例については、
+上記にあげた\ ``TypeHandler`` \の作成例については、
 「:ref:`DataAccessMyBatis3HowToExtendTypeHandler`」を参照されたい。
 
 |
@@ -4884,8 +4882,6 @@ MyBatis3標準の振る舞いを変更する必要がある場合は、独自の
 
 以下に、
 
-* :ref:`DataAccessMyBatis3HowToExtendTypeHandlerBlob`
-* :ref:`DataAccessMyBatis3HowToExtendTypeHandlerClob`
 * :ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`
 
 を例に、\ ``TypeHandler`` \の実装方法について説明する。
@@ -4893,188 +4889,15 @@ MyBatis3標準の振る舞いを変更する必要がある場合は、独自の
 作成した\ ``TypeHandler`` \をアプリケーションに適用する方法については、
 「:ref:`DataAccessMyBatis3HowToUseSettingsTypeHandler`」を参照されたい。
 
- .. note:: **BLOB用とCLOB用の実装例の前提条件について**
+ .. note:: **BLOB用とCLOB用の実装について**
 
-    BLOBとCLOBの実装例では、JDBC 4.0から追加されたメソッドを使用している。
+    MyBatis 3.4で追加された\ ``TypeHandler`` \は、JDBC 4.0 (Java 1.6)で追加されたAPIを使用することで、BLOBと\ ``java.io.InputStream`` \、
+    CLOBと\ ``java.io.Reader`` \の変換を実現している。JDBC 4.0サポートのJDBCドライバーであれば、BLOB⇔\ ``InputStream`` \、CLOB⇔\ ``Reader`` \
+    変換用のタイプハンドラーがデフォルトで有効になるため、\ ``TypeHandler`` \を新たに実装する必要はない。
 
-    JDBC 4.0との互換性のないJDBCドライバや3rdパーティのラッパクラスなどを使用する場合は、
-    以下に説明する実装例では動作しない可能性がある点を補足しておく。
-    JDBC 4.0との互換性がない環境で動作させる場合は、
-    利用するJDBCドライバの互換バージョンを意識した実装に変更する必要がある。
+    JDBC 4.0との互換性がない環境で動作させる場合は、利用するJDBCドライバの互換バージョンを意識した実装に変更する必要がある。
 
-    例えば、PostgreSQL9.3用のJDBCドライバ(\ ``postgresql-9.3-1102-jdbc41.jar``\)では、
-    JDBC 4.0から追加された多くのメソッドが、未実装の状態である。
-
-|
-
-.. _DataAccessMyBatis3HowToExtendTypeHandlerBlob:
-
-BLOB用のTypeHandlerの実装
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-MyBatis3では、BLOBを\ ``byte[]``\にマッピングするための\ ``TypeHandler`` \を提供している。
-ただし、扱うデータの容量が大きい場合は、\ ``java.io.InputStream``\とマッピングが必要なケースがある。
-
-以下に、BLOBと\ ``java.io.InputStream``\をマッピングするための\ ``TypeHandler`` \の実装例を示す。
-
- .. code-block:: java
-
-    package com.example.infra.mybatis.typehandler;
-
-    import org.apache.ibatis.type.BaseTypeHandler;
-    import org.apache.ibatis.type.JdbcType;
-    import org.apache.ibatis.type.MappedTypes;
-
-    import java.io.InputStream;
-    import java.sql.*;
-
-    // (1)
-    public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
-
-        // (2)
-        @Override
-        public void setNonNullParameter(PreparedStatement ps, int i, InputStream parameter,
-                                        JdbcType jdbcType) throws SQLException {
-            ps.setBlob(i, parameter);
-        }
-
-        // (3)
-        @Override
-        public InputStream getNullableResult(ResultSet rs, String columnName)
-                throws SQLException {
-            return toInputStream(rs.getBlob(columnName));
-        }
-
-        // (3)
-        @Override
-        public InputStream getNullableResult(ResultSet rs, int columnIndex)
-                throws SQLException {
-            return toInputStream(rs.getBlob(columnIndex));
-        }
-
-        // (3)
-        @Override
-        public InputStream getNullableResult(CallableStatement cs, int columnIndex)
-                throws SQLException {
-            return toInputStream(cs.getBlob(columnIndex));
-        }
-
-        private InputStream toInputStream(Blob blob) throws SQLException {
-            // (4)
-            if (blob == null) {
-                return null;
-            } else {
-                return blob.getBinaryStream();
-            }
-        }
-
-    }
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 80
-
-    * - 項番
-      - 説明
-    * - (1)
-      - MyBatis3から提供されている\ ``BaseTypeHandler``\を親クラスに指定する。
-
-        その際、\ ``BaseTypeHandler``\のジェネリック型には、\ ``InputStream``\を指定する。
-    * - (2)
-      - \ ``InputStream``\を\ ``PreparedStatement``\に設定する処理を実装する。
-    * - (3)
-      - \ ``ResultSet``\又は\ ``CallableStatement``\から取得した\ ``Blob``\から\ ``InputStream``\を取得し、返り値として返却する。
-    * - (4)
-      - \ ``null``\を許可するカラムの場合、取得した\ ``Blob``\が\ ``null``\になる可能性があるため、
-        \ ``null``\チェックを行ってから\ ``InputStream``\を取得する必要がある。
-
-        上記実装例では、3つのメソッドで同じ処理が必要になるため、privateメソッドを作成している。
-
-|
-
-.. _DataAccessMyBatis3HowToExtendTypeHandlerClob:
-
-CLOB用のTypeHandlerの実装
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-MyBatis3では、CLOBを\ ``java.lang.String``\にマッピングするための\ ``TypeHandler`` \を提供している。
-ただし、扱うデータの容量が大きい場合は、\ ``java.io.Reader``\とマッピングが必要なケースがある。
-
-以下に、CLOBと\ ``java.io.Reader``\をマッピングするための\ ``TypeHandler`` \の実装例を示す。
-
- .. code-block:: java
-
-    package com.example.infra.mybatis.typehandler;
-
-    import org.apache.ibatis.type.BaseTypeHandler;
-    import org.apache.ibatis.type.JdbcType;
-
-    import java.io.Reader;
-    import java.sql.*;
-
-    // (1)
-    public class ClobReaderTypeHandler extends BaseTypeHandler<Reader> {
-
-        // (2)
-        @Override
-        public void setNonNullParameter(PreparedStatement ps, int i, Reader parameter,
-                                        JdbcType jdbcType) throws SQLException {
-            ps.setClob(i, parameter);
-        }
-
-        // (3)
-        @Override
-        public Reader getNullableResult(ResultSet rs, String columnName)
-            throws SQLException {
-            return toReader(rs.getClob(columnName));
-        }
-
-        // (3)
-        @Override
-        public Reader getNullableResult(ResultSet rs, int columnIndex)
-            throws SQLException {
-            return toReader(rs.getClob(columnIndex));
-        }
-
-        // (3)
-        @Override
-        public Reader getNullableResult(CallableStatement cs, int columnIndex)
-            throws SQLException {
-            return toReader(cs.getClob(columnIndex));
-        }
-
-        private Reader toReader(Clob clob) throws SQLException {
-            // (4)
-            if (clob == null) {
-                return null;
-            } else {
-                return clob.getCharacterStream();
-            }
-        }
-
-    }
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 80
-
-    * - 項番
-      - 説明
-    * - (1)
-      - MyBatis3から提供されている\ ``BaseTypeHandler``\を親クラスに指定する。
-
-        その際、\ ``BaseTypeHandler``\のジェネリック型には、\ ``Reader``\を指定する。
-    * - (2)
-      - \ ``Reader``\を\ ``PreparedStatement``\に設定する処理を実装する。
-    * - (3)
-      - \ ``ResultSet``\又は\ ``CallableStatement``\から取得した\ ``Clob``\から\ ``Reader``\を取得し、返り値として返却する。
-    * - (4)
-      - \ ``null``\を許可するカラムの場合、取得した\ ``Clob``\が\ ``null``\になる可能性があるため、
-        \ ``null``\チェックを行ってから\ ``Reader``\を取得する必要がある。
-
-        上記実装例では、3つのメソッドで同じ処理が必要になるため、privateメソッドを作成している。
+    例えば、PostgreSQL9.3用のJDBCドライバ(\ ``postgresql-9.3-1102-jdbc41.jar``\)では、JDBC 4.0から追加された多くのメソッドが、未実装の状態である。
 
 |
 
