@@ -16,6 +16,12 @@
 
         * 更新内容の詳細は、\ `5.3.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
+    * - 
+      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
+      - 記載内容の追加
+
+        * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の改善
@@ -34,6 +40,8 @@
 
         * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
+        * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
