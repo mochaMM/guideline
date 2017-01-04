@@ -730,7 +730,6 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
 
     使用するデータベースがPostgreSQLとOracleの場合は、POMファイル内のコメントアウトを外せばよい。
     JDBCドライバのバージョンについては、使用するデータベースのバージョンに対応するバージョンに修正すること。
-    JDBCドライバはコンパイルには使用せず、実行時にだけ必要なライブラリであるので、scopeはruntimeになっている。
 
     ただしOracleを使用する場合は、コメントを外す前に、
     MavenのローカルリポジトリにOracleのJDBCドライバをインストールしておく必要がある。
@@ -764,13 +763,25 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
                      <dependency>
                          <groupId>org.postgresql</groupId>
                          <artifactId>postgresql</artifactId>
-                         <scope>runtime</scope>
+                         <scope>runtime</scope><!-- (1) -->
                      </dependency>
         <!--         <dependency> -->
         <!--             <groupId>com.oracle</groupId> -->
         <!--             <artifactId>ojdbc7</artifactId> -->
         <!--             <scope>runtime</scope> -->
         <!--         </dependency> -->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - JDBCドライバはコンパイルには使用せず、アプリケーション実行時のみ使用するため、\ ``runtime``\ スコープを指定している。
+
+        ただし、テスト時は\ ``test``\ スコープに変更すること。
 
 |
 
