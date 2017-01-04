@@ -967,6 +967,7 @@ Customization method and customization targeted files are indicated below.
 
     It is fine to remove the comment out of POM file in case of PostgreSQL or Oracle database is used.. 
     Modify the JDBC driver version by actual use of the corresponding database version.
+    JDBC driver is not need when compile, it is only need when run time, so scope setting is runtime.
 
     However, if Oracle is used, 
     it is necessary to install the Oracle JDBC driver in the local repository of Maven before removing the comment.
