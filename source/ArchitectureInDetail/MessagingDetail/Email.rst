@@ -971,7 +971,7 @@ ISO-2022-JPのエンコードについての考慮
 MS932で入力された文字列に対し、エンコードにISO-2022-JPをはじめとするJIS X 0208の文字集合をベースとしたエンコードを設定した場合、
 以下の表に記載する7文字において文字化けが発生する。
 
-.. tabularcolumns:: |p{0.20\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+.. tabularcolumns:: |p{0.20\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
 .. list-table::
    :header-rows: 2
    :widths: 20 15 15 15 15 20

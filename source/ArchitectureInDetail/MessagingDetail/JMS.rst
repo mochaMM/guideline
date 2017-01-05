@@ -1155,7 +1155,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
             cache="consumer"
             transaction-manager="jmsAsyncReceiveTransactionManager"/>
 
- .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.21\linewidth}|p{0.74\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
@@ -1649,7 +1649,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         cache="consumer"
         transaction-manager="jmsAsyncReceiveTransactionManager"/>
 
- .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.21\linewidth}|p{0.74\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
@@ -1818,7 +1818,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
           transaction-manager="chainedTransactionManager"
           acknowledge="transacted"/>
 
-   .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+   .. tabularcolumns:: |p{0.05\linewidth}|p{0.21\linewidth}|p{0.74\linewidth}|
    .. list-table::
       :header-rows: 1
       :widths: 10 26 64
