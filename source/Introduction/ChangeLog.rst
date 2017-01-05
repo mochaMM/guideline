@@ -23,6 +23,14 @@
         * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
     * -
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+        | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - 記載内容の追記
+
+        * 使用DBがPostgreSQL時、javax.persistence.lock.timeoutのvalueに0を設定しても、
+          NOWAIT句が付かなくなった説明を追加(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+
+    * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の追加
 

@@ -1242,6 +1242,10 @@ value属性にQueryヒント( ``@javax.persistence.QueryHint`` )を指定する�
         | 指定できるヒントは、JPAの仕様で決められているものに加え、プロバイダ固有のものがある。
         | 上記例では、ロックタイムアウトを ``0`` に設定している(使用DBはPostgreSQL)。SQLに"FOR UPDATE NOWAIT"句が追加される。
 
+ .. warning:: **PostgreSQLを使用する場合、SQLに"NOWAIT"句が追加されない**
+
+    TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"NOWAIT"句が追加されない問題がある(Hibernate 5.2.1.Finalで改修されている)。
+
  .. note:: **Hibernateで指定できるQueryヒントについて**
 
     JPA仕様で決められているQueryヒントは以下の通り。
