@@ -846,7 +846,7 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
      .. code-block:: java
 
 
-        public abstract class AbstractBLogic<I, O> implements BLogic<I, O> {
+        public abstract class AbstractTransactionalBLogic<I, O> implements BLogic<I, O> {
 
             public O execute(I input){
               try{
@@ -896,9 +896,29 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
      .. code-block:: java
 
-        public class XxxBLogic extends AbstractBLogic<XxxInput, XxxOutput> {
+        // (6)
+        public interface XxxBLogic extends BLogic<XxxInput, XxxOutput> {
 
-            // (6)
+        }
+
+
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+        :header-rows: 1
+        :widths: 10 90
+
+        * - 項番
+          - 説明
+        * - | (6)
+          - | BLogicインタフェースを継承したインタフェース。
+            | 基底クラスのメソッド経由での呼び出しを行うために、BLogicを継承したサブインタフェースを実装する。
+
+
+     .. code-block:: java
+
+        public class XxxBLogicImpl extends AbstractTransactionalBLogic<XxxInput, XxxOutput> implements XxxBLogic {
+
+            // (7)
             protected void preExecute(XxxInput input) {
 
                 // omitted
@@ -910,7 +930,7 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
             }
 
-            // (7)
+            // (8)
             protected XxxOutput doExecute(XxxInput input) {
                 TourReservation tourReservation = new TourReservation();
 
@@ -934,10 +954,10 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
         * - 項番
           - 説明
-        * - | (6)
+        * - | (7)
           - | 業務ロジックを実行する前の事前処理を実装する。
             | ビジネスルールのチェックなどを実装する事になる。
-        * - | (7)
+        * - | (8)
           - | 業務ロジックを実装する。
             | ビジネスルールを充たすために、ロジックを実装する事になる。
 
