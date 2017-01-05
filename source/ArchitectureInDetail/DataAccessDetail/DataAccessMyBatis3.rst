@@ -1018,6 +1018,17 @@ TypeHandlerの設定
 プリミティブ型やプリミティブラッパ型などの一般的なJavaクラスについては、MyBatis3から\ ``TypeHandler`` \が提供されており、
 特別な設定を行う必要はない。
 
+**JSR-310 Date and Time APIを使う場合の設定**
+
+MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻を表現するクラスを使用する場合には、MyBatisより別ライブラリ(\ ``mybatis-typehandlers-jsr310`` \)で提供されている\ ``TypeHandler`` \を使用する。
+
+.. note::
+        `MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトで\ ``mybatis-typehandlers-jsr310`` \が使用可能である。
+
+.. tip::
+
+        MyBatis 3.4になると\ ``TypeHandler`` \は自動検出されるようになっているため、Mybatisの設定は不要になる。
+
 .. tip::
 
    MyBatis3から提供されている\ ``TypeHandler`` \については、

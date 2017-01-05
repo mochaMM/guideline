@@ -38,7 +38,9 @@
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - 記載内容の削除
 
-        * Mybatis 3.4.Xへのバージョンアップに伴い、JSR-310のTypeHandlerの設定方法とTipを削除(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+        * Mybatis 3.4.Xへのバージョンアップに伴い、JSR-310のTypeHandlerの設定方法を削除
+
+          また、`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを記載(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
     * - 2016-08-31
       - \-
