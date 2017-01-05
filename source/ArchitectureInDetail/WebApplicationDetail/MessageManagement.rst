@@ -324,7 +324,7 @@ Overview
 
 * フォーマット
 
-    .. tabularcolumns:: |p{0.12\linewidth}|p{0.11\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
+    .. tabularcolumns:: |p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
     .. list-table::
        :header-rows: 1
        :widths: 12 12 14 12 14 12 12 12
@@ -404,7 +404,7 @@ Overview
 
 * フォーマット
 
-    .. tabularcolumns:: |p{0.12\linewidth}|p{0.11\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
+    .. tabularcolumns:: |p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
     .. list-table::
        :header-rows: 1
        :widths: 12 12 14 12 14 12 12 12
