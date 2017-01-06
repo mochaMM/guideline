@@ -71,7 +71,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
 マルチプロジェクトを作成するためのArchetypeとして、以下の2種類を用意している。
 
-.. tabularcolumns:: |p{0.5\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
+.. tabularcolumns:: |p{0.05\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 5 30 65

@@ -764,7 +764,7 @@ SimpleI18nCodeListの使用方法
 
 料金を選択するセレクトボックスの場合の例に上げると以下のようなテーブルができる。
 
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
