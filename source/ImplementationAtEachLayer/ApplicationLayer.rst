@@ -434,7 +434,7 @@ Acceptヘッダでマッピング
 | リクエストとハンドラメソッドのマッピングの設計を行う。
 | 以下は、マッピング方針に則って設計したマッピング定義となる。
 
- .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.22\linewidth}|p{0.10\linewidth}|p{0.13\linewidth}|p{0.15\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 5 20 15 22 10 13 15

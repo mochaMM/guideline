@@ -323,7 +323,7 @@ REST APIの実装サンプル
 
  Todoリソースに対して、以下の5つのREST API(Controllerのハンドラメソッド)を作成する。
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.30\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 15 10 30 15 20
@@ -2101,7 +2101,7 @@ REST APIの実装
 
  実装するREST APIは以下の5つのAPIとする。
  
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.25\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.25\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 15 10 25 15 25

@@ -15,7 +15,7 @@ JSP Tag Library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 共通ライブラリから提供しているJSP Tag Libraryを以下に示す。
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
@@ -41,7 +41,7 @@ EL Functions
 
 **XSS対策関連**
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
