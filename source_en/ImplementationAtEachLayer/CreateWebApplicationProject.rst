@@ -721,7 +721,6 @@ Customization method and customization targeted files are indicated below.
 
     It is fine to remove the comment out of POM file in case of PostgreSQL or Oracle database is used.. 
     Modify the JDBC driver version by actual use of the corresponding database version.
-    JDBC driver is not need when compile, it is only need when run time, so scope setting is runtime.
 
     However, if Oracle is used, 
     it is necessary to install the Oracle JDBC driver in the local repository of Maven before removing the comment.
@@ -755,13 +754,25 @@ Customization method and customization targeted files are indicated below.
                      <dependency>
                          <groupId>org.postgresql</groupId>
                          <artifactId>postgresql</artifactId>
-                         <scope>runtime</scope>
+                         <scope>runtime</scope><!-- (1) -->
                      </dependency>
         <!--         <dependency> -->
         <!--             <groupId>com.oracle</groupId> -->
         <!--             <artifactId>ojdbc7</artifactId> -->
         <!--             <scope>runtime</scope> -->
         <!--         </dependency> -->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - | Sr. No.
+      - | Description
+    * - | (1)
+      - JDBC driver is not need when compile, it is only need when run time, so the \ ``runtime`` \ scope is specified.
+
+        In case of using JDBC driver in unit test, change to appropriate scope and use it.
 
 |
 
