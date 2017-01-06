@@ -928,7 +928,7 @@ Customization method and customization targeted files are indicated below.
       - POM file
 
         * ``artifactId/pom.xml``
-        * ``artifactId/artifactId-domain/pom.xml``
+        * ``artifactId/artifactId-web/pom.xml``
       - Remove in-memory database (H2 Database) JDBC driver from the dependency library.
 
         Add the JDBC driver in dependency library for accessing the actual running application database.
@@ -993,20 +993,32 @@ Customization method and customization targeted files are indicated below.
             <postgresql.version>9.4-1206-jdbc41</postgresql.version>
             <ojdbc.version>12.1.0.2</ojdbc.version>
 
-    * ``artifactId/artifactId-domain/pom.xml``
+    * ``artifactId/artifactId-web/pom.xml``
 
      .. code-block:: xml
 
                      <dependency>
                          <groupId>org.postgresql</groupId>
                          <artifactId>postgresql</artifactId>
-                         <scope>provided</scope>
+                         <scope>runtime</scope><!-- (1) -->
                      </dependency>
         <!--         <dependency> -->
         <!--             <groupId>com.oracle</groupId> -->
         <!--             <artifactId>ojdbc7</artifactId> -->
-        <!--             <scope>provided</scope> -->
+        <!--             <scope>runtime</scope> -->
         <!--         </dependency> -->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - | Sr. No.
+      - | Description
+    * - | (1)
+      - JDBC driver is not need when compile, it is only need when run time, so the \ ``runtime`` \ scope is specified.
+
+        In case of using JDBC driver in unit test, change to appropriate scope and use it.
 
 |
 
