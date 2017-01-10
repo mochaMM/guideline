@@ -1018,6 +1018,12 @@ TypeHandlerの設定
 プリミティブ型やプリミティブラッパ型などの一般的なJavaクラスについては、MyBatis3から\ ``TypeHandler`` \が提供されており、
 特別な設定を行う必要はない。
 
+ .. note:: **BLOB用とCLOB用の実装について**
+
+    MyBatis 3.4で追加された\ ``TypeHandler`` \は、JDBC 4.0 (Java 1.6)で追加されたAPIを使用することで、BLOBと\ ``java.io.InputStream`` \、
+    CLOBと\ ``java.io.Reader`` \の変換を実現している。JDBC 4.0サポートのJDBCドライバーであれば、BLOB⇔\ ``InputStream`` \、CLOB⇔\ ``Reader`` \
+    変換用のタイプハンドラーがデフォルトで有効になるため、\ ``TypeHandler`` \を新たに実装する必要はない。
+
 **JSR-310 Date and Time APIを使う場合の設定**
 
 MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻を表現するクラスを使用する場合には、MyBatisより別ライブラリ(\ ``mybatis-typehandlers-jsr310`` \)で提供されている\ ``TypeHandler`` \を使用する。
@@ -1095,16 +1101,12 @@ MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻�
 
 |
 
-\ ``TypeHandler`` \の作成が必要になるケースは、MyBatis3でサポートしていないJavaクラスとJDBC型をマッピングする場合である。
+\ ``TypeHandler`` \の作成が必要になるケースは、MyBatis3でサポートしていないJoda-TimeのクラスとJDBC型をマッピングする場合である。
 
-具体的には、
-
-* 本ガイドラインで利用を推奨している「:doc:`../GeneralFuncDetail/JodaTime`」の\ ``org.joda.time.DateTime`` \型と、JDBC型の\ ``TIMESTAMP`` \型をマッピングする
-* etc ...
-
+具体的には、本ガイドラインで利用を推奨している「:doc:`../GeneralFuncDetail/JodaTime`」の\ ``org.joda.time.DateTime`` \型と、JDBC型の\ ``TIMESTAMP`` \型をマッピングする
 場合に、\ ``TypeHandler`` \の作成が必要となる。
 
-上記にあげた\ ``TypeHandler`` \の作成例については、
+Joda-TimeのクラスとJDBC型をマッピングする\ ``TypeHandler`` \の作成例については、
 「:ref:`DataAccessMyBatis3HowToExtendTypeHandler`」を参照されたい。
 
 |
@@ -4877,14 +4879,10 @@ SQL文(又はSQL文の一部)を共有する事ができる。
 TypeHandlerの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-MyBatis3の標準でサポートされていないJavaクラスとのマッピングが必要だったり、
-MyBatis3標準の振る舞いを変更する必要がある場合は、独自の\ ``TypeHandler`` \の作成が必要となる。
+MyBatis3の標準でサポートされていないJoda-Timeのクラスとのマッピングが必要の場合、
+独自の\ ``TypeHandler`` \の作成が必要となる。
 
-以下に、
-
-* :ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`
-
-を例に、\ ``TypeHandler`` \の実装方法について説明する。
+「:ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`」を例に、\ ``TypeHandler`` \の実装方法について説明する。
 
 作成した\ ``TypeHandler`` \をアプリケーションに適用する方法については、
 「:ref:`DataAccessMyBatis3HowToUseSettingsTypeHandler`」を参照されたい。
@@ -4895,7 +4893,7 @@ MyBatis3標準の振る舞いを変更する必要がある場合は、独自の
     CLOBと\ ``java.io.Reader`` \の変換を実現している。JDBC 4.0サポートのJDBCドライバーであれば、BLOB⇔\ ``InputStream`` \、CLOB⇔\ ``Reader`` \
     変換用のタイプハンドラーがデフォルトで有効になるため、\ ``TypeHandler`` \を新たに実装する必要はない。
 
-    JDBC 4.0との互換性がない環境で動作させる場合は、利用するJDBCドライバの互換バージョンを意識した実装に変更する必要がある。
+    JDBC 4.0との互換性のないJDBCドライバを使う場合は、利用するJDBCドライバの互換バージョンを意識した\ ``TypeHandler`` \を作成する必要がある。
 
     例えば、PostgreSQL9.3用のJDBCドライバ(\ ``postgresql-9.3-1102-jdbc41.jar``\)では、JDBC 4.0から追加された多くのメソッドが、未実装の状態である。
 
