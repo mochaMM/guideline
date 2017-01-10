@@ -1152,10 +1152,15 @@ HTTPメソッドの割り当て
 リソース毎に割り当てたURIに対して、以下のHTTPメソッドを割り当て、リソースに対するCRUD操作をREST APIとして公開する。
 
  .. note:: **HEADとOPTIONSメソッドについて**
- 
-    以降の説明では、HEADとOPTIONSメソッドについても触れているが、REST APIとしての提供は任意とする。
+
+    Spring Framework 4.3系からHEADとOPTIONSメソッドの割り当てに関する仕様が下記の通り変更されたため、暗黙的にREST APIとして提供される様になった。
     
-    HTTPの仕様に準拠したREST APIを作成する場合は、HEAD及びOPTIONSメソッドの提供も必要だが、実際に使われるケースは稀であり、必要ない事が多いためである。
+    * HEADメソッドは、GETメソッドに対応しているURIに対して、暗黙的に実装される。
+    * OPTIONSメソッドは、割り当てたURIに対して、暗黙的に実装される。
+    
+     .. warning:: **OPTIONSリクエストに対するレスポンスのAllowヘッダの内容**
+
+        OPTIONSリクエストに対するレスポンスのAllowヘッダにOPTIONSは含まれない。
 
 |
 
@@ -1184,13 +1189,6 @@ HTTPメソッドの割り当て
     * - | (4)
       - | DELETE
       - | URIで指定されたリソースの一括削除を行うREST APIを実装する。
-    * - | (5)
-      - | HEAD
-      - | URIで指定されたリソースコレクションのメタ情報を取得するREST APIを実装する。
-        | GETと同じ処理を行いヘッダのみ応答する。
-    * - | (6)
-      - | OPTIONS
-      - | URIで指定されたリソースコレクションでサポートされているHTTPメソッド(API)のリストを応答するREST APIを実装する。
 
 |
 
@@ -1216,13 +1214,6 @@ HTTPメソッドの割り当て
     * - | (3)
       - | DELETE
       - | URIで指定されたリソースの削除を行うREST APIを実装する。
-    * - | (4)
-      - | HEAD
-      - | URIで指定されたリソースのメタ情報を取得するREST APIを実装する。
-        | GETと同じ処理を行いヘッダのみ応答する。
-    * - | (5)
-      - | OPTIONS
-      - | URIで指定されたリソースでサポートされているHTTPメソッド(API)のリストを応答するREST APIを実装する。
 
 |
 
@@ -2149,11 +2140,6 @@ REST APIの実装
       - | 204
         | (No Content)
       - Memberリソースを一件削除する。
-
- .. note::
- 
-     本節では、リソースのCRUD操作の説明に注力するため、HEADとOPTIONSメソッドの説明は行わない。
-     HTTPの仕様に準拠したRESTful Web Serviceを作成する場合は、「:ref:`RESTAppendixRestApiOfHTTPCompliance`」を参照されたい。
 
 |
 
