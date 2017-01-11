@@ -909,17 +909,23 @@ BCryptPasswordEncoder
 .. warning:: **SecureRandomの使用について**
   
     Linux環境で\ ``SecureRandom``\ を使用する場合、処理の遅延やタイムアウトが発生する場合がある。
-    これは使用する乱数生成器に左右される事象であり、以下のJava Bug Databaseに説明がある。
+    これは使用する乱数生成器に左右される事象であり、以下のドキュメントに説明がある。
   
-    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6202721
+    * https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html 
   
-    JDK 7のb20以降のバージョンでは、修正されている。
+    本事象が発生する場合は、以下のいずれかの設定を追加することで回避することができる。
   
-    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6521844
+    * Javaコマンド実行時に ``-Djava.security.egd=file:/dev/urandom`` を指定する。 
   
-    本事象が発生する場合は、JVMのシステムプロパティに以下の設定を追加することで回避することができる。
+    * ``jre/lib/security/java.security`` 内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/urandom`` に変更する。
   
-    * ``-Djava.security.egd=file:/dev/./urandom``
+    JDK 7のb19以前のバージョンで本事象が発生する場合は、以下のいずれかの設定を追加することで回避することができる。 
+  
+    ただし、 \ ``SecureRandom``\ で使用するアルゴリズムが \ ``NativePRNG``\ の場合は回避することができない
+  
+    * Javaコマンド実行時に ``-Djava.security.egd=file:/dev/./urandom`` を指定する。
+  
+    * jre/lib/security/java.security内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/./urandom`` に変更する
 
 |
 
