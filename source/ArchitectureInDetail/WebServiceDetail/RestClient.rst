@@ -1799,122 +1799,6 @@ Basic認証用のリクエストヘッダ設定処理
         | デフォルト設定の場合、\ ``AsyncRestTemplate``\ の\ ``org.springframework.http.client.AsyncClientHttpRequestFactory``\ には、\ ``org.springframework.core.task.AsyncListenableTaskExecutor``\ として\ ``org.springframework.core.task.SimpleAsyncTaskExecutor``\ が設定された \ ``SimpleClientHttpRequestFactory``\ が設定される。
 
 
-.. note:: **AsyncRestTemplateへの共通処理の実装について**
-
-    \ ``org.springframework.http.client.AsyncClientHttpRequestInterceptor``\ を使用することで、サーバとの通信処理の前後に任意の処理を実行させることができる。
-    
-    ここでは、ロギング処理の実装例を紹介する。
-
-    **通信ログ出力の実装例**
-
-     .. code-block:: java
-
-        package com.example.restclient;
-
-        import org.springframework.http.HttpRequest;
-        import org.springframework.http.client.AsyncClientHttpRequestExecution;
-        import org.springframework.http.client.AsyncClientHttpRequestInterceptor;
-        import org.springframework.http.client.ClientHttpResponse;
-        import org.springframework.util.concurrent.ListenableFuture;
-        import org.springframework.util.concurrent.ListenableFutureCallback;
-
-        public class AsyncLoggingInterceptor implements
-                                             AsyncClientHttpRequestInterceptor { // (1)
-            private static final Logger log = LoggerFactory.getLogger(
-                    AsyncLoggingInterceptor.class);
-
-            @Override
-            public ListenableFuture<ClientHttpResponse> intercept(HttpRequest request,
-                    byte[] body,
-                    AsyncClientHttpRequestExecution execution) throws IOException {
-                // (2)
-                if (log.isInfoEnabled()) {
-                    String requestBody = new String(body, StandardCharsets.UTF_8);
-
-                    log.info("Request Header {}", request.getHeaders());
-                    log.info("Request Body {}", requestBody);
-                }
-
-                // (3)
-                ListenableFuture<ClientHttpResponse> future = execution.executeAsync(
-                        request, body);
-                if (log.isInfoEnabled()) {
-                    // (4)
-                    future.addCallback(new ListenableFutureCallback<ClientHttpResponse>() {
-
-                        @Override
-                        public void onSuccess(ClientHttpResponse response) {
-                            try {
-                                log.info("Response Header {}", response
-                                        .getHeaders());
-                                log.info("Response Status Code {}", response
-                                        .getStatusCode());
-                            } catch (IOException e) {
-                                throw new UncheckedIOException(e);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Throwable e) {
-                            log.info("Response Error", e);
-                        }
-                    });
-                }
-
-                return future; // (5)
-            }
-        }
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 10 90
-
-        * - 項番
-          - 説明
-        * - | (1)
-          - | \ ``AsyncClientHttpRequestInterceptor``\ インタフェースを実装する。
-        * - | (2)
-          - | 非同期リクエストを送信する前に実行する処理を実装する。
-            | 上記の実装例では、リクエストヘッダとリクエストボディの内容をログに出力している。
-        * - | (3)
-          - | \ ``intercept``\ メソッドの引数として受け取った\ ``AsyncClientHttpRequestExecution``\ の\ ``executeAsync``\ メソッドを使用して、非同期リクエストを送信する。
-        * - | (4)
-          - | (3)で受け取った\ ``ListenableFuture``\ に\ ``org.springframework.util.concurrent.ListenableFutureCallback``\ を登録して、レスポンスが返ってきた際の処理を実装する。
-            | 成功のレスポンスが返ってきた場合の処理は\ ``onSuccess``\ メソッドに、エラーが発生した場合の処理は\ ``onFailure``\ メソッドに実装する。
-            | \ ``AsyncClientHttpRequestInterceptor``\ 内で登録した\ ``ListenableFutureCallback``\ は\ ``ResponseErrorHandler``\ を介さないため、どのレスポンスコードの場合でも\ ``onSuccess``\ メソッドが呼び出される点に注意する。
-        * - | (5)
-          - | (3)で受け取った\ ``ListenableFuture``\ をリターンする。
-
-
-    **bean定義ファイル(applicationContext.xml)の定義例**
-
-     .. code-block:: xml
-
-        <!-- (1) -->
-        <bean id="asyncLoggingInterceptor" class="com.example.restclient.AsyncLoggingInterceptor" />
-
-        <bean id="asyncRestTemplate" class="org.springframework.web.client.AsyncRestTemplate">
-            <property name="interceptors"><!-- (2) -->
-                <list>
-                    <ref bean="asyncLoggingInterceptor" />
-                </list>
-            </property>
-        </bean>
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 10 90
-
-        * - 項番
-          - 説明
-        * - | (1)
-          - | \ ``AsyncClientHttpRequestInterceptor``\ の実装クラスのbean定義を行う。
-        * - | (2)
-          - | \ ``interceptors``\ プロパティに\ ``AsyncClientHttpRequestInterceptor``\ のbeanをインジェクションする。
-
-
 .. note:: **AsyncRestTemplateのカスタマイズ方法**
 
     デフォルトで設定される\ ``SimpleAsyncTaskExecutor``\ は、スレッドプールを使わずにスレッドを生成しており、
@@ -2011,6 +1895,133 @@ Basic認証用のリクエストヘッダ設定処理
     * - | (2)
       - | ``ListenableFuture``\ に\ ``org.springframework.util.concurrent.ListenableFutureCallback``\ を登録して、レスポンスが返ってきた際の処理を実装する。
         | 成功のレスポンスが返ってきた場合の処理は\ ``onSuccess``\ メソッドに、エラーが発生した場合の処理は\ ``onFailure``\ メソッドに実装する。
+
+
+非同期リクエストの共通処理の実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\ ``org.springframework.http.client.AsyncClientHttpRequestInterceptor``\ を使用することで、サーバとの通信処理の前後に任意の処理を実行させることができる。
+
+ここでは、ロギング処理の実装例を紹介する。
+
+**通信ログ出力の実装例**
+
+.. code-block:: java
+
+    package com.example.restclient;
+
+    import java.io.IOException;
+    import java.nio.charset.StandardCharsets;
+
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    import org.springframework.http.HttpRequest;
+    import org.springframework.http.client.AsyncClientHttpRequestExecution;
+    import org.springframework.http.client.AsyncClientHttpRequestInterceptor;
+    import org.springframework.http.client.ClientHttpResponse;
+    import org.springframework.util.concurrent.ListenableFuture;
+    import org.springframework.util.concurrent.ListenableFutureCallback;
+
+    public class AsyncLoggingInterceptor implements
+                                         AsyncClientHttpRequestInterceptor { // (1)
+        private static final Logger log = LoggerFactory.getLogger(
+                AsyncLoggingInterceptor.class);
+
+        @Override
+        public ListenableFuture<ClientHttpResponse> intercept(HttpRequest request,
+                byte[] body,
+                AsyncClientHttpRequestExecution execution) throws IOException {
+            // (2)
+            if (log.isInfoEnabled()) {
+                String requestBody = new String(body, StandardCharsets.UTF_8);
+
+                log.info("Request Header {}", request.getHeaders());
+                log.info("Request Body {}", requestBody);
+            }
+
+            // (3)
+            ListenableFuture<ClientHttpResponse> future = execution.executeAsync(
+                    request, body);
+            if (log.isInfoEnabled()) {
+                // (4)
+                future.addCallback(new ListenableFutureCallback<ClientHttpResponse>() {
+
+                    @Override
+                    public void onSuccess(ClientHttpResponse response) {
+                        try {
+                            log.info("Response Header {}", response
+                                    .getHeaders());
+                            log.info("Response Status Code {}", response
+                                    .getStatusCode());
+                        } catch (IOException e) {
+                            log.warn("I/O Error", e);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        log.info("Communication Error", e);
+                    }
+                });
+            }
+
+            return future; // (5)
+        }
+    }
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``AsyncClientHttpRequestInterceptor``\ インタフェースを実装する。
+    * - | (2)
+      - | 非同期リクエストを送信する前に実行する処理を実装する。
+        | 上記の実装例では、リクエストヘッダとリクエストボディの内容をログに出力している。
+    * - | (3)
+      - | \ ``intercept``\ メソッドの引数として受け取った\ ``AsyncClientHttpRequestExecution``\ の\ ``executeAsync``\ メソッドを使用して、非同期リクエストを送信する。
+    * - | (4)
+      - | (3)で受け取った\ ``ListenableFuture``\ に\ ``org.springframework.util.concurrent.ListenableFutureCallback``\ を登録して、レスポンスが返ってきた際の処理を実装する。
+        | レスポンスコードが返却された場合、\ ``onSuccess``\ メソッドが呼び出される。
+        | また、後続処理で例外が発生した場合、\ ``onFailure``\ メソッドが呼び出される。以下に具体例を示す。
+
+        * 指定されたIPアドレスに接続できない（\ ``ConnectException``\ ）
+        * Socketの読み込みタイムアウトが発生した（\ ``SocketTimeoutException``\ ）
+
+    * - | (5)
+      - | (3)で受け取った\ ``ListenableFuture``\ をリターンする。
+
+
+**bean定義ファイル(applicationContext.xml)の定義例**
+
+.. code-block:: xml
+
+    <!-- (1) -->
+    <bean id="asyncLoggingInterceptor" class="com.example.restclient.AsyncLoggingInterceptor" />
+
+    <bean id="asyncRestTemplate" class="org.springframework.web.client.AsyncRestTemplate">
+        <property name="interceptors"><!-- (2) -->
+            <list>
+                <ref bean="asyncLoggingInterceptor" />
+            </list>
+        </property>
+    </bean>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``AsyncClientHttpRequestInterceptor``\ の実装クラスのbean定義を行う。
+    * - | (2)
+      - | \ ``interceptors``\ プロパティに\ ``AsyncClientHttpRequestInterceptor``\ のbeanをインジェクションする。
+        | 複数のbeanをインジェクションした場合は、\ ``RestTemplate``\ と同様にリストの先頭から順にチェーン実行される。
+
 
 
 .. _RestClientAppendix:
