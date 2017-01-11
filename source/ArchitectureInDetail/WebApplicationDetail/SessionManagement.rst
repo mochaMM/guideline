@@ -673,6 +673,16 @@ How to use
     * - | (2)
       - | 上記例では、\ ``"entity"``\ という属性名でセッションスコープに格納されているオブジェクトが、引数entityに渡される。
 
+ .. note:: **読み取り専用オブジェクトに対するリクエストパラメータによるバインド防止**
+ 
+    メソッドの引数に\ ``Model``\オブジェクトを指定するとリクエストパラメータによってバインドされる可能性がある。
+    
+    そのため、上記例の\ ``entity``\の様な読み取り専用オブジェクトに対してリクエストパラメータによるバインドを防止したい場合、下記の対応を行うとよい。
+    
+    * \ ``@ModelAttribute(binding = false)``\アノテーションを指定。
+    
+    * \ ``ModelMap``\に格納しておき、\ ``Model``\オブジェクトを取得する際、\ ``ModelMap.get()``\メソッドを使用。
+
 Controllerのハンドラメソッドの引数に渡すオブジェクトが、\ ``Model``\ オブジェクトに存在しない場合、\ ``@ModelAttribute``\ アノテーションの指定の有無で、動作が変わる。
 
 * \ ``@ModelAttribute``\ アノテーションを指定していない場合は、新しいオブジェクトが生成されて引数に渡される。
@@ -1532,7 +1542,7 @@ Appendix
         public String save(@ModelAttribute @Validated({ Wizard1.class,
                 Wizard2.class, Wizard3.class }) WizardForm form, // (22)
                 BindingResult result,
-                Entity entity, // (23)
+                @ModelAttribute(binding = false) Entity entity, // (23)
                 RedirectAttributes redirectAttributes) {
             if (result.hasErrors()) {
                 throw new InvalidRequestException(result); // (24)
@@ -1568,6 +1578,7 @@ Appendix
     * - | (23)
       - | 保存する\ ``Entity.class``\ のオブジェクトを取得する。
         | 登録処理の場合は、新たに生成されたオブジェクト、更新処理の場合は、(14)の処理でセッションに格納したオブジェクトが取得される。
+        | リクエストパラメータによるバインディングを防止するために、\ ``entity``\に\ ``@ModelAttribute(binding = false)``\アノテーションを付与している。
     * - | (24)
       - | アプリケーションが提供しているボタンを使って、画面遷移を行っていれば、このタイミングでエラーは発生しないので、不正な操作が行われた場合に\ ``InvalidRequestException``\ がthrowされる。
         | なお、\ ``InvalidRequestException``\は共通ライブラリから提供している例外クラスではないため、別途作成する必要がある。
