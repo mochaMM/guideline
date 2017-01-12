@@ -805,40 +805,6 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
             | 上記例では、入力情報(I)と出力情報(O)の総称型として定義されており、 業務ロジックを実行するためのメソッド(execute)を一つもつ。
             | 本ガイドラインでは、上記のようなインタフェースを、BLogicインタフェースと呼ぶ。
 
-    - Controller
-
-     .. code-block:: java
-
-        // (2)
-        @Inject
-        XxxBLogic<XxxInput, XxxOutput> xxxBLogic;
-
-        public String reserve(XxxForm form, RedirectAttributes redirectAttributes) {
-
-            XxxInput input = new XxxInput();
-            // omitted
-
-            // (3)
-            XxxOutput output = xxxBlogic.execute(input);
-
-            // omitted
-
-            redirectAttributes.addFlashAttribute(output.getTourReservation());
-            return "redirect:/xxx?complete";
-        }
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 10 90
-
-        * - 項番
-          - 説明
-        * - | (2)
-          - | Controllerは、呼び出すBLogicインタフェースをInjectする。
-        * - | (3)
-          - | Controllerは、BLogicインタフェースのexecuteメソッドを呼び出し、業務ロジックを実行する。
-
     定型的な共通処理をServiceに盛り込む場合、ビジネスロジックの処理フローを統一したい場合に、メソッドのシグネチャを限定するような基底クラスを作成することがある。
 
     - シグネチャを限定するような基底クラス
@@ -846,17 +812,20 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
      .. code-block:: java
 
 
-        public abstract class AbstractTransactionalBLogic<I, O> implements BLogic<I, O> {
+        // (2)
+        @Service
+        @Transactional
+        public abstract class AbstractBLogic<I, O> implements BLogic<I, O> {
 
             public O execute(I input){
               try{
 
                   // omitted
 
-                  // (4)
+                  // (3)
                   preExecute(input);
 
-                  // (5)
+                  // (4)
                   O output = doExecute(input);
 
                   // omitted
@@ -882,10 +851,13 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
         * - 項番
           - 説明
-        * - | (4)
+        * - | (2)
+          - | 基底クラスを作成する場合、\ `@Transactional`\ の仕様上、AOPの対象となるのは外部から実行されるメソッドもしくはメソッドを実装しているクラスであるため、トランザクション制御が必要な場合はこの基底クラスに付与する。
+            | \ `@Servicve`\ も同様に、\ `ResultMessagesLoggingInterceptor`\ のようにAOPによってServiceを対象とするような場合はこの基底クラスに付与する必要がある。
+        * - | (3)
           - | 基底クラスより、業務ロジックを実行する前の、事前処理を行うメソッドを呼び出す。
             | 上記のような事前処理を行うメソッドでは、ビジネスルールのチェックなどを実装することになる。
-        * - | (5)
+        * - | (4)
           - | 基底クラスより、業務ロジックを実行するメソッドを呼び出す。
 
 
@@ -896,7 +868,7 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
      .. code-block:: java
 
-        // (6)
+        // (5)
         public interface XxxBLogic extends BLogic<XxxInput, XxxOutput> {
 
         }
@@ -909,16 +881,18 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
         * - 項番
           - 説明
-        * - | (6)
-          - | BLogicインタフェースを継承したインタフェース。
-            | 基底クラスのメソッド経由での呼び出しを行うために、BLogicを継承したサブインタフェースを実装する。
+        * - | (5)
+          - | タイプセーフなインジェクションを可能にするために、BLogicインタフェースを継承したインタフェースを作成する。
+            | 親インタフェースのメソッド経由での呼び出しを行うために、BLogicを継承したサブインタフェースを実装する。
 
 
      .. code-block:: java
 
-        public class XxxBLogicImpl extends AbstractTransactionalBLogic<XxxInput, XxxOutput> implements XxxBLogic {
+        @Service
+        public class XxxBLogicImpl extends AbstractBLogic<XxxInput, XxxOutput> implements XxxBLogic {
 
-            // (7)
+            // (6)
+            @Override
             protected void preExecute(XxxInput input) {
 
                 // omitted
@@ -930,7 +904,8 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
             }
 
-            // (8)
+            // (7)
+            @Override
             protected XxxOutput doExecute(XxxInput input) {
                 TourReservation tourReservation = new TourReservation();
 
@@ -954,12 +929,46 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
         * - 項番
           - 説明
-        * - | (7)
+        * - | (6)
           - | 業務ロジックを実行する前の事前処理を実装する。
             | ビジネスルールのチェックなどを実装する事になる。
-        * - | (8)
+        * - | (7)
           - | 業務ロジックを実装する。
             | ビジネスルールを充たすために、ロジックを実装する事になる。
+
+    - Controller
+
+     .. code-block:: java
+
+        // (8)
+        @Inject
+        XxxBLogic xxxBLogic;
+
+        public String reserve(XxxForm form, RedirectAttributes redirectAttributes) {
+
+            XxxInput input = new XxxInput();
+            // omitted
+
+            // (9)
+            XxxOutput output = xxxBlogic.execute(input);
+
+            // omitted
+
+            redirectAttributes.addFlashAttribute(output.getTourReservation());
+            return "redirect:/xxx?complete";
+        }
+
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+        :header-rows: 1
+        :widths: 10 90
+
+        * - 項番
+          - 説明
+        * - | (8)
+          - | Controllerは、呼び出すBLogicインタフェースをInjectする。
+        * - | (9)
+          - | Controllerは、BLogicインタフェースのexecuteメソッドを呼び出し、業務ロジックを実行する。
 
 
 .. _service-creation-unit-label:
