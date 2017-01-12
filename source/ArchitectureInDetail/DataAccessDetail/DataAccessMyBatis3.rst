@@ -1103,8 +1103,7 @@ MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻�
 
 \ ``TypeHandler`` \の作成が必要になるケースは、MyBatis3でサポートしていないJoda-TimeのクラスとJDBC型をマッピングする場合である。
 
-具体的には、本ガイドラインで利用を推奨している「:doc:`../GeneralFuncDetail/JodaTime`」の\ ``org.joda.time.DateTime`` \型と、JDBC型の\ ``TIMESTAMP`` \型をマッピングする
-場合に、\ ``TypeHandler`` \の作成が必要となる。
+具体的には、本ガイドラインで利用を推奨している「:doc:`../GeneralFuncDetail/JodaTime`」の\ ``org.joda.time.DateTime`` \型と、JDBC型の\ ``TIMESTAMP`` \型をマッピングする場合に、\ ``TypeHandler`` \の作成が必要となる。
 
 Joda-TimeのクラスとJDBC型をマッピングする\ ``TypeHandler`` \の作成例については、
 「:ref:`DataAccessMyBatis3HowToExtendTypeHandler`」を参照されたい。
@@ -4882,7 +4881,7 @@ TypeHandlerの実装
 MyBatis3の標準でサポートされていないJoda-Timeのクラスとのマッピングが必要の場合、
 独自の\ ``TypeHandler`` \の作成が必要となる。
 
-「:ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`」を例に、\ ``TypeHandler`` \の実装方法について説明する。
+本ガイドラインでは「:ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`」を例に、\ ``TypeHandler`` \の実装方法について説明する。
 
 作成した\ ``TypeHandler`` \をアプリケーションに適用する方法については、
 「:ref:`DataAccessMyBatis3HowToUseSettingsTypeHandler`」を参照されたい。
