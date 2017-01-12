@@ -1985,10 +1985,10 @@ Basic認証用のリクエストヘッダ設定処理
     * - | (4)
       - | (3)で受け取った\ ``ListenableFuture``\ に\ ``org.springframework.util.concurrent.ListenableFutureCallback``\ を登録して、レスポンスが返ってきた際の処理を実装する。
         | レスポンスコードが返却された場合、\ ``onSuccess``\ メソッドが呼び出される。
-        | また、後続処理で例外が発生した場合、\ ``onFailure``\ メソッドが呼び出される。以下に具体例を示す。
+        | また、非同期リクエスト時に例外が発生した場合、\ ``onFailure``\ メソッドが呼び出される。以下に具体例を示す。
 
-        * 指定されたIPアドレスに接続できない（\ ``ConnectException``\ ）
-        * Socketの読み込みタイムアウトが発生した（\ ``SocketTimeoutException``\ ）
+        * 指定されたホストに接続できない（\ ``ConnectException``\ ）
+        * レスポンスデータの読み込みタイムアウトが発生した（\ ``SocketTimeoutException``\ ）
 
     * - | (5)
       - | (3)で受け取った\ ``ListenableFuture``\ をリターンする。
