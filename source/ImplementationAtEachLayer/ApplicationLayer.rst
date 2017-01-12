@@ -1809,15 +1809,29 @@ HTMLを応答する
    * - | (6)
      - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``"/WEB-INF/views/sample/hello.jsp"`` が呼び出されてHTMLが応答される。
 
-       .. note::
-
-           単純にview 名を返すだけのメソッドが一つだけあるControllerを実装する場合は、\ ``<mvc:view-controller>`` \を使用するとよい。
-           
-           詳しくは、\ :ref:`spring-security-authentication-mvc`\を参照されたい。
 
 .. note::
     上記の例ではJSPを使ってHTMLを生成しているが、VelocityやFreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``"sample/hello"`` のままでよい。
     使用するテンプレートエンジンでの差分は ``ViewResolver`` によって解決される。
+
+
+.. note::
+
+    単純にview 名を返すだけのメソッドを実装する場合は、\ ``<mvc:view-controller>`` \を使用してControllerクラスの実装を代用することも可能である。
+    
+    * \ ``<mvc:view-controller>``\ を使用したControllerの定義例。
+    
+    .. code-block:: xml
+    
+        <mvc:view-controller path="/hello" view-name="sample/hello" />
+    
+
+
+.. warning:: **<mvc:view-controller>使用に関する留意点**
+
+    Spring Framework 4.3へのバージョンアップによって、\ ``<mvc:view-controller>``\ が許可するHTTPメソッドはGETとHEADのみに限定される様になったため(`SPR-13130 <https://jira.spring.io/browse/SPR-13130>`_)、
+    HTTPメソッドがGETとHEAD以外(POSTなど)でアクセスする可能性があるページの場合、\ ``<mvc:view-controller>``\ は使用できない。
+
 
 |
 
