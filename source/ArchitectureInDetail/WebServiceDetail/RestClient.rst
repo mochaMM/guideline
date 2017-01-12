@@ -1984,7 +1984,7 @@ Basic認証用のリクエストヘッダ設定処理
       - | \ ``intercept``\ メソッドの引数として受け取った\ ``AsyncClientHttpRequestExecution``\ の\ ``executeAsync``\ メソッドを使用して、非同期リクエストを送信する。
     * - | (4)
       - | (3)で受け取った\ ``ListenableFuture``\ に\ ``org.springframework.util.concurrent.ListenableFutureCallback``\ を登録して、レスポンスが返ってきた際の処理を実装する。
-        | レスポンスコードが返却された場合、\ ``onSuccess``\ メソッドが呼び出される。
+        | レスポンスが返却された場合、\ ``onSuccess``\ メソッドが呼び出される。
         | また、非同期リクエスト時に例外が発生した場合、\ ``onFailure``\ メソッドが呼び出される。以下に具体例を示す。
 
         * 指定したホストに接続できない（\ ``ConnectException``\ ）
