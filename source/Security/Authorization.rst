@@ -255,6 +255,35 @@ Spring Securityが用意しているWebアプリケーション向けExpression�
 
 |
 
+パス変数の参照
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Spring Security 4.1以降からアクセスポリシーの定義内でパス変数を参照することができる。
+
+パス変数参照の定義例を下記に示す。
+
+* spring-security.xmlの定義例
+
+  .. code-block:: xml
+
+    <sec:http>
+        <sec:intercept-url pattern="/userinfo/{userName}" access="isAuthenticated() and #userName == principal.username"/> <!-- (1) -->
+        <!-- omitted -->
+    </sec:http>
+
+  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+  .. list-table::
+      :header-rows: 1
+      :widths: 10 90
+
+      * - 項番
+        - 説明
+      * - | (1)
+        - | パス内に含まれている\ ``{userName}``\はパス変数と呼ばれ、任意の可変値を扱う事ができる。
+          | パス変数は、アクセスポリシーの定義内で\ ``#パス変数名``\ と指定することで参照できる。
+          | 本設定では、認証済みかつパス変数\ ``userName``\と認証ユーザ名が一致した場合、アクセス可能になる。
+
+|
+
 Webリソースへの認可
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
