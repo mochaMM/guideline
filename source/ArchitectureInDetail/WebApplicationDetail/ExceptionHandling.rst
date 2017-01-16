@@ -396,7 +396,7 @@ Detail
      - | :ref:`exception-handling-class-fatalerror-label`
      - | 1. :ref:`exception-handling-exception-type-error-label`
      - | サーブレットコンテナ
-       | (ハンドリングルールを、\ ``web.xml``\ に指定する)
+       | (ハンドリングルールを、\ ``web.xml``\、\ ``spring-mvc.xml``\ に指定する)
      - | Webアプリケーション
    * - | (6)
      - | :ref:`exception-handling-class-viewerror-label`
@@ -507,6 +507,10 @@ Detail
 
   **図-致命的なエラーが発生したことを検知する場合のハンドリング方法**
 
+.. note:: **致命的エラー(java.lang.Error)のハンドリング**
+
+  - | Spring Framework 4.3 より、致命的エラー(\ ``java.lang.Error``\)のサブクラスは\ ``NestedServletException``\にラップされ、\ ``SystemExceptionResolver``\で捕捉される。
+    | Webアプリケーション単位で例外処理を行う為、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\には捕捉対象外の例外クラスを指定し、サーブレットコンテナで捕捉する。
 
 .. _exception-handling-class-viewerror-label:
 
@@ -638,7 +642,7 @@ Webアプリケーション単位でサーブレットコンテナがハンド�
 
   **図-Webアプリケーション単位でサーブレットコンテナがハンドリングする場合の基本フロー**
 
-4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップしてスローする。
+4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップしてスローする。致命的エラー(java.lang.Error)がラップされたNestedServletExceptionは、\ ``spring-mvc.xml``\の定義によりSystemExceptionResolverで捕捉しない。
 #. ExceptionLoggingFilterは、ServletExceptionを捕捉し、ExceptionLoggerを呼び出す。ExceptionLoggerは、例外コードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。ExceptionLoggingFilterは、ServletExceptionを再スローする。
 #. ServletContainerは、ServletExceptionを捕捉し、サーバログにログを出力する。ログのレベルは、アプリケーションサーバによって異なる。
 #. ServletContainerは、``web.xml`` に定義されている遷移先(HTMLなど)を呼び出す。
@@ -894,7 +898,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 - **spring-mvc.xml**
 
  .. code-block:: xml
-    :emphasize-lines: 3-4,6-7,15,23-24,29
+    :emphasize-lines: 3-4,6-7,15,23-24,25,30
 
     <!-- Setting Exception Handling. -->
     <!-- Exception Resolver. -->
@@ -920,11 +924,12 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         </property>
         <property name="defaultErrorView" value="common/error/systemError" /> <!-- (6) -->
         <property name="defaultStatusCode" value="500" /> <!-- (7) -->
+        <property name="excludedExceptions" value="org.springframework.web.util.NestedServletException" /> <!-- (8) -->
     </bean>
 
     <!-- Settings View Resolver. -->
     <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (8) -->
+        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (9) -->
     </mvc:view-resolvers>
 
 
@@ -967,8 +972,10 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         .. warning:: **指定を省略した場合の挙動**
 
             \ **"200"(OK)**\ 扱いになるので、注意すること。
-
     * - | (8)
+      - | 捕捉対象外の例外クラスを指定する。
+        | 上記の設定では、致命的エラー(\ ``java.lang.Error``\)がラップされた例外クラス"NestedServletException"が捕捉対象外となる。
+    * - | (9)
       - 実際に遷移する\ ``View``\ は、\ ``ViewResolver``\ の設定に依存する。
 
         上記の設定では、
