@@ -509,8 +509,10 @@ Detail
 
 .. note:: **致命的エラー(java.lang.Error)のハンドリング**
 
-  - | Spring Framework 4.3 より、致命的エラー(\ ``java.lang.Error``\)のサブクラスは\ ``NestedServletException``\にラップされ、\ ``SystemExceptionResolver``\で捕捉される。
-    | Webアプリケーション単位で例外処理を行う為、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\には捕捉対象外の例外クラスを指定し、サーブレットコンテナで捕捉する。
+  - | Spring Framework 4.3 より、致命的エラー(\ ``java.lang.Error``\)のサブクラスがラップされた\ ``NestedServletException``\は、\ ``SystemExceptionResolver``\で捕捉されるようになった。
+    | サーブレットコンテナで捕捉し、Webアプリケーション単位で例外処理を行うためには、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で捕捉しないよう設定する必要がある。
+    | \ ``spring-mvc.xml``\ の設定方法の詳細については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
+
 
 .. _exception-handling-class-viewerror-label:
 
@@ -898,7 +900,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 - **spring-mvc.xml**
 
  .. code-block:: xml
-    :emphasize-lines: 3-4,6-7,15,23-24,25,30
+    :emphasize-lines: 3-4,6-7,15,23-29,34
 
     <!-- Setting Exception Handling. -->
     <!-- Exception Resolver. -->
@@ -924,7 +926,11 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         </property>
         <property name="defaultErrorView" value="common/error/systemError" /> <!-- (6) -->
         <property name="defaultStatusCode" value="500" /> <!-- (7) -->
-        <property name="excludedExceptions" value="org.springframework.web.util.NestedServletException" /> <!-- (8) -->
+        <property name="excludedExceptions"> <!-- (8) -->
+            <set>
+                <value="org.springframework.web.util.NestedServletException" />
+            </set>
+        </property>
     </bean>
 
     <!-- Settings View Resolver. -->
@@ -974,7 +980,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
             \ **"200"(OK)**\ 扱いになるので、注意すること。
     * - | (8)
       - | 捕捉対象外の例外クラスを指定する。
-        | 上記の設定では、致命的エラー(\ ``java.lang.Error``\)がラップされた例外クラス"NestedServletException"が捕捉対象外となる。
+        | 上記の設定では、致命的エラー(\ ``java.lang.Error``\)のサブクラスがラップされる例外クラス "NestedServletException"が捕捉対象外となる。
     * - | (9)
       - 実際に遷移する\ ``View``\ は、\ ``ViewResolver``\ の設定に依存する。
 
