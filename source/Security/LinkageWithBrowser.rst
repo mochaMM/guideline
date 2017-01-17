@@ -39,6 +39,7 @@ Spring Securityがデフォルトでサポートしているレスポンスヘ�
 * X-Content-Type-Options
 * X-XSS-Protection
 * Strict-Transport-Security
+* Content-Security-Policy
 
 .. tip:: **ブラウザのサポート状況**
 
@@ -46,7 +47,7 @@ Spring Securityがデフォルトでサポートしているレスポンスヘ�
 
     * https://www.owasp.org/index.php/HTTP_Strict_Transport_Security (Strict-Transport-Security)
     * https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet (X-Frame-Options)
-    * https://www.owasp.org/index.php/List_of_useful_HTTP_headers (X-Content-Type-Options, X-XSS-Protection)
+    * https://www.owasp.org/index.php/List_of_useful_HTTP_headers (X-Content-Type-Options, X-XSS-Protection, Content-Security-Policy)
 
 
 Cache-Control
@@ -142,6 +143,36 @@ HTTPSでアクセスした後にHTTPが使われないようにするために�
     Spring Securityのデフォルト実装では、Strict-Transport-Securityヘッダは、アプリケーションサーバに対してHTTPSを使ってアクセスがあった場合のみ出力される。
     なお、Strict-Transport-Securityヘッダ値は、オプションを指定することで変更することができる。
 
+Content-Security-Policy
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Content-Security-Policyヘッダーはブラウザに読み込みを許可するコンテンツを指示するためのヘッダーである。
+クロスサイトスクリプティングやデータインジェクション攻撃などといった特定の種類の攻撃を検知し、影響を軽減することができる。
+
+ブラウザはContent-Security-Policyヘッダーに指定したホワイトリストのコンテンツのみを読み込み、他のコンテンツは無視する。
+Content-Security-Policyヘッダーを送信しない場合、ブラウザは標準の同一オリジンポリシーを適用する。
+
+コンテンツの取得元を同一オリジンのみに制限するためには、以下のようなヘッダーを出力する。
+
+* レスポンスヘッダの出力例
+
+.. code-block:: text
+
+    Content-Security-Policy: default-src 'self'
+
+.. note:: **Content-Security-Policy-Report-Only**
+
+    Content-Security-Policy-Report-Onlyヘッダーは、ポリシー違反があった場合、コンテンツのブロックを行わずレポートの送信のみを行うヘッダーである。
+    影響範囲を把握しポリシーとコンテンツを徐々に改善することで本番環境への適用をスムーズに行うことが出来る。
+
+    同一オリジンポリシー違反があった場合に\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
+
+    * レスポンスヘッダの出力例
+
+     .. code-block:: text
+
+        Content-Security-Policy-Report-Only: default-src 'self'; report-uri /csp_report;
+
 
 How to use
 --------------------------------------------------------------------------------
@@ -149,11 +180,14 @@ How to use
 セキュリティヘッダ出力機能の適用
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-前述のセキュリティヘッダ出力機能を適用する方法をする。
+前述のセキュリティヘッダ出力機能を適用する方法を説明する。
 
-セキュリティヘッダ出力機能は、Spring 3.2から追加された機能でSpring Security 4.0からデフォルトで適用されるようになっている。 
-そのため、セキュリティヘッダ出力機能を有効にするための特別な定義は不要である。 
-なお、セキュリティヘッダ出力機能を適用したくない場合は、明示的に無効化する必要がある。 
+セキュリティヘッダ出力機能は、Spring 3.2から追加された機能でSpring Security 4.0から以下のセキュリティヘッダ以外はデフォルトで適用されるようになっている。 
+
+* Content-Security-Policy
+
+そのため、デフォルトで適用されるセキュリティヘッダ出力機能を有効にするための特別な定義は不要である。 
+なお、デフォルトで適用されるセキュリティヘッダ出力機能を適用したくない場合は、明示的に無効化する必要がある。 
 
 セキュリティヘッダ出力機能を無効化する場合は、以下のようなbean定義を行う。
 
@@ -184,6 +218,7 @@ How to use
         <sec:content-type-options/> <!-- (4) -->
         <sec:xss-protection/> <!-- (5) -->
         <sec:hsts/> <!-- (6) -->
+        <sec:content-security-policy policy-directives="default-src 'self'" /> <!-- (7) -->
     </sec:headers>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -205,6 +240,8 @@ How to use
       - | X-XSS-Protectionヘッダを出力するコンポーネントを登録する。
     * - | (6)
       - | Strict-Transport-Securityヘッダを出力するコンポーネントを登録する。
+    * - | (7)
+      - | Content-Security-Policyヘッダを出力するコンポーネントを登録する。
 
 
 また、不要なものだけ無効化する方法も存在する。 
@@ -219,7 +256,7 @@ How to use
 
 上記の例だと、Cache-Control関連のヘッダだけが出力されなくなる。 
 
-セキュリティヘッダの詳細については\ `公式リファレンス <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#default-security-headers>`_\ を参照されたい。
+セキュリティヘッダの詳細については\ `公式リファレンス <http://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/reference/htmlsingle/#default-security-headers>`_\ を参照されたい。
 
 
 セキュリティヘッダのオプション指定
@@ -230,6 +267,7 @@ How to use
 * X-Frame-Options
 * X-XSS-Protection
 * Strict-Transport-Security
+* Content-Security-Policy
 
 Spring Securityのbean定義を変更することで、各要素の属性にオプション\ [#fSpringSecurityLinkageWithBrowser2]_\ を指定することができる。
 
@@ -238,8 +276,9 @@ Spring Securityのbean定義を変更することで、各要素の属性にオ�
 .. code-block:: xml
 
     <sec:frame-options policy="SAMEORIGIN" />
+    <sec:content-security-policy policy-directives="default-src 'self'; report-uri /csp_report;" report-only="true" />
 
-.. [#fSpringSecurityLinkageWithBrowser2] 各要素で指定できるオプションは http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#nsa-headers を参照されたい。
+.. [#fSpringSecurityLinkageWithBrowser2] 各要素で指定できるオプションは http://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/reference/htmlsingle/#nsa-headers を参照されたい。
 
 カスタムヘッダの出力
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
