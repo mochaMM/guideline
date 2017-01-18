@@ -1830,7 +1830,8 @@ HTMLを応答する
 .. warning:: **<mvc:view-controller>使用に関する留意点**
 
     Spring Framework 4.3へのバージョンアップによって、\ ``<mvc:view-controller>``\ が許可するHTTPメソッドはGETとHEADのみに限定される様になったため(`SPR-13130 <https://jira.spring.io/browse/SPR-13130>`_)、
-    HTTPメソッドがGETとHEAD以外(POSTなど)でアクセスする可能性があるページの場合、\ ``<mvc:view-controller>``\ は使用できない。
+    HTTPメソッドがGETとHEAD以外(POSTなど)でアクセスするページの場合、\ ``<mvc:view-controller>``\ は使用できない。
+    エラーページへの遷移など、POSTリクエストからフォワードされるページについても使用できないため注意すること。
 
 
 |
