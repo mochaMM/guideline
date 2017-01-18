@@ -267,9 +267,27 @@ Spring Security 4.1以降では、アクセスポリシーの定義内でパス�
   .. code-block:: xml
 
     <sec:http>
-        <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/> <!-- (1) -->
+        <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/>
         <!-- omitted -->
     </sec:http>
+
+.. warning::
+    アクセスポリシーのパス変数には拡張子も含まれるため、パス変数に拡張子(\ ``/users/personName.json``\など)を含むアクセスポリシーがある場合(RESTFull Web Serviceなど)、
+    拡張子を含まないアクセスポリシーよりも先に、拡張子を含むアクセスポリシーを記述する必要がある。
+
+    以下の例は、\ ``/users/``\直下に拡張子付きのファイルとユーザ情報を受け入れることができる様にアクセスポリシーを定義しているが、
+    アクセスポリシーの順序を逆にしてしまうと拡張子付きのファイルを指定したパス(\ ``/users/personName.json``\など)をリクエストとして送信した際、
+    \ ``/users/{userName}``\のアクセスポリシーに引っかかってしまい、意図しない認可処理を行ってしまう。
+
+    * spring-security.xmlの定義例
+
+      .. code-block:: xml
+
+        <sec:http>
+         <sec:intercept-url pattern="/users/{fileName}.*" access="isAuthenticated()"/>
+         <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/>
+         <!-- omitted -->
+        </sec:http>
 
 .. [#fPathVariableDescription] パス変数の説明は :doc:`../ImplementationAtEachLayer/ApplicationLayer` の\ :ref:`controller_method_argument-pathvariable-label`\ を参照されたい。
 
