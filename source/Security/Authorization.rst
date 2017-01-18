@@ -369,6 +369,33 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
 
     上記の対策をTERASOLUNA Server Framework for Javaで提供するブランクプロジェクトでは設定しているが、
     設定を外すと脆弱性にさらされてしまうので注意する必要がある。
+    
+    また、\ ``*``\や\ ``**``\をpatternに含まない特定URLに対して制限を設ける場合は以下のように追加でpatternを設定することで、認可機能の突破を防ぐことが可能である。
+    
+      .. code-block:: xml
+
+          <sec:http>
+              <sec:intercept-url pattern="/reserve/**" access="hasAnyRole('USER','ADMIN')" />
+              <sec:intercept-url pattern="/restrict" access="hasRole('ADMIN')" /> <!-- (1) -->
+              <sec:intercept-url pattern="/restrict.*" access="hasRole('ADMIN')" /> <!-- (2) --> 
+              <sec:intercept-url pattern=“/restrict/” access=“hasRole(‘ADMIN’)” /> <!-- (3) --> 
+              <sec:intercept-url pattern="/**" access="denyAll" />
+              <!-- omitted -->
+          </sec:http> 
+          
+      .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+      .. list-table::
+         :header-rows: 1
+         :widths: 20 80
+  
+         * - 項番
+           - 説明
+         * - | (1)
+           - | 「/restrict」に対して「ADMIN」ロールを持つ場合にアクセス可能となる設定。
+         * - | (2)
+           - | 「/restrict」に対して「/restrict.xxx」などとして拡張子を付けたアクセスでも認可が実施されるようにする追加設定。
+         * - | (3)
+           - | 「/restrict」に対して「/restrict/」としてリクエストパスの末尾に「/」が付与されていても認可が実施されるようにする追加設定。
 
 アクセスポリシーの指定
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
