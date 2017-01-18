@@ -39,7 +39,7 @@ Spring Securityがデフォルトでサポートしているレスポンスヘ�
 * X-Content-Type-Options
 * X-XSS-Protection
 * Strict-Transport-Security
-* Content-Security-Policy
+* Content-Security-Policy(Content-Security-Policy-Report-Only)
 
 .. tip:: **ブラウザのサポート状況**
 
@@ -147,9 +147,8 @@ Content-Security-Policy
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Content-Security-Policyヘッダーはブラウザに読み込みを許可するコンテンツを指示するためのヘッダーである。
-クロスサイトスクリプティングやデータインジェクション攻撃などといった特定の種類の攻撃を検知し、影響を軽減することができる。
+ブラウザはContent-Security-Policyヘッダーに指定したホワイトリストのコンテンツのみを読み込むため、悪意のあるコンテンツを読み込むことで実行される攻撃（クロスサイトスクリプティング攻撃など）を受けるリスクを減らすことができる。
 
-ブラウザはContent-Security-Policyヘッダーに指定したホワイトリストのコンテンツのみを読み込み、他のコンテンツは無視する。
 Content-Security-Policyヘッダーを送信しない場合、ブラウザは標準の同一オリジンポリシーを適用する。
 
 コンテンツの取得元を同一オリジンのみに制限するためには、以下のようなヘッダーを出力する。
@@ -160,12 +159,22 @@ Content-Security-Policyヘッダーを送信しない場合、ブラウザは標
 
     Content-Security-Policy: default-src 'self'
 
-.. note:: **Content-Security-Policy-Report-Only**
+.. note:: **ポリシー違反時のレポート送信について**
 
-    Content-Security-Policy-Report-Onlyヘッダーは、ポリシー違反があった場合、コンテンツのブロックを行わずレポートの送信のみを行うヘッダーである。
-    影響範囲を把握しポリシーとコンテンツを徐々に改善することで本番環境への適用をスムーズに行うことが出来る。
+    ポリシー違反時にレポートを送信したい場合、report-uriディレクティブに報告先のURIを指定する。
 
-    同一オリジンポリシー違反があった場合に\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
+    同一オリジンポリシー違反があった場合にコンテンツをブロックして\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
+
+    * レスポンスヘッダの出力例
+
+     .. code-block:: text
+
+        Content-Security-Policy: default-src 'self'; report-uri /csp_report;
+
+    また、ポリシー違反があった際に、コンテンツのブロックを行わずレポートの送信のみを行いたい場合はContent-Security-Policy-Report-Onlyヘッダーを使用する。
+    Content-Security-Policy-Report-Onlyヘッダーを使用すると影響範囲を把握しポリシーとコンテンツを徐々に改善することで本番環境への適用をスムーズに行うことが出来る。
+
+    同一オリジンポリシー違反があった場合にコンテンツをブロックせず\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
 
     * レスポンスヘッダの出力例
 
@@ -182,7 +191,7 @@ How to use
 
 前述のセキュリティヘッダ出力機能を適用する方法を説明する。
 
-セキュリティヘッダ出力機能は、Spring 3.2から追加された機能でSpring Security 4.0から以下のセキュリティヘッダ以外はデフォルトで適用されるようになっている。 
+セキュリティヘッダ出力機能は、Spring 3.2から追加された機能で以下のセキュリティヘッダ以外はデフォルトで適用されるようになっている。 
 
 * Content-Security-Policy
 
@@ -241,7 +250,7 @@ How to use
     * - | (6)
       - | Strict-Transport-Securityヘッダを出力するコンポーネントを登録する。
     * - | (7)
-      - | Content-Security-Policyヘッダを出力するコンポーネントを登録する。
+      - | Content-Security-PolicyヘッダまたはContent-Security-Policy-Report-Onlyヘッダを出力するコンポーネントを登録する。
 
 
 また、不要なものだけ無効化する方法も存在する。 
@@ -256,7 +265,7 @@ How to use
 
 上記の例だと、Cache-Control関連のヘッダだけが出力されなくなる。 
 
-セキュリティヘッダの詳細については\ `公式リファレンス <http://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/reference/htmlsingle/#default-security-headers>`_\ を参照されたい。
+セキュリティヘッダの詳細については\ `公式リファレンス <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#default-security-headers>`_\ を参照されたい。
 
 
 セキュリティヘッダのオプション指定
@@ -267,7 +276,7 @@ How to use
 * X-Frame-Options
 * X-XSS-Protection
 * Strict-Transport-Security
-* Content-Security-Policy
+* Content-Security-Policy(Content-Security-Policy-Report-Only)
 
 Spring Securityのbean定義を変更することで、各要素の属性にオプション\ [#fSpringSecurityLinkageWithBrowser2]_\ を指定することができる。
 
@@ -276,9 +285,8 @@ Spring Securityのbean定義を変更することで、各要素の属性にオ�
 .. code-block:: xml
 
     <sec:frame-options policy="SAMEORIGIN" />
-    <sec:content-security-policy policy-directives="default-src 'self'; report-uri /csp_report;" report-only="true" />
 
-.. [#fSpringSecurityLinkageWithBrowser2] 各要素で指定できるオプションは http://docs.spring.io/spring-security/site/docs/4.1.3.RELEASE/reference/htmlsingle/#nsa-headers を参照されたい。
+.. [#fSpringSecurityLinkageWithBrowser2] 各要素で指定できるオプションは http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#nsa-headers を参照されたい。
 
 カスタムヘッダの出力
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
