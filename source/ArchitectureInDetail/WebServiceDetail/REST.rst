@@ -2143,6 +2143,8 @@ REST APIの実装
      * HEADメソッドは、GETメソッドに対応しているURIに対して、暗黙的に実装される。
      * OPTIONSメソッドは、割り当てたURIに対して、暗黙的に実装される。
 
+     なお、OPTIONSリクエストに対するレスポンスのAllowヘッダにOPTIONSは含まれないことに留意されたい。
+
 |
 
 .. _RESTHowToUsePackage:
