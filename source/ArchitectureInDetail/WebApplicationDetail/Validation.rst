@@ -2780,36 +2780,7 @@ Bean Validationは標準で用意されているチェックルール以外に�
 共通ライブラリでは、入力値がコードリスト内に定義されたコード値であるかどうかチェックするアノテーション、
 \ ``org.terasoluna.gfw.common.codelist.ExistInCodeList``\ を提供している。
 
-\ ``@ExistInCodeList``\ の入力チェックでサポートしている型は、\ ``String``\ または\ ``Character``\ のみであるが、
-これをコレクションに対応させる方法を説明する。
-
-* \ ``String``\ をJavaBeanでラップし、JSPで\ ``<c:forEach>``\ + \ ``<form:checkbox>``\ を使用した実装
-    この方法を用いることで\ ``@ExistInCodeList``\ をコレクションに対応させることができるが、JSP、ロジックが複雑になってしまう。
-
-    実装例を以下に示す。
-
-    * JSP
-
-      .. code-block:: jsp
-
-        <form:form modelAttribute="sampleForm">
-            <c:forEach var="roleEntry" items="${CL_ROLE}" varStatus="status">
-                <form:checkbox path="roles[${status.index}].value"
-                            value="${roleEntry.key}" label="${roleEntry.value}" />
-            </c:forEach>
-            <form:button>Submit</form:button>
-        </form:form>
-
-    この方法で実装すると、チェックボックスの選択の有無に関係なくコードリストの要素数だけJava Beanオブジェクトがリストに追加される。
-    Java Beanオブジェクトの\ ``value``\プロパティの値は、
-    チェックボックスにチェックすると対応するコード値が、チェックしないと\ ``null``\ が設定される。
-    チェックボックスでチェックした値を取得するためには、ロジックで\ ``null``\ 値以外を取得するようにフィルタリングする必要がある。
-
-    **上記理由に加え、JSPが煩雑になることから** \ ``<c:forEach>``\ **は使用せずに下記記載の方法を利用することを推奨する。**
-
-
-Controller及びJSPで特別な実装を行うことなく、
-複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）に\ ``@ExistInCodeList``\ アノテーションを対応させるための実装方法を以下に示す。
+\ 複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）に\ ``@ExistInCodeList``\ アノテーションを対応させるための実装方法を以下に示す。
 
 * :ref:`Validation_exist_in_codelist_javase8`\
     Java SE 8とHibernate Validatorを利用し、\ ``String``\ の\ ``List``\ に付加できる独自のアノテーションを実装する方式。
