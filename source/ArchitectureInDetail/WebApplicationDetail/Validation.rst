@@ -3068,7 +3068,7 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
             this.value = value;
         }
 
-        @Override
+        @Override // (2)
         public String toString(){
             return getValue();
         }
@@ -3083,6 +3083,8 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
        - 説明
      * - | (1)
        - | 入力チェックを行うために\ ``Role``\ クラスにラップしたプロパティに対して \ ``@ExistInCodeList``\ アノテーションを設定し、\ ``codeListId``\ にチェック元となるコードリストを指定する。
+     * - | (2)
+       - | 後述する\ ``Formatter``\ クラスで画面出力用にラップしたオブジェクトの\ ``toString``\ メソッドが呼ばれるため、ここで\ ``toString``\ メソッドを拡張し本来の\ ``String``\ の値を返却するよう実装する。
 
 |
 
