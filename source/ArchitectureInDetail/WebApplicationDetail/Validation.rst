@@ -2801,16 +2801,15 @@ Java SE 8とHibernate Validator 5.2+による実装
 独自のアノテーションを作成することでコレクションに対応させる方法を紹介する。
 
 Java SE 8で\ ``java.lang.annotation.ElementType.TYPE_USE``\ が追加された。
-これにより、宣言に限らず型全般（ローカル変数の型等）にアノテーションを付加できるようになったが、
-\ ``@ExistInCodeList``\ は、Java SE 7互換のため\ ``TYPE_USE``\ に対応していない。
+これにより、宣言に限らず型全般（ローカル変数の型等）にアノテーションを付加できるようになり、
+Java SE 8に対応したHibernate Validator 5.2+は\ ``TYPE_USE``\ を使用して、Collection, Map, Optional, ジェネリクス型のチェックを可能にしている。
 
-また、Java SE 8に対応したHibernate Validator 5.2+は、
-\ ``TYPE_USE``\ を使用して、Collection, Map, Optional, ジェネリクス型のチェックを可能にしている。
-
-Java SE 8とHibernate Validator 5.2+を組み合わせることで、
-\ ``List<@ExistInCodeListForTypeArgument(codeListId = "CL_ROLE") String>``\ のように、
+Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@NotNullForTypeArgument String>``\ のように、
 リスト内の型指定部分に付加できるアノテーションを作成し、コレクション内の値の入力チェックを行うことができるようになる。
 詳細は、Hibernate Validatorのドキュメント(\ `Type argument constraints <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html_single/#type-arguments-constraints>`_\ )を参照されたい。
+
+共通ライブラリが提供する\ ``@ExistInCodeList``\ は、Java SE 7互換のため\ ``TYPE_USE``\ に対応していないが、
+上記のようにリスト内の型指定部分に付加できる独自アノテーションを作成することで、コレクション内の値の入力チェックを行うことができるようになる。
 
 主な手順は以下の通り。
 
