@@ -1821,10 +1821,10 @@ HTMLを応答する
     
     * \ ``<mvc:view-controller>``\ を使用したControllerの定義例。
     
-    .. code-block:: xml
-    
+      .. code-block:: xml
+      
         <mvc:view-controller path="/hello" view-name="sample/hello" />
-    
+      
 
 
 .. warning:: **<mvc:view-controller>使用に関する留意点**
