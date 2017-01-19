@@ -1153,14 +1153,9 @@ HTTPメソッドの割り当て
 
  .. note:: **HEADとOPTIONSメソッドについて**
 
-    Spring Framework 4.3系からHEADとOPTIONSメソッドの割り当てに関する仕様が下記の通り変更されたため、暗黙的にREST APIとして提供される様になった。
-    
-    * HEADメソッドは、GETメソッドに対応しているURIに対して、暗黙的に実装される。
-    * OPTIONSメソッドは、割り当てたURIに対して、暗黙的に実装される。
-    
-     .. warning:: **OPTIONSリクエストに対するレスポンスのAllowヘッダの内容**
+    以降の説明では、HEADとOPTIONSメソッドについても触れているが、REST APIとしての提供は任意とする。
 
-        OPTIONSリクエストに対するレスポンスのAllowヘッダにOPTIONSは含まれない。
+    HTTPの仕様に準拠したREST APIを作成する場合は、HEAD及びOPTIONSメソッドの提供も必要だが、実際に使われるケースは稀であり、必要ない事が多いためである。
 
 |
 
@@ -2140,6 +2135,13 @@ REST APIの実装
       - | 204
         | (No Content)
       - Memberリソースを一件削除する。
+
+ .. note::
+
+     Spring Framework 4.3系からHEADとOPTIONSメソッドの割り当てに関する仕様が下記の通り変更されたため、暗黙的にREST APIとして提供される様になった。
+
+     * HEADメソッドは、GETメソッドに対応しているURIに対して、暗黙的に実装される。
+     * OPTIONSメソッドは、割り当てたURIに対して、暗黙的に実装される。
 
 |
 
