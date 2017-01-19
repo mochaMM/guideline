@@ -1030,6 +1030,55 @@ Basically, it is used when
 A \ ``TypeHandler`` \  is provided by MyBatis3 for general Java classes like primitive type and primitive wrapper type class.
 Specific settings are not required.
 
+**Configuration while using JSR-310 Date and Time API**
+
+When a class which represents date and time offered by JSR-310 Date and Time API in MyBatis3 is used, \ ``TypeHandler`` \  offered by a library different from  that of MyBatis (\ ``mybatis-typehandlers-jsr310`` \) is used.
+While using, configuration to recognise \ ``TypeHandler`` \  is added to \ ``mybatis-config.xml`` \, in MyBatis.
+    
+
+ .. code-block:: xml
+ 
+      <typeHandlers>
+          <typeHandler handler="org.apache.ibatis.type.InstantTypeHandler" />         <!-- (1) -->
+          <typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />   <!-- (2) -->
+          <typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />       <!-- (3) -->
+          <typeHandler handler="org.apache.ibatis.type.LocalTimeTypeHandler" />       <!-- (4) -->
+          <typeHandler handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />  <!-- (5) -->
+          <typeHandler handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />      <!-- (6) -->
+          <typeHandler handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />   <!-- (7) -->
+          <typeHandler handler="org.apache.ibatis.type.YearTypeHandler" />            <!-- (8) -->
+          <typeHandler handler="org.apache.ibatis.type.MonthTypeHandler" />           <!-- (9) -->
+      </typeHandlers>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
+ .. list-table::
+   :header-rows: 1
+   :widths: 10 80
+
+   * - Sr. No.
+     - Description
+   * - (1)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.Instant`` \  in \ ``java.sql.Timestamp`` \.
+   * - (2)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.LocalDateTime`` \  in \ ``java.sql.Timestamp`` \.
+   * - (3)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.LocalDate`` \  in \ ``java.sql.Date`` \
+   * - (4)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.LocalTime`` \  in \ ``java.sql.Time`` \
+   * - (5)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.OffsetDateTime`` \  in \ ``java.sql.Timestamp`` \
+   * - (6)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.OffsetTime`` \  in \ ``java.sql.Time`` \
+   * - (7)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.ZonedDateTime`` \  in \ ``java.sql.Timestamp`` \
+   * - (8)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.Year`` \  in primitive type int
+   * - (9)
+     - A \ ``TypeHandler`` \  to map \ ``java.time.Month`` \  in primitive type int
+
+ .. tip::
+
+        Since \ ``TypeHandler`` \  is auto-detected in MyBatis 3.4, above configuration is not required.
 
 .. tip::
 
