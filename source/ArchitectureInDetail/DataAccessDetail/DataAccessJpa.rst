@@ -1244,7 +1244,7 @@ value属性にQueryヒント( ``@javax.persistence.QueryHint`` )を指定する�
 
  .. warning:: **PostgreSQLを使用する場合、SQLに"NOWAIT"句が追加されない**
 
-    TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"NOWAIT"句が追加されない問題がある(Hibernate 5.2.1.Finalで改修されている)。
+    TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"NOWAIT"句が追加されない問題がある。
 
  .. note:: **Hibernateで指定できるQueryヒントについて**
 
