@@ -1024,7 +1024,7 @@ MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻�
 
 なお、`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトで\ ``mybatis-typehandlers-jsr310`` \が使用可能である。
 
-また、MyBatis 3.4になると\ ``TypeHandler`` \は自動検出されるようになっているため、MyBatisの設定ファイルにTypeHandlerを追加する必要はない。
+また、TERASOLUNA Server Framework for Java (5.3.x)が使用しているMyBatis 3.4では\ ``TypeHandler`` \を自動検出する様になっているため、MyBatisの設定ファイルに\ ``TypeHandler``\を追加する必要はない。
 
 .. tip::
 
