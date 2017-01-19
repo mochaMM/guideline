@@ -1602,10 +1602,7 @@ Spring Data JPAでは、\ ``@org.springframework.data.jpa.repository.Lock``\ ア
 
         TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"NOWAIT"句が追加されない問題がある。
 
-        そのため、下記の様な代替案を考慮する必要がある。
-
-        * 楽観ロックに変更する
-        * バッチ実行中にオンライン処理が実行される可能性をなくす(業務閉塞中にバッチ実行するなど)
+        そのため、Hibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)に対するパッチを当てた\ ``PostgreSQL81Dialect``\を使用する対応策を考慮する必要がある。
 
  .. warning:: **PostgreSQLの制約**
 
