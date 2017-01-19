@@ -1831,7 +1831,7 @@ HTMLを応答する
 
     Spring Framework 4.3へのバージョンアップによって、\ ``<mvc:view-controller>``\ が許可するHTTPメソッドはGETとHEADのみに限定される様になったため(`SPR-13130 <https://jira.spring.io/browse/SPR-13130>`_)、
     HTTPメソッドがGETとHEAD以外(POSTなど)でアクセスするページの場合、\ ``<mvc:view-controller>``\ は使用できない。
-    エラーページへの遷移など、POSTリクエストからフォワードされるページについても使用できないため注意すること。
+    GETとHEAD以外(POSTなど)からフォワードされた場合も同様となるため、エラーページへの遷移などフォワード元のHTTPメソッドが限定できない場合には\ ``<mvc:view-controller>``\ を使用しないよう注意されたい。
 
 
 |
