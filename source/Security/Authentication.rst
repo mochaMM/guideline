@@ -2727,11 +2727,7 @@ Spring MVCでリクエストを受けてログインフォームを表示する�
 
 本例のように、単純にview名を返すだけのメソッドが一つだけあるControllerであれば、\ ``<mvc:view-controller>``\ を使用して代用することも可能である。  
 
-* \ ``<mvc:view-controller>``\ を使用したControllerの定義例。
-
-.. code-block:: xml
-
-    <mvc:view-controller path="/login" view-name="login" /><!-- (1) -->
+詳しくは、\ :ref:`controller_method_return-html-label`\を参照されたい。
 
 |
 
