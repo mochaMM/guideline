@@ -36,11 +36,11 @@
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
-      - 記載内容の削除
+      - 記載内容の変更、追加
 
-        * Mybatis 3.4.Xへのバージョンアップに伴い、JSR-310のTypeHandlerの設定方法を削除
+        * JSR-310 Date and Time APIを使う場合の設定方法に関する記載を変更 (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
-          また、`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを記載(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+        * `MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを追記(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
     * - 2016-08-31
       - \-
