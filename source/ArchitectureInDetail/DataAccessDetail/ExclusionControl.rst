@@ -1600,7 +1600,7 @@ Spring Data JPAでは、\ ``@org.springframework.data.jpa.repository.Lock``\ ア
 
      .. warning:: **PostgreSQLを使用する場合、nowaitが付加されない**
 
-        TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、0を指定しても\ ``nowait``\が付加されない問題が発生している。
+        TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"NOWAIT"句が追加されない問題がある。
 
         そのため、下記の様な代替案を考慮する必要がある。
 
