@@ -678,7 +678,10 @@ How to use
      セッションスコープで格納しているオブジェクトをハンドラメソッドの引数として指定した際、そのオブジェクトにリクエストパラメータがバインドされる可能性がある。
 
      そのため、上記例の\ ``entity``\の様なセッションオブジェクトに対してリクエストパラメータのバインドを防止したい場合、
-     \ ``binding``\属性に\ ``false``\を指定した\ ``@ModelAttribute``\アノテーションを付与することで、リクエストパラメータがバインドされなくなる。
+     TERASOLUNA Server Framework for Java (5.3)が準拠しているSpring 4.3以降から\ ``binding``\属性に\ ``false``\を指定した\ ``@ModelAttribute``\アノテーションを付与することで、リクエストパラメータがバインドされなくなる。
+
+     また、Spring 4.2以前を準拠しているTERASOLUNA Server Framework for Javaでもハンドラメソッドの引数に\ ``Model``\を指定し、\ ``Model``\から\ ``entity``\を取得することで、
+     同様の問題を回避できるが、\ :ref:`controller_method_argument-label`\ で非推奨の\ ``org.springframework.ui.ModelMap``\を使用することと同義のため、上記の対応を推奨する。
 
 Controllerのハンドラメソッドの引数に渡すオブジェクトが、\ ``Model``\ オブジェクトに存在しない場合、\ ``@ModelAttribute``\ アノテーションの指定の有無で、動作が変わる。
 
