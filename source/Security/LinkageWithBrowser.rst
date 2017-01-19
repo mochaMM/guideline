@@ -172,7 +172,7 @@ Content-Security-Policyヘッダーを送信しない場合、ブラウザは標
         Content-Security-Policy: default-src 'self'; report-uri /csp_report;
 
     また、ポリシー違反があった際に、コンテンツのブロックを行わずレポートの送信のみを行いたい場合はContent-Security-Policy-Report-Onlyヘッダーを使用する。
-    Content-Security-Policy-Report-Onlyヘッダーを使用すると影響範囲を把握しポリシーとコンテンツを徐々に改善することで本番環境への適用をスムーズに行うことが出来る。
+    Content-Security-Policy-Report-Onlyヘッダーを使用してレポートを収集しながら段階的にポリシーとコンテンツを修正することで、既にサービス提供しているサイトに対してポリシーを適用した場合に正常に動作しなくなるリスクを減らすことが出来る。
 
     同一オリジンポリシー違反があった場合にコンテンツをブロックせず\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
 
