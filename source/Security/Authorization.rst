@@ -370,9 +370,12 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     上記の対策をTERASOLUNA Server Framework for Javaで提供するブランクプロジェクトでは設定しているが、
     設定を外すと脆弱性にさらされてしまうので注意する必要がある。
     
-    また、\ ``*``\や\ ``**``\をpatternに含まない特定URLに対して制限を設ける場合は以下のように追加でpatternを設定することで、認可機能の突破を防ぐことが可能である。
-    
+    また、\ ``*``\や\ ``**``\をpatternに含まない特定のURLに対して認可制限を設ける場合、\ `.*`\と\ `/`\のパターンの認可制限の追加が必須である。
+
+    下記の設定例は、\ ``/restrict``\に対して認可制限を設けている。
+
       .. code-block:: xml
+         :emphasize-lines: 2,3
 
           <sec:http>
               <sec:intercept-url pattern="/restrict.*" access="hasRole('ADMIN')" /> <!-- (1) --> 
