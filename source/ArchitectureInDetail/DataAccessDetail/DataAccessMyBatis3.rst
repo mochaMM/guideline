@@ -4894,7 +4894,7 @@ MyBatis3の標準でサポートされていないJoda-Timeのクラスとのマ
 
     JDBC 4.0との互換性のないJDBCドライバを使う場合は、利用するJDBCドライバの互換バージョンを意識した\ ``TypeHandler`` \を作成する必要がある。
 
-    例えば、PostgreSQL9.3用のJDBCドライバ(\ ``postgresql-9.3-1102-jdbc41.jar``\)では、JDBC 4.0から追加された多くのメソッドが、未実装の状態である。
+    例えば、PostgreSQL9.4用のJDBCドライバ(\ ``postgresql-9.4-1212.jar``\)では、JDBC 4.0から追加されたメソッドの一部が、未実装の状態である。
 
 |
 
