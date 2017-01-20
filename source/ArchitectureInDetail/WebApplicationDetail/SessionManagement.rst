@@ -675,12 +675,17 @@ How to use
 
  .. note:: **セッションスコープで格納しているオブジェクトをハンドラメソッドの引数として指定した際のリクエストパラメータのバインド防止**
 
-     セッションスコープで格納しているオブジェクトをハンドラメソッドの引数として指定した際、そのオブジェクトにリクエストパラメータがバインドされる可能性があるが、
+     セッションスコープで格納しているオブジェクトをハンドラメソッドの引数として指定した際、そのオブジェクトにリクエストパラメータがバインドされる可能性がある。
 
-     ハンドラメソッドの引数に\ ``@ModelAttribute``\ではなく\ ``Model``\から\ ``entity``\を取得することで、
-     上記例の\ ``entity``\の様なセッションオブジェクトに対してリクエストパラメータのバインドされなくなる。
+     対策として、セッションオブジェクトをハンドラメソッドの引数から取得せず、ハンドラメソッド内で\ ``Model``\オブジェクトから取得することで、
+     安全にセッションオブジェクトを取得することができる。
+     
+     しかし、上記の方法では取得するオブジェクト名を文字列で指定する必要があり、タイプセーフではない。
 
-     また、タイプセーフな対策として\ ``@ModelAttribute``\の\ ``binding``\属性を\ ``false``\を指定する方法があるため、こちらの使用を推奨する。
+     これに対し、Spring Framework 4.3では\ ``@ModelAttribute``\アノテーションに\ ``binding``\属性が追加され、引数にリクエストパラメータをバインドするか否かを指定できる様になった。
+
+     そのため、引数のセッションオブジェクトに\ ``@ModelAttribute``\アノテーションを付与し、\ ``binding``\属性を\x ``false``\に指定することで、
+     安全かつタイプセーフにセッションオブジェクトを取得することができる。
 
 Controllerのハンドラメソッドの引数に渡すオブジェクトが、\ ``Model``\ オブジェクトに存在しない場合、\ ``@ModelAttribute``\ アノテーションの指定の有無で、動作が変わる。
 
@@ -1711,7 +1716,7 @@ Appendix
         @RequestMapping(value = "save", method = RequestMethod.POST)
         public String save(@ModelAttribute @Validated({ Wizard1.class,
                 Wizard2.class, Wizard3.class }) WizardForm form, // (22)
-                BindingResult result, Entity entity, // (23)
+                BindingResult result,@ModelAttribute(binding = false) Entity entity, // (23)
                 RedirectAttributes redirectAttributes) {
             if (result.hasErrors()) {
                 throw new InvalidRequestException(result); // (24)
