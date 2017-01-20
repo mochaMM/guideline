@@ -445,16 +445,14 @@ Detail
 
   **図-ユースケースのやり直し(先頭からのやり直し)を促す場合のハンドリング方法**
 
-.. note:: **@ExceptionHandlerによる致命的エラーのハンドリング**
+.. warning:: **@ExceptionHandler、SystemExceptionResolverによる致命的なエラーのハンドリング**
 
-  - | 致命的エラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\は、Spring Framework 4.3 より、@ExceptionHandlerによる捕捉も可能であるが、Webアプリケーション単位で例外処理を行うべきなので推奨しない。
-    | 詳細は、\ :ref:`exception-handling-class-fatalerror-label`\ を参照されたい。
-
-.. warning:: **@ExceptionHandlerによるjava.lang.Exceptionやjavax.servlet.ServletExceptionのハンドリング**
-
-  - | \ ``@ExceptionHandler``\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\は捕捉しないこと。
-    | 捕捉していると、\ ``NestedServletException``\にラップされた致命的エラーや\ ``Throwable``\が、予期せず捕捉されてしまう。
-
+  - | Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
+    | そのため、\ ``@ExceptionHandler``\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉していると、\ ``NestedServletException``\にラップされた致命的なエラーや\ ``Throwable``\も予期せず捕捉されるようになる。
+    | アプリケーションコード(\ ``@ExceptionHandler``\)による捕捉をしない場合は、\ ``HandlerExceptionResolver``\を継承する\ ``SystemExceptionResolver``\(共通ライブラリから提供)により、フレームワークで致命的なエラーや\ ``Throwable``\が捕捉されるようになる。
+    | 一般的に致命的なエラーや\ ``Throwable``\は、アプリケーションコードやフレームワークで捕捉せず、Webアプリケーション単位の例外処理(サーブレットコンテナで捕捉)を行うべきなので、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で\ ``NestedServletException``\を捕捉しないよう設定する必要がある。
+    | サーブレットコンテナで捕捉し、Webアプリケーション単位で例外処理を行うためには、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で捕捉しないよう設定する必要がある。
+    | \ ``spring-mvc.xml``\ の設定方法の詳細については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
 
 .. _exception-handling-class-systemerror-label:
 
@@ -517,13 +515,10 @@ Detail
 
   **図-致命的なエラーが発生したことを検知する場合のハンドリング方法**
 
-.. note:: **SystemExceptionResolverによる致命的エラーのハンドリング**
+.. warning:: **SystemExceptionResolverによる致命的なエラーのハンドリング**
 
-  - | 致命的エラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、Spring Framework 4.3 より、\ ``HandlerExceptionResolver``\で捕捉されるようになった。
-    | その為、\ ``HandlerExceptionResolver``\を継承する\ ``SystemExceptionResolver``\(共通ライブラリから提供)でも致命的エラーや\ ``Throwable``\が捕捉されるようになる。
-    | サーブレットコンテナで捕捉し、Webアプリケーション単位で例外処理を行うためには、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で捕捉しないよう設定する必要がある。
+  - | 詳細は、\ :ref:`exception-handling-class-from-first-label`\ を参照されたい。
     | \ ``spring-mvc.xml``\ の設定方法の詳細については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
-
 
 .. _exception-handling-class-viewerror-label:
 
@@ -655,7 +650,7 @@ Webアプリケーション単位でサーブレットコンテナがハンド�
 
   **図-Webアプリケーション単位でサーブレットコンテナがハンドリングする場合の基本フロー**
 
-4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップしてスローする。致命的エラー(java.lang.Error)がラップされたNestedServletExceptionは、\ ``spring-mvc.xml``\の定義によりSystemExceptionResolverで捕捉しない。
+4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップしてスローする。致命的なエラー(java.lang.Error)がラップされたNestedServletExceptionは、\ ``spring-mvc.xml``\の定義によりSystemExceptionResolverで捕捉しない。
 #. ExceptionLoggingFilterは、ServletExceptionを捕捉し、ExceptionLoggerを呼び出す。ExceptionLoggerは、例外コードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。ExceptionLoggingFilterは、ServletExceptionを再スローする。
 #. ServletContainerは、ServletExceptionを捕捉し、サーバログにログを出力する。ログのレベルは、アプリケーションサーバによって異なる。
 #. ServletContainerは、``web.xml`` に定義されている遷移先(HTMLなど)を呼び出す。
@@ -991,7 +986,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
             \ **"200"(OK)**\ 扱いになるので、注意すること。
     * - | (8)
       - | 捕捉対象外の例外クラスを指定する。
-        | 上記の設定では、致命的エラー(\ ``java.lang.Error``\)のサブクラスがラップされる例外クラス "NestedServletException"が捕捉対象外となる。
+        | 上記の設定では、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされる\ ``NestedServletException``\が捕捉対象外となる。
     * - | (9)
       - 実際に遷移する\ ``View``\ は、\ ``ViewResolver``\ の設定に依存する。
 
