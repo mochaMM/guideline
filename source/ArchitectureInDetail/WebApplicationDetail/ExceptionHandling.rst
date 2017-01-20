@@ -451,7 +451,6 @@ Detail
     | そのため、\ ``@ExceptionHandler``\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉していると、\ ``NestedServletException``\にラップされた致命的なエラーや\ ``Throwable``\も予期せず捕捉されるようになる。
     | アプリケーションコード(\ ``@ExceptionHandler``\)による捕捉をしない場合は、\ ``HandlerExceptionResolver``\を継承する\ ``SystemExceptionResolver``\(共通ライブラリから提供)により、フレームワークで致命的なエラーや\ ``Throwable``\が捕捉されるようになる。
     | 一般的に致命的なエラーや\ ``Throwable``\は、アプリケーションコードやフレームワークで捕捉せず、Webアプリケーション単位の例外処理(サーブレットコンテナで捕捉)を行うべきなので、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で\ ``NestedServletException``\を捕捉しないよう設定する必要がある。
-    | サーブレットコンテナで捕捉し、Webアプリケーション単位で例外処理を行うためには、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で捕捉しないよう設定する必要がある。
     | \ ``spring-mvc.xml``\ の設定方法の詳細については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
 
 .. _exception-handling-class-systemerror-label:
