@@ -186,8 +186,10 @@ Content-Security-Policyヘッダーを送信しない場合、ブラウザは標
 Public-Key-Pins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Public-Key-Pinsヘッダはサイトの証明書が正しいか判断するための情報をブラウザに提示するためのヘッダである。
-サイトへの再訪問時に中間者攻撃と呼ばれる攻撃手法を使って悪意のあるサイトに誘導された場合でもブラウザが保持する情報とサイトの証明書の不一致を検知してアクセスをブロックすることができる。
+Public-Key-Pinsヘッダはサイトの証明書の真正性を担保するためにサイトに紐付く証明書の公開鍵をブラウザに提示するためのヘッダである。
+サイトへの再訪問時に中間者攻撃と呼ばれる攻撃手法を使って悪意のあるサイトに誘導された場合でも、
+ブラウザが保持する真性のサイト証明書の公開鍵と悪意あるサイトが提示する証明書の公開鍵の不一致を検知して、
+アクセスをブロックすることができる。
 
 ブラウザが保持する情報と一致しない証明書を検出した場合にアクセスをブロックさせるためには、以下のようなヘッダを出力する。
 
@@ -197,23 +199,10 @@ Public-Key-Pinsヘッダはサイトの証明書が正しいか判断するた�
 
     Public-Key-Pins: max-age=5184000 ; pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=" ; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="
 
-また、ブラウザにアクセスをブロックさせずに違反レポートを送信させるためには、以下のようなヘッダを出力する。
+.. note:: **違反レポートの送信について**
 
-* レスポンスヘッダの出力例（違反レポートの報告先が\ ``https://www.example.net/hpkp-report``\ の場合）
-
-.. code-block:: text
-
-    Public-Key-Pins-Report-Only: max-age=5184000 ; pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=" ; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=" ; report-uri="https://www.example.net/hpkp-report"
-
-.. note:: **Spring Securityのデフォルト設定について**
-
-    Spring Securityのデフォルトの設定では、Public-Key-Pinsヘッダではなく、Public-Key-Pins-Report-Onlyヘッダが出力される。
-    （Public-Key-Pinsヘッダは設定ミスがあった場合、長期間サイトにアクセスできなくなるため）
-
-.. note:: **Public-Key-Pinsヘッダの出力について**
-
-    Public-Key-Pinsのデフォルト実装では、Public-Key-Pinsヘッダは、アプリケーションサーバに対してHTTPSを使ってアクセスがあった場合のみ出力される。
-    なお、Public-Key-Pinsヘッダ値は、オプションを指定することで変更することができる。
+    アクセスブロック時にブラウザに違反レポートを送信させるためには、Content-Security-Policyと同様にreport-uriディレクティブを指定する。
+    また、ブラウザにアクセスをブロックさせずに違反レポートを送信させるためには、Content-Security-Policy-Report-Onlyと同様にPublic-Key-Pins-Report-Onlyヘッダを使用する。
 
 
 How to use
@@ -265,6 +254,7 @@ How to use
         <sec:hpkp report-uri="https://www.example.net/hpkp-report"> <!-- (8) -->
             <sec:pins>
                 <sec:pin algorithm="sha256">d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=</sec:pin>
+                <sec:pin algorithm="sha256">E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=</sec:pin>
             </sec:pins>
         </sec:hpkp>
     </sec:headers>
@@ -292,6 +282,18 @@ How to use
       - | Content-Security-PolicyヘッダまたはContent-Security-Policy-Report-Onlyヘッダを出力するコンポーネントを登録する。
     * - | (8)
       - | Public-Key-PinsヘッダまたはPublic-Key-Pins-Report-Onlyヘッダを出力するコンポーネントを登録する。
+
+        * サイトの提示する証明書の公開鍵が一致しなかった場合、アクセスをブロックせず\ ``https://www.example.net/hpkp-report``\ に違反レポートの送信を行う。
+        * サーバの公開鍵の変更のためにバックアップ用の公開鍵の情報も設定している。
+
+
+.. note:: **Public-Key-Pinsヘッダの出力について**
+
+    Spring Securityのデフォルトの設定では、Public-Key-Pinsヘッダではなく、Public-Key-Pins-Report-Onlyヘッダが出力される。
+    （Public-Key-Pinsヘッダは設定ミスがあった場合、長期間サイトにアクセスできなくなるため）
+
+    また、Spring Securityのデフォルト実装では、Public-Key-Pinsヘッダは、アプリケーションサーバに対してHTTPSを使ってアクセスがあった場合のみ出力される。
+    なお、Public-Key-Pinsヘッダ値は、オプションを指定することで変更することができる。
 
 
 また、不要なものだけ無効化する方法も存在する。 
