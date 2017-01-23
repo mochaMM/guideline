@@ -1598,15 +1598,18 @@ Spring Data JPAでは、\ ``@org.springframework.data.jpa.repository.Lock``\ ア
 
     OracleとPostgreSQLについては、\ ``0``\ を指定した場合、\ ``nowait``\ が付加され、他のトランザクションによってロックされていた場合に、ロックの解放待ちを行わずに排他エラーとなる。
 
-     .. warning:: **PostgreSQLを使用する場合、nowaitが付加されない**
+     .. warning:: **PostgreSQL使用時に"nowait"句が付加されない不具合について**
 
-        TERASOLUNA Server Framework for Java 5.3.0 RELEASE版では、JPAの実装であるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"NOWAIT"句が追加されない問題がある。
+        TERASOLUNA Server Framework for Java 5.3.0 RELEASE版の依存ライブラリであるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"nowait"句が追加できない。
 
-        そのため、Hibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)に対するパッチを当てた\ ``PostgreSQL81Dialect``\を使用する対応策を考慮する必要がある。
+        そのため、以下の様な対策を検討する必要がある。
+        
+        * Hibernate提供の\ ``Dialect``\クラスにパッチを適用して使う。
+        * Hibernate 5.2.1以上へバージョンアップする。
 
  .. warning:: **PostgreSQLの制約**
 
-    PostgreSQLでは、wait時間の指定ができない。
+    PostgreSQLではnowaitの指定はできるが、wait時間の指定ができない。
     そのため、Queryのタイムアウトを別途設けておくなどの対策を行う必要がある。
 
 Query毎に適応する方法は、以下の通りである。
