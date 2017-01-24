@@ -2883,31 +2883,6 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
 
 |
 
-* JSP
-
-  .. code-block:: jsp
-
-    <form:form modelAttribute="sampleForm">
-        <!-- (1) -->
-        <form:checkboxes path="roles" items="${CL_ROLE}"/>
-        <form:errors path="roles*"/>
-        <form:button>Submit</form:button>
-    </form:form>
-
-
-  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-  .. list-table::
-     :header-rows: 1
-     :widths: 10 90
-
-     * - 項番
-       - 説明
-     * - | (1)
-       - |  \ ``<form:checkboxes>``\ を実装する。
-
-
-|
-
 * フォームクラス
 
   .. code-block:: java
@@ -2951,6 +2926,31 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
 
 |
 
+* JSP
+
+  .. code-block:: jsp
+
+    <form:form modelAttribute="sampleForm">
+        <!-- (1) -->
+        <form:checkboxes path="roles" items="${CL_ROLE}"/>
+        <form:errors path="roles*"/>
+        <form:button>Submit</form:button>
+    </form:form>
+
+
+  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+  .. list-table::
+     :header-rows: 1
+     :widths: 10 90
+
+     * - 項番
+       - 説明
+     * - | (1)
+       - |  \ ``<form:checkboxes>``\ を実装する。
+
+
+|
+
 
 .. _Validation_exist_in_codelist_formatter:
 
@@ -2978,29 +2978,6 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
 * \ ``ConversionServiceFactoryBean``\ を使用し、作成した\ ``Formatter``\ をSpringに登録する。
 
 複数項目設定可能な\ ``Role``\ (Java Bean の\ ``List``\ )に対する入力チェックを例に用いて説明する。
-
-* JSP
-
-  .. code-block:: jsp
-
-    <form:form modelAttribute="sampleForm">
-        <!-- (1) -->
-        <form:checkboxes path="roles" items="${CL_ROLE}"/>
-        <form:errors path="roles*"/>
-        <form:button>Submit</form:button>
-    </form:form>
-
-
-  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-  .. list-table::
-     :header-rows: 1
-     :widths: 10 90
-
-     * - 項番
-       - 説明
-     * - | (1)
-       - |  \ ``List<String>``\ にした時と同様に \ ``<form:checkboxes>``\ を使用することができる。
-
 
 |
 
@@ -3168,6 +3145,32 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
        - | 作成した\ ``Formatter``\ を設定する。
      * - | (3)
        - | \ カスタマイズした型変換を使用するために、\ ``mvc:annotation-driven``\ の\ ``conversion-service``\ 属性に(1)で定義した\ ``ConversionService``\ を設定する。
+
+|
+
+
+* JSP
+
+  .. code-block:: jsp
+
+    <form:form modelAttribute="sampleForm">
+        <!-- (1) -->
+        <form:checkboxes path="roles" items="${CL_ROLE}"/>
+        <form:errors path="roles*"/>
+        <form:button>Submit</form:button>
+    </form:form>
+
+
+  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+  .. list-table::
+     :header-rows: 1
+     :widths: 10 90
+
+     * - 項番
+       - 説明
+     * - | (1)
+       - |  \ ``List<String>``\ にした時と同様に \ ``<form:checkboxes>``\ を使用することができる。
+
 
 |
 
