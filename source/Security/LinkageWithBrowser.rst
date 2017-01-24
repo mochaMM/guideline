@@ -207,7 +207,7 @@ Public-Key-Pinsヘッダはサイトの証明書の真正性を担保するた�
 
 .. note:: **Public-Key-Pinsヘッダの設定について**
 
-    Public-Key-Pinsヘッダの設定に誤りがあった場合、ユーザが長期間サイトにアクセスできなくなる可能性がある。
+    Public-Key-Pinsヘッダの設定に誤りがあった場合、ユーザが長期間サイトにアクセスできなくなる可能性があるため、
     Public-Key-Pins-Report-Onlyヘッダで十分に試験を実施した上でPublic-Key-Pinsヘッダに切り替えることを推奨する。
 
 How to use
