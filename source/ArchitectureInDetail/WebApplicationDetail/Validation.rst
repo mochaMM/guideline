@@ -2959,12 +2959,12 @@ Java Beanを使ったStringのラッパークラスによる実装
 
 ここで紹介する実装はJava SE 7以下ユーザ向けである。Java SE 8が使用できる環境では :ref:`Validation_exist_in_codelist_javase8`\を推奨する。
 
-`Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
-を利用して実装を行う。
-
-前述のとおり、\ ``String``\ の\ ``List``\ には\ ``@ExistInCodeList``\ を付加することはできない。
-
+Java SE 7では前述したようなコレクション内の要素に対してBean Validationのアノテーションを使用することができないため、
 Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパティに対して\ ``@ExistInCodeList``\ を付加することによって入力チェックを行う。
+
+また、ラップクラスをリストで保持した場合、Spring提供のタグライブラリと連携したチェックボックス、ラジオボタン、セレクトボックスの出力が正しくできないケースがある。
+そのため、`Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
+を利用して実装を行う。
 
 \ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加することで、\ ``List<String>``\ にした時と同様に、
 複雑な実装をすることなく \ ``<form:checkboxes>``\ を使用した実装ができる。
@@ -3066,11 +3066,6 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
         public void setValue(String value) {
             this.value = value;
         }
-
-        @Override // (2)
-        public String toString(){
-            return getValue();
-        }
     }
 
   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3082,8 +3077,6 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
        - 説明
      * - | (1)
        - | 入力チェックを行うために\ ``Role``\ クラスにラップしたプロパティに対して \ ``@ExistInCodeList``\ アノテーションを設定し、\ ``codeListId``\ にチェック元となるコードリストを指定する。
-     * - | (2)
-       - | 後述する\ ``Formatter``\ クラスで画面出力用にラップしたオブジェクトの\ ``toString``\ メソッドが呼ばれるため、ここで\ ``toString``\ メソッドを拡張し本来の\ ``String``\ の値を返却するよう実装する。
 
 |
 
@@ -3114,7 +3107,7 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
 
         @Override
         public String print(Role source, Locale locale) {
-            return source.toString();
+            return source.getValue();
         }
 
         @Override
@@ -3143,23 +3136,23 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
   .. code-block:: xml
 
     <!-- (1) -->
-    <mvc:annotation-driven conversion-service="conversionService">
-        <!-- omitted -->
-    </mvc:annotation-driven>
-
-
-  .. code-block:: xml
-
-    <!-- (2) -->
     <bean id="conversionService"
         class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <list>
-                <!-- (3) -->
+                <!-- (2) -->
                 <bean class="com.example.sample.app.validation.formatter.RoleFormatter" />
             </list>
         </property>
     </bean>
+
+
+  .. code-block:: xml
+
+    <!-- (3) -->
+    <mvc:annotation-driven conversion-service="conversionService">
+        <!-- omitted -->
+    </mvc:annotation-driven>
 
 
   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3170,12 +3163,12 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
      * - 項番
        - 説明
      * - | (1)
+       - | \ ``ConversionService``\ のBean定義を追加する。
+     * - | (2)
+       - | 作成した\ ``Formatter``\ を設定する。
+     * - | (3)
        - | \ ``org.springframework.format.support.FormattingConversionServiceFactoryBean``\ がデフォルトで提供する\ ``ConversionService``\ を、\ ``mvc:annotation-driven``\ の\ ``conersion-service``\ 属性で上書きすることができる。
          | カスタマイズした型変換を使用するためには、この\ ``conversion-service``\ 属性に(2)で\ ``ConversionService``\ を設定する必要がある。
-     * - | (2)
-       - | \ ``ConversionService``\ のBean定義を追加する。
-     * - | (3)
-       - | 作成した\ ``Formatter``\ を設定する。
 
 |
 
