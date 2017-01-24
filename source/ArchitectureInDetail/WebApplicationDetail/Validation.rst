@@ -3167,8 +3167,7 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
      * - | (2)
        - | 作成した\ ``Formatter``\ を設定する。
      * - | (3)
-       - | \ ``org.springframework.format.support.FormattingConversionServiceFactoryBean``\ がデフォルトで提供する\ ``ConversionService``\ を、\ ``mvc:annotation-driven``\ の\ ``conersion-service``\ 属性で上書きすることができる。
-         | カスタマイズした型変換を使用するためには、この\ ``conversion-service``\ 属性に(2)で\ ``ConversionService``\ を設定する必要がある。
+       - | \ カスタマイズした型変換を使用するために、\ ``mvc:annotation-driven``\ の\ ``conversion-service``\ 属性に(1)で定義した\ ``ConversionService``\ を設定する。
 
 |
 
