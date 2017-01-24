@@ -445,13 +445,13 @@ Detail
 
   **図-ユースケースのやり直し(先頭からのやり直し)を促す場合のハンドリング方法**
 
-.. warning:: **@ExceptionHandler、SystemExceptionResolverによる致命的なエラーのハンドリング**
+.. warning:: **@ExceptionHandlerによる致命的なエラーのハンドリング**
 
   - | Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
     | そのため、\ ``@ExceptionHandler``\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉していると、\ ``NestedServletException``\にラップされた致命的なエラーや\ ``Throwable``\も予期せず捕捉されるようになる。
-    | アプリケーションコード(\ ``@ExceptionHandler``\)による捕捉をしない場合は、\ ``HandlerExceptionResolver``\を継承する\ ``SystemExceptionResolver``\(共通ライブラリから提供)により、フレームワークで致命的なエラーや\ ``Throwable``\が捕捉されるようになる。
-    | 一般的に致命的なエラーや\ ``Throwable``\は、アプリケーションコードやフレームワークで捕捉せず、Webアプリケーション単位の例外処理(サーブレットコンテナで捕捉)を行うべきなので、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で\ ``NestedServletException``\を捕捉しないよう設定する必要がある。
-    | \ ``spring-mvc.xml``\ の設定方法の詳細については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
+    | 一般的に致命的なエラーや\ ``Throwable``\は、アプリケーションコードで捕捉せず、Webアプリケーション単位の例外処理(サーブレットコンテナで捕捉)を行うべきなので、要件によって\ ``Exception``\や\ ``ServletException``\を捕捉する必要がある場合には、\ ``NestedServletException``\を再スローすることで、ガイドラインに沿った実装にできる。
+    | 再スローの実装例については、\ :ref:`exception-handling-how-to-use-codingpoint-controller-usecase-label`\ を参照されたい。
+
 
 .. _exception-handling-class-systemerror-label:
 
@@ -516,8 +516,12 @@ Detail
 
 .. warning:: **SystemExceptionResolverによる致命的なエラーのハンドリング**
 
-  - | 詳細は、\ :ref:`exception-handling-class-from-first-label`\ を参照されたい。
+  - | Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
+    | 仕様変更の詳細は、\ :ref:`exception-handling-class-from-first-label`\を参照されたい。
+    | アプリケーションコード(\ ``@ExceptionHandler``\)による捕捉をしてない場合でも、\ ``HandlerExceptionResolver``\を継承する\ ``SystemExceptionResolver``\(共通ライブラリから提供)により、フレームワークで致命的なエラーや\ ``Throwable``\が捕捉されるようになる。
+    | フレームワークで捕捉せず、Webアプリケーション単位の例外処理(サーブレットコンテナで捕捉)をするために、\ ``spring-mvc.xml``\ の\ ``SystemExceptionResolver``\で\ ``NestedServletException``\を捕捉しないよう設定する必要がある。
     | \ ``spring-mvc.xml``\ の設定方法の詳細については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
+
 
 .. _exception-handling-class-viewerror-label:
 
@@ -1606,6 +1610,32 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
       - | エラー時の遷移先を表示するためのメソッドを呼び出し、View表示に必要なモデルと、View名を取得する。
     * - | (6)
       - | (3)-(5)の処理で取得したView名と、Modelが格納されているModelAndViewを生成し、返却する。
+
+
+| Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
+| 仕様変更の詳細は、\ :ref:`exception-handling-class-from-first-label`\を参照されたい。
+| \ ``@ExceptionHandler``\で\ ``java.lang.Exception``\を捕捉し、\ ``NestedServletException``\をサーブレットコンテナに再スローする場合の実装例を、以下に示す。
+
+ .. code-block:: java
+
+    @ExceptionHandler // (1)
+    public void throwError(Exception e) throws NestedServletException { // (2)
+        throw (NestedServletException)e; // (3)
+    }
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``@ExceptionHandler``\ アノテーションを付与する。
+    * - | (2)
+      - | ハンドリング対象に\ ``Exception``\、スローする例外に\ ``NestedServletException``\を指定する。
+    * - | (3)
+      - | ハンドリングした\ ``Exception``\を\ ``NestedServletException``\にキャストして再スローする。
 
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
