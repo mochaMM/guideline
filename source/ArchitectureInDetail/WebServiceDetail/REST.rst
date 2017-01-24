@@ -1151,12 +1151,6 @@ HTTPメソッドの割り当て
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 リソース毎に割り当てたURIに対して、以下のHTTPメソッドを割り当て、リソースに対するCRUD操作をREST APIとして公開する。
 
- .. note:: **HEADとOPTIONSメソッドについて**
-
-    以降の説明では、HEADとOPTIONSメソッドについても触れているが、REST APIとしての提供は任意とする。
-
-    HTTPの仕様に準拠したREST APIを作成する場合は、HEAD及びOPTIONSメソッドの提供も必要だが、実際に使われるケースは稀であり、必要ない事が多いためである。
-
 |
 
 .. _RESTHowToDesignAssignHttpMethodForCollectionResource:
@@ -2145,12 +2139,11 @@ REST APIの実装
 
  .. note::
 
-     Spring Framework 4.3系からHEADとOPTIONSメソッドの割り当てに関する仕様が下記の通り変更されたため、暗黙的にREST APIとして提供される様になった。
+     Spring Framework 4.3よりHEADとOPTIONSメソッドに対するREST APIが暗黙的に用意される様になったため、
+     開発者がこれらのREST APIを明示的に実装する必要はない。
 
-     * HEADメソッドは、GETメソッドに対応しているURIに対して、暗黙的に実装される。
-     * OPTIONSメソッドは、割り当てたURIに対して、暗黙的に実装される。
-
-     なお、OPTIONSリクエストに対するレスポンスのAllowヘッダにOPTIONSは含まれないことに留意されたい。
+     なお、暗黙的に用意されるOPTIONS用のREST APIがレスポンスするAllowヘッダの中にはOPTIONS自体が含まれないため、
+     TERASOLUNA Server Framework for Java 5.2.xまでの開発ガイドラインで紹介している実装例と異なる点に留意されたい。
 
 |
 
