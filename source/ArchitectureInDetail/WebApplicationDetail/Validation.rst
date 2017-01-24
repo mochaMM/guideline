@@ -2775,16 +2775,18 @@ Bean Validationは標準で用意されているチェックルール以外に�
 コレクション内の値をBean Validationのアノテーションを使用してチェックする方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ここでは、コレクション内の値に対する入力チェックのうち、最もニーズがあると思われる「コレクション内のString」に対する入力チェックについて説明する。
+複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）を扱う際は、フォームクラスで画面項目を \ ``String``\ 等の基本型のコレクションとして扱うことが一般的である。
+Bean Validationの標準仕様ではコレクション内の各値に対してはBean Validationのアノテーションを使いチェックすることができないが、Java SE 8とHibernate Validatorの拡張機能を使う、或いはJava SE 7の場合は画面項目の値に対するラッパークラスを作成しコレクションとして扱うことで、コレクション内の値をBean Validationを使いチェックすることが可能になる。
 
-共通ライブラリでは、入力値がコードリスト内に定義されたコード値であるかどうかチェックするアノテーション、
-\ ``org.terasoluna.gfw.common.codelist.ExistInCodeList``\ を提供している。
+
+ここでは、共通ライブラリが提供している入力値がコードリスト内に定義されたコード値であるかどうかチェックするアノテーション、
+\ ``org.terasoluna.gfw.common.codelist.ExistInCodeList``\ を例に、コレクション内の値に対する入力チェックのうち、最もニーズがあると思われる「コレクション内のString」に対する入力チェックについて説明する。
 
 \ 複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）に\ ``@ExistInCodeList``\ アノテーションを対応させるための実装方法を以下に示す。
 
 * :ref:`Validation_exist_in_codelist_javase8`\
-    Java SE 8とHibernate Validatorを利用し、\ ``String``\ の\ ``List``\ に付加できる独自のアノテーションを実装する方式。
-    **後者と比べて簡単に実現できるので、Java SE 8が使用できる環境ではこちらの方式を推奨する。** 
+    Java SE 8とHibernate Validatorの独自機能を利用し、\ ``String``\ の\ ``List``\ に付加できる独自のアノテーションを実装する方式。
+    **後者と比べて簡単かつシンプルな実装で実現できるため、Java SE 8が使用できる環境ではこちらの方式を推奨する。** また、この方法は将来的にBean Validationの後続バージョンで標準化される予定である。
     
 
 * :ref:`Validation_exist_in_codelist_formatter`\
@@ -2802,7 +2804,7 @@ Java SE 8とHibernate Validator 5.2+による実装
 
 Java SE 8で\ ``java.lang.annotation.ElementType.TYPE_USE``\ が追加された。
 これにより、宣言に限らず型全般（ローカル変数の型等）にアノテーションを付加できるようになり、
-Java SE 8に対応したHibernate Validator 5.2+は\ ``TYPE_USE``\ を使用して、Collection, Map, Optional, ジェネリクス型のチェックを可能にしている。
+Java SE 8に対応したHibernate Validator 5.2+は\ ``TYPE_USE``\ を使用して、\ ``Collection``\ , \ ``Map``\ , \ ``Optional``\ , ジェネリクス型のチェックを可能にしている。
 
 Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@NotNullForTypeArgument String>``\ のように、
 リスト内の型指定部分に付加できるアノテーションを作成し、コレクション内の値の入力チェックを行うことができるようになる。
@@ -2853,7 +2855,7 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
 
         Class<? extends Payload>[] payload() default {};
 
-        @Target(TYPE_USE) // (5)
+        @Target(TYPE_USE) // (1)
         @Retention(RUNTIME)
         @Documented
         @interface List {
@@ -2877,8 +2879,6 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
        - | エラーメッセージのデフォルト値を定義する。また、ValidationMessages.propertiesに任意のエラーメッセージを定義する。
      * - | (4)
        - | \ ``@ExistInCodeList``\ アノテーションの\ ``codeListId``\ 属性をオーバーライドする。
-     * - | (5)
-       - | \ ``TYPE_USE``\ を設定し、このアノテーションが型使用箇所で付加できるようにする。
 
 
 |
@@ -2903,7 +2903,7 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
      * - 項番
        - 説明
      * - | (1)
-       - |  \ ``List<String>``\ にした時と同様に \ ``<form:checkboxes>``\ を使用することができる。
+       - |  \ ``<form:checkboxes>``\ を実装する。
 
 
 |
@@ -2943,10 +2943,10 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
      * - 項番
        - 説明
      * - | (1)
-       - | \ ``List``\の型宣言につけたアノテーションを有効にするために、\ ``javax.validation.Valid``\ アノテーションを付与する。
+       - | \ ``List``\ 内の要素値に対する入力チェックを有効にするために、\ ``javax.validation.Valid``\ アノテーションを付与する。
      * - | (2)
-       - | 入力チェックを行いたいプロパティに対して\ ``@ExistInCodeListForTypeArgument``\ アノテーションを設定する。
-         | リスト内の型指定部にアノテーションを指定し、\ ``codeListId``\ にチェック元となるコードリストを指定する。
+       - | 入力チェック対象となるコレクションの型指定部に対して\ ``@ExistInCodeListForTypeArgument``\ アノテーションを設定する。
+         | アノテーションの\ ``codeListId``\ パラメータにチェック元となるコードリストを指定する。
 
 
 |
