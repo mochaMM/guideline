@@ -2803,7 +2803,7 @@ Java SE 8とHibernate Validator 5.2+による実装
 独自のアノテーションを作成することでコレクションに対応させる方法を紹介する。
 
 Java SE 8で\ ``java.lang.annotation.ElementType.TYPE_USE``\ が追加された。
-これにより、宣言に限らず型全般（ローカル変数の型等）にアノテーションを付加できるようになり、
+これにより、従来のクラスやメソッド等の宣言に対してだけでなく、型全般（ローカル変数の型等）にアノテーションを付加できるようになり、
 Java SE 8に対応したHibernate Validator 5.2+は\ ``TYPE_USE``\ のような、\ ``Collection``\ , \ ``Map``\ , \ ``Optional``\ , などのパラメータ化された型に付与された制約アノテーションを読み取ることで、コレクション内の値に対するチェックを可能にしている。
 
 Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@NotNullForTypeArgument String>``\ のように、
