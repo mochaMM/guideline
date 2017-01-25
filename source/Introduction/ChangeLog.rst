@@ -42,6 +42,12 @@
 
         * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
         
+    * - 
+      - :doc:`../Security/LinkageWithBrowser`
+      - Spring Security 4.1.4対応に伴う修正
+
+        * HTTP Public Key Pinning (HPKP)に関する記載を追加(\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
