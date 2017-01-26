@@ -2776,22 +2776,22 @@ Bean Validationは標準で用意されているチェックルール以外に�
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）を扱う際は、フォームクラスで画面項目を \ ``String``\ 等の基本型のコレクションとして扱うことが一般的である。
-Bean Validationの標準仕様ではコレクション内の各値に対してはBean Validationのアノテーションを使いチェックすることができないが、Java SE 8とHibernate Validatorの独自機能を使う、或いはJava SE 7の場合は画面項目の値に対するラッパークラスを作成しコレクションとして扱うことで、コレクション内の値をBean Validationを使いチェックすることが可能になる。
+Bean Validationの標準仕様ではコレクション内の各値に対してはBean Validationのアノテーションを使いチェックすることができないが、Java SE 8とHibernate Validatorの独自機能を使う、或いはJava SE 8とHibernate Validatorの独自機能を使わない場合は画面項目の値に対するラッパークラスを作成しコレクションとして扱うことで、コレクション内の値をBean Validationを使いチェックすることが可能になる。
 
 
 ここでは、共通ライブラリが提供している入力値がコードリスト内に定義されたコード値であるかどうかチェックするアノテーション、
-\ ``org.terasoluna.gfw.common.codelist.ExistInCodeList``\ を例に、コレクション内の値に対する入力チェックのうち、最もニーズがあると思われる「コレクション内のString」に対する入力チェックについて説明する。
+\ ``org.terasoluna.gfw.common.codelist.ExistInCodeList``\ を例に、コレクション内のStringに対する入力チェックについて説明する。
 
 \ 複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）に\ ``@ExistInCodeList``\ アノテーションを対応させるための実装方法を以下に示す。
 
 * :ref:`Validation_exist_in_codelist_javase8`\
     Java SE 8とHibernate Validatorの独自機能を利用し、\ ``String``\ の\ ``List``\ に付加できる独自のアノテーションを実装する方式。
-    **後者と比べて簡単かつシンプルな実装で実現できるため、Java SE 8が使用できる環境ではこちらの方式を推奨する。** また、この方法は将来的にBean Validationの後続バージョンで標準化される予定である。
+    **後者と比べて簡単かつシンプルな実装で実現できるため、Java SE 8とHibernate Validatorの独自機能が使用できる環境ではこちらの方式を推奨する。** また、この方法は将来的にBean Validationの後続バージョンで標準化される予定である。
     
 
 * :ref:`Validation_exist_in_codelist_formatter`\
     Java Beanクラスでラップしたプロパティに対して \ ``@ExistInCodeList``\ アノテーションを設定する方式。
-    Java SE 7以下ユーザ向け。Java SE 8が使用できる環境では :ref:`Validation_exist_in_codelist_javase8`\を推奨する。
+    Java SE 8とHibernate Validatorの独自機能を使用しないユーザ向け。Java SE 8とHibernate Validatorの独自機能が使用できる環境では :ref:`Validation_exist_in_codelist_javase8`\を推奨する。
 
 
 .. _Validation_exist_in_codelist_javase8:
@@ -2799,7 +2799,7 @@ Bean Validationの標準仕様ではコレクション内の各値に対して�
 Java SE 8とHibernate Validator 5.2+による実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-ここでは、共通ライブラリから標準で提供される\ ``@ExistInCodeList``\ をラップし、
+ここでは、共通ライブラリが提供している\ ``@ExistInCodeList``\ をラップし、
 独自のアノテーションを作成することでコレクションに対応させる方法を紹介する。
 
 Java SE 8で\ ``java.lang.annotation.ElementType.TYPE_USE``\ が追加された。
@@ -2957,9 +2957,9 @@ Java SE 8とHibernate Validator 5.2+を組み合わせることで、\ ``List<@N
 Java Beanを使ったStringのラッパークラスによる実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-ここで紹介する実装はJava SE 7以下ユーザ向けである。Java SE 8が使用できる環境では :ref:`Validation_exist_in_codelist_javase8`\を推奨する。
+ここで紹介する実装はJava SE 8とHibernate Validatorの独自機能を使用しないユーザ向けである。Java SE 8とHibernate Validatorの独自機能が使用できる環境では :ref:`Validation_exist_in_codelist_javase8`\を推奨する。
 
-Java SE 7では前述したようなコレクション内の要素に対してBean Validationのアノテーションを使用することができないため、
+Java SE 8とHibernate Validatorの独自機能を使用しない場合では前述したようなコレクション内の要素に対してBean Validationのアノテーションを使用することができないため、
 Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパティに対して\ ``@ExistInCodeList``\ を付加することによって入力チェックを行う。
 
 また、ラップクラスをリストで保持した場合、Spring提供のタグライブラリと連携したチェックボックス、ラジオボタン、セレクトボックスの出力が正しくできないケースがある。
@@ -3057,7 +3057,7 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
 
 |
 
-型変換を行う\ ``Formatter``\ クラスを実装し、Springに登録する。
+型変換を行うFormatterクラスを実装し、Springに登録する。
 
 前述のとおり、入力チェックを行うために\ ``String``\ を\ ``Role``\ (Java Bean)でラップする必要がある。
 画面の入力（\ ``String``\ ）からラップした\ ``Role``\ への変換と、その逆変換を行うために、\ ``Formatter``\ による型変換の実装を行う。
@@ -3080,7 +3080,7 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
 
     import com.example.usermanagement.domain.model.Role;
 
-    public final class RoleFormatter implements Formatter<Role> { //(1)
+    public class RoleFormatter implements Formatter<Role> { //(1)
 
         @Override
         public String print(Role source, Locale locale) {
@@ -3140,11 +3140,11 @@ Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ `
      * - 項番
        - 説明
      * - | (1)
-       - | \ ``ConversionService``\ のBean定義を追加する。
+       - | \ ``FormattingConversionServiceFactoryBean``\ のBean定義を追加する。
      * - | (2)
-       - | 作成した\ ``Formatter``\ を設定する。
+       - | 作成したFormatterクラス(\ ``RoleFormatter``\ )を設定する。
      * - | (3)
-       - | \ カスタマイズした型変換を使用するために、\ ``mvc:annotation-driven``\ の\ ``conversion-service``\ 属性に(1)で定義した\ ``ConversionService``\ を設定する。
+       - | \ カスタマイズした型変換を使用するために、\ ``mvc:annotation-driven``\ の\ ``conversion-service``\ 属性に(1)で定義したBeanを設定する。
 
 |
 
