@@ -814,6 +814,7 @@ Bean Validationと連携した文字列チェック
 .. list-table::
    :header-rows: 1
    :widths: 10 20 30 40
+   :class: longtable
 
    * - 項番
      - クラス名

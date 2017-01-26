@@ -38,6 +38,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 10 15 35 40
+   :class: longtable
 
    * - ログレベル
      - カテゴリ
@@ -146,6 +147,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 15 85
+   :class: longtable
 
    * - カテゴリ
      - 出力ポイント
@@ -312,6 +314,7 @@ logback.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -747,6 +750,7 @@ How to extend
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明

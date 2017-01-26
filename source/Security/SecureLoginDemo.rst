@@ -47,6 +47,7 @@
 .. list-table::
     :header-rows: 1
     :widths: 10 20 30 40
+    :class: longtable
 
     * - 項番
       - 分類
@@ -227,6 +228,7 @@
 .. list-table::
     :header-rows: 1
     :widths: 20 50 30
+    :class: longtable
 
     * - | 項番
       - | 画面名
@@ -282,6 +284,7 @@ URL一覧を以下に示す。
 .. list-table::
     :header-rows: 1
     :widths: 10 20 15 15 40
+    :class: longtable
 
     * - 項番
       - プロセス名
@@ -408,6 +411,7 @@ ER図
 .. list-table::
     :header-rows: 1
     :widths: 10 20 40 30
+    :class: longtable
 
     * - 項番
       - エンティティ名
@@ -1577,6 +1581,7 @@ ER図
     .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - 項番
          - 説明
@@ -3297,6 +3302,7 @@ ER図
     .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - 項番
          - 説明
@@ -4662,6 +4668,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
   .. list-table::
      :header-rows: 1
      :widths: 10 90
+     :class: longtable
 
      * - 項番
        - 説明

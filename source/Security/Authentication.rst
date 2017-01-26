@@ -419,6 +419,7 @@ Spring Securityは、以下のような流れでDB認証を行う。
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -470,6 +471,7 @@ UserDetailsの作成
 .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - メソッド名
@@ -1745,6 +1747,7 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
 .. list-table::
     :header-rows: 1
     :widths: 20 80
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -2490,6 +2493,7 @@ Authentication Filterの作成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明

@@ -50,6 +50,7 @@ Servlet 3.0からサポートされたファイルアップロード機能と、
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -172,6 +173,7 @@ Servlet 3.0のアップロード機能を有効化するために、以下の設
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -655,6 +657,7 @@ Controllerの実装
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1335,6 +1338,7 @@ Controllerの実装
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明

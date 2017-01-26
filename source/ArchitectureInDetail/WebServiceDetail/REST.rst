@@ -109,6 +109,7 @@ TERASOLUNA Server Framework for Java (5.x)では、Spring MVCの機能を利用�
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - 項番
       - 処理レイヤ
@@ -841,6 +842,7 @@ HTTPメソッドによるリソースの操作
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1754,6 +1756,7 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1972,6 +1975,7 @@ REST APIの実装
  .. list-table::
     :header-rows: 1
     :widths: 10 20 10 10 15 25
+    :class: longtable
 
     * - 項番
       - 項目名
@@ -2629,6 +2633,7 @@ URIで指定されたMemberリソースのコレクションをページ検索�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -3289,6 +3294,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
  .. list-table::
     :header-rows: 1
     :widths: 10  20 70
+    :class: longtable
 
     * - 項番
       - 処理レイヤ
@@ -5477,6 +5483,7 @@ POST時のLocationヘッダの設定
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明

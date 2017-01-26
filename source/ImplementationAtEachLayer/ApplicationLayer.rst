@@ -438,6 +438,7 @@ Acceptヘッダでマッピング
  .. list-table::
    :header-rows: 1
    :widths: 5 20 15 22 10 13 15
+   :class: longtable
 
    * - | 項番
      - | 処理名
@@ -1493,6 +1494,7 @@ URLのパスから値を取得する
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -3740,6 +3742,7 @@ HandlerMethodArgumentResolverを実装してControllerの引数として受け�
 .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - 項番
      - 属性

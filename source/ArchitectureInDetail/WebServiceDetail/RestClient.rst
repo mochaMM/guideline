@@ -81,6 +81,7 @@ Spring Frameworkが提供するHTTPクライアントである。
 .. list-table:: **デフォルトで登録されるHttpMessageConverter**
     :header-rows: 1
     :widths: 5 25 55 15
+    :class: longtable
 
     * - 項番
       - クラス名
@@ -137,6 +138,7 @@ Spring Frameworkが提供するHTTPクライアントである。
 .. list-table:: **依存ライブラリがクラスパス上に存在する場合に登録されるHttpMessageConverter**
     :header-rows: 1
     :widths: 5 25 55 15
+    :class: longtable
 
     * - 項番
       - クラス名

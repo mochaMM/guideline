@@ -269,6 +269,7 @@ URLの抽出
  .. list-table::
     :header-rows: 1
     :widths: 5 20 10 20 25 20
+    :class: longtable
     
     * - 項番
       - 処理名
@@ -500,6 +501,7 @@ URLの抽出
  .. list-table::
     :header-rows: 1
     :widths: 15 85
+    :class: longtable
     
     * - データ項目
       - 検討内容

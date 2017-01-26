@@ -86,6 +86,7 @@ Spring FrameworkのJAX-WS連携機能について
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1402,6 +1403,7 @@ MTOMを利用した大容量のバイナリデータを扱う方法
 .. list-table::
     :header-rows: 1
     :widths: 10 30 60
+    :class: longtable
 
     * - 項番
       - プロジェクト名
@@ -2069,6 +2071,7 @@ SOAPサーバのパッケージ構成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
