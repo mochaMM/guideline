@@ -28,6 +28,12 @@
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
+      - Spring 4.3対応に伴う修正
+
+        * 非同期リクエストの共通処理の実装に関する説明を追加(\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
+
     * - 
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
       - 記載内容の追加
