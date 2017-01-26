@@ -169,6 +169,7 @@ Entityクラスの作成例
  .. list-table::
     :header-rows: 1
     :widths: 10 20 15 55
+    :class: longtable
 
     * - 項番
       - 分類
@@ -553,6 +554,7 @@ Repositoryインタフェースのメソッド定義
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - 項番
       - メソッドの種類
@@ -982,6 +984,7 @@ Serviceの作成単位は主に以下の３パターンとなる。
  .. list-table::
    :header-rows: 1
    :widths: 10 15 25 50
+   :class: longtable
 
    * - 項番
      - 単位
@@ -1141,6 +1144,7 @@ Entity毎にServiceを作成する場合は、以下のような開発イメー�
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1742,6 +1746,7 @@ Spring Frameworkから提供されている「宣言型トランザクション�
  .. list-table::
     :header-rows: 1
     :widths: 10 10 80
+    :class: longtable
 
     * - 項番
       - 属性名

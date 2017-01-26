@@ -6103,6 +6103,7 @@ Mapperインタフェースの仕組みについて
  .. list-table::
     :header-rows: 1
     :widths: 10 80
+    :class: longtable
 
 
     * - 項番
@@ -6739,6 +6740,7 @@ Entityのクラス図
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
+    :class: longtable
 
     * - 項番
       - クラス名

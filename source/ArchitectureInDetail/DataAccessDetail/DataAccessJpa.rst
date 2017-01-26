@@ -74,6 +74,7 @@ JPAの基本用語
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - 項番
       - 用語
@@ -137,6 +138,7 @@ Entityのライフサイクル管理イメージは、以下の通りである�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -205,6 +207,7 @@ Spring Data JPAを使ってデータベースにアクセスする際の基本�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -324,6 +327,7 @@ EntityManagerの設定
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -548,6 +552,7 @@ Spring Data JPAを有効化するための設定
  .. list-table::
     :header-rows: 1
     :widths: 6 20 74
+    :class: longtable
 
     * - 項番
       - 要素
@@ -801,6 +806,7 @@ Spring Dataから提供されているインタフェースを継承してEntity
  .. list-table::
     :widths: 10 35 55
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - メソッド
@@ -2041,6 +2047,7 @@ Entityの動的条件による検索処理の実装
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2410,6 +2417,7 @@ Entityの動的条件による検索処理の実装
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 説明

@@ -68,6 +68,7 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
 .. list-table::
     :header-rows: 1
     :widths: 10 20 60
+    :class: longtable
 
     * - 項番
       - コンポーネント

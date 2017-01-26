@@ -13,6 +13,7 @@
 .. list-table::
    :header-rows: 1
    :widths: 10 40 50
+   :class: longtable
 
    * - 項番
      - 項目名

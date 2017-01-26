@@ -168,6 +168,7 @@ Spring Securityが用意している共通的なExpressionは以下の通り。
 .. list-table:: **Spring Securityが提供している共通的なExpression**
     :header-rows: 1
     :widths: 30 70
+    :class: longtable
 
     * - Expression
       - 説明

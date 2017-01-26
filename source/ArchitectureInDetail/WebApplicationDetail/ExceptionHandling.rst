@@ -72,6 +72,7 @@ Overview
 .. list-table:: **表-例外のハンドリング方法**
    :header-rows: 1
    :widths: 10 30 35 25
+   :class: longtable
 
    * - 項番
      - ハンドリング方法
@@ -361,6 +362,7 @@ Detail
 .. list-table:: **表-例外ハンドリングのパターン**
    :header-rows: 1
    :widths: 10 40 25 10 15
+   :class: longtable
 
    * - 項番
      - ハンドリングの目的
@@ -723,6 +725,7 @@ How to use
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -952,6 +955,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1771,6 +1775,7 @@ Appendix
 .. list-table:: **表- org.terasoluna.gfw.common.exception パッケージ配下のクラス**
    :header-rows: 1
    :widths: 10 20 65
+   :class: longtable
 
    * - 項番
      - クラス
@@ -1900,6 +1905,7 @@ SystemExceptionResolverの設定項目について
 .. list-table:: **本編で説明していない設定項目一覧**
    :header-rows: 1
    :widths: 5 15 15 45 20
+   :class: longtable
 
    * - 項番
      - 項目名
@@ -2243,6 +2249,7 @@ DefaultHandlerExceptionResolverでハンドリングされるフレームワー�
 .. list-table::
    :header-rows: 1
    :widths: 10 60 20
+   :class: longtable
 
    * - 項番
      - ハンドリングされるフレームワーク例外

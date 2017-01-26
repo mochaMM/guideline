@@ -859,6 +859,7 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1058,6 +1059,7 @@ webモジュールの構成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1169,6 +1171,7 @@ webモジュールの構成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1613,6 +1616,7 @@ Maven Archetypeで作成したプロジェクトのプロジェクト階層の�
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1681,6 +1685,7 @@ Spring Frameworkのアプリケーションコンテキスト(DIコンテナ)の
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明

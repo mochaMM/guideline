@@ -555,6 +555,7 @@ How to use
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - 項番
       - 設定項目
@@ -1159,6 +1160,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
+    :class: longtable
 
     * - 項番
       - 属性名
@@ -2181,6 +2183,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - 項番
       - 設定項目

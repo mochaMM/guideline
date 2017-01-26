@@ -4187,6 +4187,7 @@ Bean Validationの標準アノテーション(\ ``javax.validation.*``\ )を以�
 .. list-table::
    :header-rows: 1
    :widths: 15 30 30 25
+   :class: longtable
 
    * - アノテーション
      - 対象の型
@@ -4471,6 +4472,7 @@ terasoluna-gfw-commonのチェックルール
 .. list-table::
     :header-rows: 1
     :widths: 15 30 30 25
+    :class: longtable
 
     * - アノテーション
       - 対象の型

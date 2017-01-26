@@ -382,6 +382,7 @@ ANSI/ISO SQL標準では、トランザクションの分離レベル（各ト�
  .. list-table::
     :header-rows: 1
     :widths: 10 5 5 80
+    :class: longtable
 
     * - 項番
       - UserA
@@ -496,6 +497,7 @@ ANSI/ISO SQL標準では、トランザクションの分離レベル（各ト�
  .. list-table::
     :header-rows: 1
     :widths: 10 5 5 80
+    :class: longtable
 
     * - 項番
       - Staff A

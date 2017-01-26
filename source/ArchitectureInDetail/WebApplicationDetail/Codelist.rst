@@ -488,6 +488,7 @@ JdbcCodeListの使用方法
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -936,6 +937,7 @@ SimpleI18nCodeListの使用方法
 .. list-table::
     :header-rows: 1
     :widths: 20 20 60
+    :class: longtable
   
     * - locale
       - code

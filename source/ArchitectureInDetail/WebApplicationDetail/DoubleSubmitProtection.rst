@@ -114,6 +114,7 @@ Problems
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -152,6 +153,7 @@ Problems
         .. list-table::
            :header-rows: 1
            :widths: 10 90
+           :class: longtable
 
            * - 項番
              - 説明
@@ -316,6 +318,7 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -376,6 +379,7 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -428,6 +432,7 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -468,6 +473,7 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - 項番
@@ -733,6 +739,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table:: \ ``@TransactionTokenCheck``\ アノテーションパラメタ一覧
    :header-rows: 1
    :widths: 10 10 45 10 20
+   :class: longtable
 
    * - 項番
      - 属性名
@@ -803,6 +810,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - 項番
      - 構成要素
@@ -862,6 +870,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table::
    :header-rows: 1
    :widths: 10 20 70
+   :class: longtable
 
    * - 項番
      - ライフサイクル制御
@@ -914,6 +923,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1332,6 +1342,7 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1371,6 +1382,7 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1724,6 +1736,7 @@ Controllerの実装
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - 項番
@@ -1764,6 +1777,7 @@ Quick Reference
  .. list-table::
    :header-rows: 1
    :widths: 10 20 15 20 15 20
+   :class: longtable
 
    * - 番号
      - Namespace毎に保持するトークン数

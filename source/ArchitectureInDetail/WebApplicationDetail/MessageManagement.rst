@@ -73,6 +73,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 5 15 20 10 50
+   :class: longtable
 
    * - 記号
      - パターン

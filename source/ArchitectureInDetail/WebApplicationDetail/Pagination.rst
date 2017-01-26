@@ -256,6 +256,7 @@ Spring Dataより提供されているページ検索用の機能は、以下の
  .. list-table::
     :header-rows: 1
     :widths: 10 70 20
+    :class: longtable
 
     * - 項番
       - 説明
@@ -376,6 +377,7 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
  .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - パラメータ名
@@ -463,6 +465,7 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
  .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - パラメータ名
@@ -592,6 +595,7 @@ Spring Dataより提供されているページネーション機能と、共通
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1694,6 +1698,7 @@ Appendix
  .. list-table::
     :header-rows: 1
     :widths: 10 20 55 15
+    :class: longtable
 
     * - 項番
       - プロパティ名
@@ -1809,6 +1814,7 @@ Appendix
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明

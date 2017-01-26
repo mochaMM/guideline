@@ -1183,6 +1183,7 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - 項番
@@ -1642,6 +1643,7 @@ Controllerの修正
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -3359,6 +3361,7 @@ web.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -4174,6 +4177,7 @@ spring-mvc.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明

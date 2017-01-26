@@ -142,6 +142,7 @@ Ajax通信時で使用されるContent-Type(``"application/xml"`` や ``"applica
      .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
     
        * - | 項番
          - | 説明
@@ -721,6 +722,7 @@ Ajaxを使ってフォームのデータをPOSTし、処理結果を取得する
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - | 項番
      - | 説明
