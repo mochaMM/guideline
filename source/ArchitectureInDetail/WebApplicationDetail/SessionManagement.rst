@@ -677,15 +677,26 @@ How to use
 
      セッションスコープで格納しているオブジェクトをハンドラメソッドの引数として指定した際、そのオブジェクトにリクエストパラメータがバインドされる可能性がある。
 
-     対策として、セッションオブジェクトをハンドラメソッドの引数から取得せず、ハンドラメソッド内で\ ``Model``\オブジェクトから取得することで、
-     安全にセッションオブジェクトを取得することができる。
-     
-     しかし、上記の方法では取得するオブジェクト名を文字列で指定する必要があり、タイプセーフではない。
+     対策として、セッションスコープに格納されているオブジェクトをハンドラメソッドの引数から取得せず、ハンドラメソッド内で\ ``Model``\オブジェクトから取得することで、
+     安全にセッションスコープに格納されているオブジェクトを取得することができるが、この方法では取得するオブジェクト名を文字列で指定する必要があり、タイプセーフではない。
 
      これに対し、Spring Framework 4.3では\ ``@ModelAttribute``\アノテーションに\ ``binding``\属性が追加され、引数にリクエストパラメータをバインドするか否かを指定できる様になった。
+     セッションスコープに格納されているオブジェクトが渡された引数に、\ ``@ModelAttribute``\アノテーションを付与し、\ ``binding``\属性を\ ``false``\に指定することで、
+     安全かつタイプセーフにセッションスコープに格納されたオブジェクトを取得することができる。
 
-     そのため、引数のセッションオブジェクトに\ ``@ModelAttribute``\アノテーションを付与し、\ ``binding``\属性を\x ``false``\に指定することで、
-     安全かつタイプセーフにセッションオブジェクトを取得することができる。
+     下記の例は、セッションに格納されているオブジェクト(\ ``entity``\)が\ ``Model``\ オブジェクトに常に存在する場合、安全かつタイプセーフに取得することができる。
+
+      .. code-block:: java
+
+         @RequestMapping(value = "save", method = RequestMethod.POST)
+         public String save(@Validated({ Wizard1.class, Wizard2.class,
+                 Wizard3.class }) WizardForm form,
+                 BindingResult result,
+                 @ModelAttribute(binding = false) Entity entity,
+                 RedirectAttributes redirectAttributes) {
+             // ...
+             return "redirect:/wizard/save?complete";
+         }
 
 Controllerのハンドラメソッドの引数に渡すオブジェクトが、\ ``Model``\ オブジェクトに存在しない場合、\ ``@ModelAttribute``\ アノテーションの指定の有無で、動作が変わる。
 
@@ -1546,7 +1557,7 @@ Appendix
         public String save(@ModelAttribute @Validated({ Wizard1.class,
                 Wizard2.class, Wizard3.class }) WizardForm form, // (22)
                 BindingResult result,
-                @ModelAttribute(binding = false) Entity entity, // (23)
+                Entity entity, // (23)
                 RedirectAttributes redirectAttributes) {
             if (result.hasErrors()) {
                 throw new InvalidRequestException(result); // (24)
@@ -1582,7 +1593,6 @@ Appendix
     * - | (23)
       - | 保存する\ ``Entity.class``\ のオブジェクトを取得する。
         | 登録処理の場合は、新たに生成されたオブジェクト、更新処理の場合は、(14)の処理でセッションに格納したオブジェクトが取得される。
-        | リクエストパラメータのバインドを防止するために、\ ``@ModelAttribute``\アノテーションの\ ``binding``\属性に\ ``false``\を指定する。
     * - | (24)
       - | アプリケーションが提供しているボタンを使って、画面遷移を行っていれば、このタイミングでエラーは発生しないので、不正な操作が行われた場合に\ ``InvalidRequestException``\ がthrowされる。
         | なお、\ ``InvalidRequestException``\は共通ライブラリから提供している例外クラスではないため、別途作成する必要がある。
@@ -1716,7 +1726,7 @@ Appendix
         @RequestMapping(value = "save", method = RequestMethod.POST)
         public String save(@ModelAttribute @Validated({ Wizard1.class,
                 Wizard2.class, Wizard3.class }) WizardForm form, // (22)
-                BindingResult result,@ModelAttribute(binding = false) Entity entity, // (23)
+                BindingResult result,Entity entity, // (23)
                 RedirectAttributes redirectAttributes) {
             if (result.hasErrors()) {
                 throw new InvalidRequestException(result); // (24)
