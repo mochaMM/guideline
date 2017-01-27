@@ -24,7 +24,11 @@
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
-      - 記載内容の改善
+      - 記載内容の追加
+
+        * コレクション内の値に対する入力チェック方法を追加(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+
+        記載内容の改善
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
 
