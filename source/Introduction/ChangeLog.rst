@@ -40,6 +40,12 @@
   
         * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )  
 
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - 記載内容の追加
+
+        * コミット時にエラーが発生し意図しないコミットがされた際、ロールバックする設定を追記(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開

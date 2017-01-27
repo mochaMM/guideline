@@ -510,7 +510,7 @@ MyBatis3とSpringを連携する場合、データソースはSpringのDIコン�
 - :file:`projectName-env/src/main/resources/META-INF/spring/projectName-env.xml`
 
  .. code-block:: xml
-    :emphasize-lines: 15-20
+    :emphasize-lines: 15-22
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -531,6 +531,8 @@ MyBatis3とSpringを連携する場合、データソースはSpringのDIコン�
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <!-- (2) -->
             <property name="dataSource" ref="dataSource" />
+            <!-- (3) -->
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
 
         <!-- omitted -->
@@ -551,6 +553,8 @@ MyBatis3とSpringを連携する場合、データソースはSpringのDIコン�
       - \ ``dataSource`` \プロパティに、設定済みのデータソースのbeanを指定する。
 
         トランザクション内でSQLを実行する際は、ここで指定したデータソースからコネクションが取得される。
+    * - (3)
+      - \ コミット時のエラーによって意図しないコミットがされた際、ロールバックする様に指定する。
 
  .. note:: **PlatformTransactionManagerのbean IDについて**
  
