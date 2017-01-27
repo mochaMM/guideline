@@ -10,6 +10,18 @@
       - 更新箇所
       - 更新内容
 
+    * - 2017-02-28
+      - \-
+      - 1.0.6 RELEASE版公開
+
+        * 更新内容の詳細は、\ `1.0.6のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A1.0.6%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+
+    * -
+      - :doc:`../Security/Authorization`
+      - 記載内容の追加
+
+        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
     * - 2016-08-31
       - \-
       - 1.0.5 RELEASE版公開
