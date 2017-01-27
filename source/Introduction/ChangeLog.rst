@@ -16,11 +16,27 @@
 
         * 更新内容の詳細は、\ `5.3.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
+    * - 
+      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
+      - 記載内容の追加
+
+        * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
-      - 記載内容の改善
+      - 記載内容の追加
+
+        * コレクション内の値に対する入力チェック方法を追加(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+
+        記載内容の改善
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
+      - Spring 4.3対応に伴う修正
+
+        * 非同期リクエストの共通処理の実装に関する説明を追加(\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
 
     * - 
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
@@ -33,6 +49,20 @@
       - 記載内容の追加
 
         * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+
+        * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        
+    * -
+      - :doc:`../Security/Authorization`
+      - 記載内容の追加
+
+        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
+    * - 
+      - :doc:`../Security/LinkageWithBrowser`
+      - Spring Security 4.1.4対応に伴う修正
+
+        * HTTP Public Key Pinning (HPKP)に関する記載を追加(\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`

@@ -1760,7 +1760,7 @@ Quick Reference
 | 例で示す業務アプリケーションで想定するユースケースは、Account,Customerのcreate,update,deleteとする。
 | 下記の表を参考に、システム要件にあったトークンの上限数と、Namespaceの設定を行うこと。
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 20 15 20 15 20

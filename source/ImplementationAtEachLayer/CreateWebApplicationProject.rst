@@ -71,7 +71,7 @@ Webアプリケーション向け開発プロジェクトの作成
 
 マルチプロジェクトを作成するためのArchetypeとして、以下の2種類を用意している。
 
-.. tabularcolumns:: |p{0.5\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
+.. tabularcolumns:: |p{0.05\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 5 30 65
@@ -692,7 +692,7 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
       - POMファイル
 
         * ``artifactId/pom.xml``
-        * ``artifactId/artifactId-domain/pom.xml``
+        * ``artifactId/artifactId-web/pom.xml``
       - インメモリデータベース(H2 Database)のJDBCドライバを依存ライブラリから削除する。
 
         アプリケーション稼働時に利用するデータベースにアクセスするためのJDBCドライバを依存ライブラリに追加する。
@@ -756,20 +756,32 @@ Maven Archetypeで作成したプロジェクトでは、インメモリデー�
             <postgresql.version>9.4-1206-jdbc41</postgresql.version>
             <ojdbc.version>12.1.0.2</ojdbc.version>
 
-    * ``artifactId/artifactId-domain/pom.xml``
+    * ``artifactId/artifactId-web/pom.xml``
 
      .. code-block:: xml
 
                      <dependency>
                          <groupId>org.postgresql</groupId>
                          <artifactId>postgresql</artifactId>
-                         <scope>provided</scope>
+                         <scope>runtime</scope><!-- (1) -->
                      </dependency>
         <!--         <dependency> -->
         <!--             <groupId>com.oracle</groupId> -->
         <!--             <artifactId>ojdbc7</artifactId> -->
-        <!--             <scope>provided</scope> -->
+        <!--             <scope>runtime</scope> -->
         <!--         </dependency> -->
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - JDBCドライバはコンパイルには使用せず、アプリケーション実行時のみ使用するため、\ ``runtime``\ スコープを指定している。
+
+        単体テストで使用する場合などは、適切なスコープに変更して使用されたい。
 
 |
 

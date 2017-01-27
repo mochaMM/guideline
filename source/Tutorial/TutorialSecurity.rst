@@ -1267,7 +1267,7 @@ Spring Securityと関係のない設定については、説明を割愛する�
                 <bean
                     class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
             </mvc:argument-resolvers>
-            <!-- workarround to CVE-2016-5007. -->
+            <!-- workaround to CVE-2016-5007. -->
             <mvc:path-matching path-matcher="pathMatcher" />
         </mvc:annotation-driven>
 

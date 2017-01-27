@@ -39,6 +39,8 @@ Spring Securityがデフォルトでサポートしているレスポンスヘ�
 * X-Content-Type-Options
 * X-XSS-Protection
 * Strict-Transport-Security
+* Content-Security-Policy(Content-Security-Policy-Report-Only)
+* Public-Key-Pins(Public-Key-Pins-Report-Only)
 
 .. tip:: **ブラウザのサポート状況**
 
@@ -46,7 +48,7 @@ Spring Securityがデフォルトでサポートしているレスポンスヘ�
 
     * https://www.owasp.org/index.php/HTTP_Strict_Transport_Security (Strict-Transport-Security)
     * https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet (X-Frame-Options)
-    * https://www.owasp.org/index.php/List_of_useful_HTTP_headers (X-Content-Type-Options, X-XSS-Protection)
+    * https://www.owasp.org/index.php/List_of_useful_HTTP_headers (X-Content-Type-Options, X-XSS-Protection, Content-Security-Policy, Public-Key-Pins)
 
 
 Cache-Control
@@ -142,6 +144,71 @@ HTTPSでアクセスした後にHTTPが使われないようにするために�
     Spring Securityのデフォルト実装では、Strict-Transport-Securityヘッダは、アプリケーションサーバに対してHTTPSを使ってアクセスがあった場合のみ出力される。
     なお、Strict-Transport-Securityヘッダ値は、オプションを指定することで変更することができる。
 
+Content-Security-Policy
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Content-Security-Policyヘッダーはブラウザに読み込みを許可するコンテンツを指示するためのヘッダーである。
+ブラウザはContent-Security-Policyヘッダーに指定したホワイトリストのコンテンツのみを読み込むため、悪意のあるコンテンツを読み込むことで実行される攻撃（クロスサイトスクリプティング攻撃など）を受けるリスクを減らすことができる。
+
+Content-Security-Policyヘッダーを送信しない場合、ブラウザは標準の同一オリジンポリシーを適用する。
+
+コンテンツの取得元を同一オリジンのみに制限するためには、以下のようなヘッダーを出力する。
+
+* レスポンスヘッダの出力例
+
+.. code-block:: text
+
+    Content-Security-Policy: default-src 'self'
+
+.. note:: **ポリシー違反時のレポート送信について**
+
+    ポリシー違反時にレポートを送信したい場合、report-uriディレクティブに報告先のURIを指定する。
+
+    同一オリジンポリシー違反があった場合にコンテンツをブロックして\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
+
+    * レスポンスヘッダの出力例
+
+     .. code-block:: text
+
+        Content-Security-Policy: default-src 'self'; report-uri /csp_report;
+
+    また、ポリシー違反があった際に、コンテンツのブロックを行わずレポートの送信のみを行いたい場合はContent-Security-Policy-Report-Onlyヘッダーを使用する。
+    Content-Security-Policy-Report-Onlyヘッダーを使用してレポートを収集しながら段階的にポリシーとコンテンツを修正することで、既にサービス提供しているサイトに対してポリシーを適用した場合に正常に動作しなくなるリスクを減らすことが出来る。
+
+    同一オリジンポリシー違反があった場合にコンテンツをブロックせず\ ``/csp_report``\ にレポートを送信するためには、以下のようなヘッダーを出力する。
+
+    * レスポンスヘッダの出力例
+
+     .. code-block:: text
+
+        Content-Security-Policy-Report-Only: default-src 'self'; report-uri /csp_report;
+
+Public-Key-Pins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Public-Key-Pinsヘッダはサイトの証明書の真正性を担保するために、サイトに紐付く証明書の公開鍵をブラウザに提示するヘッダである。
+サイトへの再訪問時に中間者攻撃と呼ばれる攻撃手法を使って悪意のあるサイトに誘導された場合でも、
+ブラウザが保持する真性のサイト証明書の公開鍵と悪意あるサイトが提示する証明書の公開鍵の不一致を検知して、
+アクセスをブロックすることができる。
+
+ブラウザが保持する情報と一致しない証明書を検出した場合にアクセスをブロックさせるためには、以下のようなヘッダを出力する。
+
+* レスポンスヘッダの出力例
+
+.. code-block:: text
+
+    Public-Key-Pins: max-age=5184000 ; pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=" ; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="
+
+.. note:: **違反レポートの送信について**
+
+    アクセスブロック時にブラウザに違反レポートを送信させるためには、Content-Security-Policyと同様にreport-uriディレクティブを指定する。
+
+    また、ブラウザにアクセスをブロックさせずに違反レポートを送信させるためには、Public-Key-Pinsヘッダの代わりにPublic-Key-Pins-Report-Onlyヘッダを使用する。
+
+.. note:: **Public-Key-Pinsヘッダの設定について**
+
+    Public-Key-Pinsヘッダの設定に誤りがあった場合、ユーザが長期間サイトにアクセスできなくなる可能性があるため、
+    Public-Key-Pins-Report-Onlyヘッダで十分に試験を実施した上でPublic-Key-Pinsヘッダに切り替えることを推奨する。
 
 How to use
 --------------------------------------------------------------------------------
@@ -149,11 +216,15 @@ How to use
 セキュリティヘッダ出力機能の適用
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-前述のセキュリティヘッダ出力機能を適用する方法をする。
+前述のセキュリティヘッダ出力機能を適用する方法を説明する。
 
-セキュリティヘッダ出力機能は、Spring 3.2から追加された機能でSpring Security 4.0からデフォルトで適用されるようになっている。 
-そのため、セキュリティヘッダ出力機能を有効にするための特別な定義は不要である。 
-なお、セキュリティヘッダ出力機能を適用したくない場合は、明示的に無効化する必要がある。 
+セキュリティヘッダ出力機能は、Spring 3.2から追加された機能で以下のセキュリティヘッダ以外はデフォルトで適用されるようになっている。 
+
+* Content-Security-Policy
+* Public-Key-Pins
+
+そのため、デフォルトで適用されるセキュリティヘッダ出力機能を有効にするための特別な定義は不要である。 
+なお、デフォルトで適用されるセキュリティヘッダ出力機能を適用したくない場合は、明示的に無効化する必要がある。 
 
 セキュリティヘッダ出力機能を無効化する場合は、以下のようなbean定義を行う。
 
@@ -184,6 +255,13 @@ How to use
         <sec:content-type-options/> <!-- (4) -->
         <sec:xss-protection/> <!-- (5) -->
         <sec:hsts/> <!-- (6) -->
+        <sec:content-security-policy policy-directives="default-src 'self'" /> <!-- (7) -->
+        <sec:hpkp report-uri="https://www.example.net/hpkp-report"> <!-- (8) -->
+            <sec:pins>
+                <sec:pin algorithm="sha256">d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=</sec:pin>
+                <sec:pin algorithm="sha256">E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=</sec:pin>
+            </sec:pins>
+        </sec:hpkp>
     </sec:headers>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -205,6 +283,20 @@ How to use
       - | X-XSS-Protectionヘッダを出力するコンポーネントを登録する。
     * - | (6)
       - | Strict-Transport-Securityヘッダを出力するコンポーネントを登録する。
+    * - | (7)
+      - | Content-Security-PolicyヘッダまたはContent-Security-Policy-Report-Onlyヘッダを出力するコンポーネントを登録する。
+    * - | (8)
+      - | Public-Key-PinsヘッダまたはPublic-Key-Pins-Report-Onlyヘッダを出力するコンポーネントを登録する。
+
+        * サイトの提示する証明書の公開鍵が一致しなかった場合、アクセスをブロックせず\ ``https://www.example.net/hpkp-report``\ に違反レポートの送信を行う。
+        * 証明書の危殆化や期限切れなどの理由で証明書を更新した際に公開鍵の不一致が発生しないようにするために、バックアップ用の公開鍵の情報も設定している。
+
+
+.. note:: **Public-Key-Pinsヘッダの出力について**
+
+    Spring Securityのデフォルトの設定では、Public-Key-Pinsヘッダではなく、Public-Key-Pins-Report-Onlyヘッダが出力される。
+
+    また、Spring Securityのデフォルト実装では、Public-Key-Pinsヘッダは、アプリケーションサーバに対してHTTPSを使ってアクセスがあった場合のみ出力される。
 
 
 また、不要なものだけ無効化する方法も存在する。 
@@ -219,7 +311,7 @@ How to use
 
 上記の例だと、Cache-Control関連のヘッダだけが出力されなくなる。 
 
-セキュリティヘッダの詳細については\ `公式リファレンス <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#default-security-headers>`_\ を参照されたい。
+セキュリティヘッダの詳細については\ `公式リファレンス <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#default-security-headers>`_\ を参照されたい。
 
 
 セキュリティヘッダのオプション指定
@@ -230,6 +322,8 @@ How to use
 * X-Frame-Options
 * X-XSS-Protection
 * Strict-Transport-Security
+* Content-Security-Policy(Content-Security-Policy-Report-Only)
+* Public-Key-Pins(Public-Key-Pins-Report-Only)
 
 Spring Securityのbean定義を変更することで、各要素の属性にオプション\ [#fSpringSecurityLinkageWithBrowser2]_\ を指定することができる。
 
@@ -239,7 +333,7 @@ Spring Securityのbean定義を変更することで、各要素の属性にオ�
 
     <sec:frame-options policy="SAMEORIGIN" />
 
-.. [#fSpringSecurityLinkageWithBrowser2] 各要素で指定できるオプションは http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#nsa-headers を参照されたい。
+.. [#fSpringSecurityLinkageWithBrowser2] 各要素で指定できるオプションは http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#nsa-headers を参照されたい。
 
 カスタムヘッダの出力
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

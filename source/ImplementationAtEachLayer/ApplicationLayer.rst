@@ -434,7 +434,7 @@ Acceptヘッダでマッピング
 | リクエストとハンドラメソッドのマッピングの設計を行う。
 | 以下は、マッピング方針に則って設計したマッピング定義となる。
 
- .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.22\linewidth}|p{0.10\linewidth}|p{0.13\linewidth}|p{0.15\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 5 20 15 22 10 13 15
@@ -1809,9 +1809,30 @@ HTMLを応答する
    * - | (6)
      - ハンドラメソッドの返り値として ``"sample/hello"`` というView名を返却した場合、 ``"/WEB-INF/views/sample/hello.jsp"`` が呼び出されてHTMLが応答される。
 
+
 .. note::
     上記の例ではJSPを使ってHTMLを生成しているが、VelocityやFreeMarkerなど他のテンプレートエンジンを使用してHTMLを生成する場合でも、ハンドラメソッドの返り値は ``"sample/hello"`` のままでよい。
     使用するテンプレートエンジンでの差分は ``ViewResolver`` によって解決される。
+
+
+.. note::
+
+    単純にview 名を返すだけのメソッドを実装する場合は、\ ``<mvc:view-controller>`` \を使用してControllerクラスの実装を代用することも可能である。
+    
+    * \ ``<mvc:view-controller>``\ を使用したControllerの定義例。
+    
+      .. code-block:: xml
+      
+        <mvc:view-controller path="/hello" view-name="sample/hello" />
+      
+
+
+.. warning:: **<mvc:view-controller>使用に関する留意点**
+
+    Spring Framework 4.3へのバージョンアップによって、\ ``<mvc:view-controller>``\ が許可するHTTPメソッドはGETとHEADのみに限定される様になったため(`SPR-13130 <https://jira.spring.io/browse/SPR-13130>`_)、
+    HTTPメソッドがGETとHEAD以外(POSTなど)でアクセスするページの場合、\ ``<mvc:view-controller>``\ は使用できない。
+    GETとHEAD以外(POSTなど)からフォワードされた場合も同様となるため、エラーページへの遷移などフォワード元のHTTPメソッドが限定できない場合には\ ``<mvc:view-controller>``\ を使用しないよう注意されたい。
+
 
 |
 
