@@ -24,7 +24,11 @@
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
-      - 記載内容の改善
+      - 記載内容の追加
+
+        * コレクション内の値に対する入力チェック方法を追加(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+
+        記載内容の改善
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
 
@@ -48,6 +52,12 @@
 
         * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
         
+    * -
+      - :doc:`../Security/Authorization`
+      - 記載内容の追加
+
+        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
     * - 
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正

@@ -1152,6 +1152,7 @@ JSPからコードリストを参照する場合は、 ``java.util.Map`` イン�
 
 BeanValidationや、メッセージ出力方法の詳細については、 :doc:`../WebApplicationDetail/Validation` を参照されたい。
 
+
 \ ``@ExistInCodeList``\ アノテーションを使用して入力チェックを行う場合は、
 \ ``@ExistInCodeList``\ 用の「:ref:`Validation_message_def`」を行う必要がある。
 
@@ -1243,6 +1244,10 @@ BeanValidationや、メッセージ出力方法の詳細については、 :doc:
 
     ``@ExistInCodeList`` の入力チェックでサポートしている型は、 \ ``CharSequence``\ インタフェースの実装クラス(\ ``String``\ など) または \ ``Character``\ のみである。
     そのため、 \ ``@ExistInCodeList``\ をつけるフィールドは意味的に整数型であっても、\ ``String``\ で定義する必要がある。(年・月・日等)
+
+    また、\ ``@ExistInCodeList``\ はコレクション内の値には対応していないため、複数選択可能な画面項目（チェックボックスや複数選択ドロップダウンなど）に\ ``@ExistInCodeList``\ アノテーションを対応させるためには実装を工夫する必要がある。
+    詳細については :ref:`Validation_for_parameter_object_in_collection_corresponding_annotation` を参照されたい。
+
 
 |
 
