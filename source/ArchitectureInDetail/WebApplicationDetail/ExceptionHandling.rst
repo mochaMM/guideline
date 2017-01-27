@@ -2232,6 +2232,9 @@ DefaultHandlerExceptionResolverでハンドリングされるフレームワー�
    * - | (14)
      - | org.springframework.web.servlet.NoHandlerFoundException
      - | 404
+   * - | (15)
+     - | org.springframework.web.context.request.async.AsyncRequestTimeoutException
+     - | 503
 
 .. raw:: latex
 

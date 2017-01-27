@@ -149,7 +149,7 @@ To understand the configuration of Spring MVC, the generated Spring MVC configur
                 <bean
                     class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
             </mvc:argument-resolvers>
-            <!-- workarround to CVE-2016-5007. -->
+            <!-- workaround to CVE-2016-5007. -->
             <mvc:path-matching path-matcher="pathMatcher" />
         </mvc:annotation-driven>
 
