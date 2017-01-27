@@ -34,6 +34,12 @@
 
         * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
+    * -  
+      - :doc:`../Security/Authorization`  
+      - 記載内容の追加  
+  
+        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )  
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
