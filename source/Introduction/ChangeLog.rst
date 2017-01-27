@@ -97,6 +97,11 @@
 
         * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
 
+        記載内容の修正
+
+        * \ ``aggressiveLazyLoading``\属性のデフォルト値が\ ``false``\(推奨値)になったことに伴い、
+          \ ``aggressiveLazyLoading``\属性の設定例とその属性値が\ ``true``\時の注意点を削除(\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - Spring Framework 4.3対応に伴う修正
