@@ -1027,52 +1027,9 @@ TypeHandlerの設定
 **JSR-310 Date and Time APIを使う場合の設定**
 
 MyBatis3でJSR-310 Date and Time APIから提供されている日付や時刻を表現するクラスを使用する場合には、MyBatisより別ライブラリ(\ ``mybatis-typehandlers-jsr310`` \)で提供されている\ ``TypeHandler`` \を使用する。
-使用する場合は、MyBatisに\ ``TypeHandler`` \を認識させるための設定を\ ``mybatis-config.xml`` \に追記する。
-    
+なお、`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトで\ ``mybatis-typehandlers-jsr310`` \が使用可能である。
 
- .. code-block:: xml
- 
-      <typeHandlers>
-          <typeHandler handler="org.apache.ibatis.type.InstantTypeHandler" />         <!-- (1) -->
-          <typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />   <!-- (2) -->
-          <typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />       <!-- (3) -->
-          <typeHandler handler="org.apache.ibatis.type.LocalTimeTypeHandler" />       <!-- (4) -->
-          <typeHandler handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />  <!-- (5) -->
-          <typeHandler handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />      <!-- (6) -->
-          <typeHandler handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />   <!-- (7) -->
-          <typeHandler handler="org.apache.ibatis.type.YearTypeHandler" />            <!-- (8) -->
-          <typeHandler handler="org.apache.ibatis.type.MonthTypeHandler" />           <!-- (9) -->
-      </typeHandlers>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 80
-
-   * - 項番
-     - 説明
-   * - (1)
-     - \ ``java.time.Instant`` \を\ ``java.sql.Timestamp`` \にマッピングするための\ ``TypeHandler`` \
-   * - (2)
-     - \ ``java.time.LocalDateTime`` \を\ ``java.sql.Timestamp`` \にマッピングするための\ ``TypeHandler`` \
-   * - (3)
-     - \ ``java.time.LocalDate`` \を\ ``java.sql.Date`` \にマッピングするための\ ``TypeHandler`` \
-   * - (4)
-     - \ ``java.time.LocalTime`` \を\ ``java.sql.Time`` \にマッピングするための\ ``TypeHandler`` \
-   * - (5)
-     - \ ``java.time.OffsetDateTime`` \を\ ``java.sql.Timestamp`` \にマッピングするための\ ``TypeHandler`` \
-   * - (6)
-     - \ ``java.time.OffsetTime`` \を\ ``java.sql.Time`` \にマッピングするための\ ``TypeHandler`` \
-   * - (7)
-     - \ ``java.time.ZonedDateTime`` \を\ ``java.sql.Timestamp`` \にマッピングするための\ ``TypeHandler`` \
-   * - (8)
-     - \ ``java.time.Year`` \をプリミティブ型のintにマッピングするための\ ``TypeHandler`` \
-   * - (9)
-     - \ ``java.time.Month`` \をプリミティブ型のintにマッピングするための\ ``TypeHandler`` \
-
- .. tip::
-
-        MyBatis 3.4になると\ ``TypeHandler`` \は自動検出されるようになっているため上記の設定は不要になる。
+また、TERASOLUNA Server Framework for Java (5.3.x)が使用しているMyBatis 3.4では\ ``TypeHandler`` \を自動検出する様になっているため、MyBatisの設定ファイルに\ ``TypeHandler``\を追加する必要はない。
 
 .. tip::
 
