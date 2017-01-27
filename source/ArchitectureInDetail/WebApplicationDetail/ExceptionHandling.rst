@@ -396,7 +396,7 @@ Detail
      - | :ref:`exception-handling-class-fatalerror-label`
      - | 1. :ref:`exception-handling-exception-type-error-label`
      - | サーブレットコンテナ
-       | (ハンドリングルールを、\ ``web.xml``\、\ ``spring-mvc.xml``\ に指定する)
+       | (ハンドリングルールを、\ ``web.xml``\ に指定する)
      - | Webアプリケーション
    * - | (6)
      - | :ref:`exception-handling-class-viewerror-label`
@@ -509,19 +509,16 @@ Detail
 
 .. warning:: **@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて**
 
-    Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、
+    Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``org.springframework.web.util.NestedServletException``\は、
     Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
-    そのため、\ ``HandlerExceptionResolver``\を継承する\ ``SystemExceptionResolver``\(共通ライブラリから提供)により捕捉されるようになる。
-    また、アプリケーションコード(\ ``\ ``@ExceptionHandler``)\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉していると、
-    致命的なエラーや\ ``Throwable``\も捕捉されるようになる。
+    共通ライブラリが提供する\ ``SystemExceptionResolver``\は\ ``HandlerExceptionResolver``\を継承しているため、\ ``@ExceptionHandler``\は\ ``HandlerExceptionResolver``\の仕組み上で動作しているため、致命的なエラーや\ ``Throwable``\が捕捉されるようになる。
 
-    Webアプリケーション単位の例外処理(サーブレットコンテナで捕捉)を行うためには、以下を行う必要がある。
+    致命的なエラーをサーブレットコンテナで捕捉するためには、\ ``SystemExceptionResolver``\と\ ``@ExceptionHandler``\で\ ``NestedServletException``\をハンドリングせず、サーブレットコンテナに通知する必要がある。
+    \ ``NestedServletException``\をハンドリングしない方法については、How to useで解説している。
 
-    - \ ``spring-mvc.xml``\の\ ``systemExceptionResolver``\の設定で\ ``NestedServletException``\を捕捉対象外にする。
-      設定方法については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
-    - アプリケーションコード(\ ``@ExceptionHandler``\)で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合は、
-      \ ``NestedServletException``\を再スローする。
-      実装例については、\ :ref:`exception-handling-how-to-use-codingpoint-controller-usecase-label`\ を参照されたい。
+    - \ ``SystemExceptionResolver``\については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
+    - \ ``@ExceptionHandler``\については、\ :ref:`exception-handling-how-to-use-codingpoint-controller-usecase-label`\ を参照されたい。
+
 
 .. _exception-handling-class-viewerror-label:
 
@@ -653,7 +650,7 @@ Webアプリケーション単位でサーブレットコンテナがハンド�
 
   **図-Webアプリケーション単位でサーブレットコンテナがハンドリングする場合の基本フロー**
 
-4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップする。
+4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップしてスローする。
 #. ExceptionLoggingFilterは、ServletExceptionを捕捉し、ExceptionLoggerを呼び出す。ExceptionLoggerは、例外コードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。ExceptionLoggingFilterは、ServletExceptionを再スローする。
 #. ServletContainerは、ServletExceptionを捕捉し、サーバログにログを出力する。ログのレベルは、アプリケーションサーバによって異なる。
 #. ServletContainerは、``web.xml`` に定義されている遷移先(HTMLなど)を呼び出す。
@@ -978,8 +975,8 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         | 上記の設定では、View名が"common/error/resourceNotFoundError"の場合に、"404(Not Found)"がHTTPステータスコードとなる。
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (6)
-      - | 捕捉対象外の例外クラスを指定する。
-        | 致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\をサーブレットコンテナに通知するため、\ ``NestedServletException``\を捕捉対象外とする。
+      - | ハンドリング対象外とする例外クラスを指定する。
+        | \ ``SystemExceptionResolver``\で致命的なエラーをハンドリングせず、サーブレットコンテナに通知するため、\ ``NestedServletException``\をハンドリング対象外とする。
     * - | (7)
       - | 遷移するデフォルトのView名を、指定する。
         | 上記の設定では、例外クラスに"ResourceNotFoundException"、"BusinessException"、"InvalidTransactionTokenException"や例外クラス(または親クラス)のクラス名に、".DataAccessException"が含まれない場合、"common/error/systemError"が、遷移先のView名となる。
@@ -1613,15 +1610,15 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
  .. warning::
 
-    | Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``NestedServletException``\は、Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
-    | 仕様変更の詳細は、\ :ref:`exception-handling-class-fatalerror-label`\を参照されたい。
-    | アプリケーションコード(\ ``@ExceptionHandler``\)で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合に、\ ``NestedServletException``\をサーブレットコンテナに再スローするための実装例を、以下に示す。
+    | \ ``@ExceptionHandler``\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合は、
+    | \ ``NestedServletException``\をハンドリングせず、サーブレットコンテナに通知する必要がある。
+    | 具体的には、\ ``@ExceptionHandler``\で\ ``NestedServletException``\を捕捉し、再スローするよう実装すれば良い。以下に実装例を示す。
 
      .. code-block:: java
 
         @ExceptionHandler(NestedServletException.class) // (1)
-        public void handleNestedServletException(NestedServletException e) throws NestedServletException { // (2)
-            throw e; // (3)
+        public void handleNestedServletException(NestedServletException e) throws NestedServletException {
+            throw e; // (2)
         }
 
      .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1634,14 +1631,15 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
         * - | (1)
           - | \ ``@ExceptionHandler``\ アノテーションを付与し、\ ``NestedServletException.class``\を指定する。
         * - | (2)
-          - | ハンドリング対象に\ ``NestedServletException``\、スローする例外に\ ``NestedServletException``\を指定する。
-        * - | (3)
           - | ハンドリングした\ ``NestedServletException``\を再スローする。
 
      .. note:: **複数のControllerでExceptionやServletExceptionを捕捉している場合について**
 
-        複数のControllerで\ ``NestedServletException``\をサーブレットコンテナに再スローする処理を共通化するため、\ ``@ControllerAdvice``\を使用する。
+        複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討しても良い。
+        なお、\ :ref:`「自動的に登録されるHandlerExceptionResolverについて」<ExceptionHandling-annotation-driven>`\にある通り、\ ``@ExceptionHandler``\で例外がハンドリングされた場合は\ ``SystemExceptionHandler``\ではハンドリングされないため、
+        \ ``@ControllerAdvice``\ですべてのControllerに\ ``@ExceptionHandler(NestedServletException.class)``\を付与した場合は、\ ``SystemExceptionHandler``\でハンドリング対象外とする設定が不要になる点も付記しておく。
         \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
+
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
 
