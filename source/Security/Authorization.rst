@@ -507,25 +507,26 @@ Spring Security 4.1以降では、アクセスポリシーを適用するリソ�
         <!-- omitted -->
     </sec:http>
 
-.. warning::
-    アクセスポリシーのパス変数には拡張子も含まれる。
+.. warning:: **拡張子を付けたパスに対するアクセスポリシーの定義内でパス変数を参照する際の注意点**
+
+    拡張子を付けたパスに対するアクセスポリシーの定義内で参照しているパス変数には拡張子も含まれる。
 
     例えば、パターンに\ ``/users/{userName}``\と定義し、\ ``/users/personName.json``\というリクエストパスを送信した際、
-    アクセスポリシーの定義内でパス変数\ ``#userName``\には\ ``personName.json``\が格納される。
+    アクセスポリシーの定義内で参照しているパス変数\ ``#userName``\には\ ``personName``\ではなく\ ``personName.json``\が格納され、
+    意図しない認可制御が行われてしまう。
 
-    そのため、パス変数に拡張子を含むアクセスポリシーがある場合(RESTFull Web Serviceなど)、
-    拡張子を含まないアクセスポリシーよりも先に、拡張子を含むアクセスポリシーを記述する必要がある。
+    この事象を防ぐためには、「拡張子を付けたパスに対するアクセスポリシー」を定義した後に、「拡張子を付けないパスに対するアクセスポリシー」を定義する必要がある。
 
-    以下の例は、ログインユーザがユーザ情報をjson形式で取得する際のアクセスポリシーとログインユーザが自身のユーザ情報のみアクセスできるアクセスポリシーを定義しているが、
-    アクセスポリシーの順序を逆にしてしまうと拡張子付きのパス(\ ``/users/personName.json``\など)を指定しリクエストを送信した際、
-    \ ``/users/{userName}``\のアクセスポリシーに引っかかってしまい、意図しない認可処理を実行してしまう。
+    以下の例は、ログインユーザが自身のユーザ情報をファイル形式で指定し取得するパスに対するアクセスポリシーとログインユーザが自身のユーザ情報のみアクセスできるアクセスポリシーを定義しているが、
+    アクセスポリシーの定義順序を逆にしてしまうと拡張子を付けたパス(\ ``/users/personName.json``\など)を指定しリクエストを送信した際、
+    \ ``/users/{userName}``\のアクセスポリシーに引っかかってしまい、指定したファイル形式でログインユーザが自身のユーザ情報にアクセスできなくなってしまう。
 
     * spring-security.xmlの定義例
 
       .. code-block:: xml
 
         <sec:http>
-         <sec:intercept-url pattern="/users/{userName}.json" access="isAuthenticated()"/>
+         <sec:intercept-url pattern="/users/{userName}.*" access="isAuthenticated() and #userName == principal.username"/>
          <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/>
          <!-- omitted -->
         </sec:http>
