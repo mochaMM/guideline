@@ -33,6 +33,12 @@
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
 
     * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
+      - 記載内容の追加
+
+        * セッションに格納しているオブジェクトをハンドラメソッドの引数で取得する際、リクエストパラメータのバインド防止方法について追記(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
+
+    * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
       - Spring 4.3対応に伴う修正
 
