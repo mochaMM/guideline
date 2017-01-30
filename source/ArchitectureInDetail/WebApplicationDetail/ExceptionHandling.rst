@@ -507,13 +507,16 @@ Detail
 
   **図-致命的なエラーが発生したことを検知する場合のハンドリング方法**
 
+
+.. _exception-handling-class-fatalerror-warning:
+
 .. warning:: **@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて**
 
-    Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``org.springframework.web.util.NestedServletException``\は、
-    Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)で捕捉されるようになった。
-    共通ライブラリが提供する\ ``SystemExceptionResolver``\は\ ``HandlerExceptionResolver``\を継承しているため、\ ``@ExceptionHandler``\は\ ``HandlerExceptionResolver``\の仕組み上で動作しているため、致命的なエラーや\ ``Throwable``\が捕捉されるようになる。
+    Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``org.springframework.web.util.NestedServletException``\を、
+    Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)を使用して捕捉できるようになった。
+    この変更に伴い、致命的なエラーや\ ``Throwable``\を意図せず 共通ライブラリが提供する\ ``SystemExceptionResolver``\(\ ``HandlerExceptionResolver``\を継承)や\ ``@ExceptionHandler``\を付与したメソッド(\ ``HandlerExceptionResolver``\の仕組み上で動作)によって捕捉してしまう可能性がある。
 
-    致命的なエラーをサーブレットコンテナで捕捉するためには、\ ``SystemExceptionResolver``\と\ ``@ExceptionHandler``\で\ ``NestedServletException``\をハンドリングせず、サーブレットコンテナに通知する必要がある。
+    致命的なエラーをサーブレットコンテナで捕捉するためには、\ ``SystemExceptionResolver``\と\ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\をハンドリングせず、サーブレットコンテナに通知する必要がある。
     \ ``NestedServletException``\をハンドリングしない方法については、How to useで解説している。
 
     - \ ``SystemExceptionResolver``\については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
@@ -976,7 +979,8 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (6)
       - | ハンドリング対象外とする例外クラスを指定する。
-        | \ ``SystemExceptionResolver``\で致命的なエラーをハンドリングせず、サーブレットコンテナに通知するため、\ ``NestedServletException``\をハンドリング対象外とする。
+        | \ ``SystemExceptionResolver``\で致命的なエラーをハンドリングせず、サーブレットコンテナに通知するため、\ ``org.springframework.web.util.NestedServletException``\をハンドリング対象外とする。
+        | ハンドリング対象外にする理由は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
     * - | (7)
       - | 遷移するデフォルトのView名を、指定する。
         | 上記の設定では、例外クラスに"ResourceNotFoundException"、"BusinessException"、"InvalidTransactionTokenException"や例外クラス(または親クラス)のクラス名に、".DataAccessException"が含まれない場合、"common/error/systemError"が、遷移先のView名となる。
@@ -1610,9 +1614,11 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
  .. warning::
 
-    | \ ``@ExceptionHandler``\で\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合は、
-    | \ ``NestedServletException``\をハンドリングせず、サーブレットコンテナに通知する必要がある。
-    | 具体的には、\ ``@ExceptionHandler``\で\ ``NestedServletException``\を捕捉し、再スローするよう実装すれば良い。以下に実装例を示す。
+    \ ``@ExceptionHandler``\を付与したメソッドで\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合は、
+    致命的なエラーをラップしている\ ``NestedServletException``\を意図せずハンドリングしてしまうため、サーブレットコンテナに致命的なエラーを通知することができない。
+    詳細は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
+
+    このようなケースで致命的なエラーをサーブレットコンテナに通知するためには、\ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\を捕捉し、再スローするように実装すればよい。以下に実装例を示す。
 
      .. code-block:: java
 
@@ -1633,12 +1639,12 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
         * - | (2)
           - | ハンドリングした\ ``NestedServletException``\を再スローする。
 
-     .. note:: **複数のControllerでExceptionやServletExceptionを捕捉している場合について**
+    **複数のControllerでExceptionやServletExceptionを捕捉している場合について**
 
-        複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討しても良い。
-        なお、\ :ref:`「自動的に登録されるHandlerExceptionResolverについて」<ExceptionHandling-annotation-driven>`\にある通り、\ ``@ExceptionHandler``\で例外がハンドリングされた場合は\ ``SystemExceptionHandler``\ではハンドリングされないため、
-        \ ``@ControllerAdvice``\ですべてのControllerに\ ``@ExceptionHandler(NestedServletException.class)``\を付与した場合は、\ ``SystemExceptionHandler``\でハンドリング対象外とする設定が不要になる点も付記しておく。
-        \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
+       複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討した方がよい。
+       なお、\ :ref:`「自動的に登録されるHandlerExceptionResolverについて」<ExceptionHandling-annotation-driven>`\にある通り、\ ``@ExceptionHandler``\を付与したメソッドで例外がハンドリングされた場合は\ ``SystemExceptionHandler``\ではハンドリングされないため、
+       \ ``@ControllerAdvice``\を使用してすべてのControllerに\ ``@ExceptionHandler(NestedServletException.class)``\を付与したメソッドを適用した場合は、\ ``SystemExceptionHandler``\でハンドリング対象外とする設定が不要になる点も付記しておく。
+       \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
 
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
