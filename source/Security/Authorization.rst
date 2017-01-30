@@ -389,6 +389,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
       .. list-table::
          :header-rows: 1
          :widths: 20 80
+         :class: longtable
   
          * - 項番
            - 説明
