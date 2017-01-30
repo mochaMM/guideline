@@ -76,7 +76,7 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - Spring Framework 4.3対応に伴う修正
 
-        * 致命的エラーのハンドリング方法について追記(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+        * 致命的なエラーのハンドリング方法について追記(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
 
     * - 2016-08-31
       - \-
