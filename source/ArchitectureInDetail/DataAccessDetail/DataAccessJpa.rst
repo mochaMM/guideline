@@ -1240,11 +1240,7 @@ value属性にQueryヒント( ``@javax.persistence.QueryHint`` )を指定する�
     * - | (1)
       - | ``@QueryHint`` アノテーションのname属性にヒント名、value属性にヒント値を設定する。
         | 指定できるヒントは、JPAの仕様で決められているものに加え、プロバイダ固有のものがある。
-        | 上記例では、ロックタイムアウトを ``0`` に設定している(使用DBはPostgreSQL)。SQLに"FOR UPDATE NOWAIT"句が追加される。
-
- .. warning:: **PostgreSQLまたはOracleを使用する場合、SQLに"nowait"句が付加されない不具合について**
-
-    TERASOLUNA Server Framework for Java 5.3.0 RELEASE版の依存ライブラリであるHibernate 5.0.X系の不具合(`HHH-10797 <https://hibernate.atlassian.net/browse/HHH-10797>`_\)のため、PostgreSQLまたはOracleを使用した場合、ロックタイムアウトを ``0`` に設定してもSQLに"nowait"句が追加できない。
+        | 上記例では、ロックタイムアウトを ``0`` に設定している(使用DBはOracle)。SQLに"FOR UPDATE NOWAIT"句が追加される。
 
  .. note:: **Hibernateで指定できるQueryヒントについて**
 
