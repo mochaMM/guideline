@@ -508,6 +508,21 @@ Detail
   **図-致命的なエラーが発生したことを検知する場合のハンドリング方法**
 
 
+.. _exception-handling-class-fatalerror-warning:
+
+.. warning:: **@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて**
+
+    Spring Framework 4.3 より、致命的なエラー(\ ``java.lang.Error``\及びそのサブクラス)や\ ``java.lang.Throwable``\がラップされた\ ``org.springframework.web.util.NestedServletException``\を、
+    Spring MVCの例外ハンドラ(\ ``HandlerExceptionResolver``\)を使用して捕捉できるようになった。
+    この変更に伴い、致命的なエラーや\ ``Throwable``\を意図せず 共通ライブラリが提供する\ ``SystemExceptionResolver``\(\ ``HandlerExceptionResolver``\を継承)や\ ``@ExceptionHandler``\を付与したメソッド(\ ``HandlerExceptionResolver``\の仕組み上で動作)によって捕捉してしまう可能性がある。
+
+    致命的なエラーをサーブレットコンテナで捕捉するためには、\ ``SystemExceptionResolver``\と\ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\をハンドリングせず、サーブレットコンテナに通知する必要がある。
+    \ ``NestedServletException``\をハンドリングしない方法については、How to useで解説している。
+
+    - \ ``SystemExceptionResolver``\については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
+    - \ ``@ExceptionHandler``\については、\ :ref:`exception-handling-how-to-use-codingpoint-controller-usecase-label`\ を参照されたい。
+
+
 .. _exception-handling-class-viewerror-label:
 
 プレゼンテーション層(JSPなど)で、例外が発生したことを通知する場合
@@ -894,7 +909,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 - **spring-mvc.xml**
 
  .. code-block:: xml
-    :emphasize-lines: 3-4,6-7,15,23-24,29
+    :emphasize-lines: 3-4,6-7,15,23,28-29,34
 
     <!-- Setting Exception Handling. -->
     <!-- Exception Resolver. -->
@@ -918,13 +933,18 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
                 <entry key="common/error/dataAccessError" value="500" />
             </map>
         </property>
-        <property name="defaultErrorView" value="common/error/systemError" /> <!-- (6) -->
-        <property name="defaultStatusCode" value="500" /> <!-- (7) -->
+        <property name="excludedExceptions"> <!-- (6) -->
+            <set>
+                <value>org.springframework.web.util.NestedServletException</value>
+            </set>
+        </property>
+        <property name="defaultErrorView" value="common/error/systemError" /> <!-- (7) -->
+        <property name="defaultStatusCode" value="500" /> <!-- (8) -->
     </bean>
 
     <!-- Settings View Resolver. -->
     <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (8) -->
+        <mvc:jsp prefix="/WEB-INF/views/" /> <!-- (9) -->
     </mvc:view-resolvers>
 
 
@@ -958,17 +978,20 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
         | 上記の設定では、View名が"common/error/resourceNotFoundError"の場合に、"404(Not Found)"がHTTPステータスコードとなる。
         | **【プロジェクト毎にカスタマイズする箇所】**
     * - | (6)
+      - | ハンドリング対象外とする例外クラスを指定する。
+        | \ ``SystemExceptionResolver``\で致命的なエラーをハンドリングせず、サーブレットコンテナに通知するため、\ ``org.springframework.web.util.NestedServletException``\をハンドリング対象外とする。
+        | ハンドリング対象外にする理由は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
+    * - | (7)
       - | 遷移するデフォルトのView名を、指定する。
         | 上記の設定では、例外クラスに"ResourceNotFoundException"、"BusinessException"、"InvalidTransactionTokenException"や例外クラス(または親クラス)のクラス名に、".DataAccessException"が含まれない場合、"common/error/systemError"が、遷移先のView名となる。
         | **【プロジェクト毎にカスタマイズする箇所】**
-    * - | (7)
+    * - | (8)
       - | レスポンスヘッダに設定するHTTPステータスコードのデフォルト値を指定する。 **"500"(Internal Server Error)** を設定することを推奨する。
 
         .. warning:: **指定を省略した場合の挙動**
 
             \ **"200"(OK)**\ 扱いになるので、注意すること。
-
-    * - | (8)
+    * - | (9)
       - 実際に遷移する\ ``View``\ は、\ ``ViewResolver``\ の設定に依存する。
 
         上記の設定では、
@@ -1588,6 +1611,40 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
       - | エラー時の遷移先を表示するためのメソッドを呼び出し、View表示に必要なモデルと、View名を取得する。
     * - | (6)
       - | (3)-(5)の処理で取得したView名と、Modelが格納されているModelAndViewを生成し、返却する。
+
+ .. warning::
+
+    \ ``@ExceptionHandler``\を付与したメソッドで\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合は、
+    致命的なエラーをラップしている\ ``NestedServletException``\を意図せずハンドリングしてしまうため、サーブレットコンテナに致命的なエラーを通知することができない。
+    詳細は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
+
+    このようなケースで致命的なエラーをサーブレットコンテナに通知するためには、\ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\を捕捉し、再スローするように実装すればよい。以下に実装例を示す。
+
+     .. code-block:: java
+
+        @ExceptionHandler(NestedServletException.class) // (1)
+        public void handleNestedServletException(NestedServletException e) throws NestedServletException {
+            throw e; // (2)
+        }
+
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+        :header-rows: 1
+        :widths: 10 90
+
+        * - 項番
+          - 説明
+        * - | (1)
+          - | \ ``@ExceptionHandler``\ アノテーションを付与し、\ ``NestedServletException.class``\を指定する。
+        * - | (2)
+          - | ハンドリングした\ ``NestedServletException``\を再スローする。
+
+    **複数のControllerでExceptionやServletExceptionを捕捉している場合について**
+
+       複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討した方がよい。
+       なお、\ :ref:`「自動的に登録されるHandlerExceptionResolverについて」<ExceptionHandling-annotation-driven>`\にある通り、\ ``@ExceptionHandler``\を付与したメソッドで例外がハンドリングされた場合は\ ``SystemExceptionHandler``\ではハンドリングされないため、
+       \ ``@ControllerAdvice``\を使用してすべてのControllerに\ ``@ExceptionHandler(NestedServletException.class)``\を付与したメソッドを適用した場合は、\ ``SystemExceptionHandler``\でハンドリング対象外とする設定が不要になる点も付記しておく。
+       \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
 
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
