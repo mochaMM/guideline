@@ -3043,6 +3043,11 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
         public void setValue(String value) {
             this.value = value;
         }
+
+        @Override // (2)
+        public String toString() {
+            return getValue();
+        }
     }
 
   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3054,6 +3059,8 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
        - 説明
      * - | (1)
        - | 入力チェックを行うために\ ``Role``\ クラスにラップしたプロパティに対して \ ``@ExistInCodeList``\ アノテーションを設定し、\ ``codeListId``\ にチェック元となるコードリストを指定する。
+     * - | (2)
+       - | チェックボックスの場合、チェックエラー等によって画面を再描画した際にチェックボックスの状態を復活させるために、\ ``toString``\ メソッドをオーバーライドし本来のStringの値を返却するよう実装する。
 
 |
 
