@@ -1151,12 +1151,6 @@ HTTPメソッドの割り当て
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 リソース毎に割り当てたURIに対して、以下のHTTPメソッドを割り当て、リソースに対するCRUD操作をREST APIとして公開する。
 
- .. note:: **HEADとOPTIONSメソッドについて**
- 
-    以降の説明では、HEADとOPTIONSメソッドについても触れているが、REST APIとしての提供は任意とする。
-    
-    HTTPの仕様に準拠したREST APIを作成する場合は、HEAD及びOPTIONSメソッドの提供も必要だが、実際に使われるケースは稀であり、必要ない事が多いためである。
-
 |
 
 .. _RESTHowToDesignAssignHttpMethodForCollectionResource:
@@ -2151,9 +2145,12 @@ REST APIの実装
       - Memberリソースを一件削除する。
 
  .. note::
- 
-     本節では、リソースのCRUD操作の説明に注力するため、HEADとOPTIONSメソッドの説明は行わない。
-     HTTPの仕様に準拠したRESTful Web Serviceを作成する場合は、「:ref:`RESTAppendixRestApiOfHTTPCompliance`」を参照されたい。
+
+     Spring Framework 4.3よりHEADとOPTIONSメソッドに対するREST APIが暗黙的に用意される様になったため、
+     開発者がこれらのREST APIを明示的に実装する必要はない。
+
+     なお、暗黙的に用意されるOPTIONS用のREST APIがレスポンスするAllowヘッダの中にはOPTIONS自体が含まれないため、
+     TERASOLUNA Server Framework for Java 5.2.xまでの開発ガイドラインで紹介している実装例と異なる点に留意されたい。
 
 |
 
@@ -5525,204 +5522,6 @@ POST時のLocationヘッダの設定
     Date: Fri, 14 Mar 2014 12:34:31 GMT
 
 |
-
-.. _RESTAppendixDispatchOptionsMethod:
-
-OPTIONSメソッドのリクエストをControllerにディスパッチするための設定
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| HTTPの仕様に準拠する場合は、、リソース毎に呼び出しが許可されているHTTPメソッドの一覧を返却する必要がある。そのため、OPTIONSメソッドのリクエストをControllerへディスパッチするための設定を追加する必要となる。
-| \ ``DispatcherServlet``\のデフォルトの設定では、OPTIONSメソッドのリクエストはControllerにディスパッチされずに、\ ``DispatcherServlet``\が許可しているメソッドのリストがAllowヘッダに設定されてしまう。
-
-- :file:`web.xml`
-
- .. code-block:: xml
-    :emphasize-lines: 10-14
-
-    <!-- omitted -->
-
-    <servlet>
-        <servlet-name>appServlet</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:META-INF/spring/spring-mvc-rest.xml</param-value>
-        </init-param>
-        <!-- (1) -->
-        <init-param>
-            <param-name>dispatchOptionsRequest</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <!-- omitted -->
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - | 項番
-     - | 説明
-   * - | (1)
-     - | RESTful Web Serviceのリクエストを受け付ける\ ``DispatcherServlet``\の初期化パラメータ(dispatchOptionsRequest)の値を、\ ``true``\に設定する。
-
-|
-
-.. _RESTAppendixRestApiOfHTTPComplianceImplementationOfOptionsSpecifiedResource:
-
-OPTIONSメソッドの実装
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| HTTPの仕様に準拠する場合、リソース毎に呼び出しが許可されているHTTPメソッドの一覧を返却する必要がある。
-| URIで指定されたリソースでサポートされているHTTPメソッド(REST API)のリストを応答するAPIの実装例を、以下に示す。
-
-* | REST APIの実装
-  | URIで指定されたリソースでサポートされているHTTPメソッド(REST API)のリストを応答する処理を実装する。
-
- .. code-block:: java
-    :emphasize-lines: 11, 14
-
-    @RequestMapping("members")
-    @RestController
-    public class MembersRestController {
-
-        // omitted
-
-        @RequestMapping(value = "{memberId}", method = RequestMethod.OPTIONS)
-        public ResponseEntity<Void> optionsMember(
-            @PathVariable("memberId") String memberId) {
-
-            // (1)
-            memberService.getMember(memberId);
-
-            // (2)
-            return ResponseEntity
-                    .ok()
-                    .allow(HttpMethod.GET, HttpMethod.HEAD, HttpMethod.PUT,
-                            HttpMethod.DELETE, HttpMethod.OPTIONS).build();
-        }
-    
-        // omitted
-
-    }
-
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - | ドメイン層のServiceのメソッドを呼び出し、パス変数から取得したIDに一致するリソースが存在するかチェックを行う。
-    * - | (2)
-      - | **URIで指定されたリソースでサポートされているHTTPメソッドを、Allowヘッダに設定する。**
-
-|
-
-* リクエスト例
-
- .. code-block:: guess
-    :emphasize-lines: 1
-
-    OPTIONS /rest-api-web/api/v1/members/M000000004 HTTP/1.1
-    Accept: text/plain, application/json, application/*+json, */*
-    User-Agent: Java/1.7.0_51
-    Host: localhost:8080
-    Connection: keep-alive
-
-
-|
-
-* レスポンス例
-
- .. code-block:: guess
-    :emphasize-lines: 4
-
-    HTTP/1.1 200 OK
-    Server: Apache-Coyote/1.1
-    X-Track: 6d7bbc818c7f44e7942c54bc0ddc15bb
-    Allow: GET,HEAD,PUT,DELETE,OPTIONS
-    Content-Length: 0
-    Date: Mon, 17 Mar 2014 01:54:27 GMT
-
-|
-
-HEADメソッドの実装
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| HTTPの仕様に準拠する場合、GETメソッドを実装する場合、HEADメソッドも実装する必要がある。
-| URIで指定されたリソースのメタ情報を応答するAPIの実装例を、以下に示す。
-
-
-* | REST APIの実装
-  | URIで指定されたリソースのメタ情報を取得する処理を実装する。
-
- .. code-block:: java
-    :emphasize-lines: 9
-
-    @RequestMapping("members")
-    @RestController
-    public class MemberRestController {
-
-        // omitted
-
-        @RequestMapping(value = "{memberId}",
-                        method = { RequestMethod.GET,
-                                   RequestMethod.HEAD }) // (1)
-        @ResponseStatus(HttpStatus.OK)
-        public MemberResource getMember(
-                @PathVariable("memberId") String memberId) {
-            // omitted
-        }
-
-        // omitted
-
-    }
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - | GETメソッドの処理を行うREST APIの\ ``@RequestMapping``\アノテーションのmethod属性に\ ``RequestMethod.HEAD``\を追加する。
-        | HEADメソッドは、GETメソッドと同じ処理を行いヘッダ情報のみレスポンスする必要があるため、\ ``@RequestMapping``\アノテーションのmethod属性に、\ ``RequestMethod.HEAD``\も指定する。
-        | レスポンスBODYを空にする処理は、Servlet APIの標準機能で行われるため、Controllerの処理としてはGETメソッドと同じ処理を行えばよい。
-
- |
- 
-* リクエスト例
- 
- .. code-block:: guess
-    :emphasize-lines: 1
- 
-    HEAD /rest-api-web/api/v1/members/M000000001 HTTP/1.1
-    Accept: text/plain, application/json, application/*+json, */*
-    User-Agent: Java/1.7.0_51
-    Host: localhost:8080
-    Connection: keep-alive
-
- |
- 
-* レスポンス例
-
- .. code-block:: guess
-    :emphasize-lines: 1, 4, 5
-
-    HTTP/1.1 200 OK
-    Server: Apache-Coyote/1.1
-    X-Track: 71093a551e624c149867b6bfec486d2c
-    Content-Type: application/json;charset=UTF-8
-    Content-Length: 452
-    Date: Thu, 13 Mar 2014 13:25:23 GMT
- 
-
-|
-
-
 
 .. _RESTAppendixDisabledCSRFProtection:
 
