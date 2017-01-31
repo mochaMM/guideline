@@ -33,6 +33,12 @@
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
 
     * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
+      - Spring 4.3対応に伴う修正
+
+        * HEADとOPTIONSメソッドが暗黙的に用意される説明を追加(\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
+
+    * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
       - Spring 4.3対応に伴う修正
 
