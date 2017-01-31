@@ -273,7 +273,6 @@ How to use
     下記の設定例は、\ ``/restrict``\に対して「ROLE_ADMIN」ロールを持つユーザからのアクセスのみを許可している。
 
       .. code-block:: xml
-         :emphasize-lines: 2,3
 
           <sec:http>
               <sec:intercept-url pattern="/restrict.*" access="hasRole('ADMIN')" /> <!-- (1) --> 
