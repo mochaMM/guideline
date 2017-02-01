@@ -2966,6 +2966,17 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
 そのため、`Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
 を利用して実装を行う。
 
+.. warning::
+
+    Formatterを利用してもチェックボックスやセレクトボックスなど複数選択が可能なものについて、複数選択した状態の画面を描画するためにはラップクラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
+
+    \ ``<form:checkboxes>``\ や\ ``<form:select>``\ は\ ``items``\ 属性で指定されたコレクションの要素を選択項目として表示するが、 選択項目の値が\ ``path``\ 属性で指定されたFormの値と一致する場合は、選択済みの項目として表示する。
+
+    この判定方法の詳細については実際に判定を行う\ ``SelectedValueComparator``\クラスの `javadoc <http://docs.spring.io/spring/docs/2.0.1/javadoc-api/org/springframework/web/servlet/tags/form/SelectedValueComparator.html#equality-contract>`__ を参照されたいが、オブジェクトのリストを使用した場合は複数選択した際にオブジェクト同士の一致判定結果がfalseになってしまい、文字列一致判定を実行するために\ ``path``\ 属性で指定されたプロパティの\ ``toString``\ メソッドの結果が使用される。
+
+    正常に選択済みの項目として表示するためには、ラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
+
+
 \ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加することで、\ ``List<String>``\ にした時と同様に、
 複雑な実装をすることなく \ ``<form:checkboxes>``\ を使用した実装ができる。
 
@@ -3060,9 +3071,7 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
      * - | (1)
        - | 入力チェックを行うために\ ``Role``\ クラスにラップしたプロパティに対して \ ``@ExistInCodeList``\ アノテーションを設定し、\ ``codeListId``\ にチェック元となるコードリストを指定する。
      * - | (2)
-       - | \ ``<form:checkboxes>``\ を使用する場合、チェックエラー等によって画面を再描画する際にチェック状態を再現するためにSpringの機能の中で画面項目に対応する型の\ ``toString``\ メソッドが使用される。
-         | ここでは\ ``Formatter``\ クラスは使用されないため、\ ``toString``\ メソッドをオーバーライドし本来のコード値を返却するよう実装する必要がある。
-         | \ ``toString``\ メソッドを実装しない場合、\ ``toString``\ の実行結果がオブジェクトの文字列表現となり、\ ``<form:checkboxes>``\ が期待するコード値ではないためチェック状態が再現されない。
+       - | 複数選択時の状態を正常に画面描画するためにオーバーライドし、ラップしている文字列を返却する。
 
 |
 
