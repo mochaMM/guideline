@@ -351,6 +351,53 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
           </sec:http>
 
 .. warning::
+    Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のリクエストマッチングが大文字・小文字を区別する様になった。
+
+    そのため、Spring MVC側の\ ``@RequestMapping``\で定義したリクエストマッピングとSpring Security側の\ ``<sec:intercept-url>``\の\ ``pattern``\属性を大文字・小文字まで一致させなければならない。
+
+    例えば、リクエストパス\ ``/Todo/List``\に対する認可制御を定義する場合、
+    以下の例の様にSpring MVC側のリクエストマッピングが\ ``/Todo/List``\でSpring Security側の\ ``<sec:intercept-url>``\の\ ``pattern``\属性が\ ``/Todo/List``\と大文字・小文字まで合わせる必要がある。
+
+    * Spring MVC側のリクエストマッピングの設定
+
+     .. code-block:: java
+
+         @RequestMapping(value="/Todo/List") //(1)
+         public String handleTodoList(){
+            //...
+         }
+
+    * Spring Security側のアクセスポリシーの定義
+
+     .. code-block:: xml 
+
+         <sec:http>
+             <sec:intercept-url pattern="/Todo/List" access="isAuthenticated()" /> <!-- (2) -->
+             <!-- omitted -->
+         </sec:http>
+
+     .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+     .. list-table::
+        :header-rows: 1
+        :widths: 20 80
+
+        * - 項番
+          - 説明
+        * - | (1)
+          - | リクエストパス\ ``/Todo/List``\に対するハンドラメソッドを定義する。
+        * - | (2)
+          - | リクエストパス\ ``/Todo/List``\に対するアクセスポリシーを定義する。
+
+    また、以前のバージョンからTERASOLUNA Server Framework for Java (5.3.0)以降にバージョンアップする場合、
+    Spring MVC側のリクエストマッピングの設定とSpring Security側のアクセスポリシーの定義に対して、パスの大文字・小文字が合っているかを確認されたい。
+
+    なぜなら、以前のバージョンではSpring MVC側のリクエストマッピングの設定とSpring Security側のアクセスポリシーの定義に対して、パスの大文字・小文字に差異があってもSpring Securityの認可が働くが、
+    バージョンアップによってSpring Security側の認可が厳密になり、下記の問題が発生する可能性があるためである。
+
+    * 認可機能を突破し、ハンドラメソッドにアクセスできてしまう。
+    * 以前のバージョンで、\ ``access``\属性が\ ``permitAll``\となっているアクセスポリシーなどで認可されていたリクエストパスが認可されなくなる。
+
+.. warning::
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
