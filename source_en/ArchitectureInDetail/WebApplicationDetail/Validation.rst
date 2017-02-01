@@ -1798,7 +1798,7 @@ Correlation item check implementation using Spring Validator
      - | Nothing in particular
      - | Confirm password
 
-Check rule "Must be same as confirmPassword" is validation of correlated items as \ ``password``\  field and \ ``passwordConfirm``\  field should have the same value.
+Check rule "Must be same as confirmPassword" is validation of correlated items as \ ``password``\  field and \ ``confirmPassword``\  field should have the same value.
 
 * Form class
 
