@@ -40,6 +40,8 @@ Localeの切り替えイメージを以下に示す。
     エラー画面を国際化する必要がある場合、Spring MVCのControllerを使用してエラー画面に遷移すること。
     Spring MVCを介さずエラー画面に直接遷移した場合、メッセージが意図した言語で出力されない場合がある。
 
+    詳細については\ :ref:`Internationalizing_error_page`\ を参照されたい。
+
 .. tip::
 
     国際化はi18nという略称が広く知られている。
@@ -452,6 +454,105 @@ JSPの実装
 
     * インクルード用の共通jspにSpringのタグライブラリを定義する必要がある。
     * インクルード用の共通jspファイルの詳細は :ref:`view_jsp_include-label` を参照されたい。
+
+|
+
+.. _Internationalizing_error_page:
+
+エラーページの国際化
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+エラーページを国際化する場合、遷移時にSpring MVCを経由するよう設定に注意する必要がある。
+
+例えば、以下のような設定でエラーページへの遷移を設定した場合は、Spring MVCを経由せずに直接エラーページを表示するため、上述した国際化のための\ ``LocaleChangeInterceptor``\ 等が作用せず、常にデフォルトのロケールによるメッセージの表示しかされない。
+
+|
+
+**Spring MVCを経由しないエラーページへの遷移例**
+
+* spring-security.xml
+
+.. code-block:: xml
+
+    <sec:http>
+        <!-- omitted -->
+        <sec:access-denied-handler
+            error-page="/WEB-INF/views/common/error/accessDeniedError.jsp" /> <!-- (1) -->
+        <!-- omitted -->
+    </sec:http>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``<sec:access-denied-handler>``\ タグの\ ``error-page``\ 属性に認可エラー用のエラーページをJSPで指定する。
+
+|
+
+エラーページを国際化するには、以下のようにSpring MVCを経由するようControllerを定義し設定する必要がある。
+
+|
+
+**Spring MVCを経由させるエラーページへの遷移例**
+
+* Controllerクラス
+
+.. code-block:: java
+
+    @Controller
+    @RequestMapping("/common/error") // (1)
+    public class ErrorController {
+
+        @RequestMapping("accessDeniedError") // (1)
+        public String accessDeniedError() {
+            return "common/error/accessDeniedError"; // (2)
+        }
+
+    }
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | エラーページへ遷移するためにリクエストマッピングを定義する。
+    * - | (2)
+      - | 遷移するエラーページを返却する。
+
+
+.. note::
+
+    Spring Framework 4.3を使用しており、エラーページへ遷移する際のHTTPメソッドがGETのみの場合に限り、上記のControllerクラスの実装については、\ ``<mvc:view-controller>``\ を使ってControllerクラスの実装を省略することも可能である。
+
+    \ ``<mvc:view-controller>``\ 使用時の留意点については :ref:`controller_method_return-html-label`\ を参照されたい。
+
+* spring-security.xml
+
+.. code-block:: xml
+
+    <sec:http>
+        <!-- omitted -->
+        <sec:access-denied-handler
+            error-page="/common/error/accessDeniedError" /> <!-- (1) -->
+        <!-- omitted -->
+    </sec:http>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``<sec:access-denied-handler>``\ タグの\ ``error-page``\ 属性に認可エラー用のエラーページへ遷移するためのURLを設定する。
+
 
 .. raw:: latex
 
