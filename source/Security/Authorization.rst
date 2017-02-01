@@ -509,27 +509,38 @@ Spring Security 4.1以降では、アクセスポリシーを適用するリソ�
 
 .. warning:: **パス変数を使用するアクセスポリシーを定義する際の注意点**
 
-    拡張子を付けてアクセス可能なパスに対してパス変数を使用するアクセスポリシーを定義する場合は、パス変数値に拡張子部分が格納されない様に定義する必要がある。
+   拡張子を付けてアクセス可能なパスに対してパス変数を使用するアクセスポリシーを定義する場合は、パス変数値に拡張子部分が格納されない様に定義する必要がある。
 
-    例えば、パターンに\ ``/users/{userName}``\と定義し、\ ``/users/personName.json``\というリクエストパスを送信した際、
-    アクセスポリシーの定義内で参照しているパス変数\ ``#userName``\には\ ``personName``\ではなく\ ``personName.json``\が格納され、
-    意図しない認可制御が行われてしまう。
+   例えば、パターンに\ ``/users/{userName}``\と定義し、\ ``/users/personName.json``\というリクエストパスを送信した際、
+   アクセスポリシーの定義内で参照しているパス変数\ ``#userName``\には\ ``personName``\ではなく\ ``personName.json``\が格納され、
+   意図しない認可制御が行われてしまう。
 
-    この事象を防ぐためには、「拡張子を付けたパスに対するアクセスポリシー」を定義した後に、「拡張子を付けないパスに対するアクセスポリシー」を定義する必要がある。
+   この事象を防ぐためには、「拡張子を付けたパスに対するアクセスポリシー」を定義した後に、「拡張子を付けないパスに対するアクセスポリシー」を定義する必要がある。
 
-    以下の例は、ログインユーザが自身のユーザ情報をファイル形式で指定し取得するパスに対するアクセスポリシーとログインユーザが自身のユーザ情報のみアクセスできるアクセスポリシーを定義しているが、
-    アクセスポリシーの定義順序を逆にしてしまうと拡張子を付けたパス(\ ``/users/personName.json``\など)を指定しリクエストを送信した際、
-    \ ``/users/{userName}``\のアクセスポリシーに引っかかってしまい、ログインユーザが自身のユーザ情報にアクセスできなくなってしまう。
+   以下の例でアクセスポリシーの定義順序を逆にしてしまうと拡張子を付けたパス(\ ``/users/personName.json``\など)を指定しリクエストを送信した際、
+   \ ``/users/{userName}``\のアクセスポリシーに引っかかってしまい、ログインユーザが自身のユーザ情報にアクセスできなくなってしまう。
 
-    * spring-security.xmlの定義例
+   * spring-security.xmlの定義例
 
-      .. code-block:: xml
+    .. code-block:: xml
 
-        <sec:http>
-         <sec:intercept-url pattern="/users/{userName}.*" access="isAuthenticated() and #userName == principal.username"/>
-         <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/>
-         <!-- omitted -->
-        </sec:http>
+      <sec:http>
+       <sec:intercept-url pattern="/users/{userName}.*" access="isAuthenticated() and #userName == principal.username"/> <!-- (1) -->
+       <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/> <!-- (2) -->
+       <!-- omitted -->
+      </sec:http>
+
+    .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+    .. list-table::
+        :header-rows: 1
+        :widths: 10 90
+
+        * - 項番
+          - 説明
+        * - | (1)
+          - | ログインユーザが自身のユーザ情報をファイル形式で指定し取得するパスに対するアクセスポリシーを定義する。
+        * - | (2)
+          - | ログインユーザが自身のユーザ情報のみアクセスできるアクセスポリシーを定義する。
 
 .. [#fPathVariableDescription] パス変数の説明は :doc:`../ImplementationAtEachLayer/ApplicationLayer` の\ :ref:`controller_method_argument-pathvariable-label`\ を参照されたい。
 
