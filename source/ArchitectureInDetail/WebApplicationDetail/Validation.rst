@@ -2965,16 +2965,16 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
 また、ラップクラスをリストで保持した場合、Spring提供のタグライブラリと連携したチェックボックス、ラジオボタン、セレクトボックスの出力が正しくできないケースがある。
 そのため、`Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
 を利用して実装を行う。
+ただし、Formatterを利用してもチェックボックスやセレクトボックスなど複数選択が可能な画面項目について、複数選択された状態の画面を正しく描画することができない。
+複数選択された状態の画面を正しく描画するためにはラッパークラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
+複数選択が可能な\ ``<form:checkboxes>``\ や\ ``<form:select>``\ は\ ``items``\ 属性で指定されたコレクションの要素を選択項目として表示し、選択項目の値が\ ``path``\ 属性で指定されたプロパティの値と一致する場合は、選択済みの項目として表示する。
+ラッパークラスを作成した場合、本来使用したい値の文字列を取得するためにラッパークラスの\ ``toString``\ メソッドの結果が使用されるため、\ ``toString``\ メソッドをオーバーライドしない場合は期待した通りに一致すると判定されない。
+このため、正常に選択済みの項目として表示するためには後述する例のように、ラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
 
-.. warning::
+.. note::
 
-    Formatterを利用してもチェックボックスやセレクトボックスなど複数選択が可能なものについて、複数選択した状態の画面を描画するためにはラップクラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
+    選択済みの判定方法の詳細については実際に判定を行う\ ``org.springframework.web.servlet.tags.form.SelectedValueComparator``\クラスの `javadoc <http://docs.spring.io/spring/docs/2.0.1/javadoc-api/org/springframework/web/servlet/tags/form/SelectedValueComparator.html#equality-contract>`__ を参照されたい。
 
-    \ ``<form:checkboxes>``\ や\ ``<form:select>``\ は\ ``items``\ 属性で指定されたコレクションの要素を選択項目として表示するが、 選択項目の値が\ ``path``\ 属性で指定されたFormの値と一致する場合は、選択済みの項目として表示する。
-
-    この判定方法の詳細については実際に判定を行う\ ``SelectedValueComparator``\クラスの `javadoc <http://docs.spring.io/spring/docs/2.0.1/javadoc-api/org/springframework/web/servlet/tags/form/SelectedValueComparator.html#equality-contract>`__ を参照されたいが、オブジェクトのリストを使用した場合は複数選択した際にオブジェクト同士の一致判定結果がfalseになってしまい、文字列一致判定を実行するために\ ``path``\ 属性で指定されたプロパティの\ ``toString``\ メソッドの結果が使用される。
-
-    正常に選択済みの項目として表示するためには、ラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
 
 
 \ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加することで、\ ``List<String>``\ にした時と同様に、
@@ -3071,7 +3071,7 @@ Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパテ�
      * - | (1)
        - | 入力チェックを行うために\ ``Role``\ クラスにラップしたプロパティに対して \ ``@ExistInCodeList``\ アノテーションを設定し、\ ``codeListId``\ にチェック元となるコードリストを指定する。
      * - | (2)
-       - | 複数選択時の状態を正常に画面描画するためにオーバーライドし、ラップしている文字列を返却する。
+       - | 複数選択時の状態を正常に画面描画するためにオーバーライドし、ラップしている値の文字列を返却する。
 
 |
 
