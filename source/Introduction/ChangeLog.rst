@@ -64,6 +64,8 @@
 
         * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
 
+        * パス変数の使用方法の説明と使用時の注意点を追記(\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
+
     * - 
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正
