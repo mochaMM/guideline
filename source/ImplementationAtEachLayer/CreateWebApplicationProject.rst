@@ -101,10 +101,9 @@ Webアプリケーション向け開発プロジェクトの作成
 .. code-block:: console
 
     mvn archetype:generate -B^
-     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-multi-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.2.0.RELEASE^
+     -DarchetypeVersion=5.3.0.RELEASE^
      -DgroupId=com.example.todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -118,8 +117,6 @@ Webアプリケーション向け開発プロジェクトの作成
       - 説明
     * - | \-B
       - batch mode (対話を省略)
-    * - | \-DarchetypeCatalog
-      - TERASOLUNA Server Framework for Java (5.x)のレポジトリを指定する。(固定)
     * - | \-DarchetypeGroupId
       - ブランクプロジェクトのgroupIdを指定する。(固定)
     * - | \-DarchetypeArtifactId
