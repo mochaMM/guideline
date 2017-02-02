@@ -16,6 +16,15 @@
 
         * 更新内容の詳細は、\ `5.3.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
+    * -
+      - 全般
+      - \ `Maven Central <https://search.maven.org/>`_\ への移行に伴い、以下のMavenアーキタイプの作成オプション\ ``-DarchetypeCatalog``\を除去
+
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../Tutorial/TutorialSecurity`
+        * :doc:`../Tutorial/TutorialTodo`
+
     * - 
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - 記載内容の追加
