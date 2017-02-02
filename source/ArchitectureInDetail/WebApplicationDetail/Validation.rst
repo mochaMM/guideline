@@ -2962,22 +2962,23 @@ Java Beanを使ったStringのラッパークラスによる実装
 Java SE 8とHibernate Validatorの独自機能を使用しない場合では前述したようなコレクション内の要素に対してBean Validationのアノテーションを使用することができないため、
 Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパティに対して\ ``@ExistInCodeList``\ を付加することによって入力チェックを行う。
 
-また、ラップクラスをリストで保持した場合、Spring提供のタグライブラリと連携したチェックボックス、ラジオボタン、セレクトボックスの出力が正しくできないケースがある。
-そのため、`Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
-を利用して実装を行う。
-ただし、Formatterを利用してもチェックボックスやセレクトボックスなど複数選択が可能な画面項目について、複数選択された状態の画面を正しく描画することができない。
+また、ラッパークラスをリストで保持した場合、Spring提供のタグライブラリと連携したチェックボックス、ラジオボタン、セレクトボックスの出力が正しくできないケースがある。
+例えば、チェックボックスやセレクトボックスなど複数選択が可能な画面項目について、複数選択された状態の画面を正しく描画することができない。
 複数選択された状態の画面を正しく描画するためにはラッパークラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
 複数選択が可能な\ ``<form:checkboxes>``\ や\ ``<form:select>``\ は\ ``items``\ 属性で指定されたコレクションの要素を選択項目として表示し、選択項目の値が\ ``path``\ 属性で指定されたプロパティの値と一致する場合は、選択済みの項目として表示する。
-ラッパークラスを作成した場合、本来使用したい値の文字列を取得するためにラッパークラスの\ ``toString``\ メソッドの結果が使用されるため、\ ``toString``\ メソッドをオーバーライドしない場合は期待した通りに一致すると判定されない。
-このため、正常に選択済みの項目として表示するためには後述する例のように、ラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
+この一致性の判断には指定されたプロパティの\ ``toString``\ メソッドの結果が使用されるが、ラッパークラスの\ ``toString``\ メソッドではラップした値の文字列が返却されないため、期待した通りに一致すると判断されない。
+正常に選択済みの項目として表示するためには、後述する例のようにラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
 
 .. note::
 
     選択済みの判定方法の詳細については実際に判定を行う\ ``org.springframework.web.servlet.tags.form.SelectedValueComparator``\クラスの `javadoc <http://docs.spring.io/spring/docs/2.0.1/javadoc-api/org/springframework/web/servlet/tags/form/SelectedValueComparator.html#equality-contract>`__ を参照されたい。
 
 
+\ ``path``\ 属性で指定されたプロパティが単項目の場合は `Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
+を利用して実装を行うことができるが、ラッパークラスをリストで保持する場合は、Formatterの実装に加えてラッパークラスの\ ``toString``\ メソッドをオーバーライドする実装で対応する。
 
-\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加することで、\ ``List<String>``\ にした時と同様に、
+
+Formatterで\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加し、ラッパークラスの\ ``toString``\ メソッドをオーバーライドすることで、\ ``List<String>``\ にした時と同様に、
 複雑な実装をすることなく \ ``<form:checkboxes>``\ を使用した実装ができる。
 
 主な手順は以下の通り。
