@@ -99,8 +99,7 @@
 
         記載内容の修正
 
-        * \ ``aggressiveLazyLoading``\属性のデフォルト値が\ ``false``\(推奨値)になったことに伴い、
-          \ ``aggressiveLazyLoading``\属性の設定例とその属性値が\ ``true``\時の注意点を削除(\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+        * ”Lazy Load”を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`

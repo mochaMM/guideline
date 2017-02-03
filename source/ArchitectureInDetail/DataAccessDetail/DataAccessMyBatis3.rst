@@ -7912,10 +7912,73 @@ MyBatis3では、"Lazy Load"の使用有無を、
 Lazy Loadの実行タイミングを制御するための設定
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-MyBatis3では、"Lazy Load"を実行するタイミングを制御するためのオプションを提供している。
+MyBatis3では、"Lazy Load"を実行するタイミングを制御するためのオプション(\ ``aggressiveLazyLoading``\)を提供している。
+設定方法は、`MyBatisのリファレンス <http://www.mybatis.org/mybatis-3/ja/configuration.html#settings>`_ を参照されたい。
 
-デフォルトの実行タイミングは、TERASOLUNA Server Framework for Java (5.2.x)以前から推奨している
-“Lazy Load”対象となっているプロパティのgetterメソッドが呼び出されたタイミングとなっている。
+\ ``aggressiveLazyLoading``\のデフォルト値はMybatis 3.4.2以降から\ ``false``\である(MyBatis 3.4.1以前のデフォルト値は\ ``true``\)。
+
+ .. warning::
+
+    \ ``aggressiveLazyLoading``\が「\ ``true``\」の場合、使用されないデータを取得するためにSQLが実行される可能性があるので、注意が必要である。
+
+    具体的には、以下のようなマッピングを行い、
+    "Lazy Load"対象になっていないプロパティだけにアクセスするケースである。
+    「\ ``true``\」の場合、"Lazy Load"対象のプロパティに対して直接アクセスしなくても、
+    "Lazy Load"が実行されてしまう。
+
+    特に理由がない場合は、\ ``aggressiveLazyLoading``\は\ ``false``\(デフォルト)にする事を推奨する。
+
+    * Entity
+
+      .. code-block:: java
+
+        public class Item implements Serializable {
+            private static final long serialVersionUID = 1L;
+            private String code;
+            private String name;
+            private int price;
+            private List<Category> categories;
+            // ...
+        }
+
+    * マッピングファイル
+
+      .. code-block:: xml
+
+        <resultMap id="itemResultMap" type="Item">
+            <id property="code" column="item_code"/>
+            <result property="name" column="item_name"/>
+            <result property="price" column="item_price"/>
+            <collection property="categories" column="item_code"
+                fetchType="lazy" select="findByItemCode" />
+        </resultMap>
+
+    * アプリケーションコード(Service)
+
+      .. code-block:: java
+        :emphasize-lines: 2-3
+
+            Item item = itemRepository.findOne(itemCode);
+            // (1)
+            String code = item.getCode();
+            String name = item.getName();
+            String price = item.getPrice();
+            // ...
+        }
+
+      .. tabularcolumns:: |p{0.15\linewidth}|p{0.75\linewidth}|
+      .. list-table::
+        :header-rows: 1
+        :widths: 15 75
+
+        * - 項番
+          - 説明
+        * - (1)
+          - 上記例では、"Lazy Load"対象のプロパティである\ ``categories``\プロパティにアクセスしていないが、
+            \ ``Item#code``\プロパティにアクセスした際に、"Lazy Load"が実行される。
+
+            「\ ``false``\」（デフォルト）の場合、上記のケースでは"Lazy Load"は実行されない。
+
 
 .. raw:: latex
 
