@@ -2962,8 +2962,7 @@ Java Beanを使ったStringのラッパークラスによる実装
 Java SE 8とHibernate Validatorの独自機能を使用しない場合では前述したようなコレクション内の要素に対してBean Validationのアノテーションを使用することができないため、
 Java Beanで\ ``String``\ をラップし、ネストしたBeanのプロパティに対して\ ``@ExistInCodeList``\ を付加することによって入力チェックを行う。
 
-ラッパークラスを使用する場合、画面項目とラップしたJava Beanとの型変換を実施する必要がある。
-これは `Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.2.4.RELEASE/spring-framework-reference/htmlsingle/#format>`_
+ネストしたBeanのプロパティを使用してラップしていない場合と同じようにリクエストパラメータをバインドしたりViewに表示するためには、文字列とラッパークラスとの型変換を実施する必要がある。これは `Springが提供している型変換の仕組み(Formatter) <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/htmlsingle/#format>`_
 を利用して実装を行うことができる。
 
 Formatterで\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ への型変換を追加することで、\ ``List<String>``\ にした時と同様に、
@@ -2978,10 +2977,10 @@ Formatterで\ ``String``\ から\ ``Role``\ 、\ ``Role``\ から\ ``String``\ �
 * \ ``ConversionServiceFactoryBean``\ を使用し、作成した\ ``Formatter``\ をSpringに登録する。
 
 
-また、\ ``path``\ 属性で指定されたプロパティが単項目の場合は Formatterを利用して実装を行うことができるが、チェックボックスやセレクトボックスなどラッパークラスをリストで保持する場合、Formatterの実装だけでは複数選択された状態の画面を正しく描画することができない。
+また、\ ``<form:checkboxes>``\ や\ ``<form:select>``\ など複数選択が可能な画面項目で正常に選択済みの項目を表示するためには、Formatterの実装に加えてラッパークラスの\ ``toString``\ メソッドをオーバーライドする必要がある。
 
 複数選択が可能な\ ``<form:checkboxes>``\ や\ ``<form:select>``\ は\ ``items``\ 属性で指定されたコレクションの要素を選択項目として表示し、選択項目の値が\ ``path``\ 属性で指定されたプロパティの値と一致する場合は、選択済みの項目として表示する。
-この一致性の判断には指定されたプロパティの\ ``toString``\ メソッドの結果が使用されるが、ラッパークラスの\ ``toString``\ メソッドではラップした値の文字列が返却されないため、期待した通りに一致すると判断されない。
+この一致性の判断には、プロパティが単項目の場合はFormatterが使用され、配列やコレクションの場合は指定されたプロパティの\ ``toString``\ メソッドの結果が使用される。
 
 正常に選択済みの項目として表示するためには、後述する例のようにラッパークラスで\ ``toString``\ メソッドをオーバーライドし、ラップしている値の文字列を返却する必要がある。
 
