@@ -50,6 +50,8 @@ Overview
      * エラー画面表示中にTilesによるエラーが発生すると解析がしにくくなるため。(二重障害発生の場合)
      * web.xmlの<error-pages>タグで設定するJSPでは、必ずしも画面表示にTilesによるテンプレートが適用されないため。
 
+     詳細については\ :ref:`Internationalizing_error_page`\ を参照されたい。
+
 |
 
 .. _TilesLayoutHowToUse:
