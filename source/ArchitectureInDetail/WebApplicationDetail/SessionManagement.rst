@@ -673,6 +673,31 @@ How to use
     * - | (2)
       - | 上記例では、\ ``"entity"``\ という属性名でセッションスコープに格納されているオブジェクトが、引数entityに渡される。
 
+ .. note:: **セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法**
+
+     セッションスコープに格納しているオブジェクトをハンドラメソッドの引数として受け取る際、その引数にリクエストパラメータがバインドされる可能性がある。
+
+     リクエストパラメータがバインドされない様にするためには、セッションスコープに格納しているオブジェクトをハンドラメソッドの引数から受け取らず、ハンドラメソッド内で\ ``Model``\オブジェクトから取得することで実現できるが、
+     取得するオブジェクトの属性名を文字列で指定する必要があるためタイプセーフではない。
+
+     これに対し、Spring Framework 4.3では\ ``@ModelAttribute``\アノテーションに\ ``binding``\属性が追加され、引数にリクエストパラメータをバインドするか否かを指定できる様になった。
+     引数に\ ``@ModelAttribute``\アノテーションを付与し、\ ``binding``\属性に\ ``false``\を指定することで、
+     リクエストパラメータのバインドを防止しつつ、タイプセーフにセッションスコープに格納しているオブジェクトを取得することができる。
+
+     下記の例は、\ ``entity``\という属性名でセッションスコープに格納しているオブジェクトをリクエストパラメータのバインドを防止して取得している。
+
+      .. code-block:: java
+
+         @RequestMapping(value = "save", method = RequestMethod.POST)
+         public String save(@Validated({ Wizard1.class, Wizard2.class,
+                 Wizard3.class }) WizardForm form,
+                 BindingResult result,
+                 @ModelAttribute(binding = false) Entity entity,
+                 RedirectAttributes redirectAttributes) {
+             // ...
+             return "redirect:/wizard/save?complete";
+         }
+
 Controllerのハンドラメソッドの引数に渡すオブジェクトが、\ ``Model``\ オブジェクトに存在しない場合、\ ``@ModelAttribute``\ アノテーションの指定の有無で、動作が変わる。
 
 * \ ``@ModelAttribute``\ アノテーションを指定していない場合は、新しいオブジェクトが生成されて引数に渡される。
