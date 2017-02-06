@@ -40,7 +40,7 @@ Localeの切り替えイメージを以下に示す。
     エラー画面を国際化する必要がある場合、Spring MVCのControllerを使用してエラー画面に遷移すること。
     Spring MVCを介さずエラー画面に直接遷移した場合、メッセージが意図した言語で出力されない場合がある。
 
-    詳細については\ :ref:`Internationalizing_error_page`\ を参照されたい。
+    詳細については\ :ref:`case_Internationalization_can_not_be_done`\ を参照されたい。
 
 .. tip::
 
@@ -457,19 +457,21 @@ JSPの実装
 
 |
 
-.. _Internationalizing_error_page:
+.. _case_Internationalization_can_not_be_done:
 
-エラー画面の国際化
+国際化が適用できない場合
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-エラー画面を国際化する場合、遷移時にSpring MVCを経由し\ ``DispatcherServlet``\ が使われるよう設定に注意する必要がある。
+国際化には上述した通り\ ``LocaleResolver``\ を使用するが、\ ``LocaleResolver``\ はSpring MVCの\ ``DispatcherServlet``\ を経由したリクエストの場合に適用されるため、\ ``DispatcherServlet``\ を経由しない遷移の場合は国際化が適用されない。
 
-エラー画面への遷移設定に直接JSPファイルを指定するような場合、エラー画面への遷移には\ ``DispatcherServlet``\ が使用されない。
-国際化のためのロケールの設定やビューのテーマ解決等のための処理（\ ``LocalResolver``\ や\ ``ViewResolver``\ 等）は\ ``DispatcherServlet``\ から呼ばれるため、\ ``DispatcherServlet``\ を使用しない画面遷移の場合は上述した国際化のための\ ``LocaleChangeInterceptor``\ や\ :doc:`../WebApplicationDetail/TilesLayout`\ 等が作用しない。
-エラー画面を国際化するには、エラー画面へ遷移するためのControllerを作成しエラー画面への遷移に使用することで\ ``DispatcherServlet``\ が使用されるように設定する必要がある。
+例えば、エラー画面への遷移設定に直接JSPファイルを指定するような場合、エラー画面への遷移には\ ``DispatcherServlet``\ が使用されない。
+この場合、エラー画面を国際化するには、エラー画面へ遷移するためのControllerを作成しエラー画面への遷移に使用することで\ ``DispatcherServlet``\ が使用されるように設定する必要がある。
 
 .. note::
 
+    \ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ も同様に\ ``DispatcherServlet``\ を経由したリクエストの場合に適用されるため、\ ``DispatcherServlet``\ を経由しない場合は適用されない。
+
     Spring MVCの詳細については :doc:`/Overview/SpringMVCOverview`\ を参照されたい。
+
 
 |
 
