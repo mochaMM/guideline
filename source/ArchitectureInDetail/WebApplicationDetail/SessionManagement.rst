@@ -1726,7 +1726,7 @@ Appendix
         @RequestMapping(value = "save", method = RequestMethod.POST)
         public String save(@ModelAttribute @Validated({ Wizard1.class,
                 Wizard2.class, Wizard3.class }) WizardForm form, // (22)
-                BindingResult result,Entity entity, // (23)
+                BindingResult result, Entity entity, // (23)
                 RedirectAttributes redirectAttributes) {
             if (result.hasErrors()) {
                 throw new InvalidRequestException(result); // (24)
