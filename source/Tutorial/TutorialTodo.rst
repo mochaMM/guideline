@@ -2990,13 +2990,14 @@ Entityの修正
 TodoクラスとデータベースのTODOテーブルをマッピングするために、JPAのアノテーションを設定する。
 
 .. code-block:: java
-    :emphasize-lines: 6-10,12-14,18-19,26-27
+    :emphasize-lines: 6-11,13-15,19-21,24,27,30-32
 
     package todo.domain.model;
 
     import java.io.Serializable;
     import java.util.Date;
 
+    import javax.persistence.Column;
     import javax.persistence.Entity;
     import javax.persistence.Id;
     import javax.persistence.Table;
@@ -3011,14 +3012,18 @@ TodoクラスとデータベースのTODOテーブルをマッピングするた
 
         // (2)
         @Id
+        @Column(name = "todo_id")
         private String todoId;
 
+        @Column(name = "todo_title")
         private String todoTitle;
 
+        @Column(name = "finished")
         private boolean finished;
 
         // (3)
         @Temporal(TemporalType.TIMESTAMP)
+        @Column(name = "created_at")
         private Date createdAt;
 
         public String getTodoId() {
@@ -3066,6 +3071,7 @@ TodoクラスとデータベースのTODOテーブルをマッピングするた
      - | JPAのエンティティであることを示す\ ``@Entity``\ アノテーションを付け、対応するテーブル名を\ ``@Table``\ アノテーションで設定する。
    * - | (2)
      - | 主キーとなるカラムに対応するフィールドに、\ ``@Id``\ アノテーションをつける。
+       | フィールドとカラムを対応させるため、\ ``@Column``\ アノテーションをつけ、対応するカラム名を設定する。
    * - | (3)
      - | \ ``java.util.Date``\ 型は、\ ``java.sql.Date``\ , \ ``java.sql.Time``\ , \ ``java.sql.Timestamp``\ のインスタンスを格納できるため、明示的にどの型のインスタンスを設定するか指定する必要がある。
        | \ ``createdAt``\ プロパティには、\ ``Timestamp``\ を指定する。
