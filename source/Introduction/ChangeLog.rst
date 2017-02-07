@@ -88,7 +88,7 @@
 
         記載内容の追加
 
-        * コミット時にエラーが発生した際のロールバックを行う設定を追記(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+        * コミット時にエラーが発生した際のロールバックを行う設定とその説明を追記(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
