@@ -86,6 +86,10 @@
 
         * `MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを追記(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
+        記載内容の追加
+
+        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - Spring Framework 4.3対応に伴う修正
