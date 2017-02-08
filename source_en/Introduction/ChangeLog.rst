@@ -10,6 +10,19 @@ Change Log
       - Modified locations
       - Modification details
 
+    * - 2017-02-28
+      - \-
+      - 5.3.0 RELEASE version published
+
+        * For details of update, refer \ `Issue list of 5.3.0 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
+
+    * -
+      - :doc:`../Tutorial/TutorialTodo`
+      - Correction of description
+
+        * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
+
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE version published
