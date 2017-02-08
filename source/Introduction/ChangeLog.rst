@@ -97,6 +97,10 @@
 
         * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
 
+        記載内容の修正
+
+        * ”Lazy Load”を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - Spring Framework 4.3対応に伴う修正

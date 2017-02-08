@@ -3770,7 +3770,6 @@ MyBatis3用のブランクプロジェクトを作成した場合、以下のよ
             <settings>
                 <setting name="mapUnderscoreToCamelCase" value="true" />
                 <setting name="lazyLoadingEnabled" value="true" />
-                <setting name="aggressiveLazyLoading" value="false" />
                 <setting name="defaultFetchSize" value="100" />
         <!--
                 <setting name="defaultExecutorType" value="REUSE" />

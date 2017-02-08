@@ -7912,48 +7912,21 @@ MyBatis3では、"Lazy Load"の使用有無を、
 Lazy Loadの実行タイミングを制御するための設定
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-MyBatis3では、"Lazy Load"を実行するタイミングを制御するためのオプションを提供している。
+MyBatis3では、"Lazy Load"を実行するタイミングを制御するためのオプション(\ ``aggressiveLazyLoading``\)を提供している [#fDataAccessMyBatis31]_ 。
 
-"Lazy Load"を実行するタイミングを制御するための設定は、
-MyBatis設定ファイル(:file:`projectName-domain/src/main/resources/META-INF/mybatis/mybatis-config.xml`)に指定する。
-
- .. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <!DOCTYPE configuration
-            PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-            "http://mybatis.org/dtd/mybatis-3-config.dtd">
-    <configuration>
-        <settings>
-            <!-- (1) -->
-            <setting name="aggressiveLazyLoading" value="false"/>
-        </settings>
-    </configuration>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 80
-
-    * - 項番
-      - 説明
-    * - (1)
-      - "Lazy Load"を実行するタイミングを\ ``aggressiveLazyLoading``\に指定する。
-
-        * \ ``true``\ : "Lazy Load"対象となっているプロパティを保持するオブジェクトのgetterメソッドが呼び出されたタイミングで実行する（デフォルト）
-        * \ ``false``\ : "Lazy Load"対象となっているプロパティのgetterメソッドが呼び出されたタイミングで実行する
-
+このオプションのデフォルト値はMybatis 3.4.2以降から\ ``false``\であり、"Lazy Load"対象となっているプロパティのgetterメソッドが呼び出されたタイミングで実行する。
 
  .. warning::
 
-    「\ ``true``\」（デフォルト）の場合、使用されないデータを取得するためにSQLが実行される可能性があるので、注意が必要である。
+    \ ``aggressiveLazyLoading``\が「\ ``true``\」の場合、"Lazy Load"対象となっているプロパティを保持するオブジェクトのgetterメソッドが呼び出されたタイミングで"Lazy Load"が実行される。
+    このため、実際にはデータの取得が必要ないにもかかわらずSQLが実行されてしまう可能性があることに注意が必要である。
 
     具体的には、以下のようなマッピングを行い、
     "Lazy Load"対象になっていないプロパティだけにアクセスするケースである。
-    「\ ``true``\」（デフォルト）の場合、"Lazy Load"対象のプロパティに対して直接アクセスしなくても、
+    「\ ``true``\」の場合、"Lazy Load"対象のプロパティに対して直接アクセスしなくても、
     "Lazy Load"が実行されてしまう。
 
-    特に理由がない場合は、\ ``aggressiveLazyLoading``\は\ ``false``\にする事を推奨する。
+    特に理由がない場合は、\ ``aggressiveLazyLoading``\は「\ ``false``\」(デフォルト)のまま変更しないことを推奨する。
 
     * Entity
 
@@ -7986,7 +7959,7 @@ MyBatis設定ファイル(:file:`projectName-domain/src/main/resources/META-INF/
         :emphasize-lines: 2-3
 
             Item item = itemRepository.findOne(itemCode);
-            // (2)
+            // (1)
             String code = item.getCode();
             String name = item.getName();
             String price = item.getPrice();
@@ -8000,12 +7973,13 @@ MyBatis設定ファイル(:file:`projectName-domain/src/main/resources/META-INF/
 
         * - 項番
           - 説明
-        * - (2)
+        * - (1)
           - 上記例では、"Lazy Load"対象のプロパティである\ ``categories``\プロパティにアクセスしていないが、
             \ ``Item#code``\プロパティにアクセスした際に、"Lazy Load"が実行される。
 
             「\ ``false``\」（デフォルト）の場合、上記のケースでは"Lazy Load"は実行されない。
 
+.. [#fDataAccessMyBatis31] 設定方法は、`MyBatisのリファレンス <http://www.mybatis.org/mybatis-3/ja/configuration.html#settings>`_ を参照されたい。
 
 .. raw:: latex
 
