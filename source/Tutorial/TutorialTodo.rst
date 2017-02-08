@@ -3983,6 +3983,7 @@ todo-env.xml
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
     </beans>
 

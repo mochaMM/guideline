@@ -1993,6 +1993,7 @@ PlatformTransactionManagerの設定
      <bean id="transactionManager"
            class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
          <property name="dataSource" ref="dataSource" />
+         <property name="rollbackOnCommitFailure" value="true" />
      </bean>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
