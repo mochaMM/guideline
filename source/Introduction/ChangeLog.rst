@@ -107,6 +107,12 @@
 
         * 致命的なエラーのハンドリング方法について追記(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
 
+    * -
+      - :doc:`../Tutorial/TutorialTodo`
+      - 記載内容の修正
+
+        * JPAを利用する場合のEntityのコード例の修正 (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
