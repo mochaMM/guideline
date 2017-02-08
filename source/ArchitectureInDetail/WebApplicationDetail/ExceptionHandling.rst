@@ -1643,8 +1643,8 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
     **複数のControllerでExceptionやServletExceptionを捕捉している場合について**
 
-       複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討した方がよい。
-       \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
+    複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討した方がよい。
+    \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
 
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
