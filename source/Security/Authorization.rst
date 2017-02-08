@@ -353,8 +353,6 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
 .. warning::
     Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のパスマッチングの仕様が大文字・小文字を区別する様になった。
 
-    そのため、Spring MVCの\ ``@RequestMapping``\で定義したエンドポイントで割り当てているパスとSpring Securityの\ ``<sec:intercept-url>``\タグの\ ``pattern``\属性を大文字・小文字まで揃えなければならない。
-
     例えば以下に示すように、\ ``/Todo/List``\というパスが割り当てられたSpring MVCのエンドポイントに対してアクセスポリシーを定義する場合は、 
     \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字を揃える必要がある。
     誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字が揃っていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
@@ -363,7 +361,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
 
      .. code-block:: java
 
-         @RequestMapping(value="/Todo/List") //(1)
+         @RequestMapping(value="/Todo/List")
          public String viewTodoList(){
             //...
          }
@@ -373,7 +371,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
      .. code-block:: xml 
 
          <sec:http>
-             <sec:intercept-url pattern="/Todo/List" access="isAuthenticated()" /> <!-- (2) -->
+             <sec:intercept-url pattern="/Todo/List" access="isAuthenticated()" />
              <!-- omitted -->
          </sec:http>
 
@@ -381,18 +379,6 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring MVCのエンドポイントに割り当てているパスと \ ``<sec:intercept-url>``\タグの \ ``pattern``\属性で指定している値に対して、大文字・小文字が揃っていることを必ず確認すること。
     以前のバージョンではアクセスポリシーの定義に関して、パスの大文字・小文字に差異があっても認可が適用されるが、
     バージョンアップによってパスの大文字・小文字を区別する様になり、エンドポイントの設定とパスの大文字・小文字で差異がある場合に認可の制御が適用されなくなる。
-
-    そのため、下記の問題が発生する可能性がある。
-
-    * 権限などによる認可をかけていたパスに認可の制御が行われずにアクセスできてしまう。
-
-      例：パス\ ``/User/Create``\に対して、\ ``pattern``\属性が\ ``/user/create``\、\ ``access``\属性が\ ``hasRole('ADMIN')``\と定義したアクセスポリシーで認可を制御していた場合、
-      リクエストパス\ ``/User/Create``\を送信しても認可の制御が適用されなくなる。
-
-    * アクセスできる認可をかけていたパスに認可の制御が行われずアクセスできなくなってしまう。
-
-      例：パス\ ``/Resource/*``\に対して、\ ``pattern``\属性が\ ``/resource/**``\、\ ``access``\属性が\ ``permitAll``\と定義したアクセスポリシーで認可を制御していた場合、
-      \ ``/Resource/example.jpg``\を送信しても認可の制御が適用されなくなる。
 
 .. warning::
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
