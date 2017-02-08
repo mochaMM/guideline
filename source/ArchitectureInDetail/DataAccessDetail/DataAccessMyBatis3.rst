@@ -7916,18 +7916,17 @@ MyBatis3では、"Lazy Load"を実行するタイミングを制御するため�
 
 このオプションのデフォルト値はMybatis 3.4.2以降から\ ``false``\であり、"Lazy Load"対象となっているプロパティのgetterメソッドが呼び出されたタイミングで実行する。
 
- .. warning::	
+ .. warning::
 
-    \ ``aggressiveLazyLoading``\が「\ ``true``\」の場合、使用されないデータを取得するためにSQLが実行される可能性があるので、注意が必要である。
-    その理由は、\ ``aggressiveLazyLoading``\を「\ ``true``\」にすることで、"Lazy Load"対象となっているプロパティを保持するオブジェクトのgetterメソッドが呼び出されたタイミングで"Lazy Load"が実行される様になり、
-    "Lazy Load"対象となっているプロパティを保持するオブジェクトのgetterメソッド呼び出し時、使用しない"Lazy Load"対象のデータを取得するSQLが実行されてしまうためである。
+    \ ``aggressiveLazyLoading``\が「\ ``true``\」の場合、"Lazy Load"対象となっているプロパティを保持するオブジェクトのgetterメソッドが呼び出されたタイミングで"Lazy Load"が実行される。
+    このため、実際にはデータの取得が必要ないにもかかわらずSQLが実行されてしまう可能性があることに注意が必要である。
 
     具体的には、以下のようなマッピングを行い、
     "Lazy Load"対象になっていないプロパティだけにアクセスするケースである。
     「\ ``true``\」の場合、"Lazy Load"対象のプロパティに対して直接アクセスしなくても、
     "Lazy Load"が実行されてしまう。
 
-    特に理由がない場合は、\ ``aggressiveLazyLoading``\は\ ``false``\(デフォルト)にする事を推奨する。
+    特に理由がない場合は、\ ``aggressiveLazyLoading``\は「\ ``false``\」(デフォルト)のまま変更しないことを推奨する。
 
     * Entity
 
