@@ -22,6 +22,12 @@
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`  
+      - 記載内容の追加  
+
+        * セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法について追記(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )  
+
     * - 
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
       - 記載内容の追加
