@@ -17,11 +17,19 @@ Change Log
         * For details of update, refer \ `Issue list of 5.3.0 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
 
     * -
+      - General
+      - For with the transition to Maven Central, remove the creation option \ ``-DarchetypeCatalog``\  of the following Maven archetypes
+
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
+        * :doc:`../Overview/FirstApplication`  
+        * :doc:`../Tutorial/TutorialSecurity`  
+        * :doc:`../Tutorial/TutorialTodo`  
+
+    * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
 
         * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
-
 
     * - 2016-08-31
       - \-
