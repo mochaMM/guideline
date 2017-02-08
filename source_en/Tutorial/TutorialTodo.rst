@@ -2986,13 +2986,14 @@ Modification in Entity
 Configure the JPA annotation for mapping the Todo class with TODO table of Database.
 
 .. code-block:: java
-    :emphasize-lines: 6-10,12-14,18-19,26-27
+    :emphasize-lines: 6-11,13-15,19-21,24,27,30-32
 
     package todo.domain.model;
 
     import java.io.Serializable;
     import java.util.Date;
 
+    import javax.persistence.Column;
     import javax.persistence.Entity;
     import javax.persistence.Id;
     import javax.persistence.Table;
@@ -3007,14 +3008,18 @@ Configure the JPA annotation for mapping the Todo class with TODO table of Datab
 
         // (2)
         @Id
+        @Column(name = "todo_id")
         private String todoId;
 
+        @Column(name = "todo_title")
         private String todoTitle;
 
+        @Column(name = "finished")
         private boolean finished;
 
         // (3)
         @Temporal(TemporalType.TIMESTAMP)
+        @Column(name = "created_at")
         private Date createdAt;
 
         public String getTodoId() {
