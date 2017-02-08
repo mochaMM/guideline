@@ -459,18 +459,16 @@ JSPの実装
 
 .. _case_Internationalization_can_not_be_done:
 
-国際化が適用できない場合
+国際化が適用されない場合
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-国際化には上述した通り\ ``LocaleResolver``\ を使用するが、\ ``LocaleResolver``\ はSpring MVCの\ ``DispatcherServlet``\ を経由したリクエストの場合に適用されるため、\ ``DispatcherServlet``\ を経由しない遷移の場合は国際化が適用されない。
+国際化には\ ``LocaleChangeInterceptor``\ を使用するが、\ ``LocaleChangeInterceptor``\ はSpring MVCの\ ``Controller``\ の処理実行時に呼ばれるインターセプタであるため、\ ``Controller``\ を経由しない遷移の場合は国際化が適用されないことに注意されたい。
 
-例えば、エラー画面への遷移設定に直接JSPファイルを指定するような場合、エラー画面への遷移には\ ``DispatcherServlet``\ が使用されない。
-この場合、エラー画面を国際化するには、エラー画面へ遷移するためのControllerを作成しエラー画面への遷移に使用することで\ ``DispatcherServlet``\ が使用されるように設定する必要がある。
+例えば、エラー画面への遷移設定に直接JSPファイルを指定するような場合、エラー画面への遷移には\ ``Controller``\ が使用されない。
+この場合、エラー画面を国際化するには、エラー画面へ遷移するための\ ``Controller``\ を作成し、エラー画面への遷移に使用することで\ ``LocaleChangeInterceptor``\ が使用されるように設定する必要がある。
 
 .. note::
 
-    \ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ も同様に\ ``DispatcherServlet``\ を経由したリクエストの場合に適用されるため、\ ``DispatcherServlet``\ を経由しない場合は適用されない。
-
-    Spring MVCの詳細については :doc:`/Overview/SpringMVCOverview`\ を参照されたい。
+    同様にJSPを直接指定した遷移の場合\ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ を経由しないためTilesが適用されない。
 
 
 |
@@ -555,7 +553,7 @@ JSPの実装
       - | 遷移するエラー画面を返却する。
 
 
-.. note::
+.. warning::
 
     一般的に、エラー画面にはGETリクエストだけでなくPOSTリクエスト等からも遷移するため、\ ``<mvc:view-controller>``\ は使用しないことを推奨する。
 
