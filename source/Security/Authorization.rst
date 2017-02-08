@@ -351,23 +351,24 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
           </sec:http>
 
 .. warning::
-    Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のリクエストマッチングが大文字・小文字を区別する様になった。
+    Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のパスマッチングの仕様が大文字・小文字を区別する様になった。
 
-    そのため、Spring MVC側の\ ``@RequestMapping``\で定義したリクエストマッピングとSpring Security側の\ ``<sec:intercept-url>``\の\ ``pattern``\属性を大文字・小文字まで揃えなければならない。
+    そのため、Spring MVCの\ ``@RequestMapping``\で定義したエンドポイントで割り当てているパスとSpring Securityの\ ``<sec:intercept-url>``\タグの\ ``pattern``\属性を大文字・小文字まで揃えなければならない。
 
-    例えば、リクエストパス\ ``/Todo/List``\に対する認可制御を定義する場合、
-    以下の例の様にリクエストマッピングが\ ``/Todo/List``\で、アクセスポリシーの\ ``pattern``\属性が\ ``/Todo/List``\と大文字・小文字まで揃える必要がある。
+    例えば以下に示すように、\ ``/Todo/List``\というパスが割り当てられたSpring MVCのエンドポイントに対してアクセスポリシーを定義する場合は、 
+    \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字を揃える必要がある。
+    誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字が揃っていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
 
-    * リクエストマッピングの設定
+    * Spring MVCのエンドポイントの実装例
 
      .. code-block:: java
 
          @RequestMapping(value="/Todo/List") //(1)
-         public String handleTodoList(){
+         public String viewTodoList(){
             //...
          }
 
-    * アクセスポリシーの定義
+    * アクセスポリシーの定義例
 
      .. code-block:: xml 
 
@@ -376,23 +377,10 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
              <!-- omitted -->
          </sec:http>
 
-     .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 20 80
-
-        * - 項番
-          - 説明
-        * - | (1)
-          - | リクエストパス\ ``/Todo/List``\に対するハンドラメソッドを定義する。
-        * - | (2)
-          - | リクエストパス\ ``/Todo/List``\に対するアクセスポリシーを定義する。
-
-    また、以前のバージョンからTERASOLUNA Server Framework for Java (5.3.0)以降にバージョンアップする場合、
-    リクエストマッピングの設定とアクセスポリシーの定義に対して、パスの大文字・小文字が揃っているかを確認されたい。
-
+    特に、TERASOLUNA Server Framework for Java (5.3.0)以降にバージョンアップ行う際は、
+    Spring MVCのエンドポイントに割り当てているパスと \ ``<sec:intercept-url>``\タグの \ ``pattern``\属性で指定している値に対して、大文字・小文字が揃っていることを必ず確認すること。
     以前のバージョンではアクセスポリシーの定義に関して、パスの大文字・小文字に差異があっても認可が適用されるが、
-    バージョンアップによってパスの大文字・小文字を区別する様になり、リクエストマッピングの設定とパスの大文字・小文字で差異がある場合に認可の制御が適用されなくなる。
+    バージョンアップによってパスの大文字・小文字を区別する様になり、エンドポイントの設定とパスの大文字・小文字で差異がある場合に認可の制御が適用されなくなる。
 
     そのため、下記の問題が発生する可能性がある。
 
