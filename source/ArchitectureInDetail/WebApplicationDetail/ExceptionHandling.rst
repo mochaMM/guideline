@@ -1618,9 +1618,8 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
     致命的なエラーをラップしている\ ``NestedServletException``\を意図せずハンドリングしてしまうため、サーブレットコンテナに致命的なエラーを通知することができない。
     詳細は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
 
-    このようなケースで致命的なエラーをサーブレットコンテナに通知するためには、\ ``SystemExceptionResolver``\で\ ``NestedServletException``\をハンドリング対象外とすることに加えて、
+    このようなケースで致命的なエラーをサーブレットコンテナに通知するためには、\ :ref:`SystemExceptionResolverでNestedServletExceptionをハンドリング対象外とする<exception-handling-how-to-use-application-configuration-app-label>`\ ことに加えて、
     \ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\をハンドリングし、再スローするように実装すればよい。
-    \ ``SystemExceptionResolver``\で\ ``NestedServletException``\をハンドリング対象外とする設定については、\ :ref:`exception-handling-how-to-use-application-configuration-app-label`\ を参照されたい。
     以下に実装例を示す。
 
      .. code-block:: java
