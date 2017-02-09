@@ -461,14 +461,14 @@ JSPの実装
 
 国際化が適用されない場合
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-国際化には\ ``LocaleChangeInterceptor``\ を使用するが、\ ``LocaleChangeInterceptor``\ はSpring MVCの\ ``Controller``\ の処理実行時に呼ばれるインターセプタであるため、\ ``Controller``\ を経由しない遷移の場合は国際化が適用されないことに注意されたい。
+\ ``LocaleChangeInterceptor``\ はSpring MVCの\ ``Controller``\ の処理実行時に呼ばれるインターセプタであるため、\ ``Controller``\ を経由しない遷移の場合は国際化が適用されないことに注意されたい。
 
 例えば、エラー画面への遷移設定に直接JSPファイルを指定するような場合、エラー画面への遷移には\ ``Controller``\ が使用されない。
 この場合、エラー画面を国際化するには、エラー画面へ遷移するための\ ``Controller``\ を作成し、エラー画面への遷移に使用することで\ ``LocaleChangeInterceptor``\ が使用されるように設定する必要がある。
 
 .. note::
 
-    同様にJSPを直接指定した遷移の場合\ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ を経由しないためTilesが適用されない。
+    同様に、JSPを直接指定した遷移の場合\ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ を経由しないためTilesが適用されない。
 
 
 |
@@ -477,7 +477,7 @@ JSPの実装
 
 |
 
-**Spring MVCを経由しないエラー画面への遷移例**
+**LocaleChangeInterceptorが適用されないエラー画面への遷移例**
 
 * spring-security.xml
 
@@ -502,7 +502,7 @@ JSPの実装
 
 |
 
-**Spring MVCを経由させるエラー画面への遷移例**
+**LocaleChangeInterceptorが適用されるエラー画面への遷移例**
 
 * spring-security.xml
 
@@ -555,7 +555,7 @@ JSPの実装
 
 .. warning::
 
-    一般的に、エラー画面にはGETリクエストだけでなくPOSTリクエスト等からも遷移するため、\ ``<mvc:view-controller>``\ は使用しないことを推奨する。
+    一般的に、エラー画面にはGETリクエストだけでなくPOSTリクエストからも遷移する可能性があるため、\ ``<mvc:view-controller>``\ は使用しないことを推奨する。
 
     \ ``<mvc:view-controller>``\ 使用時の留意点については :ref:`controller_method_return-html-label`\ を参照されたい。
 
