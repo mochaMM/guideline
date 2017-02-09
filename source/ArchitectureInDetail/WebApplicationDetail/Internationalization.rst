@@ -525,20 +525,11 @@ JSPの実装
     * - | (1)
       - | \ ``<sec:access-denied-handler>``\ タグの\ ``error-page``\ 属性に認可エラー用のエラー画面へ遷移するためのパスを設定する。
 
-* Controllerクラス
+* spring-mvc.xml
 
-.. code-block:: java
+.. code-block:: xml
 
-    @Controller
-    @RequestMapping("/common/error") // (1)
-    public class ErrorController {
-
-        @RequestMapping("accessDeniedError") // (1)
-        public String accessDeniedError() {
-            return "common/error/accessDeniedError"; // (2)
-        }
-
-    }
+    <mvc:view-controller path="/common/error/accessDeniedError" view-name="common/error/accessDeniedError" /> <!-- (1) -->
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -548,16 +539,29 @@ JSPの実装
     * - 項番
       - 説明
     * - | (1)
-      - | エラー画面へ遷移するためにリクエストマッピングを定義する。
-    * - | (2)
-      - | 遷移するエラー画面のView名を返却する。
+      - | エラー画面へ遷移するためのリクエストパスに対して返却するView名を定義する。
 
 
-.. warning::
+.. note::
 
-    一般的に、エラー画面にはGETリクエストだけでなくPOSTリクエストからも遷移する可能性があるため、\ ``<mvc:view-controller>``\ は使用しないことを推奨する。
+    単純にview 名を返すだけのControllerメソッドは、\ ``<mvc:view-controller>`` \を使用して実装を代用することを推奨する。
 
-    \ ``<mvc:view-controller>``\ 使用時の留意点については :ref:`controller_method_return-html-label`\ を参照されたい。
+    例えば、上記のエラー画面へ遷移する定義は以下のようなControllerメソッドの実装を代用したものである。
+
+    .. code-block:: java
+
+        @Controller
+        @RequestMapping("/common/error")
+        public class ErrorController {
+
+            @RequestMapping("accessDeniedError")
+            public String accessDeniedError() {
+                return "common/error/accessDeniedError";
+            }
+
+        }
+
+    
 
 
 .. raw:: latex
