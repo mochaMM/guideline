@@ -1429,7 +1429,7 @@ Respective descriptions are as below.
          - Implementation details
        * - | Producer side
          - | Specify Destination in header attribute \ ``JMSReplyTo``\  of messages in accordance with JMS standards.
-           | For editing of header attribute, refer \ :ref`JMSHowToUseSettingForSendWithHeader`\.
+           | For editing of header attribute, refer \ :ref:`JMSHowToUseSettingForSendWithHeader`\.
        * - | Consumer side
          - | Return objects which send a message.
 
