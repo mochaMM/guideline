@@ -1614,11 +1614,13 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
  .. warning::
 
-    \ ``@ExceptionHandler``\を付与したメソッドで\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\を捕捉している場合は、
+    \ ``@ExceptionHandler``\を付与したメソッドで\ ``java.lang.Exception``\や\ ``javax.servlet.ServletException``\をハンドリングしている場合は、
     致命的なエラーをラップしている\ ``NestedServletException``\を意図せずハンドリングしてしまうため、サーブレットコンテナに致命的なエラーを通知することができない。
     詳細は、\ :ref:`「@ExceptionHandlerとSystemExceptionResolverによる致命的なエラーのハンドリングついて」<exception-handling-class-fatalerror-warning>`\ を参照されたい。
 
-    このようなケースで致命的なエラーをサーブレットコンテナに通知するためには、\ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\を捕捉し、再スローするように実装すればよい。以下に実装例を示す。
+    このようなケースで致命的なエラーをサーブレットコンテナに通知するためには、\ :ref:`SystemExceptionResolverでNestedServletExceptionをハンドリング対象外とする<exception-handling-how-to-use-application-configuration-app-label>`\ ことに加えて、
+    \ ``@ExceptionHandler``\を付与したメソッドで\ ``NestedServletException``\をハンドリングし、再スローするように実装すればよい。
+    以下に実装例を示す。
 
      .. code-block:: java
 
@@ -1641,10 +1643,8 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
     **複数のControllerでExceptionやServletExceptionを捕捉している場合について**
 
-       複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討した方がよい。
-       なお、\ :ref:`「自動的に登録されるHandlerExceptionResolverについて」<ExceptionHandling-annotation-driven>`\にある通り、\ ``@ExceptionHandler``\を付与したメソッドで例外がハンドリングされた場合は\ ``SystemExceptionHandler``\ではハンドリングされないため、
-       \ ``@ControllerAdvice``\を使用してすべてのControllerに\ ``@ExceptionHandler(NestedServletException.class)``\を付与したメソッドを適用した場合は、\ ``SystemExceptionHandler``\でハンドリング対象外とする設定が不要になる点も付記しておく。
-       \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
+    複数のControllerで\ ``NestedServletException``\を再スローする\ ``@ExceptionHandler``\を記述する必要がある場合は、\ ``@ControllerAdvice``\の使用を検討した方がよい。
+    \ ``@ControllerAdvice``\の詳細は、\ :ref:`application_layer_controller_advice`\を参照されたい。
 
 
 .. _exception-handling-how-to-use-codingpoint-jsp-label:
