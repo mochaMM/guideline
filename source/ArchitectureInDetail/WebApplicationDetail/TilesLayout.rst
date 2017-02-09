@@ -47,10 +47,10 @@ Overview
 
      Tilesの適用をしない方がよい場合もある。例えば、エラー画面にTilesを使用するのは、以下の理由により推奨しない。
 
-     * エラー画面表示中にTilesによるエラーが発生すると解析がしにくくなるため。(二重障害発生の場合)
-     * web.xmlの<error-pages>タグで設定するJSPでは、必ずしも画面表示にTilesによるテンプレートが適用されないため。
+     * | エラー画面表示中にTilesによるエラーが発生すると解析がしにくくなるため。(二重障害発生の場合)
+       | 詳細については\ :ref:`case_Internationalization_can_not_be_done`\ を参照されたい。
+     * | web.xmlの<error-pages>タグで設定するJSPでは、必ずしも画面表示にTilesによるテンプレートが適用されないため。
 
-     詳細については\ :ref:`case_Internationalization_can_not_be_done`\ を参照されたい。
 
 |
 
