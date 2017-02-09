@@ -934,9 +934,9 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
             </map>
         </property>
         <property name="excludedExceptions"> <!-- (6) -->
-            <set>
+            <array>
                 <value>org.springframework.web.util.NestedServletException</value>
-            </set>
+            </array>
         </property>
         <property name="defaultErrorView" value="common/error/systemError" /> <!-- (7) -->
         <property name="defaultStatusCode" value="500" /> <!-- (8) -->
