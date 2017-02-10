@@ -351,6 +351,31 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
           </sec:http>
 
 .. warning::
+    Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のパスマッチングの仕様が大文字・小文字を区別する様になった。
+
+    例えば以下に示すように、\ ``/Todo/List``\というパスが割り当てられたSpring MVCのエンドポイントに対してアクセスポリシーを定義する場合は、 
+    \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字を揃える必要がある。
+    誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字が揃っていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
+
+    * Spring MVCのエンドポイントの実装例
+
+     .. code-block:: java
+
+         @RequestMapping(value="/Todo/List")
+         public String viewTodoList(){
+            //...
+         }
+
+    * アクセスポリシーの定義例
+
+     .. code-block:: xml 
+
+         <sec:http>
+             <sec:intercept-url pattern="/Todo/List" access="isAuthenticated()" />
+             <!-- omitted -->
+         </sec:http>
+
+.. warning::
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 

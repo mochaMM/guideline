@@ -85,6 +85,8 @@
 
         * パス変数の使用方法の説明と使用時の注意点を追記(\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
 
+        * \ ``AntPathRequestMatcher``\のパスマッチングの仕様変更に対する注意点を追記(\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
+
     * - 
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正
