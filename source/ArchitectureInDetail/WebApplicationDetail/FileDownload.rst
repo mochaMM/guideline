@@ -295,7 +295,16 @@ Excelファイルのダウンロード
                 setText(cell, "Spring-Excel test");
 
                 cell = getCell(sheet, 2, 0);
-                setText(cell, (Date) model.get("serverTime")).toString());
+                setText(cell, ((Date) model.get("serverTime")).toString());
+            }
+
+            private Cell getCell(Sheet sheet, int rowNumber, int cellNumber) {
+                Row row = sheet.createRow(rowNumber);
+                return row.createCell(cellNumber);
+            }
+            
+            private void setText(Cell cell, String text) {
+                cell.setCellValue(text);
             }
         }
 
@@ -324,13 +333,13 @@ Excelファイルのダウンロード
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi-ooxml</artifactId>
+          <exclusions>
+              <exclusion>
+                  <groupId>stax</groupId>
+                  <artifactId>stax-api</artifactId>
+              </exclusion>
+          </exclusions>
       </dependency>
-      <exclusions>
-          <exclusion>
-              <groupId>stax</groupId>
-              <artifactId>stax-api</artifactId>
-          </exclusion>
-      </exclusions>
   </dependencies>
   
 \
