@@ -220,16 +220,16 @@ URL to be published as Web service
 | If SOAP Web Service is created as per this guideline, WSDL is published under following URL.
 | The URL must be specified at the client side.
 
-* `http://AAA.BBB.CCC.DDD:XXXX/ Context route/Web service name?wsdl`
+* `http://AAA.BBB.CCC.DDD:XXXX/ Context root/Web service name?wsdl`
   
 End point address defined in WSDL consists of following URL..
 
-* `http://AAA.BBB.CCC.DDD:XXXX/ Context route/Web service name`
+* `http://AAA.BBB.CCC.DDD:XXXX/ Context root/Web service name`
 
 
 .. Note::
 
-    In the guideline, it is assumed that a WAR file is used for deploying a web project of multi-project configuration in AP server. In this case, [server projectName]-web basically acts as a context route. However, it must be noted that route changes depending on AP server.
+    In the guideline, it is assumed that a WAR file is used for deploying a web project of multi-project configuration in AP server. In this case, [server projectName]-web basically acts as a context root. However, it must be noted that root changes depending on AP server.
 
 
 .. Note::
@@ -240,11 +240,11 @@ End point address defined in WSDL consists of following URL..
 
 .. warning::
 
-    In this guideline, AP server  (library to be used in case of Tomcat) is configured to change mapping of context route and access by following URL.
+    In this guideline, AP server  (library to be used in case of Tomcat) is configured to change mapping of context root and access by following URL.
      
     * `http://AAA.BBB.CCC.DDD:XXXX/[server projectName]-web/ws/TodoWebService?wsdl`
        
-    How to map Web service in URL which is not under context route differs according to AP server.
+    How to map Web service in URL which is not under context root differs according to AP server.
     Refer following for details.
 
      .. tabularcolumns:: |p{0.10\linewidth}|p{0.50\linewidth}|p{0.40\linewidth}|
@@ -394,7 +394,7 @@ Application configuration
     * - Sr. No.
       - Description
     * - | (1)
-      - | Add \ ``[server projectName]-ws.xml``\  to reading target while generating a route \ ``ApplicationContext``\ .
+      - | Add \ ``[server projectName]-ws.xml``\  to reading target while generating a root \ ``ApplicationContext``\ .
  
 |
 
