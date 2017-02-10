@@ -40,6 +40,8 @@ Localeの切り替えイメージを以下に示す。
     エラー画面を国際化する必要がある場合、Spring MVCのControllerを使用してエラー画面に遷移すること。
     Spring MVCを介さずエラー画面に直接遷移した場合、メッセージが意図した言語で出力されない場合がある。
 
+    詳細については\ :ref:`case_Internationalization_can_not_be_done`\ を参照されたい。
+
 .. tip::
 
     国際化はi18nという略称が広く知られている。
@@ -452,6 +454,115 @@ JSPの実装
 
     * インクルード用の共通jspにSpringのタグライブラリを定義する必要がある。
     * インクルード用の共通jspファイルの詳細は :ref:`view_jsp_include-label` を参照されたい。
+
+|
+
+.. _case_Internationalization_can_not_be_done:
+
+国際化が適用されない場合の対処方法
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+\ ``LocaleChangeInterceptor``\ はSpring MVCの\ ``Controller``\ の処理実行時に呼ばれるインターセプタであるため、\ ``Controller``\ を経由しない遷移の場合は国際化が適用されないことに注意されたい。
+
+例えば、エラー画面への遷移設定に直接JSPファイルを指定するような場合、エラー画面への遷移には\ ``Controller``\ が使用されない。
+この場合、エラー画面を国際化するには、エラー画面へ遷移するための\ ``Controller``\ を作成し、エラー画面への遷移に使用することで\ ``LocaleChangeInterceptor``\ が使用されるように設定する必要がある。
+
+.. note::
+
+    同様に、JSPを直接指定した遷移の場合\ :doc:`../WebApplicationDetail/TilesLayout`\ で使用する\ ``ViewResolver``\ を経由しないためTilesが適用されない。
+
+
+|
+
+設定方法について、Spring Securityの\ :ref:`SpringSecurityAuthorization`\ の実装を例に以下に示す。
+
+|
+
+**LocaleChangeInterceptorが適用されないエラー画面への遷移例**
+
+* spring-security.xml
+
+.. code-block:: xml
+
+    <sec:http>
+        <!-- omitted -->
+        <sec:access-denied-handler
+            error-page="/WEB-INF/views/common/error/accessDeniedError.jsp" /> <!-- (1) -->
+        <!-- omitted -->
+    </sec:http>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``<sec:access-denied-handler>``\ タグの\ ``error-page``\ 属性に認可エラー用のエラー画面をJSPで指定する。
+
+|
+
+**LocaleChangeInterceptorが適用されるエラー画面への遷移例**
+
+* spring-security.xml
+
+.. code-block:: xml
+
+    <sec:http>
+        <!-- omitted -->
+        <sec:access-denied-handler
+            error-page="/common/error/accessDeniedError" /> <!-- (1) -->
+        <!-- omitted -->
+    </sec:http>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``<sec:access-denied-handler>``\ タグの\ ``error-page``\ 属性に認可エラー用のエラー画面へ遷移するためのパスを設定する。
+
+* spring-mvc.xml
+
+.. code-block:: xml
+
+    <mvc:view-controller path="/common/error/accessDeniedError" view-name="common/error/accessDeniedError" /> <!-- (1) -->
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | エラー画面へ遷移するためのリクエストパスに対して返却するView名を定義する。
+
+
+.. note::
+
+    単純にview 名を返すだけのControllerメソッドは、\ ``<mvc:view-controller>`` \を使用して実装を代用することを推奨する。
+
+    例えば、上記のエラー画面へ遷移する定義は以下のようなControllerメソッドの実装を代用したものである。
+
+    .. code-block:: java
+
+        @Controller
+        @RequestMapping("/common/error")
+        public class ErrorController {
+
+            @RequestMapping("accessDeniedError")
+            public String accessDeniedError() {
+                return "common/error/accessDeniedError";
+            }
+
+        }
+
+    
+
 
 .. raw:: latex
 
