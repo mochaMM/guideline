@@ -297,13 +297,13 @@ Implementation of Custom View
                 setText(cell, ((Date) model.get("serverTime")).toString());
             }
 
-            private void setText(Cell cell, String text) {
-                cell.setCellValue(text);
-            }
-
             private Cell getCell(Sheet sheet, int rowNumber, int cellNumber) {
                 Row row = sheet.createRow(rowNumber);
                 return row.createCell(cellNumber);
+            }
+            
+            private void setText(Cell cell, String text) {
+                cell.setCellValue(text);
             }
         }
 
