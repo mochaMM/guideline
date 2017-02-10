@@ -18,7 +18,7 @@ Change Log
 
     * -
       - General
-      - For the Maven archetype is deployed to \ `Maven Central <https://search.maven.org/>`_\ 	, remove the creation option \ ``-DarchetypeCatalog``\  of the following Maven archetypes
+      - Modification of startup option due to change of Maven archetype(change to \ `Maven Central <https://search.maven.org/>`_\) for blank project generation(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
         * :doc:`../Overview/FirstApplication`  

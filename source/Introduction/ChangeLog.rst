@@ -18,7 +18,7 @@
 
     * -
       - 全般
-      - \ Mavenアーキタイプのデプロイ先が `Maven Central <https://search.maven.org/>`_\ に変更されることに伴い、Mavenアーキタイプの作成オプション\ ``-DarchetypeCatalog``\を削除
+      - ブランクプロジェクト生成用のMavenアーキタイプのデプロイ先変更(`Maven Central <https://search.maven.org/>`_\に変更)に伴う起動オプションの修正(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
         * :doc:`../Overview/FirstApplication`
