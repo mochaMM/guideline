@@ -375,9 +375,6 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
              <!-- omitted -->
          </sec:http>
 
-    特に、TERASOLUNA Server Framework for Java (5.3.0)以降にバージョンアップ行う際は、
-    Spring MVCのエンドポイントに割り当てているパスと \ ``<sec:intercept-url>``\タグの \ ``pattern``\属性で指定している値に対して、大文字・小文字が揃っていることを必ず確認すること。
-
 .. warning::
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
