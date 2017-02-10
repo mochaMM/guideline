@@ -18,7 +18,7 @@
 
     * -
       - 全般
-      - \ `Maven Central <https://search.maven.org/>`_\ への移行に伴い、以下のMavenアーキタイプの作成オプション\ ``-DarchetypeCatalog``\を除去
+      - \ 共通ライブラリのレポジトリが `Maven Central <https://search.maven.org/>`_\ へ移行されることに伴い、Mavenアーキタイプの作成オプション\ ``-DarchetypeCatalog``\を削除
 
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
         * :doc:`../Overview/FirstApplication`
