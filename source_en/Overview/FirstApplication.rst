@@ -71,13 +71,13 @@ Here, created a project on Windows environment.
     [INFO] Building Maven Stub Project (No POM) 1
     [INFO] ------------------------------------------------------------------------
     [INFO]
-    [INFO] >>> maven-archetype-plugin:2.2:generate (default-cli) > generate-sources @ standalone-pom >>>
+    [INFO] >>> maven-archetype-plugin:2.4:generate (default-cli) > generate-sources @ standalone-pom >>>
     [INFO]
-    [INFO] <<< maven-archetype-plugin:2.2:generate (default-cli) < generate-sources @ standalone-pom <<<
+    [INFO] <<< maven-archetype-plugin:2.4:generate (default-cli) < generate-sources @ standalone-pom <<<
     [INFO]
-    [INFO] --- maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom ---
+    [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository missing. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:1.0.0.RELEASE -> http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases] found in catalog http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases
+    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE] found in catalog remote
     [INFO] ----------------------------------------------------------------------------
     [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
@@ -94,9 +94,9 @@ Here, created a project on Windows environment.
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 1.631 s
-    [INFO] Finished at: 2015-07-31T08:47:12+00:00
-    [INFO] Final Memory: 11M/26M
+    [INFO] Total time: 9.266 s
+    [INFO] Finished at: 2017-02-10T11:46:01+09:00
+    [INFO] Final Memory: 13M/188M
     [INFO] ------------------------------------------------------------------------
     C:\work>
 

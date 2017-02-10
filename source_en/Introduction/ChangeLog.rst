@@ -18,7 +18,7 @@ Change Log
 
     * -
       - General
-      - For with the transition to Maven Central, remove the creation option \ ``-DarchetypeCatalog``\  of the following Maven archetypes
+      - For the Maven archetype is deployed to \ `Maven Central <https://search.maven.org/>`_\ 	, remove the creation option \ ``-DarchetypeCatalog``\  of the following Maven archetypes
 
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
         * :doc:`../Overview/FirstApplication`  
