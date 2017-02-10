@@ -2168,7 +2168,7 @@ Creating REST API packages
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Create a package to store REST API class.
 
-| It is recommended to assign \ ``api``\  as the package name for the route package that stores REST API class and to create a package for each resource (lower case of resource name) under the same.
+| It is recommended to assign \ ``api``\  as the package name for the root package that stores REST API class and to create a package for each resource (lower case of resource name) under the same.
 | Resource name in the explanation is \ ``Member``\ . Hence, the package name is \ ``org.terasoluna.examples.rest.api.member``\ .
 
  .. note::
@@ -2194,7 +2194,7 @@ Create a package to store REST API class.
 
 |
 
-| It is recommended to create a package named ``common``\  that stores common parts for REST API just under the route package that stores the REST API class and to create sub packages at functionality level.
+| It is recommended to create a package named ``common``\  that stores common parts for REST API just under the root package that stores the REST API class and to create sub packages at functionality level.
 | For example, a sub package that stores common parts which perform error handling is created with the name \ ``error``\ .
 | The class for exception handling created in the subsequent explanation, is stored in a package called \ ``org.terasoluna.examples.rest.api.common.error``\ .
 
