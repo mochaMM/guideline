@@ -324,13 +324,13 @@ Excelファイルのダウンロード
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi-ooxml</artifactId>
+          <exclusions>
+              <exclusion>
+                  <groupId>stax</groupId>
+                  <artifactId>stax-api</artifactId>
+              </exclusion>
+          </exclusions>
       </dependency>
-      <exclusions>
-          <exclusion>
-              <groupId>stax</groupId>
-              <artifactId>stax-api</artifactId>
-          </exclusion>
-      </exclusions>
   </dependencies>
   
 \
