@@ -8226,7 +8226,7 @@ MyBatis設定ファイル(:file:`projectName-domain/src/main/resources/META-INF/
           - 上記例では、"Lazy Load"対象のプロパティである\ ``categories``\プロパティにアクセスしていないが、
             \ ``Item#code``\プロパティにアクセスした際に、"Lazy Load"が実行される。
 
-            「\ ``false``\」（デフォルト）の場合、上記のケースでは"Lazy Load"は実行されない。
+            「\ ``false``\」の場合、上記のケースでは"Lazy Load"は実行されない。
 
 
 .. raw:: latex
