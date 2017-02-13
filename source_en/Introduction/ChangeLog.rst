@@ -18,7 +18,7 @@ Change Log
 
     * -
       - General
-      - Modification of startup option due to change of Maven archetype(change to \ `Maven Central <https://search.maven.org/>`_\) for blank project generation(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+      - Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
         * :doc:`../Overview/FirstApplication`  
