@@ -404,6 +404,13 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
          * - | (3)
            - | \ ``/restrict``\に対するアクセスポリシーを定義する。
 
+.. warning:: **Tomcat以外のアプリケーションサーバを使用する際の注意点**
+
+    Spring SecurityとSpring MVCではアクセスされたURLを取得する方法が異なっているが、Tomcat以外のアプリケーションサーバにおいて、この差異を利用してSpring Securityの認可機能を突破しハンドラメソッドにアクセスできる脆弱性が存在する。
+    本事象の詳細は「\ `CVE-2016-9879 Encoded "/" in path variables <https://pivotal.io/jp/security/cve-2016-9879>`_\」を参照のこと。
+
+    対策として、最新のTERASOLUNA Server Framework for Javaへバージョンアップされたい。
+
 アクセスポリシーの指定
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
