@@ -1236,6 +1236,17 @@ webモジュールの構成
 
         Spring MVCが提供する静的リソースの管理メカニズムを適用しやすくするために、
         専用のディレクトリを設ける構成を採用している。
+
+        .. warning::
+
+           静的リソースを表示する場合、\ `org.springframework.web.servlet.ResourceServlet`\ を使用するとディレクトリトラバーサル攻撃が可能となってしまう。
+           詳細は、\ `CVE-2016-9878 - Directory Traversal in the Spring Framework ResourceServlet <http://pivotal.io/security/cve-2016-9878>`_\を参照のこと。
+
+           対策として、最新のTERASOLUNA Server Framework for Javaへバージョンアップされたい。
+
+           なお、\ `org.springframework.web.servlet.ResourceServlet`\を使用する際は\ `web.xml`\に明示的に記載しなければならないため、
+           Spring MVCが提供する静的リソースの管理メカニズムを使用している限りは、この脆弱性は存在しない。
+
     * - | (20)
       - アプリケーション全体に適用する画面スタイルを定義するCSSファイル。
 
