@@ -919,7 +919,7 @@ BCryptPasswordEncoder
   
     * ``${JAVA_HOME}/jre/lib/security/java.security`` 内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/urandom`` に変更する。
   
-    JDK 7のb19以前のバージョンで本事象が発生する場合は、以下のいずれかの設定を追加することで回避することができる。 
+    Java SE 7のb19以前のバージョンで本事象が発生する場合は、以下のいずれかの設定を追加することで回避することができる。
   
     ただし、 \ ``SecureRandom``\ で使用するアルゴリズムが \ ``NativePRNG``\ の場合は回避することができない
   
