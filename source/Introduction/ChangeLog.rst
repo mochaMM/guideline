@@ -42,6 +42,10 @@
 
         * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
+        Spring Framework 4.3対応に伴う修正
+
+        * JSR-310 Date and Time APIを使用する際の注意点を削除(\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
         | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
