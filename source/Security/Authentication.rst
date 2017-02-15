@@ -923,7 +923,7 @@ BCryptPasswordEncoder
   
     * Javaコマンド実行時に ``-Djava.security.egd=file:/dev/./urandom`` を指定する。
   
-    * jre/lib/security/java.security内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/./urandom`` に変更する
+    * ``${JAVA_HOME}/jre/lib/security/java.security`` 内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/./urandom`` に変更する
 
 |
 
