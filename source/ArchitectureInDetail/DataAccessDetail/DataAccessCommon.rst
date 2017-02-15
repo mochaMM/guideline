@@ -85,11 +85,11 @@ JDBC DataSourceについて
       - IBM WebSphere Application Server Version 8.5
       - \ `WebSphere Application Server Online information center <http://www-01.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=ja>`_\ を参照されたい。
     * - 5.
-      - JBoss Enterprise Application Platform 6.4
-      - \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\ を参照されたい。
-    * - 6.
       - JBoss Enterprise Application Platform 7.0
       - \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-13-datasource-management>`_\ を参照されたい。
+    * - 6.
+      - JBoss Enterprise Application Platform 6.4
+      - \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\ を参照されたい。
 
 
 .. _datasource_oss_thirdparty-label:

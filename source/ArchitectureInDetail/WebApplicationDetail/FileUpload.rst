@@ -26,8 +26,8 @@ Overview
     version 5.3.0.RELEASE時点で問題の発生が確認されているアプリケーションサーバは以下の通りである。
     
     * WebLogic 12.1.3
-    * JBoss EAP 6.4.0.GA
     * JBoss EAP 7.0
+    * JBoss EAP 6.4.0.GA
     
     このうちJBoss EAP 7.0では、WEB-INF下にjboss-web.xmlを作成し、エンコードを指定することで問題を回避することができる。
     
