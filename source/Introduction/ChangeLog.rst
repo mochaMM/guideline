@@ -85,7 +85,11 @@
         * Remember Me認証に使用するチェックボックスのvalue属性値について追記(\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
         * \ ``<mvc:view-controller>`` \を使用する際の注意点を追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-        
+
+        記載内容の修正
+
+        * SecureRandomの使用についての記載を修正(\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
     * -
       - :doc:`../Security/Authorization`
       - 記載内容の追加
