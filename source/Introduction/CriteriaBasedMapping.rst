@@ -102,7 +102,7 @@ CVEによる観点
        * サポートされていない古いバージョン
      - * :ref:`implement_of_jsp`
    * - \ `CVE-2015-3192 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3192>`_\
-     - DTDを使用したDOS攻撃を受けてしまう
+     - DTDを使用したDOS攻撃ができてしまう
      - * Spring Framework 3.2.0 to 3.2.13
 
        * Spring Framework 4.0.0 to 4.1.6
@@ -134,7 +134,7 @@ CVEによる観点
      - * Spring Data JPA 1.10.2, 1.9.4
      - * :ref:`how_to_specify_query_annotation-label`
    * - \ `CVE-2016-9878 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9878>`_\
-     - \ ``ResourceServlet``\を使用するとディレクトリトラバーサル攻撃を受けてしまう
+     - \ ``ResourceServlet``\を使用するとディレクトリトラバーサル攻撃ができてしまう
      - * Spring Framework 4.3.0 to 4.3.4
 
        * Spring Framework 4.2.0 to 4.2.8
@@ -144,7 +144,7 @@ CVEによる観点
        * サポートされていない古いバージョン
      - * :ref:`CreateWebApplicationProjectConfigurationWeb`
    * - \ `CVE-2016-9879 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9879>`_\
-     - Spring SecurityとSpring MVCのパス得方法の差異を利用して認可のすり抜けができてしまう
+     - Spring SecurityとSpring MVCのパス取得方法の差異を利用して認可のすり抜けができてしまう
      - * Spring Security 3.2.0 - 3.2.9
 
        * Spring Security 4.0.x - 4.1.3
