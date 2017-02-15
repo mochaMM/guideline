@@ -23,13 +23,34 @@ Overview
     一部のアプリケーションサーバ上でServlet 3.0のファイルアップロード機能を使用すると、
     リクエストパラメータやファイル名のマルチバイト文字が文字化けすることがある。
 
-    問題が発生するアプリケーションサーバを使用する場合は、Commons FileUploadを使用することで問題を回避することができる。
-    Commons FileUploadを使用するための設定方法については、「:ref:`file-upload_usage_commons_fileupload`」を参照されたい。
-
-    version 5.0.1.RELEASE時点で問題の発生が確認されているアプリケーションサーバは以下の通りである。
-
+    version 5.3.0.RELEASE時点で問題の発生が確認されているアプリケーションサーバは以下の通りである。
+    
     * WebLogic 12.1.3
     * JBoss EAP 6.4.0.GA
+    * JBoss EAP 7.0
+    
+    このうちJBoss EAP 7.0では、WEB-INF下にjboss-web.xmlを作成し、エンコードを指定することで問題を回避することができる。
+    
+     .. code-block:: xml
+
+       <?xml version="1.0" encoding="UTF-8"?>
+       <jboss-web xsi:schemaLocation="http://www.jboss.org/j2ee/schema/jboss-web_10_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.jboss.com/xml/ns/javaee" version="10.0">
+           <default-encoding>UTF-8</default-encoding> <!-- (1) -->
+       </jboss-web>
+
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+       :header-rows: 1
+       :widths: 10 90
+
+       * - 項番
+         - 説明
+       * - | (1)
+         - | エンコードを指定する。
+           | 上記例では、 UTF-8を指定している。
+    
+    その他の問題が発生するアプリケーションサーバを使用する場合は、Commons FileUploadを使用することで問題を回避することができる。
+    Commons FileUploadを使用するための設定方法については、「:ref:`file-upload_usage_commons_fileupload`」を参照されたい。
 
  .. warning::
  
