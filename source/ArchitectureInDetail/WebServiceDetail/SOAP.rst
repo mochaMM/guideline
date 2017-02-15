@@ -342,6 +342,8 @@ SOAPサーバの作成
      
     JBoss Enterprise Application Platform 6.4: \ `DEVELOPMENT GUIDE JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Development_Guide/chap-JAX-WS_Web_Services.html>`_\
 
+    JBoss Enterprise Application Platform 7.0: \ `DEVELOPING JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/developing-web-services-applications/chapter-3-developing-jax-ws-web-services>`_\
+
 |
 
 **パッケージのコンポーネントスキャン設定**
