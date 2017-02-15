@@ -919,11 +919,11 @@ BCryptPasswordEncoder
   
     * ``${JAVA_HOME}/jre/lib/security/java.security`` 内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/urandom`` に変更する。
   
-    Java SE 7のb19以前のバージョン(正式リリース前)で本事象が発生する場合は、以下のいずれかの設定を追加することで回避することができる。ただし、 \ ``SecureRandom``\ で使用するアルゴリズムが \ ``NativePRNG``\ の場合は回避することができない
+    Java SE 7のb19以前のバージョン(正式リリース前)で本事象が発生する場合は、以下のいずれかの設定を追加することで回避することができる。ただし、 \ ``SecureRandom``\ で使用するアルゴリズムが \ ``NativePRNG``\ の場合は回避することができない。
   
     * Javaコマンド実行時に ``-Djava.security.egd=file:/dev/./urandom`` を指定する。
   
-    * ``${JAVA_HOME}/jre/lib/security/java.security`` 内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/./urandom`` に変更する
+    * ``${JAVA_HOME}/jre/lib/security/java.security`` 内の ``securerandom.source=/dev/random`` を ``securerandom.source=/dev/./urandom`` に変更する。
 
 |
 
