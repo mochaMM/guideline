@@ -2321,7 +2321,7 @@ Apache ActiveMQを利用する場合の設定について説明する。
   | JMSプロバイダによっては、固有の設定が必要な場合がある。
   | Apache ActiveMQでは、受信するメッセージのペイロードが許可されたオブジェクトで構成されていることを保障するために、環境変数をアプリケーションサーバの起動引数に追加する必要がある。
   | 詳細については、\ `ObjectMessage <http://activemq.apache.org/objectmessage.html>`_\ を参照されたい。
-  | Apache Tomcatを利用する場合の設定例を以下に示す。JBossの場合は\ `Service Configuration <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Installation_Guide/sect-Service_Configuration.html>`_\ を、Weblogicの場合は\ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\ を参照されたい。
+  | Apache Tomcatを利用する場合の設定例を以下に示す。JBoss Enterprise Application Platform 6.4の場合は\ `Service Configuration <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Installation_Guide/sect-Service_Configuration.html>`_\ を、JBoss Enterprise Application Platform 7.0の場合は\ `Configuring JBoss EAP to Run as a Service <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/installation-guide/chapter-4-configuring-jboss-eap-to-run-as-a-service>`_\ を、Weblogicの場合は\ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\ を参照されたい。
 
   - :file:`$CATALINA_HOME/bin/setenv.sh`
 
