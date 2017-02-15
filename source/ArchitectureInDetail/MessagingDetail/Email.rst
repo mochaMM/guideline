@@ -209,7 +209,10 @@ JavaMailSenderの設定方法
       - \ `WebSphere Application Server Version 8.5.5 documentation <https://www-01.ibm.com/support/knowledgecenter/SSD28V_8.5.5/com.ibm.websphere.wlp.core.doc/ae/twlp_admin_javamail.html>`_\ を参照されたい。
     * - 4.
       - Red Hat JBoss Enterprise Application Platform Version 6.4
-      - \ `Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Mail_subsystem.html>`_\ を参照されたい。
+      - \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Mail_subsystem.html>`_\ を参照されたい。
+    * - 5.
+      - Red Hat JBoss Enterprise Application Platform Version 7.0
+      - \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-10-mail-subsystem>`_\ を参照されたい。
 
 
 JNDI経由で取得したメールセッションをBeanとして登録するための設定を行う。
