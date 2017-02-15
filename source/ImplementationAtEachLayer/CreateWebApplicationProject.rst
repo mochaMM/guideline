@@ -1244,8 +1244,9 @@ webモジュールの構成
 
            対策として、最新のTERASOLUNA Server Framework for Javaへバージョンアップされたい。
 
-           なお、\ `org.springframework.web.servlet.ResourceServlet`\を使用する際は\ `web.xml`\に明示的に記載しなければならないため、
-           Spring MVCが提供する静的リソースの管理メカニズムを使用している限りは、この脆弱性は存在しない。
+
+           なお、本ガイドラインに沿ってSpring MVCが提供する静的リソースの管理メカニズムを使用している場合は、この脆弱性は存在しない。
+           \  ``org.springframework.web.servlet.ResourceServlet``\を使用する際は、\ ``web.xml``\に意図的に定義を追加する必要がある。
 
     * - | (20)
       - アプリケーション全体に適用する画面スタイルを定義するCSSファイル。
