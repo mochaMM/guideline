@@ -122,7 +122,7 @@ CVEによる観点
 
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2016-5007 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5007>`_\
-     - Spring SecurityとSpring MVCのパスマッチングの差異を利用して認可のすり抜けができてしまう
+     - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けができてしまう
      - * Spring Security 3.2.x, 4.0.x, 4.1.0
 
        * Spring Framework 3.2.x, 4.0.x, 4.1.x, 4.2.x
