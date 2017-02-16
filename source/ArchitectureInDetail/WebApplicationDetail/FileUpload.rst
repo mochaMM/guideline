@@ -29,25 +29,10 @@ Overview
     * JBoss EAP 7.0
     * JBoss EAP 6.4.0.GA
     
-    このうちJBoss EAP 7.0では、WEB-INF下にjboss-web.xmlを作成し、エンコードを指定することで問題を回避することができる。
-    
-     .. code-block:: xml
+    このうちJBoss EAP 7.0では、\ ``stanalone.xml``\ または\ ``jboss-web.xml``\ に設定を追加することで問題を回避することができる。
+    詳しくは以下Wikiの説明を参照されたい。
 
-       <?xml version="1.0" encoding="UTF-8"?>
-       <jboss-web xsi:schemaLocation="http://www.jboss.org/j2ee/schema/jboss-web_10_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.jboss.com/xml/ns/javaee" version="10.0">
-           <default-encoding>UTF-8</default-encoding> <!-- (1) -->
-       </jboss-web>
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-       :header-rows: 1
-       :widths: 10 90
-
-       * - 項番
-         - 説明
-       * - | (1)
-         - | エンコードを指定する。
-           | 上記例では、 UTF-8を指定している。
+    \ `JBoss EAP 7.0を利用する際の注意点 <https://github.com/terasolunaorg/terasoluna-gfw/wiki/JBoss7_ja>`_\ 
     
     その他の問題が発生するアプリケーションサーバを使用する場合は、Commons FileUploadを使用することで問題を回避することができる。
     Commons FileUploadを使用するための設定方法については、「:ref:`file-upload_usage_commons_fileupload`」を参照されたい。
