@@ -24,6 +24,10 @@ Overview
 
    **Picture - Establishment of logical session**
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
     :header-rows: 1
@@ -49,6 +53,10 @@ Overview
         | **リクエストをまたいで、同じデータにアクセスすることができる。**
     * - | (7)
       - | Webアプリケーションは、Webブラウザにレスポンスを返却する。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **セッションIDを連携するためのパラメータ名について**
 
@@ -101,6 +109,10 @@ Overview
         | 既にセッションが確立されている場合は、新たなセッションは生成されない。
         | sessionスコープのBeanの使用方法については、\ :ref:`session-management_how_to_use_sessionscope`\ を参照されたい。
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
 
     上記の項番4, 5, 6については、セッションの使用有無はControllerの実装によって指定するが、セッションの生成タイミングは、フレームワークによって制御される。
@@ -142,6 +154,10 @@ Overview
       - | Spring Frameworkの、sessionスコープのBeanを使用する処理。
         | sessionスコープのBeanがセッションに格納される。
         | sessionスコープのBeanの使用方法については、\ :ref:`session-management_how_to_use_sessionscope`\ を参照されたい。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -612,7 +628,8 @@ How to use
      .. list-table::
         :widths: 10 90
         :header-rows: 1
-    
+        :class: longtable
+
         * - 項番
           - 説明
         * - | (1)

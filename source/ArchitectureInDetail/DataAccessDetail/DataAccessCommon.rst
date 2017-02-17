@@ -1008,6 +1008,7 @@ LIKE検索時のエスケープ処理の実装例については、使用するO
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - | 項番
           - | 説明

@@ -165,6 +165,10 @@ Entityクラスの作成例
     :width: 100%
     :align: center
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.55\linewidth}|
  .. list-table::
     :header-rows: 1
@@ -208,6 +212,9 @@ Entityクラスの作成例
       - | c_order_status
       - | 注文ステータスを定義するコードテーブル。
 
+.. raw:: latex
+
+   \newpage
 
 Entity構成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -222,6 +229,7 @@ Entity構成
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
+    :class: longtable
 
     * - 項番
       - クラス名
@@ -255,6 +263,9 @@ Entity構成
       - | OrderStatus
       - | c_order_statusテーブルはコード系テーブルなので、Entityクラスは作成しない。
 
+.. raw:: latex
+
+   \newpage
 
 上記のエンティティ図をみると、ショッピングサイトのアプリケーションとして主体のEntityクラスとして扱われるのは、
 Orderクラスのみと思ってしまうかもしれないが、主体となる得るEntityクラスはOrderクラス以外にも存在する。
@@ -589,6 +600,10 @@ Repositoryインタフェースのメソッド定義
         #. メソッド名のexistsBy以降は、検索条件となるフィールドの物理名または論理的な条件名を指定し、どのような状態のEntityの存在チェックを行うのか推測できる名前とする。
         #. 引数は、条件となるフィールド毎に用意する。ただし、条件が多い場合は、条件をまとめたDTOを用意してもよい。
         #. 返り値は、boolean型にする。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -1016,6 +1031,10 @@ Serviceの作成単位は主に以下の３パターンとなる。
        | ただし、イベント毎にServiceクラスを設計・実装する事になるため、ユースケース毎に作成する場合に比べて、より共通化が行われない可能性が高くなる。
        | 本ガイドラインとしては、イベント毎に作成するパターンは特に推奨しない。ただし、大規模開発において、保守性等を考慮して業務ロジックの作りを合わせておきたいといった理由がある場合は、イベント毎に作成する事を選択肢の一つとして考えてもよい。
 
+ .. raw:: latex
+
+    \newpage
+
  .. warning::
 
     **Serviceの作成単位については、開発するアプリケーションの特性や開発体制などを加味して決めて頂きたい。**
@@ -1140,6 +1159,10 @@ Entity毎にServiceを作成する場合は、以下のような開発イメー�
    :width: 100%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
@@ -1159,6 +1182,10 @@ Entity毎にServiceを作成する場合は、以下のような開発イメー�
    * - | (4)
      - | 複数の業務ロジックで共有したいロジックがある場合は、SharedServiceに実装する。
        | 上の図では、別の開発者(共通チームの担当者)を割り当てているが、プロジェクトの体制によっては(1)と同じ開発者でもよい。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -1812,6 +1839,10 @@ Spring Frameworkから提供されている「宣言型トランザクション�
       - noRollbackForClassName
       - | トランザクションのコミット対象とする例外クラス名のリストを指定する。
         | デフォルトは空（指定なし）
+
+ .. raw:: latex
+
+    \newpage
 
 \
 

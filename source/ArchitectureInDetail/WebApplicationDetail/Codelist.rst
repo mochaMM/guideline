@@ -518,6 +518,10 @@ JdbcCodeListの使用方法
    * - | (8)
      - | labelColumnプロパティに、MapのValueに該当する値を設定する。この例ではauthority_nameを設定している。      
 
+.. raw:: latex
+
+   \newpage
+
 |
 
 JSPでのコードリスト使用
@@ -978,6 +982,10 @@ SimpleI18nCodeListの使用方法
     * - | ja
       - | 50000
       - | 50,000円以下
+
+.. raw:: latex
+
+   \newpage
 
 .. warning::
 

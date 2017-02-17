@@ -193,6 +193,10 @@ Spring Securityが用意している共通的なExpressionは以下の通り。
     * - | \ ``authentication``\
       - | 認証されたユーザーの認証情報(\ ``Authentication``\ インタフェースを実装したクラスのオブジェクト)を返却する。
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **Expressionを使用した認証情報へのアクセス**
 
     Expressionとして\ ``principal``\ や\ ``authentication``\ を使用すると、ログインユーザーのユーザー情報や認証情報を参照することができるため、ロール以外の属性を使ってアクセスポリシーを設定することが可能になる。
@@ -390,7 +394,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
          :header-rows: 1
          :widths: 20 80
          :class: longtable
-  
+
          * - 項番
            - 説明
          * - | (1)
