@@ -77,6 +77,10 @@ Spring Frameworkが提供するHTTPクライアントである。
 
 \ ``RestTemplate``\ を使用した場合、デフォルトで以下の\ ``HttpMessageConverter``\ の実装クラスが登録される。
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.55\linewidth}|p{0.15\linewidth}|
 .. list-table:: **デフォルトで登録されるHttpMessageConverter**
     :header-rows: 1
@@ -126,6 +130,10 @@ Spring Frameworkが提供するHTTPクライアントである。
           と `FormHttpMessageConverter <https://github.com/spring-projects/spring-framework/blob/v4.2.7.RELEASE/spring-web/src/main/java/org/springframework/http/converter/FormHttpMessageConverter.java>`_\ のソースを参照されたい。なお、任意の\ ``HttpMessageConverter``\ を登録することもできる。
       - | ``MultiValueMap`` [#p3]_
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **AllEncompassingFormHttpMessageConverterのメディアタイプがmultipart/form-dataの場合について**
 
     メディアタイプが\ ``multipart/form-data``\ の場合、「\ ``MultiValueMap``\ オブジェクト から HTTPボディ」への変換は可能だが、
@@ -133,6 +141,10 @@ Spring Frameworkが提供するHTTPクライアントである。
     よって、「HTTPボディ から \ ``MultiValueMap``\ オブジェクト」への変換を行いたい場合は、独自に実装する必要がある。
 
 \
+
+.. raw:: latex
+
+   \newpage
 
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.55\linewidth}|p{0.15\linewidth}|
 .. list-table:: **依存ライブラリがクラスパス上に存在する場合に登録されるHttpMessageConverter**
@@ -189,6 +201,10 @@ Spring Frameworkが提供するHTTPクライアントである。
         | (Gsonがクラスパスに存在する場合に登録される)
       - | ``Object`` (JavaBean)
         | ``Map``
+
+.. raw:: latex
+
+   \newpage
 
 \
 

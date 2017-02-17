@@ -160,6 +160,10 @@ Ajax通信時で使用されるContent-Type(``"application/xml"`` や ``"applica
        * - | (5)
          - | ``unmarshaller`` プロパティに (1)で定義した ``Jaxb2Marshaller`` のbeanを指定する。
          
+     .. raw:: latex
+
+        \newpage
+
     |
 
     Spring-oxmを依存するアーティファクトとして追加する。
@@ -183,6 +187,7 @@ Ajax通信時で使用されるContent-Type(``"application/xml"`` や ``"applica
      .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - | 項番
          - | 説明
@@ -239,6 +244,7 @@ Controllerの実装
      .. list-table::
          :header-rows: 1
          :widths: 10 90
+         :class: longtable
 
          * - 項番
            - 説明
@@ -758,6 +764,10 @@ Ajaxを使ってフォームのデータをPOSTし、処理結果を取得する
    * - | (17)
      - | エラー時の描画処理を行う。
        | 上記例では、計算結果を表示するための領域に、エラーメッセージを表示している。
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
  
@@ -1289,6 +1299,7 @@ BindingResult を使用したハンドリング
       .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - | 項番
          - | 説明

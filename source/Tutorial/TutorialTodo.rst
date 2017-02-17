@@ -1219,6 +1219,10 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
    * - | (11)
      - | Spring Data JPAを使用してデータベースにアクセスする場合は、\ ``update``\ メソッドではなく、\ ``save``\ メソッドを呼び出す。
 
+.. raw:: latex
+
+   \newpage
+
 .. note::
 
     本節では、説明を単純化するため、エラーメッセージをハードコードしているが、メンテナンスの観点で本来は好ましくない。
@@ -1670,6 +1674,9 @@ Controllerの修正
        | リダイレクトすることにより、ブラウザを再読み込みして、再び新規登録処理が\ ``POST``\ されることがなくなる。（詳しくは、「:ref:`DoubleSubmitProtectionAboutPRG`」を参照されたい）
        | なお、今回は成功メッセージであるため、\ ``ResultMessages.success()``\ を使用している。
 
+.. raw:: latex
+
+   \newpage
 
 Formの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3420,6 +3427,10 @@ web.xml
 
        が定義済みである。
 
+.. raw:: latex
+
+   \newpage
+
 |
 
 インクルードJSP
@@ -4221,6 +4232,10 @@ spring-mvc.xml
                    <property name="suffix" value=".jsp" />
                </bean>
 
+.. raw:: latex
+
+   \newpage
+   
 .. note::
 
     JPA用のブランクプロジェクトを作成した場合は、\ ``<mvc:interceptors>``\ の定義として、

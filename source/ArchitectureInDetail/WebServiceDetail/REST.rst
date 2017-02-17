@@ -105,6 +105,10 @@ TERASOLUNA Server Framework for Java (5.x)では、Spring MVCの機能を利用�
    :alt: Application constitution of RESTful Web Service on Spring MVC
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.70\linewidth}|
  .. list-table::
     :header-rows: 1
@@ -146,6 +150,9 @@ TERASOLUNA Server Framework for Java (5.x)では、Spring MVCの機能を利用�
         | 
       - | Spring MVCは、JSON形式の電文をレスポンスBODYに設定し、クライアントにレスポンスする。
 
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -838,6 +845,12 @@ HTTPメソッドによるリソースの操作
    :alt: Image of resource connectivity
    :width: 100%
 
+|
+
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
     :header-rows: 1
@@ -950,6 +963,10 @@ HTTPメソッドによるリソースの操作
         
         | ハイライトした部分が、関連をもつ他のリソースへのハイパーメディアリンク(URI)となる。
         | 上記例では、認証履歴のオーナとなる会員情報のリソースに対して接続性を保持している。
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -1781,6 +1798,10 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
       - | Spring MVCのフレームワークでハンドリングされた例外を、ログ出力するためのAOP定義を指定する。
         | \ ``HandlerExceptionResolverLoggingInterceptor``\については、「\ :doc:`../WebApplicationDetail/ExceptionHandling`\」を参照されたい。
 
+ .. raw:: latex
+
+    \newpage
+
 .. note:: **ObjectMapperのBean定義方法について**
 
     Jacksonの\ ``com.fasterxml.jackson.databind.ObjectMapper``\ のBean定義を行う場合は、
@@ -2093,6 +2114,10 @@ REST APIの実装
       - | yyyy-MM-dd'T'HH:mm:ss.SSS'Z'形式
         | (ISO-8601拡張形式)
 
+ .. raw:: latex
+
+    \newpage
+
 |
 
 **REST API一覧**
@@ -2278,6 +2303,7 @@ Resourceクラスの役割は以下の通りである。
       .. list-table::
           :header-rows: 1
           :widths: 10 90
+          :class: longtable
 
           * - 項番
             - 説明
@@ -2676,6 +2702,10 @@ URIで指定されたMemberリソースのコレクションをページ検索�
     * - | (9)
       - | (8)で生成したResourceオブジェクトを返却する。
         | ここで返却したオブジェクトがJSONやXMLにmarshalされ、レスポンスBODYに設定される。
+
+ .. raw:: latex
+
+    \newpage
 
  | \ ``PageImpl``\クラスを使用した時のレスポンスは以下の様になる。
  | ハイライトしている部分が、ページ検索固有の項目となる。
@@ -3291,7 +3321,6 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
  .. list-table::
     :header-rows: 1
     :widths: 10  20 70
-    :class: longtable
 
     * - 項番
       - 処理レイヤ
@@ -3322,7 +3351,6 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
       - | 
         | 
       - | Spring MVCは、JSON形式のエラー電文をレスポンスBODYに設定し、クライアントにレスポンスする。
-
 
 |
 
@@ -3789,7 +3817,8 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
      .. list-table::
         :header-rows: 1
         :widths: 10 35 55
-    
+        :class: longtable
+
         * - 項番
           - 例外クラス
           - 説明
@@ -4988,6 +5017,7 @@ How to extend
    .. list-table::
       :header-rows: 1
       :widths: 10 20 70
+      :class: longtable
 
       * - 項番
         - メソッド名
@@ -5018,6 +5048,7 @@ How to extend
    .. list-table::
       :header-rows: 1
       :widths: 10 20 70
+      :class: longtable
 
       * - 項番
         - メソッド名
@@ -5508,6 +5539,10 @@ POST時のLocationヘッダの設定
         * Locationヘッダ : 作成したリソースのURI
         * レスポンスBODY : 作成したResourceオブジェクト
 
+ .. raw:: latex
+
+    \newpage
+
  .. tip::
 
     \ ``ServletUriComponentsBuilder``\では、URIを組み立てる際に「\ ``X-Forwarded-Host``\」ヘッダを参照することで、クライアントとアプリケーションサーバの間にロードバランサやWebサーバがある構成を考慮している。 
@@ -5624,6 +5659,7 @@ Spring-oxmを依存アーティファクトとして追加する。
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - | 項番
      - | 説明

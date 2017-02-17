@@ -426,6 +426,7 @@ SQLログを出力するために、 :doc:`../DataAccessDetail/DataAccessCommon`
      .. list-table::
          :header-rows: 1
          :widths: 25 75
+         :class: longtable
 
          * - 差分値の単位
            - SQL

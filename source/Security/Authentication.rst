@@ -434,6 +434,9 @@ Spring Securityは、以下のような流れでDB認証を行う。
     * - | (5)
       - | \ ``DaoAuthenticationProvider``\ は、\ ``UserDetailsService``\ から返却された\ ``UserDetails``\ とクライアントが指定した認証情報との照合を行い、クライアントが指定したユーザーの正当性をチェックする。
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Spring Securityが提供するDB認証**
 
@@ -503,6 +506,10 @@ UserDetailsの作成
       - | \ ``getAuthorities``\
       - | ユーザーに与えられている権限リストを返却する。
         | このメソッドは認可処理で使用される。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **認証例外による遷移先の切り替え**
 
@@ -1773,6 +1780,10 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
     * - | (7)
       - | \ ``authentication-failure-handler-ref``\ 属性に\ ``authenticationFailureHandler``\ を設定する。
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **例外発生時の制御**
 
     \ ``exceptionMappings``\ プロパティに定義した例外が発生した場合、例外にマッピングした遷移先にリダイレクトされるが、
@@ -2543,6 +2554,10 @@ Authentication Filterの作成
       - | \ ``authenticationFailureHandler``\ プロパティに、認証失敗時に呼ばれるハンドラクラスを指定する。
     * - | (9)
       - | \ ``authenticationSuccessHandler``\ プロパティに、認証成功時に呼ばれるハンドラクラスを指定する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **auto-configについて**
 
