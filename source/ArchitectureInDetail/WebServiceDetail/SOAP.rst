@@ -340,6 +340,8 @@ SOAPサーバの作成
      
     Oracle WebLogic Server 12.2.1: \ `Oracle(R) Fusion Middleware Understanding WebLogic Web Services for Oracle WebLogic Server  Features and Standards Supported by WebLogic Web Services <https://docs.oracle.com/middleware/1221/wls/WSOVR/weblogic-web-service-stand.htm#WSOVR137>`_\
      
+    JBoss Enterprise Application Platform 7.0: \ `DEVELOPING JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/developing-web-services-applications/chapter-3-developing-jax-ws-web-services>`_\
+
     JBoss Enterprise Application Platform 6.4: \ `DEVELOPMENT GUIDE JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Development_Guide/chap-JAX-WS_Web_Services.html>`_\
 
 |

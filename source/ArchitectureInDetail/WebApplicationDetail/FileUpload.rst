@@ -23,13 +23,17 @@ Overview
     一部のアプリケーションサーバ上でServlet 3.0のファイルアップロード機能を使用すると、
     リクエストパラメータやファイル名のマルチバイト文字が文字化けすることがある。
 
-    問題が発生するアプリケーションサーバを使用する場合は、Commons FileUploadを使用することで問題を回避することができる。
-    Commons FileUploadを使用するための設定方法については、「:ref:`file-upload_usage_commons_fileupload`」を参照されたい。
-
-    version 5.0.1.RELEASE時点で問題の発生が確認されているアプリケーションサーバは以下の通りである。
-
+    version 5.3.0.RELEASE時点で問題の発生が確認されているアプリケーションサーバは以下の通りである。
+    
     * WebLogic 12.1.3
+    * JBoss EAP 7.0
     * JBoss EAP 6.4.0.GA
+    
+    このうちJBoss EAP 7.0では、アプリケーションサーバ独自の設定を追加することで問題を回避することができる。
+    詳細は、\ `JBoss EAP 7.0を利用する際の注意点 <https://github.com/terasolunaorg/terasoluna-gfw/wiki/JBoss7_ja>`_\を参照されたい。
+
+    その他の問題が発生するアプリケーションサーバを使用する場合は、Commons FileUploadを使用することで問題を回避することができる。
+    Commons FileUploadを使用するための設定方法については、「:ref:`file-upload_usage_commons_fileupload`」を参照されたい。
 
  .. warning::
  
