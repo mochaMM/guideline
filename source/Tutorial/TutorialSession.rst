@@ -269,6 +269,7 @@ URLの抽出
  .. list-table::
     :header-rows: 1
     :widths: 5 20 10 20 25 20
+    :class: longtable
     
     * - 項番
       - 処理名
@@ -385,7 +386,9 @@ URLの抽出
       - | OrderController
       - | order/finish
 
+ .. raw:: latex
 
+    \newpage
 
 
 入出力データの設計
@@ -500,6 +503,7 @@ URLの抽出
  .. list-table::
     :header-rows: 1
     :widths: 15 85
+    :class: longtable
     
     * - データ項目
       - 検討内容
@@ -520,6 +524,9 @@ URLの抽出
     * - | 注文情報
       - | 注文情報は1画面でのみ利用されるため、リクエストスコープでデータを扱えばよい。
 
+ .. raw:: latex
+
+    \newpage
 
 以上から、アカウント更新情報、アカウント情報、カート情報、商品検索情報の4つについて、セッションを利用することを検討する。
 

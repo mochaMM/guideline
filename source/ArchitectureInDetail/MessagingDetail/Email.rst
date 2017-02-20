@@ -64,10 +64,15 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
     :alt: Constitution of Spring Mail
     :width: 100%
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.60\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 20 60
+    :class: longtable
 
     * - 項番
       - コンポーネント
@@ -94,6 +99,10 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
     * - | (5)
       - | JavaMail
       - | メールサーバへメッセージを送信する。
+
+.. raw:: latex
+
+   \newpage
 
 \
 

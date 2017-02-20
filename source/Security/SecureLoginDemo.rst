@@ -47,6 +47,7 @@
 .. list-table::
     :header-rows: 1
     :widths: 10 20 30 40
+    :class: longtable
 
     * - 項番
       - 分類
@@ -154,6 +155,10 @@
       - 監査ログ出力
       - 各リクエストに対し、日時、ユーザ名、操作内容、操作結果をログ出力する
 
+.. raw:: latex
+
+   \newpage
+
 機能
 --------------------------------------------------------------------------------
 
@@ -227,6 +232,7 @@
 .. list-table::
     :header-rows: 1
     :widths: 20 50 30
+    :class: longtable
 
     * - | 項番
       - | 画面名
@@ -274,6 +280,10 @@
       - | パスワード変更完了画面
       - | 認証済みユーザのみ
 
+.. raw:: latex
+
+   \newpage
+
 URL一覧
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 URL一覧を以下に示す。
@@ -282,6 +292,7 @@ URL一覧を以下に示す。
 .. list-table::
     :header-rows: 1
     :widths: 10 20 15 15 40
+    :class: longtable
 
     * - 項番
       - プロセス名
@@ -394,6 +405,10 @@ URL一覧を以下に示す。
       - /reissue/resetpassword?complete
       - パスワード再発行完了画面を表示する
 
+.. raw:: latex
+
+   \newpage
+
 ER図
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -408,6 +423,7 @@ ER図
 .. list-table::
     :header-rows: 1
     :widths: 10 20 40 30
+    :class: longtable
 
     * - 項番
       - エンティティ名
@@ -463,6 +479,10 @@ ER図
       - | パスワード再発行用の試行回数を制限するために、パスワード再発行失敗に残す情報
       - | token : パスワード再発行に失敗した際に使用したtoken
         | attemptDate : パスワード再発行を試行した日時
+
+.. raw:: latex
+
+   \newpage
 
 .. tip ::
 
@@ -1577,6 +1597,7 @@ ER図
     .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - 項番
          - 説明
@@ -1603,6 +1624,9 @@ ER図
        * - | (11)
          - | パスワード入力チェックエラーメッセージを取得する。
 
+    .. raw:: latex
+
+       \newpage
 
 * パスワードの入力チェック
 
@@ -3297,6 +3321,7 @@ ER図
     .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - 項番
          - 説明
@@ -3324,6 +3349,10 @@ ER図
          - | パスワード再発行用の認証情報をデータベースに登録する。
        * - | (12)
          - | 生成した秘密情報を返す。
+
+    .. raw:: latex
+
+       \newpage
 
   * Formの実装
 
@@ -4662,6 +4691,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
   .. list-table::
      :header-rows: 1
      :widths: 10 90
+     :class: longtable
 
      * - 項番
        - 説明
@@ -4688,6 +4718,10 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      * - | (11)
        - | 入力チェック対象の文字列を一文字ずつ順に、禁止文字に含まれているかどうかをチェックし、含まれている場合は例外を投げる
          | \ ``InvalidCharacterException`` \ は \ ``RuntimeException`` \を継承して作成した例外である。コードは省略する
+
+  .. raw:: latex
+
+     \newpage
 
   .. tip::
 
@@ -5408,6 +5442,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 .. list-table::
    :header-rows: 1
    :widths: 30 70
+   :class: longtable
 
    * - 項目
      - 説明
@@ -5430,6 +5465,10 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      - | メソッド呼び出し時："[START SERVICE] ServiceClassName.methodName"
        | メソッド正常終了時："[COMPLETE SERVICE] ServiceClassName.methodName"
        | 例外発生時："[SERVICE THROWS EXCEPTION] ExceptionClassName.methodName"
+
+.. raw:: latex
+
+   \newpage
 
 実装方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

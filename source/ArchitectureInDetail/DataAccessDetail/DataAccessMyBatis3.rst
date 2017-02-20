@@ -6103,6 +6103,7 @@ Mapperインタフェースの仕組みについて
  .. list-table::
     :header-rows: 1
     :widths: 10 80
+    :class: longtable
 
 
     * - 項番
@@ -6132,6 +6133,9 @@ Mapperインタフェースの仕組みについて
 
         件数のカウントや、更新件数などを取得する場合は、プリミティブ型やプリミティブラッパ型などが返却値となるケースもある。
 
+ .. raw:: latex
+
+    \newpage
 
  .. tip:: **ステートメントIDとは**
 
@@ -6739,6 +6743,7 @@ Entityのクラス図
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
+    :class: longtable
 
     * - 項番
       - クラス名
@@ -6849,6 +6854,9 @@ Entityのクラス図
                 // ...
             }
 
+ .. raw:: latex
+
+    \newpage
 
 |
 

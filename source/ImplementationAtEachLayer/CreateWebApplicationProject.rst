@@ -859,6 +859,7 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -924,6 +925,10 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
 
         * Seleniumを操作してテストを行うJUnit
         * Assert時に使用する期待値ファイル(必要に応じて)
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **本ガイドラインにおける「マルチプロジェクト」の用語定義について**
 
@@ -1054,10 +1059,15 @@ webモジュールの構成
             │   │   └── i18n  ... (10)
             │   │       └── application-messages.properties  ... (11)
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1125,6 +1135,10 @@ webモジュールの構成
             **メッセージについては、アプリケーションの要件(メッセージ規約など)にあわせて必ず修正すること。**
             メッセージ定義については、「:doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`」を参照されたい。
 
+.. raw:: latex
+
+   \newpage
+
 .. note::
 
     アプリケーションコンテキストとBean定義ファイルの関連については、
@@ -1169,6 +1183,7 @@ webモジュールの構成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1214,6 +1229,10 @@ webモジュールの構成
         専用のディレクトリを設ける構成を採用している。
     * - | (20)
       - アプリケーション全体に適用する画面スタイルを定義するCSSファイル。
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -1613,6 +1632,7 @@ Maven Archetypeで作成したプロジェクトのプロジェクト階層の�
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1649,6 +1669,10 @@ Maven Archetypeで作成したプロジェクトのプロジェクト階層の�
     * - | (5)
       - Spring Boot Dependenciesプロジェクト。
 
+.. raw:: latex
+
+   \newpage
+
 .. tip::
 
     version 5.0.0.RELEASEより、Spring IO Platformの\ ``<dependencyManagement>``\ をインポートする構成に変更しており、
@@ -1681,6 +1705,7 @@ Spring Frameworkのアプリケーションコンテキスト(DIコンテナ)の
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1713,6 +1738,9 @@ Spring Frameworkのアプリケーションコンテキスト(DIコンテナ)の
         Webアプリケーション用のアプリケーションコンテキスト(親コンテキスト)を参照して取得する仕組みになっているため、
         ドメイン層のコンポーネントをアプリケーション層のコンポーネントに対してインジェクションする事ができる。
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **同じコンポーネントを両方のアプリケーションコンテキストに登録した時の動作について**
 

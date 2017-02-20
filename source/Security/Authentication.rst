@@ -419,6 +419,7 @@ Spring Securityは、以下のような流れでDB認証を行う。
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -433,6 +434,9 @@ Spring Securityは、以下のような流れでDB認証を行う。
     * - | (5)
       - | \ ``DaoAuthenticationProvider``\ は、\ ``UserDetailsService``\ から返却された\ ``UserDetails``\ とクライアントが指定した認証情報との照合を行い、クライアントが指定したユーザーの正当性をチェックする。
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Spring Securityが提供するDB認証**
 
@@ -470,6 +474,7 @@ UserDetailsの作成
 .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - メソッド名
@@ -501,6 +506,10 @@ UserDetailsの作成
       - | \ ``getAuthorities``\
       - | ユーザーに与えられている権限リストを返却する。
         | このメソッドは認可処理で使用される。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **認証例外による遷移先の切り替え**
 
@@ -1745,6 +1754,7 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
 .. list-table::
     :header-rows: 1
     :widths: 20 80
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1769,6 +1779,10 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
         | 無効ユーザーIDによる認証エラー時にスローされる。
     * - | (7)
       - | \ ``authentication-failure-handler-ref``\ 属性に\ ``authenticationFailureHandler``\ を設定する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **例外発生時の制御**
 
@@ -2490,6 +2504,7 @@ Authentication Filterの作成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2539,6 +2554,10 @@ Authentication Filterの作成
       - | \ ``authenticationFailureHandler``\ プロパティに、認証失敗時に呼ばれるハンドラクラスを指定する。
     * - | (9)
       - | \ ``authenticationSuccessHandler``\ プロパティに、認証成功時に呼ばれるハンドラクラスを指定する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **auto-configについて**
 

@@ -555,6 +555,7 @@ How to use
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - 項番
       - 設定項目
@@ -628,6 +629,9 @@ How to use
       - | \ ``deliveryMode``\ 、\ ``priority``\ 、\ ``timeToLive``\ を有効にする場合は\ ``true``\ を設定する。
       - \-
       - \ ``false``\
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 
@@ -1159,6 +1163,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
+    :class: longtable
 
     * - 項番
       - 属性名
@@ -1225,7 +1230,9 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - \ ``transaction-manager``\
       - | 非同期受信時のトランザクション管理を行うBeanの名前を指定する。詳細については\ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\ を参照されたい。
 
+ .. raw:: latex
 
+    \newpage
 
 
 
@@ -2181,6 +2188,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - 項番
       - 設定項目
@@ -2240,6 +2248,10 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         | Destinationを明示的に指定しない場合、このDestinationが使用される。
       - \-
       - null(既定のDestinationなし)
+
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 

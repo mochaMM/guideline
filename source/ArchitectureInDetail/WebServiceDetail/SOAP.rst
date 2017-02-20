@@ -86,6 +86,7 @@ Spring FrameworkのJAX-WS連携機能について
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -117,6 +118,10 @@ Spring FrameworkのJAX-WS連携機能について
     * - | (7)
       - | [サーバ] Serviceでは、Repositoryなどを使用して業務処理を実行する。
         | 通常の呼び出しと変更点は特にない。
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -251,6 +256,7 @@ WSDL内で定義されるエンドポイントアドレスは以下のURLであ�
      .. list-table::
          :header-rows: 1
          :widths: 10 50 40
+         :class: longtable
 
          * - 項番
            - APサーバ名
@@ -1449,6 +1455,7 @@ MTOMを利用した大容量のバイナリデータを扱う方法
 .. list-table::
     :header-rows: 1
     :widths: 10 30 60
+    :class: longtable
 
     * - 項番
       - プロジェクト名
@@ -1473,6 +1480,10 @@ MTOMを利用した大容量のバイナリデータを扱う方法
       - | envプロジェクト
       - | domainプロジェクトで定義したプロキシの環境依存する値を定義する。
         | プロキシの定義から環境依存する値をプロパティファイルに集約し、プロパティファイルのみenvプロジェクトに配置する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **プロキシの定義ついて**
 
@@ -1583,6 +1594,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
      .. list-table::
          :header-rows: 1
          :widths: 10 90
+         :class: longtable
 
          * - 項番
            - 説明
@@ -2116,6 +2128,7 @@ SOAPサーバのパッケージ構成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2148,6 +2161,9 @@ SOAPサーバのパッケージ構成
     * - | (12)
       - | Servletのデプロイメント定義を行う。
 
+.. raw:: latex
+
+   \newpage
 
 .. Note:: **SOAPサーバの不要なファイル**
 

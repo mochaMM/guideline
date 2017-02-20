@@ -74,6 +74,7 @@ JPAの基本用語
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - 項番
       - 用語
@@ -122,6 +123,10 @@ JPAの基本用語
         | \ ``EntityManager``\ のメソッドとして提供されており、蓄積された未反映の操作をリレーショナルデータベースに対して実行する。
         | 通常、リレーショナルデータベースへの反映は、トランザクションコミット時に行われるが、コミットより前に反映する必要がある場合は、メソッドを使用する。
 
+ .. raw:: latex
+
+    \newpage
+
 Entityのライフサイクル管理
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Entityのライフサイクル管理イメージは、以下の通りである。
@@ -137,6 +142,7 @@ Entityのライフサイクル管理イメージは、以下の通りである�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -162,6 +168,10 @@ Entityのライフサイクル管理イメージは、以下の通りである�
         |  :ref:`永続操作の反映タイミングについて(その１) <how_to_create_repository_extends_springdata_flush_timing_note1>`
         |  :ref:`永続操作の反映タイミングについて(その2) <how_to_create_repository_extends_springdata_flush_timing_note2>`
         | を参照されたい。
+
+ .. raw:: latex
+
+    \newpage
 
 \
 
@@ -205,6 +215,7 @@ Spring Data JPAを使ってデータベースにアクセスする際の基本�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -225,6 +236,10 @@ Spring Data JPAを使ってデータベースにアクセスする際の基本�
         | (実際の値のバインドは、java.sql.PreparedStatement のAPIが使われている)
     * - | (6)
       - | JDBCドライバは、渡されたSQLとバインド値をデータベースに送信することで、SQLを実行する。
+
+ .. raw:: latex
+
+    \newpage
 
 | Spring Data JPAを使用してRepositoryを作成する場合、JPAのAPIを直接呼び出す必要はないが、Spring Data JPAのRepositoryインタフェースのメソッドが、
 | JPAのどのメソッドを呼び出しているのかは、意識しておいた方がよい。
@@ -324,6 +339,7 @@ EntityManagerの設定
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -354,6 +370,10 @@ EntityManagerの設定
       - | Hibernateから提供されている ``EntityManager`` の動作設定を指定する。
         | 詳細については「`Hibernate Reference Documentation <http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch03.html#configuration-optional>`_\」を参照されたい。
 
+ .. raw:: latex
+
+    \newpage
+
 \
 
  .. tip::
@@ -378,6 +398,7 @@ EntityManagerの設定
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - 項番
           - 説明
@@ -548,6 +569,7 @@ Spring Data JPAを有効化するための設定
  .. list-table::
     :header-rows: 1
     :widths: 6 20 74
+    :class: longtable
 
     * - 項番
       - 要素
@@ -579,6 +601,10 @@ Spring Data JPAを有効化するための設定
       - | カスタムRepositoryの実装クラスをであることを表す接尾辞を指定する。
         | デフォルトは ``"Impl"`` となっている。例えば、Repositoryインタフェースの名前が ``OrderRepository`` の場合は、 ``OrderRepositoryImpl`` がカスタムRepositoryの実装クラスとなる。特に理由がない場合は、デフォルトのままでよい。
         | カスタムRepositoryについては、「:ref:`custommethod_individual-label`」を参照されたい。
+
+ .. raw:: latex
+
+    \newpage
 
 JPAのアノテーションを使用するための設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -801,6 +827,7 @@ Spring Dataから提供されているインタフェースを継承してEntity
  .. list-table::
     :widths: 10 35 55
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - メソッド
@@ -872,6 +899,10 @@ Spring Dataから提供されているインタフェースを継承してEntity
     * - 17.
       - long count()
       - | 永続化対象のEntityの件数を取得するためのメソッド。
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning:: **JPAの楽観ロック(@javax.persistence.Version)使用時の動作について**
 
@@ -1706,6 +1737,7 @@ Spring Data JPAから提供されているプロパティファイル(classpath:
      .. list-table::
          :widths: 10 90
          :header-rows: 1
+         :class: longtable
 
          * - 項番
            - 説明
@@ -2041,6 +2073,7 @@ Entityの動的条件による検索処理の実装
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2078,7 +2111,9 @@ Entityの動的条件による検索処理の実装
     * - | (14)
       - | 動的に組み立てたQueryを実行し、条件に一致するEntityを全件取得する。
 
+ .. raw:: latex
 
+    \newpage
 
 - Entity毎のRepositoryインタフェース
 
@@ -2410,6 +2445,7 @@ Entityの動的条件による検索処理の実装
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2441,6 +2477,9 @@ Entityの動的条件による検索処理の実装
     * - | (12)
       - | 該当ページのEntityのリスト、ページ情報、条件に条件した合計件数を引数に指定して、 ``Page`` オブジェクトを生成し返却する。
 
+ .. raw:: latex
+
+    \newpage
 
 - Service (Caller)
 

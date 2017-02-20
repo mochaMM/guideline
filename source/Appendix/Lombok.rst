@@ -509,6 +509,7 @@ Lombokのアノテーションを使用して\ ``equals``\ メソッドと\ ``ha
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - 項番
           - 説明
