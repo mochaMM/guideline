@@ -370,6 +370,34 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     上記の対策をTERASOLUNA Server Framework for Javaで提供するブランクプロジェクトでは設定しているが、
     設定を外すと脆弱性にさらされてしまうので注意する必要がある。
 
+    また、特定のURLに対してアクセスポリシーを設ける(\ ``pattern``\属性に\ ``*``\や\ ``**``\などのワイルドカード指定を含めない)場合、
+    拡張子を付けたパターンとリクエストパスの末尾に\ ``/``\を付けたパターンに対するアクセスポリシーの追加が必須である。
+
+    下記の設定例は、\ ``/restrict``\に対して「ROLE_ADMIN」ロールを持つユーザからのアクセスのみを許可している。
+
+      .. code-block:: xml
+
+          <sec:http>
+              <sec:intercept-url pattern="/restrict.*" access="hasRole('ADMIN')" /> <!-- (1) --> 
+              <sec:intercept-url pattern="/restrict/" access="hasRole('ADMIN')" /> <!-- (2) --> 
+              <sec:intercept-url pattern="/restrict" access="hasRole('ADMIN')" /> <!-- (3) -->
+              <!-- omitted -->
+          </sec:http> 
+          
+      .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+      .. list-table::
+         :header-rows: 1
+         :widths: 20 80
+  
+         * - 項番
+           - 説明
+         * - | (1)
+           - | \ ``/restrict``\に拡張子を付けたパターン(\ ``/restrict.json``\など)のアクセスポリシーを定義する。
+         * - | (2)
+           - | \ ``/restrict``\にリクエストパスの末尾に\ ``/``\を付けたパターン(\ ``/restrict/``\など)のアクセスポリシーを定義する。
+         * - | (3)
+           - | \ ``/restrict``\に対するアクセスポリシーを定義する。
+
 アクセスポリシーの指定
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
