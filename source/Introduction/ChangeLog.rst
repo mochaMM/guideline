@@ -26,6 +26,17 @@
         * :doc:`../Tutorial/TutorialTodo`
 
     * - 
+      - :doc:`../Overview/FrameworkStack`
+      - 利用するOSSのバージョンを更新
+
+        * Spring IO PlatformのバージョンをAthens-SR2に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * MyBatisのバージョンを3.4.2に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * MyBatis-Springのバージョンを1.3.1に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * mybatis-typehandlers-jsr310を1.0.2に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+
+        Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
+
+    * - 
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - 記載内容の追加
 
