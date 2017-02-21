@@ -49,6 +49,7 @@ Basic flow of uploading files using File Upload functionality supported by Servl
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -77,6 +78,10 @@ Basic flow of uploading files using File Upload functionality supported by Servl
      - | \ ``MultipartFilter``\  calls \ ``StandardServletMultipartResolver``\  and deletes temporary file used by file upload function of Servlet 3.0.
    * - | (11)
      - | \ ``StandardServletMultipartResolver``\  calls a method of \ ``Part``\  object introducted from Servlet 3.0 and deletes the temporary file stored in the disc.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -171,6 +176,7 @@ Perform the following settings to enable upload functionality of Servlet 3.0.
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -200,6 +206,10 @@ Perform the following settings to enable upload functionality of Servlet 3.0.
    * - | (6)
      - | Specify the threshold value (number of bytes for 1 file) if the contents of uploaded file are to be saved as a temporary file.
        | If this parameter is not specified explicitly, there are application servers wherein values specified for elements ``<max-file-size>`` and ``<max-request-size>`` are considered invalid; hence default value (0) is being specified explicitly.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
 
@@ -654,6 +664,7 @@ Implementing Controller
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -683,6 +694,10 @@ Implementing Controller
      - | As per the requirement, the processing result message notifying about successful upload is stored.
    * - | (9)
      - | Once upload is complete, redirect to upload completion screen.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **Preventing duplicate upload**
 
@@ -1330,10 +1345,15 @@ Temporary upload is required when a file is to be uploaded midway through screen
    :alt: Processing flow of temporary upload.
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1351,6 +1371,10 @@ Temporary upload is required when a file is to be uploaded midway through screen
      - | Service moves the temporary file saved in temporary directory to this directory or database.
    * - | (7)
      - | Controller returns the View name which is required to display Complete Screen and then displays the Complete Screen.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 

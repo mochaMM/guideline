@@ -1005,6 +1005,7 @@ For example of escaping at the time of LIKE search, refer to the document for O/
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - | Sr. No.
           - | Description

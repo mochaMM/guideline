@@ -86,6 +86,7 @@ JAX-WS linkage function of Spring Framework
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -117,6 +118,10 @@ JAX-WS linkage function of Spring Framework
     * - | (7)
       - | [Server] Run business process by using Repository etc in Service.
         | No specific changes are observed during normal calling.
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -251,6 +256,7 @@ End point address defined in WSDL consists of following URL..
      .. list-table::
          :header-rows: 1
          :widths: 10 50 40
+         :class: longtable
 
          * - Sr. No.
            - AP server name
@@ -1401,6 +1407,7 @@ As described in "\ :ref:`SOAPOverviewAboutRESTfulWebServiceDevelopment`\ ", mode
 .. list-table::
     :header-rows: 1
     :widths: 10 30 60
+    :class: longtable
 
     * - Sr. No.
       - Project name
@@ -1424,6 +1431,10 @@ As described in "\ :ref:`SOAPOverviewAboutRESTfulWebServiceDevelopment`\ ", mode
       - | env project
       - | Define a proxy class which implements WebService interface used while communicating with SOAP server.
         | Since proxy class definition is often environment dependent, it is defined in env project.
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -1524,6 +1535,7 @@ Define \ ``org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean``\  gene
      .. list-table::
          :header-rows: 1
          :widths: 10 90
+         :class: longtable
 
          * - Sr. No.
            - Description
@@ -2063,6 +2075,7 @@ Recommended configuration for [server projectName]-web project is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2095,6 +2108,9 @@ Recommended configuration for [server projectName]-web project is shown below.
     * - | (12)
       - | Define Servlet deployment.
 
+.. raw:: latex
+
+   \newpage
 
 .. Note:: **Files not required for SOAP server**
 

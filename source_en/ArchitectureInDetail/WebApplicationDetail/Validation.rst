@@ -2056,6 +2056,7 @@ Error message as shown below is displayed when form is sent by entering differen
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - Sr. No.
           - Description
@@ -2371,6 +2372,7 @@ Error messages are changed as follows.
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - Sr. No.
           - Description
@@ -3706,6 +3708,7 @@ Refer to Chapter 7 \ `Bean Validation specification <http://download.oracle.com/
 .. list-table::
    :header-rows: 1
    :widths: 15 30 30 25
+   :class: longtable
 
    * - Annotation
      - Target type
@@ -3832,6 +3835,10 @@ Refer to Chapter 7 \ `Bean Validation specification <http://download.oracle.com/
 
             @Valid
             private Dept dept;
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 
@@ -4037,6 +4044,7 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
 .. list-table::
     :header-rows: 1
     :widths: 15 30 30 25
+    :class: longtable
 
     * - Annotation
       - Target type
@@ -4119,6 +4127,10 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
                  private Date to;
              }
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **For mandatory input during correlated item check**
   
   For unit item check, whether a value is entered in the input field（ should not be \ ``null``\ ) can be checked by using \ ``@NotNull``\  in combination. However, in correlated item check, the check like "if value is entered in one field, value is entered forcefully in another field" cannot be implemented by using \ ``@NotNull``\  alone. Hence, \ ``@Compare``\  provides \ ``requireBoth``\  attribute which controls mandatory input for checking which can then be used for implementing the check whenever required.
@@ -4131,6 +4143,7 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
     .. list-table::
         :header-rows: 1
         :widths: 50 50
+        :class: longtable
 
         * - Check requirements
           - Configuration example
@@ -4185,6 +4198,10 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
 |
 
 .. _Validation_terasoluna_gfw_how_to_use:
+
+.. raw:: latex
+
+   \newpage
 
 How to apply check rules of common library
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

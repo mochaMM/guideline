@@ -75,6 +75,7 @@ The basic terminology of JPA is described below.
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - Sr. No.
       - Term
@@ -123,6 +124,10 @@ The basic terminology of JPA is described below.
         | It is a method of \ ``EntityManager``\  and the accumulated un-reflected operations are reflected in the relational database.
         | Normally, operations are reflected to the relational database only when a transaction is committed; however, flush method is used when the operation needs to be reflected in the database before committing a transaction.
 
+ .. raw:: latex
+
+    \newpage
+
 Managing life cycle of entity
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 The life cycle of entity is managed as follows:
@@ -138,6 +143,7 @@ The life cycle of entity is managed as follows:
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -163,6 +169,10 @@ The life cycle of entity is managed as follows:
         | refer to 
         |  :ref:`Reflection timing of persistence processing (1) <how_to_create_repository_extends_springdata_flush_timing_note1>`
         |  :ref:`Reflection timing of persistence processing (2) <how_to_create_repository_extends_springdata_flush_timing_note2>`
+
+ .. raw:: latex
+
+    \newpage
 
 \
 
@@ -206,6 +216,7 @@ The basic flow at the time of accessing the database using Spring Data JPA is sh
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -226,6 +237,10 @@ The basic flow at the time of accessing the database using Spring Data JPA is sh
         | (API of java.sql.PreparedStatement is used for binding the actual values.)
     * - | (6)
       - | JDBC driver executes SQL.
+
+ .. raw:: latex
+
+    \newpage
 
 | When creating the repository using Spring Data JPA, APIs of JPA need not be called directly; however, it is better to know which JPA method is being called by
 | methods of Repository interface of Spring Data JPA.
@@ -321,6 +336,7 @@ Perform settings to use \ ``EntityManager``\ .
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -350,6 +366,10 @@ Perform settings to use \ ``EntityManager``\ .
       - | Specify the settings to configure ``EntityManager`` of Hibernate.
         | For details, refer to "`Hibernate Reference Documentation <http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch03.html#configuration-optional>`_\" .
 
+ .. raw:: latex
+
+    \newpage
+
 \
 
  .. tip::
@@ -374,6 +394,7 @@ Perform settings to use \ ``EntityManager``\ .
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - Sr. No.
           - Description
@@ -543,6 +564,7 @@ Settings for validating Spring Data JPA
  .. list-table::
     :header-rows: 1
     :widths: 6 20 74
+    :class: longtable
 
     * - Sr. No.
       - Element
@@ -574,6 +596,10 @@ Settings for validating Spring Data JPA
       - | Specify suffix indicating that it is an implementation class of custom Repository.
         | By default, it is ``"Impl"``. For example: when Repository interface name is ``OrderRepository``, ``OrderRepositoryImpl`` will be the implementation class of custom Repository. Use the default settings if there is no specific reason.
         | For custom Repository, refer to ":ref:`custommethod_individual-label`".
+
+ .. raw:: latex
+
+    \newpage
 
 Settings for using JPA annotations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -796,6 +822,7 @@ If entity specific Repository interface is created by inheriting ``JpaRepository
  .. list-table::
     :widths: 10 35 55
     :header-rows: 1
+    :class: longtable
 
     * - Sr. No.
       - Method
@@ -867,6 +894,10 @@ If entity specific Repository interface is created by inheriting ``JpaRepository
     * - 17.
       - long count()
       - | Returns the number of entities available.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning:: **Behavior when using optimistic locking (@javax.persistence.Version) of JPA**
 
@@ -1699,6 +1730,7 @@ Specify the query in the properties file (classpath:META-INF/jpa-named-queries.p
      .. list-table::
          :widths: 10 90
          :header-rows: 1
+         :class: longtable
 
          * - Sr. No.
            - Description
@@ -2034,6 +2066,7 @@ If no condition is specified, a blank list will be returned.
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2071,7 +2104,9 @@ If no condition is specified, a blank list will be returned.
     * - | (14)
       - | Execute the dynamically built query and fetch all the entities matching the conditions.
 
+ .. raw:: latex
 
+    \newpage
 
 -  Entity specific Repository interface
 
@@ -2403,6 +2438,7 @@ Further, the description for fetching all records is omitted.
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2434,6 +2470,9 @@ Further, the description for fetching all records is omitted.
     * - | (12)
       - | Specify entity list of the corresponding page, page information and total number of records matching the conditions as arguments and then create and return the ``Page`` object.
 
+ .. raw:: latex
+
+    \newpage
 
 - Service (Caller)
 

@@ -73,6 +73,7 @@ Message patterns, message display contents and the message type are shown below.
 .. list-table::
    :header-rows: 1
    :widths: 5 15 20 10 50
+   :class: longtable
 
    * - Symbol
      - Pattern
@@ -136,6 +137,10 @@ Message patterns, message display contents and the message type are shown below.
      - * XXXSystem is blocked, please try again later.
        * Timeout has occurred.
        * System error.
+
+.. raw:: latex
+
+   \newpage
 
 Message ID
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -226,7 +231,7 @@ The method of defining message ID to be used in screen label and fixed text of r
 
 * Format
 
-    .. tabularcolumns:: |p{0.14\linewidth}|p{0.14\linewidth}|p{0.16\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|
+    .. tabularcolumns:: |p{0.13\linewidth}|p{0.13\linewidth}|p{0.16\linewidth}|p{0.13\linewidth}|p{0.13\linewidth}|p{0.13\linewidth}|p{0.13\linewidth}|
     .. list-table::
        :header-rows: 1
        :widths: 14 14 16 14 14 14 14
@@ -319,7 +324,7 @@ To avoid duplication of messages, the messages which are common in multiple busi
 
 * Format
 
-    .. tabularcolumns:: |p{0.12\linewidth}|p{0.12\linewidth}|p{0.14\linewidth}|p{0.12\linewidth}|p{0.14\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
+    .. tabularcolumns:: |p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
     .. list-table::
        :header-rows: 1
        :widths: 12 12 14 12 14 12 12 12
@@ -399,7 +404,7 @@ The messages used individually in each business process are explained below.
 
 * Format
 
-    .. tabularcolumns:: |p{0.12\linewidth}|p{0.12\linewidth}|p{0.14\linewidth}|p{0.12\linewidth}|p{0.14\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
+    .. tabularcolumns:: |p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.10\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|p{0.12\linewidth}|
     .. list-table::
        :header-rows: 1
        :widths: 12 12 14 12 14 12 12 12

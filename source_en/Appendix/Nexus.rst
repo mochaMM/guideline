@@ -60,8 +60,8 @@ When an application is to be developed using TERASOLUNA Server Framework for Jav
 
 .. todo::
 
-    Add proxy repository to http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/ and http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/ .
-    Then write the method to add it to public repository group and provide a screen capture along with it.
+    | Add proxy repository to http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/ and
+    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/ . Then write the method to add it to public repository group and provide a screen capture along with it.
 
 settings.xml
 --------------------------------------------------------------------------------
