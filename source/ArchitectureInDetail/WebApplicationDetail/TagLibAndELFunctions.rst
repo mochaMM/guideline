@@ -458,6 +458,7 @@ f:query() 関数仕様
      .. list-table::
         :header-rows: 1
         :widths: 45 30 25
+        :class: longtable
 
         * - 条件
           - パラメータ値の変換仕様

@@ -438,6 +438,7 @@ Acceptヘッダでマッピング
  .. list-table::
    :header-rows: 1
    :widths: 5 20 15 22 10 13 15
+   :class: longtable
 
    * - | 項番
      - | 処理名
@@ -546,6 +547,10 @@ Acceptヘッダでマッピング
      - GET
      - complete
      - deleteComplete
+
+ .. raw:: latex
+
+    \newpage
 
 | Entity新規作成、Entity更新、Entity削除処理では、処理内に複数のリクエストが存在しているため、HTTPメソッドとHTTPパラメータによってハンドラメソッドを切り替えている。
 | 以下に、Entity新規作成処理を例に、処理内に複数のリクエストが存在する場合のリクエストフローを示す。
@@ -1493,6 +1498,7 @@ URLのパスから値を取得する
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1516,6 +1522,10 @@ URLのパスから値を取得する
      - | 「${属性名.JavaBeanのプロパティ名}」と記述することで\ ``RedirectAttributes``\に格納されているJavaBeanから値を取得することができる。
    * - | (8)
      - | HTMLの出力例。
+
+ .. raw:: latex
+
+    \newpage
 
 .. warning::
     ``Model`` に追加してもリダイレクト先にデータを渡すことはできない。
@@ -3740,6 +3750,7 @@ HandlerMethodArgumentResolverを実装してControllerの引数として受け�
 .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - 項番
      - 属性
@@ -3884,6 +3895,10 @@ HandlerMethodArgumentResolverを実装してControllerの引数として受け�
            public class AppGlobalExceptionHandler {
                // ...
            }
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 

@@ -488,6 +488,7 @@ JdbcCodeListの使用方法
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -516,6 +517,10 @@ JdbcCodeListの使用方法
      - | valueColumnプロパティに、MapのKeyに該当する値を設定する。この例ではauthority_idを設定している。
    * - | (8)
      - | labelColumnプロパティに、MapのValueに該当する値を設定する。この例ではauthority_nameを設定している。      
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -936,6 +941,7 @@ SimpleI18nCodeListの使用方法
 .. list-table::
     :header-rows: 1
     :widths: 20 20 60
+    :class: longtable
   
     * - locale
       - code
@@ -976,6 +982,10 @@ SimpleI18nCodeListの使用方法
     * - | ja
       - | 50000
       - | 50,000円以下
+
+.. raw:: latex
+
+   \newpage
 
 .. warning::
 

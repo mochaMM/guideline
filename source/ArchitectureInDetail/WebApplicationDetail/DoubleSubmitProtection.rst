@@ -110,10 +110,15 @@ Problems
    :alt: duplicate invalid screen flow
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -131,6 +136,10 @@ Problems
      - | サーバは、(5)のリクエストで受けた商品の購入処理をDBに対して反映する。
    * - | (7)
      - | サーバは、(5)のリクエストで受けた商品の購入完了画面を応答する。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
  
@@ -152,6 +161,7 @@ Problems
         .. list-table::
            :header-rows: 1
            :widths: 10 90
+           :class: longtable
 
            * - 項番
              - 説明
@@ -316,6 +326,7 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -335,6 +346,10 @@ PRG(Post-Redirect-Get)パターンについて
        | この時点で、トランザクショントークン(token001)は破棄される。
    * - | (7)
      - | サーバは、更新したトランザクショントークン(token002)を、クライアントに引き渡す。
+
+ .. raw:: latex
+
+    \newpage
 
 | 想定外の操作を行った場合の処理フローについて説明する。
 | ここではブラウザの戻るボタンを例にしているが、ショートカットからの直接リクエストなどでも同様である。
@@ -376,6 +391,7 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -394,6 +410,10 @@ PRG(Post-Redirect-Get)パターンについて
        | **クライアントから送信されたトランザクショントークンは既に破棄された値のため、トランザクショントークンエラーとなる。**
    * - | (6)
      - | サーバは、トランザクショントークンエラーが発生した事を通知するエラー画面を応答する。
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -468,7 +488,6 @@ PRG(Post-Redirect-Get)パターンについて
  .. list-table::
    :header-rows: 1
    :widths: 10 90
-
 
    * - 項番
      - 説明
@@ -733,6 +752,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table:: \ ``@TransactionTokenCheck``\ アノテーションパラメタ一覧
    :header-rows: 1
    :widths: 10 10 45 10 20
+   :class: longtable
 
    * - 項番
      - 属性名
@@ -774,6 +794,10 @@ PRG(Post-Redirect-Get)パターンの適用
        | \ ``type = TransactionTokenType.CHECK``\
        |
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     value属性またはnamespace属性に設定する値は、\ ``@RequestMapping``\ アノテーションのvalue属性の設定値と、同じ値を設定することを推奨する。
@@ -803,6 +827,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - 項番
      - 構成要素
@@ -827,6 +852,10 @@ PRG(Post-Redirect-Get)パターンの適用
      - TokenValue
      - * TokenValueは、トランザクションのトークン値を保持するための要素となる。
        * TokenValueは、\ ``@TransactionTokenCheck``\アノテーションのtype属性に\ ``TransactionTokenType.BEGIN``\又は\ ``TransactionTokenType.IN``\が宣言されているメソッドが実行されたタイミングで生成される。
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
  
@@ -862,6 +891,7 @@ PRG(Post-Redirect-Get)パターンの適用
  .. list-table::
    :header-rows: 1
    :widths: 10 20 70
+   :class: longtable
 
    * - 項番
      - ライフサイクル制御
@@ -888,6 +918,10 @@ PRG(Post-Redirect-Get)パターンの適用
      - | トークンの引継
      - | \ ``@TransactionTokenCheck``\アノテーションのtype属性に\ ``TransactionTokenType.CHECK``\が指定されたメソッドの処理が終了したタイミングでサーバ上のトークンが引継がれ、トランザクションが継続される。
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     NameSpace内で保持することが出来るトランザクショントークン(TokenKey)の数には上限数が設けられており、新たにトランザクショントークンを生成する際に
@@ -910,10 +944,15 @@ PRG(Post-Redirect-Get)パターンの適用
    :alt: transaction token count
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -927,6 +966,10 @@ PRG(Post-Redirect-Get)パターンの適用
    * - | (4)
      - | NameSpace内で保持することが出来るトランザクショントークンの数には上限数を超える分のトランザクショントークンを削除する。
        | **トランザクショントークンを削除する際は、実行された日時が最も古いものから順に削除する。**
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -1332,6 +1375,7 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1358,6 +1402,9 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
      - | サーバは、サーバ上で保持しているトークン(token001)と、クライアントから送信されたトークン(token002)が同一かチェックする。
        | **値が不一致なので、不正なリクエストと判断される。**
 
+ .. raw:: latex
+
+    \newpage
 
 上記のように、ファイルダウンロード処理を行うことができる画面（screen2）から次画面（screen3）への遷移の処理に対してトランザクショントークンを適用したい場合に
 ファイルダウンロード処理の\ ``TransactionTokenType``\に\ ``IN``\を使用すると通常オペレーションの範囲でトークンの不一致を引き起こす。
@@ -1371,6 +1418,7 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1393,6 +1441,10 @@ TransactionTokenTypeを正しく設定しない場合、通常のオペレーシ
        | この時点で、トークン(token001)は破棄される。
    * - | (8)
      - | サーバは、更新したトークン(token002)を、クライアントに引き渡す。
+
+ .. raw:: latex
+
+    \newpage
 
 .. warning::
 
@@ -1724,6 +1776,7 @@ Controllerの実装
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - 項番
@@ -1747,6 +1800,10 @@ Controllerの実装
    * - | (7)
      - | リダイレクトを使用して画面を表示する場合は、トランザクショントークン用のhiddenタグは存在しない。
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     サーバ上に残っているトランザクショントークンは、グローバルトークンが新たに生成されたタイミングで自動的に削除される。
@@ -1764,6 +1821,7 @@ Quick Reference
  .. list-table::
    :header-rows: 1
    :widths: 10 20 15 20 15 20
+   :class: longtable
 
    * - 番号
      - Namespace毎に保持するトークン数

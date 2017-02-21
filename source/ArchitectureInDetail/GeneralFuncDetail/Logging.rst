@@ -38,6 +38,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 10 15 35 40
+   :class: longtable
 
    * - ログレベル
      - カテゴリ
@@ -79,6 +80,10 @@ Overview
      - 例外発生の監視
      - | 例外発生時間、システムエラーに対応するメッセージID
        | ツールを用いて監視することを考慮し、出力内容は最低限とすること
+
+.. raw:: latex
+
+   \newpage
 
 | デバッグログ、アクセスログ、外部通信ログ、業務エラーログ、システムエラーログは、同一のファイルに出力する。
 | 本ガイドラインでは、上記を出力するログファイルを、アプリケーションログと呼ぶこととする。
@@ -146,6 +151,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 15 85
+   :class: longtable
 
    * - カテゴリ
      - 出力ポイント
@@ -179,6 +185,10 @@ Overview
        | 詳細は、\ :doc:`../WebApplicationDetail/ExceptionHandling` \ を参照されたい。
    * - 監視ログ
      - 業務エラーログ、システムエラーログの出力タイミングと同様である。
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
     ログを出力する際は、どこで出力されたかわかりやすくなるように、他のログと、全く同じ内容を出力にならないように注意すること。
@@ -312,6 +322,7 @@ logback.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -352,6 +363,10 @@ logback.xml
      - | <logger>の指定が無いロガーが、warnレベル以上のログを出力するように設定する。
    * - | (12)
      - | デフォルトでConsoleAppender, RollingFileAppender(アプリケーションログ)が使用されるように設定する。
+
+.. raw:: latex
+
+   \newpage
 
 .. tip:: **LTSV(Labeled Tab Separated Value)について**
 
@@ -747,6 +762,7 @@ How to extend
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -779,6 +795,9 @@ How to extend
      - | getMessageを呼び出す際にプロパティファイルにログIDが記載されていないと例外:\ ``NoSuchMessageException``\ が発生する。
        | そのため\ ``NoSuchMessageException``\ をcatchし、ログIDがプロパティファイルに定義されていない旨のログメッセージを出力する。
 
+.. raw:: latex
+
+   \newpage
 
 - `log-messages.properties`  (プロパティファイル)
 

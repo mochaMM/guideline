@@ -1187,6 +1187,7 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - 項番
@@ -1221,6 +1222,10 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
      - | Spring Data JPAを使用してデータベースにアクセスする場合は、\ ``create``\ メソッドではなく、\ ``save``\ メソッドを呼び出す。
    * - | (11)
      - | Spring Data JPAを使用してデータベースにアクセスする場合は、\ ``update``\ メソッドではなく、\ ``save``\ メソッドを呼び出す。
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -1646,6 +1651,7 @@ Controllerの修正
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1672,6 +1678,9 @@ Controllerの修正
        | リダイレクトすることにより、ブラウザを再読み込みして、再び新規登録処理が\ ``POST``\ されることがなくなる。（詳しくは、「:ref:`DoubleSubmitProtectionAboutPRG`」を参照されたい）
        | なお、今回は成功メッセージであるため、\ ``ResultMessages.success()``\ を使用している。
 
+.. raw:: latex
+
+   \newpage
 
 Formの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3358,6 +3367,7 @@ web.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -3415,6 +3425,10 @@ web.xml
        * セッションタイムアウトとして、30分
 
        が定義済みである。
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -4174,6 +4188,7 @@ spring-mvc.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -4217,6 +4232,10 @@ spring-mvc.xml
                    <property name="suffix" value=".jsp" />
                </bean>
 
+.. raw:: latex
+
+   \newpage
+   
 .. note::
 
     JPA用のブランクプロジェクトを作成した場合は、\ ``<mvc:interceptors>``\ の定義として、

@@ -61,8 +61,8 @@ TERASOLUNA Server Framework for Java (5.x)を用いて開発する場合、上�
 
 .. todo::
 
-    http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/とhttp://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/へのproxyリポジトリの追加と、
-    publicリポジトリグループへの追加方法をキャプチャつきで書く。
+    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/と
+    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/へのproxyリポジトリの追加と、publicリポジトリグループへの追加方法をキャプチャつきで書く。
 
 settings.xml
 --------------------------------------------------------------------------------
