@@ -9,6 +9,19 @@
     * - 更新日付
       - 更新箇所
       - 更新内容
+
+    * - xxx-xx-xx
+      - \-
+      - 5.0.3 RELEASE版公開
+
+        * 更新内容の詳細は、\ `5.0.3のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?q=is%3Aissue+milestone%3A5.0.3+is%3Aclosed>`_\ を参照されたい。
+
+    * -  
+      - :doc:`../Security/Authorization`  
+      - 記載内容の追加
+  
+        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )  
+
     * - 2016-08-31
       - :doc:`../ArchitectureInDetail/FileUpload`
       - 記載内容の追加
