@@ -1179,6 +1179,7 @@ Created class stored in the following directory.
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - Sr. No.
@@ -1213,6 +1214,10 @@ Created class stored in the following directory.
      - | If database is accessed using Spring Data JPA, instead of \ ``create`` \ method, call \ ``save`` \ method.
    * - | (11)
      - | If database is accessed using Spring Data JPA, instead of \ ``update`` \ method, call \ ``save`` \ method.
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -1638,6 +1643,7 @@ Add new creation process into \ ``TodoController``\.
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1664,6 +1670,9 @@ Add new creation process into \ ``TodoController``\.
        | Since redirect is used, there is no case of browser being read again and a new registration process being \ ``POST``\. (For details, refer to ":ref:`DoubleSubmitProtectionAboutPRG`")
        | Since this time Created successfully message is displayed, \ ``ResultMessages.success()`` \ is used.
 
+.. raw:: latex
+
+   \newpage
 
 Modifications in Form
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3355,6 +3364,7 @@ Following settings are done in created blank project :file:`src/main/webapp/WEB-
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -3412,6 +3422,10 @@ Following settings are done in created blank project :file:`src/main/webapp/WEB-
        * 30 minutes as a session time-out
 
        are defined.
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -4169,6 +4183,7 @@ The Spring MVC related definitions are done in \ :file:`spring-mvc.xml`\.
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -4211,6 +4226,10 @@ The Spring MVC related definitions are done in \ :file:`spring-mvc.xml`\.
                    <property name="prefix" value="/WEB-INF/views/" />
                    <property name="suffix" value=".jsp" />
                </bean>
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 

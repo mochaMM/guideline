@@ -6369,6 +6369,7 @@ The process flow up to SQL execution when Mapper interface method is called, is 
  .. list-table::
     :header-rows: 1
     :widths: 10 80
+    :class: longtable
 
 
     * - Sr. No.
@@ -6398,6 +6399,9 @@ The process flow up to SQL execution when Mapper interface method is called, is 
 
         When number of records or number of updated records are to be fetched, primitive type or primitive wrapper type etc. form the return values.
 
+ .. raw:: latex
+
+    \newpage
 
  .. tip:: **Statement ID**
 
@@ -7005,6 +7009,7 @@ In the implementation example, the records stored in the table above are mapped 
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
+    :class: longtable
 
     * - Sr. No.
       - Class name
@@ -7115,6 +7120,9 @@ In the implementation example, the records stored in the table above are mapped 
                 // ...
             }
 
+ .. raw:: latex
+
+    \newpage
 
 |
 

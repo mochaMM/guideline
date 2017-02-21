@@ -103,10 +103,15 @@ RESTful Web Service is developed in TERASOLUNA Server Framework for Java (5.x) u
    :alt: Application constitution of RESTful Web Service on Spring MVC
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.70\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - Sr. No.
       - Process layer
@@ -143,6 +148,9 @@ RESTful Web Service is developed in TERASOLUNA Server Framework for Java (5.x) u
         | 
       - | Spring MVC sets JSON format message in response BODY and responds to client.
 
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -321,7 +329,7 @@ REST API implementation sample
 
  Following five REST APIs (Controller handler methods) are created for Todo resource.
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.30\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 15 10 30 15 20
@@ -842,10 +850,17 @@ Connectivity of resources is described below, with the example of member informa
    :alt: Image of resource connectivity
    :width: 100%
 
+|
+
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -953,6 +968,10 @@ Connectivity of resources is described below, with the example of member informa
         
         | Highlighted portion is the hypermedia link (URI) to other linked resource.
         | In the above example, connectivity is retained with respect to the resource for owner member of authentication history.
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -1759,6 +1778,7 @@ Settings for activating the Spring MVC components necessary for RESTful Web Serv
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1788,6 +1808,10 @@ Settings for activating the Spring MVC components necessary for RESTful Web Serv
     * - | (7)
       - | Specify AOP definition to output the exception handled by Spring MVC framework to a log.
         | Refer to \ :doc:`../WebApplicationDetail/ExceptionHandling`\  for \ ``HandlerExceptionResolverLoggingInterceptor``\ .
+
+ .. raw:: latex
+
+    \newpage
 
 .. note:: **How to define a Bean for ObjectMapper**
 
@@ -1977,6 +2001,7 @@ REST API specifications used in this explanation are as shown below.
  .. list-table::
     :header-rows: 1
     :widths: 10 20 10 10 15 25
+    :class: longtable
 
     * - Sr. No.
       - Item name
@@ -2100,13 +2125,17 @@ REST API specifications used in this explanation are as shown below.
       - | yyyy-MM-dd'T'HH:mm:ss.SSS'Z' format
         | (extended ISO-8601 format)
 
+ .. raw:: latex
+
+    \newpage
+
 |
 
 **REST APIs List**
 
  APIs given below are used as the REST API to be implemented.
  
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.25\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.10\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.25\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 15 10 25 15 25
@@ -2282,6 +2311,7 @@ Role of Resource class is as follows:
       .. list-table::
           :header-rows: 1
           :widths: 10 90
+          :class: longtable
 
           * - Sr. No.
             - Description
@@ -2633,6 +2663,7 @@ Example to implement the REST API wherein a page search is performed for member 
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2678,6 +2709,10 @@ Example to implement the REST API wherein a page search is performed for member 
     * - | (9)
       - | Return a Resource object generated in (8).
         | The object returned here is marshalled in JSON or XML and set in response body.
+
+ .. raw:: latex
+
+    \newpage
 
  | Response at the time of using \ ``PageImpl``\  class is as below.
  | Highlighted portion shows the fields specific for page search.
@@ -3322,7 +3357,6 @@ How to handle the exceptions occurring in RESTful Web Service is explained below
         | 
       - | Spring MVC sets the JSON format error message in response BODY and sends response to the client.
 
-
 |
 
 .. _RESTHowToUseExceptionHandlingForErrorContentInResponseBody:
@@ -3789,7 +3823,8 @@ Following three exceptions need to be handled in order to respond to input error
      .. list-table::
         :header-rows: 1
         :widths: 10 35 55
-    
+        :class: longtable
+
         * - Sr. No.
           - Exception class
           - Description
@@ -4987,6 +5022,7 @@ Output control for response using @JsonView
    .. list-table::
       :header-rows: 1
       :widths: 10 20 70
+      :class: longtable
 
       * - Sr. No.
         - Method name
@@ -5017,6 +5053,7 @@ Output control for response using @JsonView
    .. list-table::
       :header-rows: 1
       :widths: 10 20 70
+      :class: longtable
 
       * - Sr. No.
         - Method name
@@ -5473,6 +5510,7 @@ Implementation for each resource
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -5499,6 +5537,10 @@ Implementation for each resource
         * Status code : 201(Created)
         * Location header : Created resource's URI
         * Response body : Created resource object
+
+ .. raw:: latex
+
+    \newpage
 
  .. tip::
 
@@ -5814,6 +5856,7 @@ Adding Spring-oxm as dependent artifact.
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - | Sr. No.
      - | Description

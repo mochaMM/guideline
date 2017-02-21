@@ -47,6 +47,7 @@ The list of security requirements fulfilled by the application is shown below. T
 .. list-table::
     :header-rows: 1
     :widths: 10 20 30 40
+    :class: longtable
 
     * - Sr. No.
       - Classification
@@ -154,6 +155,10 @@ The list of security requirements fulfilled by the application is shown below. T
       - Audit log output
       - Output date and time, user name, operation details and operation results for each request in a log
 
+.. raw:: latex
+
+   \newpage
+
 Functions
 --------------------------------------------------------------------------------
 
@@ -228,6 +233,7 @@ Screen transition diagram is shown below. Screen transition in case of an error 
 .. list-table::
     :header-rows: 1
     :widths: 20 50 30
+    :class: longtable
 
     * - | Sr. No.
       - | Screen Name
@@ -275,6 +281,10 @@ Screen transition diagram is shown below. Screen transition in case of an error 
       - | Password change complete screen
       - | Authenticated users only
 
+.. raw:: latex
+
+   \newpage
+
 URL List
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 URL list is shown below.
@@ -283,6 +293,7 @@ URL list is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 20 15 15 40
+    :class: longtable
 
     * - Sr. No.
       - Process name
@@ -395,6 +406,10 @@ URL list is shown below.
       - /reissue/resetpassword?complete
       - Display password reissue complete screen
 
+.. raw:: latex
+
+   \newpage
+
 ER diagram
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -409,6 +424,7 @@ ER diagram in this application is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 20 40 30
+    :class: longtable
 
     * - Sr. No.
       - Entity name
@@ -464,6 +480,10 @@ ER diagram in this application is shown below.
       - | Information saved in password reissue failure to restrict the number of attempts for password reissue
       - | token : token used when failed to reissue password
         | attemptDate : Date and time when password reissue was attempted
+
+.. raw:: latex
+
+   \newpage
 
 .. tip ::
 
@@ -1577,7 +1597,8 @@ The code implemented according to the implementation method mentioned above is d
     .. list-table::
        :header-rows: 1
        :widths: 10 90
-    
+       :class: longtable
+
        * - Sr. No.
          - Description
        * - | (1)
@@ -1603,6 +1624,9 @@ The code implemented according to the implementation method mentioned above is d
        * - | (11)
          - | Fetch the password validation error messages.
 
+    .. raw:: latex
+
+       \newpage
 
 * Password validation
 
@@ -3297,7 +3321,8 @@ The code implemented according to the implementation method is described below.
     .. list-table::
        :header-rows: 1
        :widths: 10 90
-    
+       :class: longtable
+
        * - Sr. No.
          - Description
        * - | (1)
@@ -3324,6 +3349,10 @@ The code implemented according to the implementation method is described below.
          - | Register the authentication information for password reissue in the database.
        * - | (12)
          - | Return the created confidential information.
+
+    .. raw:: latex
+
+       \newpage
 
   * Implementation of Form
 
@@ -4663,6 +4692,7 @@ Code implemented in accordance with the implementation method above is explained
   .. list-table::
      :header-rows: 1
      :widths: 10 90
+     :class: longtable
 
      * - Sr. No.
        - Description
@@ -4689,6 +4719,10 @@ Code implemented in accordance with the implementation method above is explained
      * - | (11)
        - | Check whether the string for input check is included in the prohibited characters - sequentially one character at a time and throw an exception if the prohibited character is included
          | \ ``InvalidCharacterException`` \  is an exception created by inheriting \ ``RuntimeException`` \. Code is omitted.
+
+  .. raw:: latex
+
+     \newpage
 
   .. tip::
 
@@ -5409,6 +5443,7 @@ Log format is as below..
 .. list-table::
    :header-rows: 1
    :widths: 30 70
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -5431,6 +5466,10 @@ Log format is as below..
      - | Time at which a method is called: "[START SERVICE] ServiceClassName.methodName"
        | Time at which method is successfully terminated: "[COMPLETE SERVICE] ServiceClassName.methodName"
        | Exception occurrence time: "[SERVICE THROWS EXCEPTION] ExceptionClassName.methodName"
+
+.. raw:: latex
+
+   \newpage
 
 How to implement
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
