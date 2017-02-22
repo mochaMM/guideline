@@ -90,7 +90,7 @@ CVEによる観点
      - Apache Commons FileUploadで使用している\ ``MultipartStream``\ クラスを使用すると、細工されたリクエストによるサービス不能攻撃ができてしまう
      - * Commons FileUpload 1.0 to 1.3
 
-     - * :ref:`overview`
+     - * :ref:`file-upload_Overview`
 
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2014-1904 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1904>`_\
@@ -100,7 +100,7 @@ CVEによる観点
        * Spring MVC 4.0.0 to 4.0.1
 
        * サポートされていない古いバージョン
-     - * :ref:`implement_of_jsp`
+     - * :ref:`ApplicationLayerImplementOfJsp`
    * - \ `CVE-2015-3192 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3192>`_\
      - DTDを使用したDOS攻撃ができてしまう
      - * Spring Framework 3.2.0 to 3.2.13
@@ -118,7 +118,7 @@ CVEによる観点
        * Apache Commons Fileupload 1.2 to 1.2.2
 
        * サポートされていない古いバージョン
-     - * :ref:`overview`
+     - * :ref:`file-upload_Overview`
 
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2016-5007 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5007>`_\
