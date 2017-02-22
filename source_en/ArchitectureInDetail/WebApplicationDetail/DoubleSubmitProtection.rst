@@ -816,6 +816,10 @@ Format of transaction token
 
 Format for the transaction token used in the transaction token check of common library is as follows:
 
+ .. raw:: latex
+
+    \newpage
+
  .. figure:: ./images/transaction-token-name-pattern.png
    :alt: format of transaction token
    :width: 100%
@@ -825,11 +829,6 @@ Format for the transaction token used in the transaction token check of common l
    :width: 100%
 
 |
-|
-
- .. raw:: latex
-
-    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.75\linewidth}|
  .. list-table::
