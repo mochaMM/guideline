@@ -242,16 +242,16 @@ HTML of pagination link to be output using common library is as follows:
    :width: 100%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
+
 - Screen image
 
  .. figure:: ./images/pagination-overview_html_basic_screen.png
    :alt: screen structure of the pagination link.
    :width: 80%
    :align: center
-
- .. raw:: latex
-
-    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.70\linewidth}|p{0.20\linewidth}|
  .. list-table::
