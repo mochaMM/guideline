@@ -808,6 +808,7 @@ artifact information to be incorporated while using are given below.
 .. list-table::
    :header-rows: 1
    :widths: 10 20 30 40
+   :class: longtable
 
    * - Sr. No.
      - Class name
@@ -900,6 +901,10 @@ artifact information to be incorporated while using are given below.
                <groupId>org.terasoluna.gfw.codepoints</groupId>
                <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
            </dependency>
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 

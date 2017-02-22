@@ -556,6 +556,7 @@ Basic synchronous sending
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - Sr. No.
       - Configuration item
@@ -629,6 +630,9 @@ Basic synchronous sending
       - | Specify \ ``true``\  when \ ``deliveryMode``\ , \ ``priority``\  and \ ``timeToLive``\  are enabled.
       - \-
       - \ ``false``\
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 
@@ -1156,10 +1160,11 @@ Basic asynchronous receiving
             cache="consumer"
             transaction-manager="jmsAsyncReceiveTransactionManager"/>
 
- .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.21\linewidth}|p{0.74\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
+    :class: longtable
 
     * - Sr. No.
       - Attribute name
@@ -1226,7 +1231,9 @@ Basic asynchronous receiving
       - \ ``transaction-manager``\
       - | Specify Bean name which performs transaction control at the time of asynchronous receiving. For details, refer \ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\.
 
+ .. raw:: latex
 
+    \newpage
 
 
 
@@ -1650,7 +1657,7 @@ How to configure is shown below.
         cache="consumer"
         transaction-manager="jmsAsyncReceiveTransactionManager"/>
 
- .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.26\linewidth}|p{0.69\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
@@ -1819,7 +1826,7 @@ In the application wherein DB transaction control is required, a transaction con
           transaction-manager="chainedTransactionManager"
           acknowledge="transacted"/>
 
-   .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+   .. tabularcolumns:: |p{0.05\linewidth}|p{0.26\linewidth}|p{0.69\linewidth}|
    .. list-table::
       :header-rows: 1
       :widths: 10 26 64
@@ -2182,6 +2189,7 @@ A method wherein the messages are synchronously received
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - Sr. No.
       - Configuration item
@@ -2241,6 +2249,10 @@ A method wherein the messages are synchronously received
         | When the Destination is not specified explicitly, this Destination is used.
       - \-
       - null(no existing Destination)
+
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 

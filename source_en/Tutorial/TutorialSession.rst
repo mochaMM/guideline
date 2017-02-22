@@ -269,7 +269,8 @@ Further, the process wherein the path mentioned as "Created" is accessed, is alr
  .. list-table::
     :header-rows: 1
     :widths: 5 20 10 20 25 20
-    
+    :class: longtable
+
     * - Sr. No.
       - Process name
       - HTTP method
@@ -385,7 +386,9 @@ Further, the process wherein the path mentioned as "Created" is accessed, is alr
       - | OrderController
       - | order/finish
 
+ .. raw:: latex
 
+    \newpage
 
 
 Designing input/output data
@@ -500,7 +503,8 @@ This tutorial also considers not using the session.
  .. list-table::
     :header-rows: 1
     :widths: 15 85
-    
+    :class: longtable
+
     * - Data item
       - Review contents
     * - | Update account information
@@ -520,6 +524,9 @@ This tutorial also considers not using the session.
     * - | Order information
       - | Since the Order information is used only in 1 screen, the data should be handled in the request scope.
 
+ .. raw:: latex
+
+    \newpage
 
 From the above-mentioned, consider using the session for these 4 i.e. the Update account information, Account information, Cart information and Product search information.
 

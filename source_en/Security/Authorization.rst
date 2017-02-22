@@ -168,6 +168,7 @@ Common Expressions provided by Spring Security are as given below.
 .. list-table:: **Common Expression provided by Spring Security**
     :header-rows: 1
     :widths: 30 70
+    :class: longtable
 
     * - Expression
       - Description
@@ -191,6 +192,10 @@ Common Expressions provided by Spring Security are as given below.
       - | Return user information of authenticated user (an object of a class which implements \ ``UserDetails``\  interface).
     * - | \ ``authentication``\
       - | Return authentication information of authenticated user (an object of a class which implements \ ``Authentication``\  interface).
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Accessing authentication information which uses Expression**
 

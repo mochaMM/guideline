@@ -71,7 +71,7 @@ The multi-project structured development project will be created using the
 
 As an Archetype following two types are provided for creating multi-project.
 
-.. tabularcolumns:: |p{0.5\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
+.. tabularcolumns:: |p{0.05\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 5 30 65
@@ -853,6 +853,7 @@ Initially entire multi-project structure is explained.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -919,6 +920,10 @@ Initially entire multi-project structure is explained.
 
         * JUnit testing using Selenium operation
         * Expected value file used while Assert (if necessary)
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **About a terminology definition of [multi-project] in this guideline**
 
@@ -1050,10 +1055,15 @@ Module that manages the application layer (Web layer) components are explained.
             │   │   └── i18n  ... (10)
             │   │       └── application-messages.properties  ... (11)
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1121,6 +1131,10 @@ Module that manages the application layer (Web layer) components are explained.
             **Messages should be modified according to the application requirements (Such as message Terms).**
             For the message definition, Refer [:doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`].
 
+.. raw:: latex
+
+   \newpage
+
 .. note::
 
     Refer [:ref:`CreateWebApplicationProjectAppendixApplicationContext`] for the application context and bean definition file related.
@@ -1164,6 +1178,7 @@ Module that manages the application layer (Web layer) components are explained.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1208,6 +1223,10 @@ Module that manages the application layer (Web layer) components are explained.
         Here adopted a dedicated directory mechanism for managing static resources offered by Spring MVC.
     * - | (20)
       - CSS file that defines the screen style applied to the entire application.
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -1605,6 +1624,7 @@ The hierarchical structure of the project indicated below which is created in Ma
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1640,6 +1660,10 @@ The hierarchical structure of the project indicated below which is created in Ma
         Since [org.springframework.boot:spring-boot-dependencies:1.2.5.RELEASE] is specified as a parent project,  the definition of \ ``<dependencyManagement>`` \ defined into pom file of the spring-boot-dependencies also imported into pom file of the terasoluna-gfw-parent.
     * - | (5)
       - Spring Boot Dependencies project.
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 
@@ -1707,6 +1731,9 @@ Relationship of bean definition file and structure of the Spring Framework appli
         mechanized such a way that it can be obtained by referring the application context of the Web application (parent context),
         hence it is possible to inject domain layer components for the application layer component.
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **About the operation when registered the same components in both application contexts.**
 
