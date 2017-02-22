@@ -255,6 +255,9 @@ About PRG (Post-Redirect-Get) pattern
    :alt: prevent double submit by reload
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
