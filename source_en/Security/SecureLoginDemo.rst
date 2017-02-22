@@ -5753,7 +5753,8 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 10 90
-  
+   :class: longtable
+
    * - Sr. No.
      - Description
    * - | (1)
@@ -5767,6 +5768,10 @@ Overview
      - | An instance of \ ``org.passay.RuleResult`` \  is created as validation result using a validator.
    * - | (4)
      - | Password validation results can be fetched from \ ``RuleResult`` \  as a \ ``boolean`` \  value. Also, an error message can be fetched from \ ``RuleResult`` \  by using a validator.
+
+.. raw:: latex
+
+   \newpage
 
 Some of the classes of validation rules offered by Passay are shown in the table below.
 
