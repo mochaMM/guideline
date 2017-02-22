@@ -253,6 +253,10 @@ HTML of pagination link to be output using common library is as follows:
    :width: 80%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.70\linewidth}|p{0.20\linewidth}|
  .. list-table::
     :header-rows: 1
