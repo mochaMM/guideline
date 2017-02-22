@@ -17,6 +17,12 @@
         * 更新内容の詳細は、\ `1.0.6のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A1.0.6%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
+      - :doc:`../Overview/FrameworkStack`
+      - 利用するOSSのバージョンを更新
+
+        * GroupId「\ ``org.springframework``\」のバージョンを3.2.17.RELEASEから3.2.18.RELEASEに更新
+
+    * -
       - :doc:`../Security/Authorization`
       - 記載内容の追加
 
