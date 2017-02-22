@@ -215,7 +215,7 @@ Delete TODO
 
      .. code-block:: bash
 
-        mvn archetype:generate -B\
+        mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B\
          -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases\
          -DarchetypeGroupId=org.terasoluna.gfw.blank\
          -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype\
@@ -236,7 +236,7 @@ O/R Mapperに依存しないブランクプロジェクトの作成
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
@@ -255,7 +255,7 @@ MyBatis3を使用してデータベースにアクセスするRepositoryImpl用�
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype^
@@ -274,7 +274,7 @@ Spring Data JPAの使用してデータベースにアクセスするRepositoryI
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-jpa-archetype^
