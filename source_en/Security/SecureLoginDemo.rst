@@ -5443,7 +5443,6 @@ Log format is as below..
 .. list-table::
    :header-rows: 1
    :widths: 30 70
-   :class: longtable
 
    * - Sr. No.
      - Description
@@ -5466,10 +5465,6 @@ Log format is as below..
      - | Time at which a method is called: "[START SERVICE] ServiceClassName.methodName"
        | Time at which method is successfully terminated: "[COMPLETE SERVICE] ServiceClassName.methodName"
        | Exception occurrence time: "[SERVICE THROWS EXCEPTION] ExceptionClassName.methodName"
-
-.. raw:: latex
-
-   \newpage
 
 How to implement
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
