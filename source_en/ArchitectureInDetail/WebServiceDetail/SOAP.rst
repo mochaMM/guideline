@@ -1407,7 +1407,6 @@ As described in "\ :ref:`SOAPOverviewAboutRESTfulWebServiceDevelopment`\ ", mode
 .. list-table::
     :header-rows: 1
     :widths: 10 30 60
-    :class: longtable
 
     * - Sr. No.
       - Project name
@@ -1431,10 +1430,6 @@ As described in "\ :ref:`SOAPOverviewAboutRESTfulWebServiceDevelopment`\ ", mode
       - | env project
       - | Define a proxy class which implements WebService interface used while communicating with SOAP server.
         | Since proxy class definition is often environment dependent, it is defined in env project.
-
-.. raw:: latex
-
-   \newpage
 
 |
 
