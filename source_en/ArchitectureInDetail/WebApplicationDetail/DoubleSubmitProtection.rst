@@ -826,6 +826,10 @@ Format for the transaction token used in the transaction token check of common l
 
 |
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.75\linewidth}|
  .. list-table::
    :header-rows: 1
@@ -1373,6 +1377,10 @@ An example wherein the transaction token error occurs during a normal operation 
  .. figure:: ./images/transaction-token-file-donwload-ng.png
    :alt: transaction token file download ng
    :width: 100%
+
+ .. raw:: latex
+
+    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
