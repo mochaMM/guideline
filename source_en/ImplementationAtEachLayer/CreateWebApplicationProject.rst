@@ -1699,7 +1699,6 @@ Relationship of bean definition file and structure of the Spring Framework appli
 .. list-table::
     :header-rows: 1
     :widths: 10 90
-    :class: longtable
 
     * - | Sr. No.
       - | Description
