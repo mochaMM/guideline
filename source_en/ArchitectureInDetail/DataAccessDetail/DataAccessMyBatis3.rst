@@ -6365,6 +6365,10 @@ The process flow up to SQL execution when Mapper interface method is called, is 
 
     **Picture - Mapper mechanism**
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.1\linewidth}|p{0.80\linewidth}|
  .. list-table::
     :header-rows: 1
