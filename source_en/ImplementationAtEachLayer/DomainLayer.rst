@@ -228,7 +228,6 @@ If Entity classes are created with the help of policy defined by the above table
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
-    :class: longtable
 
     * - Sr. No.
       - Class name
@@ -261,10 +260,6 @@ If Entity classes are created with the help of policy defined by the above table
     * - | (8)
       - | OrderStatus
       - | Entity class is not created since c_order_status table is code table.
-
-.. raw:: latex
-
-   \newpage
 
 As it can be observed from the above entity diagram, it might first seem that Order class is the only main entity class
 in the shopping site application; however, there are other main entity class as well other than Order class.
@@ -369,6 +364,7 @@ Repository consists of Repository interface and RepositoryImpl and performs the 
  .. list-table::
    :header-rows: 1
    :widths: 10 20 30 40
+   :class: longtable
 
    * - Sr. No.
      - Class(Interface)
@@ -388,6 +384,9 @@ Repository consists of Repository interface and RepositoryImpl and performs the 
        | RepositoryImpl belongs to infrastructure layer since it plays the role of implementing the operations defined in Repository interface.
        | Refer to \ :doc:`InfrastructureLayer`\  for the implementation of RepositoryImpl.
 
+ .. raw:: latex
+
+    \newpage
 
 | In case of multiple destinations in persistence layer, the resulting configuration as follows.
 | due to this, the logic depending on persistence platform of Entity is hidden from business logic (Service).
