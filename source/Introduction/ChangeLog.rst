@@ -17,6 +17,16 @@
         * 更新内容の詳細は、\ `5.2.1のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.1%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
+      - 全般
+      - 以下のプロジェクト作成方法を\ ``mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\ から行うように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../Tutorial/TutorialSecurity`
+        * :doc:`../Tutorial/TutorialTodo`
+
+
+    * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の改善
 
