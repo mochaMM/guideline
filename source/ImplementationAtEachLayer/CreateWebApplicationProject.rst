@@ -100,10 +100,10 @@ Webアプリケーション向け開発プロジェクトの作成
 
 .. note:: **Maven Archetype Pluginのバージョンについて**
 
-    Maven Archetype Plugin 3.0において、\ ``archetype:generate``\を指定した際、レポジトリの指定をするオプションが反映されないバグ( `ARCHETYPE-519 <https://issues.apache.org/jira/browse/ARCHETYPE-519>`_ )がある(Maven Archetype Plugin 3.0.1にて解消される予定)。
-    \ ``mvn``\ コマンド実行時に\ ``maven-archetype-plugin`` \のバージョンを\ ``2.4``\に指定するオプション( \ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\)を使用することで本事象を回避することができる。
+    Maven Archetype Plugin 3系より\ ``archetype:generate``\のレポジトリの指定をするオプションが仕様変更で使用できなくなった( `ARCHETYPE-519 <https://issues.apache.org/jira/browse/ARCHETYPE-519>`_ )。
+    そのため、\ ``archetype:generate``\のレポジトリの指定するためには、\ ``mvn``\ コマンド実行時にバージョンが\ ``3.0``\未満のMaven Archetype Pluginを使用する必要がある。
 
-    そのため、本ガイドラインでは\ ``mvn``\ コマンド例の\ ``archetype:generate``\ の指定を\ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\ へ変更している。
+    本ガイドラインでは\ ``mvn``\ コマンド例の\ ``archetype:generate``\ の指定をMaven Archetype Plugin 2.4(\ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\ )へ変更している。
 
 .. code-block:: console
 
