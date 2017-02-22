@@ -824,6 +824,9 @@ Format for the transaction token used in the transaction token check of common l
    :alt: example of transaction token
    :width: 100%
 
+|
+|
+
  .. raw:: latex
 
     \newpage
