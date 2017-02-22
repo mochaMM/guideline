@@ -77,10 +77,15 @@ The method by which \ ``RestTemplate``\  access REST API (Web API) is explained 
 
 When \ ``RestTemplate``\  is used, implementation class of \ ``HttpMessageConverter``\  below is registered by default.
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.55\linewidth}|p{0.15\linewidth}|
 .. list-table:: **HttpMessageConverter registered by default**
     :header-rows: 1
     :widths: 5 25 55 15
+    :class: longtable
 
     * - Sr. No.
       - Class name
@@ -125,6 +130,10 @@ When \ ``RestTemplate``\  is used, implementation class of \ ``HttpMessageConver
           `FormHttpMessageConverter <https://github.com/spring-projects/spring-framework/blob/v4.2.7.RELEASE/spring-web/src/main/java/org/springframework/http/converter/FormHttpMessageConverter.java>`_\  source for \ ``HttpMessageConveter``\  used for conversion of part data which is registered by default. Note that, it is also possible to register an arbitrary \ ``HttpMessageConverter``\ .
       - | ``MultiValueMap`` [#p3]_
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **When media type of AllEncompassingFormHttpMessageConverter is multipart/form-data**
 
     When media type is \ ``multipart/form-data``\ , conversion of "HTTP body from \ ``MultiValueMap``\  object" can be done, however,
@@ -133,10 +142,15 @@ When \ ``RestTemplate``\  is used, implementation class of \ ``HttpMessageConver
 
 \
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.55\linewidth}|p{0.15\linewidth}|
 .. list-table:: **HttpMessageConverter that is registered when a dependent library exists on the class path**
     :header-rows: 1
     :widths: 5 25 55 15
+    :class: longtable
 
     * - Sr. No.
       - Class Name
@@ -187,6 +201,10 @@ When \ ``RestTemplate``\  is used, implementation class of \ ``HttpMessageConver
         | (It is registered when Gson exists on the class path)
       - | ``Object`` (JavaBean)
         | ``Map``
+
+.. raw:: latex
+
+   \newpage
 
 \
 

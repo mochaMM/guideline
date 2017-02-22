@@ -38,6 +38,7 @@ Types of Logs
 .. list-table::
    :header-rows: 1
    :widths: 10 15 35 40
+   :class: longtable
 
    * - Log level
      - Category
@@ -79,6 +80,10 @@ Types of Logs
      - Monitoring the occurrence of an exception
      - | Exception occurrence time, Message ID corresponding to system error
        | Use tools for monitoring and keep the output contents to a minimum.
+
+.. raw:: latex
+
+   \newpage
 
 | Debug log, Access log, External communication log, Business error log and System error log are output to same file.
 | In this guideline, the log file that outputs the above mentioned logs is called as application log.
@@ -146,6 +151,7 @@ Log output points
 .. list-table::
    :header-rows: 1
    :widths: 15 85
+   :class: longtable
 
    * - Category
      - Output points  
@@ -179,6 +185,10 @@ Log output points
        | Refer to \ :doc:`../WebApplicationDetail/ExceptionHandling` \  for details. 
    * - Monitoring log
      - It is output at the same time as business error log and system error log.
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: 
     Note that when the log is output, the contents should not be exactly identical to other logs. This is helpful in easily identifying the location of the output.
@@ -312,6 +322,7 @@ logback.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -352,6 +363,10 @@ logback.xml
      - | It is set such that logger without <logger> specification outputs the log of warn level or above.
    * - | (12)
      - | It is set in such a way that ConsoleAppender, RollingFileAppender (application logs) are used by default.
+
+.. raw:: latex
+
+   \newpage
 
 .. tip:: **About LTSV(Labeled Tab Separated Value)**
 
@@ -746,6 +761,7 @@ In this implementation example
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -778,6 +794,9 @@ In this implementation example
      - | If log ID is not described in the property file while calling getMessage, an exception :\ ``NoSuchMessageException``\ is generated.
        | Hence, \ ``NoSuchMessageException``\ is caught Aand a log message stating "log ID is not defined in the property file" is output.
 
+.. raw:: latex
+
+   \newpage
 
 - `log-messages.properties`  (property file)
 

@@ -419,6 +419,7 @@ Spring Security performs DB authentication in the flow given below.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -433,6 +434,9 @@ Spring Security performs DB authentication in the flow given below.
     * - | (5)
       - | \ ``DaoAuthenticationProvider``\  verifies \ ``UserDetails``\  returned from \ ``UserDetailsService``\  and authentication information specified by client, and checks validity of user specified by client.
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **DB authentication offered by Spring Security**
 
@@ -470,6 +474,7 @@ When \ ``DaoAuthenticationProvider``\  is used as \ ``AuthenticationProvider``\ 
 .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - Sr. No.
       - Method name
@@ -501,6 +506,10 @@ When \ ``DaoAuthenticationProvider``\  is used as \ ``AuthenticationProvider``\ 
       - | \ ``getAuthorities``\
       - | Return list of rights assigned to the user.
         | This method is used in the authorization process.
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Changing transition destination based on authentication exception**
 
@@ -1723,6 +1732,7 @@ implementation class of \ ``AuthenticationFailureHandler``\  interface can be ap
 .. list-table::
     :header-rows: 1
     :widths: 20 80
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1747,6 +1757,10 @@ implementation class of \ ``AuthenticationFailureHandler``\  interface can be ap
         | It is thrown at the time of authentication error due to invalid user ID.
     * - | (7)
       - | Set \ ``authenticationFailureHandler``\  in \ ``authentication-failure-handler-ref``\  attribute.
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Control during occurrence of exception**
 
@@ -2468,6 +2482,7 @@ DB authentication process which use user name, password and company identifier (
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2517,6 +2532,10 @@ DB authentication process which use user name, password and company identifier (
       - | Specify a handler class in \ ``authenticationFailureHandler``\  property which is called at the time of authentication failure.
     * - | (9)
       - | Specify a handler class in \ ``authenticationSuccessHandler``\  property which is called at the time of successful authentication.
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Regarding auto-config**
 

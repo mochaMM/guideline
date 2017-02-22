@@ -434,10 +434,11 @@ Mapping request and handler method
 | Design the mapping between incoming request and handler method.
 | The following is the mapping design which is designed according to mapping policy.
 
- .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.22\linewidth}|p{0.10\linewidth}|p{0.13\linewidth}|p{0.15\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|
  .. list-table:: 
    :header-rows: 1
    :widths: 5 20 15 22 10 13 15
+   :class: longtable
 
    * - | Sr. No.
      - | Operation name
@@ -546,6 +547,10 @@ Mapping request and handler method
      - GET
      - complete
      - deleteComplete
+
+ .. raw:: latex
+
+    \newpage
 
 | Multiple requests exist for each of Create Entity, Entity Update and Entity Delete functions. Therefore switching of handler methods is done using HTTP method and HTTP parameters.
 | The following is the flow of requests in case of multiple requests in a function like "Create New Entity".
@@ -1485,6 +1490,7 @@ and add the data to ``RedirectAttributes`` object.
  .. list-table:: 
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1508,6 +1514,10 @@ and add the data to ``RedirectAttributes`` object.
      - | The value stored in \ ``RedirectAttributes``\  can be obtained from JavaBean by using "${Attribute name.Property name}". 
    * - | (8)
      - | HTML output.
+
+ .. raw:: latex
+
+    \newpage
 
 .. warning::
     The data cannot be passed to redirect destination even though it is added to ``Model``.
@@ -3747,6 +3757,7 @@ Methods to specify Controller (methods to specify attributes) for applying commo
 .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - Sr. No.
      - Attribute
@@ -3891,6 +3902,10 @@ Methods to specify Controller (methods to specify attributes) for applying commo
            public class AppGlobalExceptionHandler {
                // ...
            }
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 

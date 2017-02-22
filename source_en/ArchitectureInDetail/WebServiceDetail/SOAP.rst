@@ -86,6 +86,7 @@ JAX-WS linkage function of Spring Framework
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -117,6 +118,10 @@ JAX-WS linkage function of Spring Framework
     * - | (7)
       - | [Server] Run business process by using Repository etc in Service.
         | No specific changes are observed during normal calling.
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -251,6 +256,7 @@ End point address defined in WSDL consists of following URL..
      .. list-table::
          :header-rows: 1
          :widths: 10 50 40
+         :class: longtable
 
          * - Sr. No.
            - AP server name
@@ -1571,6 +1577,7 @@ Define \ ``org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean``\  gene
      .. list-table::
          :header-rows: 1
          :widths: 10 90
+         :class: longtable
 
          * - Sr. No.
            - Description
@@ -2110,6 +2117,7 @@ Recommended configuration for [server projectName]-web project is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2142,6 +2150,9 @@ Recommended configuration for [server projectName]-web project is shown below.
     * - | (12)
       - | Define Servlet deployment.
 
+.. raw:: latex
+
+   \newpage
 
 .. Note:: **Files not required for SOAP server**
 

@@ -64,10 +64,15 @@ The method by which the component offered by Spring Framework for email transmis
     :alt: Constitution of Spring Mail
     :width: 100%
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.60\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 20 60
+    :class: longtable
 
     * - Sr. No.
       - Component
@@ -94,6 +99,10 @@ The method by which the component offered by Spring Framework for email transmis
     * - | (5)
       - | JavaMail
       - | Send a message to the email server.
+
+.. raw:: latex
+
+   \newpage
 
 \
 
@@ -965,7 +974,7 @@ This is because the legacy email client does not support UTF-8.
 When encoding based on character set of JIS X 0208 including ISO-2022-JP is set for the string entered by MS932,
 garbling occurs for seven characters described in the table below.
 
-.. tabularcolumns:: |p{0.20\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+.. tabularcolumns:: |p{0.20\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
 .. list-table::
    :header-rows: 2
    :widths: 20 15 15 15 15 20

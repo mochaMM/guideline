@@ -242,6 +242,10 @@ HTML of pagination link to be output using common library is as follows:
    :width: 100%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
+
 - Screen image
 
  .. figure:: ./images/pagination-overview_html_basic_screen.png
@@ -249,11 +253,15 @@ HTML of pagination link to be output using common library is as follows:
    :width: 80%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.70\linewidth}|p{0.20\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 70 20
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -289,6 +297,9 @@ HTML of pagination link to be output using common library is as follows:
         | In common library, this part is called "Page Link Text".
       - | Refer to the following " :ref:`Note column <pagination_overview_paginationlink_pagelinktext>` ".
 
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **About number of "Inner Elements"**
 
@@ -374,6 +385,7 @@ List of parameters is shown below.
  .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - Sr. No.
       - Parameter name
@@ -424,6 +436,10 @@ List of parameters is shown below.
         | If ``0``  is specified, "Link to navigate to the specified page" itself is not output.
         | Example: 5
 
+ .. raw:: latex
+
+    \newpage
+
 |
 
  When default values of all parameters to control the layout are changed, the following HTML is output.
@@ -455,12 +471,17 @@ List of parameters is shown below.
 
 |
 
+ .. raw:: latex
+
+    \newpage
+
 **Parameters to control operations**
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.25\linewidth}|p{0.65\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - Sr. No.
       - Parameter name
@@ -505,7 +526,11 @@ List of parameters is shown below.
         | When it is set to \ ``true``\ , URL (default value is \ ``"?page={page}&size={size}"``\ ) to redisplay the corresponding page is set to "Page Link URL". (If default value is \ ``false``\ , the value of \ ``disabledHref``\  attribute is set to "Page Link URL")
         |
         | This parameter can be used in terasoluna-gfw-web 5.0.0.RELEASE or higher version. 
-    
+
+ .. raw:: latex
+
+    \newpage
+
  .. note:: **About setting values of disabledHref**
 
     \ ``"javascript:void(0)"``\ is set in \ ``disabledHref``\  attribute by default.
@@ -590,6 +615,7 @@ Process flow when using pagination functionality of Spring Data and JSP tag libr
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -615,6 +641,10 @@ Process flow when using pagination functionality of Spring Data and JSP tag libr
       - | The HTML created in JSP is returned to client (browser).
     * - | (10)
       - | On clicking pagination link, the request to display the corresponding page is sent.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **Implementation of Repository**
 
@@ -1686,6 +1716,7 @@ About property values of ``PageableHandlerMethodArgumentResolver``
  .. list-table::
     :header-rows: 1
     :widths: 10 20 55 15
+    :class: longtable
 
     * - Sr. No.
       - Property name
@@ -1729,6 +1760,10 @@ About property values of ``PageableHandlerMethodArgumentResolver``
         | For this property, set ``delimiter`` value of the above format.
         | To change this setting, it is necessary to change the setting of ``qualifierDelimiter`` of ``SortHandlerMethodArgumentResolver``.
       - | ``"_"``
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **Setting value of maxPageSize**
 
@@ -1801,6 +1836,7 @@ It is assumed that the fields given below will normally be changed in each appli
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1827,6 +1863,10 @@ It is assumed that the fields given below will normally be changed in each appli
       - | Specify sort order (ASC/DESC) as the first argument of ``Order``  constructor.
     * - | (10)
       - | Specify sort item as the second argument of ``Order`` constructor.
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
