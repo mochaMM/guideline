@@ -44,7 +44,7 @@
 
         Spring Framework 4.3対応に伴う修正
 
-        * JSR-310 Date and Time APIを使用する際の注意点を削除(\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+        * JSR-310 Date and Time APIのクラスに対して、\ ``@DateTimeFormat`` \を使用する際の注意点を削除(\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
 
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
