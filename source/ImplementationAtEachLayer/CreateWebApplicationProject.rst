@@ -55,13 +55,6 @@ Webアプリケーション向け開発プロジェクトの作成
 マルチプロジェクト構成の開発プロジェクトを、
 `Maven Archetype Plugin <http://maven.apache.org/archetype/maven-archetype-plugin/>`_ の `archetype:generate <http://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.html>`_ を使用して作成する。
 
-.. note:: **mvnコマンド例のarchetype:generateの指定について**
-
-    \ ``archetype:generate``\を指定した際、レポジトリの指定をするオプションが反映されないバグ `ARCHETYPE-519 <https://issues.apache.org/jira/browse/ARCHETYPE-519>`_ がある。
-    \ ``mvn``\ コマンド実行時に\ ``maven-archetype-plugin`` \のバージョンを\ ``2.4``\に指定するオプション( \ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\)を使用することで本事象を回避することができる。
-
-    そのため、本ガイドラインでは\ ``mvn``\ コマンド例の\ ``archetype:generate``\ の指定を\ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\ へ変更している。
-
 .. note:: **前提条件**
 
     以降の説明では、
@@ -104,6 +97,13 @@ Webアプリケーション向け開発プロジェクトの作成
 |
 
 `Maven Archetype Plugin <http://maven.apache.org/archetype/maven-archetype-plugin/>`_ の `archetype:generate <http://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.html>`_ を使用して、プロジェクトを作成する。
+
+.. note:: **Maven Archetype Pluginのバージョンについて**
+
+    Maven Archetype Plugin 3.0において、\ ``archetype:generate``\を指定した際、レポジトリの指定をするオプションが反映されないバグ( `ARCHETYPE-519 <https://issues.apache.org/jira/browse/ARCHETYPE-519>`_ )がある(Maven Archetype Plugin 3.0.1にて解消される予定)。
+    \ ``mvn``\ コマンド実行時に\ ``maven-archetype-plugin`` \のバージョンを\ ``2.4``\に指定するオプション( \ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\)を使用することで本事象を回避することができる。
+
+    そのため、本ガイドラインでは\ ``mvn``\ コマンド例の\ ``archetype:generate``\ の指定を\ ``org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\ へ変更している。
 
 .. code-block:: console
 

@@ -18,7 +18,7 @@
 
     * -
       - 全般
-      - 以下のプロジェクト作成方法を\ ``mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate``\ から行うように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+      - 以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
 
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
         * :doc:`../Overview/FirstApplication`
