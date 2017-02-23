@@ -1523,10 +1523,14 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
         | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で"ORDER BY"句が追加される。例では、PostgreSQL用のSQLになっている。
 
 .. warning::
-   \ ``Sort``\オブジェクトはそのままJPAプロバイダに渡されるため、\ ``ORDER BY``\句にQuery(JPQL)を埋め込むことが可能となり、ブランドSQLインジェクション攻撃が行えてしまう。
+   \ ``Sort``\オブジェクトが保持しているソート対象のプロパティ名はそのままJPAプロバイダに渡されるため、\ ``ORDER BY``\句にQuery(JPQL)を埋め込むことが可能となり、ブランドSQLインジェクション攻撃が行えてしまう。
    詳細は、`CVE-2016-6652 <https://pivotal.io/jp/security/cve-2016-6652>`_\ を参照のこと
 
-   対策として、最新のTERASOLUNA Server Framework for Javaへバージョンアップされたい。
+   そのため、下記の対策をとられたい。
+
+   * 最新のTERASOLUNA Server Framework for Javaへバージョンアップ
+
+   * Controller内などで\ ``Sort``\オブジェクトが保持しているソート対象のプロパティ名をチェックするロジックを組む
 
 .. _how_to_specify_query_mathodname-label:
 
