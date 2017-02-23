@@ -87,7 +87,7 @@ CVEによる観点
      - 影響のあるライブラリとそのバージョン
      - ガイドラインへの言及箇所
    * - \ `CVE-2014-0050 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\
-     - Apache Commons FileUploadで使用している\ ``MultipartStream``\ クラスを使用すると、細工されたリクエストによるサービス不能攻撃ができてしまう
+     - Apache Commons FileUploadを使用するとファイルをアップロードする(\ ``MultipartStream``\ クラスを使用する)処理で細工されたリクエストによるDOS攻撃ができてしまう
      - * Commons FileUpload 1.0 to 1.3
 
      - * :ref:`file-upload_Overview`
