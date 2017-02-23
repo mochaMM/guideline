@@ -1,4 +1,4 @@
-﻿Input Validation
+Input Validation
 ================================================================================
 
 .. only:: html
@@ -3995,7 +3995,7 @@ Here, how to specify input check rules which use annotation provided by common l
 terasoluna-gfw-common check rules
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Annotation provided by \ `terasoluna-gfw-common <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.2.0.RELEASE/terasoluna-gfw-common>`_\  (\ ``org.terasoluna.gfw.common.codelist.*``\ ) is shown below.
+Annotation provided by \ `terasoluna-gfw-common <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.2.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-common>`_\  (\ ``org.terasoluna.gfw.common.codelist.*``\ ) is shown below.
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|p{0.25\linewidth}|
 .. list-table::

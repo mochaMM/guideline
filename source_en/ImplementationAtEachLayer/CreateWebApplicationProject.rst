@@ -959,7 +959,7 @@ Initially entire multi-project structure is explained.
     
      Stores RDBMS table definitions (DDL) and SQL statements for INSERT the initial data.
      This also managed as a maven project.
-     By defining `sql-maven-plugin <http://mojo.codehaus.org/sql-maven-plugin/>`_ in pom.xml,
+     By defining `sql-maven-plugin <http://www.mojohaus.org/sql-maven-plugin/>`_ in pom.xml,
      it is possible to automate the execution of DDL statements and initial data INSERT statements for any RDBMS in the course of the build lifecycle.
     
     * bar-common
