@@ -558,7 +558,7 @@ Settings for validating Spring Data JPA
     * - 4.
       - query-lookup-strategy
       - | Specify the method to Lookup the query to be executed when query method is called.
-        | By default, it is ``"CREATE_IF_NOT_FOUND"``. For details, refer to `Spring Data JPA - Reference Documentation "Query lookup strategies" <http://static.springsource.org/spring-data/jpa/docs/1.3.4.RELEASE/reference/html/repositories.html#repositories.query-methods.query-lookup-strategies>`_\ . Use the default settings if there is no specific reason.
+        | By default, it is ``"CREATE_IF_NOT_FOUND"``. For details, refer to `Spring Data JPA - Reference Documentation "Query lookup strategies" <http://static.springsource.org/spring-data/data-jpa/docs/1.4.3.RELEASE/reference/html/repositories.html#repositories.query-methods.query-lookup-strategies>`_\ . Use the default settings if there is no specific reason.
     * - 5.
       - factory-class
       - | Specify Factory for generating class to implement the process when the method of Repository interface is called.
@@ -1506,7 +1506,7 @@ For naming conventions for creating JPQL, refer to the following pages.
       - `Spring Data JPA - Reference Documentation "2.2.2. Query creation" <http://static.springsource.org/spring-data/data-jpa/docs/1.3.4.RELEASE/reference/html/jpa.repositories.html#jpa.query-methods.query-creation>`_\
       - This section describes naming conventions (keywords) for creating JPQL.
     * - 5.
-      - `Spring Data JPA - Reference Documentation "Appendix B. Repository query keywords" <http://static.springsource.org/spring-data/data-jpa/docs/1.3.4.RELEASE/reference/html/repository-query-keywords.html>`_\
+      - `Spring Data JPA - Reference Documentation "Appendix B. Repository query keywords" <http://static.springsource.org/spring-data/data-jpa/docs/1.4.3.RELEASE/reference/html/repository-query-keywords.html>`_\
       - This section describes naming conventions (keywords) for creating JPQL.
 
 See the example below.
