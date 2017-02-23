@@ -13,7 +13,7 @@ Database Access (MyBatis3)
 Overview
 --------------------------------------------------------------------------------
 
-This chapter describes how to access database using \ `MyBatis3 <http://mybatis.org>`_\ .
+This chapter describes how to access database using \ `MyBatis3 <http://blog.mybatis.org>`_\ .
 
 This guideline presumes the use of Mapper interface of MyBatis3 as a Repository interface.
 Refer to ":ref:`repository-label`" for Repository interface.

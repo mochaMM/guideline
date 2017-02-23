@@ -130,7 +130,7 @@ JAX-WS linkage function of Spring Framework
 
 .. note::
 
-    For details of JAX-WS implementation in Spring, refer \ `Spring Framework Reference Documentation -Remoting and web services using Spring(Web services)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/remoting.html#remoting-web-services>`_\ .
+    For details of JAX-WS implementation in Spring, refer \ `Spring Framework Reference Documentation -Remoting and web services using Spring(Web services)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/remoting.html#remoting-web-services>`_\ .
 
 |
 
@@ -340,7 +340,7 @@ Application configuration
      
     Oracle WebLogic Server 12.2.1: \ `Oracle(R) Fusion Middleware Understanding WebLogic Web Services for Oracle WebLogic Server  Features and Standards Supported by WebLogic Web Services <https://docs.oracle.com/middleware/1221/wls/WSOVR/weblogic-web-service-stand.htm#WSOVR137>`_\
      
-    JBoss Enterprise Application Platform 6.4: \ `DEVELOPMENT GUIDE JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Development_Guide/chap-JAX-WS_Web_Services.html>`_\
+    JBoss Enterprise Application Platform 6.4: \ `DEVELOPMENT GUIDE JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/developing_web_services_applications/developing_jax_ws_web_services>`_\
 
 |
 
@@ -1540,7 +1540,7 @@ Define \ ``org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean``\  gene
 
         .. Note:: **Specify other than URL of WSDL file to wsdlDocumentResource**
 
-            In the example above, it is assumed that SOAP server publishes WSDL file. A static file can be specified as well by using \ ``classpath:``\  or \ ``file:``\  prefix. Refer \ `Spring Framework Reference Documentation -Resources(The ResourceLoader)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/resources.html#resources-resourceloader>`_\  for strings that can be specified.
+            In the example above, it is assumed that SOAP server publishes WSDL file. A static file can be specified as well by using \ ``classpath:``\  or \ ``file:``\  prefix. Refer \ `Spring Framework Reference Documentation -Resources(The ResourceLoader)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/resources.html#resources-resourceloader>`_\  for strings that can be specified.
 
 
 .. Note:: **Overwriting end point address**
@@ -1659,7 +1659,7 @@ Inject Web service created above by Service and run Web service.
          BindingProvider provider = (BindingProvider) todoWebService;
          int status = (int) provider.getResponseContext().get(MessageContext.HTTP_RESPONSE_CODE);
 
-    For details of \ ``BindingProvider``\, refer \ `The Java API for XML-Based Web Services(JAX-WS) 2.2 -4.2 javax.xml.ws.BindingProvider- <http://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwj1z_exk7TOAhUDnpQKHbk6AgwQFggfMAA&url=http%3A%2F%2Fdownload.oracle.com%2Fotn-pub%2Fjcp%2Fjaxws-2.2-mrel3-evalu-oth-JSpec%2Fjaxws-2_2-mrel3-spec.pdf&v6u=https%3A%2F%2Fs-v6exp1-ds.metric.gstatic.com%2Fgen_204%3Fip%3D163.135.151.80%26ts%3D1470739411479764%26auth%3Dk5tkj3erhgejiufbavruvdinx2iknps5%26rndm%3D0.9131593964234974&v6s=2&v6t=48530&usg=AFQjCNEfBm6Ji-bQy9GDL8l5crz9PZ188w&bvm=bv.129389765,d.dGo>`_\.
+    For details of \ ``BindingProvider``\, refer \ `The Java API for XML-Based Web Services(JAX-WS) 2.2 -4.2 javax.xml.ws.BindingProvider- <http://download.oracle.com/otn-pub/jcp/jaxws-2.2-mrel3-evalu-oth-JSpec/jaxws-2_2-mrel3-spec.pdf>`_\.
     
     However, when Apatch CXF library is included in the dependency relation of the client, it is not possible to fetch response information by the method given above at the time of communication error.
     This is because Apatch CXF proxy is automatically used when Apatch CXF library is included in the dependency relation and Apache CXF proxy does not retain response information in response context at the time of communication error.

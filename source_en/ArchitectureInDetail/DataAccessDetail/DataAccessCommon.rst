@@ -81,10 +81,10 @@ JDBC datasource provided by Application Server
       - Refer to \ `Oracle WebLogic Server Product Documentation <http://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm>`_\ .
     * - 4.
       - IBM WebSphere Application Server Version 8.5
-      - Refer to \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=en>`_\ .
+      - Refer to \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=en>`_\ .
     * - 5.
       - JBoss Enterprise Application Platform 6.4
-      - Refer to \ `JBoss Enterprise Application Platform Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\ .
+      - Refer to \ `JBoss Enterprise Application Platform Product Documentation <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/configuration_guide/datasource_management>`_\ .
 
 
 .. _datasource_oss_thirdparty-label:
@@ -368,7 +368,7 @@ Settings when using DataSource for which Bean is defined
         | For more details about settings, refer to \ `DBCP Configuration <http://commons.apache.org/proper/commons-dbcp/configuration.html>`_\ .
     * - | (8)
       - | In the example, values are specified directly; however, for fields where configuration values change with the environment, actual configuration values should be specified in properties file using Placeholder(${...}).
-        | For Placeholder, refer to \ ``PropertyPlaceholderConfigurer``\  of \ `Spring Reference Document <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ .
+        | For Placeholder, refer to \ ``PropertyPlaceholderConfigurer``\  of \ `Spring Reference Document <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ .
 
 
 Settings to enable transaction management

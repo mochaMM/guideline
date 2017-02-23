@@ -95,7 +95,7 @@ Validation
 
   * For implementation, \ `Hibernate Validator 5.2 <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/>`_\  is used.
 
-* For correlated items check, \ `BeanValidation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\  or \ `Spring Validation <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html>`_  is used.
+* For correlated items check, \ `BeanValidation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\  or \ `Spring Validation <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html>`_  is used.
 
   * Refer to \ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\  for determining the proper use. 
 
