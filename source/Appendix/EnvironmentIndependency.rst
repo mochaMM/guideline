@@ -161,7 +161,7 @@ RELEASEバージョンの運用
 
 .. note::
 
- pom.xmlファイルの<version>タグの変更は `versions-maven-plugin <http://mojo.codehaus.org/versions-maven-plugin/>`_ で可能である。
+ pom.xmlファイルの<version>タグの変更は `versions-maven-plugin <http://www.mojohaus.org/versions-maven-plugin/>`_ で可能である。
  
  .. code-block:: bash
  
