@@ -232,7 +232,7 @@ WebアプリケーションをTomcat上にリリースする場合は次のよ�
 	 
  * なお、VirtualWebappLoader機能はTomcat 6でも使用可能。
 
-5. Tomcat 8を使用する場合は、Tomcatのリソース機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
+5. Tomcat 8、Tomcat 8.5を使用する場合は、Tomcatのリソース機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
 
  * [CATALINA_HOME]/conf/[contextPath].xml ファイルに下記の定義を追加する。
  * 詳しくは、 https://tomcat.apache.org/migration-8.html#Web_application_resources と `terasoluna-tourreservation-envのconfigsフォルダ <https://github.com/terasolunaorg/terasoluna-tourreservation/tree/5.3.0.RELEASE/terasoluna-tourreservation-env/configs>`_\ を参考されたい。

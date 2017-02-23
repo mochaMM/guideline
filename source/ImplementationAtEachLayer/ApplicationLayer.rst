@@ -1687,6 +1687,10 @@ Cookieに値を書き込む
     \ ``HttpServletResponse``\ を引数として受け取ることに変わりはないが、Cookieに値を書き込むためのクラスとして、
     Spring Frameworkから\ ``org.springframework.web.util.CookieGenerator``\ というクラスが提供されている。必要に応じて使用すること。
 
+.. note::
+    上記の例ではCookieに ``"hello world!"`` という値を設定しているが、Tomcatのクッキー処理は8.5からデフォルトでRFC6265に準拠した実装に変更されたため、スペースの使用が出来なくなっている。
+    Tomcat8.5使用時にCookieにスペースを入れたい場合は、レガシーCookieプロセッサを使用するようにTomcatを設定するか、\ ``EmbeddedServletContainerCustomizer``\ をbean定義する。
+
 |
 
 .. _controller_method_argument-pagination-label:

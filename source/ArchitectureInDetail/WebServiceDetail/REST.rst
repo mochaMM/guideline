@@ -4615,6 +4615,11 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
 
 |
 
+ .. note::
+    
+    Tomcat8.5ではRFC7230に準拠したことにより、Status-LineにReason-Phrase（上記\ ``Not Found``\や\ ``Internal Server Error``\）が出力しないように対応されている。
+    
+
 .. _RESTHowToUseSecurity:
 
 セキュリティ対策
