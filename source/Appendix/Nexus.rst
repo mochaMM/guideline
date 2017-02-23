@@ -117,7 +117,7 @@ settings.xml
 
 .. note::
 
-  see also: `Configuring Maven to Use a Single Repository Group / Documentation Sonatype.com <http://books.sonatype.com/nexus-book/reference/config-maven.html>`_
+  see also: `Configuring Maven to Use a Single Repository Group / Documentation Sonatype.com <http://books.sonatype.com/nexus-book/reference3/maven.html#maven-sect-single-group>`_
 
 mvn deploy how to
 --------------------------------------------------------------------------------

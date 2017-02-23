@@ -963,7 +963,7 @@ Maven Archetypeで作成したプロジェクトは、以下の構成になっ�
     * bar-initdb
     
      RDBMSのテーブル定義(DDL)と初期データをINSERTするためのSQL文を格納する。
-     これもmavenプロジェクトとして管理する。pom.xmlに `sql-maven-plugin <http://mojo.codehaus.org/sql-maven-plugin/>`_ 
+     これもmavenプロジェクトとして管理する。pom.xmlに `sql-maven-plugin <http://www.mojohaus.org/sql-maven-plugin/>`_ 
      の設定を定義することにより、ビルドライフサイクルの過程で任意のRDBMSに対するDDL文や初期データINSERT文の実行を自動化することができる。
     
     * bar-common
