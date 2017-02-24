@@ -5082,8 +5082,7 @@ MyBatis3では、検索結果を1件単位で処理する仕組みを提供し�
 
     大量のデータを返すようなクエリを記述する場合には、\ ``fetchSize``\属性に適切な値を設定すること。
     \ ``fetchSize``\は、JDBCドライバとデータベース間の１回の通信で取得するデータの件数を設定するパラメータである。
-    なお、terasoluna-gfw-mybatis3 5.2.0.RELEASE以降でサポートしているMyBatis 3.3.0以降のバージョンでは、
-    MyBatis設定ファイルに「デフォルトの\ ``fetchSize``\ 」を指定することができる。
+    なお、MyBatis 3.3.0以降のバージョンでは、MyBatis設定ファイルに「デフォルトの\ ``fetchSize``\ 」を指定することができる。
     \ ``fetchSize``\ の詳細は「:ref:`DataAccessMyBatis3HowToUseSettingsDefaultFetchSize`」を参照されたい。
 
 
@@ -5652,8 +5651,7 @@ RepositoryのBean定義を行えばよい。
 そのようなケースでは、Mapperインタフェースに「バッチ実行用にキューイングされているSQLを実行するためのメソッド」を用意すればよい。
 
 MyBatis 3.2系では、\ ``org.apache.ibatis.session.SqlSession``\インタフェースの\ ``flushStatements``\ メソッドを直接呼び出す必要があったが、
-terasoluna-gfw-mybatis3 5.2.0.RELEASE以降でサポートしているMyBatis 3.3.0以降のバージョンでは、
-Mapperインタフェースに\ ``@org.apache.ibatis.annotations.Flush``\ アノテーションを付与したメソッドを作成する方法がサポートされている。
+MyBatis 3.3.0以降のバージョンでは、Mapperインタフェースに\ ``@org.apache.ibatis.annotations.Flush``\ アノテーションを付与したメソッドを作成する方法がサポートされている。
 
  .. warning:: **バッチモード使用時のJDBCドライバが返却する更新結果について**
 
@@ -7799,8 +7797,7 @@ MyBatis3では、マッピング時に別のSQL(ネストしたSQL)を使用し�
 
 のいずれか一方のライブラリが必要となる。
 
-MyBatis 3.2系まではCGLIBがデフォルトで使用されるライブラリであったが、
-terasoluna-gfw-mybatis3 5.2.0.RELEASE以降でサポートしているMyBatis 3.3.0以降のバージョンではJAVASSISTがデフォルトで使用される。
+MyBatis 3.2系まではCGLIBがデフォルトで使用されるライブラリであったが、MyBatis 3.3.0以降のバージョンではJAVASSISTがデフォルトで使用される。
 さらに、MyBatis 3.3.0からJAVASSISTがMyBatis本体に内包されているため、ライブラリを追加しなくても"Lazy Load"を使用する事ができる。
 
  .. note::
