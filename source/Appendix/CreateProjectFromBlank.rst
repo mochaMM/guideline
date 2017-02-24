@@ -44,9 +44,15 @@ Blankプロジェクトからの新規プロジェクトを作成する方法を
 
 #. Maven archetypeを利用してプロジェクトの雛形を生成する
 
+.. note:: **Maven Archetype Pluginのバージョンについて**
+
+    Maven Archetype Plugin 3系では\ ``archetype:generate``\でMaven Central以外のリモートリポジトリを指定する場合はsettings.xmlでの設定が必須になった。
+
+    そのため、本ガイドラインでは既存ユーザが今まで通りの使い方ができるようにMaven Archetype Plugin 2.4を明示的に使用している。
+
     .. code-block:: console
     
-      mvn archetype:generate -B^
+      mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
        -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
        -DarchetypeGroupId=org.terasoluna.gfw.blank^
        -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^

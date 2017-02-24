@@ -119,7 +119,7 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
 
  .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis2-archetype^
@@ -132,7 +132,7 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
 
  .. code-block:: console
     
-    C:\workspace>mvn archetype:generate -B^
+    C:\workspace>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
     More?  -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
     More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
     More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis2-archetype^
@@ -146,13 +146,13 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
     [INFO] Building Maven Stub Project (No POM) 1
     [INFO] ------------------------------------------------------------------------
     [INFO]
-    [INFO] >>> maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom >>>
+    [INFO] >>> maven-archetype-plugin:2.4:generate (default-cli) > generate-sources @ standalone-pom >>>
     [INFO]
-    [INFO] <<< maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom <<<
+    [INFO] <<< maven-archetype-plugin:2.4:generate (default-cli) < generate-sources @ standalone-pom <<<
     [INFO]
-    [INFO] --- maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom ---
+    [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository missing. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-mybatis2-archetype:1.0.0.RELEASE -> http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases] found in catalog http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases
+    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-mybatis2-archetype:1.0.0.RELEASE -> http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases] found in catalog http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases
     [INFO] ----------------------------------------------------------------------------
     [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-mybatis2-archetype:1.0.5.RELEASE
     [INFO] ----------------------------------------------------------------------------
@@ -165,13 +165,13 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
     [INFO] Parameter: version, Value: 1.0-SNAPSHOT
     [INFO] Parameter: groupId, Value: todo
     [INFO] Parameter: artifactId, Value: todo-api
-    [INFO] project created from Archetype in dir: C:\workspace\todo-api
+    [INFO] project created from Archetype in dir: C:\work\todo-api
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 2.287s
-    [INFO] Finished at: Fri Aug 22 20:20:55 JST 2014
-    [INFO] Final Memory: 11M/231M
+    [INFO] Total time: 2.106 s
+    [INFO] Finished at: 2017-02-24T10:28:17+09:00
+    [INFO] Final Memory: 12M/197M
     [INFO] ------------------------------------------------------------------------
     C:\workspace>
 

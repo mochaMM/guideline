@@ -17,6 +17,16 @@
         * 更新内容の詳細は、\ `1.0.6のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A1.0.6%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
+      - 全般
+      - 以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+
+        * :doc:`../Appendix/CreateProjectFromBlank`
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../Security/Tutorial`
+        * :doc:`../TutorialREST/index`
+        * :doc:`../TutorialTodo/index`
+
+    * -
       - :doc:`../Overview/FrameworkStack`
       - 利用するOSSのバージョンを更新
 
