@@ -184,6 +184,12 @@
 
         * \ ``AntPathRequestMatcher``\のパスマッチングの仕様変更に対する注意点を追記(\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
 
+    * -
+      - :doc:`../Security/OAuth`
+      - 新規追加
+
+        * OAuthを追加(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
+
     * - 
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正

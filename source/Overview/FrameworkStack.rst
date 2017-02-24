@@ -269,6 +269,12 @@ version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 4.1.4.RELEASE
       - \*
       -
+    * - Spring
+      - org.springframework.security.oauth
+      - spring-security-oauth2
+      - 2.0.12.RELEASE
+      - \*
+      -
     * - MyBatis3
       - org.mybatis
       - mybatis
