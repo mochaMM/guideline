@@ -203,7 +203,7 @@ Delete TODO
 
  .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
@@ -216,7 +216,7 @@ Delete TODO
 
  .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-jpa-archetype^
@@ -229,7 +229,7 @@ Delete TODO
 
  .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis2-archetype^
@@ -242,7 +242,7 @@ Delete TODO
 
  .. code-block:: console
 
-    C:\work>mvn archetype:generate -B^
+    C:\work>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
     More?  -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
     More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
     More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
@@ -256,13 +256,13 @@ Delete TODO
     [INFO] Building Maven Stub Project (No POM) 1
     [INFO] ------------------------------------------------------------------------
     [INFO]
-    [INFO] >>> maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom >>>
+    [INFO] >>> maven-archetype-plugin:2.4:generate (default-cli) > generate-sources @ standalone-pom >>>
     [INFO]
-    [INFO] <<< maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom <<<
+    [INFO] <<< maven-archetype-plugin:2.4:generate (default-cli) < generate-sources @ standalone-pom <<<
     [INFO]
-    [INFO] --- maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom ---
+    [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository missing. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:1.0.0.RELEASE -> http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases] found in catalog http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases
+    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:1.0.0.RELEASE -> http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases] found in catalog http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases
     [INFO] ----------------------------------------------------------------------------
     [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:1.0.5.RELEASE
     [INFO] ----------------------------------------------------------------------------
@@ -279,9 +279,9 @@ Delete TODO
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 12.084s
-    [INFO] Finished at: Mon Aug 25 18:59:57 JST 2014
-    [INFO] Final Memory: 9M/23M
+    [INFO] Total time: 2.730 s
+    [INFO] Finished at: 2017-02-24T10:30:02+09:00
+    [INFO] Final Memory: 12M/232M
     [INFO] ------------------------------------------------------------------------
     C:\work>
 
@@ -318,7 +318,7 @@ Package Explorerに、次のようなプロジェクトが生成される( **要
     
       .. code-block:: bash
       
-        mvn archetype:generate -B\
+        mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B\
          -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases\
          -DarchetypeGroupId=org.terasoluna.gfw.blank\
          -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype\
