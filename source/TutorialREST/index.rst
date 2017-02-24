@@ -132,7 +132,7 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
 
  .. code-block:: console
     
-    C:\work>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
+    C:\workspace>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
     More?  -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
     More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
     More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis2-archetype^
@@ -165,7 +165,7 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
     [INFO] Parameter: version, Value: 1.0-SNAPSHOT
     [INFO] Parameter: groupId, Value: todo
     [INFO] Parameter: artifactId, Value: todo-api
-    [INFO] project created from Archetype in dir: C:\work\todo-api
+    [INFO] project created from Archetype in dir: C:\workspace\todo-api
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
@@ -173,7 +173,7 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
     [INFO] Finished at: 2017-02-24T10:28:17+09:00
     [INFO] Final Memory: 12M/197M
     [INFO] ------------------------------------------------------------------------
-    C:\work>
+    C:\workspace>
 
 
 プロジェクトのインポート
