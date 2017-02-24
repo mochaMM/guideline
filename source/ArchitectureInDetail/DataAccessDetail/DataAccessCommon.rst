@@ -82,8 +82,8 @@ JDBC DataSourceについて
       - Oracle WebLogic Server 12c
       - \ `Oracle WebLogic Server Product Documentation <http://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm>`_\ を参照されたい。
     * - 4.
-      - IBM WebSphere Application Server Version 8.5
-      - \ `WebSphere Application Server Online information center <http://www-01.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=ja>`_\ を参照されたい。
+      - IBM WebSphere Application Server Version 9.0
+      - \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/ja/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html>`_\ を参照されたい。
     * - 5.
       - JBoss Enterprise Application Platform 7.0
       - \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-13-datasource-management>`_\ を参照されたい。
@@ -373,7 +373,7 @@ Bean定義したDataSouceを使用する場合の設定
         | 設定項目の詳細については、\ `DBCP Configuration <http://commons.apache.org/proper/commons-dbcp/configuration.html>`_\ を参照されたい。
     * - | (8)
       - | 設定例では値を直接指定しているが、環境によって設定値がかわる項目については、Placeholder(${...})を使用して、実際の設定値はプロパティファイルに指定すること。
-        | Placeholderについては、\ `Spring Reference Document <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ の\  ``PropertyPlaceholderConfigurer``\ を参照されたい。
+        | Placeholderについては、\ `Spring Reference Document <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ の\  ``PropertyPlaceholderConfigurer``\ を参照されたい。
 
 
 トランザクション管理を有効化するための設定

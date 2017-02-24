@@ -1812,8 +1812,8 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
     なお、\ ``ObjectMapper``\ を直接Bean定義するスタイルから\ ``Jackson2ObjectMapperFactoryBean``\ を使用するスタイルに変更する場合は、
     以下のコンフィギュレーションに対するデフォルト値がJacksonのデフォルト値と異なる(無効化されている)点に注意すること。
 
-    * `MapperFeature#DEFAULT_VIEW_INCLUSION <http://fasterxml.github.io/jackson-databind/javadoc/2.6/com/fasterxml/jackson/databind/MapperFeature.html?is-external=true#DEFAULT_VIEW_INCLUSION>`_\
-    * `DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES <http://fasterxml.github.io/jackson-databind/javadoc/2.6/com/fasterxml/jackson/databind/DeserializationFeature.html?is-external=true#FAIL_ON_UNKNOWN_PROPERTIES>`_\
+    * `MapperFeature#DEFAULT_VIEW_INCLUSION <http://fasterxml.github.io/jackson-databind/javadoc/2.8/com/fasterxml/jackson/databind/MapperFeature.html?is-external=true#DEFAULT_VIEW_INCLUSION>`_\
+    * `DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES <http://fasterxml.github.io/jackson-databind/javadoc/2.8/com/fasterxml/jackson/databind/DeserializationFeature.html?is-external=true#FAIL_ON_UNKNOWN_PROPERTIES>`_\
 
     \ ``ObjectMapper``\の動作をJacksonのデフォルト動作にあわせたい場合は、\ ``featuresToEnable``\ プロパティを使用して上記のコンフィギュレーションを有効化する。
 
@@ -1829,7 +1829,7 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
             </property>
         </bean>
 
-    \ ``Jackson2ObjectMapperFactoryBean``\ の詳細については、 `Jackson2ObjectMapperFactoryBeanのJavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/http/converter/json/Jackson2ObjectMapperFactoryBean.html>`_\ を参照されたい。
+    \ ``Jackson2ObjectMapperFactoryBean``\ の詳細については、 `Jackson2ObjectMapperFactoryBeanのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/http/converter/json/Jackson2ObjectMapperFactoryBean.html>`_\ を参照されたい。
 
 
 .. _REST_note_changed_jackson_version:
@@ -1856,9 +1856,9 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
 
     * Deprecated一覧
 
-     * http://fasterxml.github.io/jackson-core/javadoc/2.6/deprecated-list.html
-     * http://fasterxml.github.io/jackson-databind/javadoc/2.6/deprecated-list.html
-     * http://fasterxml.github.io/jackson-annotations/javadoc/2.6/deprecated-list.html
+     * http://fasterxml.github.io/jackson-core/javadoc/2.8/deprecated-list.html
+     * http://fasterxml.github.io/jackson-databind/javadoc/2.8/deprecated-list.html
+     * http://fasterxml.github.io/jackson-annotations/javadoc/2.8/deprecated-list.html
 
 |
 
@@ -2536,7 +2536,7 @@ Controllerクラスの作成
 
     \ ``@RestController``\ アノテーションの登場により、Controllerの各メソッドに\ ``@ResponseBody``\ アノテーションを付与する必要がなくなったため、
     REST API用のControllerをよりシンプルに作成出来るようになった。
-    \ ``@RestController``\ アノテーションの詳細については、\ `こちら <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RestController.html>`_\ を参照されたい。
+    \ ``@RestController``\ アノテーションの詳細については、\ `こちら <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RestController.html>`_\ を参照されたい。
 
     従来通り\ ``@Controller``\ アノテーションと\ ``@ResponseBody``\ アノテーションを組み合わせてREST API用のControllerを作成する例を以下に示す。
 
@@ -5401,7 +5401,7 @@ JSONの中に関連リソースへのハイパーメディアリンクを含め�
         | 上記例では、リンク情報に設定するURIを組み立てるため \ ``UriComponentsBuilder``\ クラスのメソッドを呼び出し、自身のリソースにアクセスするためのURIをリソースに追加している。
         |
         | Controllerのメソッドの引数として渡された\ ``ServletUriComponentsBuilder``\ のインスタンスは、web.xmlに記載の\ ``<servlet-mapping>``\要素の情報を元に初期化されており、リソースには依存しない。
-        | そのため、Spring Frameworkから提供される `URI Template Patterns <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ 等を利用し、
+        | そのため、Spring Frameworkから提供される `URI Template Patterns <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ 等を利用し、
         | リクエスト情報をベースにURIを組み立てる事により、リソースに依存しない汎用的な組み立て処理を実装することが可能となる。
         | 
         | 例えば、上記例において\ ``http://example.com/api/v1/members/M000000001``\に対してGETした場合、組み立てられるURIは、リクエストされたURIと同じ値\ ``（http://example.com/api/v1/members/M000000001）``\になる。
@@ -5525,7 +5525,7 @@ POST時のLocationヘッダの設定
         | \ ``buildAndExpand``\ メソッドを呼び出して、作成したリソースのIDをバインドすることで、作成したリソースのURIを組み立てている。
         | 
         | Controllerのメソッドの引数として渡された\ ``ServletUriComponentsBuilder``\ のインスタンスは、web.xmlに記載の\ ``<servlet-mapping>``\要素の情報を元に初期化されており、リソースには依存しない。
-        | そのため、Spring Frameworkから提供される `URI\ Template\ Patterns <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ 等を利用し、
+        | そのため、Spring Frameworkから提供される `URI\ Template\ Patterns <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\ 等を利用し、
         | リクエスト情報をベースにURIを組み立てる事により、リソースに依存しない汎用的な組み立て処理を実装することが可能となる。
         | 
         | 例えば、上記例において\ ``http://example.com/api/v1/members``\に対してPOSTした場合、組み立てられるURIは、「リクエストされたURI + \ ``"/"``\ + 作成したリソースのID」となる。
