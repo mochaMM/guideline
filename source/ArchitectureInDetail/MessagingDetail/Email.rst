@@ -202,8 +202,8 @@ JavaMailSenderの設定方法
       - Apache Tomcat 8.5
       - | \ `Apache Tomcat 8.5 User Guide(JNDI Resources HOW-TO) <http://tomcat.apache.org/tomcat-8.5-doc/jndi-resources-howto.html#JavaMail_Sessions>`_\ (JavaMail Sessions)を参照されたい。
     * - 2.
-      - Apache Tomcat 8
-      - | \ `Apache Tomcat 8 User Guide(JNDI Resources HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JavaMail_Sessions>`_\ (JavaMail Sessions)を参照されたい。
+      - Apache Tomcat 8.0
+      - | \ `Apache Tomcat 8.0 User Guide(JNDI Resources HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JavaMail_Sessions>`_\ (JavaMail Sessions)を参照されたい。
     * - 3.
       - Oracle WebLogic Server 12c
       - \ `Oracle WebLogic Server 12.2.1.0 Documentation <http://docs.oracle.com/middleware/1221/wls/WLACH/taskhelp/mail/CreateMailSessions.html>`_\ を参照されたい。
