@@ -1663,7 +1663,7 @@ Cookieに値を書き込む
     @RequestMapping("writeCookie")
     public String writeCookie(Model model,
             HttpServletResponse response) { // (1)
-        Cookie cookie = new Cookie("foo", "hello world!");
+        Cookie cookie = new Cookie("foo", "HelloWorld!");
         response.addCookie(cookie); // (2)
         // do something
         return "sample/writeCookie";
@@ -1680,7 +1680,7 @@ Cookieに値を書き込む
      - Cookieを書き込むために、\ ``HttpServletResponse``\ オブジェクトを引数に指定する。
    * - | (2)
      - | \ ``Cookie``\ オブジェクトを生成し、\ ``HttpServletResponse``\ オブジェクトに追加する。
-       | 上記例では、 ``"foo"`` というCookie名で ``"hello world!"`` という値を設定している。
+       | 上記例では、 ``"foo"`` というCookie名で ``"HelloWorld!"`` という値を設定している。
 
 .. tip::
 
@@ -1688,12 +1688,13 @@ Cookieに値を書き込む
     Spring Frameworkから\ ``org.springframework.web.util.CookieGenerator``\ というクラスが提供されている。必要に応じて使用すること。
 
 .. note::
-    上記の例ではCookieの値に ``"hello world!"`` という値を設定しているが、RFC 6265に準拠したアプリケーションサーバーを使用する場合、Cookieの名前や値にスペースを使用出来ない。
-    （`RFC 6265(HTTP State Management Mechanism)の4.1.1 Syntax <https://tools.ietf.org/html/rfc6265#section-4.1.1>`_ を参照されたい。）
+    HTTP Cookieの処理を規定するRFC 6265では、Cookieの名前や値に一部使用できない文字があることに注意されたい。
     
-    例えばTomcatは8.5からRFC 6265に準拠した実装に変更されているため、Tomcat8.5を使用する場合、上記のように、Cookieの値にスペースを使用することは出来ない。
+    例えば、RFC 6265に準拠した実装のTomcat 8.5では、Cookieの値にスペースを使用することができない。
     
-    特別な事情が無い限り、Cookieの名前や値はRFC 6265に準拠されたい。
+    Cookieの名前や値はRFC 6265に準拠されたい。
+    
+    RFC 6265(HTTP State Management Mechanism)の「 `4.1 SetCookieのSyntax <https://tools.ietf.org/html/rfc6265#section-4.1.1>`_ 」を参照されたい。
 
 |
 
