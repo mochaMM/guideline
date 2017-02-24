@@ -768,7 +768,7 @@ HTTPメソッドによるリソースの操作
 
  .. tip:: **HTTPの仕様について**
  
-    `RFC 2616(Hypertext Transfer Protocol -- HTTP/1.1)の6.1.1 Status Code and Reason Phrase <http://tools.ietf.org/search/rfc2616#section-6.1.1>`_ を参照されたい。
+    `RFC 7230(Hypertext Transfer Protocol -- HTTP/1.1)の3.1.2 Status Line <https://tools.ietf.org/html/rfc7230#section-3.1.2>`_ を参照されたい。
 
 |
 
