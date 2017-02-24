@@ -109,9 +109,6 @@ CVEによる観点
    * - \ `CVE-2016-6652 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6652>`_\
      - \ ``Sort``\オブジェクトをそのままJPAプロバイダに受け渡すとブラインドSQLインジェクション攻撃ができてしまう
      - * :ref:`how_to_specify_query_annotation-label`
-   * - \ `CVE-2016-9878 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9878>`_\
-     - \ ``ResourceServlet``\を使用するとディレクトリトラバーサル攻撃ができてしまう
-     - * :ref:`CreateWebApplicationProjectConfigurationWeb`
    * - \ `CVE-2016-9879 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9879>`_\
      - Spring SecurityとSpring MVCのパス取得方法の差異を利用して認可のすり抜けができてしまう
      - * :ref:`access_policy_designate_web_resource`
