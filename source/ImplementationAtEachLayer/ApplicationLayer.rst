@@ -1692,8 +1692,6 @@ Cookieに値を書き込む
     
     例えば、RFC 6265に準拠した実装のTomcat 8.5では、Cookieの値にスペースを使用することができない。
     
-    Cookieの名前や値はRFC 6265に準拠されたい。
-    
     RFC 6265(HTTP State Management Mechanism)の「 `4.1 SetCookieのSyntax <https://tools.ietf.org/html/rfc6265#section-4.1.1>`_ 」を参照されたい。
 
 |
