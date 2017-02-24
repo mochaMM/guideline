@@ -13,7 +13,7 @@
 Overview
 --------------------------------------------------------------------------------
 
-本節では、\ `MyBatis3 <http://blog.mybatis.org>`_\ を使用してデータベースにアクセスする方法について説明する。
+本節では、\ `MyBatis3 <http://www.mybatis.org/mybatis-3/>`_\ を使用してデータベースにアクセスする方法について説明する。
 
 本ガイドラインでは、MyBatis3のMapperインタフェースをRepositoryインタフェースとして使用することを前提としている。
 Repositoryインタフェースについては、「:ref:`repository-label`」を参照されたい。
@@ -743,7 +743,7 @@ MyBatis3の設定
 
  .. note:: **「デフォルトのfetchSize」について**
 
-    「デフォルトの\ ``fetchSize``\ 」は、terasoluna-gfw-mybatis3 5.2.0.RELEASE以降でサポートしているMyBatis 3.3.0以降のバージョンで利用することができる。
+    「デフォルトの\ ``fetchSize``\ 」は、MyBatis 3.3.0以降のバージョンで利用することができる。
 
 
 以下に、「デフォルトの\ ``fetchSize``\ 」を指定する方法を示す。
