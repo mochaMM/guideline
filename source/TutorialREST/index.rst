@@ -165,7 +165,7 @@ Chromeのアプリケーション一覧を開く(ブラウザのアドレスバ�
     [INFO] Parameter: version, Value: 1.0-SNAPSHOT
     [INFO] Parameter: groupId, Value: todo
     [INFO] Parameter: artifactId, Value: todo-api
-    [INFO] project created from Archetype in dir: C:\work\todo-api
+    [INFO] project created from Archetype in dir: C:\workspace\todo-api
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
