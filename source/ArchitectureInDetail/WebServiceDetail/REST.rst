@@ -769,6 +769,9 @@ HTTPメソッドによるリソースの操作
  .. tip:: **HTTPの仕様について**
  
     `RFC 2616(Hypertext Transfer Protocol -- HTTP/1.1)の6.1.1 Status Code and Reason Phrase <http://tools.ietf.org/search/rfc2616#section-6.1.1>`_ を参照されたい。
+    
+    `RFC 7230(Hypertext Transfer Protocol -- HTTP/1.1)の3.1.2 Status Line <https://tools.ietf.org/html/rfc7230#section-3.1.2>`_ では、「リーズンフレーズは出力しなくても良く、（入ってるかわからないので）クライアント側は無視すべし」と規定されている。
+    例えば、ガイドラインで紹介しているTomcat8.5はRFC 7230に準拠しているため、リーズンフレーズが出力されない。
 
 |
 
@@ -4614,11 +4617,6 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
     {"code":"e.ex.fw.9999","message":"Unhandled system error occurred."}
 
 |
-
- .. note::
-    
-    Tomcat8.5ではRFC7230に準拠したことにより、Status-LineにReason-Phrase（上記\ ``Not Found``\や\ ``Internal Server Error``\）が出力しないように対応されている。
-    
 
 .. _RESTHowToUseSecurity:
 
