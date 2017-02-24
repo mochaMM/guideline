@@ -76,6 +76,7 @@ OWASPによる観点
 CVEによる観点
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ガイドラインで言及しているCVEごとにその説明とガイドラインへのリンクを記載する。
+ガイドラインで言及されていないCVEは、\ `PivotalのCVE一覧 <https://pivotal.io/security>`_\から参照されたい。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.40\linewidth}|p{0.50\linewidth}|
 .. list-table::
