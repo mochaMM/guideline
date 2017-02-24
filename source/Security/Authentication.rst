@@ -2836,7 +2836,7 @@ Remember Me認証を利用する場合は、\ ``<sec:remember-me>``\ タグを�
 
 .. tip:: **value属性の設定値について**
 
-    \ ``value``\ 属性には、\ ``true``\を設定する旨が\ `rememberMeRequestedのJavaDoc <http://docs.spring.io/autorepo/docs/spring-security/4.3.5.RELEASE/apidocs/org/springframework/security/web/authentication/rememberme/AbstractRememberMeServices.html#rememberMeRequested-javax.servlet.http.HttpServletRequest-java.lang.String->`_\ に記載されているが、
+    \ ``value``\ 属性には、\ ``true``\を設定する旨が\ `rememberMeRequestedのJavaDoc <http://docs.spring.io/autorepo/docs/spring-security/4.1.4.RELEASE/apidocs/org/springframework/security/web/authentication/rememberme/AbstractRememberMeServices.html#rememberMeRequested-javax.servlet.http.HttpServletRequest-java.lang.String->`_\ に記載されているが、
     実装上は\ ``on``\ 、\ ``yes``\ 、\ ``1``\ も設定可能である。
 
 .. raw:: latex
