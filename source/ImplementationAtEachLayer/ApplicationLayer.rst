@@ -1688,8 +1688,12 @@ Cookieに値を書き込む
     Spring Frameworkから\ ``org.springframework.web.util.CookieGenerator``\ というクラスが提供されている。必要に応じて使用すること。
 
 .. note::
-    上記の例ではCookieに ``"hello world!"`` という値を設定しているが、Tomcatのクッキー処理は8.5からデフォルトでRFC6265に準拠した実装に変更されたため、スペースの使用が出来なくなっている。
-    Tomcat8.5使用時にCookieにスペースを入れたい場合は、レガシーCookieプロセッサを使用するようにTomcatを設定するか、\ ``EmbeddedServletContainerCustomizer``\ をbean定義する。
+    上記の例ではCookieの値に ``"hello world!"`` という値を設定しているが、RFC 6265に準拠したアプリケーションサーバーを使用する場合、Cookieの名前や値にスペースを使用出来ない。
+    （`RFC 6265(HTTP State Management Mechanism)の4.1.1 Syntax <https://tools.ietf.org/html/rfc6265#section-4.1.1>`_ を参照されたい。）
+    
+    例えばTomcatは8.5からRFC 6265に準拠した実装に変更されているため、Tomcat8.5を使用する場合、上記のように、Cookieの値にスペースを使用することは出来ない。
+    
+    特別な事情が無い限り、Cookieの名前や値はRFC 6265に準拠されたい。
 
 |
 
