@@ -42,6 +42,10 @@
 
         * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
+        Spring Framework 4.3対応に伴う修正
+
+        * JSR-310 Date and Time APIのクラスに対して、\ ``@DateTimeFormat`` \を使用する際の注意点を削除(\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
         | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
@@ -73,13 +77,13 @@
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
-      - Spring 4.3対応に伴う修正
+      - Spring Framework 4.3対応に伴う修正
 
         * HEADとOPTIONSメソッドが暗黙的に用意される説明を追加(\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
-      - Spring 4.3対応に伴う修正
+      - Spring Framework 4.3対応に伴う修正
 
         * 非同期リクエストの共通処理の実装に関する説明を追加(\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
 
@@ -320,7 +324,7 @@
       - :doc:`../Security/Authentication`
       - Spring Security 4.0.4対応に伴う修正
 
-        * Spring 4.0.4にて authentication-failure-url の仕様が改善されたことによるコード例の修正とNoteの削除 (\ `guideline#1963 <https://github.com/terasolunaorg/guideline/issues/1963>`_\ )
+        * Spring Security 4.0.4にて authentication-failure-url の仕様が改善されたことによるコード例の修正とNoteの削除 (\ `guideline#1963 <https://github.com/terasolunaorg/guideline/issues/1963>`_\ )
 
     * -
       - :doc:`../Security/Authorization`
@@ -510,7 +514,7 @@
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileDownload`
-      - Spring Framework4.2 対応に伴う記載内容の追加
+      - Spring Framework 4.2対応に伴う記載内容の追加
 
         *  xlsx形式を操作する\ ``AbstractXlsxView``\の追加\(\ `guideline#996 <https://github.com/terasolunaorg/guideline/issues/996>`_\ )
 
