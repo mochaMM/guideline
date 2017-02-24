@@ -1550,7 +1550,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
       - `Spring Data Commons - Reference Documentation「Defining query methods」の「Special parameter handling」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.special-parameters>`_\
       - 特別なメソッド引数(``Pageable`` 、 ``Sort``)についての説明が記載されている。
     * - 4.
-      - `Spring Data JPA - Reference Documentation「Query methods」の「Query creation」 <http://docs.spring.io/spring-data/jpa/docs/1.9.4.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
+      - `Spring Data JPA - Reference Documentation「Query methods」の「Query creation」 <http://docs.spring.io/spring-data/jpa/docs/1.10.6.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
       - JPQLを組み立てるための命名規約(キーワード)に関する説明が記載されている。
     * - 5.
       - `Spring Data Commons - Reference Documentation「Appendix C. Repository query keywords」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repository-query-keywords>`_\
