@@ -16,6 +16,15 @@
 
         * 更新内容の詳細は、\ `5.0.3のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?q=is%3Aissue+milestone%3A5.0.3+is%3Aclosed>`_\ を参照されたい。
 
+    * -
+      - 全般
+      - 以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../Security/Tutorial`
+        * :doc:`../TutorialTodo/index`
+
     * -  
       - :doc:`../Security/Authorization`  
       - 記載内容の追加
