@@ -77,81 +77,43 @@ CVEによる観点
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ガイドラインで言及しているCVEごとにその説明とガイドラインへのリンクを記載する。
 
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.40\linewidth}|p{0.50\linewidth}|
 .. list-table::
    :header-rows: 1
-   :widths: 10 30 30 30
+   :widths: 10 40 50
 
    * - CVE
      - 概要
-     - 影響のあるライブラリとそのバージョン
      - ガイドラインへの言及箇所
    * - \ `CVE-2014-0050 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\
      - Apache Commons FileUploadを使用するとファイルをアップロードする(\ ``MultipartStream``\ クラスを使用する)処理で細工されたリクエストによるDOS攻撃ができてしまう
-     - * Commons FileUpload 1.0 to 1.3
 
      - * :ref:`file-upload_Overview`
 
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2014-1904 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1904>`_\
      - Spring MVCの\ ``FormTag``\クラスを使用するとXSS攻撃ができてしまう
-     - * Spring MVC 3.0.0 to 3.2.8
-
-       * Spring MVC 4.0.0 to 4.0.1
-
-       * サポートされていない古いバージョン
      - * :ref:`ApplicationLayerImplementOfJsp`
    * - \ `CVE-2015-3192 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3192>`_\
      - DTDを使用したDOS攻撃ができてしまう
-     - * Spring Framework 3.2.0 to 3.2.13
-
-       * Spring Framework 4.0.0 to 4.1.6
-
-       * サポートされていない古いバージョン
      - * :ref:`ajax_how_to_use`
 
        * :ref:`RESTHowToUseApplicationSettings`
    * - \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\
      - Apache Commons FileUploadで使用している\ ``MultipartStream``\ クラスを使用すると、細工されたリクエストによるサービス不能攻撃ができてしまう
-     - * Apache Commons Fileupload 1.3 to 1.3.1
-
-       * Apache Commons Fileupload 1.2 to 1.2.2
-
-       * サポートされていない古いバージョン
      - * :ref:`file-upload_Overview`
-
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2016-5007 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5007>`_\
      - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けができてしまう
-     - * Spring Security 3.2.x, 4.0.x, 4.1.0
-
-       * Spring Framework 3.2.x, 4.0.x, 4.1.x, 4.2.x
-
-       * サポートされていない古いバージョン
      - * :ref:`access_policy_designate_web_resource`
    * - \ `CVE-2016-6652 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6652>`_\
      - \ ``Sort``\オブジェクトをそのままJPAプロバイダに受け渡すとブラインドSQLインジェクション攻撃ができてしまう
-     - * Spring Data JPA 1.10.2, 1.9.4
      - * :ref:`how_to_specify_query_annotation-label`
    * - \ `CVE-2016-9878 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9878>`_\
      - \ ``ResourceServlet``\を使用するとディレクトリトラバーサル攻撃ができてしまう
-     - * Spring Framework 4.3.0 to 4.3.4
-
-       * Spring Framework 4.2.0 to 4.2.8
-
-       * Spring Framework 3.2.0 to 3.2.17
-
-       * サポートされていない古いバージョン
      - * :ref:`CreateWebApplicationProjectConfigurationWeb`
    * - \ `CVE-2016-9879 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9879>`_\
      - Spring SecurityとSpring MVCのパス取得方法の差異を利用して認可のすり抜けができてしまう
-     - * Spring Security 3.2.0 - 3.2.9
-
-       * Spring Security 4.0.x - 4.1.3
-
-       * Spring Security 4.2.0
-       
-       * サポートされていない古いバージョン
      - * :ref:`access_policy_designate_web_resource`
 
 .. raw:: latex
