@@ -83,7 +83,7 @@ JDBC datasource provided by Application Server
       - IBM WebSphere Application Server Version 9.0
       - Refer to \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=en>`_\ .
     * - 5.
-      - JBoss Enterprise Application Platform 6.4
+      - JBoss Enterprise Application Platform 7.0
       - Refer to \ `JBoss Enterprise Application Platform Product Documentation <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/configuration_guide/datasource_management>`_\ .
 
 
