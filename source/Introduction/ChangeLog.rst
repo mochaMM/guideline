@@ -25,6 +25,12 @@
         * :doc:`../Tutorial/TutorialSecurity`
         * :doc:`../Tutorial/TutorialTodo`
 
+    * -
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - 記載内容の追加
+
+        * セキュリティ対策に関するマッピングにCVEによる観点をまとめた表を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+
     * - 
       - :doc:`../Overview/FrameworkStack`
       - 利用するOSSのバージョンを更新
