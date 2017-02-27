@@ -199,7 +199,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'TERASOLUNAGlobalFrameworkDevelopmentGuideline.tex', u'TERASOLUNA Global Framework Development Guideline Documentation',
-   u'NTT DATA', 'manual'),
+   u'NTT DATA Corporation', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -229,7 +229,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'terasolunaglobalframeworkdevelopmentguideline', u'TERASOLUNA Global Framework Development Guideline Documentation',
-     [u'NTT DATA'], 1)
+     [u'NTT DATA Corporation'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -243,7 +243,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'TERASOLUNAGlobalFrameworkDevelopmentGuideline', u'TERASOLUNA Global Framework Development Guideline Documentation',
-   u'NTT DATA', 'TERASOLUNAGlobalFrameworkDevelopmentGuideline', 'One line description of project.',
+   u'NTT DATA Corporation', 'TERASOLUNAGlobalFrameworkDevelopmentGuideline', 'One line description of project.',
    'Miscellaneous'),
 ]
 
