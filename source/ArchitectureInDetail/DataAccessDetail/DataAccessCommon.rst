@@ -79,9 +79,9 @@ JDBC DataSourceについて
       - | \ `Apache Tomcat 8.0 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-8.0-doc/jdbc-pool.html>`_\ を参照されたい。
         | \ `Apache Tomcat 8.0 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP 2)を参照されたい。
     * - 3.
-      - Apache Tomcat 7.0
-      - | \ `Apache Tomcat 7.0 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html>`_\ を参照されたい。
-        | \ `Apache Tomcat 7.0 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP)を参照されたい。
+      - Apache Tomcat 7
+      - | \ `Apache Tomcat 7 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html>`_\ を参照されたい。
+        | \ `Apache Tomcat 7 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP)を参照されたい。
     * - 4.
       - Oracle WebLogic Server 12c
       - \ `Oracle WebLogic Server Product Documentation <http://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm>`_\ を参照されたい。

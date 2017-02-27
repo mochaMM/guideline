@@ -219,7 +219,7 @@ WebアプリケーションをTomcat上にリリースする場合は次のよ�
 1. リリース対象のAPサーバ環境にあわせてmavenのprofileを指定し、 \*-env プロジェクトを ビルドする。
 2. 上記でビルドした\*-env-x.y.z.jarファイル をあらかじめ決定したAPサーバ上のフォルダに設置する。 ex. /etc/foo/bar/abcd-env-x.y.z.jar
 3. あらかじめパッケージリポジトリにデプロイ済みの\*.warファイルを [CATALINA_HOME]/webapps 配下で解凍(unjar)する。
-4. Tomcat 7.0を使用する場合は、TomcatのVirtualWebappLoader機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
+4. Tomcat 7を使用する場合は、TomcatのVirtualWebappLoader機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
 
  * [CATALINA_HOME]/conf/[contextPath].xml ファイルに下記の定義を追加する。
  * 詳しくは、 http://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/loader/VirtualWebappLoader.html と `terasoluna-tourreservation-envのconfigsフォルダ <https://github.com/terasolunaorg/terasoluna-tourreservation/tree/5.3.0.RELEASE/terasoluna-tourreservation-env/configs>`_\ を参考されたい。
