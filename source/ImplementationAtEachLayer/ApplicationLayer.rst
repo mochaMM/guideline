@@ -1691,7 +1691,7 @@ Cookieに値を書き込む
     HTTP Cookieの処理を規定するRFC 6265では、Cookieの名前や値に一部使用できない文字があることに注意されたい。
     例えば、RFC 6265に準拠した実装のTomcat 8.5では、Cookieの値にスペースを使用することができない。
     
-    RFC 6265(HTTP State Management Mechanism)の「 `4.1 SetCookie <https://tools.ietf.org/html/rfc6265#section-4.1>`_ のSyntax」を参照されたい。
+    `RFC 6265(HTTP State Management Mechanism)の「4.1 SetCookie <https://tools.ietf.org/html/rfc6265#section-4.1>`_ のSyntax」を参照されたい。
 
 |
 
