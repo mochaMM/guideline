@@ -466,7 +466,7 @@ Webサービスを提供するAPサーバにアプリケーションをリリー
 
 
 
-.. _CreateWebApplicationProjectCustomize:
+.. _CreateProjectCustomize:
 
 .. raw:: latex
 
