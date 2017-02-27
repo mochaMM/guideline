@@ -404,10 +404,11 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
          * - | (3)
            - | \ ``/restrict``\に対するアクセスポリシーを定義する。
 
-.. warning:: **全ての最新メンテナンスバージョンのTomcat以外のアプリケーションサーバを使用する際の注意点**
+.. warning:: **CVE-2016-9879の脆弱性に関する注意点**
 
-    Spring SecurityとSpring MVCではアクセスされたURLを取得する方法が異なっているため、全ての最新メンテナンスバージョンのTomcat以外のアプリケーションサーバにおいて、この差異を利用してSpring Securityの認可機能を突破しハンドラメソッドにアクセスできる脆弱性が存在する。
-    本事象の詳細は「\ `CVE-2016-9879 Encoded "/" in path variables <https://pivotal.io/jp/security/cve-2016-9879>`_\」を参照のこと。
+    Spring SecurityとSpring MVCではアクセスされたURLを取得する方法が異なっているため、この差異を利用してSpring Securityの認可機能を突破しハンドラメソッドにアクセスできる脆弱性が存在する。
+    本事象は、WebSphere Application Server Version 8.5.xにて確認されている。
+    詳細は「\ `CVE-2016-9879 Encoded "/" in path variables <https://pivotal.io/jp/security/cve-2016-9879>`_\」を参照のこと。
 
     対策として、本事象への対策が行われている5.3.0.RELEASE以降にバージョンアップされたい。
 
