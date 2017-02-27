@@ -102,7 +102,7 @@ CVE(Common Vulnerabilities and Exposures)による観点
      - * :ref:`ajax_how_to_use`
 
        * :ref:`RESTHowToUseApplicationSettings`
-   * - \ `CVE-2016-5007 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5007>`_\
+   * - \ `CVE-2016-5007 <https://pivotal.io/jp/security/cve-2016-5007>`_\
      - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けが可能となる
      - * :ref:`access_policy_designate_web_resource`
    * - \ `CVE-2016-6652 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6652>`_\
