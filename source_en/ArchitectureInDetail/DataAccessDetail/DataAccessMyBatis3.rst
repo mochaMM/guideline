@@ -748,7 +748,7 @@ MyBatis3 can specify \ ``fetchSize``\  by using 2 methods shown below to control
 
  .. note:: **"Regarding default fetchSize"**
 
-    "Default \ ``fetchSize``\ "can be used in MyBatis3.3.0 and subsequent versions supported.
+    "Default \ ``fetchSize``\ "can be used in MyBatis3.3.0 and subsequent versions.
 
 
 How to specify "default \ ``fetchSize``\ " is shown below.
