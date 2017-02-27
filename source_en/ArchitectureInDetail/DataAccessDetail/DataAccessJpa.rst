@@ -1543,7 +1543,7 @@ For naming conventions for creating JPQL, refer to the following pages.
       - `Spring Data Commons - "Special parameter handling" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.special-parameters>`_\
       - This section describes special method arguments (``Pageable`` , ``Sort``).
     * - 4.
-      - `Spring Data JPA - "Query creation" of Reference Documentation "Query methods" <http://docs.spring.io/spring-data/jpa/docs/1.9.4.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
+      - `Spring Data JPA - "Query creation" of Reference Documentation "Query methods" <http://docs.spring.io/spring-data/jpa/docs/1.10.6.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
       - This section describes naming conventions (keywords) for creating JPQL.
     * - 5.
       - `Spring Data Commons - Reference Documentation "Appendix C. Repository query keywords" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repository-query-keywords>`_\
