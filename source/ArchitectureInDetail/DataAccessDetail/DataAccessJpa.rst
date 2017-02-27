@@ -1522,7 +1522,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
       - | JPQLから変換された指定されたページ位置のEntityを取得するためのNativeなSQL。
         | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で"ORDER BY"句が追加される。例では、PostgreSQL用のSQLになっている。
 
-.. warning::
+.. warning::**CVE-2016-6652の脆弱性に関する注意点**
    \ ``Sort``\オブジェクトが保持しているソート対象のプロパティ名はそのままJPAプロバイダに渡されるため、\ ``ORDER BY``\句にQuery(JPQL)を埋め込むことが可能となり、ブラインドSQLインジェクション攻撃を受ける可能性がある。
    詳細は、`CVE-2016-6652 <https://pivotal.io/jp/security/cve-2016-6652>`_\ を参照されたい。
 

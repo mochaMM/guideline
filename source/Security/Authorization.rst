@@ -414,7 +414,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     * WebSphere Application Server Version 8.5.xでは発生することが確認されている
     * その他のAPサーバでは発生する可能性がある
     
-    詳細は「\ `CVE-2016-9879 Encoded "/" in path variables <https://pivotal.io/jp/security/cve-2016-9879>`_\」を参照のこと。
+    詳細は「\ `CVE-2016-9879 Encoded "/" in path variables <https://pivotal.io/jp/security/cve-2016-9879>`_\」を参照されたい。
 
     対策として、本事象への対策が行われている5.3.0.RELEASE以降にバージョンアップされたい。
 
