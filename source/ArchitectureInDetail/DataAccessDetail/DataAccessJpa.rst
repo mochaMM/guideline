@@ -1525,7 +1525,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
 .. warning:: **CVE-2016-6652の脆弱性に関する注意点**
 
    \ ``Sort``\オブジェクトが保持しているソート対象のプロパティ名はそのままJPAプロバイダに渡されるため、\ ``ORDER BY``\句にQuery(JPQL)を埋め込むことが可能となり、ブラインドSQLインジェクション攻撃を受ける可能性がある。
-   詳細は、`CVE-2016-6652 <https://pivotal.io/jp/security/cve-2016-6652>`_\ を参照されたい。
+   詳細は、「`CVE-2016-6652 Spring Data JPA Blind SQL Injection Vulnerability <https://pivotal.io/jp/security/cve-2016-6652>`_\ 」を参照されたい。
 
    そのため、下記の対策をとられたい。
 
