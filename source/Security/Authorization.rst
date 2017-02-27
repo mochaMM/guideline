@@ -406,7 +406,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
 
 .. warning:: **Tomcat以外のアプリケーションサーバを使用する際の注意点**
 
-    Spring SecurityとSpring MVCではアクセスされたURLを取得する方法が異なっているため、Tomcat以外のアプリケーションサーバにおいて、この差異を利用してSpring Securityの認可機能を突破しハンドラメソッドにアクセスできる脆弱性が存在する。
+    Spring SecurityとSpring MVCではアクセスされたURLを取得する方法が異なっているため、最新版のTomcat以外のアプリケーションサーバにおいて、この差異を利用してSpring Securityの認可機能を突破しハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-9879 Encoded "/" in path variables <https://pivotal.io/jp/security/cve-2016-9879>`_\」を参照のこと。
 
     対策として、本事象への対策が行われている5.3.0.RELEASE以降にバージョンアップされたい。
