@@ -1528,9 +1528,9 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
 
    そのため、下記の対策をとられたい。
 
-   * 最新のTERASOLUNA Server Framework for Javaへバージョンアップ
+   * 本事象への対策が行われている5.3.0.RELEASE以降にバージョンアップする
 
-   * Controller内などで\ ``Sort``\オブジェクトが保持しているソート対象のプロパティ名をチェックするロジックを組む
+   * 入力チェックなどを行い安全な値のみJPAプロバイダに渡るようにする
 
 .. _how_to_specify_query_mathodname-label:
 
