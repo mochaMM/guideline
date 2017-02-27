@@ -3292,8 +3292,8 @@ In the example below, H2 Database is used as the database.
     The links for reference pages of major databases are given below.
 
     * `Oracle 12c <http://docs.oracle.com/database/121/SQLRF/statements_9014.htm>`_
-    * `DB2 10.5 <http://www-01.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
-    * `PostgreSQL 9.4 <http://www.postgresql.org/docs/9.4/static/sql-insert.html>`_
+    * `DB2 11.1 <http://www.ibm.com/support/knowledgecenter/SSEPGG_11.1.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
+    * `PostgreSQL 9.6 <http://www.postgresql.org/docs/9.6/static/sql-insert.html>`_
     * `MySQL 5.7 <http://dev.mysql.com/doc/refman/5.7/en/insert.html>`_
 
 |
