@@ -42,7 +42,7 @@
 
         * 単純なview controllerを作成したい場合、\ ``<mvc:view-controller>`` \を使用する様に追記(\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
-        * Cookieの処理を規定するRFC 6265において、Cookieの名前や値に使用できない文字が存在することの注意書きを追加(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+        * Cookieの名前や値に使用できない文字が存在することの注意事項を追加(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
 
         Spring Framework 4.3対応に伴う修正
 
@@ -85,7 +85,7 @@
 
         記載内容の追加
 
-        * RFC 7230における、HTTPステータスコードの説明句（\ ``reason-phrase``\）の出力に関する説明を追加(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+        * HTTPステータスコードの説明句（\ ``reason-phrase``\）の出力仕様に関する説明を追加(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
