@@ -1823,8 +1823,8 @@ Settings for activating the Spring MVC components necessary for RESTful Web Serv
     Also, when style is to be changed from directly defining a Bean for \ ``ObjectMapper``\  to using \ ``Jackson2ObjectMapperFactoryBean``\ ,
     it should be noted that default value for the following configuration differs from the default value of Jackson (disabled).
 
-    * `MapperFeature#DEFAULT_VIEW_INCLUSION <http://fasterxml.github.io/jackson-databind/javadoc/2.6/com/fasterxml/jackson/databind/MapperFeature.html?is-external=true#DEFAULT_VIEW_INCLUSION>`_\
-    * `DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES <http://fasterxml.github.io/jackson-databind/javadoc/2.6/com/fasterxml/jackson/databind/DeserializationFeature.html?is-external=true#FAIL_ON_UNKNOWN_PROPERTIES>`_\
+    * `MapperFeature#DEFAULT_VIEW_INCLUSION <http://fasterxml.github.io/jackson-databind/javadoc/2.8/com/fasterxml/jackson/databind/MapperFeature.html?is-external=true#DEFAULT_VIEW_INCLUSION>`_\
+    * `DeserializationFeature#FAIL_ON_UNKNOWN_PROPERTIES <http://fasterxml.github.io/jackson-databind/javadoc/2.8/com/fasterxml/jackson/databind/DeserializationFeature.html?is-external=true#FAIL_ON_UNKNOWN_PROPERTIES>`_\
 
     When \ ``ObjectMapper``\  operation and default Jackson operation are to be matched, the configuration above is enabled using \ ``featuresToEnable``\  property.
 
@@ -1840,7 +1840,7 @@ Settings for activating the Spring MVC components necessary for RESTful Web Serv
             </property>
         </bean>
 
-    For \ ``Jackson2ObjectMapperFactoryBean``\  details, refer `JavaDoc of Jackson2ObjectMapperFactoryBean <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/http/converter/json/Jackson2ObjectMapperFactoryBean.html>`_\ .
+    For \ ``Jackson2ObjectMapperFactoryBean``\  details, refer `JavaDoc of Jackson2ObjectMapperFactoryBean <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/http/converter/json/Jackson2ObjectMapperFactoryBean.html>`_\ .
 
 
 .. _REST_note_changed_jackson_version:
@@ -1867,9 +1867,9 @@ Settings for activating the Spring MVC components necessary for RESTful Web Serv
 
     * Deprecated List
 
-     * http://fasterxml.github.io/jackson-core/javadoc/2.6/deprecated-list.html
-     * http://fasterxml.github.io/jackson-databind/javadoc/2.6/deprecated-list.html
-     * http://fasterxml.github.io/jackson-annotations/javadoc/2.6/deprecated-list.html
+     * http://fasterxml.github.io/jackson-core/javadoc/2.8/deprecated-list.html
+     * http://fasterxml.github.io/jackson-databind/javadoc/2.8/deprecated-list.html
+     * http://fasterxml.github.io/jackson-annotations/javadoc/2.8/deprecated-list.html
 
 |
 
@@ -2543,7 +2543,7 @@ Creating Controller class
 
     Due to \ ``@RestController``\  annotation, it is not necessary to assign \ ``@ResponseBody``\  annotation to each method of Controller.
     Hence, it is possible to create Controller for REST API in a simple way.
-    For details about \ ``@RestController``\  annotation refer to: \ `Here <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RestController.html>`_\ .
+    For details about \ ``@RestController``\  annotation refer to: \ `Here <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RestController.html>`_\ .
 
     An example to create a Controller for REST API by combining \ ``@Controller``\  annotation and \ ``@ResponseBody``\  annotation in a conventional way is given below.
 
@@ -5402,7 +5402,7 @@ Implementation for each resource
         | In the above example, \ ``UriComponentsBuilder``\  class method is called to build URI set in link information and URI to access to one's resource is added to resource.
         |
         | \ ``ServletUriComponentsBuilder``\  instances passed as method argument of Controller are initiated based on the information of \ ``<servlet-mapping>``\  element described in web.xml. It is not resource dependent.
-        | By using `URI Template Patterns <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\  ,etc. provided in Spring Framework,
+        | By using `URI Template Patterns <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\  ,etc. provided in Spring Framework,
         | an URI can be built based on the request information. Thus, a generic build process which is independent of a resource, can be implemented.
         | 
         | In the above example, when GET is done for \ ``http://example.com/api/v1/members/M000000001``\ , built URI is same as the requested URI \ ``(http://example.com/api/v1/members/M000000001)``\ .
@@ -5524,7 +5524,7 @@ Implementation for each resource
         | \ ``buildAndExpand``\  method is called and an URI of created resource is built by binding the ID of created resource.
         | 
         | \ ``ServletUriComponentsBuilder``\  instances passed as method argument of Controller are initiated based on the information of \ ``<servlet-mapping>``\  element described in web.xml. It is not resource dependent.
-        | By using `URI Template Patterns <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\  ,etc. provided by Spring Framework,
+        | By using `URI Template Patterns <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\  ,etc. provided by Spring Framework,
         | an URI can be built based on the request information. Thus, a generic build process which is independent of a resource, can be implemented.
         | 
         | For example, if POST method is used for \ ``http://example.com/api/v1/members``\ , the built URI will be "requested URI + \ ``"/"``\  + ID of created resource".

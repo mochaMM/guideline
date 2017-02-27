@@ -152,7 +152,7 @@ If the project creation successes, following type of log will be printed.
 
     (... omit)
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.2.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.3.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.todo
     [INFO] Parameter: artifactId, Value: todo
@@ -956,7 +956,7 @@ Initially entire multi-project structure is explained.
     
      Stores RDBMS table definitions (DDL) and SQL statements for INSERT the initial data.
      This also managed as a maven project.
-     By defining `sql-maven-plugin <http://mojo.codehaus.org/sql-maven-plugin/>`_ in pom.xml,
+     By defining `sql-maven-plugin <http://www.mojohaus.org/sql-maven-plugin/>`_ in pom.xml,
      it is possible to automate the execution of DDL statements and initial data INSERT statements for any RDBMS in the course of the build lifecycle.
     
     * bar-common
@@ -1527,7 +1527,7 @@ Module that manages the SQL file to initialize the database is explained.
       - Directory for storing the database initialization SQL files.
 
         It is an empty directory at the time of creation.
-        For how to create, Refer `Sample application of initdb project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.2.0.RELEASE/terasoluna-tourreservation-initdb/src/main/sqls>`_.
+        For how to create, Refer `Sample application of initdb project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.3.0.RELEASE/terasoluna-tourreservation-initdb/src/main/sqls>`_.
 
 .. note::
 
@@ -1583,7 +1583,7 @@ Module that manages the E2E (End To End) testing components used in Selenium exp
     * - | (2)
       - Directory that contains the configuration files and testing components.
 
-        For how to create, Refer `Sample application of selenium project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.2.0.RELEASE/terasoluna-tourreservation-selenium>`_.
+        For how to create, Refer `Sample application of selenium project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.3.0.RELEASE/terasoluna-tourreservation-selenium>`_.
 
     * - | (3)
       - Sample test class using Selenium WebDriver.
@@ -1631,8 +1631,8 @@ The hierarchical structure of the project indicated below which is created in Ma
         The project created in Maven Archetype has become a multi-module configuration,
         parent project and each sub-module have a cross-reference relationship.
 
-        In the project created in version 5.2.0.RELEASE Maven Archetype,
-        [org.terasoluna.gfw:terasoluna-gfw-parent:5.2.0.RELEASE] is specified as a parent project.
+        In the project created in version 5.3.0.RELEASE Maven Archetype,
+        [org.terasoluna.gfw:terasoluna-gfw-parent:5.3.0.RELEASE] is specified as a parent project.
     * - | (2)
       - TERASOLUNA Server Framework for Java (5.x) Parent project.
 

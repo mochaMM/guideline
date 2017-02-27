@@ -741,7 +741,7 @@ Basic synchronous sending
           
  .. note:: **Exception handling of JMS in business logic**
     
-    As covered in \ `JMS (Java Message Service) introduction <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\, exceptions are converted to run-time exceptions in Spring Framework.
+    As covered in \ `JMS (Java Message Service) introduction <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\, exceptions are converted to run-time exceptions in Spring Framework.
     Hence, a run-time exception must be handled while handling JMS exception in business logic.
 
      .. tabularcolumns:: |p{0.20\linewidth}|p{0.60\linewidth}|p{0.20\linewidth}|
@@ -1004,7 +1004,7 @@ In the application wherein DB transaction control is performed, a transaction co
 
   A method which uses global transaction by JTA exists for linking JMS and DB transactions, however "Best Effort 1 Phase Commit" is recommended since overheads are likely to occur for performance, among protocol characteristics. Refer below for details.
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
 
@@ -1173,7 +1173,7 @@ Basic asynchronous receiving
       - xmlns:jms
       - | Define JMS Namespace.
         | Specify \ ``http://www.springframework.org/schema/jms``\  as a value.
-        | For details of JMS Namespace, refer \ `JMS Namespace Support <http://docs.spring.io/autorepo/docs/spring-framework/4.2.7.RELEASE/spring-framework-reference/html/jms.html#jms-namespace>`_\.
+        | For details of JMS Namespace, refer \ `JMS Namespace Support <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace>`_\.
     * - 
       - xsi:schemaLocation
       - | Specify URL of schema.
@@ -1187,12 +1187,12 @@ Basic asynchronous receiving
         | \ ``connection-factory``\  attribute which can specify a Bean of \ ``ConnectionFactory``\  to be used, exists in the \ ``<jms:listener-container/>``\ attribute. Default value of \ ``connection-factory``\  attribute is \ ``connectionFactory``\.
         | In this example, since Bean (Bean name is \ ``connectionFactory``\) of \ ``ConnectionFactory``\  shown in \ :ref:`JMSHowToUseConnectionFactory`\  is used, \ ``connection-factory``\  attribute is omitted.
         | \ ``<jms:listener-container/>``\  also consists of attributes other than introduced here.
-        | For details, refer \ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\.
+        | For details, refer \ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\.
 
         .. warning::
 
             Since \ ``DefaultMessageListenerContainer``\  is equipped with an independent cache function, \ ``CachingConnectionFactory``\  should not be used in case of asynchronous receiving.
-            For details, refer \ `Javadoc of DefaultMessageListenerContainer <http://docs.spring.io/autorepo/docs/spring-framework/4.2.7.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\.
+            For details, refer \ `Javadoc of DefaultMessageListenerContainer <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\.
             For above, \ ``ConnectionFactory``\  defined in  \ :ref:`JMSHowToUseConnectionFactory`\  should be specified in \ ``connection-factory``\  attribute of \ ``<jms:listener-container/>``\.
 
     * - 
@@ -1273,7 +1273,7 @@ Basic asynchronous receiving
 
 
  A list of main attributes of \ ``@JmsListener``\  annotation is shown below.
- For details and other attributes, refer \ `Javadoc of @JmsListener annotation <http://docs.spring.io/spring-framework/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\.
+ For details and other attributes, refer \ `Javadoc of @JmsListener annotation <http://docs.spring.io/spring-framework/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\.
 
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.70\linewidth}|
@@ -1334,7 +1334,7 @@ Fetching header information of messages
       - Description
     * - | (1)
       - | Specify \ ``@Header``\  annotation to fetch value of header attribute \ ``JMSReplyTo``\  of receiving message.
-        | For a key specified while fetching JMS standard header attribute, refer \ `JmsHeaders constants definition <https://static.javadoc.io/org.springframework/spring-jms/4.2.7.RELEASE/constant-values.html#org.springframework.jms.support.JmsHeaders.CORRELATION_ID>`_\.
+        | For a key specified while fetching JMS standard header attribute, refer \ `JmsHeaders constants definition <https://static.javadoc.io/org.springframework/spring-jms/4.3.5.RELEASE/constant-values.html#org.springframework.jms.support.JmsHeaders.CORRELATION_ID>`_\.
 
 
 .. _JMSHowToUseListenerContainerReSendMessage:
@@ -1441,7 +1441,7 @@ Respective descriptions are as below.
          - | Return objects which send a message.
 
    Header attribute \ ``JMSReplyTo``\  is given priority over the default Destination specified on the Consumer side.
-   For details, refer \ `Response management <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/htmlsingle/#jms-annotated-response>`_\ .
+   For details, refer \ `Response management <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/htmlsingle/#jms-annotated-response>`_\ .
 
 
 .. _JMSHowToUseMessageSelectorForAsyncReceive:
@@ -1772,7 +1772,7 @@ In the application wherein DB transaction control is required, a transaction con
 
   A method which uses global transaction by JTA exists for linking JMS and DB transactions, however "Best Effort 1 Phase Commit" is recommended since overheads are likely to occur for performance, among protocol characteristics. Refer below for details.
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
   .. warning:: **When transaction process results are not returned in JMS provider due to issues like loss of connection with JMS provider after receiving a message**
@@ -2216,7 +2216,7 @@ A method wherein the messages are synchronously received
     * - 4.
       - \ ``sessionAcknowledgeMode``\
       - | Set confirmation response mode of session for \ ``sessionAcknowledgeMode``\.
-        | For details, refer \ `JavaDoc of JMSTemplate <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ .
+        | For details, refer \ `JavaDoc of JMSTemplate <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ .
 
         .. todo::
 
@@ -2322,7 +2322,7 @@ Configuration while using Apache ActiveMQ is explained.
   | JMS provider requires specific configuration.
   | In Apache ActiveMQ, environment variable must be added to starting variable of application server to ensure that it consists of objects wherein payload of received messages is permissible.
   | For details, refer \ `ObjectMessage <http://activemq.apache.org/objectmessage.html>`_\ .
-  | Configuration example while using Apache Tomcat is shown below. Refer \ `Service Configuration <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Installation_Guide/sect-Service_Configuration.html>`_\  for JBoss and \ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\  for Weblogic.
+  | Configuration example while using Apache Tomcat is shown below. Refer \ `Service Configuration <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/installation_guide/configuring_jboss_eap_to_run_as_a_service>`_\  for JBoss and \ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\  for Weblogic.
 
   - :file:`$CATALINA_HOME/bin/setenv.sh`
 
