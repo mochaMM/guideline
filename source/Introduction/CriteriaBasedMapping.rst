@@ -5,7 +5,7 @@
 セキュリティ対策に関するマッピング
 --------------------------------------------------------------------------------
 
-OWASPによる観点
+OWASP(Open Web Application Security Project)による観点
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \ `OWASP Top 10 for 2013 <https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project>`_\ を軸として、
 セキュリティに関連する機能の説明へのリンクを記載する。
@@ -73,7 +73,7 @@ OWASPによる観点
      - `Unvalidated Redirects and Forwards <https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards>`_
      - 特に言及なし
 
-CVEによる観点
+CVE(Common Vulnerabilities and Exposures)による観点
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ガイドラインで言及しているCVEごとにその説明とガイドラインへのリンクを記載する。
 ガイドラインで言及していないCVEについては、\ `Pivotal Product Vulnerability Reports <https://pivotal.io/security>`_\を参照されたい。
