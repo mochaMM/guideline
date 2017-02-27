@@ -76,7 +76,7 @@ OWASPによる観点
 CVEによる観点
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ガイドラインで言及しているCVEごとにその説明とガイドラインへのリンクを記載する。
-ガイドラインで言及されていないCVEは、\ `PivotalのCVE一覧 <https://pivotal.io/security>`_\から参照されたい。
+ガイドラインで言及していないCVEについては、\ `Pivotal Product Vulnerability Reports <https://pivotal.io/security>`_\を参照されたい。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.40\linewidth}|p{0.50\linewidth}|
 .. list-table::
@@ -85,33 +85,31 @@ CVEによる観点
 
    * - CVE
      - 概要
-     - ガイドラインへの言及箇所
+     - ガイドラインでの言及箇所
    * - \ `CVE-2014-0050 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\
-     - Apache Commons FileUploadを使用するとファイルをアップロードする(\ ``MultipartStream``\ クラスを使用する)処理で細工されたリクエストによるDOS攻撃ができてしまう
+
+       \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\
+     - Apache Commons FileUploadを使用するとファイルをアップロードする処理で細工されたリクエストによるDoS攻撃を受ける可能性がある
 
      - * :ref:`FileUploadOverview`
 
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2014-1904 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1904>`_\
-     - Spring MVCの\ ``FormTag``\クラスを使用するとXSS攻撃ができてしまう
+     - Spring MVCの\ ``FormTag``\クラスを使用するとXSS攻撃がを受ける可能性がある
      - * :ref:`ApplicationLayerImplementOfJsp`
    * - \ `CVE-2015-3192 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3192>`_\
-     - DTDを使用したDOS攻撃ができてしまう
+     - DTDを使用したDoS攻撃が可能となる
      - * :ref:`ajax_how_to_use`
 
        * :ref:`RESTHowToUseApplicationSettings`
-   * - \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\
-     - Apache Commons FileUploadで使用している\ ``MultipartStream``\ クラスを使用すると、細工されたリクエストによるサービス不能攻撃ができてしまう
-     - * :ref:`FileUploadOverview`
-       * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2016-5007 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5007>`_\
-     - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けができてしまう
+     - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けが可能となる
      - * :ref:`access_policy_designate_web_resource`
    * - \ `CVE-2016-6652 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6652>`_\
-     - \ ``Sort``\オブジェクトをそのままJPAプロバイダに受け渡すとブラインドSQLインジェクション攻撃ができてしまう
+     - \ ``Sort``\オブジェクトをそのままJPAプロバイダに受け渡すとブラインドSQLインジェクション攻撃を受ける可能性がある
      - * :ref:`how_to_specify_query_annotation-label`
    * - \ `CVE-2016-9879 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-9879>`_\
-     - Spring SecurityとSpring MVCのパス取得方法の差異を利用して認可のすり抜けができてしまう
+     - Spring SecurityとSpring MVCのパス取得方法の差異を利用して認可のすり抜けが可能となる
      - * :ref:`access_policy_designate_web_resource`
 
 .. raw:: latex
