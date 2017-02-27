@@ -89,7 +89,7 @@ CVEによる観点
    * - \ `CVE-2014-0050 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\
      - Apache Commons FileUploadを使用するとファイルをアップロードする(\ ``MultipartStream``\ クラスを使用する)処理で細工されたリクエストによるDOS攻撃ができてしまう
 
-     - * :ref:`file-upload_Overview`
+     - * :ref:`FileUploadOverview`
 
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2014-1904 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1904>`_\
@@ -102,7 +102,7 @@ CVEによる観点
        * :ref:`RESTHowToUseApplicationSettings`
    * - \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\
      - Apache Commons FileUploadで使用している\ ``MultipartStream``\ クラスを使用すると、細工されたリクエストによるサービス不能攻撃ができてしまう
-     - * :ref:`file-upload_Overview`
+     - * :ref:`FileUploadOverview`
        * :ref:`file-upload_usage_commons_fileupload`
    * - \ `CVE-2016-5007 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-5007>`_\
      - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けができてしまう
