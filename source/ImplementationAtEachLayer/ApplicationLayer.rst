@@ -1663,7 +1663,7 @@ Cookieに値を書き込む
     @RequestMapping("writeCookie")
     public String writeCookie(Model model,
             HttpServletResponse response) { // (1)
-        Cookie cookie = new Cookie("foo", "hello world!");
+        Cookie cookie = new Cookie("foo", "HelloWorld!");
         response.addCookie(cookie); // (2)
         // do something
         return "sample/writeCookie";
@@ -1680,12 +1680,18 @@ Cookieに値を書き込む
      - Cookieを書き込むために、\ ``HttpServletResponse``\ オブジェクトを引数に指定する。
    * - | (2)
      - | \ ``Cookie``\ オブジェクトを生成し、\ ``HttpServletResponse``\ オブジェクトに追加する。
-       | 上記例では、 ``"foo"`` というCookie名で ``"hello world!"`` という値を設定している。
+       | 上記例では、 ``"foo"`` というCookie名で ``"HelloWorld!"`` という値を設定している。
 
 .. tip::
 
     \ ``HttpServletResponse``\ を引数として受け取ることに変わりはないが、Cookieに値を書き込むためのクラスとして、
     Spring Frameworkから\ ``org.springframework.web.util.CookieGenerator``\ というクラスが提供されている。必要に応じて使用すること。
+
+.. note::
+    HTTP Cookieの処理を規定するRFC 6265では、Cookieの名前や値に一部使用できない文字があることに注意されたい。
+    例えば、RFC 6265に準拠した実装のTomcat 8.5では、Cookieの値にスペースを使用することができない。
+    
+    `RFC 6265(HTTP State Management Mechanism)の4.1 SetCookie <https://tools.ietf.org/html/rfc6265#section-4.1>`_ のSyntaxを参照されたい。
 
 |
 

@@ -768,7 +768,7 @@ HTTPメソッドによるリソースの操作
 
  .. tip:: **HTTPの仕様について**
  
-    `RFC 2616(Hypertext Transfer Protocol -- HTTP/1.1)の6.1.1 Status Code and Reason Phrase <http://tools.ietf.org/search/rfc2616#section-6.1.1>`_ を参照されたい。
+    `RFC 7230(Hypertext Transfer Protocol -- HTTP/1.1)の3.1.2 Status Line <https://tools.ietf.org/html/rfc7230#section-3.1.2>`_ を参照されたい。
 
 |
 
@@ -789,6 +789,15 @@ HTTPメソッドによるリソースの操作
       - | エラーハンドリングを行う際に、システム独自に定義されたエラーコードを意識する事が必須になるため、クライアント側のアーキテクチャ(設計及び実装)に悪影響を与える可能性がある。
     * - | (3)
       - | クライアント側でエラー原因を解析する際に、システム独自に定義されたエラーコードの意味を理解しておく必要があるため、直感的なエラー解析の妨げになる可能性がある。
+
+|
+
+ .. note::
+
+    HTTPのメッセージ構文を規定するRFC 7230では、HTTPステータスコードの説明句（\ ``reason-phrase``\）の出力は必須ではなく、クライアントは無視すべきであると規定されている。
+    例えば、RFC 7230に準拠した実装のTomcat 8.5では、説明句が出力されない。
+    
+    `RFC 7230(Hypertext Transfer Protocol -- HTTP/1.1)の3.1.2 Status Line <https://tools.ietf.org/html/rfc7230#section-3.1.2>`_ を参照されたい。
 
 |
 
