@@ -361,7 +361,7 @@ Perform settings to use \ ``EntityManager``\ .
                  <util:map>
                      <!-- omitted -->
                      <entry key="hibernate.dialect"
-                            value="org.hibernate.dialect.Oracle10gDialect" />  <!-- (9) -->
+                            value="org.hibernate.dialect.Oracle12cDialect" />  <!-- (9) -->
                  </util:map>
              </property>
          </bean>
@@ -374,8 +374,8 @@ Perform settings to use \ ``EntityManager``\ .
         * - Sr. No.
           - Description
         * - | (9)
-          - | Specify \ ``org.hibernate.dialect.Oracle10gDialect``\  in \ ``"hibernate.dialect"``\ .
-            | By specifying \ ``Oracle10gDialect``\ , ANSI standard SQL JOIN clause for combining the tables can be used.
+          - | Specify \ ``org.hibernate.dialect.Oracle12cDialect``\  in \ ``"hibernate.dialect"``\ .
+            | By specifying \ ``Oracle12cDialect``\ , ANSI standard SQL JOIN clause for combining the tables can be used.
 
 | Perform the following settings when transaction manager (JTA) of the application server is to be used.
 | The difference with the case wherein JTA is not used, is explained below.
