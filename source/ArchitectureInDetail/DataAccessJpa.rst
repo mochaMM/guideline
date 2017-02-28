@@ -1486,6 +1486,16 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
       - | JPQLから変換された指定されたページ位置のEntityを取得するためのNativeなSQL。
         | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で"ORDER BY"句が追加される。例では、PostgreSQL用のSQLになっている。
 
+.. warning::
+   \ ``Sort``\オブジェクトが保持しているソート対象のプロパティ名はそのままJPAプロバイダに渡されるため、\ ``ORDER BY``\句にQuery(JPQL)を埋め込むことが可能となり、ブラインドSQLインジェクション攻撃を受ける可能性がある。
+   詳細は、「`CVE-2016-6652 Spring Data JPA Blind SQL Injection Vulnerability <https://pivotal.io/jp/security/cve-2016-6652>`_\ 」を参照されたい。
+
+   そのため、下記の対策をとられたい。
+
+   * 本事象への対策が行われているTERASOLUNA Server Framework for Java 5.3.0.RELEASE以降にバージョンアップする
+
+   * 入力チェックなどを行い安全な値のみJPAプロバイダに渡るようにする
+
 .. _how_to_specify_query_mathodname-label:
 
 命名規約ベースのメソッド名で指定する
