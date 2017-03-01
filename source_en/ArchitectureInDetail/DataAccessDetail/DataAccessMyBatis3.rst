@@ -13,7 +13,7 @@ Database Access (MyBatis3)
 Overview
 --------------------------------------------------------------------------------
 
-This chapter describes how to access database using \ `MyBatis3 <http://www.mybatis.org/mybatis-3/>`_\ .
+This chapter describes how to access database using \ `MyBatis3 <http://mybatis.org>`_\ .
 
 This guideline presumes the use of Mapper interface of MyBatis3 as a Repository interface.
 Refer to ":ref:`repository-label`" for Repository interface.
@@ -748,7 +748,7 @@ MyBatis3 can specify \ ``fetchSize``\  by using 2 methods shown below to control
 
  .. note:: **"Regarding default fetchSize"**
 
-    "Default \ ``fetchSize``\ "can be used in MyBatis3.3.0 and subsequent versions.
+    "Default \ ``fetchSize``\ "can be used in MyBatis3.3.0 and subsequent versions supported in terasoluna-gfw-mybatis3 5.2.0.RELEASE.
 
 
 How to specify "default \ ``fetchSize``\ " is shown below.
@@ -1030,6 +1030,12 @@ Basically, it is used when
 A \ ``TypeHandler`` \  is provided by MyBatis3 for general Java classes like primitive type and primitive wrapper type class.
 Specific settings are not required.
 
+ .. note:: **Regarding implementation for BLOB and CLOB**
+
+    \ ``TypeHandler`` \  added by MyBatis 3.4 implements conversion of BLOB and \ ``java.io.InputStream`` \ , and CLOB and \ ``java.io.Reader`` \  by using API added by JDBC 4.0 (Java 1.6).
+    In case of a JDBC driver with JDBC 4.0 support, it is not necessary to implement a new \ ``TypeHandler`` \  since type handler for conversion of
+    BLOBÅÃ\ ``InputStream`` \  and CLOBÅÃ\ ``Reader`` \  is enabled by default.
+
 **Configuration while using JSR-310 Date and Time API**
 
 When a class which represents date and time offered by JSR-310 Date and Time API in MyBatis3 is used, \ ``TypeHandler`` \  offered by a library different from  that of MyBatis (\ ``mybatis-typehandlers-jsr310`` \) is used.
@@ -1107,19 +1113,12 @@ While using, configuration to recognise \ ``TypeHandler`` \  is added to \ ``myb
 
 |
 
-Creating a \ ``TypeHandler`` \  is required while mapping a Java class and JDBC type not supported by MyBatis3.
+Creating a \ ``TypeHandler`` \  is required while mapping a Joda-Time class and JDBC type not supported by MyBatis3.
 
-Basically, it is necessary to create a \ ``TypeHandler`` \  in the following cases
+Basically, creating a \ ``TypeHandler`` \  is required while mapping \ ``org.joda.time.DateTime`` \  type of ":doc:`../GeneralFuncDetail/JodaTime`" recommended by this guideline and \ ``TIMESTAMP`` \  type  of JDBC type.
 
-* A file data with large capacity (binary data) is retained in \ ``java.io.InputStream`` \  type and mapped in \ ``BLOB`` \  type of JDBC type.
-* A large capacity text data is retained as \ ``java.io.Reader`` \  type and mapped in \ ``CLOB`` \  type of JDBC type.
-* \ ``org.joda.time.DateTime`` \  type of ":doc:`../GeneralFuncDetail/JodaTime`" that is recommended to be used in this guideline is mapped with \ ``TIMESTAMP`` \  type of JDBC type.
-* etc ...
-
-
-
-Refer to ":ref:`DataAccessMyBatis3HowToExtendTypeHandler`" for creating the three types of \ ``TypeHandler`` \  described above.
-
+For creation of \ ``TypeHandler`` \  which maps Joda-Time class and JDBC type,
+refer ":ref:`DataAccessMyBatis3HowToExtendTypeHandler`".
 
 |
 
@@ -3292,8 +3291,8 @@ In the example below, H2 Database is used as the database.
     The links for reference pages of major databases are given below.
 
     * `Oracle 12c <http://docs.oracle.com/database/121/SQLRF/statements_9014.htm>`_
-    * `DB2 11.1 <http://www.ibm.com/support/knowledgecenter/SSEPGG_11.1.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
-    * `PostgreSQL 9.6 <http://www.postgresql.org/docs/9.6/static/sql-insert.html>`_
+    * `DB2 10.5 <http://www-01.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
+    * `PostgreSQL 9.4 <http://www.postgresql.org/docs/9.4/static/sql-insert.html>`_
     * `MySQL 5.7 <http://dev.mysql.com/doc/refman/5.7/en/insert.html>`_
 
 |
@@ -4887,120 +4886,26 @@ Implementation example of mapping file is as given below.
 .. _DataAccessMyBatis3HowToExtendTypeHandler:
 
 
-Implementation of TypeHandler
+Implementatio n of TypeHandler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When it is necessary to perform mapping with the Java class not supported by MyBatis3 standard
-and when it is necessary to change the standard behavior of MyBatis3, a unique \ ``TypeHandler`` \  should be created.
+Creation of a unique \ ``TypeHandler`` \  is required when mapping
+with Joda-Time class not supported by MyBatis3 standards, is necessary.
 
-How to implement the \ ``TypeHandler`` \  is explained using the examples given below.
-
-* :ref:`DataAccessMyBatis3HowToExtendTypeHandlerBlob`
-* :ref:`DataAccessMyBatis3HowToExtendTypeHandlerClob`
-* :ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`
-
-
+This guideline explains how to implement \ ``TypeHandler`` \  using ":ref:`DataAccessMyBatis3HowToExtendTypeHandlerJoda`" as an example.
 
 Refer to ":ref:`DataAccessMyBatis3HowToUseSettingsTypeHandler`" for how to apply a created \ ``TypeHandler`` \  in an application.
 
 
- .. note:: **Preconditions for implementation of BLOB and CLOB**
+ .. note:: **Regarding implementation for BLOB and CLOB**
 
-    A method added from JDBC 4.0 is used for the implementation of BLOB and CLOB.
+    \ ``TypeHandler`` \  added by MyBatis 3.4 implements conversion of BLOB and \ ``java.io.InputStream`` \, and CLOBÇ∆\ ``java.io.Reader`` \  by using API added by JDBC 4.0 (Java 1.6).
+    In case of a JDBC driver of JDBC 4.0 support, it is not necessary to implement a new \ ``TypeHandler`` \  since type handler for the conversion of BLOBÅÃ\ ``InputStream`` \  and CLOBÅÃ\ ``Reader`` \
+    is enabled by default.
 
-    When using a JDBC driver that is not compatible with JDBC 4.0 or a 3rd party wrapper class,
-    it must be noted that the operation may not work in the implementation example explained below.
-    When the operation is to be performed in an environment wherein the driver is not compatible with JDBC 4.0,
-    the implementation must be changed to suit the compatible version of JDBC driver to be used.
+    If a JDBC driver incompatible with JDBC 4.0 is used, a \ ``TypeHandler`` \  should be created considering compatibility version of JDBC driver to be used.
 
-    For example, a lot of methods added by JDBC 4.0 are not implemented in JDBC driver for PostgreSQL9.3 (\ ``postgresql-9.3-1102-jdbc41.jar``\ ).
-    
-
-|
-
-.. _DataAccessMyBatis3HowToExtendTypeHandlerBlob:
-
-Implementing the TypeHandler for BLOB
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-MyBatis3 provides a \ ``TypeHandler`` \  for mapping BLOB in \ ``byte[]``\ .
-However, when the data to be handled is very large, it is necessary to map in \ ``java.io.InputStream``\ .
-
-How to implement a \ ``TypeHandler`` \  for mapping BLOB in \ ``java.io.InputStream``\  is given below.
-
- .. code-block:: java
-
-    package com.example.infra.mybatis.typehandler;
-
-    import org.apache.ibatis.type.BaseTypeHandler;
-    import org.apache.ibatis.type.JdbcType;
-    import org.apache.ibatis.type.MappedTypes;
-
-    import java.io.InputStream;
-    import java.sql.*;
-
-    // (1)
-    public class BlobInputStreamTypeHandler extends BaseTypeHandler<InputStream> {
-
-        // (2)
-        @Override
-        public void setNonNullParameter(PreparedStatement ps, int i, InputStream parameter,
-                                        JdbcType jdbcType) throws SQLException {
-            ps.setBlob(i, parameter);
-        }
-
-        // (3)
-        @Override
-        public InputStream getNullableResult(ResultSet rs, String columnName)
-                throws SQLException {
-            return toInputStream(rs.getBlob(columnName));
-        }
-
-        // (3)
-        @Override
-        public InputStream getNullableResult(ResultSet rs, int columnIndex)
-                throws SQLException {
-            return toInputStream(rs.getBlob(columnIndex));
-        }
-
-        // (3)
-        @Override
-        public InputStream getNullableResult(CallableStatement cs, int columnIndex)
-                throws SQLException {
-            return toInputStream(cs.getBlob(columnIndex));
-        }
-
-        private InputStream toInputStream(Blob blob) throws SQLException {
-            // (4)
-            if (blob == null) {
-                return null;
-            } else {
-                return blob.getBinaryStream();
-            }
-        }
-
-    }
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 80
-
-    * - Sr. No.
-      - Description
-    * - (1)
-      - Specify \ ``BaseTypeHandler``\  provided by MyBatis3 in parent class.
-
-        In such cases, specify \ ``InputStream``\  in the generic type of \ ``BaseTypeHandler``\.
-    * - (2)
-      - Implement the process that configures \ ``InputStream``\  in \ ``PreparedStatement``\.
-    * - (3)
-      - Fetch \ ``InputStream``\  from \ ``Blob``\  that is fetched from \ ``ResultSet``\  or \ ``CallableStatement``\  and return as a return value.
-    * - (4)
-      - Since the fetched \ ``Blob``\  can become \ ``null``\  in case of the column which allows \ ``null``\ , \ ``InputStream``\  must be fetched only after performing \ ``null``\  check.
-        
-
-        In the implementation example described above, a private method is created since same process is required for all three methods.
+    For example, some of the methods added from JDBC 4.0 are not yet implemented in JDBC driver (\ ``postgresql-9.4-1212.jar``\ ) for PostgreSQL9.4.
 
 |
 
@@ -5309,7 +5214,7 @@ How to implement a process wherein the search results are downloaded as CSV data
 
     When a query to return a large amount of data is to be described, an appropriate value should be set in \ ``fetchSize``\  attribute.
     \ ``fetchSize``\  is a parameter which specifies data record count to be fetched in a single communication between JDBC driver and database.
-    Note that, "default \ ``fetchSize``\ " can be specified in MyBatis configuration file, in MyBatis3.3.0 and subsequent versions.
+    Note that, "default \ ``fetchSize``\ " can be specified in MyBatis configuration file, in MyBatis3.3.0 and subsequent versions which are supported in terasoluna-gfw-mybatis3 5.2.0.RELEASE.
     
     Refer ":ref:`DataAccessMyBatis3HowToUseSettingsDefaultFetchSize`" for details of \ ``fetchSize``\ .
     
@@ -5917,8 +5822,8 @@ Based on the application requirement, it is also necessary to check the validity
 In such cases, "a method to execute SQL queued for batch execution" is provided in the Mapper interface."
 
 In MyBatis 3.2, \ ``flushStatements``\  method of \ ``org.apache.ibatis.session.SqlSession``\  interface must be called directly, however,
-a method is supported in MyBatis 3.3.0 and subsequent versions wherein a method which assigns
-\ ``@org.apache.ibatis.annotations.Flush``\  annotation in Mapper interface is created.
+a method is supported in MyBatis 3.3.0 and subsequent versions supported in terasoluna-gfw-mybatis3 5.2.0.RELEASE wherein
+a method which assigns \ ``@org.apache.ibatis.annotations.Flush``\  annotation in Mapper interface is created.
 
  .. warning:: **Regarding update results returned by JDBC driver while using batch mode**
 
@@ -8070,7 +7975,7 @@ When "Lazy Load" is used, one of the libraries given below is necessary in order
 
 
 CGLIB had been used as default until MyBatis 3.2 series.
-From  MyBatis 3.3.0, JAVASSIST has been used as default at the MyBatis 3.3.0 or later version.
+From  MyBatis 3.3.0, JAVASSIST has been used as default at the MyBatis 3.3.0 or later version, which is supported by terasoluna-gfw-mybatis3 5.2.0.RELEASE.
 In addition, it is possible to use "Lazy Load" without adding the library because the JAVASSIST is embedded in the MyBatis since MyBatis 3.3.0.
 
  .. note::
