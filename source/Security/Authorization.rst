@@ -384,19 +384,7 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
-    本事象は、\ `org.springframework.util.AntPathMatcher` \ のBeanをSpring MVCに適用することで回避できる。
-    ただし、\ `org.springframework.util.AntPathMatcher` \の\ `trimTokens` \ プロパティに \ `true` \ を明示的に設定した場合、本事象を回避できない。
-
-      .. code-block:: xml
-
-          <mvc:annotation-driven>
-              <mvc:path-matching path-matcher="pathMatcher" />
-          </mvc:annotation-driven>
-
-          <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher" />
-
-    上記の対策をTERASOLUNA Server Framework for Javaで提供するブランクプロジェクトでは設定しているが、
-    設定を外すと脆弱性にさらされてしまうので注意する必要がある。
+    本事象は、\ `trimTokens` \ プロパティに \ `true` \ を明示的に設定した\ `org.springframework.util.AntPathMatcher` \ のBeanをSpring MVCに適用しない限り発生しない。
 
     また、特定のURLに対してアクセスポリシーを設ける(\ ``pattern``\属性に\ ``*``\や\ ``**``\などのワイルドカード指定を含めない)場合、
     拡張子を付けたパターンとリクエストパスの末尾に\ ``/``\を付けたパターンに対するアクセスポリシーの追加が必須である。
