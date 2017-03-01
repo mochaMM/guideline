@@ -54,16 +54,6 @@ NEXUSをインストールするマシンは次の条件を満たしている必
 * **Snapshots** = 自分たちで開発したアプリケーションのSNAPSHOTバージョンの成果物を格納するリポジトリ。
 * **Public Repositories** = 上記4つのリポジトリへ、一つのURLでアクセスできるようにするためのグループリポジトリ。
 
-Add TERASOLUNA Server Framework for Java (5.x) repository
---------------------------------------------------------------------------------
-
-TERASOLUNA Server Framework for Java (5.x)を用いて開発する場合、上記で説明したリポジトリに加えて、TERASOLUNA Server Framework for Java (5.x)のリポジトリを追加する必要がある。
-
-.. todo::
-
-    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/と
-    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/へのproxyリポジトリの追加と、publicリポジトリグループへの追加方法をキャプチャつきで書く。
-
 settings.xml
 --------------------------------------------------------------------------------
 
