@@ -161,6 +161,12 @@
 
         * JPAを利用する場合のEntityのコード例の修正 (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
 
+    * -
+      - :doc:`../Appendix/Nexus`
+      - Maven Centralへの移行に伴う修正
+
+        * 「Add TERASOLUNA Server Framework for Java (5.x) repository」を削除 (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE版公開
