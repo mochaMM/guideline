@@ -25,6 +25,12 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+    * - 
+      - :doc:`../Security/LinkageWithBrowser`
+      - Modifications associated with Spring Security 4.1.4 support
+
+        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
