@@ -31,10 +31,7 @@ Install and Start up
 NEXUSをインストールするマシンは次の条件を満たしている必要がある。
 
 * JRE6以上がインストール済みであること
-* インターネット上の下記のURLにhttpアクセス可能であること
-
- * 先頭がhttp://repo1.maven.org/ で始まるURL（セントラルリポジトリ）
- * 先頭がhttp://repo.terasoluna.org/ で始まるURL（Terasolunaリポジトリ）
+* インターネット上のセントラルリポジトリ（先頭がhttp://repo1.maven.org/ で始まるURL）にhttpアクセス可能であること
 
 インストール手順は次の通り。
 
@@ -53,16 +50,6 @@ NEXUSをインストールするマシンは次の条件を満たしている必
 * **Releases** = 自分たちで開発したアプリケーションのリリースバージョンの成果物を格納するリポジトリ。
 * **Snapshots** = 自分たちで開発したアプリケーションのSNAPSHOTバージョンの成果物を格納するリポジトリ。
 * **Public Repositories** = 上記4つのリポジトリへ、一つのURLでアクセスできるようにするためのグループリポジトリ。
-
-Add TERASOLUNA Server Framework for Java (5.x) repository
---------------------------------------------------------------------------------
-
-TERASOLUNA Server Framework for Java (5.x)を用いて開発する場合、上記で説明したリポジトリに加えて、TERASOLUNA Server Framework for Java (5.x)のリポジトリを追加する必要がある。
-
-.. todo::
-
-    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/と
-    | http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/へのproxyリポジトリの追加と、publicリポジトリグループへの追加方法をキャプチャつきで書く。
 
 settings.xml
 --------------------------------------------------------------------------------
