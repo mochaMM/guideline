@@ -31,10 +31,7 @@ Install and Start up
 NEXUSをインストールするマシンは次の条件を満たしている必要がある。
 
 * JRE6以上がインストール済みであること
-* インターネット上の下記のURLにhttpアクセス可能であること
-
- * 先頭がhttp://repo1.maven.org/ で始まるURL（セントラルリポジトリ）
- * 先頭がhttp://repo.terasoluna.org/ で始まるURL（Terasolunaリポジトリ）
+* インターネット上でセントラルリポジトリ（先頭がhttp://repo1.maven.org/ で始まるURL）にhttpアクセス可能であること
 
 インストール手順は次の通り。
 
