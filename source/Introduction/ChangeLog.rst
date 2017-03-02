@@ -165,9 +165,7 @@
       - :doc:`../Appendix/Nexus`
       - Maven Centralへの移行に伴う修正
 
-        * NEXUSをインストールするマシンの条件の一つである「Terasolunaリポジトリにhttpアクセスできること」を削除(\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
-
-        * 「Add TERASOLUNA Server Framework for Java (5.x) repository」を削除 (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+        * TERASOLUNA Server Framework for Java (5.x)のリポジトリに関する記述を削除(\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
 
     * - 2016-08-31
       - \-
