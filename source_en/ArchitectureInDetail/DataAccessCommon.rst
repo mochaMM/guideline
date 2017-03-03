@@ -72,8 +72,8 @@ JDBC datasource provided by Application Server
       - Oracle WebLogic Server 12c
       - Refer to \ `Oracle WebLogic Server Product Documentation <https://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm#INTRO215>`_\ .
     * - 3.
-      - IBM WebSphere Application Server Version 9.0
-      - Refer to \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=en>`_\ .
+      - IBM WebSphere Application Server Version 8.5
+      - Refer to \ `WebSphere Application Server Online information center <https://www.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tdat_ccrtpds.html>`_\ .
     * - 4.
       - Resin 4.0
       - Refer to \ `Resin Documentation <http://www.caucho.com/resin-4.0/admin/database.xtp>`_\ .
