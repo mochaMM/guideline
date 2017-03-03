@@ -1003,7 +1003,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
   JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
 
@@ -1771,7 +1771,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
   JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
   .. warning:: **メッセージ受信後にJMSプロバイダとの接続が切れた場合などでJMSプロバイダにトランザクションの処理結果が返らない場合**

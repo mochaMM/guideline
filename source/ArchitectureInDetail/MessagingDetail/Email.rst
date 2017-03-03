@@ -206,7 +206,7 @@ JavaMailSenderの設定方法
       - \ `Oracle WebLogic Server 12.2.1.0 Documentation <http://docs.oracle.com/middleware/1221/wls/WLACH/taskhelp/mail/CreateMailSessions.html>`_\ を参照されたい。
     * - 3.
       - IBM WebSphere Application Server Version 8.5
-      - \ `WebSphere Application Server Version 8.5.5 documentation <https://www-01.ibm.com/support/knowledgecenter/SSD28V_8.5.5/com.ibm.websphere.wlp.core.doc/ae/twlp_admin_javamail.html>`_\ を参照されたい。
+      - \ `WebSphere Application Server Version 8.5.5 documentation <https://www.ibm.com/support/knowledgecenter/SSD28V_8.5.5/com.ibm.websphere.wlp.core.doc/ae/twlp_admin_javamail.html>`_\ を参照されたい。
     * - 4.
       - Red Hat JBoss Enterprise Application Platform Version 6.4
       - \ `Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Mail_subsystem.html>`_\ を参照されたい。

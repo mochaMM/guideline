@@ -13,7 +13,7 @@
 Overview
 --------------------------------------------------------------------------------
 
-本節では、\ `MyBatis3 <http://mybatis.org>`_\ を使用してデータベースにアクセスする方法について説明する。
+本節では、\ `MyBatis3 <http://www.mybatis.org/mybatis-3/>`_\ を使用してデータベースにアクセスする方法について説明する。
 
 本ガイドラインでは、MyBatis3のMapperインタフェースをRepositoryインタフェースとして使用することを前提としている。
 Repositoryインタフェースについては、「:ref:`repository-label`」を参照されたい。
@@ -743,7 +743,7 @@ MyBatis3の設定
 
  .. note:: **「デフォルトのfetchSize」について**
 
-    「デフォルトの\ ``fetchSize``\ 」は、terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンで利用することができる。
+    「デフォルトの\ ``fetchSize``\ 」は、terasoluna-gfw-mybatis3 5.2.xでサポートしているMyBatis 3.3.0以降のバージョンで利用することができる。
 
 
 以下に、「デフォルトの\ ``fetchSize``\ 」を指定する方法を示す。
@@ -3288,7 +3288,7 @@ JDBCのバッチ更新機能を使用する方法については、「:ref:`Data
     以下に主要なデータベースのリファレンスページへのリンクを記載しておく。
 
     * `Oracle 12c <http://docs.oracle.com/database/121/SQLRF/statements_9014.htm>`_
-    * `DB2 10.5 <http://www-01.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
+    * `DB2 10.5 <https://www.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
     * `PostgreSQL 9.4 <http://www.postgresql.org/docs/9.4/static/sql-insert.html>`_
     * `MySQL 5.7 <http://dev.mysql.com/doc/refman/5.7/en/insert.html>`_
 
@@ -5304,7 +5304,7 @@ MyBatis3では、検索結果を1件単位で処理する仕組みを提供し�
 
     大量のデータを返すようなクエリを記述する場合には、\ ``fetchSize``\属性に適切な値を設定すること。
     \ ``fetchSize``\は、JDBCドライバとデータベース間の１回の通信で取得するデータの件数を設定するパラメータである。
-    なお、terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンでは、
+    なお、terasoluna-gfw-mybatis3 5.2.x.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンでは、
     MyBatis設定ファイルに「デフォルトの\ ``fetchSize``\ 」を指定することができる。
     \ ``fetchSize``\ の詳細は「:ref:`DataAccessMyBatis3HowToUseSettingsDefaultFetchSize`」を参照されたい。
 
@@ -5874,7 +5874,7 @@ RepositoryのBean定義を行えばよい。
 そのようなケースでは、Mapperインタフェースに「バッチ実行用にキューイングされているSQLを実行するためのメソッド」を用意すればよい。
 
 MyBatis 3.2系では、\ ``org.apache.ibatis.session.SqlSession``\インタフェースの\ ``flushStatements``\ メソッドを直接呼び出す必要があったが、
-terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンでは、
+terasoluna-gfw-mybatis3 5.2.x.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンでは、
 Mapperインタフェースに\ ``@org.apache.ibatis.annotations.Flush``\ アノテーションを付与したメソッドを作成する方法がサポートされている。
 
  .. warning:: **バッチモード使用時のJDBCドライバが返却する更新結果について**
@@ -8022,7 +8022,7 @@ MyBatis3では、マッピング時に別のSQL(ネストしたSQL)を使用し�
 のいずれか一方のライブラリが必要となる。
 
 MyBatis 3.2系まではCGLIBがデフォルトで使用されるライブラリであったが、
-terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンではJAVASSISTがデフォルトで使用される。
+terasoluna-gfw-mybatis3 5.2.x.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンではJAVASSISTがデフォルトで使用される。
 さらに、MyBatis 3.3.0からJAVASSISTがMyBatis本体に内包されているため、ライブラリを追加しなくても"Lazy Load"を使用する事ができる。
 
  .. note::
