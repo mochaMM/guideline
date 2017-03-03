@@ -361,7 +361,7 @@ EntityManagerの設定
                  <util:map>
                      <!-- omitted -->
                      <entry key="hibernate.dialect"
-                            value="org.hibernate.dialect.Oracle12cDialect" />  <!-- (9) -->
+                            value="org.hibernate.dialect.Oracle10gDialect" />  <!-- (9) -->
                  </util:map>
              </property>
          </bean>
@@ -374,8 +374,8 @@ EntityManagerの設定
         * - 項番
           - 説明
         * - | (9)
-          - | \ ``"hibernate.dialect"``\ に\ ``org.hibernate.dialect.Oracle12cDialect``\ を指定する。
-            | \ ``Oracle12cDialect``\ を指定することで、テーブル結合を行うSQLにANSI標準のJOIN句が使用される。
+          - | \ ``"hibernate.dialect"``\ に\ ``org.hibernate.dialect.Oracle10gDialect``\ を指定する。
+            | \ ``Oracle10gDialect``\ を指定することで、テーブル結合を行うSQLにANSI標準のJOIN句が使用される。
 
 | アプリケーションサーバから提供されているトランザクションマネージャ(JTA)を使用する場合は、以下の設定を行う。
 | JTAを使用しない場合との差分について、説明する。
