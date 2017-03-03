@@ -384,10 +384,10 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
-    \ `trimTokens` \ プロパティに \ `true` \ を設定した\ `org.springframework.util.AntPathMatcher` \ のBeanをSpring MVCに適用すると本事象が発生する条件を満たしてしまう。
-    しかし、Spring Framework 4.3 から \ `trimTokens` \ プロパティのデフォルト値は \ `false` \ (Spring Framework 4.2以前は \ `true`\)となったため、意図的に変更しない限り本事象は発生しない。
+    \ `trimTokens` \ プロパティに \ `true` \ を設定した\ `org.springframework.util.AntPathMatcher` \ のBeanをSpring MVCに適用されている場合に、本事象が発生する。
+    Spring Framework 4.2以前は \ `trimTokens` \ プロパティのデフォルト値が\ `true`\ となっていたが、Spring Framework 4.3 からデフォルト値は \ `false` \ となったため、意図的に変更しない限り本事象は発生しない。
 
-    なお、TERASOLUNA Server Framework for Java (5.3.x)のブランクプロジェクトでは、Spring Framework 4.2以前をベースとしているため、\ `trimTokens` \ プロパティにデフォルト値を指定する下記の設定を行っているが、
+    なお、下記の様にTERASOLUNA Server Framework for Java (5.3.x)のブランクプロジェクトでは、明示的に\ `trimTokens` \ プロパティに \ `false` \を指定しているが、
     \ `true` \ に変更した場合は本事象が発生する条件を満たしてしまうため、変更しない様に注意されたい。
 
       .. code-block:: xml
