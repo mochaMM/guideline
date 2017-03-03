@@ -72,8 +72,8 @@ JDBC DataSourceについて
       - Oracle WebLogic Server 12c
       - \ `Oracle WebLogic Server Product Documentation <https://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm#INTRO215>`_\ を参照されたい。
     * - 3.
-      - IBM WebSphere Application Server Version 9.0
-      - \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=en>`_\ を参照されたい。
+      - IBM WebSphere Application Server Version 8.5
+      - \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tdat_ccrtpds.html>`_\ を参照されたい。
     * - 4.
       - Resin 4.0
       - \ `Resin Documentation <http://www.caucho.com/resin-4.0/admin/database.xtp>`_\ を参照されたい。
