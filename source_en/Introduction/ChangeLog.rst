@@ -31,6 +31,14 @@ Change Log
 
         * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
 
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - Description details changed, added
+
+        * Description related to configuration method while using JSR-310 Date and Time API changed (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+
+        * Added "TypeHandler of JSR310 can be used by default in `blank project for MyBatis3 <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE version published
