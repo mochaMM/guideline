@@ -18,12 +18,28 @@
 
     * -
       - 全般
-      - ブランクプロジェクト生成用のMavenアーキタイプのデプロイ先変更(`Maven Central <https://search.maven.org/>`_\に変更)に伴う起動オプションの修正(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * 修正内容の詳細は、\ `5.3.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+
+        記載内容の改善
+
+        * 改善内容の詳細は、\ `5.3.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
+
+        JBoss7.0サポートに伴う修正(\ `guideline#2403 <https://github.com/terasolunaorg/guideline/issues/2403>`_\ )
+
+        * :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
+        * :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
+        * :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessCommon`
+        * :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+        * :doc:`../ArchitectureInDetail/MessagingDetail/JMS`
+
+        ブランクプロジェクト生成用のMavenアーキタイプのデプロイ先変更(`Maven Central <https://search.maven.org/>`_\に変更)に伴う起動オプションの修正(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+
         * :doc:`../Overview/FirstApplication`
-        * :doc:`../Tutorial/TutorialSecurity`
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
         * :doc:`../Tutorial/TutorialTodo`
+        * :doc:`../Tutorial/TutorialSecurity`
 
     * -
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -43,6 +59,12 @@
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
 
     * - 
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - 記載内容の改善
+
+        * シグネチャを制限するインタフェースおよび基底クラスの実装サンプルを修正(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
+
+    * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - 記載内容の追加
 
@@ -55,13 +77,6 @@
         * JSR-310 Date and Time APIのクラスに対して、\ ``@DateTimeFormat`` \を使用する際の注意点を削除(\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
 
     * -
-      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
-        | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
-      - 記載内容の追記
-
-        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
-
-    * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の追加
 
@@ -70,18 +85,25 @@
         記載内容の改善
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+        * @URLによる入力チェックのチェック内容に関する記述を修正(\ `guideline#2260 <https://github.com/terasolunaorg/guideline/issues/2260>`_\ )
 
-    * - 
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
-      - 記載内容の追加
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
+      - Spring Framework 4.3対応に伴う修正
 
-        * 国際化が適用されない場合の例とその対策方法を追加(\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+        * 致命的なエラーのハンドリング方法について追記(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
       - 記載内容の追加
 
         * セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法について追記(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
+
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - 記載内容の追加
+
+        * 国際化が適用されない場合の例とその対策方法を追加(\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
@@ -98,6 +120,35 @@
       - Spring Framework 4.3対応に伴う修正
 
         * 非同期リクエストの共通処理の実装に関する説明を追加(\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - 記載内容の変更、追加
+
+        * JSR-310 Date and Time APIを使う場合の設定方法に関する記載を変更 (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+
+        * `MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを追記(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+
+        記載内容の追加
+
+        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+
+        記載内容の修正
+
+        * BLOBとCLOBを使用する場合の実装例を修正 (\ `guideline#1775 <https://github.com/terasolunaorg/guideline/issues/1775>`_\ )
+        * ”Lazy Load”を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+
+    * -
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+      - 記載内容の追記
+
+        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+
+    * -
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - 記載内容の追記
+
+        * PostgreSQL使用時に"nowait"句が付加されない不具合に対する注意事項を追加(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
 
     * - 
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
@@ -135,29 +186,8 @@
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正
 
+        * Content Security Policy (CSP)"に関する記載を追加(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
         * HTTP Public Key Pinning (HPKP)に関する記載を追加(\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
-      - 記載内容の変更、追加
-
-        * JSR-310 Date and Time APIを使う場合の設定方法に関する記載を変更 (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
-
-        * `MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを追記(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
-
-        記載内容の追加
-
-        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
-
-        記載内容の修正
-
-        * ”Lazy Load”を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
-      - Spring Framework 4.3対応に伴う修正
-
-        * 致命的なエラーのハンドリング方法について追記(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
