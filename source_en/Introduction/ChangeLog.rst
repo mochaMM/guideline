@@ -25,6 +25,10 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+        Description details added
+
+        * Description added for settings for calling a rollback process when an error occurs at the time of commit (\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
