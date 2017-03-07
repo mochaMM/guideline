@@ -119,7 +119,11 @@
 
     * -
       - :doc:`../Security/Authorization`
-      - 記載内容の追加
+      - Spring Framework 4.3対応に伴う修正
+
+        * \ ``AntPathMatcher``\の \ ``trimTokens``\プロパティのデフォルト値が変更されたことに伴い、\ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\の対応方法に関する説明及び注意点を修正(\ `guideline#2565 <https://github.com/terasolunaorg/guideline/issues/2565>`_\ )
+
+        記載内容の追加
 
         * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
 
