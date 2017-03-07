@@ -26,14 +26,6 @@
 
         * 改善内容の詳細は、\ `5.3.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
-        JBoss7.0サポートに伴う修正(\ `guideline#2403 <https://github.com/terasolunaorg/guideline/issues/2403>`_\ )
-
-        * :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
-        * :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
-        * :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessCommon`
-        * :doc:`../ArchitectureInDetail/MessagingDetail/Email`
-        * :doc:`../ArchitectureInDetail/MessagingDetail/JMS`
-
         ブランクプロジェクト生成用のMavenアーキタイプのデプロイ先変更(`Maven Central <https://search.maven.org/>`_\に変更)に伴う起動オプションの修正(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
         * :doc:`../Overview/FirstApplication`
@@ -104,6 +96,12 @@
       - 記載内容の追加
 
         * 国際化が適用されない場合の例とその対策方法を追加(\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
+      - 記載内容の追加
+
+        * JBoss EAP 7.0使用時の文字化け回避方法に関する説明を追加(\ `guideline#2403 <https://github.com/terasolunaorg/guideline/issues/2403>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
