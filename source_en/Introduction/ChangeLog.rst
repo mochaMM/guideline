@@ -25,6 +25,14 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+    * - 
+      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
+      - Description details added
+
+        * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+
+        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
