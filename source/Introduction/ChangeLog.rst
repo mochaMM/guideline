@@ -10,7 +10,7 @@
       - 更新箇所
       - 更新内容
 
-    * - 2017-02-28
+    * - 2017-03-17
       - \-
       - 5.3.0 RELEASE版公開
 
@@ -49,12 +49,12 @@
 
     * - 
       - :doc:`../Overview/FrameworkStack`
-      - 利用するOSSのバージョンを更新
+      - 利用するOSSのバージョンを更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
 
-        * Spring IO PlatformのバージョンをAthens-SR2に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * MyBatisのバージョンを3.4.2に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * MyBatis-Springのバージョンを1.3.1に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * mybatis-typehandlers-jsr310を1.0.2に更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * Spring IO PlatformのバージョンをAthens-SR2に更新
+        * MyBatisのバージョンを3.4.2に更新
+        * MyBatis-Springのバージョンを1.3.1に更新
+        * mybatis-typehandlers-jsr310を1.0.2に更新
 
         Spring IO Platformのバージョン更新に伴い利用するOSSのバージョンを更新
 
@@ -126,8 +126,6 @@
       - 記載内容の変更、追加
 
         * JSR-310 Date and Time APIを使う場合の設定方法に関する記載を変更 (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
-
-        * `MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \では、デフォルトでJSR310のTypeHandlerが使用可能になることを追記(\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
         記載内容の追加
 
