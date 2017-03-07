@@ -10,7 +10,7 @@
       - 更新箇所
       - 更新内容
 
-    * - 2017-02-28
+    * - 2017-03-17
       - \-
       - 1.0.6 RELEASE版公開
 
@@ -20,17 +20,11 @@
       - 全般
       - 以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
 
-        * :doc:`../Appendix/CreateProjectFromBlank`
         * :doc:`../Overview/FirstApplication`
+        * :doc:`../TutorialTodo/index`
         * :doc:`../Security/Tutorial`
         * :doc:`../TutorialREST/index`
-        * :doc:`../TutorialTodo/index`
-
-    * -
-      - :doc:`../Overview/FrameworkStack`
-      - 利用するOSSのバージョンを更新
-
-        * GroupId「\ ``org.springframework``\」のバージョンを3.2.17.RELEASEから3.2.18.RELEASEに更新
+        * :doc:`../Appendix/CreateProjectFromBlank`
 
     * -
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -39,18 +33,30 @@
         * セキュリティ対策に関するマッピングにCVEによる観点をまとめた表を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
     * -
-      - :doc:`../Security/Authorization`
-      - 記載内容の追加
+      - :doc:`../Overview/FrameworkStack`
+      - 利用するOSSのバージョンを更新
 
-        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+        * GroupId「\ ``org.springframework``\」のバージョンを3.2.17.RELEASEから3.2.18.RELEASEに更新
 
-        * \ `CVE-2016-9879 <https://pivotal.io/security/cve-2016-9879>`_\ (認可のすり抜けが可能となる脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+    * - 
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - 記載内容の改善
+
+        * シグネチャを制限するインタフェースおよび基底クラスの実装サンプルを修正(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/DataAccessJpa`
       - 記載内容の追加
 
         * \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (ブラインドSQLインジェクション攻撃を受ける可能性がある脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+
+    * -
+      - :doc:`../Security/Authorization`
+      - 記載内容の追加
+
+        * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
+        * \ `CVE-2016-9879 <https://pivotal.io/security/cve-2016-9879>`_\ (認可のすり抜けが可能となる脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
     * - 2016-08-31
       - \-
