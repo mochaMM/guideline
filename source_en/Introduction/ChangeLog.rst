@@ -25,6 +25,10 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+        Description details modified
+
+        * Description of the option which controls the timing to execute ”Lazy Load”modified (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
