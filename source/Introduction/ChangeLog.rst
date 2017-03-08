@@ -10,7 +10,7 @@
       - 更新箇所
       - 更新内容
 
-    * - 2017-02-28
+    * - 2017-03-17
       - \-
       - 5.2.1 RELEASE版公開
 
@@ -18,12 +18,20 @@
 
     * -
       - 全般
-      - 以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * 修正内容の詳細は、\ `5.2.1のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.2.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+
+        記載内容の改善
+
+        * 改善内容の詳細は、\ `5.2.1のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.1%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
+
+        以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+
         * :doc:`../Overview/FirstApplication`
-        * :doc:`../Tutorial/TutorialSecurity`
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
         * :doc:`../Tutorial/TutorialTodo`
+        * :doc:`../Tutorial/TutorialSecurity`
 
     * -
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -31,11 +39,24 @@
 
         * セキュリティ対策に関するマッピングにCVEによる観点をまとめた表を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
+    * - 
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - 記載内容の改善
+
+        * シグネチャを制限するインタフェースおよび基底クラスの実装サンプルを修正(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - 記載内容の改善
 
         * メッセージに入力チェック対象を含める方法の説明を追加(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+        * @URLによる入力チェックのチェック内容に関する記述を修正(\ `guideline#2260 <https://github.com/terasolunaorg/guideline/issues/2260>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`  
+      - 記載内容の追加  
+
+        * セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法について追記(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )  
 
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
@@ -44,10 +65,15 @@
         * 国際化が適用されない場合の例とその対策方法を追加(\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
 
     * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`  
-      - 記載内容の追加  
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - 記載内容の追加
 
-        * セッションスコープに格納しているオブジェクトを受け取る際にリクエストパラメータのバインドを防止する方法について追記(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )  
+        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+      - 記載内容の追加
+
+        * \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (ブラインドSQLインジェクション攻撃を受ける可能性がある脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
     * - 
       - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
@@ -72,17 +98,6 @@
         * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )  
 
         * \ `CVE-2016-9879 <https://pivotal.io/security/cve-2016-9879>`_\ (認可のすり抜けが可能となる脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
-      - 記載内容の追加
-
-        * コミット時にエラーが発生した場合にロールバック処理を呼び出すための設定に関する記載を追加(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
-    * -
-      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
-      - 記載内容の追加
-
-        * \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (ブラインドSQLインジェクション攻撃を受ける可能性がある脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
     * - 2016-08-31
       - \-
