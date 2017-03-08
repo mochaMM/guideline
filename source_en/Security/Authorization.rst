@@ -354,6 +354,32 @@ Therefore, definition order must be taken into consideration even while specifyi
               <!-- omitted -->
           </sec:http>
 
+.. warning::
+    Specifications of path matching for \ `AntPathRequestMatcher` \  used by Spring Security by default are now case sensitive for Spring Security 4.1 and subsequent versions.
+
+    For example, as shown below, when an access policy is to be defined for endpoint of Spring MVC which allocates \ ``/Todo/List``\  path,
+    the values specified in \ ``pattern``\  attribute of \ ``<sec:intercept-url>``\  tag must be aligned for uppercase and lowercase letters like \ ``/Todo/List``\  and \ ``/Todo/*``\.
+    If the values not aligned by uppercase and lowercase letters like \ ``/todo/list``\  and \ ``/todo/**``\  are specified accidentally, it should be noted that intended authorization control cannot be performed.
+
+    * Implementation example of Spring MVC endpoint
+
+     .. code-block:: java
+
+         @RequestMapping(value="/Todo/List")
+         public String viewTodoList(){
+            //...
+         }
+
+    * Definition example of access policy
+
+     .. code-block:: xml 
+
+         <sec:http>
+             <sec:intercept-url pattern="/Todo/List" access="isAuthenticated()" />
+             <!-- omitted -->
+         </sec:http>
+
+.. warning::
 Specifying an access policy
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 

@@ -25,6 +25,8 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+        * Precautions for changing specifications of path matching of \ ``AntPathRequestMatcher``\  added (\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
