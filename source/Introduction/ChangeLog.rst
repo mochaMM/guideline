@@ -36,7 +36,7 @@
       - :doc:`../Overview/FrameworkStack`
       - 利用するOSSのバージョンを更新
 
-        * GroupId「\ ``org.springframework``\」のバージョンを3.2.17.RELEASEから3.2.18.RELEASEに更新
+        * GroupId「\ ``org.springframework``\」のバージョンを3.2.17.RELEASEから3.2.18.RELEASEに更新(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
 
     * - 
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
