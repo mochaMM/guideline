@@ -25,6 +25,10 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+        Description details modified
+
+        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description

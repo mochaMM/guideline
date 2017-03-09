@@ -2392,6 +2392,33 @@ Error messages are changed as follows.
             For handling of EL expressions in Bean Validation refer to:
             \ `Hibernate Validator Reference Guide(Interpolation with message expressions) <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch04.html#section-interpolation-with-message-expressions>`_\ .
 
+    Further, the value to be checked can be included in the error message by using \ ``${validatedValue}``\  in the message which is specified in :file:`ValidationMessages.properties`.
+
+    How to use \ ``${validatedValue}``\  is shown below.
+
+     .. code-block:: properties
+
+        # ...
+        # (1)
+        javax.validation.constraints.Pattern.message = The value entered "${validatedValue}" is invalid.
+        # ...
+
+
+     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. list-table::
+        :header-rows: 1
+        :widths: 10 90
+        :class: longtable
+
+        * - Sr. No.
+          - Description
+        * - | (1)
+
+          - Messages that are actually generated from the message definition above are embedded with the values input in the form, in \ ``${validatedValue}``\  part.
+            If confidential information is included in the input value, care must be taken not to use \ ``${validatedValue}``\  so that confidential information is not displayed.
+
+            For details, refer \ `Hibernate Validator Reference Guide(Interpolation with message expressions) <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch04.html#section-interpolation-with-message-expressions>`_\.
+
 
 .. _Validation_message_in_application_messages:
 
