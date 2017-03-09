@@ -17,7 +17,6 @@ Change Log
 
         * For details of update, refer \ `Issue list of 5.2.1 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
 
-
     * -
       - General
       - Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
