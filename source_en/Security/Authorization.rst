@@ -349,6 +349,35 @@ Therefore, definition order must be taken into consideration even while specifyi
               <!-- omitted -->
           </sec:http>
 
+    Further, if an access policy for a specific URL is to be specified (wild cards like \ ``*``\ , \ ``**``\  etc are not included in \ ``pattern``\  attribute),
+    an access policy with a pattern with an extension and a pattern with \ ``/``\  appended at the end of request path must be added.
+
+    In the following configuration example, only the users with "ROLE_ADMIN" role are allowed to access by \ ``/restrict``\.
+
+      .. code-block:: xml
+
+          <sec:http>
+              <sec:intercept-url pattern="/restrict.*" access="hasRole('ADMIN')" /> <!-- (1) --> 
+              <sec:intercept-url pattern="/restrict/" access="hasRole('ADMIN')" /> <!-- (2) --> 
+              <sec:intercept-url pattern="/restrict" access="hasRole('ADMIN')" /> <!-- (3) -->
+              <!-- omitted -->
+          </sec:http> 
+          
+      .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+      .. list-table::
+         :header-rows: 1
+         :widths: 20 80
+         :class: longtable
+
+         * - Sr. No.
+           - Description
+         * - | (1)
+           - | Define an access policy of the pattern with an extension (\ ``/restrict.json``\  etc) in \ ``/restrict``\.
+         * - | (2)
+           - | Define an access policy of the pattern wherein \ ``/``\  appended at the end of the request path (\ ``/restrict/``\  etc) in \ ``/restrict``\.
+         * - | (3)
+           - | Define an access policy for \ ``/restrict``\.
+
 Specifying an access policy
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
