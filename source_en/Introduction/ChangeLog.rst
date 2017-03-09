@@ -10,7 +10,6 @@ Change Log
       - Modified locations
       - Modification details
 
-
     * - 2017-03-17
       - \-
       - 5.2.1 RELEASE version published
@@ -103,6 +102,12 @@ Change Log
       
         * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
       
+    * -
+      - :doc:`../Security/Authorization`
+      - Description details added
+
+        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
