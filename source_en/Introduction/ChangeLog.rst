@@ -26,6 +26,12 @@ Change Log
         * :doc:`../Tutorial/TutorialTodo`  
 
     * -
+      - :doc:`../Security/Authorization`
+      - Description details added
+
+        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
+    * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
 
