@@ -70,10 +70,10 @@ JDBC DataSourceについて
         | \ `Apache Tomcat 7 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP)を参照されたい。
     * - 2.
       - Oracle WebLogic Server 12c
-      - \ `Oracle WebLogic Server Product Documentation <http://docs.oracle.com/cd/E24329_01/web.1211/e24367/toc.htm>`_\ を参照されたい。
+      - \ `Oracle WebLogic Server Product Documentation <https://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm#INTRO215>`_\ を参照されたい。
     * - 3.
       - IBM WebSphere Application Server Version 8.5
-      - \ `WebSphere Application Server Online information center <http://pic.dhe.ibm.com/infocenter/wasinfo/v8r5/index.jsp?topic=%2Fcom.ibm.websphere.nd.doc%2Fae%2Ftdat_ccrtpds.html>`_\ を参照されたい。
+      - \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tdat_ccrtpds.html>`_\ を参照されたい。
     * - 4.
       - Resin 4.0
       - \ `Resin Documentation <http://www.caucho.com/resin-4.0/admin/database.xtp>`_\ を参照されたい。
@@ -385,7 +385,7 @@ Bean定義したDataSouceを使用する場合の設定
         | 設定項目の詳細については、\ `DBCP Configuration <http://commons.apache.org/proper/commons-dbcp/configuration.html>`_\ を参照されたい。
     * - | (8)
       - | 設定例では値を直接指定しているが、環境によって設定値がかわる項目については、Placeholder(${...})を使用して、実際の設定値はプロパティファイルに指定すること。
-        | Placeholderについては、\ `Spring Reference Document <http://static.springsource.org/spring/docs/3.2.17.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ の\  ``PropertyPlaceholderConfigurer``\ を参照されたい。
+        | Placeholderについては、\ `Spring Reference Document <http://static.springsource.org/spring/docs/3.2.18.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ の\  ``PropertyPlaceholderConfigurer``\ を参照されたい。
 
 
 トランザクション管理を有効化するための設定

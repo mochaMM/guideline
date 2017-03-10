@@ -39,7 +39,7 @@ Webアプリケーション開発プロジェクト「foo」の、最もシン�
  親POMに指定された共通設定情報を自身に反映させることができる。
 * foo-initdb
  RDBMSのテーブル定義(DDL)と初期データをINSERTするためのSQL文を格納する。
- これもmavenプロジェクトとして管理する。pom.xmlに `sql-maven-plugin <http://mojo.codehaus.org/sql-maven-plugin/>`_ 
+ これもmavenプロジェクトとして管理する。pom.xmlに `sql-maven-plugin <http://www.mojohaus.org/sql-maven-plugin/>`_ 
  の設定を定義することにより、ビルドライフサイクルの過程で任意のRDBMSに対するDDL文や初期データINSERT文の実行を自動化することができる。
 * foo-domain
  サービスクラスやリポジトリクラスなど、ドメイン層として使われるクラスを格納する。このドメイン層のクラスを使ってfoo-web内のアプリケーション層のクラスを組み立てる。
