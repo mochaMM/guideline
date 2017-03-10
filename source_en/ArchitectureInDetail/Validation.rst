@@ -1981,7 +1981,7 @@ Method to change error messages of input validation is explained.
 Error messages of Bean Validation in Spring MVC are resolved in the following order.
 
 #. | If there is any message which matches with the rule, among the messages defined in \ ``org.springframework.context.MessageSource``\, then it will be used as error message (Spring rule).
-   | About default rule of Spring, refer to "`DefaultMessageCodesResolverのJavaDoc <http://docs.spring.io/spring/docs/4.1.3.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_".
+   | About default rule of Spring, refer to "`JavaDoc of DefaultMessageCodesResolver <http://docs.spring.io/spring/docs/3.2.17.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_".
 #. If message cannot be found as mentioned in step 1, then error message is acquired from the \ ``message``\  attribute of the annotation. (Bean Validation rule)
 
   #. When the value of \ ``message``\  attribute is not in "{message key}" format, use that text as error message.
