@@ -4905,7 +4905,7 @@ Refer to ":ref:`DataAccessMyBatis3HowToUseSettingsTypeHandler`" for how to apply
 
     If a JDBC driver incompatible with JDBC 4.0 is used, a \ ``TypeHandler`` \  should be created considering compatibility version of JDBC driver to be used.
 
-    For example, some of the methods added from JDBC 4.0 are not yet implemented in JDBC driver (\ ``postgresql-9.4-1212.jar``\ ) for PostgreSQL9.4.
+    For example, some methods added from JDBC 4.0 are not yet implemented in JDBC driver (\ ``postgresql-9.4-1212.jar``\ ) for PostgreSQL9.4.
 
 |
 
