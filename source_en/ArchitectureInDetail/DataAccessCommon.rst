@@ -70,10 +70,10 @@ JDBC datasource provided by Application Server
         | Refer to \ `Apache Tomcat 7 User Guide (JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html>`_\  (Apache Commons DBCP).
     * - 2.
       - Oracle WebLogic Server 12c
-      - Refer to \ `Oracle WebLogic Server Product Documentation <http://docs.oracle.com/cd/E24329_01/web.1211/e24367/toc.htm>`_\ .
+      - Refer to \ `Oracle WebLogic Server Product Documentation <https://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm#INTRO215>`_\ .
     * - 3.
       - IBM WebSphere Application Server Version 8.5
-      - Refer to \ `WebSphere Application Server Online information center <http://pic.dhe.ibm.com/infocenter/wasinfo/v8r5/index.jsp?topic=%2Fcom.ibm.websphere.nd.doc%2Fae%2Ftdat_ccrtpds.html>`_\ .
+      - Refer to \ `WebSphere Application Server Online information center <https://www.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tdat_ccrtpds.html>`_\ .
     * - 4.
       - Resin 4.0
       - Refer to \ `Resin Documentation <http://www.caucho.com/resin-4.0/admin/database.xtp>`_\ .
@@ -385,7 +385,7 @@ Settings when using DataSource for which Bean is defined
         | For more details about settings, refer to \ `DBCP Configuration <http://commons.apache.org/proper/commons-dbcp/configuration.html>`_\ .
     * - | (8)
       - | In the example, values are specified directly; however, for fields where configuration values change with the environment, actual configuration values should be specified in properties file using Placeholder(${...}).
-        | For Placeholder, refer to \ ``PropertyPlaceholderConfigurer``\  of \ `Spring Reference Document <http://static.springsource.org/spring/docs/3.2.17.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ .
+        | For Placeholder, refer to \ ``PropertyPlaceholderConfigurer``\  of \ `Spring Reference Document <http://static.springsource.org/spring/docs/3.2.18.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ .
 
 
 Settings to enable transaction management

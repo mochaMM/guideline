@@ -39,7 +39,7 @@ The details of each project are as follows:
  the common configuration information specified in the parent POM itself can be reflected.
 * foo-initdb
  Stores the SQL statement to INSERT the initial data and table definition (DDL) of RDBMS.
- This is also managed as Maven project. By defining `sql-maven-plugin <http://mojo.codehaus.org/sql-maven-plugin/>` setting in pom.xml,
+ This is also managed as Maven project. By defining `sql-maven-plugin <http://www.mojohaus.org/sql-maven-plugin/>` setting in pom.xml,
  the execution of DDL statement of any RDBMS and INSERT statement of initial data during the build lifecycle can be automatically executed.
 * foo-domain
  Stores the classes used as domain layer such as service class, repository class etc. The class of this domain layer is used to create a class of application layer in foo-web.
