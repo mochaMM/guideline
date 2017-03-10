@@ -542,13 +542,13 @@ List of OSS being used in version 5.3.0.RELEASE.
     * - Tiles
       - org.apache.tiles
       - tiles-servlet
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3
     * - Tiles
       - org.apache.tiles
       - tiles-template
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3 \*4
     * - Tiles
