@@ -1004,7 +1004,7 @@ In the application wherein DB transaction control is performed, a transaction co
 
   A method which uses global transaction by JTA exists for linking JMS and DB transactions, however "Best Effort 1 Phase Commit" is recommended since overheads are likely to occur for performance, among protocol characteristics. Refer below for details.
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
 
@@ -1772,7 +1772,7 @@ In the application wherein DB transaction control is required, a transaction con
 
   A method which uses global transaction by JTA exists for linking JMS and DB transactions, however "Best Effort 1 Phase Commit" is recommended since overheads are likely to occur for performance, among protocol characteristics. Refer below for details.
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
   .. warning:: **When transaction process results are not returned in JMS provider due to issues like loss of connection with JMS provider after receiving a message**

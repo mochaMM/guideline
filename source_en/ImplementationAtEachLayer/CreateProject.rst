@@ -411,7 +411,7 @@ In case of official release, since it is necessary to assign the version number,
 
 .. note::
 
- <version> tag of pom.xml file can be changed in `versions-maven-plugin <http://mojo.codehaus.org/versions-maven-plugin/>`_ .
+ <version> tag of pom.xml file can be changed in `versions-maven-plugin <http://www.mojohaus.org/versions-maven-plugin/>`_ .
  
  .. code-block:: bash
  
