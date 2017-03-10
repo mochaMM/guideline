@@ -251,8 +251,9 @@ How to use
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
-    Spring Framework 4.3.1 以降、Spring Security 4.1.1 以降では \ `MvcRequestMatcher` \ を使用することで本事象は解消されるが、
-    TERASOLUNA Global Framework for Java (1.x)が使用しているSpring Framework 3.2.18 以降では、Spring MVCで \ `trimTokens` \ プロパティに \ `false` \ を設定した \ `org.springframework.util.AntPathMatcher` \ を使用する必要がある。
+    本事象は、\ `trimTokens` \ プロパティに \ `false` \ を設定した \ `org.springframework.util.AntPathMatcher` \ のBeanをSpring MVCに適用することで回避することができる。 
+
+    なお、この設定を適用できるのはSpring Framework 3.2.17以降である。詳細は \ `SPR-14186 <https://jira.spring.io/browse/SPR-14186>`_\を参照されたい。
 
       .. code-block:: xml
 
