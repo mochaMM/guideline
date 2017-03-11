@@ -31,6 +31,12 @@ Change Log
 
         * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
 
+    * -
+      - :doc:`../Appendix/Nexus`
+      - Modification to migration into Maven Central
+
+        * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE version published
