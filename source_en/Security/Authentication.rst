@@ -1367,7 +1367,7 @@ An audit log which records information like "When", "Who", "Which data" and "Typ
     * ``org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy``
 
     For specific methods of definition,
-    refer to sample code of `Spring Security Reference -Web Application Security (Concurrency Control)- <http://docs.spring.io/spring-security/site/docs/3.2.9.RELEASE/reference/htmlsingle/#concurrent-sessions>`_.
+    refer to sample code of `Spring Security Reference -Web Application Security (Concurrency Control)- <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#concurrent-sessions>`_.
 
 |
 
