@@ -10,6 +10,33 @@ Change Log
       - Modified locations
       - Modification details
 
+    * - xxxx-xx-xx
+      - \-
+      - 5.1.2 RELEASE version published
+
+        * For details of update, refer \ `Issue list of 5.1.2 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.1.2%20is%3Aissue%20is%3Aclosed%20>`_\.
+
+    * -
+      - General
+      - Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../TutorialTodo/index`
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Security/Tutorial`
+
+    * - 
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - Description details added
+      
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+      
+    * -
+      - :doc:`../TutorialTodo/index`
+      - Correction of description
+
+        * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
+
     * - 2016-08-31
       - \-
       - 5.1.1 RELEASE version published
