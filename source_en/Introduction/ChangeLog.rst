@@ -16,12 +16,7 @@ Change Log
       - 5.2.1 RELEASE version published
 
         * For details of update, refer \ `Issue list of 5.2.1 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
- 
-    * - 2017-02-28
-      - \-
-      - 5.3.0 RELEASE version published
 
-        * For details of update, refer \ `Issue list of 5.3.0 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
 
     * -
       - General
@@ -31,10 +26,6 @@ Change Log
         * :doc:`../Overview/FirstApplication`  
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
-
-        Description details added
-
-        * Description added for settings for calling a rollback process when an error occurs at the time of commit (\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
 
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
@@ -56,6 +47,12 @@ Change Log
 
         * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
 
+    * - 
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - Description details added
+      
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+      
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description

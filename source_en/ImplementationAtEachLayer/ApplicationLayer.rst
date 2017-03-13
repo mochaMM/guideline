@@ -2672,6 +2672,8 @@ View plays the following role.
 
 |
 
+.. _ApplicationLayerImplementOfJsp:
+
 Implementing JSP
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | Implement View using JSP to generate response(HTML) as per the requirement of the client.
