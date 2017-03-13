@@ -20,16 +20,28 @@
       - 全般
       - 以下のプロジェクト作成時に使用する \ ``maven-archetype-plugin``\のバージョンを2.4に固定するように変更(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
 
-        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
         * :doc:`../Overview/FirstApplication`
-        * :doc:`../Security/Tutorial`
         * :doc:`../TutorialTodo/index`
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Security/Tutorial`
 
     * -
       - :doc:`../Introduction/CriteriaBasedMapping`
       - 記載内容の追加
 
         * セキュリティ対策に関するマッピングにCVEによる観点をまとめた表を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+
+    * - 
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - 記載内容の改善
+
+        * シグネチャを制限するインタフェースおよび基底クラスの実装サンプルを修正(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessJpa`
+      - 記載内容の追加
+
+        * \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (ブラインドSQLインジェクション攻撃を受ける可能性がある脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
     * -  
       - :doc:`../Security/Authorization`  
@@ -38,12 +50,6 @@
         * 特定URLに対するアクセス制限に関するWarningを追記(\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )  
 
         * \ `CVE-2016-9879 <https://pivotal.io/security/cve-2016-9879>`_\ (認可のすり抜けが可能となる脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/DataAccessJpa`
-      - 記載内容の追加
-
-        * \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (ブラインドSQLインジェクション攻撃を受ける可能性がある脆弱性)に関する注意喚起と対策を追加(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
 
     * - 2016-08-31
       - \-
