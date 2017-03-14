@@ -2746,11 +2746,7 @@ Definition example of Controller which displays login form.
 
 As per this example, it is also possible to substitute by using \ ``<mvc:view-controller>``\  in case of a controller with only one method which simply returns only the view name.
 
-* Definition example of Controller using \ ``<mvc:view-controller>``\ .
-
-.. code-block:: xml
-
-    <mvc:view-controller path="/login" view-name="login" /><!-- (1) -->
+For details, refer \ :ref:`controller_method_return-html-label`\.
 
 |
 
