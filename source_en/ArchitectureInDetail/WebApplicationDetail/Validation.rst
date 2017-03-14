@@ -3019,7 +3019,7 @@ Input check for \ ``Role``\ (Java Bean's \ ``List``\) that can set multiple item
      * - | (1)
        - | \ ``javax.validation.Valid``\ annotation to enable bean validation of nested beans.
      * - | (2)
-       - | \ ``String``\ の\ ``List``\ には\ ``@ExistInCodeList``\ を付加することはできないが、You cannot add \ ``@ExistInCodeList``\ to \ ``List``\ of  \ ``String``\ but 
+       - | You cannot add \ ``@ExistInCodeList``\ to \ ``List``\ of  \ ``String``\ but 
            by wrapping \ ``String``\ with a Java bean you can add \ ``@ExistInCodeList``\ to the nested bean's \ ``String``\ property.
 
 |
@@ -3070,7 +3070,7 @@ As mentioned above, it is necessary to wrap \ ``String``\ with \ ``Role``\ (Java
 Implement type conversion by \ ``Formatter``\ to convert from screen input (\ ``String``\) to wrapped \ ``Role``\ and vice versa.
 
 By adding type conversion, mutual conversion between \ ``String``\ and \ ``Role``\ is done automatically.
-Controller側では\ ``Role``\の\ ``List``\ 、JSP側では\ ``String``\ の\ ``List``\ として扱えるようになる。On the Controller side, it is treated as \ ``List``\ of \ ``Role``\, on JSP side  \ ``List``\ of \ ``String``\.
+On the Controller side, it is treated as \ ``List``\ of \ ``Role``\, on JSP side  \ ``List``\ of \ ``String``\.
 
 * \ ``Formatter``\ class
 
