@@ -34,6 +34,13 @@ Change Log
         * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
     * -
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+        | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - Description details added
+
+        * Precautions added for issue ""nowait" not added while using PostgreSQL" (\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+
+    * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
 
