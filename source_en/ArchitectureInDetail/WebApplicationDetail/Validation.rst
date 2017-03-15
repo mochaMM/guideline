@@ -135,14 +135,11 @@ An example of adding libraries which are required when running Bean Validation 1
 Single item check
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For the implementation of single item check,
+For the implementation of single item check following points are necessary,
 
 * Bean Validation annotation should be assigned to the field of form class
 * \ ``@Validated``\  annotation should be assigned in Controller for validation
 * Tag for displaying validation error message should be added to JSP
-
-is necessary.
-
 
 .. note::
 
