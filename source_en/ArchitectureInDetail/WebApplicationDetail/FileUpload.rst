@@ -29,7 +29,7 @@ Overview
     * JBoss EAP 6.4.0.GA
 
     Among these, the issues can be avoided by adding application server specific settings in JBoss EAP 7.0.
-    For details, refer \ `Precautions for using JBoss EAP 7.0 <https://github.com/terasolunaorg/terasoluna-gfw/wiki/JBoss7_ja>`_\.
+    For details, refer \ `Precautions for using JBoss EAP 7.0 <https://github.com/terasolunaorg/terasoluna-gfw/wiki/JBoss7_en>`_\.
 
     When the application server wherein other problems occur are used, the issues can be avoided by using Commons FileUpload.
     For setup methods for using Commons FileUpload, refer ":ref:`file-upload_usage_commons_fileupload`".
