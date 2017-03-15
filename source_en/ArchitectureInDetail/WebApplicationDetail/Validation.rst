@@ -126,8 +126,8 @@ An example of adding libraries which are required when running Bean Validation 1
 
 .. note::
 
-    In the above example of settings, it is a prerequisite that version of dependent libraries should be stored in the parent project.
-    Therefore, \ ``<version>``\  element is not specified.
+    In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+    The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 
 .. _Validation_single_check:
@@ -4218,6 +4218,10 @@ Add a dependent library for the rules that are to be used. An example for how to
             <artifactId>terasoluna-gfw-validator</artifactId>
         </dependency>
     </dependencies>
+
+.. note::  
+  
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
 
 Next, a message definition corresponding to annotation is added to :file:`ValidationMessages.properties`  as explained in \ :ref:`Validation_message_in_validationmessages`\ .
 

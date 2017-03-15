@@ -1763,7 +1763,12 @@ Perform the following settings when using Commons FileUpload.
      - | Description
    * - | (1)
      - | Add dependency to \ ``commons-fileupload``\ .
-       | No need to specify the version in :file:`pom.xml`\ as it is defined depending on Spring IO Platform.
+       
+.. note::  
+
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.  
+	The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
+
 
 .. warning::
 

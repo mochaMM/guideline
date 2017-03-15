@@ -147,7 +147,8 @@ Implementation of Custom View
 
 \
     .. note::
-        Spring IO Platform defines itext version.
+        In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+        The above itext used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 .. _viewresolver-label:
 
@@ -343,7 +344,8 @@ Implementation of Custom View
 
 \
     .. note::
-        Since stax-api on which poi-ooxml is dependent, is provided as a standard from SE, the library is not required. Also, since a conflict is likely in the library, \ ``<exclusions>``\  element should be added and the relevant library should not be added in the application.
+        In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+        The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 \
     .. note::
