@@ -43,7 +43,7 @@
       - :doc:`../Introduction/TermsOfUse`
       - 記載内容の修正
 
-        * 利用規約の修正
+        * 利用規約の修正(\ `guideline#2625 <https://github.com/terasolunaorg/guideline/issues/2625>`_\ )
 
     * - 
       - :doc:`../Overview/FrameworkStack`
