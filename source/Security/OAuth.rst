@@ -2511,7 +2511,7 @@ OAuth2RestTemplateの設定
 
 |
 
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
      .. list-table::
          :header-rows: 1
          :widths: 35 65
