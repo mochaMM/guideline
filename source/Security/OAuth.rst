@@ -2001,10 +2001,10 @@ Spring Security OAuthが用意している主なExpressionを紹介する。
 
 詳細については\ ``OAuth2SecurityExpressionMethods``\の\ `JavaDoc <http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/expression/OAuth2SecurityExpressionMethods.html>`_\を参照されたい。
 
-.. tabularcolumns:: |p{0.30\linewidth}|p{0.70\linewidth}|
+.. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
 .. list-table:: **Spring Security OAuthが用意しているExpression**
     :header-rows: 1
-    :widths: 30 70
+    :widths: 35 65
 
     * - Expression
       - 説明
