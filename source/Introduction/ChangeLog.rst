@@ -184,18 +184,18 @@
 
         * \ ``AntPathRequestMatcher``\のパスマッチングの仕様変更に対する注意点を追記(\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
 
-    * -
-      - :doc:`../Security/OAuth`
-      - 新規追加
-
-        * OAuthを追加(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
-
     * - 
       - :doc:`../Security/LinkageWithBrowser`
       - Spring Security 4.1.4対応に伴う修正
 
         * Content Security Policy (CSP)"に関する記載を追加(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
         * HTTP Public Key Pinning (HPKP)に関する記載を追加(\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+
+    * -
+      - :doc:`../Security/OAuth`
+      - 新規追加
+
+        * OAuthを追加(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
