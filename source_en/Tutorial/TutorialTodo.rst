@@ -3993,6 +3993,7 @@ Furthermore, the \ :file:`todo-env.xml` \ is not created while creating blank pr
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
     </beans>
 
