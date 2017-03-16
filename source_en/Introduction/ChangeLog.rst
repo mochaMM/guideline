@@ -25,7 +25,7 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
-    * - 
+    * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - Description details added
 
@@ -37,8 +37,12 @@ Change Log
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
         | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
       - Description details added
-
-        * Precautions added for issue ""nowait" not added while using PostgreSQL" (\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+      
+    * -
+      - :doc:`../Security/LinkageWithBrowser`
+      - Modifications associated with Spring Security 4.1.4 support
+      
+        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
