@@ -918,17 +918,17 @@ BCryptPasswordEncoder
 .. warning:: **How to use SecureRandom**
   
     When \ ``SecureRandom``\  is to be used in Linux environment, a delay or timeout in the processing is likely to occur.
-    This event depends on the random number generator to be used and description is given in the Java Bug Database given below.
+    This event depends on the random number generator to be used and description is given in the document given below.
   
-    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6202721
+    * https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html 
   
-    It has been fixed in the subsequent versions of b20 of JDK 7.
+    When this event occurs, it can be avoided by adding one of the following settings.
   
-    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6521844
+    * Specify ``-Djava.security.egd=file:/dev/urandom`` while executing Java command.
   
-    If this event occurs, it can be avoided by adding following configuration to system property of JVM.
+    * Change ``securerandom.source=/dev/random` in ``${JAVA_HOME}/jre/lib/security/java.security`` to ``securerandom.source=/dev/urandom``.
   
-    * ``-Djava.security.egd=file:/dev/./urandom``
+    If this event occurs in the version prior to b19 of Java SE 7 (prior to official release), ``/dev/./urandom`` must be specified instead of ``/dev/urandom``. However, algorithm used by \ ``SecureRandom``\  cannot be avoided in case of \ ``NativePRNG``\.
 
 |
 
@@ -2746,11 +2746,7 @@ Definition example of Controller which displays login form.
 
 As per this example, it is also possible to substitute by using \ ``<mvc:view-controller>``\  in case of a controller with only one method which simply returns only the view name.
 
-* Definition example of Controller using \ ``<mvc:view-controller>``\ .
-
-.. code-block:: xml
-
-    <mvc:view-controller path="/login" view-name="login" /><!-- (1) -->
+For details, refer \ :ref:`controller_method_return-html-label`\.
 
 |
 

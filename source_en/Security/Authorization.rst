@@ -354,6 +354,35 @@ Therefore, definition order must be taken into consideration even while specifyi
               <!-- omitted -->
           </sec:http>
 
+    Further, if an access policy for a specific URL is to be specified (wild cards like \ ``*``\ , \ ``**``\  etc are not included in \ ``pattern``\  attribute),
+    an access policy with a pattern with an extension and a pattern with \ ``/``\  appended at the end of request path must be added.
+
+    In the following configuration example, only the users with "ROLE_ADMIN" role are allowed to access by \ ``/restrict``\.
+
+      .. code-block:: xml
+
+          <sec:http>
+              <sec:intercept-url pattern="/restrict.*" access="hasRole('ADMIN')" /> <!-- (1) --> 
+              <sec:intercept-url pattern="/restrict/" access="hasRole('ADMIN')" /> <!-- (2) --> 
+              <sec:intercept-url pattern="/restrict" access="hasRole('ADMIN')" /> <!-- (3) -->
+              <!-- omitted -->
+          </sec:http> 
+          
+      .. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+      .. list-table::
+         :header-rows: 1
+         :widths: 20 80
+         :class: longtable
+
+         * - Sr. No.
+           - Description
+         * - | (1)
+           - | Define an access policy of the pattern with an extension (\ ``/restrict.json``\  etc) in \ ``/restrict``\.
+         * - | (2)
+           - | Define an access policy of the pattern wherein \ ``/``\  appended at the end of the request path (\ ``/restrict/``\  etc) in \ ``/restrict``\.
+         * - | (3)
+           - | Define an access policy for \ ``/restrict``\.
+
 Specifying an access policy
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -443,6 +472,60 @@ How to use is shown below.
   .. _spring-el:
 
 For main Expression that can be used, refer :ref:`SpringSecurityAuthorizationPolicy`.
+
+|
+
+Reference of path variables
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+In Spring Security 4.1 and subsequent versions, a path variable \[#fPathVariableDescription]_\  can be used while specifying a resource which applies the access policy
+and can be referred by specifying \ ``#path variable name``\  in the definition of access policy.
+
+In the example below, the access policy is defined so that the login users can access only their own user information.
+
+* Definition example of spring-security.xml
+
+  .. code-block:: xml
+
+    <sec:http>
+        <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/>
+        <!-- omitted -->
+    </sec:http>
+
+.. warning:: **Precautions while defining an access policy which uses the path variable**
+
+   When an access policy which uses a path variable for the path that can be accessed with an extension, is defined, it is necessary to define it in such a way that the extension part is not stored in the path variable value.
+
+   For example, when \ ``/users/{userName}``\  is defined in the patten and a request path \ ``/users/personName.json``\  is sent,
+   \ ``personName.json``\  gets stored in the path variable \ ``#userName``\  referred in the definition of access policy, instead of \ ``personName``\
+   and unintended authorization control is performed.
+
+   In order to prevent this event, "Access policy for the path without extension" must be defined after defining "Access policy for the path with extension" as shown in the example below.
+
+   * Definition example of spring-security.xml
+
+    .. code-block:: xml
+
+      <sec:http>
+       <sec:intercept-url pattern="/users/{userName}.*" access="isAuthenticated() and #userName == principal.username"/> <!-- (1) -->
+       <sec:intercept-url pattern="/users/{userName}" access="isAuthenticated() and #userName == principal.username"/> <!-- (2) -->
+       <!-- omitted -->
+      </sec:http>
+
+    .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+    .. list-table::
+        :header-rows: 1
+        :widths: 10 90
+        :class: longtable
+    
+        * - Sr. No.
+          - Description
+        * - | (1)
+          - | Define "Access policy for the path with extension".
+        * - | (2)
+          - | Define "Access policy for the path without extension".
+
+.. For description of path variable [#fPathVariableDescription], refer \ :ref:`controller_method_argument-pathvariable-label`\  of :doc:`../ImplementationAtEachLayer/ApplicationLayer`.
 
 |
 
