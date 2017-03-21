@@ -36,7 +36,7 @@ Important specifications of OAuth 2.0 are as follows.
 
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.30\linewidth}|p{0.55\linewidth}|
-.. list-table:: **OAuth 2.0 important specifications **
+.. list-table:: ** OAuth 2.0 important specifications **
     :header-rows: 1
     :widths: 15 30 55
 
@@ -2089,7 +2089,7 @@ The implementation example is shown below.
     * - Sr.No.
       - Description
     * - | (1)
-      - |Authentication information of resource owner is stored in the \Argument\ ``user``\
+      - |Authentication information of resource owner is stored in the argument\ ``user``\
 
 In case of implementation that specifies \ ``UserDetails``\, it should be noted that the intended information cannot be fetched in the client credential grant wherein authentication process is not carried out.
 When client credential grant is used, client ID can be fetched by specifying \ ``String``\  as the method argument of Controller and assigning \ ``@AuthenticationPrincipal``\  annotation.
@@ -2440,7 +2440,7 @@ The setting example of \ ``OAuth2RestTemplate``\  is shown while accessing with 
 .. _OAuth2ResourceOwnerPasswordCredentialGrantResourceSettings:
 
 Settings of resource at the time of using resource owner password credential grant
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 | In the resource owner password credential grant, the client requests the issue of access token by using the user name and password of the resource owner.
 | There is a need to set the username and password of resource owner as separate parameters in \ ``OAuth2RestTemplate``\,
