@@ -208,8 +208,11 @@ A configuration example while using a mail session offered by application server
       - IBM WebSphere Application Server Version 9.0
       - Refer \ `WebSphere Application Server Version 9.0.0 documentation <https://www.ibm.com/support/knowledgecenter/en/SSD28V_9.0.0/com.ibm.websphere.wlp.core.doc/ae/twlp_admin_javamail.html>`_\ .
     * - 4.
+      - Red Hat JBoss Enterprise Application Platform Version 7.0
+      - Refer \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-10-mail-subsystem>`_\.
+    * - 5.
       - Red Hat JBoss Enterprise Application Platform Version 6.4
-      - Refer \ `Product Documentation <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/configuration_guide/mail_subsystem>`_\ .
+      - Refer \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Mail_subsystem.html>`_\.
 
 
 Carry out setup for registering a mail session fetched through JNDI, as a Bean.
