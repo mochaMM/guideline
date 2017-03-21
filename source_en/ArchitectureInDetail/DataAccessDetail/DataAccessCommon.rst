@@ -89,7 +89,7 @@ JDBC datasource provided by Application Server
     * - 6.
       - JBoss Enterprise Application Platform 7.0
       - Refer \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-13-datasource-management>`_\.
-    * - 6.
+    * - 7.
       - JBoss Enterprise Application Platform 6.4
       - Refer \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\.
 
