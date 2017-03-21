@@ -63,7 +63,11 @@ Change Log
         * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
         * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-
+        
+        Modifications related to Spring Framework 4.3
+        
+        * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+        
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
         | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
@@ -278,7 +282,7 @@ Change Log
       - :doc:`../Security/Authentication`
       - Modifications for Spring Security 4.0.4
 
-        * Code example modified to include modification of specifications of authentication-failure-url in Spring 4.0.4 and Note deleted (\ `guideline#1963 <https://github.com/terasolunaorg/guideline/issues/1963>`_\ )
+        * Code example modified to include modification of specifications of authentication-failure-url in Spring Security 4.0.4 and Note deleted (\ `guideline#1963 <https://github.com/terasolunaorg/guideline/issues/1963>`_\ )
 
     * -
       - :doc:`../Security/Authorization`
