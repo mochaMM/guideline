@@ -3781,7 +3781,6 @@ The following settings are done in created MyBatis3 project.
             <settings>
                 <setting name="mapUnderscoreToCamelCase" value="true" />
                 <setting name="lazyLoadingEnabled" value="true" />
-                <setting name="aggressiveLazyLoading" value="false" />
                 <setting name="defaultFetchSize" value="100" />
         <!--
                 <setting name="defaultExecutorType" value="REUSE" />

@@ -69,6 +69,10 @@ Change Log
         Description details added
 
         * Description added for settings for calling a rollback process when an error occurs at the time of commit (\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+        
+        Description details modified
+        
+        * Description of the option which controls the timing to execute ”Lazy Load”modified (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
 
     * - 2016-08-31
       - \-
