@@ -143,6 +143,45 @@ Following header is output to disable the use of HTTP after accessing browser us
 
     Strict-Transport-Security header is output only when the application server is accessed using HTTPS in the default implementation of Spring Security.
     Note that, Strict-Transport-Security header value can be changed by specifying the option.
+    
+Content-Security-Policy
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+The Content-Security-Policy header is a header to instruct the content to be allowed to be read by the browser.
+Since the browser reads only the contents of the whitelist specified in the Content - Security - Policy header, it can reduce the risk of receiving attacks (such as crosssite scripting attacks) executed by loading malicious content.
+
+If you do not send the Content-Security-Policy header, the browser applies the same standard origin policy.
+
+In order to restrict the source of content to only the same origin, the following header is output.
+
+* Output example of response header
+
+.. code-block:: text
+
+    Content-Security-Policy: default-src 'self'
+
+.. note:: **About sending reports when a policy violation occurs**
+
+    If a report is to be send at policy violation, specify the reporting URI in the report-uri directive.
+
+    In order to block the content if there is a violation of the same origin policy and send the report to \ ``/csp_report``\, output the following header.
+
+    * Output example of response header
+
+     .. code-block:: text
+
+        Content-Security-Policy: default-src 'self'; report-uri /csp_report;
+
+    In addition, if there is a policy violation, if a report is to be send without blocking content, use the Content-Security-Policy-Report-Only header.
+    By collecting reports using the Content-Security-Policy-Report-Only header and gradually modifying the policy and content,can reduce the risk of not being able to work correctly if the policy is applied to sites that already provide service.
+
+    In order to send a report if there is a violation of the same origin policy to \ ``/csp_report``\ without blocking the content , output the following header.
+
+    * Output example of response header	
+
+     .. code-block:: text
+
+        Content-Security-Policy-Report-Only: default-src 'self'; report-uri /csp_report;
 
 Public-Key-Pins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,9 +216,9 @@ How to use
 Applying security header output function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A method is executed to apply the security header output function described earlier.
+A method to apply the above mentioned security header output function is decribed.
 
-Security header output function is added by Spring 3.2 and applied by default from Spring Security 4.0.
+The security header output function is added from Spring 3.2 and is applied by default except for the following security header	.
 
 * Content-Security-Policy
 * Public-Key-Pins
