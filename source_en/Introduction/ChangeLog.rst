@@ -1,6 +1,5 @@
 Change Log
 ================================================================================
-
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.25\linewidth}|p{ 0.60\linewidth}|
 .. list-table::
     :header-rows: 1
@@ -98,6 +97,12 @@ Change Log
         * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
 
     * -
+      - :doc:`../Appendix/Nexus`
+      - Modification to migration into Maven Central
+
+        * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+
+    * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - Description details changed, added
 
@@ -112,6 +117,7 @@ Change Log
         Description details modified
         
         * Description of the option which controls the timing to execute ”Lazy Load”modified (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+
 
     * - 2016-08-31
       - \-
