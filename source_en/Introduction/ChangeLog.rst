@@ -27,6 +27,8 @@ Change Log
 
         Description details modified
 
+        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+
         * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
 
     * - 
