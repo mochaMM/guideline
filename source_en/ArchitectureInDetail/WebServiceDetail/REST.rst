@@ -799,7 +799,7 @@ Using the appropriate HTTP status code
 
  .. note::
 
-    In RFC 7230 which specifies HTTP message syntax, output of description clauses of HTTP status code Åi\ ``reason-phrase``\Åjis not mandatory and it is prescribed that the client should be ignored.
+    In RFC 7230 which specifies HTTP message syntax, output of description clauses of HTTP status code (\ ``reason-phrase``\¬Å) is not mandatory and it is prescribed that the client should be ignored.
     For example, description clauses are not output in Tomcat 8.5 of implementation which is in conformance with RFC 7230.
     
     Refer to `RFC 7230(Hypertext Transfer Protocol -- HTTP/1.1) - 3.1.2 Status Line <https://tools.ietf.org/html/rfc7230#section-3.1.2>`_.
