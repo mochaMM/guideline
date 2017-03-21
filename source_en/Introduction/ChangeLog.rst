@@ -107,6 +107,28 @@ Change Log
 
         * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
 
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - Description details added
+
+        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+
+        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
+      - Modifications associated with Spring Framework 4.3 support
+
+        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+        
+    * -
+      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
+      - Description details added
+
+        * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
