@@ -220,8 +220,6 @@ A method to apply the above mentioned security header output function is decribe
 
 The security header output function is added from Spring 3.2 and is applied by default except for the following security header	.
 
-Security header output function is added by Spring 3.2 and applied by default from Spring Security 4.0.
-
 * Content-Security-Policy
 * Public-Key-Pins
 
