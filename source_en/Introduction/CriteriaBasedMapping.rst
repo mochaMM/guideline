@@ -16,7 +16,8 @@ links to explanation of functionalities related to security have been given
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.40\linewidth}|p{0.50\linewidth}|
 .. list-table::
-   :header-rows: 1
+   :
+   er-rows: 1
    :widths: 10 40 50
 
    * - Sr. No.

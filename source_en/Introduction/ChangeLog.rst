@@ -32,6 +32,29 @@ Change Log
         * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
       
     * -
+      - :doc:`../Overview/FrameworkStack`
+      - Version of OSS to be used updated
+
+        * Spring IO Platform version updated to Athens-SR2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * MyBatis version updated to 3.4.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * MyBatis-Spring version updated to 1.3.1 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * mybatis-typehandlers-jsr310 updated to 1.0.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+
+        OSS version to be used in accordance with version update of Spring IO Platform is updated
+
+        Description details modified
+
+        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
+    * - 
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - Description details added
+      
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+      
+    * -
       - :doc:`../TutorialTodo/index`
       - Correction of description
 
