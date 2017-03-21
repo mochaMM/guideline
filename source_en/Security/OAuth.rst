@@ -2089,7 +2089,7 @@ The implementation example is shown below.
     * - Sr.No.
       - Description
     * - | (1)
-      - |Authentication information of resource owner is stored in the argument\ ``user``\
+      - | Authentication information of resource owner is stored in the argument \``user``\
 
 In case of implementation that specifies \ ``UserDetails``\, it should be noted that the intended information cannot be fetched in the client credential grant wherein authentication process is not carried out.
 When client credential grant is used, client ID can be fetched by specifying \ ``String``\  as the method argument of Controller and assigning \ ``@AuthenticationPrincipal``\  annotation.
