@@ -25,6 +25,10 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
 
+        Description details modified
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
       - Description details added
