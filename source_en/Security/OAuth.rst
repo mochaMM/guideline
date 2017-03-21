@@ -2019,7 +2019,7 @@ For details, refer \ `JavaDoc <http://docs.spring.io/spring-security/oauth/apido
 
    SpEL expression can be used with SpEL provided by Spring Security.
     
-   Refer to :ref:`built-incommon-expressions` for SpEL provided by Spring Security.
+   Refer to \:ref:`built-incommon-expressions`\ for SpEL provided by Spring Security.
 
 |
 
