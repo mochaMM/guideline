@@ -88,8 +88,10 @@ JDBC datasource provided by Application Server
       - Refer to \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=en>`_\ .
     * - 6.
       - JBoss Enterprise Application Platform 7.0
-      - Refer to \ `JBoss Enterprise Application Platform Product Documentation <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/configuration_guide/datasource_management>`_\ .
-
+      - Refer \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-13-datasource-management>`_\.
+    * - 6.
+      - JBoss Enterprise Application Platform 6.4
+      - Refer \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\.
 
 .. _datasource_oss_thirdparty-label:
 

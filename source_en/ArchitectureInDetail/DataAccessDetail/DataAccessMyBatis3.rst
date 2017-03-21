@@ -522,7 +522,7 @@ Configuration example is as given below.
 - :file:`projectName-env/src/main/resources/META-INF/spring/projectName-env.xml`
 
  .. code-block:: xml
-    :emphasize-lines: 15-20
+    :emphasize-lines: 15-22
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -543,6 +543,8 @@ Configuration example is as given below.
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <!-- (2) -->
             <property name="dataSource" ref="dataSource" />
+            <!-- (3) -->
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
 
         <!-- omitted -->
@@ -563,6 +565,11 @@ Configuration example is as given below.
       - Specify configured datasource bean in \ ``dataSource`` \  property.
 
         When SQL is executed in the transaction, connection is fetched from datasource specified here.
+    * - (3)
+      - \ Rollback process is called when an error occurs during commit.
+
+        By adding this setting, risk of "Unintentional commit which occurs when a connection with undefined operation returns to connection pool (commit while reusing a connection, implicit commit at the time of closing a connection etc)" can be reduced.
+        However, since an error is likely to occur at the time of rollback, it should be noted that a risk of occurrence of unintentional commit is still a possibility.
 
  .. note:: **bean ID of PlatformTransactionManager**
  
@@ -8050,48 +8057,21 @@ In MyBatis3, availability of "Lazy Load" can be specified in the 2 locations giv
 Settings for controlling execution timing of Lazy Load
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-MyBatis3 provides an option to control the timing in which "Lazy Load" is executed.
+MyBatis3 provides an option to control the timings to execute "Lazy Load" (\ ``aggressiveLazyLoading``\) [#fDataAccessMyBatis31]_.
 
-The settings to control the timing in which "Lazy Load" is executed is 
-specified in MyBatis configuration file (:file:`projectName-domain/src/main/resources/META-INF/mybatis/mybatis-config.xml`).
-
- .. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <!DOCTYPE configuration
-            PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-            "http://mybatis.org/dtd/mybatis-3-config.dtd">
-    <configuration>
-        <settings>
-            <!-- (1) -->
-            <setting name="aggressiveLazyLoading" value="false"/>
-        </settings>
-    </configuration>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.80\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 80
-
-    * - Sr. No.
-      - Description
-    * - (1)
-      - Specify the timing in which "Lazy Load" is executed in \ ``aggressiveLazyLoading``\ .
-
-        * \ ``true``\ : Executed when getter method of the object that stores the property for which "Lazy Load" is to be performed, is called (default)
-        * \ ``false``\ : Executed when getter method of the property for which "Lazy Load" is to be performed, is called
-
+The default value of this option is \ ``false``\  in Mybatis 3.4.2 and subsequent versions and it is executed within the timing when a getter method of "Lazy Load" property is called.
 
  .. warning::
 
-    In case of "\ ``true``\" (default), exercise caution since SQL is likely to be executed for fetching the unused data.
+    When \ ``aggressiveLazyLoading``\  is "\ ``true``\", "Lazy Load" is executed within the timing when the getter method of the object which retains "Lazy Load" property is called.
+    Therefore, it should be noted that SQL is likely to be executed regardless of the fact that data fetching is not actually required.
 
     Basically, there is a case wherein the following mapping is carried out 
     and only the property for which "Lazy load" is not to be performed, is accessed.
-    In case of "\ ``true``\" (default), "Lazy Load" is executed even without directly 
+    In case of "\ ``true``\", "Lazy Load" is executed even without directly 
     accessing the property for which "Lazy Load" is to be performed.    
 
-    It is recommended to set \ ``aggressiveLazyLoading``\  to "\ ``false``\  unless there is a specific reason.
+    It is recommended to keep \ ``aggressiveLazyLoading``\  to "\ ``false``\" (default)  unless there is a specific reason to change otherwise.
 
     * Entity
 
@@ -8124,7 +8104,7 @@ specified in MyBatis configuration file (:file:`projectName-domain/src/main/reso
         :emphasize-lines: 2-3
 
             Item item = itemRepository.findOne(itemCode);
-            // (2)
+            // (1)
             String code = item.getCode();
             String name = item.getName();
             String price = item.getPrice();
@@ -8138,12 +8118,13 @@ specified in MyBatis configuration file (:file:`projectName-domain/src/main/reso
 
         * - Sr. No.
           - Description
-        * - (2)
+        * - (1)
           - In the above example, \ ``categories``\  property targeted for "Lazy Load" is not accessed.
             However, "Lazy Load" is executed while accessing \ ``Item#code``\  property.
 
             In case of "\ ``false``\" (default), "Lazy Load" is not executed in the cases described above.
 
+.. [#fDataAccessMyBatis31] For how to set, refer `MyBatis reference <http://www.mybatis.org/mybatis-3/ja/configuration.html#settings>`_.
 
 .. raw:: latex
 
