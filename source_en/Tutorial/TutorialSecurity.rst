@@ -515,7 +515,6 @@ As a result, database initialization is necessary by executing SQL at the time o
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
-            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
               REMOVE THIS LINE IF YOU USE MyBatis3  -->
     </beans>

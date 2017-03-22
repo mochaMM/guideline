@@ -522,7 +522,7 @@ Configuration example is as given below.
 - :file:`projectName-env/src/main/resources/META-INF/spring/projectName-env.xml`
 
  .. code-block:: xml
-    :emphasize-lines: 15-22
+    :emphasize-lines: 15-20
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -543,8 +543,6 @@ Configuration example is as given below.
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <!-- (2) -->
             <property name="dataSource" ref="dataSource" />
-            <!-- (3) -->
-            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
 
         <!-- omitted -->
@@ -565,11 +563,6 @@ Configuration example is as given below.
       - Specify configured datasource bean in \ ``dataSource`` \  property.
 
         When SQL is executed in the transaction, connection is fetched from datasource specified here.
-    * - (3)
-      - \ Rollback process is called when an error occurs during commit.
-
-        By adding this setting, risk of "Unintentional commit which occurs when a connection with undefined operation returns to connection pool (commit while reusing a connection, implicit commit at the time of closing a connection etc)" can be reduced.
-        However, since an error is likely to occur at the time of rollback, it should be noted that a risk of occurrence of unintentional commit is still a possibility.
 
  .. note:: **bean ID of PlatformTransactionManager**
  
