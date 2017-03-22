@@ -70,7 +70,7 @@ Important specifications of OAuth 2.0 are as follows.
 In conventional client-server type authentication model, the third-party application performs authentication by using user authentication information (user name and password etc.)
 in order to access the resources protected on server.
 
-In other words, user needs to share the authentication information with third party in order to provide the rights to third party applications for accessing the resources; however it has the risk of user窶冱 unintended access and information leakage etc., if there are defects and malicious operations in third party application.
+In other words, user needs to share the authentication information with third party in order to provide the rights to third party applications for accessing the resources; however it has the risks such as unintended access and information leakage by the user, if there are defects and malicious operations in third party application.
 
 
 
@@ -894,11 +894,11 @@ At first, DB is created as below.
     * - | (1)
       - | A table to retain client information. client_id is considered as primary key.
         | Roles of each column are as below.
-        |  繝ｻclient_id: A column to retain the client ID which is an ID to identify a client.
-        |  繝ｻclient_secret: A column to retain the password which is used to authenticate the client.
-        |  繝ｻclient_name: An individual column to retain the client name. Not required since it is an individual column.
-        |  繝ｻaccess_token_validity: A column to retain the validity period [seconds] of access token.
-        |  繝ｻrefresh_token_validity: A column to retain the validity period [seconds] of refresh token.
+        |  ・client_id: A column to retain the client ID which is an ID to identify a client.
+        |  ・client_secret: A column to retain the password which is used to authenticate the client.
+        |  ・client_name: An individual column to retain the client name. Not required since it is an individual column.
+        |  ・access_token_validity: A column to retain the validity period [seconds] of access token.
+        |  ・refresh_token_validity: A column to retain the validity period [seconds] of refresh token.
     * - | (2)
       - | A table to retain the scope information. It is mapped with the client information by considering client_id as the external key.
         | Scope used for client authorization is retained in scope column. Records are registered only for the scope of client.
