@@ -45,7 +45,7 @@ Webアプリケーション向け開発プロジェクトの作成
         * JPA(Spring Data JPA)用の設定が盛り込まれた雛形
         * O/R Mapperに依存しない雛形
 
-        本ガイドラインでは、各種チュートリアルをシングルプロジェクトを使用して行う手順となっている。
+        本ガイドラインでは、各種チュートリアルについてシングルプロジェクトを使用して行う手順となっている。
 
 .. _CreateWebApplicationProject:
 
@@ -565,14 +565,14 @@ Maven Archetypeで作成したプロジェクトには、インメモリデー�
 
 .. code-block:: console
 
-        └── src
-            └── main
-                └── resources
-                    ├── META-INF
+        └── src
+            └── main
+                └── resources
+                    ├── META-INF
                   (...)
-                    ├── database
-                    │   ├── H2-dataload.sql
-                    │   └── H2-schema.sql
+                    ├── database
+                    │   ├── H2-dataload.sql
+                    │   └── H2-schema.sql
 
 .. note::
 
@@ -1042,22 +1042,22 @@ webモジュールの構成
         └── src
             ├── main
             │   ├── java
-            │   │   └── com
-            │   │       └── example
-            │   │           └── project
-            │   │               └── app  ... (2)
-            │   │                   └── welcome
-            │   │                       └── HelloController.java  ... (3)
-            │   ├── resources
-            │   │   ├── META-INF
-            │   │   │   ├── dozer  ... (4)
-            │   │   │   └── spring  ... (5)
-            │   │   │       ├── application.properties  ... (6)
-            │   │   │       ├── applicationContext.xml  ... (7)
-            │   │   │       ├── spring-mvc.xml  ... (8)
-            │   │   │       └── spring-security.xml  ... (9)
-            │   │   └── i18n  ... (10)
-            │   │       └── application-messages.properties  ... (11)
+            │   │   └── com
+            │   │       └── example
+            │   │           └── project
+            │   │               └── app  ... (2)
+            │   │                   └── welcome
+            │   │                       └── HelloController.java  ... (3)
+            │   ├── resources
+            │   │   ├── META-INF
+            │   │   │   ├── dozer  ... (4)
+            │   │   │   └── spring  ... (5)
+            │   │   │       ├── application.properties  ... (6)
+            │   │   │       ├── applicationContext.xml  ... (7)
+            │   │   │       ├── spring-mvc.xml  ... (8)
+            │   │   │       └── spring-security.xml  ... (9)
+            │   │   └── i18n  ... (10)
+            │   │       └── application-messages.properties  ... (11)
 
 .. raw:: latex
 
@@ -1148,33 +1148,33 @@ webモジュールの構成
 
 .. code-block:: console
 
-            │   └── webapp
-            │       ├── WEB-INF
-            │       │   ├── tiles  ... (12)
-            │       │   │   └── tiles-definitions.xml
-            │       │   ├── views  ... (13)
-            │       │   │   ├── common
-            │       │   │   │   ├── error  ... (14)
-            │       │   │   │   │   ├── accessDeniedError.jsp
-            │       │   │   │   │   ├── businessError.jsp
-            │       │   │   │   │   ├── dataAccessError.jsp
-            │       │   │   │   │   ├── invalidCsrfTokenError.jsp
-            │       │   │   │   │   ├── missingCsrfTokenError.jsp
-            │       │   │   │   │   ├── resourceNotFoundError.jsp
-            │       │   │   │   │   ├── systemError.jsp
-            │       │   │   │   │   ├── transactionTokenError.jsp
-            │       │   │   │   │   └── unhandledSystemError.html
-            │       │   │   │   └── include.jsp  ... (15)
-            │       │   │   ├── layout  ... (16)
-            │       │   │   │   ├── header.jsp
-            │       │   │   │   └── template.jsp
-            │       │   │   └── welcome
-            │       │   │       └── home.jsp  ... (17)
-            │       │   └── web.xml  ... (18)
-            │       └── resources  ... (19)
-            │           └── app
-            │               └── css
-            │                   └── styles.css  ... (20)
+            │   └── webapp
+            │       ├── WEB-INF
+            │       │   ├── tiles  ... (12)
+            │       │   │   └── tiles-definitions.xml
+            │       │   ├── views  ... (13)
+            │       │   │   ├── common
+            │       │   │   │   ├── error  ... (14)
+            │       │   │   │   │   ├── accessDeniedError.jsp
+            │       │   │   │   │   ├── businessError.jsp
+            │       │   │   │   │   ├── dataAccessError.jsp
+            │       │   │   │   │   ├── invalidCsrfTokenError.jsp
+            │       │   │   │   │   ├── missingCsrfTokenError.jsp
+            │       │   │   │   │   ├── resourceNotFoundError.jsp
+            │       │   │   │   │   ├── systemError.jsp
+            │       │   │   │   │   ├── transactionTokenError.jsp
+            │       │   │   │   │   └── unhandledSystemError.html
+            │       │   │   │   └── include.jsp  ... (15)
+            │       │   │   ├── layout  ... (16)
+            │       │   │   │   ├── header.jsp
+            │       │   │   │   └── template.jsp
+            │       │   │   └── welcome
+            │       │   │       └── home.jsp  ... (17)
+            │       │   └── web.xml  ... (18)
+            │       └── resources  ... (19)
+            │           └── app
+            │               └── css
+            │                   └── styles.css  ... (20)
             └── test
                 ├── java
                 └── resources
@@ -1246,7 +1246,7 @@ domainモジュールの構成
 .. code-block:: console
 
     artifactId-domain
-        ├── pom.xml  ... (1)
+        ├── pom.xml  ... (1)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1266,23 +1266,23 @@ domainモジュールの構成
 
 .. code-block:: console
 
-        └── src
-            ├── main
-            │   ├── java
-            │   │   └── com
-            │   │       └── example
-            │   │           └── project
-            │   │               └── domain  ... (2)
-            │   │                   ├── model
-            │   │                   ├── repository
-            │   │                   └── service
-            │   └── resources
-            │       └── META-INF
-            │           ├── dozer  ... (3)
-            │           └── spring  ... (4)
-            │               ├── artifactId-codelist.xml  ... (5)
-            │               ├── artifactId-domain.xml  ... (6)
-            │               └── artifactId-infra.xml  ... (7)
+        └── src
+            ├── main
+            │   ├── java
+            │   │   └── com
+            │   │       └── example
+            │   │           └── project
+            │   │               └── domain  ... (2)
+            │   │                   ├── model
+            │   │                   ├── repository
+            │   │                   └── service
+            │   └── resources
+            │       └── META-INF
+            │           ├── dozer  ... (3)
+            │           └── spring  ... (4)
+            │               ├── artifactId-codelist.xml  ... (5)
+            │               ├── artifactId-domain.xml  ... (6)
+            │               └── artifactId-infra.xml  ... (7)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1330,16 +1330,16 @@ domainモジュールの構成
 
 .. code-block:: console
 
-            └── test
-                ├── java
-                │   └── com
-                │       └── example
-                │           └── project
-                │               └── domain
-                │                   ├── repository
-                │                   └── service
-                └── resources
-                    └── test-context.xml  ... (8)
+            └── test
+                ├── java
+                │   └── com
+                │       └── example
+                │           └── project
+                │               └── domain
+                │                   ├── repository
+                │                   └── service
+                └── resources
+                    └── test-context.xml  ... (8)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1358,24 +1358,24 @@ domainモジュールの構成
 
 .. code-block:: console
 
-        └── src
-            ├── main
-            │   ├── java
+        └── src
+            ├── main
+            │   ├── java
            (...)
-            │   └── resources
-            │       ├── META-INF
-            │       │   ├── dozer
-            │       │   ├── mybatis  ... (9)
-            │       │   │   └── mybatis-config.xml  ... (10)
-            │       │   └── spring
+            │   └── resources
+            │       ├── META-INF
+            │       │   ├── dozer
+            │       │   ├── mybatis  ... (9)
+            │       │   │   └── mybatis-config.xml  ... (10)
+            │       │   └── spring
            (...)
-            │       └── com
-            │           └── example
-            │               └── project
-            │                   └── domain
-            │                       └── repository  ... (11)
-            │                           └── sample
-            │                               └── SampleRepository.xml  ... (12)
+            │       └── com
+            │           └── example
+            │               └── project
+            │                   └── domain
+            │                       └── repository  ... (11)
+            │                           └── sample
+            │                               └── SampleRepository.xml  ... (12)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1410,12 +1410,12 @@ envモジュールの構成
 .. code-block:: console
 
     artifactId-env
-        ├── configs  ... (1)
-        │   ├── production-server  ... (2)
-        │   │   └── resources
-        │   └── test-server
-        │       └── resources
-        ├── pom.xml  ... (3)
+        ├── configs  ... (1)
+        │   ├── production-server  ... (2)
+        │   │   └── resources
+        │   └── test-server
+        │       └── resources
+        ├── pom.xml  ... (3)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1448,19 +1448,19 @@ envモジュールの構成
 
 .. code-block:: console
 
-        └── src
-            └── main
-                └── resources  ... (4)
-                    ├── META-INF
-                    │   └── spring
-                    │       ├── artifactId-env.xml  ... (5)
-                    │       └── artifactId-infra.properties  ... (6)
-                    ├── database  ... (7)
-                    │   ├── H2-dataload.sql
-                    │   └── H2-schema.sql
-                    ├── dozer.properties  ... (8)
-                    ├── log4jdbc.properties  ... (9)
-                    └── logback.xml  ... (10)
+        └── src
+            └── main
+                └── resources  ... (4)
+                    ├── META-INF
+                    │   └── spring
+                    │       ├── artifactId-env.xml  ... (5)
+                    │       └── artifactId-infra.properties  ... (6)
+                    ├── database  ... (7)
+                    │   ├── H2-dataload.sql
+                    │   └── H2-schema.sql
+                    ├── dozer.properties  ... (8)
+                    ├── log4jdbc.properties  ... (9)
+                    └── logback.xml  ... (10)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1515,10 +1515,10 @@ initdbモジュールの構成
 .. code-block:: console
 
     artifactId-initdb
-        ├── pom.xml  ... (1)
-        └── src
-            └── main
-                └── sqls  ... (2)
+        ├── pom.xml  ... (1)
+        └── src
+            └── main
+                └── sqls  ... (2)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1560,21 +1560,21 @@ Seleniumを使用したE2E(End To End)テスト用のコンポーネントを管
 .. code-block:: console
 
     artifactId-selenium
-        ├── pom.xml  ... (1)
-        └── src
-            └── test  ... (2)
-                ├── java
-                │   └── com
-                │       └── example
-                │           └── project
-                │               └── selenium
-                │                   └── welcome
-                │                       └── HelloTest.java  ... (3)
-                └── resources
+        ├── pom.xml  ... (1)
+        └── src
+            └── test  ... (2)
+                ├── java
+                │   └── com
+                │       └── example
+                │           └── project
+                │               └── selenium
+                │                   └── welcome
+                │                       └── HelloTest.java  ... (3)
+                └── resources
                     └── META-INF
-                        └── spring
-                            ├── selenium.properties  ... (4)
-                            └── seleniumContext.xml  ... (5)
+                        └── spring
+                            ├── selenium.properties  ... (4)
+                            └── seleniumContext.xml  ... (5)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::

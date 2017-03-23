@@ -433,7 +433,7 @@ Spring Security OAuthのアーキテクチャ
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Spring Security OAuthは、OAuth 2.0で定義されているロールのうち、認可サーバ、リソースサーバ、クライアントの3つのロールをSpringアプリケーションとして構築する際に必要となる機能を提供するライブラリである。
 Spring Security OAuthは、Spring Framework(Spring MVC)やSpring Securityが提供する機能と連携して動作する仕組みになっており、Spring Security OAuthが提供するデフォルト実装を適切にコンフィギュレーション（Bean定義）するだけで、認可サーバ、リソースサーバ、クライアントを構築することができる。
-また、Spring FrameworkやSpring Securityと同様に数多くの拡張ポイントが用意されており、Spring Security OAuthが提供するするデフォルト実装で実現できない要件を組み込むことができるようになっている。
+また、Spring FrameworkやSpring Securityと同様に数多くの拡張ポイントが用意されており、Spring Security OAuthが提供するデフォルト実装で実現できない要件を組み込むことができるようになっている。
 
 なお、各ロール間のリクエストに対する認証・認可にはSpring Securityが提供する機能を利用するため、そちらの詳細は\ :doc:`../../Security/Authentication`\ 及び \ :doc:`../../Security/Authorization`\ を参照されたい。 
 

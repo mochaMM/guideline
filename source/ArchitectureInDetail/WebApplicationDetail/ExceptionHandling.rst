@@ -861,7 +861,7 @@ How to use
         .. note:: **アプリケーションログ出力用のappender定義について**
 
              アプリケーションログ用のappenderは、例外出力用に個別に定義するのではなく、フレームワークや、アプリケーションコードで出力するログ用のappenderと、同じものを使うことを推奨する。
-             同じ出力先にすることで、例外の発生するまでの過程が追いやすくなる。
+             同じ出力先にすることで、例外が発生するまでの過程が追いやすくなる。
 
     * - | (3)
       - | 出力レベルを指定する。ExceptionLoggerでは、info, warn, errorの3種類のログを出力しているが、システム要件にあったレベルを指定すること。本ガイドラインでは、infoレベルを推奨する。
@@ -1862,7 +1862,7 @@ Appendix
        | Notification
        | Exception
      - | 結果メッセージ（\ ``ResultMessages``\ ）を保持している例外であることを通知するための抽象例外クラスで、共通ライブラリでは、\ ``BusinessException``\ と、\ ``ResourceNotFoundException``\ が継承している。
-       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作としてはトランザクションはロールバックされる。
+       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作としてトランザクションはロールバックされる。
        | 本例外クラスを継承すると、\ ``ResultMessagesLoggingInterceptor``\ によって、warnレベルのログが出力される。
    * - | (11)
      - | SystemException

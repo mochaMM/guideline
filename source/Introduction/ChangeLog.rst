@@ -138,7 +138,7 @@
         記載内容の修正
 
         * BLOBとCLOBを使用する場合の実装例を修正 (\ `guideline#1775 <https://github.com/terasolunaorg/guideline/issues/1775>`_\ )
-        * ”Lazy Load”を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+        * "Lazy Load"を実行するのタイミングを制御するオプションの説明を修正 (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
 
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
@@ -493,7 +493,7 @@
 
         *  \ ``defaultFetchSize``\の設定方法を追加(\ `guideline#965 <https://github.com/terasolunaorg/guideline/issues/965>`_\ )
         * 遅延読み込み時のデフォルトが \ ``JAVASSIST``\に変更されている点を追加(\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
-        * \ ``ResultHandler``\にGenricsを付与したサンプルコードに修正(\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
+        * \ ``ResultHandler``\にGenericsを付与したサンプルコードに修正(\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
         * 新規追加された\ ``@Flush``\アノテーションを利用したソース例、及び注意点を追加(\ `guideline#915 <https://github.com/terasolunaorg/guideline/issues/915>`_\ )
 
     * -
@@ -890,7 +890,7 @@
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - Spring Framework 4.1対応に伴う修正
 
-        * \ ``@ControllerAdvice``\ に追加された属性(適用対象をControllerを絞り込むための属性)に関する説明を追加。
+        * \ ``@ControllerAdvice``\ に追加された属性(適用対象をControllerで絞り込むための属性)に関する説明を追加。
           修正内容の詳細は、\ `guideline#549のIssue <https://github.com/terasolunaorg/guideline/issues/549>`_\ を参照されたい。
         * \ ``<mvc:view-resolvers>``\ に関する説明を追加。
           修正内容の詳細は、\ `guideline#609のIssue <https://github.com/terasolunaorg/guideline/issues/609>`_\ を参照されたい。
@@ -956,7 +956,7 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
       - 記載内容の追加
 
-        * 513バイトより小さいサイズのエラーをレスポンスするとInternet Explorerで簡易エラーページが表示される可能性がある旨の説明を追加。
+        * 513バイトより小さいサイズのエラーレスポンスを返すとInternet Explorerで簡易エラーページが表示される可能性がある旨の説明を追加。
           追加内容の詳細は、\ `guideline#189のIssue <https://github.com/terasolunaorg/guideline/issues/189>`_\ を参照されたい。
 
         Spring Framework 4.1対応に伴う修正

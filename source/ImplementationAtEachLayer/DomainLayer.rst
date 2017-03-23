@@ -86,7 +86,7 @@
     開発規模が大きいシステムでは、アプリケーションを複数のチームに分担して開発を行う場合がある。
     その場合は、EntityクラスおよびRepositoryを設計するための共通チームを設けることを強く推奨する。
 
-    共通チームを設ける体制が組めない場合は、EntityクラスおよびRepositoryの作成せずに、
+    共通チームを設ける体制が組めない場合は、EntityクラスおよびRepositoryを作成せずに、
     ServiceからO/R Mapper(MyBatisなど)を直接呼び出して、業務データにアクセスする方法を採用することを検討すること。
 
 
@@ -190,7 +190,7 @@ Entityクラスの作成例
     * - | (3)
       - |
       - | t_order_coupon
-      - | １つの注文で使用されたクーポンを保持するテーブル。１つの注文で複数のクーポンが使用された場合はクーポン数分レコードが格納される。クーポンを使用しなかった場合はレコードは格納されない。
+      - | １つの注文で使用されたクーポンを保持するテーブル。１つの注文で複数のクーポンが使用された場合はクーポン数分レコードが格納される。クーポンを使用しなかった場合、レコードは格納されない。
     * - | (4)
       - | マスタ系
       - | m_item
@@ -791,7 +791,7 @@ Serviceクラスから、別のServiceクラスの呼び出しを禁止する理
 
  .. note::
 
-    大規模開発において、サービスイン後の保守性等を考慮して業務ロジックの作りを合わせておきたい場合や、開発者のひとりひとりのスキルがあまり高くない場合などの状況下では、
+    大規模開発において、サービスイン後の保守性等を考慮して業務ロジックの作りを合わせておきたい場合や、開発者のスキルがあまり高くない場合などの状況下では、
     シグネチャを限定するようなインタフェースを設けることも、選択肢の一つとして考えてもよい。
 
     本ガイドラインでは、シグネチャを限定するようなインタフェースを作成することは、特に推奨していないが、
@@ -1430,7 +1430,7 @@ Serviceクラスのメソッド引数と返り値は、以下の点を考慮す�
 
     #. アプリケーション層の実装アーキテクチャに依存するオブジェクトを許可してしまうと、アプリケーション層とドメイン層が密結合になってしまう。
     #. \ ``java.util.Map``\ は、インタフェースとして汎用性が高すぎるため、メソッドの引数や返り値に使うと、
-       どのようなオブジェクが格納されているかわかりづらい。 また、値の管理がキー名で行われるため、以下の問題が発生しやすくなる。
+       どのようなオブジェクトが格納されているかわかりづらい。 また、値の管理がキー名で行われるため、以下の問題が発生しやすくなる。
 
      * 値を設定する処理と値を取得する処理で異なるキー名を指定してしまい、値が取得できない。
      * キー名の変更した場合の影響範囲の把握が困難になる。
@@ -1850,7 +1850,7 @@ Spring Frameworkから提供されている「宣言型トランザクション�
 
     **クラスまたはクラスのメソッドに指定することを推奨する。**
     インタフェースまたはインタフェースのメソッドでない点が、ポイント。
-    理由は、\ `Spring Reference Document -Transaction Management(Using @Transactional)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#transaction-declarative-annotations>`_\ の2個めのTipsを参照されたい。
+    理由は、\ `Spring Reference Document -Transaction Management(Using @Transactional)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#transaction-declarative-annotations>`_\ の2個目のTipsを参照されたい。
 
  .. warning:: **例外発生時のrollbackとcommitのデフォルト動作**
 
@@ -1862,7 +1862,7 @@ Spring Frameworkから提供されている「宣言型トランザクション�
  .. note:: **@Transactionalアノテーションのvalue属性について**
 
     \ ``@Transactional``\ アノテーションにはvalue属性があるが、これは複数のTransaction Managerを宣言した際に、どのTransaction Managerを使うのかを指定する属性である。
-    Transaction Managerが一つの場合は指定は不要である。
+    Transaction Managerが一つの場合、指定は不要である。
     複数のTransaction Managerを使う必要がある場合は、\ `Spring Reference Document -Transaction Management(Multiple Transaction Managers with @Transactional)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#tx-multiple-tx-mgrs-with-attransactional>`_\ を参照されたい。
 
  .. note:: **主要DBのisolationのデフォルトについて**
@@ -1886,7 +1886,7 @@ Spring Frameworkから提供されている「宣言型トランザクション�
 
     * コネクションプールからコネクションを取得する際に、ヘルスチェックを行う。
     * コネクションプールから取得したコネクションの自動コミットを無効にする。
-    * \ ``PlatformTransactionManager``\ として、\ ``DataSourceTransactionManager``\ 又は\ ``JpaTransactionManager``\ を使用する。(\ ``JtaTransactionManager``\ を使用する場合は本事象は発生しない)
+    * \ ``PlatformTransactionManager``\ として、\ ``DataSourceTransactionManager``\ 又は\ ``JpaTransactionManager``\ を使用する。(\ ``JtaTransactionManager``\ を使用する場合、本事象は発生しない)
 
     **[本事象の発生が確認されているJDBCドライバ]**
 
