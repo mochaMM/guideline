@@ -215,11 +215,10 @@ This is a procedure to create a blank project using the Windows command prompt.
 
      .. code-block:: bash
 
-        mvn archetype:generate -B\
-         -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases\
+        mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B\
          -DarchetypeGroupId=org.terasoluna.gfw.blank\
          -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype\
-         -DarchetypeVersion=5.2.0.RELEASE\
+         -DarchetypeVersion=5.3.0.RELEASE\
          -DgroupId=todo\
          -DartifactId=todo\
          -Dversion=1.0.0-SNAPSHOT
@@ -236,11 +235,10 @@ run the following command to create O/R Mapper independent blank project in comm
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
-     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-     -DarchetypeVersion=5.2.0.RELEASE^
+     -DarchetypeVersion=5.3.0.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -255,11 +253,10 @@ run the following command to create a blank project for the MyBatis3. This way t
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
-     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.2.0.RELEASE^
+     -DarchetypeVersion=5.3.0.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -274,11 +271,10 @@ run the following command to create a blank project for the JPA. This way to cre
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
-     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-jpa-archetype^
-     -DarchetypeVersion=5.2.0.RELEASE^
+     -DarchetypeVersion=5.3.0.RELEASE^
      -DgroupId=todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -2995,13 +2991,14 @@ Modification in Entity
 Configure the JPA annotation for mapping the Todo class with TODO table of Database.
 
 .. code-block:: java
-    :emphasize-lines: 6-10,12-14,18-19,26-27
+    :emphasize-lines: 6-11,13-15,19-21,24,27,30-32
 
     package todo.domain.model;
 
     import java.io.Serializable;
     import java.util.Date;
 
+    import javax.persistence.Column;
     import javax.persistence.Entity;
     import javax.persistence.Id;
     import javax.persistence.Table;
@@ -3016,14 +3013,18 @@ Configure the JPA annotation for mapping the Todo class with TODO table of Datab
 
         // (2)
         @Id
+        @Column(name = "todo_id")
         private String todoId;
 
+        @Column(name = "todo_title")
         private String todoTitle;
 
+        @Column(name = "finished")
         private boolean finished;
 
         // (3)
         @Temporal(TemporalType.TIMESTAMP)
+        @Column(name = "created_at")
         private Date createdAt;
 
         public String getTodoId() {
@@ -3992,7 +3993,6 @@ Furthermore, the \ :file:`todo-env.xml` \ is not created while creating blank pr
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
-            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
     </beans>
 
@@ -4204,7 +4204,7 @@ The Spring MVC related definitions are done in \ :file:`spring-mvc.xml`\.
        | If \ ``styles.css`` \ is not stored anywhere, 404 error is returned.
 
        | Here, cache period (3600 seconds = 60 minutes) of static resources is set in \ ``cache-period`` \ attribute.
-       | \ ``cache-period="3600"`` \ is also correct, however, in order to demonstrate that it is 60 minutes, it is better to write as \ ``cache-period="#{60 * 60}"`` \ which uses `SpEL <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/expressions.html#expressions-beandef-xml-based>`_.
+       | \ ``cache-period="3600"`` \ is also correct, however, in order to demonstrate that it is 60 minutes, it is better to write as \ ``cache-period="#{60 * 60}"`` \ which uses `SpEL <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/expressions.html#expressions-beandef-xml-based>`_.
    * - | (5)
      - | Set interceptor that outputs trace log of controller processing. 
        | Set so that it excludes the path under\ ``/resources`` \ from mapping.

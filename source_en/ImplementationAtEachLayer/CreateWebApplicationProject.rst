@@ -98,13 +98,18 @@ Move to the folder where you want to create project.
 
 Create project using `archetype:generate <http://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.html>`_ of `Maven Archetype Plugin <http://maven.apache.org/archetype/maven-archetype-plugin/>`_.
 
+.. note:: **Regarding Maven Archetype Plugin version**
+
+   For Maven Archetype Plugin 3, settings in settins.xml are required while specifying a remote policy other than Maven Central in \ ``archetype:generate``\.
+
+   Hence, Maven Archetype Plugin 2.4 is explicitly used in this guideline so that the exisiting users can continue to use it as before.
+
 .. code-block:: console
 
-    mvn archetype:generate -B^
-     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-multi-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.2.0.RELEASE^
+     -DarchetypeVersion=5.3.0.RELEASE^
      -DgroupId=com.example.todo^
      -DartifactId=todo^
      -Dversion=1.0.0-SNAPSHOT
@@ -118,8 +123,6 @@ Create project using `archetype:generate <http://maven.apache.org/archetype/mave
       - Description
     * - | \-B
       - batch mode (skips interaction)
-    * - | \-DarchetypeCatalog
-      - Specify TERASOLUNA Server Framework for Java (5.x) repository.(Fixed)
     * - | \-DarchetypeGroupId
       - Specify groupId of the blank project.(Fixed)
     * - | \-DarchetypeArtifactId
@@ -155,7 +158,7 @@ If the project creation successes, following type of log will be printed.
 
     (... omit)
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.2.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.3.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.todo
     [INFO] Parameter: artifactId, Value: todo
@@ -564,14 +567,14 @@ Therefore, these could be unnecessary settings while having regular application 
 
 .. code-block:: console
 
-        └── src
-            └── main
-                └── resources
-                    ├── META-INF
+     ﾂꀀﾂꀀ └── src
+     ﾂꀀﾂꀀ     └── main
+     ﾂꀀﾂꀀ         └── resources
+     ﾂꀀﾂꀀ             ├── META-INF
                   (...)
-                    ├── database
-                    │   ├── H2-dataload.sql
-                    │   └── H2-schema.sql
+     ﾂꀀﾂꀀ             ├── database
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ ├── H2-dataload.sql
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ └── H2-schema.sql
 
 .. note::
 
@@ -1038,22 +1041,22 @@ Module that manages the application layer (Web layer) components are explained.
         └── src
             ├── main
             │   ├── java
-            │   │   └── com
-            │   │       └── example
-            │   │           └── project
-            │   │               └── app  ... (2)
-            │   │                   └── welcome
-            │   │                       └── HelloController.java  ... (3)
-            │   ├── resources
-            │   │   ├── META-INF
-            │   │   │   ├── dozer  ... (4)
-            │   │   │   └── spring  ... (5)
-            │   │   │       ├── application.properties  ... (6)
-            │   │   │       ├── applicationContext.xml  ... (7)
-            │   │   │       ├── spring-mvc.xml  ... (8)
-            │   │   │       └── spring-security.xml  ... (9)
-            │   │   └── i18n  ... (10)
-            │   │       └── application-messages.properties  ... (11)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── com
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── example
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ         └── project
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ             └── app  ... (2)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                 └── welcome
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                     └── HelloController.java  ... (3)
+            │ﾂꀀﾂꀀ ├── resources
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── META-INF
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── dozer  ... (4)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── spring  ... (5)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     ├── application.properties  ... (6)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     ├── applicationContext.xml  ... (7)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     ├── spring-mvc.xml  ... (8)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── spring-security.xml  ... (9)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── i18n  ... (10)
+            │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── application-messages.properties  ... (11)
 
 .. raw:: latex
 
@@ -1143,33 +1146,33 @@ Module that manages the application layer (Web layer) components are explained.
 
 .. code-block:: console
 
-            │   └── webapp
-            │       ├── WEB-INF
-            │       │   ├── tiles  ... (12)
-            │       │   │   └── tiles-definitions.xml
-            │       │   ├── views  ... (13)
-            │       │   │   ├── common
-            │       │   │   │   ├── error  ... (14)
-            │       │   │   │   │   ├── accessDeniedError.jsp
-            │       │   │   │   │   ├── businessError.jsp
-            │       │   │   │   │   ├── dataAccessError.jsp
-            │       │   │   │   │   ├── invalidCsrfTokenError.jsp
-            │       │   │   │   │   ├── missingCsrfTokenError.jsp
-            │       │   │   │   │   ├── resourceNotFoundError.jsp
-            │       │   │   │   │   ├── systemError.jsp
-            │       │   │   │   │   ├── transactionTokenError.jsp
-            │       │   │   │   │   └── unhandledSystemError.html
-            │       │   │   │   └── include.jsp  ... (15)
-            │       │   │   ├── layout  ... (16)
-            │       │   │   │   ├── header.jsp
-            │       │   │   │   └── template.jsp
-            │       │   │   └── welcome
-            │       │   │       └── home.jsp  ... (17)
-            │       │   └── web.xml  ... (18)
-            │       └── resources  ... (19)
-            │           └── app
-            │               └── css
-            │                   └── styles.css  ... (20)
+            │ﾂꀀﾂꀀ └── webapp
+            │ﾂꀀﾂꀀ     ├── WEB-INF
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ ├── tiles  ... (12)
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── tiles-definitions.xml
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ ├── views  ... (13)
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── common
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── error  ... (14)
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── accessDeniedError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── businessError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── dataAccessError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── invalidCsrfTokenError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── missingCsrfTokenError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── resourceNotFoundError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── systemError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── transactionTokenError.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── unhandledSystemError.html
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── include.jsp  ... (15)
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── layout  ... (16)
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── header.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── template.jsp
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── welcome
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── home.jsp  ... (17)
+            │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ └── web.xml  ... (18)
+            │ﾂꀀﾂꀀ     └── resources  ... (19)
+            │ﾂꀀﾂꀀ         └── app
+            │ﾂꀀﾂꀀ             └── css
+            │ﾂꀀﾂꀀ                 └── styles.css  ... (20)
             └── test
                 ├── java
                 └── resources
@@ -1240,7 +1243,7 @@ Module that manages the domain layer components are explained.
 .. code-block:: console
 
     artifactId-domain
-        ├── pom.xml  ... (1)
+     ﾂꀀﾂꀀ ├── pom.xml  ... (1)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1260,23 +1263,23 @@ Module that manages the domain layer components are explained.
 
 .. code-block:: console
 
-        └── src
-            ├── main
-            │   ├── java
-            │   │   └── com
-            │   │       └── example
-            │   │           └── project
-            │   │               └── domain  ... (2)
-            │   │                   ├── model
-            │   │                   ├── repository
-            │   │                   └── service
-            │   └── resources
-            │       └── META-INF
-            │           ├── dozer  ... (3)
-            │           └── spring  ... (4)
-            │               ├── artifactId-codelist.xml  ... (5)
-            │               ├── artifactId-domain.xml  ... (6)
-            │               └── artifactId-infra.xml  ... (7)
+     ﾂꀀﾂꀀ └── src
+     ﾂꀀﾂꀀ     ├── main
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ ├── java
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── com
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── example
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ         └── project
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ             └── domain  ... (2)
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                 ├── model
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                 ├── repository
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                 └── service
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ └── resources
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ     └── META-INF
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ      ﾂꀀﾂꀀ ├── dozer  ... (3)
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ      ﾂꀀﾂꀀ └── spring  ... (4)
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ      ﾂꀀﾂꀀ     ├── artifactId-codelist.xml  ... (5)
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ      ﾂꀀﾂꀀ     ├── artifactId-domain.xml  ... (6)
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ      ﾂꀀﾂꀀ     └── artifactId-infra.xml  ... (7)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1324,16 +1327,16 @@ Module that manages the domain layer components are explained.
 
 .. code-block:: console
 
-            └── test
-                ├── java
-                │   └── com
-                │       └── example
-                │           └── project
-                │               └── domain
-                │                   ├── repository
-                │                   └── service
-                └── resources
-                    └── test-context.xml  ... (8)
+     ﾂꀀﾂꀀ     └── test
+     ﾂꀀﾂꀀ         ├── java
+     ﾂꀀﾂꀀ         │ﾂꀀﾂꀀ └── com
+     ﾂꀀﾂꀀ         │ﾂꀀﾂꀀ     └── example
+     ﾂꀀﾂꀀ         │ﾂꀀﾂꀀ         └── project
+     ﾂꀀﾂꀀ         │ﾂꀀﾂꀀ             └── domain
+     ﾂꀀﾂꀀ         │ﾂꀀﾂꀀ                 ├── repository
+     ﾂꀀﾂꀀ         │ﾂꀀﾂꀀ                 └── service
+     ﾂꀀﾂꀀ         └── resources
+     ﾂꀀﾂꀀ             └── test-context.xml  ... (8)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1352,24 +1355,24 @@ Module that manages the domain layer components are explained.
 
 .. code-block:: console
 
-        └── src
-            ├── main
-            │   ├── java
+     ﾂꀀﾂꀀ └── src
+     ﾂꀀﾂꀀ     ├── main
+     ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ ├── java
            (...)
-            │   └── resources
-            │       ├── META-INF
-            │       │   ├── dozer
-            │       │   ├── mybatis  ... (9)
-            │       │   │   └── mybatis-config.xml  ... (10)
-            │       │   └── spring
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── resources
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     ├── META-INF
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ ├── dozer
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ ├── mybatis  ... (9)
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── mybatis-config.xml  ... (10)
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     │ﾂꀀﾂꀀ └── spring
            (...)
-            │       └── com
-            │           └── example
-            │               └── project
-            │                   └── domain
-            │                       └── repository  ... (11)
-            │                           └── sample
-            │                               └── SampleRepository.xml  ... (12)
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── com
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ         └── example
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ             └── project
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                 └── domain
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                     └── repository  ... (11)
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                         └── sample
+     ﾂꀀﾂꀀ  ﾂꀀﾂꀀ │ﾂꀀﾂꀀ                             └── SampleRepository.xml  ... (12)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1404,12 +1407,12 @@ Module that manages the environment dependent configuration files are explained.
 .. code-block:: console
 
     artifactId-env
-        ├── configs  ... (1)
-        │   ├── production-server  ... (2)
-        │   │   └── resources
-        │   └── test-server
-        │       └── resources
-        ├── pom.xml  ... (3)
+     ﾂꀀﾂꀀ ├── configs  ... (1)
+     ﾂꀀﾂꀀ │ﾂꀀﾂꀀ ├── production-server  ... (2)
+     ﾂꀀﾂꀀ │ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── resources
+     ﾂꀀﾂꀀ │ﾂꀀﾂꀀ └── test-server
+     ﾂꀀﾂꀀ │ﾂꀀﾂꀀ     └── resources
+     ﾂꀀﾂꀀ ├── pom.xml  ... (3)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1442,19 +1445,19 @@ Module that manages the environment dependent configuration files are explained.
 
 .. code-block:: console
 
-        └── src
-            └── main
-                └── resources  ... (4)
-                    ├── META-INF
-                    │   └── spring
-                    │       ├── artifactId-env.xml  ... (5)
-                    │       └── artifactId-infra.properties  ... (6)
-                    ├── database  ... (7)
-                    │   ├── H2-dataload.sql
-                    │   └── H2-schema.sql
-                    ├── dozer.properties  ... (8)
-                    ├── log4jdbc.properties  ... (9)
-                    └── logback.xml  ... (10)
+     ﾂꀀﾂꀀ └── src
+     ﾂꀀﾂꀀ     └── main
+     ﾂꀀﾂꀀ         └── resources  ... (4)
+     ﾂꀀﾂꀀ             ├── META-INF
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ └── spring
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ     ├── artifactId-env.xml  ... (5)
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ     └── artifactId-infra.properties  ... (6)
+     ﾂꀀﾂꀀ             ├── database  ... (7)
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ ├── H2-dataload.sql
+     ﾂꀀﾂꀀ             │ﾂꀀﾂꀀ └── H2-schema.sql
+     ﾂꀀﾂꀀ             ├── dozer.properties  ... (8)
+     ﾂꀀﾂꀀ             ├── log4jdbc.properties  ... (9)
+     ﾂꀀﾂꀀ             └── logback.xml  ... (10)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1507,10 +1510,10 @@ Module that manages the SQL file to initialize the database is explained.
 .. code-block:: console
 
     artifactId-initdb
-        ├── pom.xml  ... (1)
-        └── src
-            └── main
-                └── sqls  ... (2)
+     ﾂꀀﾂꀀ ├── pom.xml  ... (1)
+     ﾂꀀﾂꀀ └── src
+     ﾂꀀﾂꀀ     └── main
+     ﾂꀀﾂꀀ         └── sqls  ... (2)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1530,7 +1533,7 @@ Module that manages the SQL file to initialize the database is explained.
       - Directory for storing the database initialization SQL files.
 
         It is an empty directory at the time of creation.
-        For how to create, Refer `Sample application of initdb project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.2.0.RELEASE/terasoluna-tourreservation-initdb/src/main/sqls>`_.
+        For how to create, Refer `Sample application of initdb project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.3.0.RELEASE/terasoluna-tourreservation-initdb/src/main/sqls>`_.
 
 .. note::
 
@@ -1552,21 +1555,21 @@ Module that manages the E2E (End To End) testing components used in Selenium exp
 .. code-block:: console
 
     artifactId-selenium
-        ├── pom.xml  ... (1)
-        └── src
-            └── test  ... (2)
-                ├── java
-                │   └── com
-                │       └── example
-                │           └── project
-                │               └── selenium
-                │                   └── welcome
-                │                       └── HelloTest.java  ... (3)
-                └── resources
+     ﾂꀀﾂꀀ ├── pom.xml  ... (1)
+     ﾂꀀﾂꀀ └── src
+     ﾂꀀﾂꀀ     └── test  ... (2)
+     ﾂꀀﾂꀀ         ├── java
+                │ﾂꀀﾂꀀ └── com
+                │ﾂꀀﾂꀀ     └── example
+                │ﾂꀀﾂꀀ         └── project
+                │ﾂꀀﾂꀀ             └── selenium
+                │ﾂꀀﾂꀀ                 └── welcome
+                │ﾂꀀﾂꀀ                     └── HelloTest.java  ... (3)
+     ﾂꀀﾂꀀ         └── resources
                     └── META-INF
-                        └── spring
-                            ├── selenium.properties  ... (4)
-                            └── seleniumContext.xml  ... (5)
+     ﾂꀀﾂꀀ                 └── spring
+     ﾂꀀﾂꀀ                     ├── selenium.properties  ... (4)
+     ﾂꀀﾂꀀ                     └── seleniumContext.xml  ... (5)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1586,7 +1589,7 @@ Module that manages the E2E (End To End) testing components used in Selenium exp
     * - | (2)
       - Directory that contains the configuration files and testing components.
 
-        For how to create, Refer `Sample application of selenium project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.2.0.RELEASE/terasoluna-tourreservation-selenium>`_.
+        For how to create, Refer `Sample application of selenium project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.3.0.RELEASE/terasoluna-tourreservation-selenium>`_.
 
     * - | (3)
       - Sample test class using Selenium WebDriver.
@@ -1634,8 +1637,8 @@ The hierarchical structure of the project indicated below which is created in Ma
         The project created in Maven Archetype has become a multi-module configuration,
         parent project and each sub-module have a cross-reference relationship.
 
-        In the project created in version 5.2.0.RELEASE Maven Archetype,
-        [org.terasoluna.gfw:terasoluna-gfw-parent:5.2.0.RELEASE] is specified as a parent project.
+        In the project created in version 5.3.0.RELEASE Maven Archetype,
+        [org.terasoluna.gfw:terasoluna-gfw-parent:5.3.0.RELEASE] is specified as a parent project.
     * - | (2)
       - TERASOLUNA Server Framework for Java (5.x) Parent project.
 
