@@ -11,11 +11,11 @@ Change Log
       - Modification details
 
 
-    * - 2017-02-28
+    * - 2017-03-17
       - \-
-      - 5.3.0 RELEASE version published
+      - 5.2.1 RELEASE version published
 
-        * For details of update, refer \ `Issue list of 5.3.0 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
+        * For details of update, refer \ `Issue list of 5.2.1 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
 
     * -
       - General
