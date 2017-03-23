@@ -47,7 +47,7 @@ Controllerの実装
 #. | **処理結果に対応するView名を返却する。**
    | Controllerでは処理結果に対する描画処理を実装せず、描画処理はJSP等のViewで実装する。
    | Controllerでは描画処理が実装されているViewのView名の返却のみ行う。
-   | View名に対応するViewの解決は、Spring Frameworkより提供されている\ ``ViewResolver``\ によって行われ、処理結果に対応するView(JSPなど）が呼び出される仕組みになっている。
+   | View名に対応するViewの解決は、Spring Frameworkより提供されている\ ``ViewResolver``\ によって行われ、処理結果に対応するView(JSPなど)が呼び出される仕組みになっている。
 
 .. figure:: images_ApplicationLayer/application_logic-of-controller.png
    :alt: responsibility of logic
@@ -889,7 +889,7 @@ Backボタンを押下するとPOSTメソッドでHTTPパラメータが送信�
     "redirect:/xxx"を返却すると"/xxx"へリダイレクトさせることができる。
 
 .. warning::
-    PRGパターンとすることで、ブラウザのF5ボタン押下時のリロードによる二重送信を防ぐ事はできるが、二重送信の対策としてはとしては十分ではない。
+    PRGパターンとすることで、ブラウザのF5ボタン押下時のリロードによる二重送信を防ぐ事はできるが、二重送信の対策としては十分ではない。
     二重送信の対策としては、共通部品として提供しているTransactionTokenCheckを行う必要がある。
     TransactionTokenCheckの詳細については :doc:`../ArchitectureInDetail/WebApplicationDetail/DoubleSubmitProtection` を参照されたい。
 
@@ -1285,7 +1285,7 @@ URLのパスから値を取得する
 
  .. note::
     必須パラメータを指定しないでアクセスした場合は、\ ``org.springframework.web.bind.MissingServletRequestParameterException``\ がスローされ、デフォルトの動作は400(Bad Request)が応答される。
-    ただし、defaultValue属性を指定している場合は例外はスローされず、defaultValue属性で指定した値が渡る。
+    ただし、defaultValue属性を指定している場合、例外はスローされず、defaultValue属性で指定した値が渡る。
 
  .. note::
     バインドする引数の型はString以外でも良い。型が合わない場合は\ ``org.springframework.beans.TypeMismatchException``\ がスローされ、デフォルトの動作は400(Bad Request)が応答される。
@@ -2091,7 +2091,7 @@ Controllerで実装すべき処理を以下に4つ示す。
    * - | (1)
      - | Serviceの引数となるドメインオブジェクトを生成し、フォームオブジェクトにバインドされている値を反映する。
    * - | (2)
-     - Serviceのメソッドを呼び出し業務処理を実行する。
+     - Serviceのメソッドを呼び出し、業務処理を実行する。
    * - | (3)
      - 業務処理から返却されたデータを \ ``Model``\ に追加する。
 
@@ -2150,7 +2150,7 @@ Controllerで実装すべき処理を以下に4つ示す。
      - InjectしたHelperクラスのメソッドを呼び出すことで、ドメインオブジェクトへの値の反映を行っている。
        Helperクラスに処理を委譲することで、Controllerの実装をシンプルな状態に保つことができる。
    * - | (3)
-     - ドメインオブジェクトを生成した後に、Serviceクラスのメソッド呼び出し業務処理を実行している。
+     - ドメインオブジェクトを生成した後にServiceクラスのメソッド呼び出し、業務処理を実行している。
 
  .. note::
     Helperクラスに処理を委譲する以外の方法として、Bean変換機能を使用する方法がある。
@@ -2527,7 +2527,7 @@ form-backing beanの初期化は、\ ``@ModelAttribute``\ アノテーション�
     ModelAttributeメソッドはController内に複数定義することができる。各メソッドはControllerのハンドラメソッドが呼び出される前に毎回実行される。
 
 .. warning::
-    ModelAttributeメソッドはリクエスト毎にメソッドが実行されるため、特定のリクエストの時のみに必要なオブジェクトをModelAttributeメソッドを使って生成すると、無駄なオブジェクトの生成及び初期化処理が行われる点に注意すること。
+    ModelAttributeメソッドはリクエストごとにメソッドが実行されるため、特定のリクエストの時のみに必要なオブジェクトについてModelAttributeメソッドを使って生成すると、無駄なオブジェクトの生成及び初期化処理が行われる点に注意すること。
     特定のリクエストのみで必要なオブジェクトについては、ハンドラメソッド内で生成し\ ``Model``\ に追加する方法にすること。
 
 |

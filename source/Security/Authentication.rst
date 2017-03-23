@@ -157,7 +157,7 @@ Spring Securityは、以下のような流れでフォーム認証を行う。
       - | \ ``UsernamePasswordAuthenticationFilter``\ クラスは、リクエストパラメータから資格情報を取得して、\ ``AuthenticationManager``\ の認証処理を呼び出す。
     * - | (3)
       - | \ ``UsernamePasswordAuthenticationFilter``\ クラスは、\ ``AuthenticationManager``\ から返却された認証結果をハンドリングする。
-        | 認証処理が成功した場合は \ ``AuthenticationSuccessHandler``\ のメソッドを、認証処理が失敗した場合は\ ``AuthenticationFailureHandler``\ のメソッドを呼び出し画面遷移を行う。
+        | 認証処理が成功した場合は \ ``AuthenticationSuccessHandler``\ のメソッドを呼び出し、認証処理が失敗した場合は\ ``AuthenticationFailureHandler``\ のメソッドを呼び出し、画面遷移を行う。
 
 |
 
@@ -366,7 +366,7 @@ Spring Securityのデフォルトの動作では、認証前にアクセスを�
 認証したユーザーにリダイレクト先へのアクセス権があればページが表示され、アクセス権がなければ認可エラーとなる。
 この動作を実現するために使用されるのが、\ ``SavedRequestAwareAuthenticationSuccessHandler``\ クラスである。
 
-ログインフォームを明示的に表示してから認証処理を行った後の遷移先はSpring Securityのデフォルトの設定では、
+ログインフォームを明示的に表示してから認証処理を行った後の遷移先は、Spring Securityのデフォルトの設定では
 Webアプリケーションのルートパス(\ ``"/"``\ )となっているため、認証成功時はWebアプリケーションのルートパスにリダイレクトされる。
 
 |
@@ -523,7 +523,7 @@ UserDetailsの作成
 
 .. note:: **Spring Securityが提供する資格情報**
 
-    Spring Securityは、資格情報(ユーザー名とパスワード)とユーザーの状態を保持するための実装クラス(\ ``org.springframework.security.core.userdetails.User``\ )を提供してるが、
+    Spring Securityは、資格情報(ユーザー名とパスワード)とユーザーの状態を保持するための実装クラス(\ ``org.springframework.security.core.userdetails.User``\ )を提供しているが、
     このクラスは認証処理に必要な情報しか保持することができない。
     一般的なアプリケーションでは、認証処理で使用しないユーザーの情報（ユーザーの氏名など）も必要になるケースが多いため、\ ``User``\ クラスをそのまま利用できるケースは少ない。
 
@@ -878,7 +878,7 @@ Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラ
         | 詳細は、\ `StandardPasswordEncoderのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/password/StandardPasswordEncoder.html>`_\ を参照されたい。
     * - | \ ``NoOpPasswordEncoder``\
       - | ハッシュ化しない実装クラス。
-        | テスト用のクラスなであり、実際のアプリケーションで使用することはない。
+        | テスト用のクラスであり、実際のアプリケーションで使用することはない。
 
 本節では、Spring Securityが利用を推奨している\ ``BCryptPasswordEncoder``\ の使い方について説明する。
 
@@ -967,7 +967,7 @@ BCryptPasswordEncoder
       - | \ ``PasswordEncoder``\ をインジェクションする。
     * - | (2)
       - | インジェクションした\ ``PasswordEncoder``\ のメソッドを呼び出す。
-        | ここでは、データストアに保存するパスワードをハッシュ化していいる。
+        | ここでは、データストアに保存するパスワードをハッシュ化している。
 
 .. _SpringSecurityAuthenticationPasswordHashSalt:
 
@@ -1035,7 +1035,7 @@ Spring Securityは、Spring Frameworkが提供しているイベント通知の�
 
     Spring 4.1までは\ ``ApplicationListener``\ インタフェースの実装クラスを作成してイベントを受け取る必要があったが、
     Spring 4.2からはPOJOに\ ``@EventListener``\ を付与したメソッドを実装するだけでイベントを受け取ることが可能である。
-    なお、Spring 4.2以降でも、従来通り\ ``ApplicationListener``\ インタフェースの実装クラスを作成してイベントを受け取ることもで可能である。
+    なお、Spring 4.2以降でも、従来通り\ ``ApplicationListener``\ インタフェースの実装クラスを作成してイベントを受け取ることも可能である。
 
 Spring Security使用しているイベントは、認証が成功したことを通知するイベントと認証が失敗したことを通知するイベントの2種類に分類される。
 以下にSpring Securityが用意しているイベントクラスを説明する。
@@ -1061,7 +1061,7 @@ Spring Security使用しているイベントは、認証が成功したこと�
         なお、このイベントをハンドリングした後の後続処理でエラーが発生する可能性がある点に注意されたい。
     * - \ ``SessionFixationProtectionEvent``\
       - セッション固定攻撃対策の処理(セッションIDの変更処理)が成功したことを通知するためのイベントクラス。
-        このイベントをハンドリングすると、変更後のセッションIDを検知することがで可能になる。
+        このイベントをハンドリングすると、変更後のセッションIDを検知することが可能になる。
     * - \ ``InteractiveAuthenticationSuccessEvent``\
       - 認証処理がすべて成功したことを通知するためのイベントクラス。
         このイベントをハンドリングすると、画面遷移を除くすべての認証処理が成功したことを検知することが可能になる。
@@ -1141,7 +1141,7 @@ Spring Security使用しているイベントは、認証が成功したこと�
 ログアウト
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Spring Securityは、以下のような流れでログアウト処理を行いう。
+Spring Securityは、以下のような流れでログアウト処理を行う。
 
 .. figure:: ./images_Authentication/AuthenticationLogout.png
     :width: 100%
@@ -1266,7 +1266,7 @@ Spring Securityのデフォルトの動作では、\ ``"/logout"``\ というパ
 
 .. note:: **CSRFトークンの送信**
 
-    CSRF対策を有効にしている場合は、CSRF対策用のトークンをPOSTメソッドを使って送信する必要がる。
+    CSRF対策を有効にしている場合は、CSRF対策用のトークンをPOSTメソッドで送信する必要がある。
 
 |
 
@@ -1841,7 +1841,7 @@ Spring Securityのデフォルトでは、ログアウト処理を実行する�
       * システムエラー発生時に認証情報をクリアする。
     
     ここでは、共通ライブラリの例外ハンドリング機能を使用してシステム例外発生時に認証情報をクリアする例を説明する。
-    例外ハンドリング機能の詳細についは「\ :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`\」を参照されたい。
+    例外ハンドリング機能の詳細については「\ :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`\」を参照されたい。
 
       .. code-block:: java
 
@@ -2018,7 +2018,7 @@ LogoutSuccessHandlerの適用
 認証時の入力チェック
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-DBサーバへの負荷軽減等で、認証ページおける、あきらかな入力誤りに対しては、事前にチェックを行いたい場合がある。
+DBサーバへの負荷軽減等で、認証ページにおける、あきらかな入力誤りに対しては、事前にチェックを行いたい場合がある。
 このような場合は、Bean Validationを使用した入力チェックも可能である。
 
 Bean Validationによる入力チェック
@@ -2539,10 +2539,10 @@ Authentication Filterの作成
     * - | (6')
       - | Spring Securityが生成する\ ``AuthenticationManager``\ に対して、拡張した\ ``AuthenticationProvider``\ (\ ``CompanyIdUsernamePasswordAuthenticationProvider``\ )を設定する。
     * - | (7)
-      - | \ ``sessionAuthenticationStrategy``\ プロパティに、認証成功時のセッションの取扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを指定する。
+      - | \ ``sessionAuthenticationStrategy``\ プロパティに、認証成功時のセッションの取り扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを指定する。
         | 
     * - | (7')
-      - | 認証成功時のセッションの取扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを定義する。
+      - | 認証成功時のセッションの取り扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを定義する。
         | 
         | ここでは、Spring Securityから提供されている、
          
@@ -2704,7 +2704,7 @@ ShaPasswordEncoderの利用
       - | パスワードをハッシュ化する場合は、\ ``encodePassword``\ メソッドを使用する。
         | メソッドの引数には、パスワード、ソルト文字列の順で指定する。
     * - | (2)
-      - | パスワードを照合する場合ば、\ ``isPasswordValid``\ メソッドを使用する。
+      - | パスワードを照合する場合は、\ ``isPasswordValid``\ メソッドを使用する。
         | メソッドの引数には、ハッシュ化済みのパスワード、平文のパスワード、ソルト文字列の順で指定する。
 
 |

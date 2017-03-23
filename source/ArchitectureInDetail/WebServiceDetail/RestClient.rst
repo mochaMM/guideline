@@ -280,7 +280,7 @@ Spring Frameworkが提供するHTTPクライアントである。
 
 が定義されており、Spring Frameworkはデフォルト実装として\ ``org.springframework.web.client.DefaultResponseErrorHandler``\ を提供している。
 
-\ ``DefaultResponseErrorHandler``\ は、サーバから応答されたHTTPのステータスコードの値によって以下のようなエラー処理を行う。
+\ ``DefaultResponseErrorHandler``\ は、サーバから応答されたHTTPステータスコードの値によって以下のようなエラー処理を行う。
 
 * レスポンスコードが正常系(2xx)の場合は、エラー処理は行わない。
 * レスポンスコードがクライアントエラー系(4xx)の場合は、\ ``org.springframework.web.client.HttpClientErrorException``\ を発生させる。
@@ -530,7 +530,7 @@ HTTPステータスコード、レスポンスヘッダ、レスポンスボデ�
 
 .. note:: **ResponseEntityとは**
 
-    ``ResponseEntity``\ はHTTPレスポンスを表すクラスで、HTTPステータスコード、レスポンスヘッダ、レスポンスボティの情報を取得することができる。
+    ``ResponseEntity``\ はHTTPレスポンスを表すクラスで、HTTPステータスコード、レスポンスヘッダ、レスポンスボディの情報を取得することができる。
     詳細は\ `ResponseEntity <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/http/ResponseEntity.html>`_\ のJavadocを参照されたい。
 
 
@@ -1680,7 +1680,7 @@ How to extend
       - | \ ``ClientHttpRequestInterceptor``\ インタフェースを実装する。
     * - | (2)
       - | リクエストする前に行いたい共通処理を実装する。
-        | 上記の実装例では、リクエストヘッとリクエストボディの内容をログに出力している。
+        | 上記の実装例では、リクエストヘッダーとリクエストボディの内容をログに出力している。
     * - | (3)
       - | \ ``intercept``\ メソッドの引数として受け取った\ ``ClientHttpRequestExecution``\ の\ ``execute``\ メソッドを実行し、リクエストの送信を実行する。
     * - | (4)
@@ -2062,7 +2062,7 @@ HTTP Proxyサーバの設定方法
 SimpleClientHttpRequestFactoryを使用したHTTP Proxyサーバの設定方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-資格情報が不要なHTTP Proxyサーバの接続先の指定は、\ ``RestTemplate``\ でデフォルトで使用されている\ ``SimpleClientHttpRequestFactory``\ に指定することが可能である。
+資格情報が不要なHTTP Proxyサーバの接続先の指定については、\ ``RestTemplate``\ がデフォルトで使用する\ ``SimpleClientHttpRequestFactory``\ で指定することが可能である。
 
 **Bean定義ファイル**
 

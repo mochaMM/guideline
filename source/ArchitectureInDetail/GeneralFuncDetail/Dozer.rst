@@ -438,7 +438,7 @@ src/main/resources/META-INF/dozerフォルダ内に、(任意の値)-mapping.xml
 すなわち前述の例では\ ``Source``\ オブジェクトから\ ``Destination``\ オブジェクトへのマッピングを行ったが、
 \ ``Destination``\ オブジェクトから\ ``Source``\ オブジェクトのマッピングも可能である。
 
-単方向をのみを指定したい場合は、マッピング・フィールド定義に、\ ``<mapping>``\ タグの\ ``type``\ 属性に\ ``"one-way"``\ を設定する。
+単方向のみを指定したい場合は、マッピング・フィールド定義に、\ ``<mapping>``\ タグの\ ``type``\ 属性に\ ``"one-way"``\ を設定する。
 
 .. code-block:: xml
 
@@ -628,7 +628,7 @@ Nestしたフィールドのマッピング
 \ ``Employee``\ の中の\ ``department`` フィールドにも、新規に作成された\ ``Department``\ インスタンスが設定され、
 \ ``EmployeeForm``\ の\ ``deptId``\ が、コピーされる。
 
-下記ように\ ``Employee``\ の中の\ ``department`` フィールドに既に\ ``Department``\ オブジェクトが設定されている場合は、
+下記のように\ ``Employee``\ の中の\ ``department`` フィールドに既に\ ``Department``\ オブジェクトが設定されている場合は、
 新規インスタンスは作成されず、既存の\ ``Department``\ オブジェクトの\ ``deptId``\ フィールドに、
 \ ``EmployeeForm``\ の\ ``deptId``\ がコピーされる。
 
@@ -1628,7 +1628,7 @@ map-idを指定しない場合はこの設定は適用されず、全フィー�
     assert(destination.getDate().equals(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse("2013-10-10 11:11:11.111")));
 
 
-| 日付形式は、個別のマッピング定義毎に設定するよりも、プロジェクトで一括で設定したいケースが多い。
+| 日付形式は、個別のマッピング定義毎に設定するよりも、プロジェクトで一括して設定したいケースが多い。
 | その場合はDozerのGlobal configurationファイルで設定することを推奨する。
 | その場合、アプリケーション全体のマッピングで設定された日付形式が、適用される。
 

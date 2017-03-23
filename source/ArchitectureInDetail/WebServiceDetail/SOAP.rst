@@ -94,7 +94,7 @@ Spring FrameworkのJAX-WS連携機能について
       - | [クライアント] ControllerがServiceを呼び出す。
         | 通常の呼び出しと変更点は特にない。
     * - | (2)
-      - | [クライアント] ServiceがSOAPサーバ提供側が用意したWebServiceインターフェースを呼び出す。
+      - | [クライアント] ServiceがSOAPサーバ提供側で用意したWebServiceインターフェースを呼び出す。
         | この図では、ServiceがWebServiceインターフェースを呼び出しているが、要件に応じてControllerから直接WebServiceインターフェースを呼び出してもよい。
     * - | (3)
       - | [クライアント] WebServiceインターフェースが呼び出されると実体として「動的プロキシ(Dynamic Proxy)」(以下「プロキシ」)が呼び出される。
@@ -125,7 +125,7 @@ Spring FrameworkのJAX-WS連携機能について
 
 .. note::
 
-    Springでは、ドキュメントドリブンでWebサービスを開発するSpring Web Servicesをが提供されているが、ここでは扱わない。
+    Springでは、ドキュメントドリブンでWebサービスを開発するSpring Web Servicesが提供されているが、ここでは扱わない。
     詳細は\ `Spring Web Services <http://projects.spring.io/spring-ws/>`_\ を参照されたい。
 
 .. note::
@@ -1142,7 +1142,7 @@ Serviceからスローされる例外は以下を想定している。必要に�
 
     * - 例外名
       - 内容
-    * - | \ ``org.springframework.security.access.AccessDeniedException``\		
+    * - | \ ``org.springframework.security.access.AccessDeniedException``\
       - | 認可エラー時の例外
     * - | \ ``javax.validation.ConstraintViolationException``\
       - | 入力チェックエラー時の例外
@@ -1848,7 +1848,7 @@ SOAPサーバ用にプロジェクトの設定を変更する
 | SOAPサーバを作成する場合、ブランクプロジェクトにmodelプロジェクトとwebserviceプロジェクトを追加することを推奨する。
 | 以下にその方法を記述する。
 
-| ブランクプロジェクトは初期状態は以下の構成になっている。
+| ブランクプロジェクトの初期状態は以下の構成になっている。
 | なお、artifactIdにはブランクプロジェクト作成時に指定したartifactIdが設定される。
 
 .. code-block:: console
@@ -2396,7 +2396,7 @@ wsimportの使い方
       - 説明
     * - | (1)
       - | wsimportの引数としてWSDLのURLを指定する。
-        | オプションとして以下を使用をする。
+        | オプションとして以下を使用する。
         
           * -keep ソースも出力する。
           * -p 出力するソースのパッケージを指定する。

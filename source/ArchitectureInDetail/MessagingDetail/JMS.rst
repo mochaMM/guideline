@@ -542,7 +542,7 @@ How to use
         | すると処理効率が下がり、性能劣化の原因になるので注意すること。
     * - | (4)
       - | \ ``JmsTemplate``\ をBean定義する。
-        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼出し）を代行する。
+        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼び出し）を代行する。
         | 設定可能な属性に関しては、下記の\ ``JmsTemplate``\ の属性一覧を参照されたい。
     * - | (5)
       - | \ ``JmsMessagingTemplate``\ をBean定義する。同期送信処理を代行する\ ``JmsTemplate``\ をインジェクションする。
@@ -771,7 +771,7 @@ How to use
 
 \ ``JmsMessagingTemplate``\ の\ ``convertAndSend``\ メソッドの引数にKey-Value形式のヘッダ属性と値を指定することで、ヘッダ属性を編集して同期送信することが可能である。
 ヘッダの詳細については、\ `javax.jms.Messages  <https://docs.oracle.com/javaee/7/api/javax/jms/Message.html>`_\ を参照されたい。
-送信、応答メッセージなどを紐付ける役割の\ ``JMSCorrelationID``\ を同期送信時に指定する場合の実装例を示す。
+送信、応答メッセージなどを紐づける役割の\ ``JMSCorrelationID``\ を同期送信時に指定する場合の実装例を示す。
 
 
 - :file:`[projectName]-domain/src/main/java/com/example/domain/service/todo/TodoServiceImpl.java`
@@ -1196,7 +1196,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
     * - 
       - \ ``concurrency``\
-      - | \ ``DefaultMessageListenerContainer``\ が管理する各リスナーメソッドの並列数の上限を指定する。
+      - | \ ``DefaultMessageListenerContainer``\ が管理するリスナーメソッドごとの並列数に対する上限を指定する。
         | \ ``concurrency``\ 属性のデフォルトは1である。
         | 並列数の下限と上限を指定することも可能である。例えば、下限を5、上限を10とする場合は"5-10"と指定する。
         | リスナーメソッドの並列数が設定した上限値に達した場合は、並列に処理されず待ち状態となる。
@@ -1374,7 +1374,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
      * - 項番
        - 説明
      * - | (1)
-       - | \ ``@SendTo``\ アノテーションを定義することで、処理結果の送信先のデフォルトのDestinationを指定できる。
+       - | \ ``@SendTo``\ アノテーションを定義することで、処理結果の送信先に対するデフォルトのDestinationを指定できる。
      * - | (2)
        - | \ ``@SendTo``\ アノテーションに定義したDestinationに送信するデータを返却する。
          | 許可されている返却値の型は\ ``org.springframework.messaging.Message``\ 、\ ``javax.jms.Message``\ 、\ ``String``\ 、\ ``byte``\ 配列、\ ``Map``\ 、\ ``Serializable``\ インタフェースを実装したクラス である。
@@ -2175,7 +2175,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         | すると処理効率が下がり、性能劣化の原因になるので注意すること。
     * - | (4)
       - | \ ``JmsTemplate``\ をBean定義する。
-        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼出し）を代行する。
+        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼び出し）を代行する。
         | 設定可能な属性に関しては、下記の\ ``JmsTemplate``\ の属性一覧を参照されたい。
     * - | (5)
       - | \ ``JmsMessagingTemplate``\ をBean定義する。同期受信処理を代行する\ ``JmsTemplate``\ をインジェクションする。
@@ -2308,7 +2308,7 @@ JMSプロバイダに依存する設定
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 JMSプロバイダごとに設定が異なる場合がある。
-以下にJMSプロバイダごとの設定についてを説明する。
+以下にJMSプロバイダごとの設定について説明する。
 
 
 Apache ActiveMQを利用する場合

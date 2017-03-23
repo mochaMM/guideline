@@ -238,8 +238,8 @@ Springのコンテキストで管理されたbean名を用いて実行するView
 
         @RequestMapping(value = "home", params= "pdf", method = RequestMethod.GET)
         public String homePdf(Model model) {
-        	model.addAttribute("serverTime", new Date());
-        	return "samplePdfView";   // (1)
+            model.addAttribute("serverTime", new Date());
+            return "samplePdfView";   // (1)
         }
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -268,7 +268,7 @@ Excelファイルのダウンロード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | EXCELファイルのレンダリングには、Springから提供されている、
 | \ ``org.springframework.web.servlet.view.document.AbstractXlsxView``\ を継承したクラスを作成する必要がある。
-| コントローラでEXCELファイルをダウンロードを実装するための手順は、以下で説明する。
+| コントローラでEXCELファイルをダウンロードさせるための実装手順は、以下で説明する。
 
 カスタムViewの実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -372,8 +372,8 @@ ViewResolverの定義
 
         @RequestMapping(value = "home", params= "excel", method = RequestMethod.GET)
         public String homeExcel(Model model) {
-        	model.addAttribute("serverTime", new Date());
-        	return "sampleExcelView";  // (1)
+            model.addAttribute("serverTime", new Date());
+            return "sampleExcelView";  // (1)
         }
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
