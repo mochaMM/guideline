@@ -1552,7 +1552,7 @@ The code implemented according to the implementation method mentioned above is d
                if (!passwordEncoder.matches(newPassword, currentPassword)) {
                    return true;
                } else {
-       	           context.disableDefaultConstraintViolation();
+                   context.disableDefaultConstraintViolation();
                    context.buildConstraintViolationWithTemplate(message)
                            .addPropertyNode(newPasswordPropertyName).addConstraintViolation();
                    return false;
@@ -1584,7 +1584,7 @@ The code implemented according to the implementation method mentioned above is d
                if (result.isValid()) { // (10)
                    return true;
                } else {
-       	           context.disableDefaultConstraintViolation();
+                   context.disableDefaultConstraintViolation();
                    context.buildConstraintViolationWithTemplate(
                            encodedPasswordHistoryValidator.getMessages(result).get(0)) // (11)
                            .addPropertyNode(newPasswordPropertyName).addConstraintViolation();
@@ -2729,7 +2729,7 @@ Code description
        @Service
        @Transactional
        public class AuthenticationEventSharedServiceImpl implements
-       		AuthenticationEventSharedService {
+           AuthenticationEventSharedService {
 
            // omitted
            
@@ -3052,7 +3052,7 @@ Implementation method
 | While reissuing the password, an alternative to password is required to verify that the user is the owner of the account.
 | In this application, URL of password reissue screen and confidential information are used as the information to verify the user.
 | Create a random string and add it to URL to make the password reissue screen URL unique and difficult to guess. Create confidential information which is in the form of a random string and use it for authentication as a measure against accidental leakage of URL.
-| Create two random strings by different ways so that that it becomes impossible to guess a string from the other string.
+| Create two random strings by different ways so that it becomes impossible to guess a string from the other string.
 | In particular, fulfil the requirements by implementing the following process.
 
 * Creating and saving authentication information for password reissue
@@ -4337,9 +4337,9 @@ Code description
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
        <mapper
-       	namespace="org.terasoluna.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository">
+        namespace="org.terasoluna.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository">
 
-       	<select id="countByToken" resultType="_int">
+        <select id="countByToken" resultType="_int">
            <![CDATA[
                SELECT
                    COUNT(*)
@@ -4348,7 +4348,7 @@ Code description
                WHERE
                    token = #{token}
            ]]>
-       	</select>
+        </select>
 
         <insert id="create" parameterType="FailedPasswordReissue">
            <![CDATA[
@@ -4362,14 +4362,14 @@ Code description
            ]]>
         </insert>
 
-       	<delete id="deleteByToken">
+        <delete id="deleteByToken">
            <![CDATA[
-           	DELETE FROM
-           		failed_password_reissue
-           	WHERE
-           		token = #{token}
+            DELETE FROM
+                failed_password_reissue
+            WHERE
+                token = #{token}
            ]]>
-       	</delete>
+        </delete>
 
        </mapper>
 

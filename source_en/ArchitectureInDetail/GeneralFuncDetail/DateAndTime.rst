@@ -318,7 +318,7 @@ Interoperability of each class of Date and Time API
    OffsetTime offsetTime =  OffsetTime.now();
    
    // 2015-12-25T12:30:11.567+09:00
-   OffsetDateTime OffsetDateTime = offsetTime.atDate(LocalDate.of(2015, 12, 25));
+   OffsetDateTime offsetDateTime = offsetTime.atDate(LocalDate.of(2015, 12, 25));
 
 2. Conversion from ``java.time.OffsetDateTime`` to ``java.time.ZonedDateTime``.
 

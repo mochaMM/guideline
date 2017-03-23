@@ -1139,7 +1139,7 @@ Exception thrown from Service assumes the following. It should be added when req
 
     * - Exception name
       - Details
-    * - | \ ``org.springframework.security.access.AccessDeniedException``\		
+    * - | \ ``org.springframework.security.access.AccessDeniedException``\
       - | Exception at the time of authorization error
     * - | \ ``javax.validation.ConstraintViolationException``\
       - | Exception at the time of input check error
