@@ -205,7 +205,7 @@ JSPでのコードリスト使用
    * - | (2)
      - | CodeListInterceptor クラスをbean定義する。
    * - | (3)
-     - | 自動でリクエストスコープに設定するコードリストのbeanIDのパターンを設定する。
+     - | 自動でリクエストスコープに設定する、コードリストのbeanIDのパターンを設定する。
        | パターンには ``java.util.regex.Pattern`` で使用する正規表現を設定すること。
        | 上記例では、idが"CL\_XXX"形式で定義されているデータのみを対象とする。その場合、idが"CL\_"で始まらないbean定義は取り込まれない。
        | "CL\_"で定義したbeanIDは、リクエストスコープに設定されるため、JSPで使用可能となる。
@@ -767,7 +767,7 @@ SimpleI18nCodeListの使用方法
 
 ``SimpleI18nCodeList``\ は行が\ ``Locale``\ 、列がコード値、セルの内容がラベルである2次元のテーブルをイメージすると理解しやすい。
 
-料金を選択するセレクトボックスの場合の例に上げると以下のようなテーブルができる。
+料金を選択するセレクトボックスの場合を例に挙げると以下のようなテーブルができる。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|
 .. list-table::
@@ -1367,7 +1367,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
 
     @Controller
     @RequestMapping(value = "codelist")
-    public class CodeListContoller {
+    public class CodeListController {
 
         @Inject
         CodeListService codeListService; // (1)

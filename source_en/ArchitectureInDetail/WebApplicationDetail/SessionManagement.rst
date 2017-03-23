@@ -1119,7 +1119,7 @@ Using session-scoped bean
             <td>${f:h(item.itemCode)}</td>
             <td>${f:h(item.quantity)}</td>
         </tr>
-    </c:forEach>　　　　
+    </c:forEach>
     
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::

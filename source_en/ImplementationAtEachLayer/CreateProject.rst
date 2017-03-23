@@ -229,7 +229,7 @@ Deployment method (procedure) when Tomcat is used as an application server is gi
 
    <Loader className="org.apache.catalina.loader.VirtualWebappLoader"
            virtualClasspath="/etc/foo/bar/*.jar" />
-	 
+
  * In addition, VirtualWebappLoader can also be used in the Tomcat 6.
 
 5. If Tomcat 8 is used, add /etc/foo/bar/\*.jar into class path using Resource function of the Tomcat.

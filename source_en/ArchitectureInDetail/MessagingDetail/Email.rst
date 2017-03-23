@@ -909,18 +909,18 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
 * Generate an email text using a template and send email.
 
     **Implementation example of Java class**
-    
+
     .. code-block:: java
-    
+
         @Inject
         JavaMailSender mailSender;
-    
-    	@Inject
-    	Configuration freemarkerConfiguration; // (1)
-    	
+
+        @Inject
+        Configuration freemarkerConfiguration; // (1)
+
         public void register(User user) {
             // omitted
-            
+
             mailSender.send(new MimeMessagePreparator() {
 
                 @Override
@@ -937,7 +937,7 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
                     helper.setText(text, true);
                 }
             });
-            
+
             // omitted
         }
 
@@ -945,7 +945,7 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
     .. list-table::
        :header-rows: 1
        :widths: 10 90
-    
+
        * - Sr. No.
          - Description
        * - | (1)
@@ -1101,7 +1101,7 @@ Implementation example of conversion process is shown below.
    Header and body text which may contain strings with Japanese text are used for conversion.
    From, To, Cc, Bcc, Reply-To, Subject etc are examples of the header that may contain Japanese text and are frequently used in general.
 
-Also, when ISO-2-22-JP is set as encoding, extended characters which are not in scope are garbled.
+Also, when ISO-2022-JP is set as encoding, extended characters which are not in scope are garbled.
 
 .. figure:: ./images_Email/EmailOutofEscapeCharacter.png
     :alt: Out of EscapeCharacter

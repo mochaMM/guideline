@@ -31,7 +31,7 @@ Each layer is explained.
 .. note::
     Application layer, domain layer, infrastructure layer are the terms
     explained in "Domain-Driven Design (2004, Addison-Wesley)" of Eric Evans.
-    However, though the terms are used, they are not necessarily as per the concept used in Domain Driven Design.
+    However, though the terms are used, they are not necessarily as per the concept used in "Domain-Driven Design".
 
 |
 

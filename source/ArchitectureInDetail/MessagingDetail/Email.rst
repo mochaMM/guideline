@@ -90,7 +90,7 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
     * - | (3)
       - | アプリケーション
         | (\ ``MimeMessagePreparator``\)
-      - | \ ``MimeMessageHelper``\ のメソッドを利用して、メール送信用のメッセージを(\ ``MimeMessage``\ )の作成する。
+      - | \ ``MimeMessageHelper``\ のメソッドを利用して、メール送信用のメッセージ(\ ``MimeMessage``\ )を作成する。
         |
         | \* \ ``SimpleMailMessage``\ を使用してメッセージを送信する場合はこの処理は呼びだされない。
     * - | (4)
@@ -927,14 +927,14 @@ FreeMarkerを使用したメール本文の作成
         @Inject
         JavaMailSender mailSender;
     
-    	@Inject
-    	Configuration freemarkerConfiguration; // (1)
-    	
+        @Inject
+        Configuration freemarkerConfiguration; // (1)
+        
         public void register(User user) {
             // omitted
             
             mailSender.send(new MimeMessagePreparator() {
-
+    
                 @Override
                 public void prepare(MimeMessage mimeMessage) throws Exception {
                     MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,
