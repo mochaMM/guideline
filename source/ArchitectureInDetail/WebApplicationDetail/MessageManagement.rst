@@ -817,7 +817,7 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
 
  .. note::
 
-    \ ``ResourceBundleMessageSource``\ はメッセージを生成する際に\ ``java.text.MessageFormat``\ が使用するため、\ ``1024``\ は
+    \ ``ResourceBundleMessageSource``\ はメッセージを生成する際に\ ``java.text.MessageFormat``\ を使用するため、\ ``1024``\ は
     カンマ区切りで\ ``1,024``\ と表示される。カンマが不要な場合は、プロパティファイルには以下のように設定する。
 
         .. code-block:: properties

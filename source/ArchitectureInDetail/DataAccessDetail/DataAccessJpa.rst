@@ -46,7 +46,7 @@ JPAについて
 JPA(Java Persistence API)は、リレーショナルデータベースで管理されているレコードを、Javaオブジェクトにマッピングする方法と、
 マッピングされたJavaオブジェクトに対して行われた操作を、リレーショナルデータベースのレコードに反映するための仕組みをJavaのAPI仕様として定義したものである。
 
-| JPAは、仕様を定義をしているだけで、実装は提供していない。
+| JPAは、仕様の定義をしているだけで、実装は提供していない。
 | JPAの実装は、HibernateのようなO/R Mapperを開発しているベンダーによって、参照実装として提供されている。
 | このように、O/R Mapperを開発しているベンダーによって実装された参照実装のことを、JPAプロバイダと呼ぶ。
 
@@ -290,7 +290,7 @@ pom.xmlの設定
 データソースの設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | データベースの接続情報をデータソースに設定する。
-| データソースの設定ついては、共通編の\ :ref:`data-access-common_howtouse_datasource`\ を参照されたい。
+| データソースの設定については、共通編の\ :ref:`data-access-common_howtouse_datasource`\ を参照されたい。
 
 EntityManagerの設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -598,7 +598,7 @@ Spring Data JPAを有効化するための設定
         | 新しいメソッドを追加する方法については、\ :ref:`custommethod_all-label`\ を参照されたい。
     * - 6.
       - repository-impl-postfix
-      - | カスタムRepositoryの実装クラスをであることを表す接尾辞を指定する。
+      - | カスタムRepositoryの実装クラスであることを表す接尾辞を指定する。
         | デフォルトは ``"Impl"`` となっている。例えば、Repositoryインタフェースの名前が ``OrderRepository`` の場合は、 ``OrderRepositoryImpl`` がカスタムRepositoryの実装クラスとなる。特に理由がない場合は、デフォルトのままでよい。
         | カスタムRepositoryについては、「:ref:`custommethod_individual-label`」を参照されたい。
 
@@ -1347,7 +1347,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
     Named Parameterを使用する場合は、 ``@org.springframework.data.repository.query.Param`` アノテーションを対象とする引数に追加し、value属性にパラメータ名を指定する。
     Queryでは、バインドしたい位置に「:パラメータ名」の形式で指定する。
 
-    **特に理由がない場合は、 Qyeryのメンテナンス性と可読性を考慮し、Named Parametersを使用することを推奨する。**
+    **特に理由がない場合は、 Queryのメンテナンス性と可読性を考慮し、Named Parametersを使用することを推奨する。**
 
 |
 
@@ -1519,7 +1519,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
     * - | (5)
       - JPQLから変換された件数カウント用のNativeなSQL。
     * - | (6)
-      - | JPQLから変換された指定されたページ位置のEntityを取得するためのNativeなSQL。
+      - | JPQLから変換された「指定されたページ位置のEntityを取得する」ためのNativeなSQL。
         | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で"ORDER BY"句が追加される。例では、PostgreSQL用のSQLになっている。
 
 .. _how_to_specify_query_mathodname-label:
@@ -2558,7 +2558,7 @@ ID(Primary Key)がわかっている場合は、Repositryインタフェース�
     Query実行時の関連Entityのロードは、Entityの関連付けアノテーション( ``@javax.persistence.OneToOne`` 、 ``@javax.persistence.OneToMany`` 、 ``@javax.persistence.ManyToOne`` 、 ``@javax.persistence.ManyToMany`` )の
     fetch属性に指定されている値によって決定される。
 
-    * ``javax.persistence.FetchType#LAZY`` の場合は、JOIN FETCH対象からはずれるため、、関連Entityのロードは初回アクセス時に行われる。
+    * ``javax.persistence.FetchType#LAZY`` の場合は、JOIN FETCH対象からはずれるため、関連Entityのロードは初回アクセス時に行われる。
     * ``javax.persistence.FetchType#EAGER`` の場合は、 JOIN FETCHされるため、関連Entityがロードされる。
 
     fetch属性のデフォルトはアノテーションによって異なる。デフォルト値は以下の通り。
@@ -2824,7 +2824,7 @@ Entityと関連Entityを一緒に追加したい場合は、Repositryインタ�
     関連EntityがCascade対象に指定されている場合、Entityに対するJPAの操作( ``persist`` , ``merge`` , ``remove`` , ``refresh`` , ``detach`` )
     が関連Entityに対して、連鎖して行われる。
 
-    Spring Data JPAのRepositoryインタフェースの操作とのマッピングは以下の通り。
+    Spring Data JPAのRepositoryインタフェースの操作に対するマッピングは以下の通り。
 
     * saveメソッド : ``persist`` or ``merge``
     * deleteメソッド : ``remove``
@@ -2979,7 +2979,7 @@ Entityと関連Entityを一緒に追加したい場合は、Repositryインタ�
 
 関連Entityの追加
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-関連Entityを追加したい場合は、Repositoryインタフェース経由で取得したEntityオブジェクトに対して、生成した関連Entityのオブジェクトを関連付る。
+関連Entityを追加したい場合は、Repositoryインタフェース経由で取得したEntityオブジェクトに対して、生成した関連Entityのオブジェクトを関連付ける。
 
 この方法を使用するためには、関連EntityのCascade対象の操作に、``persist`` と ``merge`` が含まれている必要がある。
 
@@ -3168,7 +3168,7 @@ Entityを更新したい場合は、Repositoryインタフェースのメソッ�
  .. note:: **更新後に親のEntityを利用した場合の動作について**
 
     関連Entity用Repositoryのsaveメソッドを使って関連Entityを更新した場合は、
-    追加時とは異なり、親のEntityオブジェクトで保持している関連Entityにも反映される
+    追加時とは異なり、親のEntityオブジェクトで保持している関連Entityにも反映される。
     これは、``EntityManager`` 上で管理されている同じインスタンスの参照を保持しているためである。
 
 |
@@ -3788,7 +3788,7 @@ Entity毎のRepositoryインタフェースに個別にカスタムメソッド�
             
             try {
                 versionMethod = entityInformation.getJavaType().getMethod("getVersion");
-            } catch (NoSuchMethodException | SecurityException e) { }
+            } catch (NoSuchMethodException | SecurityException e) { }
 
         }
 
@@ -4100,7 +4100,7 @@ Spring Data JPAでは、新たに作成されたEntityと更新されたEntity�
       - 説明
     * - | (7)
       - | ``org.springframework.data.domain.AuditorAware`` インタフェースの実装クラスを作成する。
-        | ``AuditorAware`` インタフェースは、Entityの操作者(作成者または最終更新更新者)を解決するためのインタフェースとなっている。
+        | ``AuditorAware`` インタフェースは、Entityの操作者(作成者または最終更新者)を解決するためのインタフェースとなっている。
         | このクラスはプロジェクト毎に作成する必要がある。
     * - | (8)
       - | ``@Component`` アノテーションを付与することで、component-scan対象になるようにしている。
