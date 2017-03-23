@@ -7273,8 +7273,8 @@ MemberRepository.xml
             <include refid="selectRestMember" />
             ORDER BY member_id ASC
         </select>
-	
-	    <select id="findOne" parameterType="string" resultMap="MemberResultMap">
+
+        <select id="findOne" parameterType="string" resultMap="MemberResultMap">
             <include refid="selectMember" />
             WHERE
             member.member_id = #{memberId}
