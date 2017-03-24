@@ -1996,39 +1996,39 @@ Sample of implementation of interface and base classes to limit signature
         
     To standardize process flow of business logic when a fixed common process is included in Service, base classes are created to limit signature of method.
 
-    - Base classes to limit signature
+- Base classes to limit signature
 
-     .. code-block:: java
+ .. code-block:: java
 
 
-        // (2)
-        @Service
-        @Transactional
-        public abstract class AbstractBLogic<I, O> implements BLogic<I, O> {
+    // (2)
+    @Service
+    @Transactional
+    public abstract class AbstractBLogic<I, O> implements BLogic<I, O> {
 
-            public O execute(I input){
-              try{
+      public O execute(I input){
+        try{
 
-                  // omitted
+            // omitted
 
-                  // (3)
-                  preExecute(input);
+            // (3)
+            preExecute(input);
 
-                  // (4)
-                  O output = doExecute(input);
+            // (4)
+            O output = doExecute(input);
 
-                  // omitted
+            // omitted
 
-                  return output;
-              } finally {
-                  // omitted
-              }
+            return output;
+        } finally {
+            // omitted
+        }
 
-            }
+      }
 
-            protected abstract void preExecute(I input);
+      protected abstract void preExecute(I input);
 
-            protected abstract O doExecute(I input);
+      protected abstract O doExecute(I input);
 
         }
 
@@ -2038,92 +2038,92 @@ Sample of implementation of interface and base classes to limit signature
         :header-rows: 1
         :widths: 10 90
 
-        * - Sr. No.
-          - Description
-        * - | (2)
-          - | While creating a base class, since the method executed externally and the class which implements the method are targets of AOP in the specification of \ `@Transactional`\ , they are assigned to base class when the transaction control is necessary.
-            | Similar to \ `@Servicve`\ , it must be assigned to the base class when Service is considered as an target using AOP, as for \ `ResultMessagesLoggingInterceptor`\.
-        * - | (3)
-          - | Call the method to perform pre-processing before executing business logic from base classes.
-            | In the preExecute method, business rules are checked.
-        * - | (4)
-          - | Call the method executing business logic from the base classes.
+    * - Sr. No.
+      - Description
+    * - | (2)
+      - | While creating a base class, since the method executed externally and the class which implements the method are targets of AOP in the specification of \ `@Transactional`\ , they are assigned to base class when the transaction control is necessary.
+        | Similar to \ `@Servicve`\ , it must be assigned to the base class when Service is considered as an target using AOP, as for \ `ResultMessagesLoggingInterceptor`\.
+    * - | (3)
+      - | Call the method to perform pre-processing before executing business logic from base classes.
+        | In the preExecute method, business rules are checked.
+    * - | (4)
+      - | Call the method executing business logic from the base classes.
 
 
-    Sample of extending base classes to limit signature is shown below.
+Sample of extending base classes to limit signature is shown below.
 
 
-    - BLogic class (Service)
+- BLogic class (Service)
 
-     .. code-block:: java
+ .. code-block:: java
 
-        // (5)
-        public interface XxxBLogic extends BLogic<XxxInput, XxxOutput> {
+    // (5)
+    public interface XxxBLogic extends BLogic<XxxInput, XxxOutput> {
 
-        }
-
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 10 90
-
-        * - Sr. No.
-          - Description
-        * - | (5)
-          - | Create an interface that inherits BLogic interface in order to enable type-safe injection.
-            | Implement a sub-interface which inherits BLogic in order to enable calling via a method of new interface.
+    }
 
 
-     .. code-block:: java
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
 
-        @Service
-        public class XxxBLogicImpl extends AbstractBLogic<XxxInput, XxxOutput> implements XxxBLogic {
+    * - Sr. No.
+      - Description
+    * - | (5)
+      - | Create an interface that inherits BLogic interface in order to enable type-safe injection.
+        | Implement a sub-interface which inherits BLogic in order to enable calling via a method of new interface.
 
-            // (6)
-            @Override
-            protected void preExecute(XxxInput input) {
 
-                // omitted
-                Tour tour = tourRepository.findOne(input.getTourId());
-                Date reservationLimitDate = tour.reservationLimitDate();
-                if(input.getReservationDate().after(reservationLimitDate)){
-                    throw new BusinessException(ResultMessages.error().add("e.xx.xx.0001"));
-                }
+ .. code-block:: java
 
-            }
+    @Service
+    public class XxxBLogicImpl extends AbstractBLogic<XxxInput, XxxOutput> implements XxxBLogic {
 
-            // (7)
-            @Override
-            protected XxxOutput doExecute(XxxInput input) {
-                TourReservation tourReservation = new TourReservation();
+        // (6)
+        @Override
+        protected void preExecute(XxxInput input) {
 
-                // omitted
-
-                tourReservationRepository.save(tourReservation);
-                XxxOutput output = new XxxOutput();
-                output.setTourReservation(tourReservation);
-
-                // omitted
-                return output;
+            // omitted
+            Tour tour = tourRepository.findOne(input.getTourId());
+            Date reservationLimitDate = tour.reservationLimitDate();
+            if(input.getReservationDate().after(reservationLimitDate)){
+                throw new BusinessException(ResultMessages.error().add("e.xx.xx.0001"));
             }
 
         }
 
+        // (7)
+        @Override
+        protected XxxOutput doExecute(XxxInput input) {
+            TourReservation tourReservation = new TourReservation();
 
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 10 90
+            // omitted
 
-        * - Sr. No.
-          - Description
-        * - | (6)
-          - | Implement pre-process before executing business logic.
-            | Business rules are checked.
-        * - | (7)
-          - | Implement business logic.
-            | Logic is implemented to satisfy business rules.
+            tourReservationRepository.save(tourReservation);
+            XxxOutput output = new XxxOutput();
+            output.setTourReservation(tourReservation);
+
+            // omitted
+            return output;
+        }
+
+    }
+
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - Sr. No.
+      - Description
+    * - | (6)
+      - | Implement pre-process before executing business logic.
+        | Business rules are checked.
+    * - | (7)
+      - | Implement business logic.
+        | Logic is implemented to satisfy business rules.
 
 - Controller
 
