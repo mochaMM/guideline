@@ -789,41 +789,6 @@ Regarding interface and base classes to limit signature of method
 | Refer to \ :ref:`domainlayer_appendix_blogic`\  for details.
 
 
-    - Controller
-
-     .. code-block:: java
-
-        // (8)
-        @Inject
-        XxxBLogic xxxBLogic;
-
-        public String reserve(XxxForm form, RedirectAttributes redirectAttributes) {
-
-            XxxInput input = new XxxInput();
-            // omitted
-
-            // (9)
-            XxxOutput output = xxxBlogic.execute(input);
-
-            // omitted
-
-            redirectAttributes.addFlashAttribute(output.getTourReservation());
-            return "redirect:/xxx?complete";
-        }
-
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-     .. list-table::
-        :header-rows: 1
-        :widths: 10 90
-
-        * - Sr. No.
-          - Description
-        * - | (8)
-          - | Controller injects BLogic interface to be called.
-        * - | (9)
-          - | Controller calls execute method of BLogic interface and executes business logic.
-
-
 .. _service-creation-unit-label:
 
 Patterns of creating service class
