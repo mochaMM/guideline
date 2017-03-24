@@ -2129,7 +2129,7 @@ Sample of implementation of interface and base classes to limit signature
 
  .. code-block:: java
 
-    // (2)
+    // (8)
     @Inject
     XxxBLogic<XxxInput, XxxOutput> xxxBLogic;
 
@@ -2138,7 +2138,7 @@ Sample of implementation of interface and base classes to limit signature
         XxxInput input = new XxxInput();
         // omitted
 
-        // (3)
+        // (9)
         XxxOutput output = xxxBlogic.execute(input);
 
         // omitted
@@ -2154,9 +2154,9 @@ Sample of implementation of interface and base classes to limit signature
 
     * - Sr. No.
       - Description
-    * - | (2)
+    * - | (8)
       - | Controller injects calling BLogic interface.
-    * - | (3)
+    * - | (9)
       - | Controller calls execute method of BLogic interface and executes business logic.
 
 |
