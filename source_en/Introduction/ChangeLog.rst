@@ -16,12 +16,7 @@ Change Log
       - 5.2.1 RELEASE version published
 
         * For details of update, refer \ `Issue list of 5.2.1 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
- 
-    * - 2017-02-28
-      - \-
-      - 5.3.0 RELEASE version published
 
-        * For details of update, refer \ `Issue list of 5.3.0 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
 
     * -
       - General
@@ -31,10 +26,6 @@ Change Log
         * :doc:`../Overview/FirstApplication`  
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
-
-        Description details added
-
-        * Description added for settings for calling a rollback process when an error occurs at the time of commit (\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
 
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
@@ -56,6 +47,62 @@ Change Log
 
         * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
 
+    * - 
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - Description details added
+      
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+      
+    * -
+      - :doc:`../Overview/FrameworkStack`
+      - Version of OSS to be used updated
+
+        * Spring IO Platform version updated to Athens-SR2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * MyBatis version updated to 3.4.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * MyBatis-Spring version updated to 1.3.1 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * mybatis-typehandlers-jsr310 updated to 1.0.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+
+        OSS version to be used in accordance with version update of Spring IO Platform is updated
+
+        Description details modified
+
+        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - Description details added
+
+        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+
+        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
+      - Modifications associated with Spring Framework 4.3 support
+
+        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+        
+    * -
+      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
+      - Description details added
+
+        * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+
+        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        
+        Modifications related to Spring Framework 4.3
+        
+        * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+        
+    * -
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+        | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - Description details added
+      
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+      
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
