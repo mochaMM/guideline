@@ -120,4 +120,4 @@ $ ./build-pdf_en.sh
 
 ## Terms of use
 
-Terms of use refer to [here](https://github.com/terasolunaorg/guideline/blob/master/source_en/Introduction/TermsOfUse.rst).
+Terms of use refer to [here](/source_en/Introduction/TermsOfUse.rst).
