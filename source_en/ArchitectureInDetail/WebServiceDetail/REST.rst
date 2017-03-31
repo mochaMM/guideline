@@ -1546,12 +1546,7 @@ When the cause of request failure lies at server side, HTTP status codes given b
 
 Authentication and Authorization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. todo:: **TBD**
-
-    The guidelines for authentication and authorization control are explained here.
-    
-    Performing authentication and authorization using OAuth2 protocol will be described in subsequent versions.
+Please refer to \: ref: `OAuth <OAuth>` \ for the mechanism of authentication and authorization using the OAuth 2 mechanism.
 
 |
 
@@ -4641,9 +4636,7 @@ Security measures
 Authentication and Authorization
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. todo:: **TBD**
-
-    How to implement authentication and authorization using OAuth2 (Spring Security OAuth2), will be explained in subsequent versions.
+Please refer to \: ref: `OAuth <OAuth>` \ for how to achieve authentication and authorization using OAuth 2 (Spring Security OAuth 2).
 
 |
 
