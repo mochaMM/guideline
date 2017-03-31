@@ -356,6 +356,26 @@ Therefore, definition order must be taken into consideration even while specifyi
               <!-- omitted -->
           </sec:http>
 
+.. warning::
+    In Spring MVC and Spring Security, the mechanism of matching with the request is strictly different, and there is a vulnerability that breaks through the authorization function of Spring Security and can access the handler method using this difference.
+    For details of this vulnerability, refer to "\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\".
+
+    In Spring Framework 4.3.1 and later, Spring Security 4.1.1 and later, this problem is solved by using \ `MvcRequestMatcher` \ ,
+    but  in the Spring Framework 4.2.x used by TERASOLUNA Server Framework for Java (5.x), \ `org.springframework.util.AntPathMatcher` \  has to be used which set Spring MVC \ `trimTokens` \ property \ `false` \ .
+
+      .. code-block:: xml
+
+          <mvc:annotation-driven>
+              <mvc:path-matching path-matcher="pathMatcher" />
+          </mvc:annotation-driven>
+
+          <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher">
+              <property name="trimTokens" value="false" />
+          </bean>
+    
+    Although the above measures are set in blank projects that are provided by TERASOLUNA Server Framework for Java,
+    it is necessary to be aware of it because it will be exposed to vulnerability if you remove the setting.
+
     Further, if an access policy for a specific URL is to be specified (wild cards like \ ``*``\ , \ ``**``\  etc are not included in \ ``pattern``\  attribute),
     an access policy with a pattern with an extension and a pattern with \ ``/``\  appended at the end of request path must be added.
 
