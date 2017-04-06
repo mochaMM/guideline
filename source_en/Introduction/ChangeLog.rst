@@ -10,7 +10,6 @@ Change Log
       - Modified locations
       - Modification details
 
-
     * - 2017-03-17
       - \-
       - 5.2.1 RELEASE version published
@@ -128,6 +127,12 @@ Change Log
         * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
         * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
+    * -
+      - :doc:`../Security/Authorization`
+      - Description details added
+
+        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
