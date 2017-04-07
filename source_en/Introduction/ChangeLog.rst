@@ -23,6 +23,19 @@ Change Log
         * :doc:`../Overview/FirstApplication`  
         * :doc:`../Tutorial/TutorialSecurity`  
         * :doc:`../Tutorial/TutorialTodo`  
+        
+        
+        :doc:`../Appendix/Nexus`
+        Modification to migration into Maven Central
+        
+        * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+        
+        
+        :doc:`../Security/OAuth`  
+ 	    New addition  
+ 	    
+ 		* Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
+
 
     * - 
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -47,20 +60,6 @@ Change Log
 
         * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
 
-    * - 
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
-      - Description details added
-
-        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
-      - Modifications associated with Spring Framework 4.3 support
-
-        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
-        
     * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - Description details added
@@ -78,17 +77,13 @@ Change Log
         | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
       - Description details added
       
-    * -
-      - :doc:`../Security/LinkageWithBrowser`
-      - Modifications associated with Spring Security 4.1.4 support
-      
-        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
-        
-	* -  
-	  - :doc:`../Security/OAuth`  
- 	  - New addition  
- 	    
- 		* Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - Description details added
+
+        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+
+        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
 
     * -
       - :doc:`../Security/Authorization`
@@ -97,17 +92,11 @@ Change Log
         * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
 
     * -
-      - :doc:`../Tutorial/TutorialTodo`
-      - Correction of description
-
-        * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
-
-    * -
-      - :doc:`../Appendix/Nexus`
-      - Modification to migration into Maven Central
-
-        * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
-
+      - :doc:`../Security/LinkageWithBrowser`
+      - Modifications associated with Spring Security 4.1.4 support
+      
+        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+        
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - Description details changed, added
@@ -124,6 +113,17 @@ Change Log
         
         * Description of the option which controls the timing to execute ”Lazy Load”modified (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
+      - Modifications associated with Spring Framework 4.3 support
+
+        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+        
+    * -
+      - :doc:`../Tutorial/TutorialTodo`
+      - Correction of description
+
+        * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
 
     * - 2016-08-31
       - \-
