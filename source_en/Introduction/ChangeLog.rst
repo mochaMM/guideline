@@ -72,6 +72,12 @@ Change Log
         Modifications related to Spring Framework 4.3
         
         * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+    
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
+      - Description details added
+      
+        * Added about how to prevent binding of request parameters when receiving object stored in session scope (\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
         
     * -
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
