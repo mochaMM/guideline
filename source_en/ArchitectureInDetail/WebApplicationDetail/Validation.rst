@@ -2389,15 +2389,15 @@ Error messages are changed as follows.
             For handling of EL expressions in Bean Validation refer to:
             \ `Hibernate Validator Reference Guide(Interpolation with message expressions) <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch04.html#section-interpolation-with-message-expressions>`_\ .
 
-    Also by using \ ``${validatedValue}``\ for the message specified in :file:`ValidationMessages.properties`, the error message can contain the value to be checked.
+    Further, the value to be checked can be included in the error message by using \ ``${validatedValue}``\  in the message which is specified in :file:`ValidationMessages.properties`.
 
-    Below is an example of using \ ``${validatedValue}``.
+    How to use \ ``${validatedValue}``\  is shown below.
 
      .. code-block:: properties
 
         # ...
-	# (1)
-	javax.validation.constraints.Pattern.message = The value entered "${validatedValue}" is invalid.
+        # (1)
+        javax.validation.constraints.Pattern.message = The value entered "${validatedValue}" is invalid.
         # ...
 
 
@@ -2408,13 +2408,14 @@ Error messages are changed as follows.
         :class: longtable
 
         * - Sr. No.
-	  - Description
+          - Description
         * - | (1)
 
-          - Messages that are actually generated from the above message definition are embedded in \ ``${validatedValue}``\ with values entered in the form.
-            If confidential information is included in the input value, be careful not to use \ ``${validatedValue}``\ so that confidential information is not displayed in the message.
+          - Messages that are actually generated from the message definition above are embedded with the values input in the form, in \ ``${validatedValue}``\  part.
+            If confidential information is included in the input value, care must be taken not to use \ ``${validatedValue}``\  so that confidential information is not displayed.
 
-            For details, please refer,\ `Hibernate Validator Reference Guide(Interpolation with message expressions) <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch04.html#section-interpolation-with-message-expressions>`_\.
+            For details, refer \ `Hibernate Validator Reference Guide(Interpolation with message expressions) <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch04.html#section-interpolation-with-message-expressions>`_\.
+
 
 .. _Validation_message_in_application_messages:
 
@@ -4355,8 +4356,8 @@ Refer to \ `Hibernate Validator specifications <http://docs.jboss.org/hibernate/
 
    * - \ ``@URL``\
      - It is applicable to any implementation class of \ ``CharSequence``\  interface
-     - Verify that it is valid as a URL. String validation is performed using the constructor of \ ``java.net.URL``\
-       The protocol that is valid as the URL depends on the protocol supported by the JVM (\ ``http``\ ,\ ``https``\ ,\ ``file``\ ,\ ``jar``\ etc)
+     - Verify that it is valid as URL. Character string is validated by using \ ``java.net.URL``\  constructor
+       and the protocol that is validated as a URL is dependent on the protocols supported by JVM (\ ``http``\ ,\ ``https``\ ,\ ``file``\ ,\ ``jar``\  etc).
      - .. code-block:: java
 
             @URL
@@ -4381,18 +4382,18 @@ Refer to \ `Hibernate Validator specifications <http://docs.jboss.org/hibernate/
 
 .. tip::
 
-     If you wish to validate protocols that JVM does not support in \ ``@URL``\, use \ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\ provided by Hibernate .
-     This class is a Validator class corresponding to the \ ``@URL``\ annotation, it verifies the URL format by regular expression, and it can also validate the protocol which JVM does not support.
+     In \ ``@URL``\ , when the verification is to be performed for validating the protocol not supported by JVM, \ ``org.hibernate.validator.constraintvalidators.RegexpURLValidator``\  provided by Hibernate is used.
+     This class is a Validator class corresponding to \ ``@URL``\  annotation and it can be checked whether it is a URL format by a regular expression. It can also verify the validation for the protocols not supported by JVM.
 
-     * If the check rule of \ ``@URL``\  has to be changed for whole apllication then,
-       in XML change the Validator class to \ ``RegexpURLValidator``\ as described in \ `JavaDoc <https://docs.jboss.org/hibernate/validator/5.2/api/org/hibernate/validator/constraints/URL.html>`_\
-     * Apply regular expression verification only to some items,if default rule is to be used,\ ``@URL``\ creates new annotation and \ ``javax.validation.ConstraintValidator``\ implementation class that does the same verification as \ ``RegexpURLValidator``\, 
-       apply verification for the necessary items by the created annotations.
+     * If the check rules of \ ``@URL``\  of overall application can be changed, Validator class is changed to \ ``RegexpURLValidator``\  in XML,
+       as described in \ `JavaDoc <https://docs.jboss.org/hibernate/validator/5.2/api/org/hibernate/validator/constraints/URL.html>`_\ .
+     * When only some of the items are to be validated by using regular expressions and default rules are to be used for \ ``@URL``\ , a new annotation and an implementation class \ ``javax.validation.ConstraintValidator``\  that performs validation similar to \ ``RegexpURLValidator``\  are created
+       and the validation by the annotation thus created is applied to the required items.
 
-     Apply according to the application etc.
+     These can be applied as per the intended use.
 
-     For details on changing check rules in XML, please refer \ `Hibernateのrefernence <https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch07.html#section-configuration-validation-xml>`_\,
-     and about how to create new annotations please refer, \ :ref:`Validation_implement_new_constraint`\
+     For details of check rule change by XML, refer to \ `Hibernate reference <https://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/ch07.html#section-configuration-validation-xml>`_\ 
+     and for how to create a new annotation, refer to \ :ref:`Validation_implement_new_constraint`\  respectively..
      
 .. _Validation_default_message_in_hibernate_validator:
 
