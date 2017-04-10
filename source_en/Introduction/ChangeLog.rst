@@ -95,6 +95,8 @@ Change Log
       - Description details added
 
         * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+        
+        * Precautions for changing specifications of path matching of \ ``AntPathRequestMatcher``\  added (\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
