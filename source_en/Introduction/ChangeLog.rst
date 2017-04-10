@@ -198,6 +198,11 @@ Change Log
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
+      
+      - Addition of description contents  
+        
+ 		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+ 		
       - Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
