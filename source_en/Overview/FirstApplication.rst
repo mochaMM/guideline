@@ -47,9 +47,10 @@ Create project using `mvn archetype:generate` on internet.
 .. code-block:: console
 
     mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
+     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.2.0.RELEASE^
      -DgroupId=com.example.helloworld^
      -DartifactId=helloworld^
      -Dversion=1.0.0-SNAPSHOT
@@ -59,9 +60,10 @@ Here, created a project on Windows environment.
 .. code-block:: console
 
     C:\work>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
+    More?  -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
     More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
     More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
-    More?  -DarchetypeVersion=5.3.0.RELEASE^
+    More?  -DarchetypeVersion=5.2.0.RELEASE^
     More?  -DgroupId=com.example.helloworld^
     More?  -DartifactId=helloworld^
     More?  -Dversion=1.0.0-SNAPSHOT
@@ -77,9 +79,9 @@ Here, created a project on Windows environment.
     [INFO]
     [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE] found in catalog remote
+    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:1.0.0.RELEASE] found in catalog remote
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.3.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.2.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.helloworld
     [INFO] Parameter: artifactId, Value: helloworld
@@ -264,7 +266,7 @@ To understand the configuration of Spring MVC, the generated Spring MVC configur
    * - Sr. No.
      - Description
    * - | (1)
-     - Default settings of Spring MVC are configured by defining \ ``<mvc:annotation-driven>``\. Refer to the official website `Enabling the MVC Java Config or the MVC XML Namespace <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-config-enable>`_ for default configuration of Spring framework.
+     - Default settings of Spring MVC are configured by defining \ ``<mvc:annotation-driven>``\. Refer to the official website `Enabling the MVC Java Config or the MVC XML Namespace <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-config-enable>`_ for default configuration of Spring framework.
    * - | (2)
      - Define the package which will be target of searching components used in Spring MVC.
    * - | (3)
@@ -566,7 +568,7 @@ Create input screen (src/main/webapp/WEB-INF/views/echo/index.jsp).
      - Description
    * - | (1)
      - | HTML form is constructed using tag library. Specify the name of form object created by Controller in ``modelAttribute`` attribute.
-       | Refer `here <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib-formtag>`_  for tag library.
+       | Refer `here <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib-formtag>`_  for tag library.
 
 .. note::
 

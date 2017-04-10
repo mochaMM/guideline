@@ -97,9 +97,10 @@ since it is already described in :doc:`./TutorialTodo`.
 .. code-block:: console
 
     mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
+     -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-mybatis3-archetype^
-     -DarchetypeVersion=5.3.0.RELEASE^
+     -DarchetypeVersion=5.2.0.RELEASE^
      -DgroupId=com.example.security^
      -DartifactId=first-springsecurity^
      -Dversion=1.0.0-SNAPSHOT
@@ -514,6 +515,7 @@ As a result, database initialization is necessary by executing SQL at the time o
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
               REMOVE THIS LINE IF YOU USE MyBatis3  -->
     </beans>
