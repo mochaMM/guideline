@@ -77,6 +77,12 @@ Change Log
       - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
         | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
       - Description details added
+    
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
+      - Modification related to Spring Framework 4.3
+      
+        * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
       
     * -
       - :doc:`../Security/LinkageWithBrowser`
