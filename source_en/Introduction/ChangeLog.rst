@@ -80,6 +80,12 @@ Change Log
         Modifications related to Spring Framework 4.3
         
         * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+    
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
+      - Description details added
+      
+        * Added about how to prevent binding of request parameters when receiving object stored in session scope (\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
         
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
@@ -130,19 +136,33 @@ Change Log
       - Description details added
 
         * Added warning for a bug in which "nowait" clause is not added when using PostgreSQL(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
-        
+          
     * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
+      - Modification related to Spring Framework 4.3
+      
+        * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
+      
+    * -
       - :doc:`../Security/LinkageWithBrowser`
       - Modifications associated with Spring Security 4.1.4 support
       
         * Added description on Content Security Policy (CSP)"(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
         * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+        
+	  * -  
+	    - :doc:`../Security/OAuth`  
+ 	    - New addition  
+ 	    
+ 		    * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
 
     * -
       - :doc:`../Security/Authorization`
       - Description details added
 
         * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+        
+        * Precautions for changing specifications of path matching of \ ``AntPathRequestMatcher``\  added (\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
@@ -215,6 +235,11 @@ Change Log
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
+      
+      - Addition of description contents  
+        
+ 		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+ 		
       - Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
