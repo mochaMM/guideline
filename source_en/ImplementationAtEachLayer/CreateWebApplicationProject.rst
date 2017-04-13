@@ -617,6 +617,11 @@ Therefore it is necessary to change the DataSource settings for accessing the ac
         <artifactId>h2</artifactId>
         <scope>runtime</scope>
     </dependency>
+    
+.. note::  
+ 
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+	The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 **[artifactId-infra.properties]**
 

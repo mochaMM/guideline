@@ -280,6 +280,10 @@ When using JPA (Spring Data JPA) in infrastructure layer, add the following depe
      - Description
    * - | (1)
      - | \ ``terasoluna-gfw-jpa-dependencies``\  where the libraries associated with JPA are defined should be added to dependency.
+     
+ .. note::  
+
+   In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent, specifying the version in pom.xml is  not necessary. 
 
 Application Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
