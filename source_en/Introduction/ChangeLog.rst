@@ -158,7 +158,11 @@ Change Log
 
     * -
       - :doc:`../Security/Authorization`
-      - Description details added
+      - Modification related to Spring Framework 4.3
+      
+        * Modified desctiption and note about mitigation of \ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\ as the default value of \ ``trimTokens``\ property in \ ``AntPathMatcher``\ was changed.
+        
+        Description details added
 
         * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
         
