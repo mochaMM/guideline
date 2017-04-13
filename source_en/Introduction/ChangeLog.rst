@@ -39,6 +39,12 @@ Change Log
         * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
       
     * -
+      - :doc:`../Introduction/TermsOfUse`
+      - Description details modified
+
+        * Terms of use modified(\ `guideline#2625 <https://github.com/terasolunaorg/guideline/issues/2625>`_\ )
+
+    * -
       - :doc:`../Overview/FrameworkStack`
       - Version of OSS to be used updated(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ ) 
 
