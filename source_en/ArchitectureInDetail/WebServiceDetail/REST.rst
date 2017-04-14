@@ -5104,6 +5104,9 @@ or
 
 .. note::
 
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+	The above jackson-datatype-joda  used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
+
     Besides above, extension modules (\ ``jackson-datatype-xxx``\ ) for handling
 
     * \ ``java.nio.file.Path``\  added from Java SE 7

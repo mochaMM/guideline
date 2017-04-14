@@ -207,6 +207,11 @@ How to apply common library
            <artifactId>terasoluna-gfw-string</artifactId>
        </dependency>
    </dependencies>
+   
+.. note::  
+   
+	In the setting example above, the dependent library version is assumed to be managed by the parent project.
+	Therefore, the \ ``<version>``\ element is not specified.
 
 Conversion to full width string
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -907,6 +912,8 @@ artifact information to be incorporated while using are given below.
    \newpage
 
 .. note::
+
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
 
     \ ``JIS_X_0208_SpecialChars``\ codepoint set class is a special character set corresponding to JIS chinese characters (JIS X 0208)-section 01-02.
     Double byte dash (-) of JIS chinese characters is EM DASH and the corresponding UCS(ISO/IEC 10646-1, JIS X 0221, Unicode) codepoints usually correspond to \ ``U+2014``\ .
