@@ -447,21 +447,9 @@ pom.xml settings
       - Add terasoluna-gfw-mybatis3 to dependencies.
         Dependency relation with MyBatis3 and MyBatis-Spring is defined in terasoluna-gfw-mybatis3.
         
- .. tip:: **How to configure when terasoluna-gfw-parent is not used as a Parent project**
- 
-    When terasoluna-gfw-parent project is not specified as a parent project, it becomes necessary to specify individual version as well.
-
-     .. code-block:: xml
-        :emphasize-lines: 4
- 
-        <dependency>
-            <groupId>org.terasoluna.gfw</groupId>
-            <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
-            <version>5.2.0.RELEASE</version>
-            <type>pom</type>
-        </dependency>
-        
-    In the above example, 5.2.0.RELEASE is specified. However, version used in the project should be specified.
+ .. note::
+ 	
+ 		In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent, specifying the version in pom.xml is not necessary.
 
  .. Warning:: **Configuration while using in Java SE 7 environment**
 
