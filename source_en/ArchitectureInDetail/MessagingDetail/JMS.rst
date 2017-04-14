@@ -409,9 +409,8 @@ Configuration of dependent library
 
  .. note::
 
-   In the configuration example above, dependent library version is assumed to be managed by the parent project.
-   Hence, \ ``<version>``\  element is not specified.
-   Since dependent library above is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\, it is not necessary to specify the version by pom.xml.
+   In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+   The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 |
 
@@ -2381,9 +2380,8 @@ Configuration while using Apache ActiveMQ is explained.
 
  .. note::
 
-   In the configuration example above, the version of dependent library is assumed to be managed by the parent project.
-   Hence, \ ``<version>``\  element is not specified.
-   Since dependent libraries given above are defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ , the version is not required to be specified by pom.xml.
+   In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+   The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 |
 

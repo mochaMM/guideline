@@ -147,7 +147,8 @@ Implementation of Custom View
 
 \
     .. note::
-        Spring IO Platform defines itext version.
+        In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+        The above itext used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 .. _viewresolver-label:
 
@@ -347,7 +348,8 @@ Implementation of Custom View
 
 \
     .. note::
-        <version> is omitted in the configuration example since poi-ooxml version uses details defined in Spring IO Platform.
+        In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+        The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
         Also, \ ``AbstractExcelView``\  uses @Deprecated annotation from Spring Framework 4.2. Hence, it is recommended to use \ ``AbstractXlsxView``\ in the same way even if you want to use a xls file.
         For details, refer \ `AbstractExcelView - JavaDoc <https://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/servlet/view/document/AbstractExcelView.html>`_\ .

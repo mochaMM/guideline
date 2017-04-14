@@ -346,7 +346,6 @@ Dependent library setup
 
 | spring-web library of Spring Framework is added to \ ``pom.xml``\  for using \ ``RestTemplate``\ .
 | In case of multi-project configuration, it is added to \ ``pom.xml``\  of domain project.
-| It is not necessary to specify version here since it is managed in Spring Framework.
 
 .. code-block:: xml
 
@@ -359,6 +358,10 @@ Dependent library setup
         </dependency>
 
     </dependencies>
+    
+.. note::  
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.  
+	The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1216,7 +1219,7 @@ Implement \ ``org.springframework.beans.factory.FactoryBean``\  to create \ ``or
 
 Apache HttpComponents HttpClient library is required in order to use of \ ``HttpClient`` \ and \ ``HttpClientBuilder``\.
 Add below Apache HttpComponents HttpClient dependency library into \ :file:`pom.xml`\.
-Furthermore, the version of Apache HttpComponents HttpClient is managed by Spring IO Platform, Apache HttpComponents HttpClient version is not defined here.
+
 
 * :file:`pom.xml`
 
@@ -1227,7 +1230,10 @@ Furthermore, the version of Apache HttpComponents HttpClient is managed by Sprin
         <artifactId>httpclient</artifactId>
     </dependency>
 
-
+.. note::  
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.  
+	The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
+	
 **Implementation example of bean definition file (applicationContext.xml)**
 
 Define \ ``RestTemplate``\ which carries out SSL communication using SSL self-signed certificate.
@@ -2079,8 +2085,11 @@ Connection destination of HTTP Proxy server for which credentials are essential 
       - Description
     * - | (1)
       - | Add \ ``Apache HttpComponents Client``\  to dependent library of :file:`pom.xml`\  in order to use \ ``Apache HTTP Client``\  which is used in ``HttpComponentsClientHttpRequestFactory``\.
-        | Note that, since \ ``Apache HttpComponents Client``\  version is managed in Spring IO Platform , it is not necessary to define \ ``Apache HttpComponents Client``\  version here.
 
+.. note::  
+	
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+	The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 **Bean definition file**
 

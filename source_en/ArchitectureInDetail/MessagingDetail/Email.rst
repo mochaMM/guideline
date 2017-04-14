@@ -169,8 +169,8 @@ When a component of Spring Framework for email coordination is used, following l
 
 .. note::
 
-    In the configuration example above, it is assumed that dependent library version will be managed by parent project.
-    Hence, \ ``<version>``\  element is not specified.
+    In the above setting example, since it is assumed that the dependent library version is managed by the parent project  terasoluna-gfw-parent, specifying the version in pom.xml is not necessary.
+    The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\.
 
 |
 
@@ -843,6 +843,11 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
           - Description
         * - | (1)
           - | Add a FreeMarker library to dependencies.
+          
+.. note::  
+ 
+       In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.  
+       The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ . 
 
 * Define a Bean for FactoryBean to generate \ ``freemarker.template.Configuration``\ .
 
