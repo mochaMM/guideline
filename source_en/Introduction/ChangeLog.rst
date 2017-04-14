@@ -9,7 +9,7 @@ Change Log
       - Modified locations
       - Modification details
 
-    * - 2017-02-28
+    * - 2017-03-17
       - \-
       - 5.3.0 RELEASE version published
 
@@ -17,25 +17,20 @@ Change Log
 
     * -
       - General
-      - Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+      - Correction of guideline mistakes (typing errors, simple mistakes, etc.)  
+  
+        * For details of the correction,please refer \ `5.3.0's Issue list (clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
+  
+        Description details improved  
+  
+ 	    * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
 
-        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
+        Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
+
         * :doc:`../Overview/FirstApplication`  
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject` 
+        * :doc:`../Tutorial/TutorialTodo` 
         * :doc:`../Tutorial/TutorialSecurity`  
-        * :doc:`../Tutorial/TutorialTodo`  
-        
-        
-        :doc:`../Appendix/Nexus`
-        Modification to migration into Maven Central
-        
-        * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
-        
-        
-        :doc:`../Security/OAuth`  
- 	    New addition  
- 	    
- 		* Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
-
 
     * - 
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -44,22 +39,28 @@ Change Log
         * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
       
     * -
-      - :doc:`../Overview/FrameworkStack`
-      - Version of OSS to be used updated
+      - :doc:`../Introduction/TermsOfUse`
+      - Description details modified
 
-        * Spring IO Platform version updated to Athens-SR2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * MyBatis version updated to 3.4.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * MyBatis-Spring version updated to 1.3.1 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * mybatis-typehandlers-jsr310 updated to 1.0.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
+        * Terms of use modified(\ `guideline#2625 <https://github.com/terasolunaorg/guideline/issues/2625>`_\ )
+
+    * -
+      - :doc:`../Overview/FrameworkStack`
+      - Version of OSS to be used updated(\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ ) 
+
+        * Update version of Spring IO Platform to Athens-SR2
+        * Update version of MyBatis to 3.4.2
+        * Update version of MyBatis-Spring to 1.3.1
+        * Update mybatis-typehandlers-jsr310 to 1.0.2
 
         OSS version to be used in accordance with version update of Spring IO Platform is updated
 
-        Description details modified
+    * - 
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - Description details modified
 
-        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
-
-        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
-
+        * Modified signature-limiting interface and base class implementation sample(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
+        
     * -
       - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
       - Description details added
@@ -71,12 +72,30 @@ Change Log
         Modifications related to Spring Framework 4.3
         
         * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
-        
+    
     * -
-      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
-        | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - Description details added
-      
+
+        * Added input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+
+        Description details modified
+
+        * Added explanation on how to include input check target in message(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+        * Corrected description about check content of input check by @URL(\ `guideline#2260 <https://github.com/terasolunaorg/guideline/issues/2260>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
+      - Fix according to Spring Framework 4.3 support
+
+        * Added description of how to handle a fatal error(\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
+      - Description details added
+
+        * Added about how to prevent binding of request parameters when receiving object is stored in session scope(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
+        
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
       - Description details added
@@ -84,46 +103,90 @@ Change Log
         * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
 
         * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
-
-    * -
-      - :doc:`../Security/Authorization`
+        
+    * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
       - Description details added
 
-        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
-
+        * Added explanation on how to avoid garbled characters when using JBoss EAP 7.0(\ `guideline#2403 <https://github.com/terasolunaorg/guideline/issues/2403>`_\ )
+        
     * -
-      - :doc:`../Security/LinkageWithBrowser`
-      - Modifications associated with Spring Security 4.1.4 support
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
+      - Modification related to Spring Framework 4.3
       
-        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+        * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
         
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
-      - Description details changed, added
+      - Description details updated,added
 
-        * Description related to configuration method while using JSR-310 Date and Time API changed (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
-
-        * Added TypeHandler of JSR310 can be used by default in `blank project for MyBatis3 <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+        * Updated description on setting method when using JSR-310 Date and Time API (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
         Description details added
 
-        * Description added for settings for calling a rollback process when an error occurs at the time of commit (\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
-        
+        * Added description about setting for invoking rollback processing when an error occurs at commit(\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ )
+
         Description details modified
-        
-        * Description of the option which controls the timing to execute ”Lazy Load”modified (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
+
+        * Modified implementation example when using BLOB and CLOB (\ `guideline#1775 <https://github.com/terasolunaorg/guideline/issues/1775>`_\ )
+        * Modified explanation of the option to control the timing of "Lazy Load" execution (\ `guideline#2364 <https://github.com/terasolunaorg/guideline/issues/2364>`_\ )
 
     * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
-      - Modifications associated with Spring Framework 4.3 support
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+      - Description details added
 
-        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
+        * Added warning for a bug in which "nowait" clause is not added when using PostgreSQL(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+          
+    * -
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - Description details added
+
+        * Precautions added for issue ""nowait" not added while using PostgreSQL" (\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
         
+    * -
+      - :doc:`../Security/Authentication`
+      - Description details modified
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+      
+    * -
+      - :doc:`../Security/Authorization`
+      - Modification related to Spring Framework 4.3
+      
+        * Modified desctiption and note about mitigation of \ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\ as the default value of \ ``trimTokens``\ property in \ ``AntPathMatcher``\ was changed.
+        
+        Description details added
+
+        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+        
+        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
+        
+        * Precautions for changing specifications of path matching of \ ``AntPathRequestMatcher``\  added (\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
+        
+    * -
+      - :doc:`../Security/LinkageWithBrowser`
+      - Modifications associated with Spring Security 4.1.4 support
+      
+        * Added description on Content Security Policy (CSP)"(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
+        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
+        
+	  * -  
+	    - :doc:`../Security/OAuth`  
+ 	    - New addition  
+ 	    
+ 		    * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
+
     * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
 
         * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
+
+    * -
+      - :doc:`../Appendix/Nexus`
+      - Modification to migration into Maven Central
+
+        * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
 
     * - 2016-08-31
       - \-
@@ -184,6 +247,11 @@ Change Log
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
+      
+      - Addition of description contents  
+        
+ 		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+ 		
       - Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )

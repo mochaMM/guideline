@@ -357,15 +357,44 @@ Therefore, definition order must be taken into consideration even while specifyi
           </sec:http>
 
 .. warning::
+    Specifications of path matching for \ `AntPathRequestMatcher` \  used by Spring Security by default are now case sensitive for Spring Security 4.1 and subsequent versions.
+
+    For example, as shown below, when an access policy is to be defined for endpoint of Spring MVC which allocates \ ``/Todo/List``\  path,
+    the values specified in \ ``pattern``\  attribute of \ ``<sec:intercept-url>``\  tag must be aligned for uppercase and lowercase letters like \ ``/Todo/List``\  and \ ``/Todo/*``\.
+    If the values not aligned by uppercase and lowercase letters like \ ``/todo/list``\  and \ ``/todo/**``\  are specified accidentally, it should be noted that intended authorization control cannot be performed.
+
+    * Implementation example of Spring MVC endpoint
+
+     .. code-block:: java
+
+         @RequestMapping(value="/Todo/List")
+         public String viewTodoList(){
+            //...
+         }
+
+    * Definition example of access policy
+
+     .. code-block:: xml 
+
+         <sec:http>
+             <sec:intercept-url pattern="/Todo/List" access="isAuthenticated()" />
+             <!-- omitted -->
+         </sec:http>
+
+.. warning::
     In Spring MVC and Spring Security, the mechanism of matching with the request is strictly different, and there is a vulnerability that breaks through the authorization function of Spring Security and can access the handler method using this difference.
     For details of this vulnerability, refer to "\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\".
 
-    In Spring Framework 4.3.1 and later, Spring Security 4.1.1 and later, this problem is solved by using \ `MvcRequestMatcher` \ ,
-    but  in the Spring Framework 4.2.x used by TERASOLUNA Server Framework for Java (5.x), \ `org.springframework.util.AntPathMatcher` \  has to be used which set Spring MVC \ `trimTokens` \ property \ `false` \ .
+    This vulnerability occurs when the Bean of \ `org.springframework.util.AntPathMatcher` \ set \ `true` \ to \ `trimTokens` \ property is applied to Spring MVC.
+    In Spring Framework 4.2 and earlier, the default value of the \ `trimTokens` \ property was set to \ `true` \ , but since the default value was changed to \ `false` \ from Spring Framework 4.3, this vulnerability does not occur unless user intentionally change the property.
+    
+    In the blank project of TERASOLUNA Server Framework for Java (5.3.x), \ `trimTokens` \ property is set to \ `false` \ like below,
+    However, if user set the property to \ `true` \ , this vulnerability can occur. So don't change the value.
 
       .. code-block:: xml
 
           <mvc:annotation-driven>
+              <!-- ommited -->
               <mvc:path-matching path-matcher="pathMatcher" />
           </mvc:annotation-driven>
 
@@ -373,9 +402,6 @@ Therefore, definition order must be taken into consideration even while specifyi
               <property name="trimTokens" value="false" />
           </bean>
     
-    Although the above measures are set in blank projects that are provided by TERASOLUNA Server Framework for Java,
-    it is necessary to be aware of it because it will be exposed to vulnerability if you remove the setting.
-
     Further, if an access policy for a specific URL is to be specified (wild cards like \ ``*``\ , \ ``**``\  etc are not included in \ ``pattern``\  attribute),
     an access policy with a pattern with an extension and a pattern with \ ``/``\  appended at the end of request path must be added.
 

@@ -1184,12 +1184,6 @@ Assigning HTTP methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 CRUD operation for resources is published as REST API by assigning the following HTTP methods for the URI assigned to each resource.
 
- .. note:: **HEAD and OPTIONS method**
- 
-    Hereafter, HEAD and OPTIONS methods are described as well. However, providing them for REST API is optional.
-    
-    While creating the REST API conforming to HTTP specifications, it is necessary to provide the HEAD and OPTIONS methods as well. However, it is actually used very rarely and is not required in most of the cases.
-
 |
 
 .. _RESTHowToDesignAssignHttpMethodForCollectionResource:
@@ -2190,8 +2184,11 @@ REST API specifications used in this explanation are as shown below.
 
  .. note::
  
-     This section focuses on the details of CRUD operation for a resource. Hence, HEAD and OPTIONS methods are not explained.
-     To create the RESTful Web Service conforming to HTTP specifications, refer to ":ref:`RESTAppendixRestApiOfHTTPCompliance`".
+     From Spring Framework 4.3, REST API for HEAD and OPTIONS methods is now implicitly provided,
+     so developers do not need to explicitly implement these REST APIs.
+     
+     Since the OPTIONS itself is not included in the Allow header that the implicitly prepared REST API for OPTIONS responds to,
+     please note that it differs from the implementation example introduced in the development guidelines up to TERASOLUNA Server Framework for Java 5.2.x.
 
 |
 
@@ -5107,6 +5104,9 @@ or
 
 .. note::
 
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+	The above jackson-datatype-joda  used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
+
     Besides above, extension modules (\ ``jackson-datatype-xxx``\ ) for handling
 
     * \ ``java.nio.file.Path``\  added from Java SE 7
@@ -5564,205 +5564,6 @@ Implementation for each resource
     Date: Fri, 14 Mar 2014 12:34:31 GMT
 
 |
-
-.. _RESTAppendixDispatchOptionsMethod:
-
-Setting to dispatch OPTIONS method request to the Controller
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| When conforming to HTTP specifications, it is necessary to return the list of HTTP methods that are allowed to be called for each resource. Therefore, it is necessary to add the setting for dispatching OPTIONS method request, to the Controller.
-| By \ ``DispatcherServlet``\  default setting, the request for OPTIONS method is not dispatched in the Controller with the list of methods allowed by \ ``DispatcherServlet``\  being set in the Allow header.
-
-- :file:`web.xml`
-
- .. code-block:: xml
-    :emphasize-lines: 10-14
-
-    <!-- omitted -->
-
-    <servlet>
-        <servlet-name>appServlet</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:META-INF/spring/spring-mvc-rest.xml</param-value>
-        </init-param>
-        <!-- (1) -->
-        <init-param>
-            <param-name>dispatchOptionsRequest</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <!-- omitted -->
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-   :header-rows: 1
-   :widths: 10 90
-
-   * - | Sr. No.
-     - | Description
-   * - | (1)
-     - | Set initialization parameter (dispatchOptionsRequest) value of \ ``DispatcherServlet``\  that receives RESTful Web Service request to \ ``true``\ .
-
-|
-
-.. _RESTAppendixRestApiOfHTTPComplianceImplementationOfOptionsSpecifiedResource:
-
-Implementing OPTIONS method
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| When conforming to HTTP specifications, it is necessary to return the list of HTTP methods that are allowed to be called for each resource.
-| API implementation that responds with list of HTTP methods (REST AP) supported by the resource specified in URI, is shown below.
-
-* | REST API implementation
-  | Implement a process wherein, list of HTTP methods (REST API) supported by the resource specified in URI is sent as response.
-
- .. code-block:: java
-    :emphasize-lines: 11, 14
-
-    @RequestMapping("members")
-    @RestController
-    public class MembersRestController {
-
-        // omitted
-
-        @RequestMapping(value = "{memberId}", method = RequestMethod.OPTIONS)
-        public ResponseEntity<Void> optionsMember(
-            @PathVariable("memberId") String memberId) {
-
-            // (1)
-            memberService.getMember(memberId);
-
-            // (2)
-            return ResponseEntity
-                    .ok()
-                    .allow(HttpMethod.GET, HttpMethod.HEAD, HttpMethod.PUT,
-                            HttpMethod.DELETE, HttpMethod.OPTIONS).build();
-        }
-    
-        // omitted
-
-    }
-
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - Sr. No.
-      - Description
-    * - | (1)
-      - | Call domain layer Service method and check to confirm if a resource matching with the ID fetched from path variable exists.
-    * - | (2)
-      - | **Set HTTP method supported by resource specified in URI, in Allow header.**
-
-|
-
-* Request example
-
- .. code-block:: guess
-    :emphasize-lines: 1
-
-    OPTIONS /rest-api-web/api/v1/members/M000000004 HTTP/1.1
-    Accept: text/plain, application/json, application/*+json, */*
-    User-Agent: Java/1.7.0_51
-    Host: localhost:8080
-    Connection: keep-alive
-
-
-|
-
-* Response example
-
- .. code-block:: guess
-    :emphasize-lines: 4
-
-    HTTP/1.1 200 OK
-    Server: Apache-Coyote/1.1
-    X-Track: 6d7bbc818c7f44e7942c54bc0ddc15bb
-    Allow: GET,HEAD,PUT,DELETE,OPTIONS
-    Content-Length: 0
-    Date: Mon, 17 Mar 2014 01:54:27 GMT
-
-|
-
-Implementing HEAD method
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| In order to conform to HTTP specifications, when GET method is implemented, HEAD method also needs to be implemented.
-| API implementation that responds with meta-information of the resource specified in URI, is as follows:
-
-
-* | REST API implementation
-  | A process is implemented wherein meta information of the resource specified in URI is fetched.
-
- .. code-block:: java
-    :emphasize-lines: 9
-
-    @RequestMapping("members")
-    @RestController
-    public class MemberRestController {
-
-        // omitted
-
-        @RequestMapping(value = "{memberId}",
-                        method = { RequestMethod.GET,
-                                   RequestMethod.HEAD }) // (1)
-
-        @ResponseStatus(HttpStatus.OK)
-        public MemberResource getMember(
-                @PathVariable("memberId") String memberId) {
-            // omitted
-        }
-
-        // omitted
-
-    }
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - Sr. No.
-      - Description
-    * - | (1)
-      - | Add \ ``RequestMethod.HEAD``\  to the method attribute of REST API \ ``@RequestMapping``\  annotation that processes the GET method.
-        | HEAD method needs to respond only the header information, by performing the same process as GET method. Therefore, \ ``RequestMethod.HEAD``\  is also specified in the method attribute of \ ``@RequestMapping``\  annotation.
-        | It is advisable to perform a process similar to GET process as the Controller process since, the process for emptying response BODY is performed by standard functionality of Servlet API.
-
- |
- 
-* Request example
- 
- .. code-block:: guess
-    :emphasize-lines: 1
- 
-    HEAD /rest-api-web/api/v1/members/M000000001 HTTP/1.1
-    Accept: text/plain, application/json, application/*+json, */*
-    User-Agent: Java/1.7.0_51
-    Host: localhost:8080
-    Connection: keep-alive
-
- |
- 
-* Response example
-
- .. code-block:: guess
-    :emphasize-lines: 1, 4, 5
-
-    HTTP/1.1 200 OK
-    Server: Apache-Coyote/1.1
-    X-Track: 71093a551e624c149867b6bfec486d2c
-    Content-Type: application/json;charset=UTF-8
-    Content-Length: 452
-    Date: Thu, 13 Mar 2014 13:25:23 GMT
- 
-
-|
-
-
 
 .. _RESTAppendixDisabledCSRFProtection:
 
