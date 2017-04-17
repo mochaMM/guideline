@@ -84,8 +84,8 @@ Change Log
         * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
         
         Modifications related to Spring Framework 4.3
-        
-        * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+ﾂꀀﾂꀀﾂꀀﾂꀀﾂꀀﾂꀀﾂꀀ 
+        * Precautions while using \ ``@DateTimeFormat`` \ﾂꀀ for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
     
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
@@ -149,7 +149,7 @@ Change Log
       
         * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
       
-    * -
+ﾂꀀﾂꀀﾂꀀ * -
       - :doc:`../Security/LinkageWithBrowser`
       - Modifications associated with Spring Security 4.1.4 support
       
@@ -185,6 +185,12 @@ Change Log
       - Modification to migration into Maven Central
 
         * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
+
+    * -
+      - :doc:`../Security/Authentication`
+      - Description details added
+
+        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
     * - 2016-08-31
       - \-
