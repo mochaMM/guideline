@@ -1013,25 +1013,25 @@ garbling occurs for seven characters described in the table below.
      - | U+2015
      - | U+2014
      - | 213E
-     - | — (EM dash)
+     - | 窶鐀 (EM dash)
    * - | －（Hyphen-minus）
      - | 817C
      - | U+FF0D
      - | U+2212
      - | 215D
-     - | − (Double byte minus)
+     - | 竏鈀 (Double byte minus)
    * - | ～ (Double byte tilde)
      - | 8160
      - | U+FF5E
      - | U+301C
      - | 2141
-     - | 〜(Tilde)
+     - | 縲鰀(Tilde)
    * - | ∥ (Parallel symbol)
      - | 8161
      - | U+2225
      - | U+2016
      - | 2142
-     - | ‖ (Pipe sumbol)
+     - | 窶阀 (Pipe sumbol)
    * - | ￠ (Double byte cent symbol)
      - | 8191
      - | U+FFE0
@@ -1136,6 +1136,19 @@ Moreover, when ISO-2022-JP encoding is set, these characters can be replaced so 
    Hence it cannot be guaranteed that there will not be any garbling in all email clients even though mapping is done using x-windows-iso2022jp.
 
 When extension characters can also be converted to alternate characters, a method wherein conversion is done in the application independently should also be reviewed similar to seven characters described earlier.
+
+|
+
+.. _email-note-of-when-sending:
+
+Precautions for using multibyte characters in JavaMail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In JavaMail, if the body text of the mail to be sent ends with multibyte characters, extra characters ("?" or "w") are likely to be output at the end.  
+This can be avoided by using methods below.  
+
+* Change end characters of mail body text to single byte characters  
+* Change end of mail body text to linefeed code (CRLF)  
 
 |
 
