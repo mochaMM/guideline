@@ -83,9 +83,11 @@ Change Log
 
         * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
         
+        * Precautions to indicate the existence of unusable characters in Cookie name or value added (\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+        
         Modifications related to Spring Framework 4.3
-        
-        * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+
+        * Precautions while using \ ``@DateTimeFormat`` \ﾂꀀ for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
     
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
@@ -93,6 +95,10 @@ Change Log
       
         * Added about how to prevent binding of request parameters when receiving object stored in session scope (\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
         
+        Description details added
+
+        * Added description related to output specification of explanation cause of HTTP status code （\ ``reason-phrase``\）(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - Description details added
@@ -149,7 +155,7 @@ Change Log
       
         * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
       
-    * -
+      ꀀ * -
       - :doc:`../Security/LinkageWithBrowser`
       - Modifications associated with Spring Security 4.1.4 support
       
