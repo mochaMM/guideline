@@ -3717,6 +3717,8 @@ The code implemented according to the above implementation method is described s
      * - | (2)
        - | Using the value fetched in (1) and the token included in the created authentication information for password reissue, create the URL of password reissue screen to be distributed to the user.
          | Use \ ``org.springframework.web.util.UriComponentsBuilder`` \  to create the URL. \ ``UriComponentsBuilder`` \  is described in :ref:`RESTAppendixHyperMediaLink`.
+         |
+         | Example: \ ``http://example.com/app/reissue/resetpassword?form&token=512f1a33-da20-4b9f-9e26-8961e9071618``\
      * - | (3)
        - | Send an email with the URL of the password reissue screen mentioned in the mail text to the registered e-mail address of the user.
 
@@ -3917,6 +3919,7 @@ Code description
 
            // omitted
 
+           @RequestMapping(value = "resetpassword", params = "form", method = RequestMethod.GET)
            public String showPasswordResetForm(PasswordResetForm form, Model model,
                    @RequestParam("token") String token) { // (1)
 
