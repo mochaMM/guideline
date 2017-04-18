@@ -788,7 +788,7 @@ Creating login page
                     <tr>
                         <td><label for="username">User:</label></td>
                         <td><input type="text" id="username"
-                            name="username" value='demo'>(demo)</td><!-- (4) -->
+                            name="username" value="demo">(demo)</td><!-- (4) -->
                     </tr>
                     <tr>
                         <td><label for="password">Password:</label></td>
