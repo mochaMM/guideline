@@ -1013,25 +1013,25 @@ garbling occurs for seven characters described in the table below.
      - | U+2015
      - | U+2014
      - | 213E
-     - | - (EM dash)
+     - | — (EM dash)
    * - | －（Hyphen-minus）
      - | 817C
      - | U+FF0D
      - | U+2212
      - | 215D
-     - | - (Double byte minus)
+     - | − (Double byte minus)
    * - | ～ (Double byte tilde)
      - | 8160
      - | U+FF5E
      - | U+301C
      - | 2141
-     - | ~ (Tilde)
+     - | 〜(Tilde)
    * - | ∥ (Parallel symbol)
      - | 8161
      - | U+2225
      - | U+2016
      - | 2142
-     - | || (Pipe sumbol)
+     - | ‖ (Pipe sumbol)
    * - | ￠ (Double byte cent symbol)
      - | 8191
      - | U+FFE0
@@ -1141,13 +1141,13 @@ When extension characters can also be converted to alternate characters, a metho
 
 .. _email-note-of-when-sending:
 
-Precautions for using multibyte characters in JavaMail
+Precautions while using multibyte characters in JavaMail
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In JavaMail, if the body text of the mail to be sent ends with multibyte characters, extra characters ("?" or "w") are likely to be output at the end.  
-This can be avoided by using methods below.  
+In JavaMail, body text of mail to be sent ends with multibyte characters, additional characters  ("?", "w" etc) are likely to be output.  
+Following methods can be used to avoid these occurrences.  
 
-* Change end characters of mail body text to single byte characters  
+* Change end character of mail body text to single byte character.  
 * Change end of mail body text to linefeed code (CRLF)  
 
 |
