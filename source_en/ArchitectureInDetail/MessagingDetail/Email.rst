@@ -1031,7 +1031,7 @@ garbling occurs for seven characters described in the table below.
      - | U+2225
      - | U+2016
      - | 2142
-     - | || (Pipe sumbol)
+     - | | (Pipe sumbol)
    * - | ￠ (Double byte cent symbol)
      - | 8191
      - | U+FFE0
