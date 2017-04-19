@@ -1013,25 +1013,25 @@ garbling occurs for seven characters described in the table below.
      - | U+2015
      - | U+2014
      - | 213E
-     - | — (EM dash)
+     - | -鐀 (EM dash)
    * - | －（Hyphen-minus）
      - | 817C
      - | U+FF0D
      - | U+2212
      - | 215D
-     - | − (Double byte minus)
+     - | -鈀 (Double byte minus)
    * - | ～ (Double byte tilde)
      - | 8160
      - | U+FF5E
      - | U+301C
      - | 2141
-     - | 〜(Tilde)
+     - | ~鰀(Tilde)
    * - | ∥ (Parallel symbol)
      - | 8161
      - | U+2225
      - | U+2016
      - | 2142
-     - | ‖ (Pipe sumbol)
+     - | ||阀 (Pipe sumbol)
    * - | ￠ (Double byte cent symbol)
      - | 8191
      - | U+FFE0

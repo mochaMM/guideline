@@ -23,7 +23,7 @@ Change Log
   
         Description details improved  
   
- 	    * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
+    * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
 
         Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
@@ -90,8 +90,8 @@ Change Log
         * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
         
         Modifications related to Spring Framework 4.3
-ﾂꀀﾂꀀﾂꀀﾂꀀﾂꀀﾂꀀﾂꀀ 
-        * Precautions while using \ ``@DateTimeFormat`` \ﾂꀀ for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+
+        * Precautions while using \ ``@DateTimeFormat`` \ for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
     
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
@@ -155,18 +155,18 @@ Change Log
       
         * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
       
-ﾂꀀﾂꀀﾂꀀ * -
+    * -
       - :doc:`../Security/LinkageWithBrowser`
       - Modifications associated with Spring Security 4.1.4 support
       
         * Added description on Content Security Policy (CSP)"(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
         * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
         
-	  * -  
-	    - :doc:`../Security/OAuth`  
- 	    - New addition  
- 	    
- 		    * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
+    * -  
+      - :doc:`../Security/OAuth`  
+      - New addition  
+       
+        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
 
     * -
       - :doc:`../Security/Authorization`
@@ -254,8 +254,8 @@ Change Log
       
       - Addition of description contents  
         
- 		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
- 		
+        * Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+       
       - Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
