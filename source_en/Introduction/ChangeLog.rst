@@ -149,7 +149,7 @@ Change Log
       
         * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
       
-ﾂ黴ﾂ黴ﾂ黴 * -
+    * -
       - :doc:`../Security/LinkageWithBrowser`
       - Modifications associated with Spring Security 4.1.4 support
       
