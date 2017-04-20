@@ -3717,6 +3717,7 @@ ER図
      * - | (2)
        - | (1)で取得した値と、生成したパスワード再発行用の認証情報に含まれるトークンを使用して、ユーザに配布するパスワード再発行画面のURLを作成する。
          | URLの作成には \ ``org.springframework.web.util.UriComponentsBuilder`` \ を利用する。\ ``UriComponentsBuilder`` \ については、:ref:`RESTAppendixHyperMediaLink` の中で説明されている。
+         | 上記例では、作成されるURLのパス以下は"reissue/resetpassword?form&token=512f1a33-da20-4b9f-9e26-8961e9071618"のようになる。（token部分はランダムに生成される。）
      * - | (3)
        - | ユーザの登録メールアドレス宛てに、パスワード再発行画面のURLを本文に記したメールを送付する。
 
@@ -3917,6 +3918,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
            // omitted
 
+           @RequestMapping(value = "resetpassword", params = "form")
            public String showPasswordResetForm(PasswordResetForm form, Model model,
                    @RequestParam("token") String token) { // (1)
 
