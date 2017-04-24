@@ -157,10 +157,10 @@ Change Log
         * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
         
     * -
-      - :doc:`../Security/OAuth`
-      - New addition
+      - :doc:`../Security/OAuth`
+      - New addition
 
-        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
+        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
 
     * -
       - :doc:`../Security/Authorization`
@@ -256,7 +256,7 @@ Change Log
         
  		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
  		
-      - Description details modified
+        Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
         * Description for cross-field validation added (\ `guideline#1561 <https://github.com/terasolunaorg/guideline/issues/1561>`_\ )
