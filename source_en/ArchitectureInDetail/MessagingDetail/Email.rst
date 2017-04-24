@@ -1008,48 +1008,48 @@ garbling occurs for seven characters described in the table below.
        | （JIS）
      - | JIS X 0208
        | Alternative character
-   * - | ― (Double byte hyphen)
+   * - | ―(Double byte hyphen)
      - | 815D
      - | U+2015
      - | U+2014
      - | 213E
-     - | — (EM dash)
-   * - | －（Hyphen-minus）
-     - | 817C
+     - | —(EM dash)
+   * - | －(Hyphen-minus)
+     - | 817C
      - | U+FF0D
      - | U+2212
      - | 215D
-     - | − (Double byte minus)
-   * - | ～ (Double byte tilde)
+     - | −(Double byte minus)
+   * - | ～(Double byte tilde)
      - | 8160
      - | U+FF5E
      - | U+301C
      - | 2141
-     - | 〜 (Tilde)
-   * - | ∥ (Parallel symbol)
+     - | 〜(Tilde)
+   * - | ∥(Parallel symbol)
      - | 8161
      - | U+2225
      - | U+2016
      - | 2142
-     - | ‖ (Pipe sumbol)
-   * - | ￠ (Double byte cent symbol)
+     - | ‖(Pipe sumbol)
+   * - | ￠(Double byte cent symbol)
      - | 8191
      - | U+FFE0
      - | U+00A2
      - | 2171
-     - | ￠ (Cent symbol)
-   * - | ￡ (Double byte pound symbol)
+     - | ￠(Cent symbol)
+   * - | ￡(Double byte pound symbol)
      - | 8192
      - | U+FFE1
      - | U+00A3
      - | 2172
-     - | ￡ (Pound symbol)
-   * - | ￢ (Double byte negation symbol)
+     - | ￡(Pound symbol)
+   * - | ￢(Double byte negation symbol)
      - | 81CA
      - | U+FFE2
      - | U+00AC
      - | 224C
-     - | ￢ (Negation symbol)
+     - | ￢(Negation symbol)
 
 This issue occurs during character code conversion through Unicode due to the presence of characters that exist in MS932 but do not exist in JIS X 0208.
 In order to avoid garbling, the measures such as replacing character codes for the garbled characters with alternate characters must be employed.
