@@ -22,8 +22,8 @@ Change Log
         * For details of the correction,please refer \ `5.3.0's Issue list (clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
   
         Description details improved  
-  
-    * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
+  
+        * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
 
         Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
