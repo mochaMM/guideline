@@ -163,8 +163,8 @@ Change Log
         * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
         
     * -
-      - :doc:`../Security/OAuth`  
-      - New addition  
+      - :doc:`../Security/OAuth`
+      - New addition
  	    
         * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
 
