@@ -160,7 +160,7 @@ Change Log
       - :doc:`../Security/OAuth`
       - New addition
 
-        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
+        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
 
     * -
       - :doc:`../Security/Authorization`
