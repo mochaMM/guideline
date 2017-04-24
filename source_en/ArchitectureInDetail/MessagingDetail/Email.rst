@@ -1018,16 +1018,16 @@ garbling occurs for seven characters described in the table below.
      - | 817C
      - | U+FF0D
      - | U+2212
-     - | 215D
+     - | 215D
      - | − (Double byte minus)
-   * - | ～ (Double byte tilde)
-     - | 8160
-     - | U+FF5E
+   * - | ～ (Double byte tilde)
+     - | 8160
+     - | U+FF5E
      - | U+301C
      - | 2141
-     - | 〜 (Tilde)
-   * - | ∥ (Parallel symbol)
-     - | 8161
+     - | 〜 (Tilde)
+   * - | ∥ (Parallel symbol)
+     - | 8161
      - | U+2225
      - | U+2016
      - | 2142
