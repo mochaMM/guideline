@@ -259,8 +259,8 @@ Change Log
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       
       - Addition of description contents  
-        
-    		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+        
+        * Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
  		
         Description details modified
 
