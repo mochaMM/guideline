@@ -358,8 +358,8 @@ TomcatのVirtualWebappLoaderのように、Webアプリケーションごとに�
 
  mavenの世界では、pom.xml上の<version>タグの内容によってそれがSNAPSHOTバージョンなのかRELEASEバージョンなのかが自動的に判別される。
 
- * 末尾が -SNAPSHOT である場合にSNAPSHOTとみなされる。例：<version>1.0-SNAPSHOT</version>
- * 末尾が -SNAPSHOT ではない場合はRELEASEとみなされる。例：<version>1.0</version>
+ * 末尾が -SNAPSHOT である場合にSNAPSHOTとみなされる。例：<version>1.0.0-SNAPSHOT</version>
+ * 末尾が -SNAPSHOT ではない場合はRELEASEとみなされる。例：<version>1.0.0</version>
 
  また、mavenパッケージリポジトリにはsnapshotsリポジトリとreleaseリポジトリの2種類があり、いくつかの制約があることに注意する。
 
