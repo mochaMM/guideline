@@ -10,6 +10,12 @@
       - 更新箇所
       - 更新内容
 
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - 記載内容の追加
+
+        * MyBatis 3.4.1以降では、JDK 8から追加されたコンパイルオプション(\ ``-parameters`` \)を使用すると\ ``@Param`` \を省略できる旨を追加(\ `guideline#2366 <https://github.com/terasolunaorg/guideline/issues/2366>`_\ )
+
     * - 2017-03-17
       - \-
       - 5.3.0 RELEASE版公開
