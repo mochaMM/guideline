@@ -460,11 +460,10 @@ AccountSharedServiceの作成
 本チュートリアルでは、アカウント情報を保持するデータベースとしてH2 Database(インメモリデータベース)を使用する。
 そのため、アプリケーションサーバ起動時にSQLを実行してデータベースを初期化する必要がある。
 
-| データベースを初期化するSQLスクリプトを実行するための設定を追加する。
-| ``src/main/resources/META-INF/spring/first-springsecurity-env.xml``
+作成したブランクプロジェクトの\ ``src/main/resources/META-INF/spring/first-springsecurity-env.xml``\ には、H2 Database(インメモリデータベース)を使用するための設定が行われている。
 
 .. code-block:: xml
-    :emphasize-lines: 4,6,30-36
+    :emphasize-lines: 4,6,12-18
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -474,27 +473,9 @@ AccountSharedServiceの作成
             http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         ">
-
-        <bean id="dateFactory" class="org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory" />
-
-        <bean id="realDataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-            destroy-method="close">
-            <property name="driverClassName" value="${database.driverClassName}" />
-            <property name="url" value="${database.url}" />
-            <property name="username" value="${database.username}" />
-            <property name="password" value="${database.password}" />
-            <property name="defaultAutoCommit" value="false" />
-            <property name="maxTotal" value="${cp.maxActive}" />
-            <property name="maxIdle" value="${cp.maxIdle}" />
-            <property name="minIdle" value="${cp.minIdle}" />
-            <property name="maxWaitMillis" value="${cp.maxWait}" />
-        </bean>
-
-
-        <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-            <constructor-arg index="0" ref="realDataSource" />
-        </bean>
-
+    
+        <!-- ... -->
+    
         <!-- (1) -->
         <jdbc:initialize-database data-source="dataSource"
             ignore-failures="ALL">
@@ -503,20 +484,9 @@ AccountSharedServiceの作成
             <!-- (3) -->
             <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
         </jdbc:initialize-database>
-
-        <!--  REMOVE THIS LINE IF YOU USE JPA
-        <bean id="transactionManager"
-            class="org.springframework.orm.jpa.JpaTransactionManager">
-            <property name="entityManagerFactory" ref="entityManagerFactory" />
-        </bean>
-              REMOVE THIS LINE IF YOU USE JPA  -->
-        <!--  REMOVE THIS LINE IF YOU USE MyBatis3
-        <bean id="transactionManager"
-            class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-            <property name="dataSource" ref="dataSource" />
-            <property name="rollbackOnCommitFailure" value="true" />
-        </bean>
-              REMOVE THIS LINE IF YOU USE MyBatis3  -->
+    
+        <!-- ... -->
+        
     </beans>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -527,15 +497,15 @@ AccountSharedServiceの作成
     * - 項番
       - 説明
     * - | (1)
-      - \ ``<jdbc:initialize-database>``\ タグにデータベースを初期化するSQLスクリプトを実行するための設定を行う。
+      - \ ``<jdbc:initialize-database>``\ タグにデータベースを初期化するSQLスクリプトを実行するための設定が行われている。
 
-        この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``first-springsecurity-env.xml``\ に定義する。
+        この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``first-springsecurity-env.xml``\ に定義されている。
     * - | (2)
-      - アカウント情報を保持するテーブルを作成するためのDDL文が記載されているSQLファイルを指定する。
+      - アカウント情報を保持するテーブルを作成するためのDDL文が記載されているSQLファイルを指定している。
 
         ブランクプロジェクトの設定では、\ ``first-springsecurity-infra.properties``\ に\ ``database=H2``\ と定義されているため、\ ``H2-schema.sql``\ が実行される。
     * - | (3)
-      - デモユーザーを登録するためのDML文が記載されているSQLファイルを指定する。
+      - デモユーザーを登録するためのDML文が記載されているSQLファイルを指定している。
 
         ブランクプロジェクトの設定では、\ ``first-springsecurity-infra.properties``\ に\ ``database=H2``\ と定義されているため、\ ``H2-dataload.sql``\ が実行される。
 
