@@ -17,10 +17,15 @@
         * 更新内容の詳細は、\ `5.4.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
-      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
-      - 記載内容の追加
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
 
-        * MyBatis 3.4.1以降では、JDK 8から追加されたコンパイルオプション(\ ``-parameters`` \)を使用すると\ ``@Param`` \を省略できる旨を追加(\ `guideline#2366 <https://github.com/terasolunaorg/guideline/issues/2366>`_\ )
+        * 修正内容の詳細は、\ `5.4.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.4.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+
+        記載内容の改善
+
+        * 改善内容の詳細は、\ `5.4.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
+
 
     * - 2017-03-17
       - \-
