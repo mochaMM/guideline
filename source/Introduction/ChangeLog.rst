@@ -10,6 +10,23 @@
       - 更新箇所
       - 更新内容
 
+    * - 2017-XX-XX
+      - \-
+      - 5.4.0 RELEASE版公開
+
+        * 更新内容の詳細は、\ `5.4.0のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+
+    * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
+
+        * 修正内容の詳細は、\ `5.4.0のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.4.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+
+        記載内容の改善
+
+        * 改善内容の詳細は、\ `5.4.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
+
+
     * - 2017-03-17
       - \-
       - 5.3.0 RELEASE版公開

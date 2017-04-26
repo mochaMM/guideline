@@ -2028,6 +2028,9 @@ PKが単一カラムで構成されるテーブルより、PKを指定してEnti
 
         <!-- omitted -->
 
+    MyBatis 3.4.1以降では、JDK 8 から追加されたコンパイルオプション(\ ``-parameters``\)を使用することで、\ ``@Param``\アノテーションを省略する事ができる。
+
+
 |
 
 .. _DataAccessMyBatis3HowToUseFindMultiple:
