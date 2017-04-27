@@ -459,58 +459,7 @@ AccountSharedServiceの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 本チュートリアルでは、アカウント情報を保持するデータベースとしてH2 Database(インメモリデータベース)を使用する。
-そのため、アプリケーションサーバ起動時にSQLを実行してデータベースを初期化する必要がある。
-
-作成したブランクプロジェクトの\ ``src/main/resources/META-INF/spring/first-springsecurity-env.xml``\ には、H2 Database(インメモリデータベース)を使用するための設定が行われている。
-
-.. code-block:: xml
-    :emphasize-lines: 4,6,12-18
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-        xsi:schemaLocation="
-            http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        ">
-    
-        <!-- ... -->
-    
-        <!-- (1) -->
-        <jdbc:initialize-database data-source="dataSource"
-            ignore-failures="ALL">
-            <!-- (2) -->
-            <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
-            <!-- (3) -->
-            <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
-        </jdbc:initialize-database>
-    
-        <!-- ... -->
-        
-    </beans>
-
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - \ ``<jdbc:initialize-database>``\ タグにデータベースを初期化するSQLスクリプトを実行するための設定が行われている。
-
-        この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``first-springsecurity-env.xml``\ に定義されている。
-    * - | (2)
-      - アカウント情報を保持するテーブルを作成するためのDDL文が記載されているSQLファイルを指定している。
-
-        ブランクプロジェクトの設定では、\ ``first-springsecurity-infra.properties``\ に\ ``database=H2``\ と定義されているため、\ ``H2-schema.sql``\ が実行される。
-    * - | (3)
-      - デモユーザーを登録するためのDML文が記載されているSQLファイルを指定している。
-
-        ブランクプロジェクトの設定では、\ ``first-springsecurity-infra.properties``\ に\ ``database=H2``\ と定義されているため、\ ``H2-dataload.sql``\ が実行される。
-
-|
+そのため、アプリケーション起動時にSQLを実行してデータベースを初期化する必要がある。
 
 | アカウント情報を保持するテーブルを作成するためのDDL文を作成する。
 | ``src/main/resources/database/H2-schema.sql``
