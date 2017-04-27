@@ -3948,7 +3948,7 @@ todo-env.xml
 なお、データベースにアクセスしないブランクプロジェクトを作成した際は、\ :file:`todo-env.xml`\ は作成されない。
 
 .. code-block:: xml
-    :emphasize-lines: 12, 27, 44
+    :emphasize-lines: 4, 6, 12, 27, 32-38, 47
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -3981,9 +3981,12 @@ todo-env.xml
             <constructor-arg index="0" ref="realDataSource" />
         </bean>
 
+        <!-- (3) -->
         <jdbc:initialize-database data-source="dataSource"
             ignore-failures="ALL">
+            <!-- (4) -->
             <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
+            <!-- (5) -->
             <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
         </jdbc:initialize-database>
 
@@ -3993,7 +3996,7 @@ todo-env.xml
             <property name="entityManagerFactory" ref="entityManagerFactory" />
         </bean>
               REMOVE THIS LINE IF YOU USE JPA  -->
-        <!-- (3) -->
+        <!-- (6) -->
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
@@ -4016,6 +4019,18 @@ todo-env.xml
        | JDBC関連のログを出力する機能をもったデータソースを指定している。
        | \ ``net.sf.log4jdbc.Log4jdbcProxyDataSource``\ を使用すると、SQLなどのJDBC関連のログを出力できるため、デバッグに役立つ情報を出力することができる。
    * - | (3)
+     - | \ ``<jdbc:initialize-database>`` \タグにデータベースを初期化するSQLスクリプトを実行するための設定が行われている。
+       |
+       | この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``todo-env.xml`` \に定義されている。
+   * - | (4)
+     - | DDL文が記載されているSQLファイルを指定している。
+       |
+       | ブランクプロジェクトの設定では\ ``todo-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-schema.sql`` \が実行される。
+   * - | (5)
+     - | DML文が記載されているSQLファイルを指定している。
+       |
+       | ブランクプロジェクトの設定では、\ ``todo-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-dataload.sql`` \が実行される。
+   * - | (6)
      - | トランザクションマネージャの設定。
        | id属性には、\ ``transactionManager``\ を指定する。
        | 別の名前を指定する場合は、\ ``<tx:annotation-driven>``\ タグにもトランザクションマネージャ名を指定する必要がある。
