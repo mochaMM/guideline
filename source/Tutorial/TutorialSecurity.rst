@@ -460,6 +460,19 @@ AccountSharedServiceの作成
 本チュートリアルでは、アカウント情報を保持するデータベースとしてH2 Database(インメモリデータベース)を使用する。
 そのため、アプリケーション起動時にSQLを実行してデータベースを初期化する必要がある。
 
+| ブランクプロジェクトには以下のように\ ``jdbc:initialize-database`` \が設定済みであり、\ ``${database}-schema.sql`` \にDDL文、\ ``${database}-dataload.sql`` \にDML文を追加するだけでアプリケーション起動時にSQLを実行してデータベースを初期化することができる。なお、ブランクプロジェクトの設定では\ ``first-springsecurity-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-schema.sql`` \及び\ ``H2-dataload.sql`` \が実行される。
+
+| ``src/main/resources/META-INF/spring/first-springsecurity-env.xml``
+
+.. code-block:: xml
+
+    <jdbc:initialize-database data-source="dataSource"
+        ignore-failures="ALL">
+        <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
+        <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
+    </jdbc:initialize-database>
+
+|
 | アカウント情報を保持するテーブルを作成するためのDDL文を作成する。
 | ``src/main/resources/database/H2-schema.sql``
 
