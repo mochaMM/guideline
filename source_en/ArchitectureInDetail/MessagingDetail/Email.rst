@@ -1015,7 +1015,7 @@ garbling occurs for seven characters described in the table below.
      - | 213E
      - | —(EM dash)
    * - | －(Hyphen-minus)
-     - | 817C
+     - | 817C
      - | U+FF0D
      - | U+2212
      - | 215D
@@ -1025,8 +1025,8 @@ garbling occurs for seven characters described in the table below.
      - | U+FF5E
      - | U+301C
      - | 2141
-     - | 〜(Tilde)
-   * - | ∥(Parallel symbol)
+     - | 〜(Tilde)
+   * - | ∥(Parallel symbol)
      - | 8161
      - | U+2225
      - | U+2016
