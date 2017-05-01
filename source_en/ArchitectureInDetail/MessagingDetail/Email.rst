@@ -1014,12 +1014,12 @@ garbling occurs for seven characters described in the table below.
      - | U+2014
      - | 213E
      - | —(EM dash)
-   * - | －(Hyphen-minus)
+   * - | －(Hyphen-minus)
      - | 817C
      - | U+FF0D
      - | U+2212
-     - | 215D
-     - | −(Double byte minus)
+     - | 215D
+     - | −(Double byte minus)
    * - | ～(Double byte tilde)
      - | 8160
      - | U+FF5E
