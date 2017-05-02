@@ -20,17 +20,23 @@ Change Log
       - Correction of guideline mistakes (typing errors, simple mistakes, etc.)  
   
         * For details of the correction,please refer \ `5.3.0's Issue list (clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
-  
+
         Description details improved
 
-        * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
+        * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
 
         Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
-        * :doc:`../Overview/FirstApplication`  
-        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject` 
-        * :doc:`../Tutorial/TutorialTodo` 
-        * :doc:`../Tutorial/TutorialSecurity`  
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Tutorial/TutorialTodo`
+        * :doc:`../Tutorial/TutorialSecurity`
+
+    * - 
+      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+      - Description details added
+
+        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
 
     * - 
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -161,12 +167,12 @@ Change Log
       
         * Added description on Content Security Policy (CSP)"(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
         * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
-        
-    * -
-      - :doc:`../Security/OAuth`
-      - New addition
-
-        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )
+        
+    * -  
+      - :doc:`../Security/OAuth`  
+      - New addition  
+       
+        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
 
     * -
       - :doc:`../Security/Authorization`
@@ -259,10 +265,10 @@ Change Log
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       
       - Addition of description contents  
-
-        * Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
-
-        Description details modified
+        
+        * Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+       
+        Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
         * Description for cross-field validation added (\ `guideline#1561 <https://github.com/terasolunaorg/guideline/issues/1561>`_\ )
