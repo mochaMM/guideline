@@ -1027,7 +1027,7 @@ garbling occurs for seven characters described in the table below.
      - | 2141
      - | 〜(Tilde)
    * - | ∥(Parallel symbol)
-     - | 8161
+     - | 8161
      - | U+2225
      - | U+2016
      - | 2142
