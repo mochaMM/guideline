@@ -112,6 +112,7 @@ Following 4 roles are defined in OAuth 2.0.
 .. list-table:: ** Roles in OAuth 2.0 **
     :header-rows: 1
     :widths: 25 75
+    :class: longtable
 
     * - Role name
       - Description
@@ -238,6 +239,7 @@ Flow of authorization code grant is as follows.
 .. list-table:: **Authorization code grant flow**
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -276,6 +278,7 @@ Flow of implicit grant is as follows.
 .. list-table:: **Flow of implicit grant**
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -363,6 +366,7 @@ Flow from issue of access token till its invalidation is as follows.
 .. list-table:: **Flow from issue of access token till its invalidation**
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -644,6 +648,7 @@ Configuration while using \  ``OAuth2RestTemplate``\  as client function is give
 .. list-table:: **Working of client**
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No,
       - Description
@@ -888,6 +893,7 @@ At first, DB is created as below.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1076,6 +1082,7 @@ Add settings necessary for client authentication to \ ``oauth2-auth.xml``\.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1084,9 +1091,9 @@ Add settings necessary for client authentication to \ ``oauth2-auth.xml``\.
           as an endpoint URL in order to perform  security settings for endpoint related to access token operation.
         | Here, the endpoint URL acting as a access control target is set to a value starting from \ ``/oth2/``\ ,
           endpoint URL defined by Spring Security OAuth and its default value are as below.
-        |  繝ｻ\ ``/oauth/token``\  - an endpoint URL of endpoint used in issuing a token 
-        |  繝ｻ\ ``/oauth/check_token``\ - an endpoint URL of endpoint used to verify a token
-        |  繝ｻ\ ``/oauth/token_key``\ - an endpoint URL of endpoint used for fetching a public key, when JWT signature is created by public key encryption method
+        |  ・\ ``/oauth/token``\  - an endpoint URL of endpoint used in issuing a token 
+        |  ・\ ``/oauth/check_token``\ - an endpoint URL of endpoint used to verify a token
+        |  ・\ ``/oauth/token_key``\ - an endpoint URL of endpoint used for fetching a public key, when JWT signature is created by public key encryption method
         | Specify a Bean of \ ``AuthenticationManager``\  for client authentication defined in (5), in \ ``authentication-manager-ref``\  attribute.
         | Also, when Basic authentication is enabled by XML Namespace as shown in (2), Realm name of Basic authentication becomes \ ``"Spring Security Application"``\.
         | Specify an appropriate value in \ ``realm``\  attribute since internal information of the application gets revealed.
@@ -1207,12 +1214,12 @@ Following DB is created for storing authorization information for each scope. Th
     * - | (1)
       - | A table to retain authorization information. userId, clientId and scope are used as primary keys.
         | Role of each column is as below.
-        |  繝ｻuserId: A column to retain user name of resource owner who performs the authorization.
-        |  繝ｻclientId: A column to retain client ID of the client authorized by the resource owner.
-        |  繝ｻscope: A column to retain scope authorized by resource owner.
-        |  繝ｻstatus: A column to check whether the authorization is done by the resource owner. \ ``APPROVED``\  is set when authorized and \ ``DENIED``\  is set when authorization is denied.
-        |  繝ｻexpiresAt: A column to retain validity period of authorization information.
-        |  繝ｻlastModifiedAt: A column to retain last modified date for authorization information.
+        |  ・userId: A column to retain user name of resource owner who performs the authorization.
+        |  ・clientId: A column to retain client ID of the client authorized by the resource owner.
+        |  ・scope: A column to retain scope authorized by resource owner.
+        |  ・status: A column to check whether the authorization is done by the resource owner. \ ``APPROVED``\  is set when authorized and \ ``DENIED``\  is set when authorization is denied.
+        |  ・expiresAt: A column to retain validity period of authorization information.
+        |  ・lastModifiedAt: A column to retain last modified date for authorization information.
 
 Fetch authorization for each scope of resource owner and apply settings to store the same in DB and control.
 
@@ -1449,6 +1456,7 @@ Various methods exist for methods for linking.
 .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - Sr. No.
       - Method of linking
@@ -1566,19 +1574,19 @@ The example below explains the DB definition while using PostgreSQL as a common 
     * - | (1)
       - | A table which manages the access token. It is used to share information of access token issued by authorization server with the resource server.
         | Roles of each column are as below.
-        |  繝ｻauthentication_id: A column to store authentication key which uniquely identifies authentication information. It is used as a primary key.
-        |  繝ｻtoken: A column which retains token information as a binary after serializing. Validity period of access token, scope, token ID of access token, token ID of refresh token, token type which shows types of token to be used are stored as information of the token to be retained.
-        |  繝ｻtoken_id: A column to retain token ID which uniquely identifies access token.
-        |  繝ｻuser_name: A column to retain user name of authenticated resource owner.
-        |  繝ｻclient_id: A column to retain client ID of authenticated client.
-        |  繝ｻauthentication: A column which retains authentication information of resource owner and client as a binary after serializing.
-        |  繝ｻrefresh_token: A column which retains token ID of refresh token associated with access token.
+        |  ・authentication_id: A column to store authentication key which uniquely identifies authentication information. It is used as a primary key.
+        |  ・token: A column which retains token information as a binary after serializing. Validity period of access token, scope, token ID of access token, token ID of refresh token, token type which shows types of token to be used are stored as information of the token to be retained.
+        |  ・token_id: A column to retain token ID which uniquely identifies access token.
+        |  ・user_name: A column to retain user name of authenticated resource owner.
+        |  ・client_id: A column to retain client ID of authenticated client.
+        |  ・authentication: A column which retains authentication information of resource owner and client as a binary after serializing.
+        |  ・refresh_token: A column which retains token ID of refresh token associated with access token.
     * - | (2)
       - | A table which manages refresh token associated with access token.
         | Roles of each column are as given below.
-        |  繝ｻtoken_id: A column to retain token ID which uniquely identifies refresh token. It is used as a primary key.
-        |  繝ｻtoken: A column which retains token information as binary after serializing. It retains validity period of refresh token.
-        |  繝ｻauthentication: A column that retains authentication information of resource owner and client as binary after serializing. Information same as authentication information retained by table which manages access tokens, is retained.
+        |  ・token_id: A column to retain token ID which uniquely identifies refresh token. It is used as a primary key.
+        |  ・token: A column which retains token information as binary after serializing. It retains validity period of refresh token.
+        |  ・authentication: A column that retains authentication information of resource owner and client as binary after serializing. Information same as authentication information retained by table which manages access tokens, is retained.
 
 | 
 
@@ -1665,6 +1673,7 @@ An interface of service class which cancels a token and implementation class are
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1856,6 +1865,7 @@ Following settings are added to \ ``oauth2-resource.xml``\.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1991,10 +2001,10 @@ The main Expression provided by Spring Security OAuth is introduced.
 
 For details, refer \ `JavaDoc <http://docs.spring.io/spring-security/oauth/apidocs/org/springframework/security/oauth2/provider/expression/OAuth2SecurityExpressionMethods.html>`_\  of \ ``OAuth2SecurityExpressionMethods``\.
 
-.. tabularcolumns:: |p{0.30\linewidth}|p{0.70\linewidth}|
+.. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
 .. list-table:: **Expression provided by Spring Security OAuth**
     :header-rows: 1
-    :widths: 30 70
+    :widths: 35 65
 
     * - Expression
       - Description
@@ -2501,10 +2511,10 @@ Define \ ``ResourceOwnerPasswordResourceDetails``\  in the Session scope and set
 
 |
 
-     .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+     .. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
      .. list-table::
          :header-rows: 1
-         :widths: 20 80
+         :widths: 35 65
 
          * - Item
            - Description
@@ -3003,6 +3013,7 @@ The implementation example of client is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description

@@ -20,17 +20,17 @@ Change Log
       - Correction of guideline mistakes (typing errors, simple mistakes, etc.)  
   
         * For details of the correction,please refer \ `5.3.0's Issue list (clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
-  
-        Description details improved  
-  
- 	    * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
+
+        Description details improved
+
+        * For details of the improvement、please refer \ `5.3.0's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20label%3Aimprovement%20is%3Aclosed%20>`_\.
 
         Modification in Maven command's startup option for generating a blank project due to the change of Maven archetype (change to \ `Maven Central <https://search.maven.org/>`_\)(\ `guideline#2444 <https://github.com/terasolunaorg/guideline/issues/2444>`_\ )
 
-        * :doc:`../Overview/FirstApplication`  
-        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject` 
-        * :doc:`../Tutorial/TutorialTodo` 
-        * :doc:`../Tutorial/TutorialSecurity`  
+        * :doc:`../Overview/FirstApplication`
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`
+        * :doc:`../Tutorial/TutorialTodo`
+        * :doc:`../Tutorial/TutorialSecurity`
 
     * - 
       - :doc:`../Introduction/CriteriaBasedMapping`
@@ -67,12 +67,12 @@ Change Log
 
         * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
-        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        * Precautions to indicate the existence of unusable characters in Cookie name or value added (\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
         
         Modifications related to Spring Framework 4.3
-        
-        * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
-    
+
+        * Precautions while using \ ``@DateTimeFormat`` \ for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
       - Description details added
@@ -101,8 +101,6 @@ Change Log
       - Description details added
 
         * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
         
     * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
@@ -115,6 +113,16 @@ Change Log
       - Modification related to Spring Framework 4.3
       
         * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
+        
+        Description details added
+
+        * Added description related to output specification of explanation cause of HTTP status code （\ ``reason-phrase``\）(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
+      - Modification related to Spring Framework 4.3
+
+        * Added explanation about implementation of common processing of asynchronous request (\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
         
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
@@ -142,10 +150,22 @@ Change Log
       - Description details added
 
         * Precautions added for issue ""nowait" not added while using PostgreSQL" (\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
-        
+    
+    * - 
+      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+      - Description details added
+
+        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+
     * -
       - :doc:`../Security/Authentication`
-      - Description details modified
+      - Description details added
+
+        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+
+        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        
+        Description details modified
 
         * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
       
@@ -153,7 +173,7 @@ Change Log
       - :doc:`../Security/Authorization`
       - Modification related to Spring Framework 4.3
       
-        * Modified desctiption and note about mitigation of \ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\ as the default value of \ ``trimTokens``\ property in \ ``AntPathMatcher``\ was changed.
+        * Modified desctiption and note about mitigation of \ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\ as the default value of \ ``trimTokens``\ property in \ ``AntPathMatcher``\ was changed. (\ `guideline#2565 <https://github.com/terasolunaorg/guideline/issues/2565>`_\ )
         
         Description details added
 
@@ -170,11 +190,11 @@ Change Log
         * Added description on Content Security Policy (CSP)"(\ `guideline#2400 <https://github.com/terasolunaorg/guideline/issues/2400>`_\ )
         * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
         
-	  * -  
-	    - :doc:`../Security/OAuth`  
- 	    - New addition  
- 	    
- 		    * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
+    * -  
+      - :doc:`../Security/OAuth`  
+      - New addition  
+       
+        * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
 
     * -
       - :doc:`../Tutorial/TutorialTodo`
@@ -250,9 +270,9 @@ Change Log
       
       - Addition of description contents  
         
- 		* Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
- 		
-      - Description details modified
+        * Add input check method to values in collection(\ `guideline#407 <https://github.com/terasolunaorg/guideline/issues/407>`_\ )
+       
+        Description details modified
 
         * A method to directly handle a message property file without conversion from  Native to Ascii is added (\ `guideline#994 <https://github.com/terasolunaorg/guideline/issues/994>`_\ )
         * Description for cross-field validation added (\ `guideline#1561 <https://github.com/terasolunaorg/guideline/issues/1561>`_\ )
