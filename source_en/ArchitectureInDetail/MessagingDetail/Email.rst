@@ -169,8 +169,8 @@ When a component of Spring Framework for email coordination is used, following l
 
 .. note::
 
-    In the configuration example above, it is assumed that dependent library version will be managed by parent project.
-    Hence, \ ``<version>``\  element is not specified.
+    In the above setting example, since it is assumed that the dependent library version is managed by the parent project  terasoluna-gfw-parent, specifying the version in pom.xml is not necessary.
+    The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\.
 
 |
 
@@ -837,6 +837,11 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
           - Description
         * - | (1)
           - | Add a FreeMarker library to dependencies.
+          
+.. note::  
+ 
+       In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.  
+       The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ . 
 
 * Define a Bean for FactoryBean to generate \ ``freemarker.template.Configuration``\ .
 
@@ -997,48 +1002,48 @@ garbling occurs for seven characters described in the table below.
        | （JIS）
      - | JIS X 0208
        | Alternative character
-   * - | ― (Double byte hyphen)
+   * - | ―(Double byte hyphen)
      - | 815D
      - | U+2015
      - | U+2014
      - | 213E
-     - | — (EM dash)
-   * - | －（Hyphen-minus）
+     - | —(EM dash)
+   * - | －(Hyphen-minus)
      - | 817C
      - | U+FF0D
      - | U+2212
      - | 215D
-     - | − (Double byte minus)
-   * - | ～ (Double byte tilde)
+     - | −(Double byte minus)
+   * - | ～(Double byte tilde)
      - | 8160
      - | U+FF5E
      - | U+301C
      - | 2141
      - | 〜(Tilde)
-   * - | ∥ (Parallel symbol)
+   * - | ∥(Parallel symbol)
      - | 8161
      - | U+2225
      - | U+2016
      - | 2142
-     - | ‖ (Pipe sumbol)
-   * - | ￠ (Double byte cent symbol)
+     - | ‖(Pipe sumbol)
+   * - | ￠(Double byte cent symbol)
      - | 8191
      - | U+FFE0
      - | U+00A2
      - | 2171
-     - | ￠ (Cent symbol)
-   * - | ￡ (Double byte pound symbol)
+     - | ￠(Cent symbol)
+   * - | ￡(Double byte pound symbol)
      - | 8192
      - | U+FFE1
      - | U+00A3
      - | 2172
-     - | ￡ (Pound symbol)
-   * - | ￢ (Double byte negation symbol)
+     - | ￡(Pound symbol)
+   * - | ￢(Double byte negation symbol)
      - | 81CA
      - | U+FFE2
      - | U+00AC
      - | 224C
-     - | ￢ (Negation symbol)
+     - | ￢(Negation symbol)
 
 This issue occurs during character code conversion through Unicode due to the presence of characters that exist in MS932 but do not exist in JIS X 0208.
 In order to avoid garbling, the measures such as replacing character codes for the garbled characters with alternate characters must be employed.
@@ -1125,6 +1130,19 @@ Moreover, when ISO-2022-JP encoding is set, these characters can be replaced so 
    Hence it cannot be guaranteed that there will not be any garbling in all email clients even though mapping is done using x-windows-iso2022jp.
 
 When extension characters can also be converted to alternate characters, a method wherein conversion is done in the application independently should also be reviewed similar to seven characters described earlier.
+
+|
+
+.. _email-note-of-when-sending:
+
+Precautions while using multibyte characters in JavaMail
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In JavaMail, body text of mail to be sent ends with multibyte characters, additional characters  ("?", "w" etc) are likely to be output.  
+Following methods can be used to avoid these occurrences.  
+
+* Change end character of mail body text to single byte character.  
+* Change end of mail body text to linefeed code (CRLF)  
 
 |
 
