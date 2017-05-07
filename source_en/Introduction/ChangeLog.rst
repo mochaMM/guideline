@@ -21,8 +21,6 @@ Change Log
       - Clerical errors of guideline(typing mistake, simple descriptive error etc ).
       
         * For details of update,please refer,\ `5.2.1's Issue list(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.2.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
-
-        * Please refer, \ `5.3.0's Issue list(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ for details of correction contents.
         
         Description details modified
 
@@ -35,11 +33,12 @@ Change Log
         * :doc:`../Tutorial/TutorialTodo`  
         * :doc:`../Tutorial/TutorialSecurity`
 
-    * -
-      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
-      - Description details added
+    * -
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - Description details added
 
-        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+
 
     * -
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
@@ -61,6 +60,12 @@ Change Log
 
         * Added how to prevent binding of request parameters when receiving object stored in session scope(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - Description details added
+
+        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
       - Description details added
@@ -73,121 +78,21 @@ Change Log
 
         * Added warning and measures(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )  related to \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (Vulnerability that may be subject to blind SQL injection attack).
 
+    * -
+      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+      - Description details added
+
+        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+
     * -
-      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
+      - :doc:`../Security/Authentication`
       - Description details added
-
-        * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-
-        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
-      - Description details added
-
-        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
-      - Modifications associated with Spring Framework 4.3 support
-
-        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
-        
-    * -
-      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
-      - Description details added
-
-        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-    * -
-      - :doc:`../Introduction/CriteriaBasedMapping`
-      - Description details added
-
-        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
-
-    * -
-      - :doc:`../Overview/FrameworkStack`
-      - Version of OSS to be used updated
-
-        * Spring IO Platform version updated to Athens-SR2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * MyBatis version updated to 3.4.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * MyBatis-Spring version updated to 1.3.1 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-        * mybatis-typehandlers-jsr310 updated to 1.0.2 (\ `guideline#2441 <https://github.com/terasolunaorg/guideline/issues/2441>`_\ )
-
-        OSS version to be used in accordance with version update of Spring IO Platform is updated
+      
+        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
         Description details modified
 
-        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
-
         * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
-      - Description details added
-
-        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
-      - Modifications associated with Spring Framework 4.3 support
-
-        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
-        
-    * -
-      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
-      - Description details added
-
-        * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-
-        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-        
-        Modifications related to Spring Framework 4.3
-
-        * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
-        
-    * -
-      - | :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
-        | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
-      - Description details added
-      
-        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
-      
-        Description details modified
-
-        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
-
-    * - 
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
-      - Description details added
-
-        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`
-      - Modifications associated with Spring Framework 4.3 support
-
-        * Added description of how to handle a fatal error (\ `guideline#2368 <https://github.com/terasolunaorg/guideline/issues/2368>`_\ )
-        
-    * -
-      - :doc:`../ImplementationAtEachLayer/ApplicationLayer`
-      - Description details added
-
-        * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-
-        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
-        
-    * -
-      - :doc:`../Security/LinkageWithBrowser`
-      - Modifications associated with Spring Security 4.1.4 support
-      
-        * Description added for HTTP Public Key Pinning (HPKP) (\ `guideline#2401 <https://github.com/terasolunaorg/guideline/issues/2401>`_\ )
 
     * -
       - :doc:`../Security/Authorization`
@@ -195,25 +100,7 @@ Change Log
 
         * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
 
-    * -
-      - :doc:`../Tutorial/TutorialTodo`
-      - Correction of description
-
-        * Code example of entity when using JPA modified (\ `guideline#2476 <https://github.com/terasolunaorg/guideline/issues/2476>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
-      - Description details changed, added
-
-        * Description related to configuration method while using JSR-310 Date and Time API changed (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
-
-        * Added "TypeHandler of JSR310 can be used by default in `blank project for MyBatis3 <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
-
-    * -
-      - :doc:`../Security/Authentication`
-      - Description details added
-      
-        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+        * Added warning and measures(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )  related to \ `CVE-2016-9879 <https://pivotal.io/security/cve-2016-9879>`_\ 
 
     * - 2016-08-31
       - \-
