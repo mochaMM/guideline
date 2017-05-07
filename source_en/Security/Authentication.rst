@@ -2821,7 +2821,7 @@ A flag (checkbox field) to specify use of "Remember Me authentication" function 
             <!-- omitted -->
             <tr>
                 <td><label for="remember-me">Remember Me : </label></td>
-                <td><input name="remember-me" id="remember-me" type="checkbox" checked="checked"></td> <!-- (1) -->
+                <td><input name="remember-me" id="remember-me" type="checkbox" checked="checked" value="true"></td> <!-- (1) -->
             </tr>
             <!-- omitted -->
     </form:form>
@@ -2834,8 +2834,14 @@ A flag (checkbox field) to specify use of "Remember Me authentication" function 
     * - Sr. No.
       - Description
     * - | (1)
-      - | Add a flag (checkbox field) for specifying whether "Remember Me authentication" function is used and specify \ ``remember_me``\  in the field name (request parameter name).
+      - | Add a flag (checkbox item) to specify whether "Remember Me authentication" function is used, and specify \ ``remember-me``\  - a default value of \ ``remember-me-parameter``\  in field name (request parameter name).
+        | Set \ ``true``\  in \ ``value``\  attribute of checkbox.
         | If authentication process is carried out after ticking the checkbox, "Remember Me authentication" function is applied for subsequent requests.
+
+.. tip:: **About setup value of value attribute**
+
+   Description of setting \ ``true``\  in \ ``value``\  attribute is given in \ `rememberMeRequested - JavaDoc <http://docs.spring.io/autorepo/docs/spring-security/4.1.4.RELEASE/apidocs/org/springframework/security/web/authentication/rememberme/AbstractRememberMeServices.html#rememberMeRequested-javax.servlet.http.HttpServletRequest-java.lang.String->`_\ ,
+   however \ ``on``\ , \ ``yes``\  and \ ``1``\  can also be set in the implementation.
 
 .. raw:: latex
 
