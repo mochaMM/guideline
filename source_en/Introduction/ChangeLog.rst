@@ -25,7 +25,7 @@ Change Log
         * Please refer, \ `5.3.0's Issue list(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ for details of correction contents.
         
         Description details modified
-        
+
         * For details of update、please refer \ `5.2.1's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.1%20label%3Aimprovement%20is%3Aclosed%20>`_\.
         
          Change to fix the version of \ ``maven-archetype-plugin``\ used while creating following project to 2.4(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ ) 
@@ -141,7 +141,7 @@ Change Log
         * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
         
         Modifications related to Spring Framework 4.3
-        
+
         * Precautions while using \ ``@DateTimeFormat`` \  for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
         
     * -
@@ -202,6 +202,12 @@ Change Log
         * Description related to configuration method while using JSR-310 Date and Time API changed (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
 
         * Added "TypeHandler of JSR310 can be used by default in `blank project for MyBatis3 <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ (\ `guideline#2365 <https://github.com/terasolunaorg/guideline/issues/2365>`_\ )
+
+    * -
+      - :doc:`../Security/Authentication`
+      - Description details added
+      
+        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
     * - 2016-08-31
       - \-
