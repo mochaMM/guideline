@@ -25,10 +25,10 @@ Change Log
         * Please refer, \ `5.3.0's Issue list(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.3.0%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ for details of correction contents.
         
         Description details modified
-        
+
         * For details of update、please refer \ `5.2.1's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.1%20label%3Aimprovement%20is%3Aclosed%20>`_\.
-        
-        Change to fix the version of \ ``maven-archetype-plugin``\ used while creating following project to 2.4(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+
+        Change to fix the version of \ ``maven-archetype-plugin``\ used while creating following project to 2.4(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
 
         * :doc:`../Overview/FirstApplication`  
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
