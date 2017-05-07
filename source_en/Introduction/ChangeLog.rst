@@ -34,7 +34,13 @@ Change Log
         * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
         * :doc:`../Tutorial/TutorialTodo`  
         * :doc:`../Tutorial/TutorialSecurity`
-        
+
+  * - 
+    - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+    - Description details added
+
+      * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+
 	* -   
 	  - :doc:`../ImplementationAtEachLayer/DomainLayer`  
 	  - Description details modified
