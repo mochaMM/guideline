@@ -33,12 +33,6 @@ Change Log
         * :doc:`../Tutorial/TutorialSecurity`
 
     * - 
-      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
-      - Description details added
-
-        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
-
-    * - 
       - :doc:`../Introduction/CriteriaBasedMapping`
       - Description details added
       
@@ -61,20 +55,6 @@ Change Log
 
         OSS version to be used in accordance with version update of Spring IO Platform is updated
 
-        Description details modified
-
-        * Description of method for including input check target in the message added (\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
-
-        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
-
-    * - 
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
-      - Description details added
-
-        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
-
-        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
-
     * - 
       - :doc:`../ImplementationAtEachLayer/DomainLayer`
       - Description details modified
@@ -87,23 +67,11 @@ Change Log
 
         * Added "\ ``<mvc:view-controller>`` \  is used when a simple view controller is to be created" (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
 
-        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
-        
         * Precautions to indicate the existence of unusable characters in Cookie name or value added (\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
         
         Modifications related to Spring Framework 4.3
 
         * Precautions while using \ ``@DateTimeFormat`` \ for JSR-310 Date and Time API class deleted (\ `guideline#2505 <https://github.com/terasolunaorg/guideline/issues/2505>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
-      - Description details added
-      
-        * Added about how to prevent binding of request parameters when receiving object stored in session scope (\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
-        
-        Description details added
-
-        * Added description related to output specification of explanation cause of HTTP status code （\ ``reason-phrase``\）(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
 
     * -
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
@@ -129,10 +97,32 @@ Change Log
         * Added about how to prevent binding of request parameters when receiving object is stored in session scope(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
         
     * - 
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - Description details added
+
+        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+        
+    * - 
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/FileUpload`
       - Description details added
 
         * Added explanation on how to avoid garbled characters when using JBoss EAP 7.0(\ `guideline#2403 <https://github.com/terasolunaorg/guideline/issues/2403>`_\ )
+        
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
+      - Modification related to Spring Framework 4.3
+      
+        * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
+        
+        Description details added
+
+        * Added description related to output specification of explanation cause of HTTP status code （\ ``reason-phrase``\）(\ `guideline#2518 <https://github.com/terasolunaorg/guideline/issues/2518>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
+      - Modification related to Spring Framework 4.3
+
+        * Added explanation about implementation of common processing of asynchronous request (\ `guideline#2369 <https://github.com/terasolunaorg/guideline/issues/2369>`_\ )
         
     * -
       - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
@@ -156,12 +146,44 @@ Change Log
         * Added warning for a bug in which "nowait" clause is not added when using PostgreSQL(\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
           
     * -
-      - :doc:`../ArchitectureInDetail/WebServiceDetail/REST`
-      - Modification related to Spring Framework 4.3
-      
-        * Added explanation that HEAD and OPTIONS methods are implicitly prepared (\ `guideline#1704 <https://github.com/terasolunaorg/guideline/issues/1704>`_\ )
+      - | :doc:`../ArchitectureInDetail/DataAccessDetail/ExclusionControl`
+      - Description details added
+
+        * Precautions added for issue ""nowait" not added while using PostgreSQL" (\ `guideline#2372 <https://github.com/terasolunaorg/guideline/issues/2372>`_\ )
+    
+    * - 
+      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+      - Description details added
+
+        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+
+    * -
+      - :doc:`../Security/Authentication`
+      - Description details added
+
+        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+
+        * Precautions while using \ ``<mvc:view-controller>`` \  added (\ `guideline#2371 <https://github.com/terasolunaorg/guideline/issues/2371>`_\ )
+        
+        Description details modified
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
       
     * -
+      - :doc:`../Security/Authorization`
+      - Modification related to Spring Framework 4.3
+      
+        * Modified desctiption and note about mitigation of \ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\ as the default value of \ ``trimTokens``\ property in \ ``AntPathMatcher``\ was changed. (\ `guideline#2565 <https://github.com/terasolunaorg/guideline/issues/2565>`_\ )
+        
+        Description details added
+
+        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+        
+        * Description for how to use path variable and precautions for use added (\ `guideline#2406 <https://github.com/terasolunaorg/guideline/issues/2406>`_\ )
+        
+        * Precautions for changing specifications of path matching of \ ``AntPathRequestMatcher``\  added (\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
+        
+    * -
       - :doc:`../Security/LinkageWithBrowser`
       - Modifications associated with Spring Security 4.1.4 support
       
@@ -175,18 +197,6 @@ Change Log
         * Added OAuth(\ `guideline#2145 <https://github.com/terasolunaorg/guideline/issues/2145>`_\ )  
 
     * -
-      - :doc:`../Security/Authorization`
-      - Modification related to Spring Framework 4.3
-      
-        * Modified desctiption and note about mitigation of \ `CVE-2016-5007 <https://pivotal.io/security/cve-2016-5007>`_\ as the default value of \ ``trimTokens``\ property in \ ``AntPathMatcher``\ was changed.
-        
-        Description details added
-
-        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
-        
-        * Precautions for changing specifications of path matching of \ ``AntPathRequestMatcher``\  added (\ `guideline#2428 <https://github.com/terasolunaorg/guideline/issues/2428>`_\ )
-
-    * -
       - :doc:`../Tutorial/TutorialTodo`
       - Correction of description
 
@@ -197,12 +207,6 @@ Change Log
       - Modification to migration into Maven Central
 
         * Delete the description about TERASOLUNA Server Framework for Java (5.x) repository (\ `guideline#2496 <https://github.com/terasolunaorg/guideline/issues/2496>`_\ )
-
-    * -
-      - :doc:`../Security/Authentication`
-      - Description details added
-
-        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
 
     * - 2016-08-31
       - \-
