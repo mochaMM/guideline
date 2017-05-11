@@ -703,7 +703,7 @@ String check linked with Bean Validation
 
 .. code-block:: java
 
-    @ConsisOf(JIS_X_0208_Hiragana.class)    // (1)
+    @ConsistOf(JIS_X_0208_Hiragana.class)    // (1)
     private String firstName;
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -722,7 +722,7 @@ String check linked with Bean Validation
 
 .. code-block:: java
 
-    @ConsisOf({JIS_X_0208_Hiragana.class, JIS_X_0208_Katakana.class})    // (1)
+    @ConsistOf({JIS_X_0208_Hiragana.class, JIS_X_0208_Katakana.class})    // (1)
     private String firstName;
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|

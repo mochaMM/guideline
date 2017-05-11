@@ -407,7 +407,7 @@ Change Log
       - :doc:`../Appendix/ReferenceBooks`
       - Description details added
 
-        * Spring thorough introduction" added as a a reference material (\ `guideline#2043 <https://github.com/terasolunaorg/guideline/issues/2043>`_\ )
+        * Spring thorough introduction" added as a reference material (\ `guideline#2043 <https://github.com/terasolunaorg/guideline/issues/2043>`_\ )
 
     * - 2016-02-24
       - \-
@@ -497,7 +497,7 @@ Change Log
 
         * Setup method of \ ``defaultFetchSize``\  added (\ `guideline#965 <https://github.com/terasolunaorg/guideline/issues/965>`_\ )
         * "Changed the default at the time of delayed reading to \ ``JAVASSIST``\" added (\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
-        * Sample code which assigns Genrics to \ ``ResultHandler``\  modified (\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
+        * Sample code which assigns Generics to \ ``ResultHandler``\  modified (\ `guideline#1384 <https://github.com/terasolunaorg/guideline/issues/1384>`_\ )
         * Source example which use newly added \ ``@Flush``\  annotation, and precautions added (\ `guideline#915 <https://github.com/terasolunaorg/guideline/issues/915>`_\ )
 
     * -

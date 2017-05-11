@@ -37,9 +37,9 @@ How to use
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Ajax向けのアプリケーションの設定について説明する。
 
-.. warning:: **StAX(Streaming API for XML)使用時のDOS攻撃対策について**
+.. warning:: **StAX(Streaming API for XML)使用時のDoS攻撃対策について**
 
-    XML形式のデータをStAXを使用して解析する場合は、DTDを使ったDOS攻撃を受けないように対応する必要がある。
+    XML形式のデータについてStAXを使用して解析する場合は、DTDを使ったDoS攻撃を受けないように対応する必要がある。
     詳細は、\ `CVE-2015-3192 - DoS Attack with XML Input <http://pivotal.io/security/cve-2015-3192>`_\ を参照されたい。
 
 Spring MVCのAjax関連の機能を有効化するための設定
@@ -194,7 +194,7 @@ Ajax通信時で使用されるContent-Type(``"application/xml"`` や ``"applica
        * - | (1)
          - | Spring-oxm を依存アーティファクトとして追加する。
        * - | (2)
-         - | Springのバージョンは、terasoluna-gfw-parent の :file:`pom.xml` に定義されているSpringのバージョン番号を管理するためのプレースフォルダ(${org.springframework-version})から取得すること。
+         - | Springのバージョンは、terasoluna-gfw-parent の :file:`pom.xml` に定義されているSpringのバージョン番号を管理するためのプレースホルダ(${org.springframework-version})から取得すること。
 
 
 
@@ -1185,7 +1185,7 @@ HttpMessageNotReadableException のハンドリング
 
         具体的なエラー原因は、使用する ``HttpMessageConverter`` や利用するライブラリの実装によって異なる。
 
-        JSON形式のデータをJacksonを使ってJavaBeanに変換する ``MappingJackson2HttpMessageConverter`` の実装では、Integer項目に数値以外の文字列を指定すると、 ``HttpMessageNotReadableException`` が発生する。
+        JSON形式のデータについてJacksonを使用してJavaBeanに変換する ``MappingJackson2HttpMessageConverter`` の実装では、Integer項目に数値以外の文字列を指定すると、 ``HttpMessageNotReadableException`` が発生する。
 
 - Controller
 

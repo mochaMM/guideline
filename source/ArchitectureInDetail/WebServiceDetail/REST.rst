@@ -60,7 +60,7 @@ RESTful Web Serviceとは
       - | ユーザインタフェースを持つクライアントアプリケーションとRESTful Web Serviceの間で、直接リソースのやりとりを行う。
         | このパターンは、要件や仕様の変更頻度が多いユーザインタフェースに依存するロジックと、より普遍的で変更頻度が少ないデータモデルに対するロジックを分離する際に採用される構成である。
     * - | (2)
-      - | ユーザインタフェースを持つクライアントアプリケーションと直接リソースをやり取りするのではなく、システム間でリソースをやりとりを行う。
+      - | ユーザインタフェースを持つクライアントアプリケーションと直接リソースをやり取りするのではなく、システム間でリソースのやりとりを行う。
         | このパターンは、各システムで管理しているビジネスデータを一元管理するようなシステムを構築する際に採用される構成である。
 
 
@@ -148,7 +148,7 @@ TERASOLUNA Server Framework for Java (5.x)では、Spring MVCの機能を利用�
     * - | (8)
       - | 
         | 
-      - | Spring MVCは、JSON形式の電文をレスポンスBODYに設定し、クライアントにレスポンスする。
+      - | Spring MVCは、JSON形式の電文をレスポンスBODYに設定し、クライアントへレスポンスする。
 
  .. raw:: latex
 
@@ -591,7 +591,7 @@ HTTPメソッドによるリソースの操作
 | ROAでは、HTTPメソッドの事を「統一インタフェース」と呼んでいる。
 | これは、HTTPメソッドがWeb上で公開される全てのリソースに対して実行する事ができ、且つリソース毎にHTTPメソッドの意味が変わらない事を意味している。
 
-以下に、HTTPメソッドに割り当てられるリソースに対する操作の対応付けと、それぞれの操作が保証すべき事後条件について説明する。
+以下に、HTTPメソッドに割り当てられる、リソースに対する操作の対応付けと、それぞれの操作が保証すべき事後条件について説明する。
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.35\linewidth}|p{0.35\linewidth}|
  .. list-table::
@@ -608,7 +608,7 @@ HTTPメソッドによるリソースの操作
       - | 安全性、べき等性。
     * - | (2)
       - | POST
-      - | リソースの作成する。
+      - | リソースを作成する。
       - | 作成したリソースのURIの割り当てはサーバが行い、割り当てたURIはレスポンスのLocationヘッダに設定してクライアントに返却する。
     * - | (4)
       - | PUT
@@ -940,7 +940,7 @@ HTTPメソッドによるリソースの操作
             }
 
         | ハイライトした部分が、関連をもつ他のリソースへのハイパーメディアリンク(URI)となる。
-        | 上記例では、注文履歴のオーナの会員情報のリソース及び注文履歴のリソースに対する接続性を保持している。
+        | 上記例では、注文履歴のオーナに関する会員情報のリソース及び注文履歴のリソースに対する接続性を保持している。
     * - | (3)
       - | 注文履歴のオーナとなる会員情報のリソースを再度取得(\ ``GET http://example.com/api/v1/memebers/M000000001``\)し、返却されたJSONに設定されているハイパーメディアリンク(URI)を使用して、認証履歴のリソースを取得(\ ``GET http://example.com/api/v1/memebers/M000000001/authentications/``\)を行うと、以下のJSONが返却される。
         
@@ -1323,9 +1323,9 @@ NULLとブランク文字
 
 |
 
-パイパーメディアリンクの形式
+ハイパーメディアリンクの形式
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-| パイパーメディアリンクを設ける場合は、以下に示す形式とすることを推奨する。
+| ハイパーメディアリンクを設ける場合は、以下に示す形式とすることを推奨する。
 | 推奨する形式のサンプルは以下の通り。
 
  .. code-block:: json
@@ -1536,11 +1536,7 @@ HTTPステータスコードは、以下の指針に則って応答する。
 認証・認可
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo:: **TBD**
-
-    認証及び認可制御をどのような指針で行うかについて記載する。
-    
-    OAuth2の仕組みを使って認証・認可を行う仕組みについて、次版以降に記載する予定である。
+* OAuth2の仕組みを使って認証・認可を行う仕組みについては、\ :ref:`OAuth <OAuth>`\ を参照されたい。
 
 |
 
@@ -1628,7 +1624,7 @@ Webアプリケーションの構成
     Spring MVCでは、\ ``DispatcherServlet``\毎にアプリケーションの動作設定を定義することになる。
     そのため、RESTful Web Serviceとクライアントアプリケーション(UI層のアプリケーション)のリクエストを同じ\ ``DispatcherServlet``\で受ける構成にしてしまうと、RESTful Web Service又はクライアントアプリケーション固有の動作設定を定義する事ができなくなったり、設定が煩雑又は複雑になることがある。
     
-    本ガイドラインでは、上記の様な問題が起こらないようにするために、RESTful Web Serviceをクライアントアプリケーションを同じWebアプリケーション(war)として構築する場合は、\ ``DispatcherServlet``\を分割することを推奨している。
+    本ガイドラインでは、上記の様な問題が起こらないようにするために、RESTful Web Serviceについてクライアントアプリケーションを同じWebアプリケーション(war)として構築する場合は、\ ``DispatcherServlet``\を分割することを推奨している。
 
 |
 
@@ -1678,9 +1674,9 @@ terasoluna-gfw-common-dependenciesを使用していれば、依存関係の設�
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 RESTful Web Service向けのアプリケーションの設定について説明する。
 
-.. warning:: **StAX(Streaming API for XML)使用時のDOS攻撃対策について**
+.. warning:: **StAX(Streaming API for XML)使用時のDoS攻撃対策について**
 
-    XML形式のデータをStAXを使用して解析する場合は、DTDを使ったDOS攻撃を受けないように対応する必要がある。
+    XML形式のデータについてStAXを使用して解析する場合は、DTDを使ったDoS攻撃を受けないように対応する必要がある。
     詳細は、\ `CVE-2015-3192 - DoS Attack with XML Input <http://pivotal.io/security/cve-2015-3192>`_\ を参照されたい。
 
 
@@ -1782,7 +1778,7 @@ RESTful Web Serviceで必要となるSpring MVCのコンポーネントを有効
       - 説明
     * - | (1)
       - | アプリケーション層のコンポーネントでプロパティファイルに定義されている値を参照する必要がある場合は、\ ``<context:property-placeholder>``\要素を使用してプロパティファイルを読み込む必要がある。
-        | プロパティファイルから値を取得する方法の詳細ついては、「:doc:`../GeneralFuncDetail/PropertyManagement`」を参照されたい。
+        | プロパティファイルから値を取得する方法の詳細については、「:doc:`../GeneralFuncDetail/PropertyManagement`」を参照されたい。
     * - | (2)
       - | JSONの日付フィールドの形式をISO-8601の拡張形式として扱うための設定を追加する。
         | なお、リソースを表現するJavaBean(Resourceクラス)のプロパティとしてJoda Timeのクラスを使用する場合は、「\ :ref:`RESTAppendixUsingJSR310_JodaTime`\ 」を行う必要がある。
@@ -2166,7 +2162,7 @@ REST APIの実装
       - \ ``/api/v1/members/{memberId}``\ 
       - | 200
         | (OK)
-      - Memberリソースの一件取得する。
+      - Memberリソースを一件取得する。
     * - | (4)
       - :ref:`PUT Member <RESTHowToUseApiImplementationOfPutSpecifiedResource>`
       - PUT
@@ -2265,7 +2261,7 @@ Resourceクラスの役割は以下の通りである。
     * - | (1)
       - | リソースのデータ構造の定義を行う。
       - | Web上に公開するリソースのデータ構造を定義する。
-        | データベースなどの永続層で管理しているデータの構造のままWeb上のリソースとして公開する事は、一般的には稀である。
+        | データベースなどの永続層で管理しているデータの構造をそのままWeb上のリソースとして公開する事は、一般的には稀である。
     * - | (2)
       - | フォーマットに関する定義を行う。
       - | リソースのフォーマットに関する定義を、アノテーションを使って指定する。
@@ -2575,7 +2571,7 @@ Controllerクラスの作成
 URIで指定されたMemberリソースのコレクションをページ検索するREST APIの実装例を、以下に示す。
 
 - | 検索条件を受け取るためのJavaBeanの作成
-  | リソースのコレクションを取得する際に、検索条件が必要な場合は、検索条件を受け取るためのJavaBeanの作成する。
+  | リソースのコレクションを取得する際に、検索条件が必要な場合は、検索条件を受け取るためのJavaBeanを作成する。
 
  .. code-block:: java
     :emphasize-lines: 1, 5
@@ -3572,7 +3568,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
       - | \ ``ResponseEntityExceptionHandler``\のhandleExceptionInternalメソッドをオーバライドする。
     * - | (8)
       - | レスポンスBodyに出力するJavaBeanの指定がない場合は、エラー情報を保持するJavaBeanオブジェクトを生成する。
-        | 上記例では、共通ライブラリから提供している\ ``ExceptionCodeResolver``\を使用して、例外クラスをエラーコードを変換している。
+        | 上記例では、共通ライブラリから提供している\ ``ExceptionCodeResolver``\を使用して、例外クラスをエラーコードへ変換している。
         | \ ``ExceptionCodeResolver``\の設定例については、「\ :ref:`RESTHowToUseExceptionHandlingSettingsOfExceptionCodeResolver`\」を参照されたい。
         |
         | レスポンスBodyに出力するJavaBeanの指定がある場合は、指定されたJavaBeanをそのまま使用する。
@@ -4384,7 +4380,7 @@ ExceptionCodeResolverを使ったエラーコードとメッセージの解決
 
 .. _RESTHowToUseExceptionHandlingForServletContainer:
 
-サーブレットコンテナに通知されたエラーのハンドリングの実装
+サーブレットコンテナに通知されたエラーのハンドリング実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\を使ってエラーレスポンスが行われた場合は、Spring MVCの例外ハンドリングの仕組みを使ってハンドリングできないため、
 これらのエラーはサーブレットコンテナに通知される。
@@ -4510,7 +4506,7 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
     * - | (5)
       - | エラー応答を行うハンドラメソッドを作成する。
         | 上記例では、レスポンスコード(\ ``<error-code>``\)を使ってエラーページのハンドリングを行うケースのみを考慮した実装になっている。
-        | したがって、例外タイプ(\ ``<exception-type>``\)を使ってハンドリングしたエラーページの処理を本メソッドを使って行う場合は、別途考慮が必要である。
+        | 例外タイプ(\ ``<exception-type>``\)を使ってエラーページのハンドリングを行う場合は、別途考慮が必要である。
     * - | (6)
       - | リクエストスコープに格納されているステータスコードを取得する。
     * - | (7)
@@ -4636,9 +4632,7 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
 認証・認可
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. todo:: **TBD**
-
-    OAuth2(Spring Security OAuth2)を使用して認証・認可を実現する方法について、次版以降に記載する予定である。
+* OAuth2(Spring Security OAuth2)を使用して認証・認可を実現する方法について、\ :ref:`OAuth <OAuth>`\ を参照されたい。
 
 |
 
@@ -5317,7 +5311,7 @@ JSONの中に関連リソースへのハイパーメディアリンクを含め�
       - 説明
     * - | (2)
       - | リンク情報のコレクションを保持するResourceの抽象クラス(JavaBean)を作成する。
-        | 本クラスは、パイパーメディアリンクをサポートするResourceクラスによって、継承される事を想定したクラスである。
+        | 本クラスは、ハイパーメディアリンクをサポートするResourceクラスによって、継承される事を想定したクラスである。
     * - | (3)
       - | リンク情報を複数保持するフィールドを定義する。
         | 上記例では、リンクの指定がない時にJSONに出力しないようにするために、\ ``@JsonInclude(JsonInclude.Include.NON_EMPTY)``\を指定している。
@@ -5675,7 +5669,7 @@ Spring-oxmを依存アーティファクトとして追加する。
    * - | (1)
      - | Spring-oxm を依存アーティファクトとして追加する。
    * - | (2)
-     - | Springのバージョンは、terasoluna-gfw-parent の :file:`pom.xml` に定義されているSpringのバージョン番号を管理するためのプレースフォルダ(${org.springframework-version})から取得すること。
+     - | Springのバージョンは、terasoluna-gfw-parent の :file:`pom.xml` に定義されているSpringのバージョン番号を管理するためのプレースホルダ(${org.springframework-version})から取得すること。
 
 |
 
@@ -6873,7 +6867,7 @@ DomainMessageCodes.java
 GenderTypeHandler.java
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-| Enum型のコード値をマッピングするためのタイプハンドラーとなります。
+| Enum型のコード値をマッピングするためのタイプハンドラー。
 
 :file:`java/org/terasoluna/examples/infra/mybatis/typehandler/GenderTypeHandler.java`
 
@@ -7077,8 +7071,8 @@ MemberRepository.xml
             <include refid="selectRestMember" />
             ORDER BY member_id ASC
         </select>
-	
-	    <select id="findOne" parameterType="string" resultMap="MemberResultMap">
+
+        <select id="findOne" parameterType="string" resultMap="MemberResultMap">
             <include refid="selectMember" />
             WHERE
             member.member_id = #{memberId}

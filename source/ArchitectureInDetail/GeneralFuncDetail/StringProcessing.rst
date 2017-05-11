@@ -101,7 +101,7 @@ How to use
 | 「が」を表す ``\u304c`` と、「か」と「濁点」を表す ``\u304b\u3099`` は、見た目上の違いは存在しないが、「か」＋「濁点」の例は2文字としてカウントされてしまう。
 | こうした結合文字が入力されることも考慮して文字数をカウントする場合、 ``java.text.Normalizer`` を使用してテキストの正規化を行ってからカウントする。
 |
-| 以下に、結合文字とサロゲートペアを考慮をした上で、文字列の長さを返却するメソッドを示す。
+| 以下に、結合文字とサロゲートペアを考慮した上で、文字列の長さを返却するメソッドを示す。
 
 .. code-block:: java
 
@@ -494,7 +494,7 @@ How to use
 | \ ``CodePoints``\ からインスタンスを作成する方法を以下に示す。
 | この方法を使用した場合、作成したインスタンスはキャッシュされないため、キャッシュすべきでない処理（集合演算の引数等）で使用することを推奨する。
 
-* コードポイント( \ ``int``\ )を可変長引数を使用して渡す場合
+* コードポイント( \ ``int``\ )を可変長引数で渡す場合
 
   .. code-block:: java
 
@@ -535,7 +535,7 @@ How to use
 
 |
 
-* コードポイント集合文字列を可変長引数を使用して渡す場合
+* コードポイント集合文字列を可変長引数で渡す場合
 
   .. code-block:: java
 
@@ -704,7 +704,7 @@ Bean Validationと連携した文字列チェック
 
 .. code-block:: java
 
-    @ConsisOf(JIS_X_0208_Hiragana.class)    // (1)
+    @ConsistOf(JIS_X_0208_Hiragana.class)    // (1)
     private String firstName;
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -723,7 +723,7 @@ Bean Validationと連携した文字列チェック
 
 .. code-block:: java
 
-    @ConsisOf({JIS_X_0208_Hiragana.class, JIS_X_0208_Katakana.class})    // (1)
+    @ConsistOf({JIS_X_0208_Hiragana.class, JIS_X_0208_Katakana.class})    // (1)
     private String firstName;
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -808,7 +808,7 @@ Bean Validationと連携した文字列チェック
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 共通ライブラリから提供しているコードポイント集合クラス(\ ``org.terasoluna.gfw.common.codepoints.catalog``\ パッケージのクラス)と、
-使用する際に取込む必要があるアーティファクトの情報を以下に示す。
+使用する際に取り込む必要があるアーティファクトの情報を以下に示す。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.30\linewidth}|p{0.40\linewidth}|
 .. list-table::

@@ -6135,7 +6135,7 @@ Mapper interface mechanism
 
 - How to create a Mapper interface
 
-  In this guideline, since it is presumed that that the Mapper interface of MyBatis3 is used as Repository interface,
+  In this guideline, since it is presumed that the Mapper interface of MyBatis3 is used as Repository interface,
   interface name is in the format,  "Entity name" + \ ``"Repository"`` \.
 
  .. code-block:: java

@@ -583,7 +583,7 @@ spring-mvc-rest.xmlの作成
 
         <mvc:default-servlet-handler />
 
-        <context:component-scan base-package="todo.api" /> <!-- (3) -->
+        <context:component-scan base-package="todo.api" /> <!-- (4) -->
 
         <mvc:interceptors>
             <mvc:interceptor>
@@ -1362,7 +1362,7 @@ GET Todoの実装
    * - | (2)
      - | \ ``@PathVariable``\ アノテーションの\ ``value``\ 属性に、\ ``todoId``\ を取得するためのパス変数名を指定する。
    * - | (3)
-     - | パス変数から取得した\ ``todoId``\ を使用して、Todoリソースを一件を取得する。
+     - | パス変数から取得した\ ``todoId``\ を使用して、Todoリソースを一件取得する。
 
 |
 
@@ -1809,7 +1809,7 @@ DELETE Todoの実装
 REST APIのエラーハンドリングを行うクラスの作成
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
 
-| REST APIのエラーハンドリングは、Spring MVCから提供されている\ ``org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler``\ を継承したクラスを作成し、\ ``@ControllerAdvice``\アノテーションを付与する方法でハンドリングし、REST APIに関わる処理に限定するために ``(annotations = RestController.class)`` の属性を付与する事を推奨する。
+| REST APIのエラーハンドリングは、Spring MVCから提供されている\ ``org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler``\ を継承したクラスを作成し、\ ``@ControllerAdvice``\アノテーションを付与する方法でハンドリングする。
 | 以下に、\ ``ResponseEntityExceptionHandler``\を継承した\ ``todo.api.common.error.RestGlobalExceptionHandler``\ クラスを作成する。
 
 .. figure:: ./images_rest/exception-handlingclass.png

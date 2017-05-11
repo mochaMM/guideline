@@ -14,7 +14,7 @@ Overview
 
 認可処理は、アプリケーションの利用者がアクセスできるリソースを制御するための処理である。
 利用者がアクセスできるリソースを制御するためのもっとも標準的な方法は、
-リソース(又はリソースの集合)毎にアクセスポリシーを定義してき、利用者がリソースにアクセスしようとした時にアクセスポリシーを調べて制御する方法である。
+リソース(又はリソースの集合)毎にアクセスポリシーを定義しておき、利用者がリソースにアクセスしようとした時にアクセスポリシーを調べて制御する方法である。
 
 アクセスポリシーには、どのリソースにどのユーザーからのアクセスを許可するかを定義する。
 Spring Securityでは、以下の3つのリソースに対してアクセスポリシーを定義することができる。
@@ -212,6 +212,8 @@ Spring Securityが用意している共通的なExpressionは以下の通り。
 
 |
 
+.. _built-incommon-expressions:
+
 Built-InのWeb Expressions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -359,8 +361,8 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のパスマッチングの仕様が大文字・小文字を区別する様になった。
 
     例えば以下に示すように、\ ``/Todo/List``\というパスが割り当てられたSpring MVCのエンドポイントに対してアクセスポリシーを定義する場合は、 
-    \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字を揃える必要がある。
-    誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字が揃っていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
+    \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字をそろえる必要がある。
+    誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字がそろっていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
 
     * Spring MVCのエンドポイントの実装例
 
@@ -384,20 +386,22 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
-    本事象は、\ `trimTokens` \ プロパティに \ `false` \ を設定した \ `org.springframework.util.AntPathMatcher` \ のBeanをSpring MVCに適用することで回避することができる。
+    \ `trimTokens` \ プロパティに \ `true` \ を設定した\ `org.springframework.util.AntPathMatcher` \ のBeanがSpring MVCに適用されている場合に、本事象が発生する。
+    Spring Framework 4.2以前は \ `trimTokens` \ プロパティのデフォルト値が\ `true`\ となっていたが、Spring Framework 4.3 からデフォルト値は \ `false` \ となったため、意図的に変更しない限り本事象は発生しない。
+
+    なお、下記の様にTERASOLUNA Server Framework for Java (5.3.x)のブランクプロジェクトでは、明示的に\ `trimTokens` \ プロパティに \ `false` \を指定しているが、
+    \ `true` \ に変更した場合は本事象が発生する条件を満たしてしまうため、変更しない様に注意されたい。
 
       .. code-block:: xml
 
           <mvc:annotation-driven>
+              <!-- ommited -->
               <mvc:path-matching path-matcher="pathMatcher" />
           </mvc:annotation-driven>
 
           <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher">
               <property name="trimTokens" value="false" />
           </bean>
-
-    上記の対策をTERASOLUNA Server Framework for Javaで提供するブランクプロジェクトでは設定しているが、
-    設定を外すと脆弱性にさらされてしまうので注意する必要がある。
 
     また、特定のURLに対してアクセスポリシーを設ける(\ ``pattern``\属性に\ ``*``\や\ ``**``\などのワイルドカード指定を含めない)場合、
     拡張子を付けたパターンとリクエストパスの末尾に\ ``/``\を付けたパターンに対するアクセスポリシーの追加が必須である。
@@ -614,8 +618,8 @@ Spring Securityは、以下のアノテーションをサポートしている�
     * - | (1)
       - | \ ``<sec:global-method-security>``\ タグを付与すると、メソッド呼び出しに対する認可処理を行うAOPが有効になる。
     * - | (2)
-      - | \ ``pre-post-annotations``\ 属性に\ ``true``\ を指定する。
-        | \ ``pre-post-annotations``\ 属性に\ ``true``\ を指定すると、Expressionを指定してアクセスポリシーを定義できるアノテーションが有効になる。
+      - | \ ``pre-post-annotations``\ 属性に\ ``enabled``\ を指定する。
+        | \ ``pre-post-annotations``\ 属性に\ ``enabled``\ を指定すると、Expressionを指定してアクセスポリシーを定義できるアノテーションが有効になる。
 
 |
 
@@ -922,7 +926,7 @@ Spring Securityのデフォルトの設定では、認証方式に対応する\ 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Spring Securityのデフォルトの設定だと、認証済みのユーザーからのアクセスを拒否した際は、アプリケーションサーバのエラーページが表示される。
-アプリケーションサーバーのエラーページを表示してしまうと、システムのセキュリティを低下させる要因になるのため、適切なエラー画面を表示することを推奨する。
+アプリケーションサーバーのエラーページを表示してしまうと、システムのセキュリティを低下させる要因になるため、適切なエラー画面を表示することを推奨する。
 エラーページの指定は、以下のようなbean定義を行うことで可能である。
 
 * spring-security.xmlの定義例

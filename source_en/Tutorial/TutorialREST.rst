@@ -584,7 +584,7 @@ Creation of spring-mvc-rest.xml
 
         <mvc:default-servlet-handler />
 
-        <context:component-scan base-package="todo.api" /> <!-- (3) -->
+        <context:component-scan base-package="todo.api" /> <!-- (4) -->
 
         <mvc:interceptors>
             <mvc:interceptor>

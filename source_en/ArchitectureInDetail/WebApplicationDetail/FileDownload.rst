@@ -238,8 +238,8 @@ Specifying View in controller
 
         @RequestMapping(value = "home", params= "pdf", method = RequestMethod.GET)
         public String homePdf(Model model) {
-        	model.addAttribute("serverTime", new Date());
-        	return "samplePdfView";   // (1)
+            model.addAttribute("serverTime", new Date());
+            return "samplePdfView";   // (1)
         }
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -372,8 +372,8 @@ Specifying View in controller
 
         @RequestMapping(value = "home", params= "excel", method = RequestMethod.GET)
         public String homeExcel(Model model) {
-        	model.addAttribute("serverTime", new Date());
-        	return "sampleExcelView";  // (1)
+            model.addAttribute("serverTime", new Date());
+            return "sampleExcelView";  // (1)
         }
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|

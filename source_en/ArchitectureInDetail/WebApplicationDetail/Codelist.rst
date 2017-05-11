@@ -1356,7 +1356,7 @@ See the example below for directly calling refresh method of JdbcCodeList in Ser
 
     @Controller
     @RequestMapping(value = "codelist")
-    public class CodeListContoller {
+    public class CodeListController {
 
         @Inject
         CodeListService codeListService; // (1)

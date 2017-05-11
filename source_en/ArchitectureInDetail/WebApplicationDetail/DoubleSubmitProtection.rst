@@ -1030,7 +1030,7 @@ The settings for using the transaction token check provided by the common librar
    * - | (3)
      - | Specify a class (\ ``TransactionTokenInterceptor``\ ) to generate and check transaction tokens using \ ``@TransactionTokenCheck``\  annotation.
    * - | (4)
-     - | Set a class (\ ``TransactionTokenRequestDataValueProcessor``\ ) for automatic embedding of the transaction token to the Hidden area using  \ ``<fomr:form>``\  tag of Spring MVC.
+     - | Set a class (\ ``TransactionTokenRequestDataValueProcessor``\ ) for automatic embedding of the transaction token to the Hidden area using  \ ``<form:form>``\  tag of Spring MVC.
 
 
 Settings for handling transaction token errors
