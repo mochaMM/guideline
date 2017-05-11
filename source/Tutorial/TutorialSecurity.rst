@@ -459,89 +459,21 @@ AccountSharedServiceの作成
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 本チュートリアルでは、アカウント情報を保持するデータベースとしてH2 Database(インメモリデータベース)を使用する。
-そのため、アプリケーションサーバ起動時にSQLを実行してデータベースを初期化する必要がある。
+そのため、アプリケーション起動時にSQLを実行してデータベースを初期化する必要がある。
 
-| データベースを初期化するSQLスクリプトを実行するための設定を追加する。
+| ブランクプロジェクトには以下のように\ ``jdbc:initialize-database`` \が設定済みであり、\ ``${database}-schema.sql`` \にDDL文、\ ``${database}-dataload.sql`` \にDML文を追加するだけでアプリケーション起動時にSQLを実行してデータベースを初期化することができる。なお、ブランクプロジェクトの設定では\ ``first-springsecurity-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-schema.sql`` \及び\ ``H2-dataload.sql`` \が実行される。
+
 | ``src/main/resources/META-INF/spring/first-springsecurity-env.xml``
 
 .. code-block:: xml
-    :emphasize-lines: 4,6,30-36
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-        xsi:schemaLocation="
-            http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        ">
-
-        <bean id="dateFactory" class="org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory" />
-
-        <bean id="realDataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-            destroy-method="close">
-            <property name="driverClassName" value="${database.driverClassName}" />
-            <property name="url" value="${database.url}" />
-            <property name="username" value="${database.username}" />
-            <property name="password" value="${database.password}" />
-            <property name="defaultAutoCommit" value="false" />
-            <property name="maxTotal" value="${cp.maxActive}" />
-            <property name="maxIdle" value="${cp.maxIdle}" />
-            <property name="minIdle" value="${cp.minIdle}" />
-            <property name="maxWaitMillis" value="${cp.maxWait}" />
-        </bean>
-
-
-        <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-            <constructor-arg index="0" ref="realDataSource" />
-        </bean>
-
-        <!-- (1) -->
-        <jdbc:initialize-database data-source="dataSource"
-            ignore-failures="ALL">
-            <!-- (2) -->
-            <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
-            <!-- (3) -->
-            <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
-        </jdbc:initialize-database>
-
-        <!--  REMOVE THIS LINE IF YOU USE JPA
-        <bean id="transactionManager"
-            class="org.springframework.orm.jpa.JpaTransactionManager">
-            <property name="entityManagerFactory" ref="entityManagerFactory" />
-        </bean>
-              REMOVE THIS LINE IF YOU USE JPA  -->
-        <!--  REMOVE THIS LINE IF YOU USE MyBatis3
-        <bean id="transactionManager"
-            class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-            <property name="dataSource" ref="dataSource" />
-            <property name="rollbackOnCommitFailure" value="true" />
-        </bean>
-              REMOVE THIS LINE IF YOU USE MyBatis3  -->
-    </beans>
-
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - \ ``<jdbc:initialize-database>``\ タグにデータベースを初期化するSQLスクリプトを実行するための設定を行う。
-
-        この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``first-springsecurity-env.xml``\ に定義する。
-    * - | (2)
-      - アカウント情報を保持するテーブルを作成するためのDDL文が記載されているSQLファイルを指定する。
-
-        ブランクプロジェクトの設定では、\ ``first-springsecurity-infra.properties``\ に\ ``database=H2``\ と定義されているため、\ ``H2-schema.sql``\ が実行される。
-    * - | (3)
-      - デモユーザーを登録するためのDML文が記載されているSQLファイルを指定する。
-
-        ブランクプロジェクトの設定では、\ ``first-springsecurity-infra.properties``\ に\ ``database=H2``\ と定義されているため、\ ``H2-dataload.sql``\ が実行される。
+    <jdbc:initialize-database data-source="dataSource"
+        ignore-failures="ALL">
+        <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
+        <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
+    </jdbc:initialize-database>
 
 |
-
 | アカウント情報を保持するテーブルを作成するためのDDL文を作成する。
 | ``src/main/resources/database/H2-schema.sql``
 
