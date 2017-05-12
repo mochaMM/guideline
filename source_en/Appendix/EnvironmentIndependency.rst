@@ -146,8 +146,8 @@ the operation of actually deploying them on AP server facilitates deployment.
 
  In Maven, it is automatically distinguished whether it is a SNAPSHOT version or RELEASE version according to the contents of <version> tag of pom.xml.
 
- * It is considered as SNAPSHOT if it ends with -SNAPSHOT. Example: <version>1.0-SNAPSHOT</version>
- * It is considered as RELEASE if it does not end with -SNAPSHOT. Example: <version>1.0</version>
+ * It is considered as SNAPSHOT if it ends with -SNAPSHOT. Example: <version>1.0.0-SNAPSHOT</version>
+ * It is considered as RELEASE if it does not end with -SNAPSHOT. Example: <version>1.0.0</version>
 
  Please note that there are 2 types of repositories in Maven package repository i.e. snapshot repository and release repository with a few limitations.
 
