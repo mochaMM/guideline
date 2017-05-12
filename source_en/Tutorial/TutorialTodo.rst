@@ -342,6 +342,11 @@ When the import is completed, project is displayed in the Package Explorer as fo
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+        
+note::  
+ 
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+	The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 |
 
@@ -3781,7 +3786,6 @@ The following settings are done in created MyBatis3 project.
             <settings>
                 <setting name="mapUnderscoreToCamelCase" value="true" />
                 <setting name="lazyLoadingEnabled" value="true" />
-                <setting name="aggressiveLazyLoading" value="false" />
                 <setting name="defaultFetchSize" value="100" />
         <!--
                 <setting name="defaultExecutorType" value="REUSE" />
@@ -3993,6 +3997,7 @@ Furthermore, the \ :file:`todo-env.xml` \ is not created while creating blank pr
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
     </beans>
 
