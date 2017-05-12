@@ -409,9 +409,8 @@ Configuration of dependent library
 
  .. note::
 
-   In the configuration example above, dependent library version is assumed to be managed by the parent project.
-   Hence, \ ``<version>``\  element is not specified.
-   Since dependent library above is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\, it is not necessary to specify the version by pom.xml.
+   In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+   The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 |
 
@@ -2322,7 +2321,7 @@ Configuration while using Apache ActiveMQ is explained.
   | JMS provider requires specific configuration.
   | In Apache ActiveMQ, environment variable must be added to starting variable of application server to ensure that it consists of objects wherein payload of received messages is permissible.
   | For details, refer \ `ObjectMessage <http://activemq.apache.org/objectmessage.html>`_\ .
-  | Configuration example while using Apache Tomcat is shown below. Refer \ `Service Configuration <https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html/installation_guide/configuring_jboss_eap_to_run_as_a_service>`_\  for JBoss and \ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\  for Weblogic.
+  | An example of adding environment variable to startup argument of Apache Tomcat is shown below. Refer \ `Configuring JBoss EAP to Run as a Service <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/installation-guide/chapter-4-configuring-jboss-eap-to-run-as-a-service>`_\  in case of JBoss Enterprise Application Platform 7.0, \ `Service Configuration <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Installation_Guide/sect-Service_Configuration.html>`_\  in case of JBoss Enterprise Application Platform 6.4 and \ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\  in case of Weblogic.
 
   - :file:`$CATALINA_HOME/bin/setenv.sh`
 
@@ -2381,9 +2380,8 @@ Configuration while using Apache ActiveMQ is explained.
 
  .. note::
 
-   In the configuration example above, the version of dependent library is assumed to be managed by the parent project.
-   Hence, \ ``<version>``\  element is not specified.
-   Since dependent libraries given above are defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ , the version is not required to be specified by pom.xml.
+   In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
+   The above dependent library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 |
 

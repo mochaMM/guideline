@@ -175,8 +175,8 @@ In order to use a class that is offered by Lombok, add Lombok as dependency libr
 
 .. note::
 
-    In the above configuration example, it is prerequisite that the version of dependent library is to be managed by the parent project.
-    Therefore, \ ``<version>``\  element is not specified.
+    In the configuration example above, since it is assumed to manage the dependent library version with the parent project terasoluna-gfw-parent, it is not necessary to specify pom.xml version.
+    The above dependency library used by terasoluna-gfw-parent is defined by \ `Spring IO Platform <http://platform.spring.io/platform/>`_\ .
 
 |
 

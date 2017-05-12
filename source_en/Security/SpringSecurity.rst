@@ -371,7 +371,7 @@ This guideline assumes that the development project is created using Maven.
 
 .. note::
 
-    This guideline assumes that the library version is managed using Spring IO Platform, therefore \ ``<version>``\  element is omitted.
+    In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent , specifying the version in pom.xml is not necessary.
 
 |
 
