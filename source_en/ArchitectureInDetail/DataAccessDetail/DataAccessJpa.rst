@@ -266,6 +266,10 @@ When using JPA (Spring Data JPA) in infrastructure layer, add the following depe
    * - | (1)
      - | \ ``terasoluna-gfw-jpa-dependencies``\  where the libraries associated with JPA are defined should be added to dependency.
 
+.. note::  
+
+   In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent, specifying the version in pom.xml is not necessary. 
+   
 Application Settings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1233,7 +1237,7 @@ specify QueryHint ( ``@javax.persistence.QueryHint`` ) in value attribute.
     * - | (1)
       - | Specify hint name in name attribute of ``@QueryHint`` annotation and hint value in value attribute.
         | In addition to the hint stipulated in JPA specifications, provider specific hint can be specified.
-        | In the above example, lock timeout is set to ``0`` (DB used is PostgreSQL). "FOR UPDATE NOWAIT" clause is added to SQL.
+        | In the above example, lock timeout is set to ``0`` (DB used is Oracle). "FOR UPDATE NOWAIT" clause is added to SQL.
 
  .. note:: **QueryHints that can be specified in Hibernate**
 

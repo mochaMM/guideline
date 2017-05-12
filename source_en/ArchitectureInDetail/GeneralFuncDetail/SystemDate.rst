@@ -186,21 +186,8 @@ If project is created from `blank project <https://github.com/terasolunaorg/tera
       - Add a terasoluna-gfw-jodatime-dependencies into dependencies.
         The dependencies of Joda Time related to Date Factory and Joda Time libraries are defined for terasoluna-gfw-jodatime-dependencies.
 
-.. tip:: **The configuration method if do not want to use the terasoluna-gfw-parent as a Parent project**
-
-    If the terasoluna-gfw-parent project is not specified as a parent project, version specification should be done separately.
-
-     .. code-block:: xml
-        :emphasize-lines: 4
-
-            <dependency>
-                <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-jodatime</artifactId>
-                <version>5.2.0.RELEASE</version>
-                <type>pom</type>
-            </dependency>
-
-    In the above example 5.2.0.RELEASE is specified  but it should be actual version which is specified at project side.
+.. note:: 
+	In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent, specifying the version in pom.xml is not necessary.
 
 |
 
