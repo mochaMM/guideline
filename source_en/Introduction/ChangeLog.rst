@@ -10,6 +10,98 @@ Change Log
       - Modified locations
       - Modification details
 
+    * - 2017-03-17
+      - \-
+      - 5.2.1 RELEASE version published
+
+        * For details of update, refer \ `Issue list of 5.2.1 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.0%20is%3Aissue%20is%3Aclosed%20>`_\.
+
+    * -
+      - General
+      - Clerical errors of guideline(typing mistake, simple descriptive error etc ).
+      
+        * For details of update,please refer,\ `5.2.1's Issue list(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.2.1%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\.
+        
+        Description details modified
+
+        * For details of update、please refer \ `5.2.1's Issue list(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.1%20label%3Aimprovement%20is%3Aclosed%20>`_\.
+
+        Change to fix the version of \ ``maven-archetype-plugin``\ used while creating following project to 2.4(\ `guideline#2523 <https://github.com/terasolunaorg/guideline/issues/2523>`_\ )
+
+        * :doc:`../Overview/FirstApplication`  
+        * :doc:`../ImplementationAtEachLayer/CreateWebApplicationProject`  
+        * :doc:`../Tutorial/TutorialTodo`  
+        * :doc:`../Tutorial/TutorialSecurity`
+
+    * -
+      - :doc:`../Introduction/CriteriaBasedMapping`
+      - Description details added
+
+        * A table listing a point of view by CVE is added in Mapping based on security measures (\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )
+
+
+    * -
+      - :doc:`../ImplementationAtEachLayer/DomainLayer`
+      - Description details modified
+
+        * Modified signature-limiting interface and base class implementation sample(\ `guideline#2219 <https://github.com/terasolunaorg/guideline/issues/2219>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`
+      - Description details modified
+
+        * Add explanation on how to include input check target in message(\ `guideline#2002 <https://github.com/terasolunaorg/guideline/issues/2002>`_\ )
+
+        * Modified check contents description  of input check by @URL(\ `guideline#2260 <https://github.com/terasolunaorg/guideline/issues/2260>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/SessionManagement`
+      - Description details added
+
+        * Added how to prevent binding of request parameters when receiving object stored in session scope(\ `guideline#1293 <https://github.com/terasolunaorg/guideline/issues/1293>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/Internationalization`
+      - Description details added
+
+        * Example when internationalization is not applied and its countermeasures added (\ `guideline#2427 <https://github.com/terasolunaorg/guideline/issues/2427>`_\ )
+
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessMyBatis3`
+      - Description details added
+
+        * (\ `guideline#2375 <https://github.com/terasolunaorg/guideline/issues/2375>`_\ ) Added description of setting related to calling rollback processing when an error occurs at the time of commit.
+
+    * -
+      - :doc:`../ArchitectureInDetail/DataAccessDetail/DataAccessJpa`
+      - Description details added
+
+        * Added warning and measures(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )  related to \ `CVE-2016-6652 <https://pivotal.io/security/cve-2016-6652>`_\ (Vulnerability that may be subject to blind SQL injection attack).
+
+    * -
+      - :doc:`../ArchitectureInDetail/MessagingDetail/Email`
+      - Description details added
+
+        * Issues occuring in JavaMail and the methods to avoid the same added (\ `guideline#2190 <https://github.com/terasolunaorg/guideline/issues/2190>`_\ )
+
+    * -
+      - :doc:`../Security/Authentication`
+      - Description details added
+      
+        * Description added for value attribute of checkbox used in Remember Me authentication (\ `guideline#785 <https://github.com/terasolunaorg/guideline/issues/785>`_\ )
+
+        Description details modified
+
+        * Description for use of SecureRandom modified (\ `guideline#2177 <https://github.com/terasolunaorg/guideline/issues/2177>`_\ )
+
+    * -
+      - :doc:`../Security/Authorization`
+      - Description details added
+
+        * Warning related to access control for specific URL added (\ `guideline#2399 <https://github.com/terasolunaorg/guideline/issues/2399>`_\ )
+
+        * Added warning and measures(\ `guideline#2439 <https://github.com/terasolunaorg/guideline/issues/2439>`_\ )  related to \ `CVE-2016-9879 <https://pivotal.io/security/cve-2016-9879>`_\ 
+
     * - 2016-08-31
       - \-
       - 5.2.0 RELEASE version published

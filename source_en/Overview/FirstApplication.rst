@@ -46,7 +46,7 @@ Create project using `mvn archetype:generate` on internet.
 
 .. code-block:: console
 
-    mvn archetype:generate -B^
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
      -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
      -DarchetypeGroupId=org.terasoluna.gfw.blank^
      -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
@@ -59,7 +59,7 @@ Here, created a project on Windows environment.
 
 .. code-block:: console
 
-    C:\work>mvn archetype:generate -B^
+    C:\work>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B^
     More?  -DarchetypeCatalog=http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases^
     More?  -DarchetypeGroupId=org.terasoluna.gfw.blank^
     More?  -DarchetypeArtifactId=terasoluna-gfw-web-blank-archetype^
@@ -73,13 +73,13 @@ Here, created a project on Windows environment.
     [INFO] Building Maven Stub Project (No POM) 1
     [INFO] ------------------------------------------------------------------------
     [INFO]
-    [INFO] >>> maven-archetype-plugin:2.2:generate (default-cli) > generate-sources @ standalone-pom >>>
+    [INFO] >>> maven-archetype-plugin:2.4:generate (default-cli) > generate-sources @ standalone-pom >>>
     [INFO]
-    [INFO] <<< maven-archetype-plugin:2.2:generate (default-cli) < generate-sources @ standalone-pom <<<
+    [INFO] <<< maven-archetype-plugin:2.4:generate (default-cli) < generate-sources @ standalone-pom <<<
     [INFO]
-    [INFO] --- maven-archetype-plugin:2.2:generate (default-cli) @ standalone-pom ---
+    [INFO] --- maven-archetype-plugin:2.4:generate (default-cli) @ standalone-pom ---
     [INFO] Generating project in Batch mode
-    [INFO] Archetype repository missing. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:1.0.0.RELEASE -> http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases] found in catalog http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases
+    [INFO] Archetype repository not defined. Using the one from [org.terasoluna.gfw.blank:terasoluna-gfw-web-blank-archetype:1.0.0.RELEASE] found in catalog remote
     [INFO] ----------------------------------------------------------------------------
     [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-web-blank-archetype:5.2.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
@@ -96,9 +96,9 @@ Here, created a project on Windows environment.
     [INFO] ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
-    [INFO] Total time: 1.631 s
-    [INFO] Finished at: 2015-07-31T08:47:12+00:00
-    [INFO] Final Memory: 11M/26M
+    [INFO] Total time: 2.137 s
+    [INFO] Finished at: 2017-02-22T10:05:48+09:00
+    [INFO] Final Memory: 12M/201M
     [INFO] ------------------------------------------------------------------------
     C:\work>
 
