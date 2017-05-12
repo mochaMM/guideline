@@ -1184,6 +1184,7 @@ Created class stored in the following directory.
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - Sr. No.
@@ -1218,6 +1219,10 @@ Created class stored in the following directory.
      - | If database is accessed using Spring Data JPA, instead of \ ``create`` \ method, call \ ``save`` \ method.
    * - | (11)
      - | If database is accessed using Spring Data JPA, instead of \ ``update`` \ method, call \ ``save`` \ method.
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -1643,6 +1648,7 @@ Add new creation process into \ ``TodoController``\.
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1669,6 +1675,9 @@ Add new creation process into \ ``TodoController``\.
        | Since redirect is used, there is no case of browser being read again and a new registration process being \ ``POST``\. (For details, refer to ":ref:`DoubleSubmitProtectionAboutPRG`")
        | Since this time Created successfully message is displayed, \ ``ResultMessages.success()`` \ is used.
 
+.. raw:: latex
+
+   \newpage
 
 Modifications in Form
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3360,6 +3369,7 @@ Following settings are done in created blank project :file:`src/main/webapp/WEB-
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -3417,6 +3427,10 @@ Following settings are done in created blank project :file:`src/main/webapp/WEB-
        * 30 minutes as a session time-out
 
        are defined.
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -4174,6 +4188,7 @@ The Spring MVC related definitions are done in \ :file:`spring-mvc.xml`\.
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -4194,7 +4209,7 @@ The Spring MVC related definitions are done in \ :file:`spring-mvc.xml`\.
        | If \ ``styles.css`` \ is not stored anywhere, 404 error is returned.
 
        | Here, cache period (3600 seconds = 60 minutes) of static resources is set in \ ``cache-period`` \ attribute.
-       | \ ``cache-period="3600"`` \ is also correct, however, in order to demonstrate that it is 60 minutes, it is better to write as \ ``cache-period="#{60 * 60}"`` \ which uses `SpEL <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/expressions.html#expressions-beandef-xml-based>`_.
+       | \ ``cache-period="3600"`` \ is also correct, however, in order to demonstrate that it is 60 minutes, it is better to write as \ ``cache-period="#{60 * 60}"`` \ which uses `SpEL <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/expressions.html#expressions-beandef-xml-based>`_.
    * - | (5)
      - | Set interceptor that outputs trace log of controller processing. 
        | Set so that it excludes the path under\ ``/resources`` \ from mapping.
@@ -4216,6 +4231,10 @@ The Spring MVC related definitions are done in \ :file:`spring-mvc.xml`\.
                    <property name="prefix" value="/WEB-INF/views/" />
                    <property name="suffix" value=".jsp" />
                </bean>
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 

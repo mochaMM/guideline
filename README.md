@@ -13,7 +13,7 @@ This guideline helps to proceed with the software development (mainly coding) sm
 
 ## How to contribute
 
-**Contributing (bug report, pull request, any comments etc.) is welcome !!** Please see the [contributing guideline](https://github.com/terasolunaorg/guideline/blob/master/CONTRIBUTING.md) for details.
+**Contributing (bug report, pull request, any comments etc.) is welcome !!** Please see the [contributing guideline](CONTRIBUTING.md) for details.
 
 
 ## Source files
@@ -120,4 +120,4 @@ $ ./build-pdf_en.sh
 
 ## Terms of use
 
-Terms of use refer to [here](https://github.com/terasolunaorg/guideline/blob/master/source_en/Introduction/TermsOfUse.rst).
+Terms of use refer to [here](/source_en/Introduction/TermsOfUse.rst).

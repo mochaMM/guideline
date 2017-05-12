@@ -18,6 +18,7 @@ links to explanation of functionalities related to security have been given
 .. list-table::
    :header-rows: 1
    :widths: 10 40 50
+   :class: longtable
 
    * - Sr. No.
      - Item Name

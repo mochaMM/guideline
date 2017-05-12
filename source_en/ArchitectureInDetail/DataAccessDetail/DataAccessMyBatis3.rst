@@ -13,7 +13,7 @@ Database Access (MyBatis3)
 Overview
 --------------------------------------------------------------------------------
 
-This chapter describes how to access database using \ `MyBatis3 <http://mybatis.org>`_\ .
+This chapter describes how to access database using \ `MyBatis3 <http://www.mybatis.org/mybatis-3/>`_\ .
 
 This guideline presumes the use of Mapper interface of MyBatis3 as a Repository interface.
 Refer to ":ref:`repository-label`" for Repository interface.
@@ -743,7 +743,7 @@ MyBatis3 can specify \ ``fetchSize``\  by using 2 methods shown below to control
 
  .. note:: **"Regarding default fetchSize"**
 
-    "Default \ ``fetchSize``\ "can be used in MyBatis3.3.0 and subsequent versions supported in terasoluna-gfw-mybatis3 5.2.0.RELEASE.
+    "Default \ ``fetchSize``\ "can be used in MyBatis3.3.0 and subsequent versions.
 
 
 How to specify "default \ ``fetchSize``\ " is shown below.
@@ -3243,8 +3243,8 @@ In the example below, H2 Database is used as the database.
     The links for reference pages of major databases are given below.
 
     * `Oracle 12c <http://docs.oracle.com/database/121/SQLRF/statements_9014.htm>`_
-    * `DB2 10.5 <http://www-01.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
-    * `PostgreSQL 9.4 <http://www.postgresql.org/docs/9.4/static/sql-insert.html>`_
+    * `DB2 11.1 <http://www.ibm.com/support/knowledgecenter/SSEPGG_11.1.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
+    * `PostgreSQL 9.6 <http://www.postgresql.org/docs/9.6/static/sql-insert.html>`_
     * `MySQL 5.7 <http://dev.mysql.com/doc/refman/5.7/en/insert.html>`_
 
 |
@@ -5166,7 +5166,7 @@ How to implement a process wherein the search results are downloaded as CSV data
 
     When a query to return a large amount of data is to be described, an appropriate value should be set in \ ``fetchSize``\  attribute.
     \ ``fetchSize``\  is a parameter which specifies data record count to be fetched in a single communication between JDBC driver and database.
-    Note that, "default \ ``fetchSize``\ " can be specified in MyBatis configuration file, in MyBatis3.3.0 and subsequent versions which are supported in terasoluna-gfw-mybatis3 5.2.0.RELEASE.
+    Note that, "default \ ``fetchSize``\ " can be specified in MyBatis configuration file, in MyBatis3.3.0 and subsequent versions.
     
     Refer ":ref:`DataAccessMyBatis3HowToUseSettingsDefaultFetchSize`" for details of \ ``fetchSize``\ .
     
@@ -5774,8 +5774,8 @@ Based on the application requirement, it is also necessary to check the validity
 In such cases, "a method to execute SQL queued for batch execution" is provided in the Mapper interface."
 
 In MyBatis 3.2, \ ``flushStatements``\  method of \ ``org.apache.ibatis.session.SqlSession``\  interface must be called directly, however,
-a method is supported in MyBatis 3.3.0 and subsequent versions supported in terasoluna-gfw-mybatis3 5.2.0.RELEASE wherein
-a method which assigns \ ``@org.apache.ibatis.annotations.Flush``\  annotation in Mapper interface is created.
+a method is supported in MyBatis 3.3.0 and subsequent versions wherein a method which assigns
+\ ``@org.apache.ibatis.annotations.Flush``\  annotation in Mapper interface is created.
 
  .. warning:: **Regarding update results returned by JDBC driver while using batch mode**
 
@@ -6135,7 +6135,7 @@ Mapper interface mechanism
 
 - How to create a Mapper interface
 
-  In this guideline, since it is presumed that that the Mapper interface of MyBatis3 is used as Repository interface,
+  In this guideline, since it is presumed that the Mapper interface of MyBatis3 is used as Repository interface,
   interface name is in the format,  "Entity name" + \ ``"Repository"`` \.
 
  .. code-block:: java
@@ -6222,10 +6222,15 @@ The process flow up to SQL execution when Mapper interface method is called, is 
 
     **Picture - Mapper mechanism**
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.1\linewidth}|p{0.80\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 80
+    :class: longtable
 
 
     * - Sr. No.
@@ -6255,6 +6260,9 @@ The process flow up to SQL execution when Mapper interface method is called, is 
 
         When number of records or number of updated records are to be fetched, primitive type or primitive wrapper type etc. form the return values.
 
+ .. raw:: latex
+
+    \newpage
 
  .. tip:: **Statement ID**
 
@@ -6862,6 +6870,7 @@ In the implementation example, the records stored in the table above are mapped 
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
+    :class: longtable
 
     * - Sr. No.
       - Class name
@@ -6972,6 +6981,9 @@ In the implementation example, the records stored in the table above are mapped 
                 // ...
             }
 
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -7915,7 +7927,7 @@ When "Lazy Load" is used, one of the libraries given below is necessary in order
 
 
 CGLIB had been used as default until MyBatis 3.2 series.
-From  MyBatis 3.3.0, JAVASSIST has been used as default at the MyBatis 3.3.0 or later version, which is supported by terasoluna-gfw-mybatis3 5.2.0.RELEASE.
+From  MyBatis 3.3.0, JAVASSIST has been used as default at the MyBatis 3.3.0 or later version.
 In addition, it is possible to use "Lazy Load" without adding the library because the JAVASSIST is embedded in the MyBatis since MyBatis 3.3.0.
 
  .. note::

@@ -75,6 +75,7 @@ The basic terminology of JPA is described below.
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - Sr. No.
       - Term
@@ -123,6 +124,10 @@ The basic terminology of JPA is described below.
         | It is a method of \ ``EntityManager``\  and the accumulated un-reflected operations are reflected in the relational database.
         | Normally, operations are reflected to the relational database only when a transaction is committed; however, flush method is used when the operation needs to be reflected in the database before committing a transaction.
 
+ .. raw:: latex
+
+    \newpage
+
 Managing life cycle of entity
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 The life cycle of entity is managed as follows:
@@ -138,6 +143,7 @@ The life cycle of entity is managed as follows:
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -163,6 +169,10 @@ The life cycle of entity is managed as follows:
         | refer to 
         |  :ref:`Reflection timing of persistence processing (1) <how_to_create_repository_extends_springdata_flush_timing_note1>`
         |  :ref:`Reflection timing of persistence processing (2) <how_to_create_repository_extends_springdata_flush_timing_note2>`
+
+ .. raw:: latex
+
+    \newpage
 
 \
 
@@ -206,6 +216,7 @@ The basic flow at the time of accessing the database using Spring Data JPA is sh
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -226,6 +237,10 @@ The basic flow at the time of accessing the database using Spring Data JPA is sh
         | (API of java.sql.PreparedStatement is used for binding the actual values.)
     * - | (6)
       - | JDBC driver executes SQL.
+
+ .. raw:: latex
+
+    \newpage
 
 | When creating the repository using Spring Data JPA, APIs of JPA need not be called directly; however, it is better to know which JPA method is being called by
 | methods of Repository interface of Spring Data JPA.
@@ -325,6 +340,7 @@ Perform settings to use \ ``EntityManager``\ .
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -354,6 +370,10 @@ Perform settings to use \ ``EntityManager``\ .
       - | Specify the settings to configure ``EntityManager`` of Hibernate.
         | For details, refer to "`Hibernate Reference Documentation <http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch03.html#configuration-optional>`_\" .
 
+ .. raw:: latex
+
+    \newpage
+
 \
 
  .. tip::
@@ -369,7 +389,7 @@ Perform settings to use \ ``EntityManager``\ .
                  <util:map>
                      <!-- omitted -->
                      <entry key="hibernate.dialect"
-                            value="org.hibernate.dialect.Oracle10gDialect" />  <!-- (9) -->
+                            value="org.hibernate.dialect.Oracle12cDialect" />  <!-- (9) -->
                  </util:map>
              </property>
          </bean>
@@ -378,12 +398,13 @@ Perform settings to use \ ``EntityManager``\ .
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - Sr. No.
           - Description
         * - | (9)
-          - | Specify \ ``org.hibernate.dialect.Oracle10gDialect``\  in \ ``"hibernate.dialect"``\ .
-            | By specifying \ ``Oracle10gDialect``\ , ANSI standard SQL JOIN clause for combining the tables can be used.
+          - | Specify \ ``org.hibernate.dialect.Oracle12cDialect``\  in \ ``"hibernate.dialect"``\ .
+            | By specifying \ ``Oracle12cDialect``\ , ANSI standard SQL JOIN clause for combining the tables can be used.
 
 | Perform the following settings when transaction manager (JTA) of the application server is to be used.
 | The difference with the case wherein JTA is not used, is explained below.
@@ -547,6 +568,7 @@ Settings for validating Spring Data JPA
  .. list-table::
     :header-rows: 1
     :widths: 6 20 74
+    :class: longtable
 
     * - Sr. No.
       - Element
@@ -567,7 +589,7 @@ Settings for validating Spring Data JPA
     * - 4.
       - query-lookup-strategy
       - | Specify the method to Lookup the query to be executed when query method is called.
-        | By default, it is ``"CREATE_IF_NOT_FOUND"``. For details, refer to `Spring Data Commons - Reference Documentationの "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ . Use the default settings if there is no specific reason.
+        | By default, it is ``"CREATE_IF_NOT_FOUND"``. For details, refer to `Spring Data Commons - Reference Documentationの "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ . Use the default settings if there is no specific reason.
     * - 5.
       - factory-class
       - | Specify Factory for generating class to implement the process when the method of Repository interface is called.
@@ -578,6 +600,10 @@ Settings for validating Spring Data JPA
       - | Specify suffix indicating that it is an implementation class of custom Repository.
         | By default, it is ``"Impl"``. For example: when Repository interface name is ``OrderRepository``, ``OrderRepositoryImpl`` will be the implementation class of custom Repository. Use the default settings if there is no specific reason.
         | For custom Repository, refer to ":ref:`custommethod_individual-label`".
+
+ .. raw:: latex
+
+    \newpage
 
 Settings for using JPA annotations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -800,6 +826,7 @@ If entity specific Repository interface is created by inheriting ``JpaRepository
  .. list-table::
     :widths: 10 35 55
     :header-rows: 1
+    :class: longtable
 
     * - Sr. No.
       - Method
@@ -871,6 +898,10 @@ If entity specific Repository interface is created by inheriting ``JpaRepository
     * - 17.
       - long count()
       - | Returns the number of entities available.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning:: **Behavior when using optimistic locking (@javax.persistence.Version) of JPA**
 
@@ -1111,7 +1142,7 @@ Specifying query to be executed
     #. Create a query (JPQL) from method name and use it.
     #. An error occurs when query (JPQL) cannot be created from method name.
 
-    For details on Query Lookup methods, refer to `Spring Data Commons - Reference Documentation "Defining query methods" -  "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ .
+    For details on Query Lookup methods, refer to `Spring Data Commons - Reference Documentation "Defining query methods" -  "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ .
 
 Fetching entity lock
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1507,19 +1538,19 @@ For naming conventions for creating JPQL, refer to the following pages.
       - Reference page
       - Description
     * - 1.
-      - `Spring Data Commons - "Query creation" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-creation>`_\
+      - `Spring Data Commons - "Query creation" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-creation>`_\
       - This section describes method to specify Distinct, ORDER BY and Case insensitive.
     * - 2.
-      - `Spring Data Commons - "Property expressions" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-property-expressions>`_\
+      - `Spring Data Commons - "Property expressions" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-property-expressions>`_\
       - This section describes method to specify the nested entity property in condition.
     * - 3.
-      - `Spring Data Commons - "Special parameter handling" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.special-parameters>`_\
+      - `Spring Data Commons - "Special parameter handling" of Reference Documentation "Defining query methods" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.special-parameters>`_\
       - This section describes special method arguments (``Pageable`` , ``Sort``).
     * - 4.
-      - `Spring Data JPA - "Query creation" of Reference Documentation "Query methods" <http://docs.spring.io/spring-data/jpa/docs/1.9.4.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
+      - `Spring Data JPA - "Query creation" of Reference Documentation "Query methods" <http://docs.spring.io/spring-data/jpa/docs/1.10.6.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
       - This section describes naming conventions (keywords) for creating JPQL.
     * - 5.
-      - `Spring Data Commons - Reference Documentation "Appendix C. Repository query keywords" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repository-query-keywords>`_\
+      - `Spring Data Commons - Reference Documentation "Appendix C. Repository query keywords" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repository-query-keywords>`_\
       - This section describes naming conventions (keywords) for creating JPQL.
 
 See the example below.
@@ -1703,6 +1734,7 @@ Specify the query in the properties file (classpath:META-INF/jpa-named-queries.p
      .. list-table::
          :widths: 10 90
          :header-rows: 1
+         :class: longtable
 
          * - Sr. No.
            - Description
@@ -2038,6 +2070,7 @@ If no condition is specified, a blank list will be returned.
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2075,7 +2108,9 @@ If no condition is specified, a blank list will be returned.
     * - | (14)
       - | Execute the dynamically built query and fetch all the entities matching the conditions.
 
+ .. raw:: latex
 
+    \newpage
 
 -  Entity specific Repository interface
 
@@ -2407,6 +2442,7 @@ Further, the description for fetching all records is omitted.
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -2438,6 +2474,9 @@ Further, the description for fetching all records is omitted.
     * - | (12)
       - | Specify entity list of the corresponding page, page information and total number of records matching the conditions as arguments and then create and return the ``Page`` object.
 
+ .. raw:: latex
+
+    \newpage
 
 - Service (Caller)
 

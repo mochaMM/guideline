@@ -65,7 +65,7 @@ Input validation is classified into single item check and correlation item check
    * - Correlation item check
      - | Check comparing multiple fields
      - | Password and confirm password check
-     - | Bean Validation or Validation class implementing `org.springframework.validation.Validator <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#validator>`_\
+     - | Bean Validation or Validation class implementing `org.springframework.validation.Validator <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#validator>`_\
        | interface
 
 
@@ -2053,6 +2053,7 @@ Error message as shown below is displayed when form is sent by entering differen
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - Sr. No.
           - Description
@@ -2156,7 +2157,7 @@ Method to change error messages of input validation is explained.
 Error messages of Bean Validation in Spring MVC are resolved in the following order.
 
 #. | If there is any message which matches with the rule, among the messages defined in \ ``org.springframework.context.MessageSource``\ , then it is to be used as error message (Spring rule).
-   | For default rules of Spring, refer to "`JavaDoc of DefaultMessageCodesResolver <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_ of DefaultMessageCodesResolver".
+   | For default rules of Spring, refer to "`JavaDoc of DefaultMessageCodesResolver <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_ of DefaultMessageCodesResolver".
 #. If message cannot be found as mentioned in step 1, then error message is acquired from the \ ``message``\  attribute of the annotation. (Bean Validation rule)
 
   #. When the value of \ ``message``\  attribute is not in "{message key}" format, use that text as error message.
@@ -2369,6 +2370,7 @@ Error messages are changed as follows.
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - Sr. No.
           - Description
@@ -2460,7 +2462,7 @@ For example, index positions of \ ``@Size``\  are as follow:
 * \ ``{1}``\  : value of \ ``max``\  attribute
 * \ ``{2}``\  : value of \ ``min``\  attribute
 
-For specification details, refer to \ `JavaDoc of SpringValidatorAdapter <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/beanvalidation/SpringValidatorAdapter.html#getArgumentsForConstraint-java.lang.String-java.lang.String-javax.validation.metadata.ConstraintDescriptor->`_\.
+For specification details, refer to \ `JavaDoc of SpringValidatorAdapter <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/beanvalidation/SpringValidatorAdapter.html#getArgumentsForConstraint-java.lang.String-java.lang.String-javax.validation.metadata.ConstraintDescriptor->`_\.
 
 Error messages are changed as follows.
 
@@ -2470,7 +2472,7 @@ Error messages are changed as follows.
 
 .. note::
 
-  \ `There are other formats <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\  as well for the message key format of application-messages.properties;
+  \ `There are other formats <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\  as well for the message key format of application-messages.properties;
   however, if it is used with the purpose of overwriting some default messages, it should be in \ ``[annotation name].[form attribute name].[property name]``\  format.
 
 |
@@ -4169,6 +4171,7 @@ Refer to Chapter 7 \ `Bean Validation specification <http://download.oracle.com/
 .. list-table::
    :header-rows: 1
    :widths: 15 30 30 25
+   :class: longtable
 
    * - Annotation
      - Target type
@@ -4295,6 +4298,10 @@ Refer to Chapter 7 \ `Bean Validation specification <http://download.oracle.com/
 
             @Valid
             private Dept dept;
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 
@@ -4495,6 +4502,7 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
 .. list-table::
     :header-rows: 1
     :widths: 15 30 30 25
+    :class: longtable
 
     * - Annotation
       - Target type
@@ -4577,6 +4585,10 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
                  private Date to;
              }
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **For mandatory input during correlated item check**
   
   For unit item check, whether a value is entered in the input field（ should not be \ ``null``\ ) can be checked by using \ ``@NotNull``\  in combination. However, in correlated item check, the check like "if value is entered in one field, value is entered forcefully in another field" cannot be implemented by using \ ``@NotNull``\  alone. Hence, \ ``@Compare``\  provides \ ``requireBoth``\  attribute which controls mandatory input for checking which can then be used for implementing the check whenever required.
@@ -4589,6 +4601,7 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
     .. list-table::
         :header-rows: 1
         :widths: 50 50
+        :class: longtable
 
         * - Check requirements
           - Configuration example
@@ -4643,6 +4656,10 @@ Annotation (\ ``org.terasoluna.gfw.common.validator.constraints.*``\ ) offered b
 |
 
 .. _Validation_terasoluna_gfw_how_to_use:
+
+.. raw:: latex
+
+   \newpage
 
 How to apply check rules of common library
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -4880,7 +4897,7 @@ Error message gets changed as shown below.
 
 .. tip::
 
-  Refer to \ `Javadoc of DefaultMessageCodesResolver <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\  for the details of message key rules.
+  Refer to \ `Javadoc of DefaultMessageCodesResolver <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\  for the details of message key rules.
 
 .. _Validation_string_trimmer_editor:
 

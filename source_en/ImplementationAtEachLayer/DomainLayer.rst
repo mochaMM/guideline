@@ -164,10 +164,15 @@ The table structure is as given below:
     :width: 100%
     :align: center
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.55\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 20 15 55
+    :class: longtable
 
     * - Sr. No.
       - Classification
@@ -206,6 +211,9 @@ The table structure is as given below:
       - | c_order_status
       - | Code table to define order status.
 
+.. raw:: latex
+
+   \newpage
 
 Entity structure
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -252,7 +260,6 @@ If Entity classes are created with the help of policy defined by the above table
     * - | (8)
       - | OrderStatus
       - | Entity class is not created since c_order_status table is code table.
-
 
 As it can be observed from the above entity diagram, it might first seem that Order class is the only main entity class
 in the shopping site application; however, there are other main entity class as well other than Order class.
@@ -357,6 +364,7 @@ Repository consists of Repository interface and RepositoryImpl and performs the 
  .. list-table::
    :header-rows: 1
    :widths: 10 20 30 40
+   :class: longtable
 
    * - Sr. No.
      - Class(Interface)
@@ -376,6 +384,9 @@ Repository consists of Repository interface and RepositoryImpl and performs the 
        | RepositoryImpl belongs to infrastructure layer since it plays the role of implementing the operations defined in Repository interface.
        | Refer to \ :doc:`InfrastructureLayer`\  for the implementation of RepositoryImpl.
 
+ .. raw:: latex
+
+    \newpage
 
 | In case of multiple destinations in persistence layer, the resulting configuration as follows.
 | due to this, the logic depending on persistence platform of Entity is hidden from business logic (Service).
@@ -554,6 +565,7 @@ Method definition of Repository interface
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - Sr. No.
       - Types of methods
@@ -588,6 +600,10 @@ Method definition of Repository interface
         #. In the method name after "existsBy"physical or logical name of the field used as search condition must be specified. Hence, the method name must be such that it becomes possible to estimate "the kind of entity that can be fetched using this method".
         #. There must be an argument for each search condition. However, when there are many conditions, DTO containing all search conditions can be provided.
         #. Return value must be boolean type.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -985,6 +1001,7 @@ There are mainly 3 patterns for creating Service.
  .. list-table::
    :header-rows: 1
    :widths: 10 15 25 50
+   :class: longtable
 
    * - Sr. No.
      - Unit
@@ -1023,6 +1040,10 @@ There are mainly 3 patterns for creating Service.
        | However, in this case extracting shared logic out of business logic might get more difficult compared to creation of Service for each use-case (Pattern No. 2).
        | In this guideline, pattern of creating Service for each event is not specifically recommended. However, in large scale development, creating Service using this 
        | pattern can be considered as one of the options with the view of having consistency in development style of business logic from maintainability point of view.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
 
@@ -1151,10 +1172,15 @@ Following is the image of application development when creating a Service(BLogic
    :width: 100%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1169,6 +1195,10 @@ Following is the image of application development when creating a Service(BLogic
    * - | (4)
      - | Implement in SharedService to share the logic with multiple business logics.
        | In the above figure, different person is assigned as the in-charge. However, he may be the same person as (1) depending per the project structure.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -1236,7 +1266,7 @@ Below are the points to be taken care of while creating Service class.
 
     #. If interface is there, When using AOP, Dynamic proxies functionality of standard JDK is used.
        In case of no interface, CGLIB included in Spring Framework is used. In case of CGLIB there are certain restrictions like "Advice cannot be applied on final methods" etc.
-       Refer to \ `Spring Reference Document -Aspect Oriented Programming with Spring(Proxying mechanisms)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/aop.html#aop-proxying>`_\ for details.
+       Refer to \ `Spring Reference Document -Aspect Oriented Programming with Spring(Proxying mechanisms)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/aop.html#aop-proxying>`_\ for details.
     #. It becomes easier to create a stub of business logic. When application layer and domain layer are developed in parallel using different development teams, stubs of Service
        are required. When there is a need to create stubs, it is recommended to have interface .
 
@@ -1718,7 +1748,7 @@ In "Declarative transaction management", the information required for transactio
 * Declaration in XML(bean definition file).
 * **Declaration using annotation (@Transactional) (Recommended).**
 
-Refer to \ `Spring Reference Document -Transaction Management(Declarative transaction management)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/transaction.html#transaction-declarative>`_\  for
+Refer to \ `Spring Reference Document -Transaction Management(Declarative transaction management)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#transaction-declarative>`_\  for
 the details on "Declarative type transaction management" provided by Spring Framework.
 \
 
@@ -1756,6 +1786,7 @@ Information required for "Declarative transaction management"
  .. list-table::
     :header-rows: 1
     :widths: 10 10 80
+    :class: longtable
 
     * - Sr. No.
       - Attribute name
@@ -1822,13 +1853,17 @@ Information required for "Declarative transaction management"
       - | Specify list of exception classes to commit transactions.
         | Blank by default (Not specified)
 
+ .. raw:: latex
+
+    \newpage
+
 \
 
  .. note:: **Location to specify the @Transactional annotation**
 
     **It is recommended to specify the annotation at the class level or method level of the class.**
     Must be noted that it should not interface or method of interface.
-    For the reason, refer to 2nd Tips of \ `Spring Reference Document -Transaction Management(Using @Transactional)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/transaction.html#transaction-declarative-annotations>`_\ .
+    For the reason, refer to 2nd Tips of \ `Spring Reference Document -Transaction Management(Using @Transactional)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#transaction-declarative-annotations>`_\ .
 
  .. warning:: **Default operations of rollback and commit when exception occurs**
 
@@ -1841,7 +1876,7 @@ Information required for "Declarative transaction management"
 
     There is a value attribute in \ ``@Transactional``\  annotation. However, this attribute specifies which Transaction Manager to be used when multiple Transaction Managers are declared.
     It is not required to specify when there is only one Transaction Manager.
-    When multiple Transaction Managers need to be used, refer to \ `Spring Reference Document -Transaction Management(Multiple Transaction Managers with @Transactional)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/transaction.html#tx-multiple-tx-mgrs-with-attransactional>`_\ .
+    When multiple Transaction Managers need to be used, refer to \ `Spring Reference Document -Transaction Management(Multiple Transaction Managers with @Transactional)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#tx-multiple-tx-mgrs-with-attransactional>`_\ .
 
  .. note:: **Default isolation levels of main DB are given below.**
 
@@ -2097,7 +2132,7 @@ Settings for enabling @Transactional
  .. note:: **Programmatic transaction management**
 
     In this guideline, "Declarative transaction management" is recommended. However, programmatic transaction management is also possible.
-    Refer to \ `Spring Reference Document -Transaction Management(Programmatic transaction management)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/transaction.html#transaction-programmatic>`_\  for details.
+    Refer to \ `Spring Reference Document -Transaction Management(Programmatic transaction management)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/transaction.html#transaction-programmatic>`_\  for details.
 
 
 Regarding attributes of <tx:annotation-driven> element

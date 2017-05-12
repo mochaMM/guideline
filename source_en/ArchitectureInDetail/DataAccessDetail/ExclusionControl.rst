@@ -373,11 +373,15 @@ See the example below illustrating a specific scenario.
    :width: 90%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.05\linewidth}|p{0.05\linewidth}|p{0.80\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 5 5 80
+    :class: longtable
 
     * - Sr. No.
       - UserA
@@ -434,6 +438,10 @@ See the example below illustrating a specific scenario.
       - \-
       - 〇
       - Transaction of user B is committed.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **Important**
 
@@ -654,6 +662,10 @@ See the example below illustrating specific scenario.
       - \-
       - Online processing transaction is committed.
 
+ .. raw:: latex
+
+    \newpage
+
 | The flow at the time of timeout is given below.
 | Exclusive error occurs without waiting for the batch processing to end.
 
@@ -662,6 +674,9 @@ See the example below illustrating specific scenario.
    :width: 90%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
 
 | The flow given below illustrates a case wherein pessimistic lock is being obtained by other transaction in case of "pessimistic lock no wait" setting.
 | An exclusive error occurs immediately without waiting for the release of pessimistic lock.

@@ -86,6 +86,7 @@ Spring FrameworkのJAX-WS連携機能について
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -93,7 +94,7 @@ Spring FrameworkのJAX-WS連携機能について
       - | [クライアント] ControllerがServiceを呼び出す。
         | 通常の呼び出しと変更点は特にない。
     * - | (2)
-      - | [クライアント] ServiceがSOAPサーバ提供側が用意したWebServiceインターフェースを呼び出す。
+      - | [クライアント] ServiceがSOAPサーバ提供側で用意したWebServiceインターフェースを呼び出す。
         | この図では、ServiceがWebServiceインターフェースを呼び出しているが、要件に応じてControllerから直接WebServiceインターフェースを呼び出してもよい。
     * - | (3)
       - | [クライアント] WebServiceインターフェースが呼び出されると実体として「動的プロキシ(Dynamic Proxy)」(以下「プロキシ」)が呼び出される。
@@ -118,14 +119,18 @@ Spring FrameworkのJAX-WS連携機能について
       - | [サーバ] Serviceでは、Repositoryなどを使用して業務処理を実行する。
         | 通常の呼び出しと変更点は特にない。
 
+.. raw:: latex
+
+   \newpage
+
 .. note::
 
-    Springでは、ドキュメントドリブンでWebサービスを開発するSpring Web Servicesをが提供されているが、ここでは扱わない。
+    Springでは、ドキュメントドリブンでWebサービスを開発するSpring Web Servicesが提供されているが、ここでは扱わない。
     詳細は\ `Spring Web Services <http://projects.spring.io/spring-ws/>`_\ を参照されたい。
 
 .. note::
 
-    SpringでのJAX-WS実装の詳細は、\ `Spring Framework Reference Documentation -Remoting and web services using Spring(Web services)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/remoting.html#remoting-web-services>`_\ を参照されたい。
+    SpringでのJAX-WS実装の詳細は、\ `Spring Framework Reference Documentation -Remoting and web services using Spring(Web services)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/remoting.html#remoting-web-services>`_\ を参照されたい。
 
 |
 
@@ -251,6 +256,7 @@ WSDL内で定義されるエンドポイントアドレスは以下のURLであ�
      .. list-table::
          :header-rows: 1
          :widths: 10 50 40
+         :class: longtable
 
          * - 項番
            - APサーバ名
@@ -334,6 +340,8 @@ SOAPサーバの作成
      
     Oracle WebLogic Server 12.2.1: \ `Oracle(R) Fusion Middleware Understanding WebLogic Web Services for Oracle WebLogic Server  Features and Standards Supported by WebLogic Web Services <https://docs.oracle.com/middleware/1221/wls/WSOVR/weblogic-web-service-stand.htm#WSOVR137>`_\
      
+    JBoss Enterprise Application Platform 7.0: \ `DEVELOPING JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/developing-web-services-applications/chapter-3-developing-jax-ws-web-services>`_\
+
     JBoss Enterprise Application Platform 6.4: \ `DEVELOPMENT GUIDE JAX-WS WEB SERVICES <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Development_Guide/chap-JAX-WS_Web_Services.html>`_\
 
 |
@@ -1134,7 +1142,7 @@ Serviceからスローされる例外は以下を想定している。必要に�
 
     * - 例外名
       - 内容
-    * - | \ ``org.springframework.security.access.AccessDeniedException``\		
+    * - | \ ``org.springframework.security.access.AccessDeniedException``\
       - | 認可エラー時の例外
     * - | \ ``javax.validation.ConstraintViolationException``\
       - | 入力チェックエラー時の例外
@@ -1449,6 +1457,7 @@ MTOMを利用した大容量のバイナリデータを扱う方法
 .. list-table::
     :header-rows: 1
     :widths: 10 30 60
+    :class: longtable
 
     * - 項番
       - プロジェクト名
@@ -1473,6 +1482,10 @@ MTOMを利用した大容量のバイナリデータを扱う方法
       - | envプロジェクト
       - | domainプロジェクトで定義したプロキシの環境依存する値を定義する。
         | プロキシの定義から環境依存する値をプロパティファイルに集約し、プロパティファイルのみenvプロジェクトに配置する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **プロキシの定義ついて**
 
@@ -1546,7 +1559,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
 
         .. Note:: **wsdlDocumentResourceへのWSDLファイルのURL以外の指定**
 
-            上記の例では、SOAPサーバがWSDLファイルを公開している前提である。\ ``classpath:``\ や\ ``file:``\ プレフィックスを使用して指定することで静的ファイルを指定することもできる。指定できる文字列は、\ `Spring Framework Reference Documentation -Resources(The ResourceLoader)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/resources.html#resources-resourceloader>`_\ を参照されたい。
+            上記の例では、SOAPサーバがWSDLファイルを公開している前提である。\ ``classpath:``\ や\ ``file:``\ プレフィックスを使用して指定することで静的ファイルを指定することもできる。指定できる文字列は、\ `Spring Framework Reference Documentation -Resources(The ResourceLoader)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/resources.html#resources-resourceloader>`_\ を参照されたい。
 
 
 .. Note:: **エンドポイントアドレスの上書き指定**
@@ -1583,6 +1596,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
      .. list-table::
          :header-rows: 1
          :widths: 10 90
+         :class: longtable
 
          * - 項番
            - 説明
@@ -1657,7 +1671,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
          BindingProvider provider = (BindingProvider) todoWebService;
          int status = (int) provider.getResponseContext().get(MessageContext.HTTP_RESPONSE_CODE);
 
-    \ ``BindingProvider``\ の詳細については \ `The Java API for XML-Based Web Services(JAX-WS) 2.2 -4.2 javax.xml.ws.BindingProvider- <http://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwj1z_exk7TOAhUDnpQKHbk6AgwQFggfMAA&url=http%3A%2F%2Fdownload.oracle.com%2Fotn-pub%2Fjcp%2Fjaxws-2.2-mrel3-evalu-oth-JSpec%2Fjaxws-2_2-mrel3-spec.pdf&v6u=https%3A%2F%2Fs-v6exp1-ds.metric.gstatic.com%2Fgen_204%3Fip%3D163.135.151.80%26ts%3D1470739411479764%26auth%3Dk5tkj3erhgejiufbavruvdinx2iknps5%26rndm%3D0.9131593964234974&v6s=2&v6t=48530&usg=AFQjCNEfBm6Ji-bQy9GDL8l5crz9PZ188w&bvm=bv.129389765,d.dGo>`_\ を参照されたい。
+    \ ``BindingProvider``\ の詳細については \ `The Java API for XML-Based Web Services(JAX-WS) 2.2 -4.2 javax.xml.ws.BindingProvider- <http://download.oracle.com/otn-pub/jcp/jaxws-2.2-mrel3-evalu-oth-JSpec/jaxws-2_2-mrel3-spec.pdf>`_\ を参照されたい。
     
     ただし、クライアントの依存関係にApatch CXFライブラリが含まれる場合、通信エラー時に上記の方法でレスポンスの情報を取得することができない。
     これは、依存関係にApatch CXFライブラリが含まれる場合は自動的にApatch CXFのプロキシが使用されるため、およびApache CXFのプロキシは通信エラーが発生した場合にレスポンスの情報をレスポンスコンテキストに保持しないためである。
@@ -1834,7 +1848,7 @@ SOAPサーバ用にプロジェクトの設定を変更する
 | SOAPサーバを作成する場合、ブランクプロジェクトにmodelプロジェクトとwebserviceプロジェクトを追加することを推奨する。
 | 以下にその方法を記述する。
 
-| ブランクプロジェクトは初期状態は以下の構成になっている。
+| ブランクプロジェクトの初期状態は以下の構成になっている。
 | なお、artifactIdにはブランクプロジェクト作成時に指定したartifactIdが設定される。
 
 .. code-block:: console
@@ -2116,6 +2130,7 @@ SOAPサーバのパッケージ構成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2148,6 +2163,9 @@ SOAPサーバのパッケージ構成
     * - | (12)
       - | Servletのデプロイメント定義を行う。
 
+.. raw:: latex
+
+   \newpage
 
 .. Note:: **SOAPサーバの不要なファイル**
 
@@ -2378,7 +2396,7 @@ wsimportの使い方
       - 説明
     * - | (1)
       - | wsimportの引数としてWSDLのURLを指定する。
-        | オプションとして以下を使用をする。
+        | オプションとして以下を使用する。
         
           * -keep ソースも出力する。
           * -p 出力するソースのパッケージを指定する。

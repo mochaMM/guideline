@@ -13,7 +13,7 @@
 Overview
 --------------------------------------------------------------------------------
 
-本節では、\ `MyBatis3 <http://mybatis.org>`_\ を使用してデータベースにアクセスする方法について説明する。
+本節では、\ `MyBatis3 <http://www.mybatis.org/mybatis-3/>`_\ を使用してデータベースにアクセスする方法について説明する。
 
 本ガイドラインでは、MyBatis3のMapperインタフェースをRepositoryインタフェースとして使用することを前提としている。
 Repositoryインタフェースについては、「:ref:`repository-label`」を参照されたい。
@@ -395,7 +395,7 @@ pom.xmlの設定
 | インフラストラクチャ層にMyBatis3を使用する場合は、\ :file:`pom.xml`\にterasoluna-gfw-mybatis3-dependenciesへの依存関係を追加する。
 | マルチプロジェクト構成の場合は、domainプロジェクトの\ :file:`pom.xml`\(:file:`projectName-domain/pom.xml`)に追加する。
 
-`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ からプロジェクトを生成した場合は、terasoluna-gfw-mybatis3-dependenciesへの依存関係は、設定済の状態である。
+`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ からプロジェクトを生成した場合は、terasoluna-gfw-mybatis3-dependenciesへの依存関係は、設定済みの状態である。
 
  .. code-block:: xml
     :emphasize-lines: 22-27
@@ -486,7 +486,7 @@ MyBatis3とSpringを連携するための設定
 
 MyBatis3とSpringを連携する場合、データソースはSpringのDIコンテナで管理しているデータソースを使用する必要がある。
 
-`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ からプロジェクトを生成した場合は、Apache Commons DBCPのデータソースが設定済の状態であるため、
+`MyBatis3用のブランクプロジェクト <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank#multi-blank-project-with-mybatis3>`_ \ からプロジェクトを生成した場合は、Apache Commons DBCPのデータソースが設定済みの状態であるため、
 プロジェクトの要件に合わせて設定を変更すること。
 
 データソースの設定方法については、共通編の「\ :ref:`data-access-common_howtouse_datasource` \」を参照されたい。
@@ -743,7 +743,7 @@ MyBatis3の設定
 
  .. note:: **「デフォルトのfetchSize」について**
 
-    「デフォルトの\ ``fetchSize``\ 」は、terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンで利用することができる。
+    「デフォルトの\ ``fetchSize``\ 」は、MyBatis 3.3.0以降のバージョンで利用することができる。
 
 
 以下に、「デフォルトの\ ``fetchSize``\ 」を指定する方法を示す。
@@ -1124,7 +1124,7 @@ Joda-TimeのクラスとJDBC型をマッピングする\ ``TypeHandler`` \の作
 
     |
 
-    更に、\ ``TypeHandler`` \の中でDIコンテナで管理されているbeanを使用したい場合は、
+    更に、\ ``TypeHandler`` \の中でDIコンテナが管理しているbeanを使用したい場合は、
     bean定義ファイル内で\ ``TypeHandler`` \を指定すればよい。
 
     - :file:`projectName-domain/src/main/resources/META-INF/spring/projectName-infra.xml`
@@ -1312,7 +1312,7 @@ Repositoryインタフェース毎にマッピングファイルを作成する�
     
     具体的には、
     \ ``com.example.domain.repository.todo.TodoRepository``\というRepositoryインターフェースに対するマッピングファイル(\ :file:`TodoRepository.xml`\)は、
-    \ ``projectName-domain/src/main/resources/com/example/domain/repository/todo``\ディレクトリに格納すればいよい。
+    \ ``projectName-domain/src/main/resources/com/example/domain/repository/todo``\ディレクトリに格納すればよい。
 
 |
 
@@ -1555,7 +1555,7 @@ MyBatis3では、検索結果(\ ``ResultSet``\)のカラムとJavaBeanのプロ�
 
  .. tip:: **アンダースコア区切りのカラム名とキャメルケース形式のプロパティ名のマッピング方法について**
  
-         上記例では、アンダースコア区切りのカラム名とキャメルケース形式のプロパティ名の違いをAS句を使って吸収しているが、
+         上記例では、アンダースコア区切りのカラム名とキャメルケース形式のプロパティ名の違いについてAS句を使って吸収しているが、
          アンダースコア区切りのカラム名とキャメルケース形式のプロパティ名の違いを吸収するだけならば、
          MyBatis3の設定を変更する事で実現可能である。
 
@@ -1754,7 +1754,7 @@ Entityの検索処理
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Entityの検索処理の実装方法について、目的別に説明を行う。
 
-Entityの検索処理の実装方法の説明を読む前に、「:ref:`DataAccessMyBatis3HowToUseResultSetMapping`」を一読して頂きたい。
+Entityの検索処理の実装方法に対する説明を読む前に、「:ref:`DataAccessMyBatis3HowToUseResultSetMapping`」を一読して頂きたい。
 
 以降の説明では、アンダースコア区切りのカラム名をキャメルケース形式のプロパティ名に自動でマッピングする設定を有効にした場合の実装例となる。
 
@@ -2027,6 +2027,9 @@ PKが単一カラムで構成されるテーブルより、PKを指定してEnti
             history_id = #{param2}
 
         <!-- omitted -->
+
+    MyBatis 3.4.1以降では、JDK 8 から追加されたコンパイルオプション(\ ``-parameters``\)を使用することで、\ ``@Param``\アノテーションを省略する事ができる。
+
 
 |
 
@@ -2319,7 +2322,7 @@ Entityのページネーション検索(MyBatis3標準方式)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 MyBatis3の取得範囲指定機能を使用してEntityを検索する際の実装例を以下に示す。
 
-MyBatisでは取得範囲を指定するクラスとして\ ``org.apache.ibatis.session.RowBounds``\クラスを用意されており、
+MyBatisでは取得範囲を指定するクラスとして\ ``org.apache.ibatis.session.RowBounds``\クラスが用意されており、
 SQLに取得範囲の条件を記述する必要がない。
 
  .. warning:: **検索条件に一致するデータ件数が多くなる場合の注意点について**
@@ -2330,7 +2333,7 @@ SQLに取得範囲の条件を記述する必要がない。
     カーソルの移動処理は、JDBCの結果セット型に応じて以下の２種類がサポートされており、デフォルトの動作は、
     JDBCドライバのデフォルトの結果セット型に依存する。
 
-    * 結果セット型が\ ``FORWARD_ONLY``\の場合は、\ ``ResultSet#next()``\を繰返し呼び出して取得範囲外のデータをスキップする。
+    * 結果セット型が\ ``FORWARD_ONLY``\の場合は、\ ``ResultSet#next()``\を繰り返し呼び出して取得範囲外のデータをスキップする。
     * 結果セット型が\ ``SCROLL_SENSITIVE``\又は\ ``SCROLL_INSENSITIVE``\の場合は、\ ``ResultSet#absolute(int)``\を呼び出して取得範囲外のデータをスキップする。
 
     \ ``ResultSet#absolute(int)``\を使用することで、性能劣化を最小限に抑える事ができる可能性はあるが、
@@ -2375,7 +2378,7 @@ SQLに取得範囲の条件を記述する必要がない。
     * - (1)
       - 検索条件に一致するEntityの総件数を取得するメソッドを定義する。
     * - (2)
-      - 検索条件に一致するEntityの中から、取得範囲のEntityを抽出メソッドを定義する。
+      - 検索条件に一致するEntityの中から、取得範囲のEntityを抽出するメソッドを定義する。
       
         定義したメソッドの引数として、取得範囲の情報(offsetとlimit)を保持する\ ``RowBounds``\を指定する。
 
@@ -2606,7 +2609,7 @@ MyBatis3標準方式に比べて効率的に取得範囲のEntityを取得する
     * - (1)
       - 検索条件に一致するEntityの総件数を取得するメソッドを定義する。
     * - (2)
-      - 検索条件に一致するEntityの中から、取得範囲のEntityを抽出メソッドを定義する。
+      - 検索条件に一致するEntityの中から、取得範囲のEntityを抽出するメソッドを定義する。
 
         定義したメソッドの引数として、取得範囲の情報(offsetとlimit)を保持する\ ``org.springframework.data.domain.Pageable``\を指定する。
 
@@ -3072,7 +3075,7 @@ MyBatis3では、マッピングファイル内でキーを生成する仕組み
         「`MyBatis3 REFERENCE DOCUMENTATION (Mapper XML Files-insert, update and delete-) <http://mybatis.github.io/mybatis-3/sqlmap-xml.html#insert_update_and_delete>`_\」を参照されたい。
     * -
       - keyProperty
-      - データベース上で自動でインクリメントされたキー値を格納するEntityのプロパティ名を指定する。
+      - データベース上で自動的にインクリメントされたキー値を格納するEntityのプロパティ名を指定する。
 
         上記例では、INSERT文実行後に、Entityの\ ``logId``\プロパティに\ ``Statement#getGeneratedKeys()``\で取得したキー値が設定される。
 
@@ -3096,7 +3099,7 @@ Entityを一括で登録する場合は、
 
 JDBCのバッチ更新機能を使用する方法については、「:ref:`DataAccessMyBatis3HowToExtendExecutorTypeBatch`」を参照されたい。
 
-ここでは、複数のレコードを同時に登録するINSERT文を発行するする方法について説明する。
+ここでは、複数のレコードを同時に登録するINSERT文を発行する方法について説明する。
 下記例は、データベースとしてH2 Databaseを使用している。
 
 
@@ -3244,8 +3247,8 @@ JDBCのバッチ更新機能を使用する方法については、「:ref:`Data
     以下に主要なデータベースのリファレンスページへのリンクを記載しておく。
 
     * `Oracle 12c <http://docs.oracle.com/database/121/SQLRF/statements_9014.htm>`_
-    * `DB2 10.5 <http://www-01.ibm.com/support/knowledgecenter/SSEPGG_10.5.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
-    * `PostgreSQL 9.4 <http://www.postgresql.org/docs/9.4/static/sql-insert.html>`_
+    * `DB2 11.1 <https://www.ibm.com/support/knowledgecenter/SSEPGG_11.1.0/com.ibm.db2.luw.sql.ref.doc/doc/r0000970.html>`_
+    * `PostgreSQL 9.6 <http://www.postgresql.org/docs/9.6/static/sql-insert.html>`_
     * `MySQL 5.7 <http://dev.mysql.com/doc/refman/5.7/en/insert.html>`_
 
 |
@@ -4283,17 +4286,17 @@ foreach要素の実装例
       - 説明
     * - (1)
       - \-
-      - 繰返し処理を行う対象のコレクション又は配列に対して、\ ``null``\チェックを行う。
+      - 繰り返し処理を行う対象のコレクション又は配列に対して、\ ``null``\チェックを行う。
 
         \ ``null``\にならない事がない場合は、このチェックは実装しなくてもよい。
     * - (2)
       - \-
-      - \ ``foreach``\要素を使用して、コレクションや配列に対して繰返し処理を行い、動的SQLを組み立てる。
+      - \ ``foreach``\要素を使用して、コレクションや配列に対して繰り返し処理を行い、動的SQLを組み立てる。
 
         上記例では、レコードの作成日付が、指定された日付(日付リスト)の何れかと一致するレコードを検索するためのWHERE句を組み立てている。
     * -
       - collection
-      - \ ``collection``\属性に、繰返し処理を行うコレクションや配列を指定する。
+      - \ ``collection``\属性に、繰り返し処理を行うコレクションや配列を指定する。
 
         上記例では、Repositoryメソッドの引数に指定されたコレクションを指定している。
 
@@ -5082,8 +5085,7 @@ MyBatis3では、検索結果を1件単位で処理する仕組みを提供し�
 
     大量のデータを返すようなクエリを記述する場合には、\ ``fetchSize``\属性に適切な値を設定すること。
     \ ``fetchSize``\は、JDBCドライバとデータベース間の１回の通信で取得するデータの件数を設定するパラメータである。
-    なお、terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンでは、
-    MyBatis設定ファイルに「デフォルトの\ ``fetchSize``\ 」を指定することができる。
+    なお、MyBatis 3.3.0以降のバージョンでは、MyBatis設定ファイルに「デフォルトの\ ``fetchSize``\ 」を指定することができる。
     \ ``fetchSize``\ の詳細は「:ref:`DataAccessMyBatis3HowToUseSettingsDefaultFetchSize`」を参照されたい。
 
 
@@ -5166,7 +5168,7 @@ MyBatis3では、検索結果を1件単位で処理する仕組みを提供し�
 
  .. tip:: **ResultContextのメソッドについて**
 
-    \ ``ResultHandler#handleResult``\メソッドの引数である\ ``ResultContext``\には、以下のメソッドが用意がされている。
+    \ ``ResultHandler#handleResult``\メソッドの引数である\ ``ResultContext``\には、以下のメソッドが用意されている。
 
      .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.65\linewidth}|
      .. list-table::
@@ -5652,8 +5654,7 @@ RepositoryのBean定義を行えばよい。
 そのようなケースでは、Mapperインタフェースに「バッチ実行用にキューイングされているSQLを実行するためのメソッド」を用意すればよい。
 
 MyBatis 3.2系では、\ ``org.apache.ibatis.session.SqlSession``\インタフェースの\ ``flushStatements``\ メソッドを直接呼び出す必要があったが、
-terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンでは、
-Mapperインタフェースに\ ``@org.apache.ibatis.annotations.Flush``\ アノテーションを付与したメソッドを作成する方法がサポートされている。
+MyBatis 3.3.0以降のバージョンでは、Mapperインタフェースに\ ``@org.apache.ibatis.annotations.Flush``\ アノテーションを付与したメソッドを作成する方法がサポートされている。
 
  .. warning:: **バッチモード使用時のJDBCドライバが返却する更新結果について**
 
@@ -5827,7 +5828,7 @@ Repositoryのメソッドの呼び出し順番を間違えると、性能向上�
     * - 項番
       - 説明
     * - (1)
-      - 上記例のように実装した場合、繰返し処理の先頭にクエリを発行しているため、
+      - 上記例のように実装した場合、繰り返し処理の先頭にクエリを発行しているため、
         1件毎にSQLがバッチ実行される事になってしまう。
         これはほぼ、シンプルモード(\ ``SIMPLE``\)で実行しているのと同義である。
 
@@ -5885,7 +5886,7 @@ MyBatis3から呼び出す方法について説明を行う。
 
 以下で説明する実装例では、PostgreSQLに登録されているファンクションを呼び出している。
 
-* ストアードプロシージャ（ファンクション）を登録する。
+* ストアドプロシージャ（ファンクション）を登録する。
 
  .. code-block:: guess
 
@@ -5981,7 +5982,7 @@ MyBatis3から呼び出す方法について説明を行う。
     * - (4)
       - ストアドプロシージャを呼び出す。
 
-        ストアドプロシージャ（ファクション）を呼び出す場合は、
+        ストアドプロシージャ（ファンクション）を呼び出す場合は、
 
         * \ ``{call Procedure or Function名(INパラメータ...)}``\
 
@@ -6103,6 +6104,7 @@ Mapperインタフェースの仕組みについて
  .. list-table::
     :header-rows: 1
     :widths: 10 80
+    :class: longtable
 
 
     * - 項番
@@ -6132,6 +6134,9 @@ Mapperインタフェースの仕組みについて
 
         件数のカウントや、更新件数などを取得する場合は、プリミティブ型やプリミティブラッパ型などが返却値となるケースもある。
 
+ .. raw:: latex
+
+    \newpage
 
  .. tip:: **ステートメントIDとは**
 
@@ -6251,7 +6256,7 @@ TypeAliasを設定したいクラスに\ ``@org.apache.ibatis.type.Alias`` \ア�
 
 .. _DataAccessMyBatis3AppendixSwitchingSqlByDatabase:
 
-データベースによるSQL切替について
+データベースによるSQL切り替えについて
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 MyBatis3では、JDBCドライバから接続しているデータベースのベンダー情報を取得して、
@@ -6271,7 +6276,7 @@ MyBatis3では、JDBCドライバから接続しているデータベースの�
     * 各種試験環境
     * 商用環境
 
-    毎の差分を吸収するためのサブプロジェクトであり、
+    上記それぞれの差分を吸収するためのサブプロジェクトであり、
     複数のデータベースをサポートするアプリケーションの開発でも利用する事ができる。
 
     基本的には、環境依存するコンポーネントや設定ファイルは、
@@ -6341,21 +6346,21 @@ MyBatis3では、JDBCドライバから接続しているデータベースの�
     * - (2)
       - \ ``properties``\プロパティには、JDBCドライバから取得したデータベースのプロダクト名とデータベースIDのマッピングを指定する。
 
-        マッピング仕様ついては、「`MyBatis3 REFERENCE DOCUMENTATION(Configuration-databaseIdProvider-) <http://mybatis.github.io/mybatis-3/configuration.html#databaseIdProvider>`_\」を参照されたい。
+        マッピング仕様については、「`MyBatis3 REFERENCE DOCUMENTATION(Configuration-databaseIdProvider-) <http://mybatis.github.io/mybatis-3/configuration.html#databaseIdProvider>`_\」を参照されたい。
     * - (3)
       - データベースIDを使用する\ ``SqlSessionFactoryBean``\の\ ``databaseIdProvider``\プロパティ対して、
         (1)で定義した\ ``DatabaseIdProvider``\を指定する。
 
-        この指定を行うと、マッッピングファイルからデータベースIDを参照する事が可能となる。
+        この指定を行うと、マッピングファイルからデータベースIDを参照する事が可能となる。
 
  .. note::
 
     本ガイドラインでは、\ ``properties``\プロパティを指定して、
     データベースのプロダクト名とデータベースIDをマッピングする方式を推奨する。
 
-    理由は、JDBCドライバから取得したデータベースのプロダクト名は、
-    JDBCのバージョンによって変わる可能性があるためである。
-    \ ``properties``\プロパティを使用すると、使用するバージョン毎のプロダクト名の違いを、
+    理由は、JDBCドライバから取得できるデータベースのプロダクト名は、
+    JDBCドライバのバージョンによって変わる可能性があるためである。
+    \ ``properties``\プロパティを使用すると、使用するJDBCドライバのバージョンによるプロダクト名の違いを、
     一箇所で管理する事ができる。
 
 |
@@ -6739,6 +6744,7 @@ Entityのクラス図
  .. list-table::
     :header-rows: 1
     :widths: 10 15 65
+    :class: longtable
 
     * - 項番
       - クラス名
@@ -6849,6 +6855,9 @@ Entityのクラス図
                 // ...
             }
 
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -7791,8 +7800,7 @@ MyBatis3では、マッピング時に別のSQL(ネストしたSQL)を使用し�
 
 のいずれか一方のライブラリが必要となる。
 
-MyBatis 3.2系まではCGLIBがデフォルトで使用されるライブラリであったが、
-terasoluna-gfw-mybatis3 5.2.0.RELEASEでサポートしているMyBatis 3.3.0以降のバージョンではJAVASSISTがデフォルトで使用される。
+MyBatis 3.2系まではCGLIBがデフォルトで使用されるライブラリであったが、MyBatis 3.3.0以降のバージョンではJAVASSISTがデフォルトで使用される。
 さらに、MyBatis 3.3.0からJAVASSISTがMyBatis本体に内包されているため、ライブラリを追加しなくても"Lazy Load"を使用する事ができる。
 
  .. note::

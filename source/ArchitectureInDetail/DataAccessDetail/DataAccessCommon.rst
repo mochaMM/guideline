@@ -71,22 +71,29 @@ JDBC DataSourceについて
       - アプリケーションサーバ
       - 参照ページ
     * - 1.
-      - Apache Tomcat 8
-      - | \ `Apache Tomcat 8 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-8.0-doc/jdbc-pool.html>`_\ を参照されたい。
-        | \ `Apache Tomcat 8 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP 2)を参照されたい。
+      - Apache Tomcat 8.5
+      - | \ `Apache Tomcat 8.5 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-8.5-doc/jdbc-pool.html>`_\ を参照されたい。
+        | \ `Apache Tomcat 8.5 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-8.5-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP 2)を参照されたい。
     * - 2.
+      - Apache Tomcat 8.0
+      - | \ `Apache Tomcat 8.0 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-8.0-doc/jdbc-pool.html>`_\ を参照されたい。
+        | \ `Apache Tomcat 8.0 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP 2)を参照されたい。
+    * - 3.
       - Apache Tomcat 7
       - | \ `Apache Tomcat 7 User Guide(The Tomcat JDBC Connection Pool) <http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html>`_\ を参照されたい。
         | \ `Apache Tomcat 7 User Guide(JNDI Datasource HOW-TO) <http://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html>`_\ (Apache Commons DBCP)を参照されたい。
-    * - 3.
+    * - 4.
       - Oracle WebLogic Server 12c
       - \ `Oracle WebLogic Server Product Documentation <http://docs.oracle.com/middleware/1221/wls/INTRO/jdbc.htm>`_\ を参照されたい。
-    * - 4.
-      - IBM WebSphere Application Server Version 8.5
-      - \ `WebSphere Application Server Online information center <http://www-01.ibm.com/support/knowledgecenter/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html?lang=ja>`_\ を参照されたい。
     * - 5.
+      - IBM WebSphere Application Server Version 9.0
+      - \ `WebSphere Application Server Online information center <http://www.ibm.com/support/knowledgecenter/ja/SSEQTP_9.0.0/com.ibm.websphere.wlp.doc/ae/twlp_dep_configuring_ds.html>`_\ を参照されたい。
+    * - 6.
+      - JBoss Enterprise Application Platform 7.0
+      - \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-13-datasource-management>`_\ を参照されたい。
+    * - 7.
       - JBoss Enterprise Application Platform 6.4
-      - \ `JBoss Enterprise Application Platform Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\ を参照されたい。
+      - \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Datasource_Management.html>`_\ を参照されたい。
 
 
 .. _datasource_oss_thirdparty-label:
@@ -213,7 +220,7 @@ Spring Framework提供のJDBCデータソース
 | 以下に、複数のデータソースが必要になる代表的なケースを紹介する。
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|
- .. list-table:: **複数のデータソースが必要になるう代表的なケース**
+ .. list-table:: **複数のデータソースが必要になる代表的なケース**
     :header-rows: 1
     :widths: 10 30 30 30
 
@@ -244,7 +251,7 @@ Spring Framework提供のJDBCデータソース
 共通ライブラリから提供しているクラスについて
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | 共通ライブラリから、以下の処理を行うクラスを提供している。
-| 共通ライブラリの詳細はについては、以下を参照されたい。
+| 共通ライブラリの詳細については、以下を参照されたい。
 
 * :ref:`data-access-common_appendix_like_escape`
 * :ref:`data-access-common_appendix_sequencer`
@@ -326,7 +333,7 @@ How to use
       - データソースのJNDI名を指定する。Tomcatの場合は、データソース定義時のリソース名「(1)-name」に指定した値を指定する。
 
 
-Bean定義したDataSouceを使用する場合の設定
+Bean定義したDataSourceを使用する場合の設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | アプリケーションサーバから提供されているデータソースを使わずに、
 | OSS/Third-Partyライブラリから提供されているデータソースや、Spring Frameworkから提供されているJDBCデータソースを使用する場合は、Bean定義ファイルにDataSourceクラスのbean定義が必要となる。
@@ -370,7 +377,7 @@ Bean定義したDataSouceを使用する場合の設定
         | 設定項目の詳細については、\ `DBCP Configuration <http://commons.apache.org/proper/commons-dbcp/configuration.html>`_\ を参照されたい。
     * - | (8)
       - | 設定例では値を直接指定しているが、環境によって設定値がかわる項目については、Placeholder(${...})を使用して、実際の設定値はプロパティファイルに指定すること。
-        | Placeholderについては、\ `Spring Reference Document <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ の\  ``PropertyPlaceholderConfigurer``\ を参照されたい。
+        | Placeholderについては、\ `Spring Reference Document <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/beans.html#beans-factory-extension-factory-postprocessors>`_\ の\  ``PropertyPlaceholderConfigurer``\ を参照されたい。
 
 
 トランザクション管理を有効化するための設定
@@ -1008,6 +1015,7 @@ LIKE検索時のエスケープ処理の実装例については、使用するO
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - | 項番
           - | 説明
@@ -1056,7 +1064,7 @@ Sequencerについて
         | JdbcSequencer
       - | ``Sequencer`` インタフェースのJDBC用の実装クラス。
         | データベースにSQLを発行してシーケンス値を取得するためのクラスである。
-        | データベースのシーケンスオブジェクトから値を取得することを想定したクラスではあるが、データベースにストアードされているファンクションを呼び出すことで、シーケンスオブジェクト以外から値を取得することもできる。
+        | データベースのシーケンスオブジェクトから値を取得することを想定したクラスではあるが、データベースに登録されているファンクションを呼び出すことで、シーケンスオブジェクト以外から値を取得することもできる。
 
 .. _data-access-common_howtouse_sequencer:
 
@@ -1142,7 +1150,7 @@ bean定義したSequencerからシーケンス値を取得する。
       - 説明
     * - | (1)
       - | bean定義した\ ``Sequencer``\ オブジェクトをInjectする。
-        | 上記例では、シーケンス値は、フォーマットされた文字列として取得するため、\ ``Sequencer``\ のジェネリックス型には、\ ``java.lang.String``\ 型を指定している。
+        | 上記例では、シーケンス値は、フォーマットされた文字列として取得するため、\ ``Sequencer``\ のジェネリクス型には、\ ``java.lang.String``\ 型を指定している。
     * - | (2)
       - | Injectするbeanのbean名を\ ``@javax.inject.Named``\ アノテーションのvalue属性に指定する。
         | 上記例では、\ :file:`xxx-infra.xml`\ に定義したbean名(\ ``"articleIdSequencer"``\ )を指定している。

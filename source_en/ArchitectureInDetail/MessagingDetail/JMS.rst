@@ -555,6 +555,7 @@ Basic synchronous sending
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - Sr. No.
       - Configuration item
@@ -628,6 +629,9 @@ Basic synchronous sending
       - | Specify \ ``true``\  when \ ``deliveryMode``\ , \ ``priority``\  and \ ``timeToLive``\  are enabled.
       - \-
       - \ ``false``\
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 
@@ -736,7 +740,7 @@ Basic synchronous sending
           
  .. note:: **Exception handling of JMS in business logic**
     
-    As covered in \ `JMS (Java Message Service) introduction <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\, exceptions are converted to run-time exceptions in Spring Framework.
+    As covered in \ `JMS (Java Message Service) introduction <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\, exceptions are converted to run-time exceptions in Spring Framework.
     Hence, a run-time exception must be handled while handling JMS exception in business logic.
 
      .. tabularcolumns:: |p{0.20\linewidth}|p{0.60\linewidth}|p{0.20\linewidth}|
@@ -999,7 +1003,7 @@ In the application wherein DB transaction control is performed, a transaction co
 
   A method which uses global transaction by JTA exists for linking JMS and DB transactions, however "Best Effort 1 Phase Commit" is recommended since overheads are likely to occur for performance, among protocol characteristics. Refer below for details.
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
 
@@ -1155,10 +1159,11 @@ Basic asynchronous receiving
             cache="consumer"
             transaction-manager="jmsAsyncReceiveTransactionManager"/>
 
- .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.21\linewidth}|p{0.74\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
+    :class: longtable
 
     * - Sr. No.
       - Attribute name
@@ -1167,7 +1172,7 @@ Basic asynchronous receiving
       - xmlns:jms
       - | Define JMS Namespace.
         | Specify \ ``http://www.springframework.org/schema/jms``\  as a value.
-        | For details of JMS Namespace, refer \ `JMS Namespace Support <http://docs.spring.io/autorepo/docs/spring-framework/4.2.7.RELEASE/spring-framework-reference/html/jms.html#jms-namespace>`_\.
+        | For details of JMS Namespace, refer \ `JMS Namespace Support <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace>`_\.
     * - 
       - xsi:schemaLocation
       - | Specify URL of schema.
@@ -1181,12 +1186,12 @@ Basic asynchronous receiving
         | \ ``connection-factory``\  attribute which can specify a Bean of \ ``ConnectionFactory``\  to be used, exists in the \ ``<jms:listener-container/>``\ attribute. Default value of \ ``connection-factory``\  attribute is \ ``connectionFactory``\.
         | In this example, since Bean (Bean name is \ ``connectionFactory``\) of \ ``ConnectionFactory``\  shown in \ :ref:`JMSHowToUseConnectionFactory`\  is used, \ ``connection-factory``\  attribute is omitted.
         | \ ``<jms:listener-container/>``\  also consists of attributes other than introduced here.
-        | For details, refer \ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\.
+        | For details, refer \ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\.
 
         .. warning::
 
             Since \ ``DefaultMessageListenerContainer``\  is equipped with an independent cache function, \ ``CachingConnectionFactory``\  should not be used in case of asynchronous receiving.
-            For details, refer \ `Javadoc of DefaultMessageListenerContainer <http://docs.spring.io/autorepo/docs/spring-framework/4.2.7.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\.
+            For details, refer \ `Javadoc of DefaultMessageListenerContainer <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\.
             For above, \ ``ConnectionFactory``\  defined in  \ :ref:`JMSHowToUseConnectionFactory`\  should be specified in \ ``connection-factory``\  attribute of \ ``<jms:listener-container/>``\.
 
     * - 
@@ -1225,7 +1230,9 @@ Basic asynchronous receiving
       - \ ``transaction-manager``\
       - | Specify Bean name which performs transaction control at the time of asynchronous receiving. For details, refer \ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\.
 
+ .. raw:: latex
 
+    \newpage
 
 
 
@@ -1265,7 +1272,7 @@ Basic asynchronous receiving
 
 
  A list of main attributes of \ ``@JmsListener``\  annotation is shown below.
- For details and other attributes, refer \ `Javadoc of @JmsListener annotation <http://docs.spring.io/spring-framework/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\.
+ For details and other attributes, refer \ `Javadoc of @JmsListener annotation <http://docs.spring.io/spring-framework/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\.
 
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.70\linewidth}|
@@ -1326,7 +1333,7 @@ Fetching header information of messages
       - Description
     * - | (1)
       - | Specify \ ``@Header``\  annotation to fetch value of header attribute \ ``JMSReplyTo``\  of receiving message.
-        | For a key specified while fetching JMS standard header attribute, refer \ `JmsHeaders constants definition <https://static.javadoc.io/org.springframework/spring-jms/4.2.7.RELEASE/constant-values.html#org.springframework.jms.support.JmsHeaders.CORRELATION_ID>`_\.
+        | For a key specified while fetching JMS standard header attribute, refer \ `JmsHeaders constants definition <https://static.javadoc.io/org.springframework/spring-jms/4.3.5.RELEASE/constant-values.html#org.springframework.jms.support.JmsHeaders.CORRELATION_ID>`_\.
 
 
 .. _JMSHowToUseListenerContainerReSendMessage:
@@ -1433,7 +1440,7 @@ Respective descriptions are as below.
          - | Return objects which send a message.
 
    Header attribute \ ``JMSReplyTo``\  is given priority over the default Destination specified on the Consumer side.
-   For details, refer \ `Response management <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/htmlsingle/#jms-annotated-response>`_\ .
+   For details, refer \ `Response management <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/htmlsingle/#jms-annotated-response>`_\ .
 
 
 .. _JMSHowToUseMessageSelectorForAsyncReceive:
@@ -1649,7 +1656,7 @@ How to configure is shown below.
         cache="consumer"
         transaction-manager="jmsAsyncReceiveTransactionManager"/>
 
- .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.26\linewidth}|p{0.69\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
@@ -1764,7 +1771,7 @@ In the application wherein DB transaction control is required, a transaction con
 
   A method which uses global transaction by JTA exists for linking JMS and DB transactions, however "Best Effort 1 Phase Commit" is recommended since overheads are likely to occur for performance, among protocol characteristics. Refer below for details.
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
   .. warning:: **When transaction process results are not returned in JMS provider due to issues like loss of connection with JMS provider after receiving a message**
@@ -1818,7 +1825,7 @@ In the application wherein DB transaction control is required, a transaction con
           transaction-manager="chainedTransactionManager"
           acknowledge="transacted"/>
 
-   .. tabularcolumns:: |p{0.26\linewidth}|p{0.26\linewidth}|p{0.74\linewidth}|
+   .. tabularcolumns:: |p{0.05\linewidth}|p{0.26\linewidth}|p{0.69\linewidth}|
    .. list-table::
       :header-rows: 1
       :widths: 10 26 64
@@ -2181,6 +2188,7 @@ A method wherein the messages are synchronously received
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - Sr. No.
       - Configuration item
@@ -2207,7 +2215,7 @@ A method wherein the messages are synchronously received
     * - 4.
       - \ ``sessionAcknowledgeMode``\
       - | Set confirmation response mode of session for \ ``sessionAcknowledgeMode``\.
-        | For details, refer \ `JavaDoc of JMSTemplate <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ .
+        | For details, refer \ `JavaDoc of JMSTemplate <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ .
 
         .. todo::
 
@@ -2240,6 +2248,10 @@ A method wherein the messages are synchronously received
         | When the Destination is not specified explicitly, this Destination is used.
       - \-
       - null(no existing Destination)
+
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 

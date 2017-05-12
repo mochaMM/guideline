@@ -703,7 +703,7 @@ String check linked with Bean Validation
 
 .. code-block:: java
 
-    @ConsisOf(JIS_X_0208_Hiragana.class)    // (1)
+    @ConsistOf(JIS_X_0208_Hiragana.class)    // (1)
     private String firstName;
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -722,7 +722,7 @@ String check linked with Bean Validation
 
 .. code-block:: java
 
-    @ConsisOf({JIS_X_0208_Hiragana.class, JIS_X_0208_Katakana.class})    // (1)
+    @ConsistOf({JIS_X_0208_Hiragana.class, JIS_X_0208_Katakana.class})    // (1)
     private String firstName;
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -813,6 +813,7 @@ artifact information to be incorporated while using are given below.
 .. list-table::
    :header-rows: 1
    :widths: 10 20 30 40
+   :class: longtable
 
    * - Sr. No.
      - Class name
@@ -905,6 +906,10 @@ artifact information to be incorporated while using are given below.
                <groupId>org.terasoluna.gfw.codepoints</groupId>
                <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
            </dependency>
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 

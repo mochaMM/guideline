@@ -14,7 +14,7 @@ Overview
 
 認可処理は、アプリケーションの利用者がアクセスできるリソースを制御するための処理である。
 利用者がアクセスできるリソースを制御するためのもっとも標準的な方法は、
-リソース(又はリソースの集合)毎にアクセスポリシーを定義してき、利用者がリソースにアクセスしようとした時にアクセスポリシーを調べて制御する方法である。
+リソース(又はリソースの集合)毎にアクセスポリシーを定義しておき、利用者がリソースにアクセスしようとした時にアクセスポリシーを調べて制御する方法である。
 
 アクセスポリシーには、どのリソースにどのユーザーからのアクセスを許可するかを定義する。
 Spring Securityでは、以下の3つのリソースに対してアクセスポリシーを定義することができる。
@@ -26,7 +26,7 @@ Spring Securityでは、以下の3つのリソースに対してアクセスポ�
 
 本節では、「Webリソース」「Javaメソッド」「JSPの画面項目」のアクセスに対して認可処理を適用するための実装例(定義例)を紹介しながら、Spring Securityの認可機能について説明する。
 
-.. [#fSpringSecurityAuthorization1] ドメインオブジェクトのアクセスに対する認可処理については、 \ `Spring Security Reference -Domain Object Security (ACLs)- <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#domain-acls>`_\ を参照されたい。
+.. [#fSpringSecurityAuthorization1] ドメインオブジェクトのアクセスに対する認可処理については、 \ `Spring Security Reference -Domain Object Security (ACLs)- <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#domain-acls>`_\ を参照されたい。
 
 |
 
@@ -155,7 +155,7 @@ How to use
 
 Spring Securityは、アクセスポリシーを指定する記述方法としてSpring Expression Language(SpEL)をサポートしている。
 SpELを使わない方法もあるが、本ガイドラインではExpressionを使ってアクセスポリシーを指定する方法で説明を行う。
-SpELの使い方については本節でも紹介するが、より詳しい使い方を知りたい場合は \ `Spring Framework Reference Documentation -Spring Expression Language (SpEL)- <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/htmlsingle/#expressions>`_\ を参照されたい。
+SpELの使い方については本節でも紹介するが、より詳しい使い方を知りたい場合は \ `Spring Framework Reference Documentation -Spring Expression Language (SpEL)- <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/htmlsingle/#expressions>`_\ を参照されたい。
 
 |
 
@@ -168,6 +168,7 @@ Spring Securityが用意している共通的なExpressionは以下の通り。
 .. list-table:: **Spring Securityが提供している共通的なExpression**
     :header-rows: 1
     :widths: 30 70
+    :class: longtable
 
     * - Expression
       - 説明
@@ -192,6 +193,10 @@ Spring Securityが用意している共通的なExpressionは以下の通り。
     * - | \ ``authentication``\
       - | 認証されたユーザーの認証情報(\ ``Authentication``\ インタフェースを実装したクラスのオブジェクト)を返却する。
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **Expressionを使用した認証情報へのアクセス**
 
     Expressionとして\ ``principal``\ や\ ``authentication``\ を使用すると、ログインユーザーのユーザー情報や認証情報を参照することができるため、ロール以外の属性を使ってアクセスポリシーを設定することが可能になる。
@@ -206,6 +211,8 @@ Spring Securityが用意している共通的なExpressionは以下の通り。
     * Spring Security 4.0以降 : \ ``hasRole('USER')``\ 
 
 |
+
+.. _built-incommon-expressions:
 
 Built-InのWeb Expressions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -320,7 +327,7 @@ bean定義ファイルを使用して、Webリソースに対してアクセス�
       - | 「http」、もしくは「https」を指定する。指定したプロトコルでのアクセスを強制するための属性。
         | 指定しない場合、どちらでもアクセス可能である。
 
-上記以外の属性については、\ `<intercept-url> <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#nsa-intercept-url>`_\ を参照されたい。
+上記以外の属性については、\ `<intercept-url> <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#nsa-intercept-url>`_\ を参照されたい。
 
 * \ ``<sec:intercept-url>``\ タグ\ ``pattern``\ 属性の定義例（spring-security.xml）
 
@@ -354,8 +361,8 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring Security 4.1以降、Spring Securityがデフォルトで使用している\ `AntPathRequestMatcher` \のパスマッチングの仕様が大文字・小文字を区別する様になった。
 
     例えば以下に示すように、\ ``/Todo/List``\というパスが割り当てられたSpring MVCのエンドポイントに対してアクセスポリシーを定義する場合は、 
-    \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字を揃える必要がある。
-    誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字が揃っていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
+    \ ``<sec:intercept-url>``\ タグの \ ``pattern``\属性に指定する値は \ ``/Todo/List``\や \ ``/Todo/*``\など大文字・小文字をそろえる必要がある。
+    誤って\ ``/todo/list``\や\ ``/todo/**``\など大文字・小文字がそろっていない値を指定してしまうと、意図した認可制御が行われなくなるので注意されたい。
 
     * Spring MVCのエンドポイントの実装例
 
@@ -379,21 +386,22 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
     Spring MVCとSpring Securityでは、リクエストとのマッチングの仕組みが厳密には異なっており、この差異を利用してSpring Securityの認可機能を突破し、ハンドラメソッドにアクセスできる脆弱性が存在する。
     本事象の詳細は「\ `CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency <https://pivotal.io/security/cve-2016-5007>`_\」を参照されたい。
 
-    Spring Framework 4.3.1 以降、Spring Security 4.1.1 以降では \ `MvcRequestMatcher` \ を使用することで本事象は解消されるが、
-    TERASOLUNA Server Framework for Java (5.2.x)が使用しているSpring Framework 4.2.x では、Spring MVCで \ `trimTokens` \ プロパティに \ `false` \ を設定した \ `org.springframework.util.AntPathMatcher` \ を使用する必要がある。
+    \ `trimTokens` \ プロパティに \ `true` \ を設定した\ `org.springframework.util.AntPathMatcher` \ のBeanがSpring MVCに適用されている場合に、本事象が発生する。
+    Spring Framework 4.2以前は \ `trimTokens` \ プロパティのデフォルト値が\ `true`\ となっていたが、Spring Framework 4.3 からデフォルト値は \ `false` \ となったため、意図的に変更しない限り本事象は発生しない。
+
+    なお、下記の様にTERASOLUNA Server Framework for Java (5.3.x)のブランクプロジェクトでは、明示的に\ `trimTokens` \ プロパティに \ `false` \を指定しているが、
+    \ `true` \ に変更した場合は本事象が発生する条件を満たしてしまうため、変更しない様に注意されたい。
 
       .. code-block:: xml
 
           <mvc:annotation-driven>
+              <!-- ommited -->
               <mvc:path-matching path-matcher="pathMatcher" />
           </mvc:annotation-driven>
 
           <bean id="pathMatcher" class="org.springframework.util.AntPathMatcher">
               <property name="trimTokens" value="false" />
           </bean>
-
-    上記の対策をTERASOLUNA Server Framework for Javaで提供するブランクプロジェクトでは設定しているが、
-    設定を外すと脆弱性にさらされてしまうので注意する必要がある。
 
     また、特定のURLに対してアクセスポリシーを設ける(\ ``pattern``\属性に\ ``*``\や\ ``**``\などのワイルドカード指定を含めない)場合、
     拡張子を付けたパターンとリクエストパスの末尾に\ ``/``\を付けたパターンに対するアクセスポリシーの追加が必須である。
@@ -413,7 +421,8 @@ Spring Securityは定義した順番でリクエストとのマッチング処�
       .. list-table::
          :header-rows: 1
          :widths: 20 80
-  
+         :class: longtable
+
          * - 項番
            - 説明
          * - | (1)
@@ -556,7 +565,8 @@ Spring Security 4.1以降では、アクセスポリシーを適用するリソ�
     .. list-table::
         :header-rows: 1
         :widths: 10 90
-
+        :class: longtable
+    
         * - 項番
           - 説明
         * - | (1)
@@ -608,8 +618,8 @@ Spring Securityは、以下のアノテーションをサポートしている�
     * - | (1)
       - | \ ``<sec:global-method-security>``\ タグを付与すると、メソッド呼び出しに対する認可処理を行うAOPが有効になる。
     * - | (2)
-      - | \ ``pre-post-annotations``\ 属性に\ ``true``\ を指定する。
-        | \ ``pre-post-annotations``\ 属性に\ ``true``\ を指定すると、Expressionを指定してアクセスポリシーを定義できるアノテーションが有効になる。
+      - | \ ``pre-post-annotations``\ 属性に\ ``enabled``\ を指定する。
+        | \ ``pre-post-annotations``\ 属性に\ ``enabled``\ を指定すると、Expressionを指定してアクセスポリシーを定義できるアノテーションが有効になる。
 
 |
 
@@ -916,7 +926,7 @@ Spring Securityのデフォルトの設定では、認証方式に対応する\ 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Spring Securityのデフォルトの設定だと、認証済みのユーザーからのアクセスを拒否した際は、アプリケーションサーバのエラーページが表示される。
-アプリケーションサーバーのエラーページを表示してしまうと、システムのセキュリティを低下させる要因になるのため、適切なエラー画面を表示することを推奨する。
+アプリケーションサーバーのエラーページを表示してしまうと、システムのセキュリティを低下させる要因になるため、適切なエラー画面を表示することを推奨する。
 エラーページの指定は、以下のようなbean定義を行うことで可能である。
 
 * spring-security.xmlの定義例

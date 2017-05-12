@@ -24,10 +24,15 @@ This chapter explains Session Management in a Web application.
 
    **Picture - Establishment of logical session**
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -48,6 +53,10 @@ This chapter explains Session Management in a Web application.
         | **Same data can be accessed across requests.**
     * - | (7)
       - | Web application returns the response to Web browser.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **About the parameter name to link session ID**
  
@@ -71,6 +80,7 @@ When Web application is created by the method recommended in this guideline, ses
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -98,7 +108,11 @@ When Web application is created by the method recommended in this guideline, ses
       - | Process that uses session-scoped bean in Spring Framework.
         | When a session is already established, new session is not generated.
         | For details on how to use session-scoped bean, refer to \ :ref:`session-management_how_to_use_sessionscope`\ .
-        
+
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     In Sr. Nos. 4, 5, 6 mentioned above, whether the session is used or not is specified by Controller implementation whereas, session generation timing is controlled by the framework.
@@ -112,6 +126,7 @@ When Web application is created by the methods recommended in this guideline, at
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -139,6 +154,10 @@ When Web application is created by the methods recommended in this guideline, at
       - | Process that uses session-scoped bean in Spring Framework.
         | Session-scoped bean is stored in session.
         | For details on how to use session-scoped bean, refer to \ :ref:`session-management_how_to_use_sessionscope`\ .
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -609,7 +628,8 @@ Hence, there is no need to consider the session when implementation is carried o
      .. list-table::
         :widths: 10 90
         :header-rows: 1
-    
+        :class: longtable
+
         * - Sr. No.
           - Description
         * - | (1)
@@ -1125,7 +1145,7 @@ Using session-scoped bean
             <td>${f:h(item.itemCode)}</td>
             <td>${f:h(item.quantity)}</td>
         </tr>
-    </c:forEach>　　　　
+    </c:forEach>
     
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::

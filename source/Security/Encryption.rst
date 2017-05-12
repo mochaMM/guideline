@@ -26,7 +26,7 @@ Overview
 * JCA (Java Cryptography Architecture) を利用した公開鍵暗号化方式の暗号化と復号
 * JCAを利用したハイブリッド暗号化方式の暗号化と復号
 
-Spring Securityの暗号化機能の詳細については、\ `Spring Security Reference -Spring Security Crypto Module- <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#crypto>`_\ を参照されたい。
+Spring Securityの暗号化機能の詳細については、\ `Spring Security Reference -Spring Security Crypto Module- <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#crypto>`_\ を参照されたい。
 
 .. _EncryptionOverviewEncryptionScheme:
 
@@ -294,7 +294,7 @@ Oracleなど、一部のJava製品ではAESの鍵長256ビットを扱うため�
      * - | (2)
        - | 平文を\ ``encrypt``\ メソッドで暗号化する。
 
-  .. note:: **GCMを用いたAESへのJavaの対応状況**
+  .. note:: **GCMを用いたAESに対するJavaの対応状況**
 
     GCMを用いたAESはJava SE8以降で使用可能である。詳細については、\ `JDK 8セキュリティの拡張機能 <http://docs.oracle.com/javase/jp/8/docs/technotes/guides/security/enhancements-8.html>`_\を参照されたい。
 
@@ -470,7 +470,7 @@ Oracleなど、一部のJava製品ではAESの鍵長256ビットを扱うため�
 公開鍵暗号化方式
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| Spring Securityでは公開鍵暗号化方式に関する機能は提供されていないため、JCAおよびOpenSSLを利用した方法をサンプルコードを用いて説明する。
+| Spring Securityでは公開鍵暗号化方式に関する機能は提供されていないため、JCAおよびOpenSSLを利用した方法についてサンプルコードを用いて説明する。
 
 事前準備（JCAによるキーペアの生成）
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

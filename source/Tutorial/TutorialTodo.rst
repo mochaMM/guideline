@@ -266,7 +266,7 @@ MyBatis3を使用してデータベースにアクセスするRepositoryImpl用�
 JPA用のブランクプロジェクトの作成
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Spring Data JPAの使用してデータベースにアクセスするRepositoryImpl用のプロジェクトを作成する場合は、
+Spring Data JPAを使用してデータベースへアクセスするRepositoryImpl用のプロジェクトを作成する場合は、
 以下のコマンドを実行してJPA用のブランクプロジェクトを作成する。このプロジェクト作成方法は\ :ref:`using_SpringDataJPA`\ で使用する。
 
 .. code-block:: console
@@ -1183,6 +1183,7 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - 項番
@@ -1217,6 +1218,10 @@ Package Explorer上で右クリック -> New -> Class を選択し、「New Java
      - | Spring Data JPAを使用してデータベースにアクセスする場合は、\ ``create``\ メソッドではなく、\ ``save``\ メソッドを呼び出す。
    * - | (11)
      - | Spring Data JPAを使用してデータベースにアクセスする場合は、\ ``update``\ メソッドではなく、\ ``save``\ メソッドを呼び出す。
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
 
@@ -1642,6 +1647,7 @@ Controllerの修正
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -1668,6 +1674,9 @@ Controllerの修正
        | リダイレクトすることにより、ブラウザを再読み込みして、再び新規登録処理が\ ``POST``\ されることがなくなる。（詳しくは、「:ref:`DoubleSubmitProtectionAboutPRG`」を参照されたい）
        | なお、今回は成功メッセージであるため、\ ``ResultMessages.success()``\ を使用している。
 
+.. raw:: latex
+
+   \newpage
 
 Formの修正
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1877,7 +1886,7 @@ Formの修正
 完了処理用のFormについても、\ ``TodoForm``\ を使用する。
 
 \ ``TodoForm``\ に\ ``todoId``\ プロパティを追加する必要があるが、単純に追加してしまうと、新規作成処理でも\ ``todoId``\プロパティのチェックが実行されてしまう。
-一つのFormクラスを使用して複数のformから送信されるリクエストパラメータをバインドする場合は、\ ``groups``\ 属性を使用して、入力チェッックルールをグループ化する。
+一つのFormクラスを使用して複数のformから送信されるリクエストパラメータをバインドする場合は、\ ``groups``\ 属性を使用して、入力チェックルールをグループ化する。
 
 Formクラスに以下のプロパティを追加する。
 
@@ -1941,7 +1950,7 @@ Formクラスに以下のプロパティを追加する。
      - 説明
    * - | (1)
      - | 入力チェックルールをグループ化するためのインタフェースを作成する。
-       | 入力チェックルールのグループ化ついては、\ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\ を参照されたい。
+       | 入力チェックルールのグループ化については、\ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\ を参照されたい。
        |
        | ここでは、新規作成処理用のインタフェースとして\ ``TodoCreate``\を、完了処理用のインタフェースとして\ ``TodoFinish``\ を作成している。
    * - | (2)
@@ -2934,7 +2943,7 @@ Package Explorer上で右クリック -> New -> File を選択し、「New File�
        | \ ``<update>``\ 要素の\ ``parameterType``\ 属性に、パラメータのクラス名(FQCN又はエイリアス名)を指定する。
    * - | (7)
      - | 引数に指定されたTodoオブジェクトを削除するSQLを実装する。
-       | \ ``<delete>``\ 要素の\ ``parameterType``\ 属性に、パラメータのクラス名(FQCN又はエイリアス名)を指定する。
+       | \ ``<delete>``\ 要素の\ ``parameterType``\ 属性に、パラメータのクラス名(FQCN又はエイリアス名)を指定する。
    * - | (8)
      - | 引数に指定された\ ``finished``\ に一致するTodoの件数を取得するSQLを実装する。
 
@@ -3359,6 +3368,7 @@ web.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -3416,6 +3426,10 @@ web.xml
        * セッションタイムアウトとして、30分
 
        が定義済みである。
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -3879,7 +3893,7 @@ JPA用のブランクプロジェクトを作成した場合、以下のよう�
 todo-infra.properties
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-\ :file:`todo-infra.properties`\ には、Todoアプリのインフラストラクチャ層の環境依存値の設定を行う。
+\ :file:`todo-infra.properties`\ には、Todoアプリのインフラストラクチャ層における環境依存値の設定を行う。
 
 O/R Mapperに依存しないブランクプロジェクトを作成した際は、\ :file:`todo-infra.properties`\ は作成されない。
 
@@ -3934,7 +3948,7 @@ todo-env.xml
 なお、データベースにアクセスしないブランクプロジェクトを作成した際は、\ :file:`todo-env.xml`\ は作成されない。
 
 .. code-block:: xml
-    :emphasize-lines: 12, 27, 44
+    :emphasize-lines: 12, 27, 32, 35, 46
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -3967,8 +3981,10 @@ todo-env.xml
             <constructor-arg index="0" ref="realDataSource" />
         </bean>
 
+        <!-- (3) -->
         <jdbc:initialize-database data-source="dataSource"
             ignore-failures="ALL">
+            <!-- (4) -->
             <jdbc:script location="classpath:/database/${database}-schema.sql" encoding="UTF-8" />
             <jdbc:script location="classpath:/database/${database}-dataload.sql" encoding="UTF-8" />
         </jdbc:initialize-database>
@@ -3979,7 +3995,7 @@ todo-env.xml
             <property name="entityManagerFactory" ref="entityManagerFactory" />
         </bean>
               REMOVE THIS LINE IF YOU USE JPA  -->
-        <!-- (3) -->
+        <!-- (5) -->
         <bean id="transactionManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <property name="dataSource" ref="dataSource" />
@@ -4002,6 +4018,16 @@ todo-env.xml
        | JDBC関連のログを出力する機能をもったデータソースを指定している。
        | \ ``net.sf.log4jdbc.Log4jdbcProxyDataSource``\ を使用すると、SQLなどのJDBC関連のログを出力できるため、デバッグに役立つ情報を出力することができる。
    * - | (3)
+     - | データベース初期化の設定。
+       | データベースを初期化するSQLファイルを実行するための設定を行っている。
+       |
+       | この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``todo-env.xml`` \に定義されている。
+   * - | (4)
+     - | データベースを初期化するSQLファイルの設定。
+       | データベースを初期化するための、DDL文が記載されているSQLファイルとDML文が記載されているSQLファイルを指定している。
+       |
+       | ブランクプロジェクトの設定では\ ``todo-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-schema.sql`` \及び\ ``H2-dataload.sql`` \が実行される。
+   * - | (5)
      - | トランザクションマネージャの設定。
        | id属性には、\ ``transactionManager``\ を指定する。
        | 別の名前を指定する場合は、\ ``<tx:annotation-driven>``\ タグにもトランザクションマネージャ名を指定する必要がある。
@@ -4174,6 +4200,7 @@ spring-mvc.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -4194,7 +4221,7 @@ spring-mvc.xml
        | どこにも\ ``styles.css``\ が格納されていない場合は、404エラーを返す。
 
        | ここでは\ ``cache-period``\ 属性で静的リソースのキャッシュ時間(3600秒=60分)も設定している。
-       | \ ``cache-period="3600"``\ と設定しても良いが、60分であることを明示するために `SpEL <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/expressions.html#expressions-beandef-xml-based>`_ を使用して \ ``cache-period="#{60 * 60}"``\  と書く方が分かりやすい。
+       | \ ``cache-period="3600"``\ と設定しても良いが、60分であることを明示するために `SpEL <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/expressions.html#expressions-beandef-xml-based>`_ を使用して \ ``cache-period="#{60 * 60}"``\  と書く方が分かりやすい。
    * - | (5)
      - | コントローラ処理のTraceログを出力するインターセプタを設定する。
        | \ ``/resources``\ 配下を除く任意のパスに適用されるように設定する。
@@ -4217,6 +4244,10 @@ spring-mvc.xml
                    <property name="suffix" value=".jsp" />
                </bean>
 
+.. raw:: latex
+
+   \newpage
+   
 .. note::
 
     JPA用のブランクプロジェクトを作成した場合は、\ ``<mvc:interceptors>``\ の定義として、

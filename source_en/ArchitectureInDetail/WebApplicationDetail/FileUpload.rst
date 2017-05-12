@@ -55,6 +55,7 @@ Basic flow of uploading files using File Upload functionality supported by Servl
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -83,6 +84,10 @@ Basic flow of uploading files using File Upload functionality supported by Servl
      - | \ ``MultipartFilter``\  calls \ ``StandardServletMultipartResolver``\  and deletes temporary file used by file upload function of Servlet 3.0.
    * - | (11)
      - | \ ``StandardServletMultipartResolver``\  calls a method of \ ``Part``\  object introducted from Servlet 3.0 and deletes the temporary file stored in the disc.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -130,7 +135,7 @@ Classes provided by Spring Web for uploading a file are as follows:
 
  .. tip::
 
-    In this guideline, it is a prerequisite to use File Upload functionality implemented from Servlet 3.0. However, Spring Web also provides an \ `implementation class for "Apache Commons FileUpload" <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-multipart-resolver-commons>`_\ .
+    In this guideline, it is a prerequisite to use File Upload functionality implemented from Servlet 3.0. However, Spring Web also provides an \ `implementation class for "Apache Commons FileUpload" <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-multipart-resolver-commons>`_\ .
     The difference in implementation of upload processes is absorbed by \ ``MultipartResolver``\  and \ ``MultipartFile``\  objects; hence it does not affect Controller implementation.
 
 |
@@ -177,6 +182,7 @@ Perform the following settings to enable upload functionality of Servlet 3.0.
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -206,6 +212,10 @@ Perform the following settings to enable upload functionality of Servlet 3.0.
    * - | (6)
      - | Specify the threshold value (number of bytes for 1 file) if the contents of uploaded file are to be saved as a temporary file.
        | If this parameter is not specified explicitly, there are application servers wherein values specified for elements ``<max-file-size>`` and ``<max-request-size>`` are considered invalid; hence default value (0) is being specified explicitly.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
 
@@ -328,7 +338,7 @@ The operation when the maximum size allowed in file upload exceeds the limit at 
     Further, when request parameters are accessed by a project-specific Servlet Filter, MultipartFilter should be defined before that Servlet Filter.
 
     However, when defined before \ ``springSecurityFilterChain``\ , unauthenticated or unauthorized users may be allowed to upload the file (create temporary file).
-    Although a method to avoid this operation has been given in \ `Spring Security Reference -Cross Site Request Forgery (CSRF)- <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#csrf-include-csrf-token-in-action>`_\ , it is not recommended to be applied in this guideline since it poses a security risk. 
+    Although a method to avoid this operation has been given in \ `Spring Security Reference -Cross Site Request Forgery (CSRF)- <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#csrf-include-csrf-token-in-action>`_\ , it is not recommended to be applied in this guideline since it poses a security risk. 
 
  .. warning:: **Precautions when maximum size limit for file upload is exceeded**
 
@@ -660,6 +670,7 @@ Implementing Controller
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -690,6 +701,10 @@ Implementing Controller
    * - | (9)
      - | Once upload is complete, redirect to upload completion screen.
 
+ .. raw:: latex
+
+    \newpage
+
  .. note:: **Preventing duplicate upload**
 
     When uploading files, it is recommended to perform transaction token check and screen transition based on PRG pattern.
@@ -700,7 +715,7 @@ Implementing Controller
  .. note:: **About MultipartFile**
 
     Methods to operate the uploaded file are provided in MultipartFile.
-    For details on using each method, refer to \ `JavaDoc of MultipartFile class <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/multipart/MultipartFile.html>`_\ .
+    For details on using each method, refer to \ `JavaDoc of MultipartFile class <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/multipart/MultipartFile.html>`_\ .
 
 .. _fileupload_validator:
 
@@ -1336,10 +1351,15 @@ Temporary upload is required when a file is to be uploaded midway through screen
    :alt: Processing flow of temporary upload.
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1357,6 +1377,10 @@ Temporary upload is required when a file is to be uploaded midway through screen
      - | Service moves the temporary file saved in temporary directory to this directory or database.
    * - | (7)
      - | Controller returns the View name which is required to display Complete Screen and then displays the Complete Screen.
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -1481,7 +1505,7 @@ Housekeeping of unnecessary files at the time of temporary upload
     A mechanism should be provided to delete unnecessary files as the disk may run out of space if such files are left to pile up.
 
 This guideline explains about deleting unnecessary files using the "Task Scheduler" functionality provided by Spring Framework.
-For details on "Task Scheduler", refer to the \ `official website "Task Execution and Scheduling" <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/scheduling.html>`_\ .
+For details on "Task Scheduler", refer to the \ `official website "Task Execution and Scheduling" <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/scheduling.html>`_\ .
 
  .. note::
 
@@ -1631,7 +1655,7 @@ Carry out bean registration and task schedule settings for the POJO class that d
      * ``0 0 * * * *`` : Executed in 0 minute every hour.
      * ``0 0 9-17 * * MON-FRI`` : Executed in 0 minute every hour from 9:00~17:00 on weekdays.
 
-    For details on specified value of cron, refer to \ `CronSequenceGenerator - JavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html>`_\ .
+    For details on specified value of cron, refer to \ `CronSequenceGenerator - JavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html>`_\ .
 
     Execution time should be fetched from external properties as it may differ depending on the environment in which the application is to be deployed.
     For details on external properties, refer to \ :doc:`../GeneralFuncDetail/PropertyManagement`\ .
@@ -1759,7 +1783,7 @@ Perform the following settings when using Commons FileUpload.
 
     When using Apache Commons FileUpload, version 1.3.2 or above should be used.
 
-    Note that, if a version managed by Spring IO Platform 2.0.6.RELEASE which is in conformance with TERASOLUNA Server Framework for Java version 5.2.0.RELEASE is used, vulnerabilities reported in CVE-2014-0050 and CVE-2016-3092 do not occur.
+    Note that, if a version managed by Spring IO Platform Athens-SR2.RELEASE which is in conformance with TERASOLUNA Server Framework for Java version 5.3.0.RELEASE is used, vulnerabilities reported in CVE-2014-0050 and CVE-2016-3092 do not occur.
     When Apache Commons FileUpload version is to be changed intentionally, a version wherein corresponding vulnerability has been addressed must be specified.
 
 |
@@ -1789,7 +1813,7 @@ Perform the following settings when using Commons FileUpload.
    * - | (2)
      - | Set maximum size allowed in file upload.
        | In case of Commons FileUpload, it should be noted that the maximum value is the entire size of request including header.
-       | Moreover, **as the default value is -1 (unlimited), make sure to set a value.** For other properties, refer to \ `JavaDoc <http://docs.spring.io/spring-framework/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/multipart/commons/CommonsMultipartResolver.html>`_\ .
+       | Moreover, **as the default value is -1 (unlimited), make sure to set a value.** For other properties, refer to \ `JavaDoc <http://docs.spring.io/spring-framework/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/multipart/commons/CommonsMultipartResolver.html>`_\ .
 
 .. warning::
 

@@ -73,6 +73,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 5 15 20 10 50
+   :class: longtable
 
    * - 記号
      - パターン
@@ -136,6 +137,10 @@ Overview
      - * XXXシステム閉塞中のため、しばらく経ってから再度実行して下さい
        * タイムアウトが発生しました。
        * システムエラーが発生しました。
+
+.. raw:: latex
+
+   \newpage
 
 メッセージID体系
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -812,7 +817,7 @@ Controllerで\ ``ResultMessages``\ を生成して画面に渡し、JSPで\ ``<t
 
  .. note::
 
-    \ ``ResourceBundleMessageSource``\ はメッセージを生成する際に\ ``java.text.MessageFormat``\ が使用するため、\ ``1024``\ は
+    \ ``ResourceBundleMessageSource``\ はメッセージを生成する際に\ ``java.text.MessageFormat``\ を使用するため、\ ``1024``\ は
     カンマ区切りで\ ``1,024``\ と表示される。カンマが不要な場合は、プロパティファイルには以下のように設定する。
 
         .. code-block:: properties

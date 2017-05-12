@@ -64,10 +64,15 @@ The method by which the component offered by Spring Framework for email transmis
     :alt: Constitution of Spring Mail
     :width: 100%
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.60\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 20 60
+    :class: longtable
 
     * - Sr. No.
       - Component
@@ -94,6 +99,10 @@ The method by which the component offered by Spring Framework for email transmis
     * - | (5)
       - | JavaMail
       - | Send a message to the email server.
+
+.. raw:: latex
+
+   \newpage
 
 \
 
@@ -769,18 +778,18 @@ The exception class that inherits \ ``MailException``\  and occurrence condition
       - Exception class
       - Occurrence conditions
     * - 1.
-      - `MailAuthenticationException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailAuthenticationException.html>`_
+      - `MailAuthenticationException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailAuthenticationException.html>`_
       - | Occurs during authentication failure.
     * - 2.
-      - `MailParseException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailParseException.html>`_
+      - `MailParseException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailParseException.html>`_
       - | Occurs when an invalid value is set in the properties of email message.
     * - 3.
-      - `MailPreparationException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailPreparationException.html>`_
+      - `MailPreparationException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailPreparationException.html>`_
       - | Occurs if an unexpected error occurs while creating an email message.
           Unexpected errors, for example, are the errors that occur in the template library.
         | Exceptions occurring in \ ``MimeMessagePreparator``\  are wrapped in \ ``MailPreparationException``\  and thrown.
     * - 4.
-      - `MailSendException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailSendException.html>`_
+      - `MailSendException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailSendException.html>`_
       - | Occurs when an error occurs while sending an email.
 
 .. note::
@@ -871,7 +880,7 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
 
     .. note::
 
-       Refer to \ `JavaDoc of FreeMarkerConfigurationFactoryBean <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/ui/freemarker/FreeMarkerConfigurationFactoryBean.html>`_\  for the setup other than mentioned above.
+       Refer to \ `JavaDoc of FreeMarkerConfigurationFactoryBean <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/ui/freemarker/FreeMarkerConfigurationFactoryBean.html>`_\  for the setup other than mentioned above.
        Also, refer \ `FreeMarker Manual (Programmer's Guide / The Configuration) <http://freemarker.org/docs/pgui_config.html>`_\  for setup of FreeMarker itself.
 
 * Create a template file for email text.
@@ -911,18 +920,18 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
 * Generate an email text using a template and send email.
 
     **Implementation example of Java class**
-    
+
     .. code-block:: java
-    
+
         @Inject
         JavaMailSender mailSender;
-    
-    	@Inject
-    	Configuration freemarkerConfiguration; // (1)
-    	
+
+        @Inject
+        Configuration freemarkerConfiguration; // (1)
+
         public void register(User user) {
             // omitted
-            
+
             mailSender.send(new MimeMessagePreparator() {
 
                 @Override
@@ -939,7 +948,7 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
                     helper.setText(text, true);
                 }
             });
-            
+
             // omitted
         }
 
@@ -947,7 +956,7 @@ In this guideline, a method that uses \ `FreeMarker <http://freemarker.org/>`_\ 
     .. list-table::
        :header-rows: 1
        :widths: 10 90
-    
+
        * - Sr. No.
          - Description
        * - | (1)
@@ -976,7 +985,7 @@ This is because the legacy email client does not support UTF-8.
 When encoding based on character set of JIS X 0208 including ISO-2022-JP is set for the string entered by MS932,
 garbling occurs for seven characters described in the table below.
 
-.. tabularcolumns:: |p{0.20\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+.. tabularcolumns:: |p{0.20\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
 .. list-table::
    :header-rows: 2
    :widths: 20 15 15 15 15 20
@@ -1103,7 +1112,7 @@ Implementation example of conversion process is shown below.
    Header and body text which may contain strings with Japanese text are used for conversion.
    From, To, Cc, Bcc, Reply-To, Subject etc are examples of the header that may contain Japanese text and are frequently used in general.
 
-Also, when ISO-2-22-JP is set as encoding, extended characters which are not in scope are garbled.
+Also, when ISO-2022-JP is set as encoding, extended characters which are not in scope are garbled.
 
 .. figure:: ./images_Email/EmailOutofEscapeCharacter.png
     :alt: Out of EscapeCharacter

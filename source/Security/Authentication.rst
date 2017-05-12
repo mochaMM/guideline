@@ -157,7 +157,7 @@ Spring Securityは、以下のような流れでフォーム認証を行う。
       - | \ ``UsernamePasswordAuthenticationFilter``\ クラスは、リクエストパラメータから資格情報を取得して、\ ``AuthenticationManager``\ の認証処理を呼び出す。
     * - | (3)
       - | \ ``UsernamePasswordAuthenticationFilter``\ クラスは、\ ``AuthenticationManager``\ から返却された認証結果をハンドリングする。
-        | 認証処理が成功した場合は \ ``AuthenticationSuccessHandler``\ のメソッドを、認証処理が失敗した場合は\ ``AuthenticationFailureHandler``\ のメソッドを呼び出し画面遷移を行う。
+        | 認証処理が成功した場合は \ ``AuthenticationSuccessHandler``\ のメソッドを呼び出し、認証処理が失敗した場合は\ ``AuthenticationFailureHandler``\ のメソッドを呼び出し、画面遷移を行う。
 
 |
 
@@ -205,7 +205,7 @@ Spring Securityは、以下のような流れでフォーム認証を行う。
            - | フォーム認証処理を行うSecurity Filter(\ ``UsernamePasswordAuthenticationFilter``\ )が適用される。
          * - | \ ``<http-basic>``\
            - | RFC1945に準拠したBasic認証を行うSecurity Filter(\ ``BasicAuthenticationFilter``\ )が適用される。
-             | 詳細な利用方法は、\ `BasicAuthenticationFilterのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/apidocs/org/springframework/security/web/authentication/www/BasicAuthenticationFilter.html>`_\ を参照されたい。
+             | 詳細な利用方法は、\ `BasicAuthenticationFilterのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/web/authentication/www/BasicAuthenticationFilter.html>`_\ を参照されたい。
          * - | \ ``<logout>``\
            - | ログアウト処理を行うSecurity Filter(\ ``LogoutFilter``\ )が適用される。
              | ログアウト処理の詳細については、「\ :ref:`SpringSecurityAuthenticationLogout`\ 」を参照されたい。
@@ -366,7 +366,7 @@ Spring Securityのデフォルトの動作では、認証前にアクセスを�
 認証したユーザーにリダイレクト先へのアクセス権があればページが表示され、アクセス権がなければ認可エラーとなる。
 この動作を実現するために使用されるのが、\ ``SavedRequestAwareAuthenticationSuccessHandler``\ クラスである。
 
-ログインフォームを明示的に表示してから認証処理を行った後の遷移先はSpring Securityのデフォルトの設定では、
+ログインフォームを明示的に表示してから認証処理を行った後の遷移先は、Spring Securityのデフォルトの設定では
 Webアプリケーションのルートパス(\ ``"/"``\ )となっているため、認証成功時はWebアプリケーションのルートパスにリダイレクトされる。
 
 |
@@ -419,6 +419,7 @@ Spring Securityは、以下のような流れでDB認証を行う。
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -433,6 +434,9 @@ Spring Securityは、以下のような流れでDB認証を行う。
     * - | (5)
       - | \ ``DaoAuthenticationProvider``\ は、\ ``UserDetailsService``\ から返却された\ ``UserDetails``\ とクライアントが指定した認証情報との照合を行い、クライアントが指定したユーザーの正当性をチェックする。
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **Spring Securityが提供するDB認証**
 
@@ -470,6 +474,7 @@ UserDetailsの作成
 .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - メソッド名
@@ -502,6 +507,10 @@ UserDetailsの作成
       - | ユーザーに与えられている権限リストを返却する。
         | このメソッドは認可処理で使用される。
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **認証例外による遷移先の切り替え**
 
     \ ``DaoAuthenticationProvider``\ が発生させる例外毎に画面遷移を切り替えたい場合は、
@@ -514,7 +523,7 @@ UserDetailsの作成
 
 .. note:: **Spring Securityが提供する資格情報**
 
-    Spring Securityは、資格情報(ユーザー名とパスワード)とユーザーの状態を保持するための実装クラス(\ ``org.springframework.security.core.userdetails.User``\ )を提供してるが、
+    Spring Securityは、資格情報(ユーザー名とパスワード)とユーザーの状態を保持するための実装クラス(\ ``org.springframework.security.core.userdetails.User``\ )を提供しているが、
     このクラスは認証処理に必要な情報しか保持することができない。
     一般的なアプリケーションでは、認証処理で使用しないユーザーの情報（ユーザーの氏名など）も必要になるケースが多いため、\ ``User``\ クラスをそのまま利用できるケースは少ない。
 
@@ -863,13 +872,13 @@ Spring Securityは、\ ``PasswordEncoder``\ インタフェースの実装クラ
     * - | \ ``BCryptPasswordEncoder``\
       - | BCryptアルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。
         | **パスワードのハッシュ化要件に制約がない場合は、このクラスを使用することを推奨する。**
-        | 詳細は、\ `BCryptPasswordEncoderのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/apidocs/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html>`_\ を参照されたい。
+        | 詳細は、\ `BCryptPasswordEncoderのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html>`_\ を参照されたい。
     * - | \ ``StandardPasswordEncoder``\
       - | SHA-256アルゴリズムを使用してパスワードのハッシュ化及び照合を行う実装クラス。
-        | 詳細は、\ `StandardPasswordEncoderのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/apidocs/org/springframework/security/crypto/password/StandardPasswordEncoder.html>`_\ を参照されたい。
+        | 詳細は、\ `StandardPasswordEncoderのJavaDoc <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/crypto/password/StandardPasswordEncoder.html>`_\ を参照されたい。
     * - | \ ``NoOpPasswordEncoder``\
       - | ハッシュ化しない実装クラス。
-        | テスト用のクラスなであり、実際のアプリケーションで使用することはない。
+        | テスト用のクラスであり、実際のアプリケーションで使用することはない。
 
 本節では、Spring Securityが利用を推奨している\ ``BCryptPasswordEncoder``\ の使い方について説明する。
 
@@ -958,7 +967,7 @@ BCryptPasswordEncoder
       - | \ ``PasswordEncoder``\ をインジェクションする。
     * - | (2)
       - | インジェクションした\ ``PasswordEncoder``\ のメソッドを呼び出す。
-        | ここでは、データストアに保存するパスワードをハッシュ化していいる。
+        | ここでは、データストアに保存するパスワードをハッシュ化している。
 
 .. _SpringSecurityAuthenticationPasswordHashSalt:
 
@@ -1026,7 +1035,7 @@ Spring Securityは、Spring Frameworkが提供しているイベント通知の�
 
     Spring 4.1までは\ ``ApplicationListener``\ インタフェースの実装クラスを作成してイベントを受け取る必要があったが、
     Spring 4.2からはPOJOに\ ``@EventListener``\ を付与したメソッドを実装するだけでイベントを受け取ることが可能である。
-    なお、Spring 4.2以降でも、従来通り\ ``ApplicationListener``\ インタフェースの実装クラスを作成してイベントを受け取ることもで可能である。
+    なお、Spring 4.2以降でも、従来通り\ ``ApplicationListener``\ インタフェースの実装クラスを作成してイベントを受け取ることも可能である。
 
 Spring Security使用しているイベントは、認証が成功したことを通知するイベントと認証が失敗したことを通知するイベントの2種類に分類される。
 以下にSpring Securityが用意しているイベントクラスを説明する。
@@ -1052,7 +1061,7 @@ Spring Security使用しているイベントは、認証が成功したこと�
         なお、このイベントをハンドリングした後の後続処理でエラーが発生する可能性がある点に注意されたい。
     * - \ ``SessionFixationProtectionEvent``\
       - セッション固定攻撃対策の処理(セッションIDの変更処理)が成功したことを通知するためのイベントクラス。
-        このイベントをハンドリングすると、変更後のセッションIDを検知することがで可能になる。
+        このイベントをハンドリングすると、変更後のセッションIDを検知することが可能になる。
     * - \ ``InteractiveAuthenticationSuccessEvent``\
       - 認証処理がすべて成功したことを通知するためのイベントクラス。
         このイベントをハンドリングすると、画面遷移を除くすべての認証処理が成功したことを検知することが可能になる。
@@ -1132,7 +1141,7 @@ Spring Security使用しているイベントは、認証が成功したこと�
 ログアウト
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Spring Securityは、以下のような流れでログアウト処理を行いう。
+Spring Securityは、以下のような流れでログアウト処理を行う。
 
 .. figure:: ./images_Authentication/AuthenticationLogout.png
     :width: 100%
@@ -1257,7 +1266,7 @@ Spring Securityのデフォルトの動作では、\ ``"/logout"``\ というパ
 
 .. note:: **CSRFトークンの送信**
 
-    CSRF対策を有効にしている場合は、CSRF対策用のトークンをPOSTメソッドを使って送信する必要がる。
+    CSRF対策を有効にしている場合は、CSRF対策用のトークンをPOSTメソッドで送信する必要がある。
 
 |
 
@@ -1367,7 +1376,7 @@ Javaからのアクセス
     * ``org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy``
 
     具体的な定義方法については、
-    `Spring Security Reference -Web Application Security (Concurrency Control)- <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#concurrent-sessions>`_ のサンプルコードを参考にされたい。
+    `Spring Security Reference -Web Application Security (Concurrency Control)- <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#concurrent-sessions>`_ のサンプルコードを参考にされたい。
 
 |
 
@@ -1745,6 +1754,7 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
 .. list-table::
     :header-rows: 1
     :widths: 20 80
+    :class: longtable
 
     * - | 項番
       - | 説明
@@ -1769,6 +1779,10 @@ Spring Securityが提供しているデフォルトの動作をカスタマイ�
         | 無効ユーザーIDによる認証エラー時にスローされる。
     * - | (7)
       - | \ ``authentication-failure-handler-ref``\ 属性に\ ``authenticationFailureHandler``\ を設定する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **例外発生時の制御**
 
@@ -1827,7 +1841,7 @@ Spring Securityのデフォルトでは、ログアウト処理を実行する�
       * システムエラー発生時に認証情報をクリアする。
     
     ここでは、共通ライブラリの例外ハンドリング機能を使用してシステム例外発生時に認証情報をクリアする例を説明する。
-    例外ハンドリング機能の詳細についは「\ :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`\」を参照されたい。
+    例外ハンドリング機能の詳細については「\ :doc:`../ArchitectureInDetail/WebApplicationDetail/ExceptionHandling`\」を参照されたい。
 
       .. code-block:: java
 
@@ -2004,7 +2018,7 @@ LogoutSuccessHandlerの適用
 認証時の入力チェック
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-DBサーバへの負荷軽減等で、認証ページおける、あきらかな入力誤りに対しては、事前にチェックを行いたい場合がある。
+DBサーバへの負荷軽減等で、認証ページにおける、あきらかな入力誤りに対しては、事前にチェックを行いたい場合がある。
 このような場合は、Bean Validationを使用した入力チェックも可能である。
 
 Bean Validationによる入力チェック
@@ -2110,7 +2124,7 @@ Bean Validationに関する詳細は \ :doc:`../ArchitectureInDetail/WebApplicat
 認証処理の拡張
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Spring Securityから提供されている\ `認証プロバイダ <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/apidocs/org/springframework/security/authentication/AuthenticationProvider.html>`_\ で対応できない認証要件がある場合は、
+Spring Securityから提供されている\ `認証プロバイダ <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/apidocs/org/springframework/security/authentication/AuthenticationProvider.html>`_\ で対応できない認証要件がある場合は、
 \ ``org.springframework.security.authentication.AuthenticationProvider``\ インタフェースを実装したクラスを作成する必要がある。
 
 ここでは、ユーザー名、パスワード、\ **会社識別子(独自の認証パラメータ)**\ の3つのパラメータを使用してDB認証を行うための拡張例を示す。
@@ -2490,6 +2504,7 @@ Authentication Filterの作成
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2524,10 +2539,10 @@ Authentication Filterの作成
     * - | (6')
       - | Spring Securityが生成する\ ``AuthenticationManager``\ に対して、拡張した\ ``AuthenticationProvider``\ (\ ``CompanyIdUsernamePasswordAuthenticationProvider``\ )を設定する。
     * - | (7)
-      - | \ ``sessionAuthenticationStrategy``\ プロパティに、認証成功時のセッションの取扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを指定する。
+      - | \ ``sessionAuthenticationStrategy``\ プロパティに、認証成功時のセッションの取り扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを指定する。
         | 
     * - | (7')
-      - | 認証成功時のセッションの取扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを定義する。
+      - | 認証成功時のセッションの取り扱いを制御するコンポーネント(\ ``SessionAuthenticationStrategy``\ )のbeanを定義する。
         | 
         | ここでは、Spring Securityから提供されている、
          
@@ -2539,6 +2554,10 @@ Authentication Filterの作成
       - | \ ``authenticationFailureHandler``\ プロパティに、認証失敗時に呼ばれるハンドラクラスを指定する。
     * - | (9)
       - | \ ``authenticationSuccessHandler``\ プロパティに、認証成功時に呼ばれるハンドラクラスを指定する。
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **auto-configについて**
 
@@ -2685,7 +2704,7 @@ ShaPasswordEncoderの利用
       - | パスワードをハッシュ化する場合は、\ ``encodePassword``\ メソッドを使用する。
         | メソッドの引数には、パスワード、ソルト文字列の順で指定する。
     * - | (2)
-      - | パスワードを照合する場合ば、\ ``isPasswordValid``\ メソッドを使用する。
+      - | パスワードを照合する場合は、\ ``isPasswordValid``\ メソッドを使用する。
         | メソッドの引数には、ハッシュ化済みのパスワード、平文のパスワード、ソルト文字列の順で指定する。
 
 |
@@ -2736,13 +2755,13 @@ Spring MVCでリクエストを受けてログインフォームを表示する�
 Remember Me認証の利用
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-「\ `Remember Me認証 <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#remember-me>`_\ 」とは、
+「\ `Remember Me認証 <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#remember-me>`_\ 」とは、
 Webサイトに頻繁にアクセスするユーザーの利便性を高めるための機能の一つで、ログイン状態を通常のライフサイクルより長く保持するための機能である。
 本機能を使用すると、ブラウザを閉じた後やセッションタイムが発生した後でも、Cookieに保持しているRemember Me認証用のTokenを使用して、
 ユーザ名とパスワードを再入力することなく自動でログインすることができる。
 なお、本機能は、ユーザーがログイン状態を保持することを許可した場合のみ有効となる。
 
-Spring Securityは、「`Hash-Based Token <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#remember-me-hash-token>`_ 方式のRemember Me認証」と「`Persistent Token <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#remember-me-persistent-token>`_ 方式のRemember Me認証」をサポートしており、
+Spring Securityは、「`Hash-Based Token <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#remember-me-hash-token>`_ 方式のRemember Me認証」と「`Persistent Token <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#remember-me-persistent-token>`_ 方式のRemember Me認証」をサポートしており、
 デフォルトではHash-Based Token方式が使用される。
 
 |
@@ -2777,7 +2796,7 @@ Remember Me認証を利用する場合は、\ ``<sec:remember-me>``\ タグを�
         | 指定が無い場合、デフォルトで14日間が有効時間になる。
         | 上記例では、有効時間として30日間を設定している。
 
-上記以外の属性については、\ `Spring Security Reference -The Security Namespace (<remember-me>) - <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#nsa-remember-me>`_\ を参照されたい。
+上記以外の属性については、\ `Spring Security Reference -The Security Namespace (<remember-me>) - <http://docs.spring.io/spring-security/site/docs/4.1.4.RELEASE/reference/htmlsingle/#nsa-remember-me>`_\ を参照されたい。
 
 .. note:: **Spring Security 4.0における変更**
 
@@ -2817,7 +2836,7 @@ Remember Me認証を利用する場合は、\ ``<sec:remember-me>``\ タグを�
 
 .. tip:: **value属性の設定値について**
 
-    \ ``value``\ 属性には、\ ``true``\を設定する旨が\ `rememberMeRequestedのJavaDoc <http://docs.spring.io/autorepo/docs/spring-security/4.0.4.RELEASE/apidocs/org/springframework/security/web/authentication/rememberme/AbstractRememberMeServices.html#rememberMeRequested-javax.servlet.http.HttpServletRequest-java.lang.String->`_\ に記載されているが、
+    \ ``value``\ 属性には、\ ``true``\を設定する旨が\ `rememberMeRequestedのJavaDoc <http://docs.spring.io/autorepo/docs/spring-security/4.1.4.RELEASE/apidocs/org/springframework/security/web/authentication/rememberme/AbstractRememberMeServices.html#rememberMeRequested-javax.servlet.http.HttpServletRequest-java.lang.String->`_\ に記載されているが、
     実装上は\ ``on``\ 、\ ``yes``\ 、\ ``1``\ も設定可能である。
 
 .. raw:: latex

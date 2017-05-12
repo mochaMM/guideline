@@ -222,20 +222,20 @@ WebアプリケーションをTomcat上にリリースする場合は次のよ�
 4. Tomcat 7を使用する場合は、TomcatのVirtualWebappLoader機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
 
  * [CATALINA_HOME]/conf/[contextPath].xml ファイルに下記の定義を追加する。
- * 詳しくは、 http://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/loader/VirtualWebappLoader.html と `terasoluna-tourreservation-envのconfigsフォルダ <https://github.com/terasolunaorg/terasoluna-tourreservation/tree/5.2.0.RELEASE/terasoluna-tourreservation-env/configs>`_\ を参考されたい。
+ * 詳しくは、 http://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/loader/VirtualWebappLoader.html と `terasoluna-tourreservation-envのconfigsフォルダ <https://github.com/terasolunaorg/terasoluna-tourreservation/tree/5.3.0.RELEASE/terasoluna-tourreservation-env/configs>`_\ を参考されたい。
  * VirtualWebappLoaderの設定例：
    
   .. code-block:: xml
 
    <Loader className="org.apache.catalina.loader.VirtualWebappLoader"
            virtualClasspath="/etc/foo/bar/*.jar" />
-	 
+
  * なお、VirtualWebappLoader機能はTomcat 6でも使用可能。
 
-5. Tomcat 8を使用する場合は、Tomcatのリソース機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
+5. Tomcat 8.xを使用する場合は、Tomcatのリソース機能を使用して /etc/foo/bar/\*.jar をクラスパスに追加する。
 
  * [CATALINA_HOME]/conf/[contextPath].xml ファイルに下記の定義を追加する。
- * 詳しくは、 https://tomcat.apache.org/migration-8.html#Web_application_resources と `terasoluna-tourreservation-envのconfigsフォルダ <https://github.com/terasolunaorg/terasoluna-tourreservation/tree/5.2.0.RELEASE/terasoluna-tourreservation-env/configs>`_\ を参考されたい。
+ * 詳しくは、 https://tomcat.apache.org/migration-8.html#Web_application_resources と `terasoluna-tourreservation-envのconfigsフォルダ <https://github.com/terasolunaorg/terasoluna-tourreservation/tree/5.3.0.RELEASE/terasoluna-tourreservation-env/configs>`_\ を参考されたい。
  * リソースの設定例：
    
   .. code-block:: xml
@@ -345,7 +345,7 @@ TomcatのVirtualWebappLoaderのように、Webアプリケーションごとに�
 プロジェクト（ソースコードツリー）の構造、バージョン管理、インスペクションとビルド作業、ライフサイクル管理の工程を恒常的にループさせることによって目的のソフトウェアをリリースし続けることが、継続的デプロイメントである。
 
 開発の途中では、SNAPSHOTバージョンのソフトウェアをパッケージリポジトリや開発用APサーバにリリースし、テストを実施する。
-ソフトウェアを正式にリリースする場合には、バージョン番号を固定したうえでVCS上でソースコードツリーに対してタグづけを行う必要がある。
+ソフトウェアを正式にリリースする場合には、バージョン番号を固定したうえでVCSのソースコードツリーに対してタグづけを行う必要がある。
 このように、スナップショットリリースの場合と正式リリースの場合で、ビルドとデプロイのフローが少し異なる。
 
 また、Webサービスを提供するAPサーバにアプリケーションをデプロイする場合には、スナップショットバージョンか正式リリースバージョンかに関わらず、
@@ -394,7 +394,7 @@ RELEASEバージョンの運用
    :width: 600px
 
 1. リリースに与えるバージョン番号を決定する。（例：1.0.1）
-2. 開発用trunk（またはリリース用branch)からソースコードをチェックアウトする。
+2. 開発用trunk(またはリリース用branch)からソースコードをチェックアウトする。
 3. pom.xml上の<version>タグを変更する。（例：<version>1.0.1</version>）
 4. VCS上にtagを付与する。（例： tags/1.0.1）
 5. コンパイル、コードメトリクスの測定、テストを実行する。
@@ -411,7 +411,7 @@ RELEASEバージョンの運用
 
 .. note::
 
- pom.xmlファイルの<version>タグの変更は `versions-maven-plugin <http://mojo.codehaus.org/versions-maven-plugin/>`_ で可能である。
+ pom.xmlファイルの<version>タグの変更は `versions-maven-plugin <http://www.mojohaus.org/versions-maven-plugin/>`_ で可能である。
  
  .. code-block:: bash
  
@@ -466,7 +466,7 @@ Webサービスを提供するAPサーバにアプリケーションをリリー
 
 
 
-.. _CreateWebApplicationProjectCustomize:
+.. _CreateProjectCustomize:
 
 .. raw:: latex
 

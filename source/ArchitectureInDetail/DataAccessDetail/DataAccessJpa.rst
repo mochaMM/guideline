@@ -46,7 +46,7 @@ JPAについて
 JPA(Java Persistence API)は、リレーショナルデータベースで管理されているレコードを、Javaオブジェクトにマッピングする方法と、
 マッピングされたJavaオブジェクトに対して行われた操作を、リレーショナルデータベースのレコードに反映するための仕組みをJavaのAPI仕様として定義したものである。
 
-| JPAは、仕様を定義をしているだけで、実装は提供していない。
+| JPAは、仕様の定義をしているだけで、実装は提供していない。
 | JPAの実装は、HibernateのようなO/R Mapperを開発しているベンダーによって、参照実装として提供されている。
 | このように、O/R Mapperを開発しているベンダーによって実装された参照実装のことを、JPAプロバイダと呼ぶ。
 
@@ -74,6 +74,7 @@ JPAの基本用語
  .. list-table::
     :header-rows: 1
     :widths: 10 20 70
+    :class: longtable
 
     * - 項番
       - 用語
@@ -122,6 +123,10 @@ JPAの基本用語
         | \ ``EntityManager``\ のメソッドとして提供されており、蓄積された未反映の操作をリレーショナルデータベースに対して実行する。
         | 通常、リレーショナルデータベースへの反映は、トランザクションコミット時に行われるが、コミットより前に反映する必要がある場合は、メソッドを使用する。
 
+ .. raw:: latex
+
+    \newpage
+
 Entityのライフサイクル管理
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Entityのライフサイクル管理イメージは、以下の通りである。
@@ -137,6 +142,7 @@ Entityのライフサイクル管理イメージは、以下の通りである�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -162,6 +168,10 @@ Entityのライフサイクル管理イメージは、以下の通りである�
         |  :ref:`永続操作の反映タイミングについて(その１) <how_to_create_repository_extends_springdata_flush_timing_note1>`
         |  :ref:`永続操作の反映タイミングについて(その2) <how_to_create_repository_extends_springdata_flush_timing_note2>`
         | を参照されたい。
+
+ .. raw:: latex
+
+    \newpage
 
 \
 
@@ -205,6 +215,7 @@ Spring Data JPAを使ってデータベースにアクセスする際の基本�
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -225,6 +236,10 @@ Spring Data JPAを使ってデータベースにアクセスする際の基本�
         | (実際の値のバインドは、java.sql.PreparedStatement のAPIが使われている)
     * - | (6)
       - | JDBCドライバは、渡されたSQLとバインド値をデータベースに送信することで、SQLを実行する。
+
+ .. raw:: latex
+
+    \newpage
 
 | Spring Data JPAを使用してRepositoryを作成する場合、JPAのAPIを直接呼び出す必要はないが、Spring Data JPAのRepositoryインタフェースのメソッドが、
 | JPAのどのメソッドを呼び出しているのかは、意識しておいた方がよい。
@@ -275,7 +290,7 @@ pom.xmlの設定
 データソースの設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | データベースの接続情報をデータソースに設定する。
-| データソースの設定ついては、共通編の\ :ref:`data-access-common_howtouse_datasource`\ を参照されたい。
+| データソースの設定については、共通編の\ :ref:`data-access-common_howtouse_datasource`\ を参照されたい。
 
 EntityManagerの設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -324,6 +339,7 @@ EntityManagerの設定
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -354,6 +370,10 @@ EntityManagerの設定
       - | Hibernateから提供されている ``EntityManager`` の動作設定を指定する。
         | 詳細については「`Hibernate Reference Documentation <http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch03.html#configuration-optional>`_\」を参照されたい。
 
+ .. raw:: latex
+
+    \newpage
+
 \
 
  .. tip::
@@ -369,7 +389,7 @@ EntityManagerの設定
                  <util:map>
                      <!-- omitted -->
                      <entry key="hibernate.dialect"
-                            value="org.hibernate.dialect.Oracle10gDialect" />  <!-- (9) -->
+                            value="org.hibernate.dialect.Oracle12cDialect" />  <!-- (9) -->
                  </util:map>
              </property>
          </bean>
@@ -378,12 +398,13 @@ EntityManagerの設定
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - 項番
           - 説明
         * - | (9)
-          - | \ ``"hibernate.dialect"``\ に\ ``org.hibernate.dialect.Oracle10gDialect``\ を指定する。
-            | \ ``Oracle10gDialect``\ を指定することで、テーブル結合を行うSQLにANSI標準のJOIN句が使用される。
+          - | \ ``"hibernate.dialect"``\ に\ ``org.hibernate.dialect.Oracle12cDialect``\ を指定する。
+            | \ ``Oracle12cDialect``\ を指定することで、テーブル結合を行うSQLにANSI標準のJOIN句が使用される。
 
 | アプリケーションサーバから提供されているトランザクションマネージャ(JTA)を使用する場合は、以下の設定を行う。
 | JTAを使用しない場合との差分について、説明する。
@@ -548,6 +569,7 @@ Spring Data JPAを有効化するための設定
  .. list-table::
     :header-rows: 1
     :widths: 6 20 74
+    :class: longtable
 
     * - 項番
       - 要素
@@ -568,7 +590,7 @@ Spring Data JPAを有効化するための設定
     * - 4.
       - query-lookup-strategy
       - | Queryメソッドが呼び出された特に実行するQueryをLookupする方法を指定する。
-        | デフォルトは ``"CREATE_IF_NOT_FOUND"`` となっている。詳細は、`Spring Data Commons - Reference Documentationの "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ を参照されたい。 特に理由がない場合は、デフォルトのままでよい。
+        | デフォルトは ``"CREATE_IF_NOT_FOUND"`` となっている。詳細は、`Spring Data Commons - Reference Documentationの "Query lookup strategies" <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ を参照されたい。 特に理由がない場合は、デフォルトのままでよい。
     * - 5.
       - factory-class
       - | Repositoryインタフェースのメソッドが呼び出された際の処理を実装するクラスを生成するためのFactoryを指定する。
@@ -576,9 +598,13 @@ Spring Data JPAを有効化するための設定
         | 新しいメソッドを追加する方法については、\ :ref:`custommethod_all-label`\ を参照されたい。
     * - 6.
       - repository-impl-postfix
-      - | カスタムRepositoryの実装クラスをであることを表す接尾辞を指定する。
+      - | カスタムRepositoryの実装クラスであることを表す接尾辞を指定する。
         | デフォルトは ``"Impl"`` となっている。例えば、Repositoryインタフェースの名前が ``OrderRepository`` の場合は、 ``OrderRepositoryImpl`` がカスタムRepositoryの実装クラスとなる。特に理由がない場合は、デフォルトのままでよい。
         | カスタムRepositoryについては、「:ref:`custommethod_individual-label`」を参照されたい。
+
+ .. raw:: latex
+
+    \newpage
 
 JPAのアノテーションを使用するための設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -801,6 +827,7 @@ Spring Dataから提供されているインタフェースを継承してEntity
  .. list-table::
     :widths: 10 35 55
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - メソッド
@@ -872,6 +899,10 @@ Spring Dataから提供されているインタフェースを継承してEntity
     * - 17.
       - long count()
       - | 永続化対象のEntityの件数を取得するためのメソッド。
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning:: **JPAの楽観ロック(@javax.persistence.Version)使用時の動作について**
 
@@ -1114,7 +1145,7 @@ Queryメソッドは、Entity毎のRepositoryインタフェースのメソッ�
     #. メソッド名からQuery(JPQL)が作成できない場合は、エラーとなる。
 
     QueryのLookup方法の詳細については、 `Spring Data Commons - Reference Documentation「Defining query methods」の
-    「Query lookup strategies」 <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ を参照されたい。
+    「Query lookup strategies」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies>`_\ を参照されたい。
 
 Entityのロックを取得する
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1316,7 +1347,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
     Named Parameterを使用する場合は、 ``@org.springframework.data.repository.query.Param`` アノテーションを対象とする引数に追加し、value属性にパラメータ名を指定する。
     Queryでは、バインドしたい位置に「:パラメータ名」の形式で指定する。
 
-    **特に理由がない場合は、 Qyeryのメンテナンス性と可読性を考慮し、Named Parametersを使用することを推奨する。**
+    **特に理由がない場合は、 Queryのメンテナンス性と可読性を考慮し、Named Parametersを使用することを推奨する。**
 
 |
 
@@ -1488,7 +1519,7 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
     * - | (5)
       - JPQLから変換された件数カウント用のNativeなSQL。
     * - | (6)
-      - | JPQLから変換された指定されたページ位置のEntityを取得するためのNativeなSQL。
+      - | JPQLから変換された「指定されたページ位置のEntityを取得する」ためのNativeなSQL。
         | Queryに指定はしていないが、\ ``Pageable``\ オブジェクト内に保持している ``Sort`` オブジェクトに指定した条件で"ORDER BY"句が追加される。例では、PostgreSQL用のSQLになっている。
 
 .. _how_to_specify_query_mathodname-label:
@@ -1510,19 +1541,19 @@ Queryメソッド呼び出し時に実行するQueryの指定方法について�
       - 参照ページ
       - 説明
     * - 1.
-      - `Spring Data Commons - Reference Documentation「Defining query methods」の「Query creation」 <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-creation>`_\
+      - `Spring Data Commons - Reference Documentation「Defining query methods」の「Query creation」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-creation>`_\
       - Distinct、ORDER BY、Case insensitiveの指定方法などが記載されている。
     * - 2.
-      - `Spring Data Commons - Reference Documentation「Defining query methods」の「Property expressions」 <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.query-methods.query-property-expressions>`_\
+      - `Spring Data Commons - Reference Documentation「Defining query methods」の「Property expressions」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.query-methods.query-property-expressions>`_\
       - ネストされたEntityのプロパティを条件に指定する方法などが記載されている。
     * - 3.
-      - `Spring Data Commons - Reference Documentation「Defining query methods」の「Special parameter handling」 <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repositories.special-parameters>`_\
+      - `Spring Data Commons - Reference Documentation「Defining query methods」の「Special parameter handling」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repositories.special-parameters>`_\
       - 特別なメソッド引数(``Pageable`` 、 ``Sort``)についての説明が記載されている。
     * - 4.
-      - `Spring Data JPA - Reference Documentation「Query methods」の「Query creation」 <http://docs.spring.io/spring-data/jpa/docs/1.9.4.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
+      - `Spring Data JPA - Reference Documentation「Query methods」の「Query creation」 <http://docs.spring.io/spring-data/jpa/docs/1.10.6.RELEASE/reference/html/#jpa.query-methods.query-creation>`_\
       - JPQLを組み立てるための命名規約(キーワード)に関する説明が記載されている。
     * - 5.
-      - `Spring Data Commons - Reference Documentation「Appendix C. Repository query keywords」 <http://docs.spring.io/spring-data/commons/docs/1.11.4.RELEASE/reference/html/#repository-query-keywords>`_\
+      - `Spring Data Commons - Reference Documentation「Appendix C. Repository query keywords」 <http://docs.spring.io/spring-data/commons/docs/1.12.6.RELEASE/reference/html/#repository-query-keywords>`_\
       - JPQLを組み立てるための命名規約(キーワード)に関する説明が記載されている。
 
 以下に、実装例を示す。
@@ -1706,6 +1737,7 @@ Spring Data JPAから提供されているプロパティファイル(classpath:
      .. list-table::
          :widths: 10 90
          :header-rows: 1
+         :class: longtable
 
          * - 項番
            - 説明
@@ -2041,6 +2073,7 @@ Entityの動的条件による検索処理の実装
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2078,7 +2111,9 @@ Entityの動的条件による検索処理の実装
     * - | (14)
       - | 動的に組み立てたQueryを実行し、条件に一致するEntityを全件取得する。
 
+ .. raw:: latex
 
+    \newpage
 
 - Entity毎のRepositoryインタフェース
 
@@ -2410,6 +2445,7 @@ Entityの動的条件による検索処理の実装
  .. list-table::
     :widths: 10 90
     :header-rows: 1
+    :class: longtable
 
     * - 項番
       - 説明
@@ -2441,6 +2477,9 @@ Entityの動的条件による検索処理の実装
     * - | (12)
       - | 該当ページのEntityのリスト、ページ情報、条件に条件した合計件数を引数に指定して、 ``Page`` オブジェクトを生成し返却する。
 
+ .. raw:: latex
+
+    \newpage
 
 - Service (Caller)
 
@@ -2519,7 +2558,7 @@ ID(Primary Key)がわかっている場合は、Repositryインタフェース�
     Query実行時の関連Entityのロードは、Entityの関連付けアノテーション( ``@javax.persistence.OneToOne`` 、 ``@javax.persistence.OneToMany`` 、 ``@javax.persistence.ManyToOne`` 、 ``@javax.persistence.ManyToMany`` )の
     fetch属性に指定されている値によって決定される。
 
-    * ``javax.persistence.FetchType#LAZY`` の場合は、JOIN FETCH対象からはずれるため、、関連Entityのロードは初回アクセス時に行われる。
+    * ``javax.persistence.FetchType#LAZY`` の場合は、JOIN FETCH対象からはずれるため、関連Entityのロードは初回アクセス時に行われる。
     * ``javax.persistence.FetchType#EAGER`` の場合は、 JOIN FETCHされるため、関連Entityがロードされる。
 
     fetch属性のデフォルトはアノテーションによって異なる。デフォルト値は以下の通り。
@@ -2785,7 +2824,7 @@ Entityと関連Entityを一緒に追加したい場合は、Repositryインタ�
     関連EntityがCascade対象に指定されている場合、Entityに対するJPAの操作( ``persist`` , ``merge`` , ``remove`` , ``refresh`` , ``detach`` )
     が関連Entityに対して、連鎖して行われる。
 
-    Spring Data JPAのRepositoryインタフェースの操作とのマッピングは以下の通り。
+    Spring Data JPAのRepositoryインタフェースの操作に対するマッピングは以下の通り。
 
     * saveメソッド : ``persist`` or ``merge``
     * deleteメソッド : ``remove``
@@ -2940,7 +2979,7 @@ Entityと関連Entityを一緒に追加したい場合は、Repositryインタ�
 
 関連Entityの追加
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-関連Entityを追加したい場合は、Repositoryインタフェース経由で取得したEntityオブジェクトに対して、生成した関連Entityのオブジェクトを関連付る。
+関連Entityを追加したい場合は、Repositoryインタフェース経由で取得したEntityオブジェクトに対して、生成した関連Entityのオブジェクトを関連付ける。
 
 この方法を使用するためには、関連EntityのCascade対象の操作に、``persist`` と ``merge`` が含まれている必要がある。
 
@@ -3129,7 +3168,7 @@ Entityを更新したい場合は、Repositoryインタフェースのメソッ�
  .. note:: **更新後に親のEntityを利用した場合の動作について**
 
     関連Entity用Repositoryのsaveメソッドを使って関連Entityを更新した場合は、
-    追加時とは異なり、親のEntityオブジェクトで保持している関連Entityにも反映される
+    追加時とは異なり、親のEntityオブジェクトで保持している関連Entityにも反映される。
     これは、``EntityManager`` 上で管理されている同じインスタンスの参照を保持しているためである。
 
 |
@@ -3749,7 +3788,7 @@ Entity毎のRepositoryインタフェースに個別にカスタムメソッド�
             
             try {
                 versionMethod = entityInformation.getJavaType().getMethod("getVersion");
-            } catch (NoSuchMethodException | SecurityException e) { }
+            } catch (NoSuchMethodException | SecurityException e) { }
 
         }
 
@@ -4061,7 +4100,7 @@ Spring Data JPAでは、新たに作成されたEntityと更新されたEntity�
       - 説明
     * - | (7)
       - | ``org.springframework.data.domain.AuditorAware`` インタフェースの実装クラスを作成する。
-        | ``AuditorAware`` インタフェースは、Entityの操作者(作成者または最終更新更新者)を解決するためのインタフェースとなっている。
+        | ``AuditorAware`` インタフェースは、Entityの操作者(作成者または最終更新者)を解決するためのインタフェースとなっている。
         | このクラスはプロジェクト毎に作成する必要がある。
     * - | (8)
       - | ``@Component`` アノテーションを付与することで、component-scan対象になるようにしている。

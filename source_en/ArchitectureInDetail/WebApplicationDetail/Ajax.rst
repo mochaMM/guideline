@@ -142,6 +142,7 @@ The ``HttpMessageConverter`` which is enabled by default on specifying ``<mvc:an
      .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
     
        * - | Sr. No.
          - | Description
@@ -159,6 +160,10 @@ The ``HttpMessageConverter`` which is enabled by default on specifying ``<mvc:an
        * - | (5)
          - | Specify the bean of ``Jaxb2Marshaller`` defined in (1) in ``unmarshaller`` property.
          
+     .. raw:: latex
+
+        \newpage
+
     |
 
     Adding Spring-oxm as dependent artifact.
@@ -182,6 +187,7 @@ The ``HttpMessageConverter`` which is enabled by default on specifying ``<mvc:an
      .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - | Sr. No.
          - | Description
@@ -238,6 +244,7 @@ Prerequisites for the sample code explained hereafter, are as follows.
      .. list-table::
          :header-rows: 1
          :widths: 10 90
+         :class: longtable
 
          * - Sr. No.
            - Description
@@ -721,6 +728,7 @@ Following example is about the Ajax communication of receiving two numbers and r
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - | Sr. No.
      - | Description
@@ -756,6 +764,10 @@ Following example is about the Ajax communication of receiving two numbers and r
    * - | (17)
      - | Perform rendering process when there is an error.
        | In the above example, error message is displayed in the area for displaying calculation result.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
  
@@ -1286,6 +1298,7 @@ Handling by using BindingResult
       .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - | Sr. No.
          - | Description

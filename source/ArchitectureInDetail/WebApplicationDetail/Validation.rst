@@ -67,7 +67,7 @@ Webアプリケーションの入力チェックには、サーバサイドで�
    * - 相関項目チェック
      - | 複数のフィールドを比較するチェック
      - | パスワードと確認用パスワードの一致チェック
-     - | `org.springframework.validation.Validator <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ インタフェースを実装したValidationクラス
+     - | `org.springframework.validation.Validator <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ インタフェースを実装したValidationクラス
        | または Bean Validation
 
 
@@ -261,7 +261,7 @@ Bean ValidationのAPI仕様クラス(\ ``javax.validation``\ パッケージの�
   
   .. tip::
   
-    入力フィールドが未入力の場合に、空文字ではなく\ ``null``\ にバインドする方法に関しては、\ :ref:`Validation_string_trimmer_editor`\ を参照されたい、
+    入力フィールドが未入力の場合に、空文字ではなく\ ``null``\ にバインドする方法に関しては、\ :ref:`Validation_string_trimmer_editor`\ を参照されたい。
 
 * Controllerクラス
 
@@ -649,7 +649,7 @@ NameとEmailが空文字であることに対するエラーメッセージと�
 | \ ``@DateTimeFormat``\ アノテーションの使用方法については、\ :ref:`ApplicationLayer-DateTimeFormat`\ を参照されたい。
 | Bean Validationの\ ``@Pattern``\ アノテーションを使用することでも日時フォーマットのチェックは可能である。
 | しかし、\ ``@Pattern``\ アノテーションを使用すると、日時フォーマットを正規表現で記述する必要があり、存在しない日時をチェックする場合には、記述が煩雑化する。
-| そのため、\ ``@Pattern``\ アノテーションよりも\ ``@DateTimeFormat``\ アノテーションのほうが実装がシンプルになる。
+| そのため、\ ``@Pattern``\ アノテーションよりも\ ``@DateTimeFormat``\ アノテーションのほうが実装はシンプルになる。
 
 
 | \ ``@DateTimeFormat``\ アノテーションはSpringが提供する型変換の仕組みのひとつであるので、入力エラーの場合には、Bean Validationのエラーメッセージではなく、型のミスマッチが発生した時にスローされる例外(\ ``TypeMismatchException``\ )の例外メッセージがそのまま画面へ表示される。
@@ -1220,7 +1220,7 @@ ECサイトにおける「注文」処理の例を考える。「注文」フォ
 バリデーショングループを作成し、一つのフィールドに対して、グループごとに入力チェックルールを指定することができる。
 
 前述の「新規ユーザー登録」の例で、\ ``age``\ フィールドに「成年であること」というルールを追加する。
-「成年」かどうかは国によってルールが違うため、\ ``country``\ フィールドも追加する。
+「成年かどうか」は国によってルールが違うため、\ ``country``\ フィールドも追加する。
 
 Bean Validationでグループを指定する場合、アノテーションの\ ``group``\ 属性に、グループを示す任意の\ ``java.lang.Class``\ オブジェクトを設定する。
 
@@ -1315,8 +1315,8 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
        - | 一つのフィールドに同じルールを複数指定するために、\ ``@Min.List``\ アノテーションを使用する。
          | 他のアノテーションを使用する場合も同様である。
      * - | (3)
-       - | 各グループごとにルールを定義し、グループを指定するために、\ ``group``\ 属性に対象のグループクラスを指定する。
-         | \ ``group``\ 属性を省略した場合、\ ``javax.validation.groups.Default``\ グループが使用される。
+       - | グループごとにルールを定義する。グループを指定するために、\ ``groups``\ 属性に対象のグループクラスを指定する。
+         | \ ``groups``\ 属性を省略した場合、\ ``javax.validation.groups.Default``\ グループが使用される。
      * - | (4)
        - | グループを振り分けるための、フィールドを追加する。
 
@@ -1498,7 +1498,7 @@ Bean Validationでグループを指定する場合、アノテーションの\ 
 
 .. warning::
 
-   このControllerの実装は、\ ``country``\ の値が、"cn"、"jp"、"sg"のいづれでもない場合のハンドリングが行われておらず、不十分である。
+   このControllerの実装は、\ ``country``\ の値が、"cn"、"jp"、"sg"のいずれでもない場合のハンドリングが行われておらず、不十分である。
    \ ``country``\ の値が、想定外の場合に、400エラーが返却される。
 
 次にチェック対象の国が増えたため、成人条件18歳以上をデフォルトルールとしたい場合を考える。
@@ -2065,6 +2065,7 @@ Spring Validatorによる相関項目チェック実装
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - 項番
           - 説明
@@ -2168,7 +2169,7 @@ Bean Validationによって、相関項目チェックの実装するために�
 Spring MVCによるBean Validationのエラーメッセージは、以下の順で解決される。
 
 #. | \ ``org.springframework.context.MessageSource``\ に定義されているメッセージの中に、ルールに合致するものがあればそれをエラーメッセージとして使用する (Springのルール)。
-   | Springのデフォルトのルールについては、「`DefaultMessageCodesResolverのJavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_」を参照されたい。
+   | Springのデフォルトのルールについては、「`DefaultMessageCodesResolverのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_」を参照されたい。
 #. 1.でメッセージが見つからない場合、アノテーションの\ ``message``\ 属性に、指定されたメッセージからエラーメッセージを取得する (Bean Validationのルール)
 
   #. \ ``message``\ 属性に指定されたメッセージが、"{メッセージキー}"形式でない場合、そのテキストをエラーメッセージとして使用する。
@@ -2359,7 +2360,7 @@ Bean Validationのアノテーションの\ ``message``\ 属性に指定され�
 
 .. note::
 
-  \ ``{0}``\ でフィールド名を埋め込めむのは、Bean Validationの機能ではなく、Springの機能である。
+  \ ``{0}``\ でフィールド名を埋め込めるのは、Bean Validationの機能ではなく、Springの機能である。
   したがって、フィールド名変更の設定は、Spring管理下のapplication-messages.properties(\ ``ResourceBundleMessageSource``\ )に定義する必要がある。
 
 .. tip::
@@ -2419,6 +2420,7 @@ Bean Validationのアノテーションの\ ``message``\ 属性に指定され�
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - 項番
           - 説明
@@ -2435,7 +2437,7 @@ Bean Validationのアノテーションの\ ``message``\ 属性に指定され�
 application-messages.propertiesに定義するメッセージ
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-ValidationMessages.propertiesでシステムで利用するデフォルトのメッセージを定義したが、
+ValidationMessages.propertiesでシステムが利用するデフォルトのメッセージを定義したが、
 画面によっては、デフォルトメッセージから変更したい場合が出てくる。
 
 その場合、application-messages.propertiesに、以下の形式でメッセージを定義する。
@@ -2474,7 +2476,7 @@ ValidationMessages.propertiesでシステムで利用するデフォルトのメ
 * \ ``{2}``\  : \ ``min``\ 属性の値
 
 となる。
-仕様の詳細については \ `SpringValidatorAdapterのJavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/beanvalidation/SpringValidatorAdapter.html#getArgumentsForConstraint-java.lang.String-java.lang.String-javax.validation.metadata.ConstraintDescriptor->`_\
+仕様の詳細については \ `SpringValidatorAdapterのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/beanvalidation/SpringValidatorAdapter.html#getArgumentsForConstraint-java.lang.String-java.lang.String-javax.validation.metadata.ConstraintDescriptor->`_\
 を参照されたい。
 
 エラーメッセージは以下のように変更される。
@@ -2485,7 +2487,7 @@ ValidationMessages.propertiesでシステムで利用するデフォルトのメ
 
 .. note::
 
-  application-messages.propertiesのメッセージキーの形式は、\ `これ以外にも用意されている <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\ が、
+  application-messages.propertiesのメッセージキーの形式は、\ `これ以外にも用意されている <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\ が、
   デフォルトメッセージを一部上書きする目的で使用するのであれば、基本的に、\ ``アノテーション名.フォーム属性名.プロパティ名``\ 形式でよい。
 
 |
@@ -4187,6 +4189,7 @@ Bean Validationの標準アノテーション(\ ``javax.validation.*``\ )を以�
 .. list-table::
    :header-rows: 1
    :widths: 15 30 30 25
+   :class: longtable
 
    * - アノテーション
      - 対象の型
@@ -4271,7 +4274,7 @@ Bean Validationの標準アノテーション(\ ``javax.validation.*``\ )を以�
             
    * - \ ``@AssertTrue``\
      - \ ``boolean``\ ,\ ``Boolean``\
-     - 対象のフィールドが\ ``true``\ であることを検証する(例：規約に同意したかどうか）
+     - 対象のフィールドが\ ``true``\ であることを検証する(例：規約に同意したかどうか)
      - .. code-block:: java
 
             @AssertTrue
@@ -4314,6 +4317,9 @@ Bean Validationの標準アノテーション(\ ``javax.validation.*``\ )を以�
             @Valid
             private Dept dept;
 
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 
@@ -4465,7 +4471,7 @@ hibernate-validator-<version>.jar内のorg/hibernate/validatorに、ValidationMe
 terasoluna-gfw-commonのチェックルール
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-\ `terasoluna-gfw-common <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.2.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-common>`_\ が提供するアノテーション(\ ``org.terasoluna.gfw.common.codelist.*``\ )を以下に示す。
+\ `terasoluna-gfw-common <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.3.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-common>`_\ が提供するアノテーション(\ ``org.terasoluna.gfw.common.codelist.*``\ )を以下に示す。
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|p{0.25\linewidth}|
 .. list-table::
@@ -4487,7 +4493,7 @@ terasoluna-gfw-commonのチェックルール
 terasoluna-gfw-codepointsのチェックルール
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-\ `terasoluna-gfw-codepoints <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.2.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints>`_\ が提供するアノテーション(\ ``org.terasoluna.gfw.common.codepoints.*``\ )を以下に示す。なお、\ ``terasoluna-gfw-codepoints``\ はバージョン5.1.0.RELEASE以上で利用することができる。
+\ `terasoluna-gfw-codepoints <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.3.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints>`_\ が提供するアノテーション(\ ``org.terasoluna.gfw.common.codepoints.*``\ )を以下に示す。なお、\ ``terasoluna-gfw-codepoints``\ はバージョン5.1.0.RELEASE以上で利用することができる。
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|p{0.25\linewidth}|
 .. list-table::
@@ -4508,12 +4514,13 @@ terasoluna-gfw-codepointsのチェックルール
 terasoluna-gfw-validatorのチェックルール
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-\ `terasoluna-gfw-validator <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.2.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-validator>`_\ が提供するアノテーション(\ ``org.terasoluna.gfw.common.validator.constraints.*``\ )を以下に示す。なお、\ ``terasoluna-gfw-validator``\ はバージョン5.1.0.RELEASE以上で利用することができる。
+\ `terasoluna-gfw-validator <https://github.com/terasolunaorg/terasoluna-gfw/tree/5.3.0.RELEASE/terasoluna-gfw-common-libraries/terasoluna-gfw-validator>`_\ が提供するアノテーション(\ ``org.terasoluna.gfw.common.validator.constraints.*``\ )を以下に示す。なお、\ ``terasoluna-gfw-validator``\ はバージョン5.1.0.RELEASE以上で利用することができる。
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.30\linewidth}|p{0.30\linewidth}|p{0.25\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 15 30 30 25
+    :class: longtable
 
     * - アノテーション
       - 対象の型
@@ -4596,6 +4603,10 @@ terasoluna-gfw-validatorのチェックルール
                  private Date to;
              }
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **相関項目チェックにおける入力必須について**
   
   単項目チェックにおいては、入力フィールドが入力されている（ \ ``null``\ でない）かどうかは \ ``@NotNull``\ を併用してチェックすればよい。しかし、相関項目チェックにおいては、「どちらか一方でも入力した場合は、もう一方の入力を強制する」といった、 \ ``@NotNull``\ の併用だけでは実現できない場合がある。このため、\ ``@Compare``\ では、チェック対象の入力必須を制御する \ ``requireBoth``\ 属性を提供しており、これを併用して要件に応じたチェックを実装することができる。
@@ -4608,6 +4619,7 @@ terasoluna-gfw-validatorのチェックルール
     .. list-table::
         :header-rows: 1
         :widths: 50 50
+        :class: longtable
 
         * - チェック要件
           - 設定例
@@ -4658,10 +4670,13 @@ terasoluna-gfw-validatorのチェックルール
                   LocalDate to;
                 }
 
-
 |
 
 .. _Validation_terasoluna_gfw_how_to_use:
+
+.. raw:: latex
+
+   \newpage
 
 共通ライブラリのチェックルールの適用方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -4700,7 +4715,7 @@ terasoluna-gfw-validatorのチェックルール
     * - 項番
       - 説明
     * - | (1)
-      - アノテーションごとにメッセージ定義を追加する。アノテーションの属性値は、プレースフォルダー（\ ``{属性名}``\ の形式）を使用してメッセージの中に埋め込むことができる。
+      - アノテーションごとにメッセージ定義を追加する。アノテーションの属性値は、プレースホルダ（\ ``{属性名}``\ の形式）を使用してメッセージの中に埋め込むことができる。
 
 最後に、\ :ref:`Validation_basic_validation`\ で説明したように、JavaBeanのプロパティにアノテーションを付与する。
 
@@ -4899,7 +4914,7 @@ application-messages.propertiesに以下の定義を行った場合、
 
 .. tip::
 
-  メッセージキーのルールの詳細は、\ `DefaultMessageCodesResolverのJavadoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\ を参照されたい。
+  メッセージキーのルールの詳細は、\ `DefaultMessageCodesResolverのJavadoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.html>`_\ を参照されたい。
 
 
 .. _Validation_string_trimmer_editor:
@@ -5090,7 +5105,7 @@ OSコマンドインジェクションを起こさないためには、可能な
 以下の対策を行った上で外部プロセス実行を実装すること。
 
 * 極力、\ ``/bin/sh``\ （Unix系の場合）や\ ``cmd.exe``\ （Windowsの場合）を使用したコマンド実行を行わない
-* ユーザーにより入力された文字が、アプリケーションとして許可されたものであるかをホワイトリスト方式を用いてチェックする
+* ユーザーにより入力された文字が、アプリケーションとして許可されたものであるか、ホワイトリスト方式を用いてチェックする
 
 以下では、ユーザーが入力したコマンドと引数が指定された文字列で構成されているかをホワイトリスト方式でチェックするルールの例を示す。
 

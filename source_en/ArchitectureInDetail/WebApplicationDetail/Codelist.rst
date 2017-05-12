@@ -481,6 +481,7 @@ Example of codelist settings
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -509,6 +510,10 @@ Example of codelist settings
      - | Set the value corresponding to the Key of Map in valueColumn property. In this example, authority_id is set.
    * - | (8)
      - | Set the value corresponding to Value of Map in labelColumn property. In this example, authority_name is set.      
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -758,7 +763,7 @@ It is easier to understand if you consider \ ``SimpleI18nCodeList``\  as two dim
 
 The table would be as follows in case of a selectbox for selecting charges.
 
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
@@ -930,6 +935,7 @@ Insert the following data in Table Definition (price table).
 .. list-table::
     :header-rows: 1
     :widths: 20 20 60
+    :class: longtable
   
     * - locale
       - code
@@ -970,6 +976,10 @@ Insert the following data in Table Definition (price table).
     * - | ja
       - | 50000
       - | 50,000円以下
+
+.. raw:: latex
+
+   \newpage
 
 .. warning::
 
@@ -1263,7 +1273,7 @@ Codelist can be updated in following two ways.
 #. By using Task Scheduler
 #. By calling refresh method in Controller (Service) class
 
-This guideline recommends the method to reload the codelist periodically using \ `Spring Task Scheduler <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/scheduling.html>`_\ .
+This guideline recommends the method to reload the codelist periodically using \ `Spring Task Scheduler <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/scheduling.html>`_\ .
 
 However, when it is necessary to arbitrarily refresh the codelist, it is appropriate to call refresh method in Controller class.
 
@@ -1319,7 +1329,7 @@ Example for setting the Task Scheduler is shown below.
        | execution every hour 9:00-17:00 on weekdays "0 0 9-17 \* \* MON-FRI"
        |
        | For details, refer to JavaDoc.
-       | http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
+       | http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
 
 |
 
@@ -1346,7 +1356,7 @@ See the example below for directly calling refresh method of JdbcCodeList in Ser
 
     @Controller
     @RequestMapping(value = "codelist")
-    public class CodeListContoller {
+    public class CodeListController {
 
         @Inject
         CodeListService codeListService; // (1)

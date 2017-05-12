@@ -24,10 +24,15 @@ Overview
 
    **Picture - Establishment of logical session**
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -48,6 +53,10 @@ Overview
         | **リクエストをまたいで、同じデータにアクセスすることができる。**
     * - | (7)
       - | Webアプリケーションは、Webブラウザにレスポンスを返却する。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **セッションIDを連携するためのパラメータ名について**
 
@@ -71,6 +80,7 @@ Overview
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -99,6 +109,10 @@ Overview
         | 既にセッションが確立されている場合は、新たなセッションは生成されない。
         | sessionスコープのBeanの使用方法については、\ :ref:`session-management_how_to_use_sessionscope`\ を参照されたい。
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
 
     上記の項番4, 5, 6については、セッションの使用有無はControllerの実装によって指定するが、セッションの生成タイミングは、フレームワークによって制御される。
@@ -112,6 +126,7 @@ Overview
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -139,6 +154,10 @@ Overview
       - | Spring Frameworkの、sessionスコープのBeanを使用する処理。
         | sessionスコープのBeanがセッションに格納される。
         | sessionスコープのBeanの使用方法については、\ :ref:`session-management_how_to_use_sessionscope`\ を参照されたい。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
 
@@ -424,7 +443,7 @@ Spring Securityから提供されているセッションチェック処理を�
 セッションに格納するデータをコンパクトにするために、以下の条件にあてはまるデータについては、セッションスコープではなく、リクエストスコープに格納することを検討すること。
 
 * | 画面操作で編集することができない読み取り専用のデータ。
-  | データが必要になったタイミングで最新のデータを取得し、取得したデータをリクエストスコープに格納することでView(JSP)で表示すれば、セッションに格納する必要はない。
+  | データが必要になったタイミングで最新のデータを取得し、取得したデータをリクエストスコープへ格納した上でView(JSP)へ表示するようにすれば、セッションへ格納する必要はない。
 * | 画面操作で編集できるが、生存期間がユースケース内の画面操作に閉じているデータ。
   | HTMLフォームのhidden項目として、全ての画面遷移でデータを引き回せば、セッションに格納する必要はない。
 
@@ -480,7 +499,7 @@ How to use
 \ ``@SessionAttributes``\ アノテーションは、Controller内で行われる画面遷移において、データを持ち回る場合に使用する。
 
 | ただし、入力画面、確認画面、完了画面がそれぞれ１ページで構成されるような場合は、セッションを使わずにHTMLフォームのhiddenを使ってデータを持ち回った方がよい。
-| 入力画面が複数のページで構成されるような場合や、複雑な画面遷移を伴う場合は、 \ ``@SessionAttributes``\ アノテーションを使用してフォームオブジェクトをセッションに格納する方法の採用すべきか検討すること。
+| 入力画面が複数のページで構成されるような場合や、複雑な画面遷移を伴う場合は、 \ ``@SessionAttributes``\ アノテーションを使用してフォームオブジェクトをセッションに格納する方法を採用すべきか検討すること。
 | フォームオブジェクトをセッションに格納することで、アプリケーションの設計及び実装がシンプルになる可能性がある。
 
  .. figure:: ./images/session-management_overview_sessionattributes.png
@@ -523,7 +542,7 @@ How to use
 
  .. warning:: **@SessionAttributesアノテーション使用時の注意点**
 
-    Controller単位で、ライフサイクルされると上で説明したが、複数のControllerで同じ属性名のオブジェクトを、\ ``@SessionAttributes``\ アノテーションを使って、セッションに格納した場合は、
+    Controller単位で、ライフサイクルが管理されると上で説明したが、複数のControllerで同じ属性名のオブジェクトを、\ ``@SessionAttributes``\ アノテーションを使って、セッションに格納した場合は、
     Controllerをまたいで、ライフサイクルが管理される。
 
     別ウィンドウやタブを開いて、同時に画面操作できる処理の場合は、同じオブジェクトに対してアクセスすることになるため、不具合を引き起こす原因になりうる。
@@ -609,7 +628,8 @@ How to use
      .. list-table::
         :widths: 10 90
         :header-rows: 1
-    
+        :class: longtable
+
         * - 項番
           - 説明
         * - | (1)
@@ -831,7 +851,7 @@ Controllerのハンドラメソッドの引数に渡すオブジェクトが、\
  .. warning:: **削除が必要な理由**
 
     セッションに格納されているオブジェクトは、ガベージコレクションの対象とならないため、不要になったオブジェクトを削除しないと、メモリ枯渇の原因になりうる。
-    また、不要なオブジェクトがセッションに格納されていると、セッションのスワットアウトが発生した際の処理が重くなり、アプリケーション全体の性能に影響を与える可能性がある。
+    また、不要なオブジェクトがセッションに格納されていると、セッションのスワップアウトが発生した際の処理が重くなり、アプリケーション全体の性能に影響を与える可能性がある。
 
 * | 一連の画面操作を中止するためのリクエスト。**(必須)**
   | 「メニューへ戻る」や「中止」などの、一連の画面操作を中止するためのイベントについても、セッションに格納したオブジェクトにアクセスすることはないため、不要になったオブジェクトを削除すること。
@@ -1108,7 +1128,7 @@ sessionスコープのBeanの利用
 
  .. note:: **View(JSP)からsessionスコープのBeanを参照する方法**
 
-     SpEL(Spring Expression Language)式を用いることでControllerで\ ``Model``\ オブジェクトにBeanを追加しなくても、JSPからsessionスコープのBeanを参照することができる。
+     SpEL(Spring Expression Language)式を用いることでControllerにおいて\ ``Model``\ オブジェクトへBeanを追加しなくても、JSPからsessionスコープのBeanを参照することができる。
 
  .. code-block:: jsp
 
@@ -1122,7 +1142,7 @@ sessionスコープのBeanの利用
             <td>${f:h(item.itemCode)}</td>
             <td>${f:h(item.quantity)}</td>
         </tr>
-    </c:forEach>　　　　
+    </c:forEach>
     
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1298,7 +1318,7 @@ How to extend
     * - 項番
       - 説明
     * - | (2)
-      - | (1)で作成した、``BeanPostProcessor`` をBeanを定義する。
+      - | (1)で作成した、``BeanPostProcessor`` をBean定義する。
 
 |
 

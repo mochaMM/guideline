@@ -200,10 +200,10 @@ In case of the following definition, if the URL ``"sample/hello"`` is accessed, 
 
 Pattern can be specified instead of a specific value for request path. For details of specifying patterns, refer to reference documentation of Spring Framework.
 
-- `URI Template Patterns <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\
-- `URI Template Patterns with Regular Expressions <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates-regex>`_\
-- `Path Patterns <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-patterns>`_\
-- `Patterns with Placeholders <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-placeholders>`_\
+- `URI Template Patterns <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\
+- `URI Template Patterns with Regular Expressions <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates-regex>`_\
+- `Path Patterns <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-patterns>`_\
+- `Patterns with Placeholders <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-placeholders>`_\
 
 |
 
@@ -212,7 +212,7 @@ Pattern can be specified instead of a specific value for request path. For detai
 Mapping by HTTP method
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 In case of the following definition, if the URL ``"sample/hello"`` is accessed with POST method, then  ``hello()`` method is executed.
-For the list of supported HTTP methods, refer to `Javadoc of RequestMethod <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RequestMethod.html>`_.
+For the list of supported HTTP methods, refer to `Javadoc of RequestMethod <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/bind/annotation/RequestMethod.html>`_.
 When not specified, all supported HTTP methods are mapped.
 
  .. code-block:: java
@@ -413,7 +413,7 @@ Design the URL of the required requests.
 
  .. note::
  
-     ``"{id}"`` specified in URL of 'Fetching details of Entity', 'Entity update', 'Entity delete' operations is called as, `URI Template Pattern <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\  and any value can be specified.
+     ``"{id}"`` specified in URL of 'Fetching details of Entity', 'Entity update', 'Entity delete' operations is called as, `URI Template Pattern <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-uri-templates>`_\  and any value can be specified.
      In this sample application, Entity ID is specified.
 
  Assigned URL of each operation of screen flow diagram is mapped as shown below:
@@ -434,10 +434,11 @@ Mapping request and handler method
 | Design the mapping between incoming request and handler method.
 | The following is the mapping design which is designed according to mapping policy.
 
- .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.22\linewidth}|p{0.10\linewidth}|p{0.13\linewidth}|p{0.15\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.15\linewidth}|
  .. list-table:: 
    :header-rows: 1
    :widths: 5 20 15 22 10 13 15
+   :class: longtable
 
    * - | Sr. No.
      - | Operation name
@@ -546,6 +547,10 @@ Mapping request and handler method
      - GET
      - complete
      - deleteComplete
+
+ .. raw:: latex
+
+    \newpage
 
 | Multiple requests exist for each of Create Entity, Entity Update and Entity Delete functions. Therefore switching of handler methods is done using HTTP method and HTTP parameters.
 | The following is the flow of requests in case of multiple requests in a function like "Create New Entity".
@@ -1060,7 +1065,7 @@ Source code of controller of sample application
 Regarding arguments of handler method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-`The arguments of handler method can be used to fetch various values <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-arguments>`_;
+`The arguments of handler method can be used to fetch various values <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-arguments>`_;
 however, as a principle rule, the following should not be fetched using arguments of handler method of controller.
 
 * ServletRequest
@@ -1485,6 +1490,7 @@ and add the data to ``RedirectAttributes`` object.
  .. list-table:: 
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1508,6 +1514,10 @@ and add the data to ``RedirectAttributes`` object.
      - | The value stored in \ ``RedirectAttributes``\  can be obtained from JavaBean by using "${Attribute name.Property name}". 
    * - | (8)
      - | HTML output.
+
+ .. raw:: latex
+
+    \newpage
 
 .. warning::
     The data cannot be passed to redirect destination even though it is added to ``Model``.
@@ -1719,7 +1729,7 @@ Refer to :doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`  
 
 Regarding return value of handler method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-`For return values of handler methods, various values can be fetched <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-return-types>`_ ; however,
+`For return values of handler methods, various values can be fetched <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-ann-return-types>`_ ; however,
 only the following values should be used.
 
 
@@ -2284,9 +2294,9 @@ Hence, the fields to be defined in form object need not only be in \ ``java.lang
 
     Spring Framework executes format conversion using the following 3 mechanisms and supports conversion to basic format as standard. Refer to linked page for the details of each conversion function.
 
-    * `Spring Type Conversion <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#core-convert>`_\
-    * `Spring Field Formatting <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#format>`_\
-    * `java.beans.PropertyEditor implementations <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#beans-beans-conversion>`_\
+    * `Spring Type Conversion <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#core-convert>`_\
+    * `Spring Field Formatting <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#format>`_\
+    * `java.beans.PropertyEditor implementations <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#beans-beans-conversion>`_\
 
  .. warning::
 
@@ -2332,7 +2342,7 @@ Attributes of ``@NumberFormat`` annotation are given below.
      - Description
    * - 1.
      - style
-     - Specify number format style. For details refer to `Javadoc of NumberFormat.Style <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/format/annotation/NumberFormat.Style.html>`_\ .
+     - Specify number format style. For details refer to `Javadoc of NumberFormat.Style <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/format/annotation/NumberFormat.Style.html>`_\ .
    * - 2.
      - pattern
      - Specify number format of Java. Refer to 'Javadoc of DecimalFormat <http://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html>'_\ for details.
@@ -2377,7 +2387,7 @@ Attributes of \ ``@DateTimeFormat``\  annotation are given below.
      - Description
    * - 1.
      - iso
-     - Specify ISO date and time format. For details refer to `Javadoc of DateTimeFormat.ISO <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/format/annotation/DateTimeFormat.ISO.html>`_\ .
+     - Specify ISO date and time format. For details refer to `Javadoc of DateTimeFormat.ISO <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/format/annotation/DateTimeFormat.ISO.html>`_\ .
    * - 2.
      - pattern
      - Specify Java date and time format. Refer to 'Javadoc of SimpleDateFormat <http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>'_\ for details.
@@ -2526,7 +2536,7 @@ In this guideline, such methods are called as ModelAttribute methods and defined
 Binding to HTML form
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | It is possible to bind form object added to the \ ``Model``\  to HTML form(JSP) using \ ``<form:xxx>``\  tag.
-| For the details of \ ``<form:xxx>``\  tag, refer to `Using Spring's form tag library <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\ .
+| For the details of \ ``<form:xxx>``\  tag, refer to `Using Spring's form tag library <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\ .
 
  .. code-block:: jsp
     :emphasize-lines: 1
@@ -2719,11 +2729,11 @@ In this chapter, usage of main JSP tag libraries are described. However, refer t
      - Document
    * - 1.
      - Spring's form tag library
-     - - `<http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\
-       - `<http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/spring-form-tld.html>`_\
+     - - `<http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\
+       - `<http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/spring-form-tld.html>`_\
    * - 2.
      - Spring's tag library
-     - - `<http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/spring-tld.html>`_\
+     - - `<http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/spring-tld.html>`_\
    * - 3.
      - JSTL
      - - `<http://download.oracle.com/otndocs/jcp/jstl-1.2-mrel2-eval-oth-JSpec/>`_\
@@ -3066,7 +3076,7 @@ If \ ``spring:mvcUrl``\  function is used, a request URL can be built by linking
         When the request URL is dynamic (a URL wherein a path variable and a query string exists),
         \ ``arg``\  method and \ ``buildAndExpand``\  method must be called.
 
-        Refer to "\ `Spring Framework Reference Documentation(Building URIs to Controllers and methods from views) <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html#mvc-links-to-controllers-from-views>`_\ " for
+        Refer to "\ `Spring Framework Reference Documentation(Building URIs to Controllers and methods from views) <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html#mvc-links-to-controllers-from-views>`_\ " for
         the basic usage of \ ``arg``\  method and \ ``buildAndExpand``\  method.
 
 
@@ -3124,7 +3134,7 @@ Bind using ``<form:form>`` tag provided by Spring Framework.
      - Specify name of property to bind in the ``path`` attribute of \ ``<form:xxx>``\  tag. ``xxx`` part changes along with each input element.
 
 .. note::
-    For the details of \ ``<form:form>``\  , \ ``<form:xxx>``\  tag refer to `Using Spring's form tag library <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\ .
+    For the details of \ ``<form:form>``\  , \ ``<form:xxx>``\  tag refer to `Using Spring's form tag library <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/view.html#view-jsp-formtaglib>`_\ .
 
 |
 
@@ -3770,6 +3780,7 @@ Methods to specify Controller (methods to specify attributes) for applying commo
 .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - Sr. No.
      - Attribute
@@ -3914,6 +3925,10 @@ Methods to specify Controller (methods to specify attributes) for applying commo
            public class AppGlobalExceptionHandler {
                // ...
            }
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 

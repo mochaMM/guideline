@@ -322,6 +322,7 @@ If switching the locale using the request parameter, use the \ ``LocaleChangeInt
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - | Sr. No.
           - | Description

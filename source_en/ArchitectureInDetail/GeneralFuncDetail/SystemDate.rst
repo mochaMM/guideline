@@ -420,6 +420,7 @@ Records need to be added by creating a table as shown below.
      .. list-table::
          :header-rows: 1
          :widths: 25 75
+         :class: longtable
 
          * - Difference value unit
            - SQL

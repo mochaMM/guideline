@@ -77,10 +77,15 @@ Spring Frameworkが提供するHTTPクライアントである。
 
 \ ``RestTemplate``\ を使用した場合、デフォルトで以下の\ ``HttpMessageConverter``\ の実装クラスが登録される。
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.55\linewidth}|p{0.15\linewidth}|
 .. list-table:: **デフォルトで登録されるHttpMessageConverter**
     :header-rows: 1
     :widths: 5 25 55 15
+    :class: longtable
 
     * - 項番
       - クラス名
@@ -121,9 +126,13 @@ Spring Frameworkが提供するHTTPクライアントである。
         * メディアタイプが\ ``multipart/form-data``\ の場合、\ ``MultiValueMap<String, Object>``\ として書込され、\ ``Object``\ は\ ``AllEncompassingFormHttpMessageConverter``\ 内に別途設定される\ ``HttpMessageConveter``\ で変換される。
           （注意： Note 参照）
 
-        | デフォルトで登録されるパートデータ変換用の\ ``HttpMessageConveter``\ は、`AllEncompassingFormHttpMessageConverter <https://github.com/spring-projects/spring-framework/blob/v4.2.7.RELEASE/spring-web/src/main/java/org/springframework/http/converter/support/AllEncompassingFormHttpMessageConverter.java>`_\
-          と `FormHttpMessageConverter <https://github.com/spring-projects/spring-framework/blob/v4.2.7.RELEASE/spring-web/src/main/java/org/springframework/http/converter/FormHttpMessageConverter.java>`_\ のソースを参照されたい。なお、任意の\ ``HttpMessageConverter``\ を登録することもできる。
+        | デフォルトで登録されるパートデータ変換用の\ ``HttpMessageConveter``\ は、`AllEncompassingFormHttpMessageConverter <https://github.com/spring-projects/spring-framework/blob/v4.3.5.RELEASE/spring-web/src/main/java/org/springframework/http/converter/support/AllEncompassingFormHttpMessageConverter.java>`_\
+          と `FormHttpMessageConverter <https://github.com/spring-projects/spring-framework/blob/v4.3.5.RELEASE/spring-web/src/main/java/org/springframework/http/converter/FormHttpMessageConverter.java>`_\ のソースを参照されたい。なお、任意の\ ``HttpMessageConverter``\ を登録することもできる。
       - | ``MultiValueMap`` [#p3]_
+
+.. raw:: latex
+
+   \newpage
 
 .. note:: **AllEncompassingFormHttpMessageConverterのメディアタイプがmultipart/form-dataの場合について**
 
@@ -133,10 +142,15 @@ Spring Frameworkが提供するHTTPクライアントである。
 
 \
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.55\linewidth}|p{0.15\linewidth}|
 .. list-table:: **依存ライブラリがクラスパス上に存在する場合に登録されるHttpMessageConverter**
     :header-rows: 1
     :widths: 5 25 55 15
+    :class: longtable
 
     * - 項番
       - クラス名
@@ -187,6 +201,10 @@ Spring Frameworkが提供するHTTPクライアントである。
         | (Gsonがクラスパスに存在する場合に登録される)
       - | ``Object`` (JavaBean)
         | ``Map``
+
+.. raw:: latex
+
+   \newpage
 
 \
 
@@ -262,7 +280,7 @@ Spring Frameworkが提供するHTTPクライアントである。
 
 が定義されており、Spring Frameworkはデフォルト実装として\ ``org.springframework.web.client.DefaultResponseErrorHandler``\ を提供している。
 
-\ ``DefaultResponseErrorHandler``\ は、サーバから応答されたHTTPのステータスコードの値によって以下のようなエラー処理を行う。
+\ ``DefaultResponseErrorHandler``\ は、サーバから応答されたHTTPステータスコードの値によって以下のようなエラー処理を行う。
 
 * レスポンスコードが正常系(2xx)の場合は、エラー処理は行わない。
 * レスポンスコードがクライアントエラー系(4xx)の場合は、\ ``org.springframework.web.client.HttpClientErrorException``\ を発生させる。
@@ -313,7 +331,7 @@ How to use
 
     本ガイドラインでは、GETメソッドとPOSTメソッドを使用したクライアント処理の実装例のみを紹介するが、
     \ ``RestTemplate``\ は他のHTTPメソッド(PUT, PATCH, DELETE, HEAD, OPTIONSなど)もサポートしており、同じような要領で使用することができる。
-    詳細は\ `RestTemplate <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html>`_\ のJavadocを参照されたい。
+    詳細は\ `RestTemplate <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/client/RestTemplate.html>`_\ のJavadocを参照されたい。
 
 .. _RestClientHowToUseSetup:
 
@@ -512,8 +530,8 @@ HTTPステータスコード、レスポンスヘッダ、レスポンスボデ�
 
 .. note:: **ResponseEntityとは**
 
-    ``ResponseEntity``\ はHTTPレスポンスを表すクラスで、HTTPステータスコード、レスポンスヘッダ、レスポンスボティの情報を取得することができる。
-    詳細は\ `ResponseEntity <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/http/ResponseEntity.html>`_\ のJavadocを参照されたい。
+    ``ResponseEntity``\ はHTTPレスポンスを表すクラスで、HTTPステータスコード、レスポンスヘッダ、レスポンスボディの情報を取得することができる。
+    詳細は\ `ResponseEntity <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/http/ResponseEntity.html>`_\ のJavadocを参照されたい。
 
 
 
@@ -574,7 +592,7 @@ import部
 .. note:: **RequestEntityとは**
 
     ``RequestEntity``\ はHTTPリクエストを表すクラスで、接続URI、HTTPメソッド、リクエストヘッダ、リクエストボディを設定することができる。
-    詳細は\ `RequestEntity <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/http/RequestEntity.html>`_\ のJavadocを参照されたい。
+    詳細は\ `RequestEntity <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/http/RequestEntity.html>`_\ のJavadocを参照されたい。
 
     なお、リクエストヘッダの設定方法については、:ref:`RestClientHowToUseRequestHeader` を参照されたい。
 
@@ -745,7 +763,7 @@ import部
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 \ ``RequestEntity``\ と\ ``exchange``\ メソッドを使用すると、\ ``RequestEntity``\ のメソッドを使用して特定のヘッダ及び任意のヘッダを設定することができる。
-詳細は\ `RequestEntity <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/http/RequestEntity.html>`_\ のJavadocを参照されたい。
+詳細は\ `RequestEntity <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/http/RequestEntity.html>`_\ のJavadocを参照されたい。
 
 本ガイドラインでは、
 
@@ -1542,7 +1560,7 @@ RESTfulなURLを扱うには、URIテンプレートを使用して実装を行�
       - | URIテンプレートの変数{action}は、``RestTeamplate``\の使用時に指定の値に変換される。
     * - | (2)
       - | ``UriComponentsBuilder``\ を使用することで、URIテンプレートの変数1つ目が ``buildAndExpand``\ の引数で指定した値に置換され、『http://localhost:8080/api/users/create』のURIが作成される。
-        | 詳細は\ `UriComponentsBuilder <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/util/UriComponentsBuilder.html>`_\ のJavadocを参照されたい。
+        | 詳細は\ `UriComponentsBuilder <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/util/UriComponentsBuilder.html>`_\ のJavadocを参照されたい。
 
 
 
@@ -1662,7 +1680,7 @@ How to extend
       - | \ ``ClientHttpRequestInterceptor``\ インタフェースを実装する。
     * - | (2)
       - | リクエストする前に行いたい共通処理を実装する。
-        | 上記の実装例では、リクエストヘッとリクエストボディの内容をログに出力している。
+        | 上記の実装例では、リクエストヘッダーとリクエストボディの内容をログに出力している。
     * - | (3)
       - | \ ``intercept``\ メソッドの引数として受け取った\ ``ClientHttpRequestExecution``\ の\ ``execute``\ メソッドを実行し、リクエストの送信を実行する。
     * - | (4)
@@ -1838,10 +1856,10 @@ Basic認証用のリクエストヘッダ設定処理
 
     本ガイドラインでは、タスク実行処理をカスタマイズする実装例のみを紹介するが、
     \ ``AsyncRestTemplate``\は、HTTP通信処理もカスタマイズ出来る。
-    詳細は\ `AsyncRestTemplate <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/web/client/AsyncRestTemplate.html>`_\ のJavadocを参照されたい。
+    詳細は\ `AsyncRestTemplate <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/web/client/AsyncRestTemplate.html>`_\ のJavadocを参照されたい。
     
     また、\ ``ThreadPoolTaskExecutor``\ についても、スレッドプールサイズ以外のカスタマイズが出来る。
-    詳細は\ `ThreadPoolTaskExecutor <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.html>`_\ のJavadocを参照されたい。
+    詳細は\ `ThreadPoolTaskExecutor <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.html>`_\ のJavadocを参照されたい。
 
 
 
@@ -2044,7 +2062,7 @@ HTTP Proxyサーバの設定方法
 SimpleClientHttpRequestFactoryを使用したHTTP Proxyサーバの設定方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-資格情報が不要なHTTP Proxyサーバの接続先の指定は、\ ``RestTemplate``\ でデフォルトで使用されている\ ``SimpleClientHttpRequestFactory``\ に指定することが可能である。
+資格情報が不要なHTTP Proxyサーバの接続先の指定については、\ ``RestTemplate``\ がデフォルトで使用する\ ``SimpleClientHttpRequestFactory``\ で指定することが可能である。
 
 **Bean定義ファイル**
 

@@ -110,10 +110,15 @@ Invalid screen transition using 'Back' button of the browser
    :alt: duplicate invalid screen flow
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -131,6 +136,10 @@ Invalid screen transition using 'Back' button of the browser
      - | Server updates DB based on the purchase of the product received through request (5).
    * - | (7)
      - | Server sends response with a "Purchase Complete" screen for the product received through request (5).
+
+ .. raw:: latex
+
+    \newpage
 
  .. note::
  
@@ -152,6 +161,7 @@ However, if update process gets executed even after performing invalid screen op
         .. list-table::
            :header-rows: 1
            :widths: 10 90
+           :class: longtable
 
            * - Sr. No.
              - Description
@@ -245,6 +255,9 @@ About PRG (Post-Redirect-Get) pattern
    :alt: prevent double submit by reload
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -316,6 +329,7 @@ The process flow when expected operations are performed and process flow when un
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -335,6 +349,10 @@ The process flow when expected operations are performed and process flow when un
        | At this point, the transaction token (token001) is discarded.
    * - | (7)
      - | Server passes the updated transaction token (token002) to the Client.
+
+ .. raw:: latex
+
+    \newpage
 
 | The process flow when unexpected operations are performed is as follows:
 | Here, 'Back' button of the browser is taken as an example; however, this is also applicable for the direct requests from shortcuts etc.
@@ -376,6 +394,7 @@ Invalid screen transition in case of a business process that requires fixed scre
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -394,6 +413,10 @@ Invalid screen transition in case of a business process that requires fixed scre
        | **Since the transaction token sent by the Client is a value which has already been discarded, a transaction token error occurs.**
    * - | (6)
      - | Server sends response with an error screen to notify that a transaction token error has occurred.
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -468,7 +491,6 @@ Problems that occur when there is no NameSpace
  .. list-table::
    :header-rows: 1
    :widths: 10 90
-
 
    * - Sr. No.
      - Description
@@ -733,6 +755,7 @@ The attributes that can be specified in ``@TransactionTokenCheck``\  annotation 
  .. list-table:: \ ``@TransactionTokenCheck``\ Annotation Parameter List
    :header-rows: 1
    :widths: 10 10 45 10 20
+   :class: longtable
 
    * - Sr. No.
      - Attribute Name
@@ -774,6 +797,10 @@ The attributes that can be specified in ``@TransactionTokenCheck``\  annotation 
        | \ ``type = TransactionTokenType.CHECK``\
        |
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     It is recommended that the value to be set in value attribute or namespace attribute should be same as the config value of "value" attribute for \ ``@RequestMapping``\  annotation.
@@ -789,6 +816,10 @@ Format of transaction token
 
 Format for the transaction token used in the transaction token check of common library is as follows:
 
+ .. raw:: latex
+
+    \newpage
+
  .. figure:: ./images/transaction-token-name-pattern.png
    :alt: format of transaction token
    :width: 100%
@@ -803,6 +834,7 @@ Format for the transaction token used in the transaction token check of common l
  .. list-table::
    :header-rows: 1
    :widths: 10 15 75
+   :class: longtable
 
    * - Sr. No.
      - Components
@@ -827,6 +859,10 @@ Format for the transaction token used in the transaction token check of common l
      - TokenValue
      - * TokenValue is an element for storing the token value of the transaction.
        * TokenValue is generated upon execution of the method wherein \ ``TransactionTokenType.BEGIN``\  or \ ``TransactionTokenType.IN``\  is declared in the "type" attribute of \ ``@TransactionTokenCheck``\  annotation.
+
+ .. raw:: latex
+
+    \newpage
 
  .. warning::
  
@@ -862,6 +898,7 @@ The lifecycle (Generate, Update, Discard) control of transaction token is perfor
  .. list-table::
    :header-rows: 1
    :widths: 10 20 70
+   :class: longtable
 
    * - Sr. No.
      - Lifecycle Control
@@ -888,6 +925,10 @@ The lifecycle (Generate, Update, Discard) control of transaction token is perfor
      - | Token inherited
      - | Token on the server is inherited within the termination of the process for the method which specifies \ ``TransactionTokenType.CHECK``\  in type attribute of \ ``@TransactionTokenCheck``\  annotation and the transaction is continued.
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     A maximum limit is provided for the number of transaction tokens (TokenKey) which can be stored in a NameSpace. When the maximum limit is reached
@@ -910,10 +951,15 @@ The lifecycle (Generate, Update, Discard) control of transaction token is perfor
    :alt: transaction token count
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -927,6 +973,10 @@ The lifecycle (Generate, Update, Discard) control of transaction token is perfor
    * - | (4)
      - | The transaction tokens exceeding the maximum limit are deleted from the NameSpace.
        | **The transaction tokens are deleted in a sequence starting with the transaction token with the oldest date and time of execution.**
+
+ .. raw:: latex
+
+    \newpage
 
 |
 
@@ -980,7 +1030,7 @@ The settings for using the transaction token check provided by the common librar
    * - | (3)
      - | Specify a class (\ ``TransactionTokenInterceptor``\ ) to generate and check transaction tokens using \ ``@TransactionTokenCheck``\  annotation.
    * - | (4)
-     - | Set a class (\ ``TransactionTokenRequestDataValueProcessor``\ ) for automatic embedding of the transaction token to the Hidden area using  \ ``<fomr:form>``\  tag of Spring MVC.
+     - | Set a class (\ ``TransactionTokenRequestDataValueProcessor``\ ) for automatic embedding of the transaction token to the Hidden area using  \ ``<form:form>``\  tag of Spring MVC.
 
 
 Settings for handling transaction token errors
@@ -1328,10 +1378,15 @@ An example wherein the transaction token error occurs during a normal operation 
    :alt: transaction token file download ng
    :width: 100%
 
+ .. raw:: latex
+
+    \newpage
+
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1358,6 +1413,9 @@ An example wherein the transaction token error occurs during a normal operation 
      - | Server checks whether the token retained on the server (token001) and the token sent by the client (token002) are identical.
        | **Since the value is not the same, the request is determined as an illegitimate request.**
 
+ .. raw:: latex
+
+    \newpage
 
 As shown above, when the transaction token is applied for the transition from screen wherein file downloading process is performed (screen2) to next screen (screen3),
 token mismatch occurs during normal operation if \ ``IN``\  is used in \ ``TransactionTokenType``\  of file downloading process.
@@ -1371,6 +1429,7 @@ For these cases, \ ``CHECK``\  is used in the \ ``TransactionTokenType``\.
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - Sr. No.
      - Description
@@ -1393,6 +1452,10 @@ For these cases, \ ``CHECK``\  is used in the \ ``TransactionTokenType``\.
        | The token (token001) is discarded at this point.
    * - | (8)
      - | Server delivers the updated token (token002) to the client.
+
+ .. raw:: latex
+
+    \newpage
 
 .. warning::
 
@@ -1725,6 +1788,7 @@ The behavior when the maximum limit of transaction tokens for each NameSpace is 
  .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
 
    * - Sr. No.
@@ -1748,6 +1812,10 @@ The behavior when the maximum limit of transaction tokens for each NameSpace is 
    * - | (7)
      - | When a screen is to be displayed using redirect, hidden tag for transaction token does not exist.
 
+ .. raw:: latex
+
+    \newpage
+
  .. note::
  
     The transaction token existing on the server is automatically deleted when a new global token is generated.
@@ -1761,10 +1829,11 @@ Quick Reference
 | The usecases assumed in this business application are Create, Update, Delete relating to Account and Customer.
 | By using the table below as reference, the maximum limit of tokens and NameSpace settings should be performed as per the system requirements.
 
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.15\linewidth}|p{0.20\linewidth}|
  .. list-table::
    :header-rows: 1
    :widths: 10 20 15 20 15 20
+   :class: longtable
 
    * - Number
      - Number of tokens stored for each NameSpace

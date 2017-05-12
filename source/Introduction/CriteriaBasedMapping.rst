@@ -5,6 +5,8 @@
 セキュリティ対策に関するマッピング
 --------------------------------------------------------------------------------
 
+OWASP(Open Web Application Security Project)による観点
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \ `OWASP Top 10 for 2013 <https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project>`_\ を軸として、
 セキュリティに関連する機能の説明へのリンクを記載する。
 
@@ -13,6 +15,7 @@
 .. list-table::
    :header-rows: 1
    :widths: 10 40 50
+   :class: longtable
 
    * - 項番
      - 項目名
@@ -69,6 +72,39 @@
    * - A10
      - `Unvalidated Redirects and Forwards <https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards>`_
      - 特に言及なし
+
+CVE(Common Vulnerabilities and Exposures)による観点
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ガイドラインで言及しているCVEごとにその説明とガイドラインへのリンクを記載する。
+ガイドラインで言及していないCVEについては、\ `Pivotal Product Vulnerability Reports <https://pivotal.io/security>`_\を参照されたい。
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.40\linewidth}|p{0.50\linewidth}|
+.. list-table::
+   :header-rows: 1
+   :widths: 10 40 50
+
+   * - CVE
+     - 概要
+     - ガイドラインでの言及箇所
+   * - \ `CVE-2014-0050 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0050>`_\
+
+       \ `CVE-2016-3092 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3092>`_\
+     - Apache Commons FileUploadを使用するとファイルをアップロードする処理で細工されたリクエストによるDoS攻撃を受ける可能性がある
+
+     - * :ref:`FileUploadOverview`
+
+       * :ref:`file-upload_usage_commons_fileupload`
+   * - \ `CVE-2014-1904 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-1904>`_\
+     - \ ``<form:form>``\タグの \ ``action``\属性を省略するとXSS攻撃を受ける可能性がある
+     - * :ref:`ApplicationLayerImplementOfJsp`
+   * - \ `CVE-2015-3192 <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3192>`_\
+     - DTDを使用したDoS攻撃が可能となる
+     - * :ref:`ajax_how_to_use`
+
+       * :ref:`RESTHowToUseApplicationSettings`
+   * - \ `CVE-2016-5007 <https://pivotal.io/jp/security/cve-2016-5007>`_\
+     - Spring SecurityとSpring MVCのパス比較方法の差異を利用して認可のすり抜けが可能となる
+     - * :ref:`access_policy_designate_web_resource`
 
 .. raw:: latex
 

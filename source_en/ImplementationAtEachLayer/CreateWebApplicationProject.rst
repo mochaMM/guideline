@@ -71,7 +71,7 @@ The multi-project structured development project will be created using the
 
 As an Archetype following two types are provided for creating multi-project.
 
-.. tabularcolumns:: |p{0.5\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
+.. tabularcolumns:: |p{0.05\linewidth}|p{0.30\linewidth}|p{0.65\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 5 30 65
@@ -152,7 +152,7 @@ If the project creation successes, following type of log will be printed.
 
     (... omit)
     [INFO] ----------------------------------------------------------------------------
-    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.2.0.RELEASE
+    [INFO] Using following parameters for creating project from Archetype: terasoluna-gfw-multi-web-blank-mybatis3-archetype:5.3.0.RELEASE
     [INFO] ----------------------------------------------------------------------------
     [INFO] Parameter: groupId, Value: com.example.todo
     [INFO] Parameter: artifactId, Value: todo
@@ -561,14 +561,14 @@ Therefore, these could be unnecessary settings while having regular application 
 
 .. code-block:: console
 
-        └── src
-            └── main
-                └── resources
-                    ├── META-INF
+        └── src
+            └── main
+                └── resources
+                    ├── META-INF
                   (...)
-                    ├── database
-                    │   ├── H2-dataload.sql
-                    │   └── H2-schema.sql
+                    ├── database
+                    │   ├── H2-dataload.sql
+                    │   └── H2-schema.sql
 
 .. note::
 
@@ -855,6 +855,7 @@ Initially entire multi-project structure is explained.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -922,6 +923,10 @@ Initially entire multi-project structure is explained.
         * JUnit testing using Selenium operation
         * Expected value file used while Assert (if necessary)
 
+.. raw:: latex
+
+   \newpage
+
 .. note:: **About a terminology definition of [multi-project] in this guideline**
 
     The project created in Maven Archetype is the exact multi-module structured project.
@@ -956,7 +961,7 @@ Initially entire multi-project structure is explained.
     
      Stores RDBMS table definitions (DDL) and SQL statements for INSERT the initial data.
      This also managed as a maven project.
-     By defining `sql-maven-plugin <http://mojo.codehaus.org/sql-maven-plugin/>`_ in pom.xml,
+     By defining `sql-maven-plugin <http://www.mojohaus.org/sql-maven-plugin/>`_ in pom.xml,
      it is possible to automate the execution of DDL statements and initial data INSERT statements for any RDBMS in the course of the build lifecycle.
     
     * bar-common
@@ -1035,27 +1040,32 @@ Module that manages the application layer (Web layer) components are explained.
         └── src
             ├── main
             │   ├── java
-            │   │   └── com
-            │   │       └── example
-            │   │           └── project
-            │   │               └── app  ... (2)
-            │   │                   └── welcome
-            │   │                       └── HelloController.java  ... (3)
-            │   ├── resources
-            │   │   ├── META-INF
-            │   │   │   ├── dozer  ... (4)
-            │   │   │   └── spring  ... (5)
-            │   │   │       ├── application.properties  ... (6)
-            │   │   │       ├── applicationContext.xml  ... (7)
-            │   │   │       ├── spring-mvc.xml  ... (8)
-            │   │   │       └── spring-security.xml  ... (9)
-            │   │   └── i18n  ... (10)
-            │   │       └── application-messages.properties  ... (11)
+            │   │   └── com
+            │   │       └── example
+            │   │           └── project
+            │   │               └── app  ... (2)
+            │   │                   └── welcome
+            │   │                       └── HelloController.java  ... (3)
+            │   ├── resources
+            │   │   ├── META-INF
+            │   │   │   ├── dozer  ... (4)
+            │   │   │   └── spring  ... (5)
+            │   │   │       ├── application.properties  ... (6)
+            │   │   │       ├── applicationContext.xml  ... (7)
+            │   │   │       ├── spring-mvc.xml  ... (8)
+            │   │   │       └── spring-security.xml  ... (9)
+            │   │   └── i18n  ... (10)
+            │   │       └── application-messages.properties  ... (11)
+
+.. raw:: latex
+
+   \newpage
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1123,6 +1133,10 @@ Module that manages the application layer (Web layer) components are explained.
             **Messages should be modified according to the application requirements (Such as message Terms).**
             For the message definition, Refer [:doc:`../ArchitectureInDetail/WebApplicationDetail/MessageManagement`].
 
+.. raw:: latex
+
+   \newpage
+
 .. note::
 
     Refer [:ref:`CreateWebApplicationProjectAppendixApplicationContext`] for the application context and bean definition file related.
@@ -1131,33 +1145,33 @@ Module that manages the application layer (Web layer) components are explained.
 
 .. code-block:: console
 
-            │   └── webapp
-            │       ├── WEB-INF
-            │       │   ├── tiles  ... (12)
-            │       │   │   └── tiles-definitions.xml
-            │       │   ├── views  ... (13)
-            │       │   │   ├── common
-            │       │   │   │   ├── error  ... (14)
-            │       │   │   │   │   ├── accessDeniedError.jsp
-            │       │   │   │   │   ├── businessError.jsp
-            │       │   │   │   │   ├── dataAccessError.jsp
-            │       │   │   │   │   ├── invalidCsrfTokenError.jsp
-            │       │   │   │   │   ├── missingCsrfTokenError.jsp
-            │       │   │   │   │   ├── resourceNotFoundError.jsp
-            │       │   │   │   │   ├── systemError.jsp
-            │       │   │   │   │   ├── transactionTokenError.jsp
-            │       │   │   │   │   └── unhandledSystemError.html
-            │       │   │   │   └── include.jsp  ... (15)
-            │       │   │   ├── layout  ... (16)
-            │       │   │   │   ├── header.jsp
-            │       │   │   │   └── template.jsp
-            │       │   │   └── welcome
-            │       │   │       └── home.jsp  ... (17)
-            │       │   └── web.xml  ... (18)
-            │       └── resources  ... (19)
-            │           └── app
-            │               └── css
-            │                   └── styles.css  ... (20)
+            │   └── webapp
+            │       ├── WEB-INF
+            │       │   ├── tiles  ... (12)
+            │       │   │   └── tiles-definitions.xml
+            │       │   ├── views  ... (13)
+            │       │   │   ├── common
+            │       │   │   │   ├── error  ... (14)
+            │       │   │   │   │   ├── accessDeniedError.jsp
+            │       │   │   │   │   ├── businessError.jsp
+            │       │   │   │   │   ├── dataAccessError.jsp
+            │       │   │   │   │   ├── invalidCsrfTokenError.jsp
+            │       │   │   │   │   ├── missingCsrfTokenError.jsp
+            │       │   │   │   │   ├── resourceNotFoundError.jsp
+            │       │   │   │   │   ├── systemError.jsp
+            │       │   │   │   │   ├── transactionTokenError.jsp
+            │       │   │   │   │   └── unhandledSystemError.html
+            │       │   │   │   └── include.jsp  ... (15)
+            │       │   │   ├── layout  ... (16)
+            │       │   │   │   ├── header.jsp
+            │       │   │   │   └── template.jsp
+            │       │   │   └── welcome
+            │       │   │       └── home.jsp  ... (17)
+            │       │   └── web.xml  ... (18)
+            │       └── resources  ... (19)
+            │           └── app
+            │               └── css
+            │                   └── styles.css  ... (20)
             └── test
                 ├── java
                 └── resources
@@ -1166,6 +1180,7 @@ Module that manages the application layer (Web layer) components are explained.
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1211,6 +1226,10 @@ Module that manages the application layer (Web layer) components are explained.
     * - | (20)
       - CSS file that defines the screen style applied to the entire application.
 
+.. raw:: latex
+
+   \newpage
+
 |
 
 .. _CreateWebApplicationProjectConfigurationDomain:
@@ -1223,7 +1242,7 @@ Module that manages the domain layer components are explained.
 .. code-block:: console
 
     artifactId-domain
-        ├── pom.xml  ... (1)
+        ├── pom.xml  ... (1)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1243,23 +1262,23 @@ Module that manages the domain layer components are explained.
 
 .. code-block:: console
 
-        └── src
-            ├── main
-            │   ├── java
-            │   │   └── com
-            │   │       └── example
-            │   │           └── project
-            │   │               └── domain  ... (2)
-            │   │                   ├── model
-            │   │                   ├── repository
-            │   │                   └── service
-            │   └── resources
-            │       └── META-INF
-            │           ├── dozer  ... (3)
-            │           └── spring  ... (4)
-            │               ├── artifactId-codelist.xml  ... (5)
-            │               ├── artifactId-domain.xml  ... (6)
-            │               └── artifactId-infra.xml  ... (7)
+        └── src
+            ├── main
+            │   ├── java
+            │   │   └── com
+            │   │       └── example
+            │   │           └── project
+            │   │               └── domain  ... (2)
+            │   │                   ├── model
+            │   │                   ├── repository
+            │   │                   └── service
+            │   └── resources
+            │       └── META-INF
+            │           ├── dozer  ... (3)
+            │           └── spring  ... (4)
+            │               ├── artifactId-codelist.xml  ... (5)
+            │               ├── artifactId-domain.xml  ... (6)
+            │               └── artifactId-infra.xml  ... (7)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1307,16 +1326,16 @@ Module that manages the domain layer components are explained.
 
 .. code-block:: console
 
-            └── test
-                ├── java
-                │   └── com
-                │       └── example
-                │           └── project
-                │               └── domain
-                │                   ├── repository
-                │                   └── service
-                └── resources
-                    └── test-context.xml  ... (8)
+            └── test
+                ├── java
+                │   └── com
+                │       └── example
+                │           └── project
+                │               └── domain
+                │                   ├── repository
+                │                   └── service
+                └── resources
+                    └── test-context.xml  ... (8)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1335,24 +1354,24 @@ Module that manages the domain layer components are explained.
 
 .. code-block:: console
 
-        └── src
-            ├── main
-            │   ├── java
+        └── src
+            ├── main
+            │   ├── java
            (...)
-            │   └── resources
-            │       ├── META-INF
-            │       │   ├── dozer
-            │       │   ├── mybatis  ... (9)
-            │       │   │   └── mybatis-config.xml  ... (10)
-            │       │   └── spring
+            │   └── resources
+            │       ├── META-INF
+            │       │   ├── dozer
+            │       │   ├── mybatis  ... (9)
+            │       │   │   └── mybatis-config.xml  ... (10)
+            │       │   └── spring
            (...)
-            │       └── com
-            │           └── example
-            │               └── project
-            │                   └── domain
-            │                       └── repository  ... (11)
-            │                           └── sample
-            │                               └── SampleRepository.xml  ... (12)
+            │       └── com
+            │           └── example
+            │               └── project
+            │                   └── domain
+            │                       └── repository  ... (11)
+            │                           └── sample
+            │                               └── SampleRepository.xml  ... (12)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1387,12 +1406,12 @@ Module that manages the environment dependent configuration files are explained.
 .. code-block:: console
 
     artifactId-env
-        ├── configs  ... (1)
-        │   ├── production-server  ... (2)
-        │   │   └── resources
-        │   └── test-server
-        │       └── resources
-        ├── pom.xml  ... (3)
+        ├── configs  ... (1)
+        │   ├── production-server  ... (2)
+        │   │   └── resources
+        │   └── test-server
+        │       └── resources
+        ├── pom.xml  ... (3)
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1425,19 +1444,19 @@ Module that manages the environment dependent configuration files are explained.
 
 .. code-block:: console
 
-        └── src
-            └── main
-                └── resources  ... (4)
-                    ├── META-INF
-                    │   └── spring
-                    │       ├── artifactId-env.xml  ... (5)
-                    │       └── artifactId-infra.properties  ... (6)
-                    ├── database  ... (7)
-                    │   ├── H2-dataload.sql
-                    │   └── H2-schema.sql
-                    ├── dozer.properties  ... (8)
-                    ├── log4jdbc.properties  ... (9)
-                    └── logback.xml  ... (10)
+        └── src
+            └── main
+                └── resources  ... (4)
+                    ├── META-INF
+                    │   └── spring
+                    │       ├── artifactId-env.xml  ... (5)
+                    │       └── artifactId-infra.properties  ... (6)
+                    ├── database  ... (7)
+                    │   ├── H2-dataload.sql
+                    │   └── H2-schema.sql
+                    ├── dozer.properties  ... (8)
+                    ├── log4jdbc.properties  ... (9)
+                    └── logback.xml  ... (10)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1490,10 +1509,10 @@ Module that manages the SQL file to initialize the database is explained.
 .. code-block:: console
 
     artifactId-initdb
-        ├── pom.xml  ... (1)
-        └── src
-            └── main
-                └── sqls  ... (2)
+        ├── pom.xml  ... (1)
+        └── src
+            └── main
+                └── sqls  ... (2)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1513,7 +1532,7 @@ Module that manages the SQL file to initialize the database is explained.
       - Directory for storing the database initialization SQL files.
 
         It is an empty directory at the time of creation.
-        For how to create, Refer `Sample application of initdb project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.2.0.RELEASE/terasoluna-tourreservation-initdb/src/main/sqls>`_.
+        For how to create, Refer `Sample application of initdb project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.3.0.RELEASE/terasoluna-tourreservation-initdb/src/main/sqls>`_.
 
 .. note::
 
@@ -1535,21 +1554,21 @@ Module that manages the E2E (End To End) testing components used in Selenium exp
 .. code-block:: console
 
     artifactId-selenium
-        ├── pom.xml  ... (1)
-        └── src
-            └── test  ... (2)
-                ├── java
-                │   └── com
-                │       └── example
-                │           └── project
-                │               └── selenium
-                │                   └── welcome
-                │                       └── HelloTest.java  ... (3)
-                └── resources
+        ├── pom.xml  ... (1)
+        └── src
+            └── test  ... (2)
+                ├── java
+                │   └── com
+                │       └── example
+                │           └── project
+                │               └── selenium
+                │                   └── welcome
+                │                       └── HelloTest.java  ... (3)
+                └── resources
                     └── META-INF
-                        └── spring
-                            ├── selenium.properties  ... (4)
-                            └── seleniumContext.xml  ... (5)
+                        └── spring
+                            ├── selenium.properties  ... (4)
+                            └── seleniumContext.xml  ... (5)
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -1569,7 +1588,7 @@ Module that manages the E2E (End To End) testing components used in Selenium exp
     * - | (2)
       - Directory that contains the configuration files and testing components.
 
-        For how to create, Refer `Sample application of selenium project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.2.0.RELEASE/terasoluna-tourreservation-selenium>`_.
+        For how to create, Refer `Sample application of selenium project <https://github.com/terasolunaorg/terasoluna-tourreservation-mybatis3/tree/5.3.0.RELEASE/terasoluna-tourreservation-selenium>`_.
 
     * - | (3)
       - Sample test class using Selenium WebDriver.
@@ -1607,6 +1626,7 @@ The hierarchical structure of the project indicated below which is created in Ma
 .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - | Sr. No.
       - | Description
@@ -1616,8 +1636,8 @@ The hierarchical structure of the project indicated below which is created in Ma
         The project created in Maven Archetype has become a multi-module configuration,
         parent project and each sub-module have a cross-reference relationship.
 
-        In the project created in version 5.2.0.RELEASE Maven Archetype,
-        [org.terasoluna.gfw:terasoluna-gfw-parent:5.2.0.RELEASE] is specified as a parent project.
+        In the project created in version 5.3.0.RELEASE Maven Archetype,
+        [org.terasoluna.gfw:terasoluna-gfw-parent:5.3.0.RELEASE] is specified as a parent project.
     * - | (2)
       - TERASOLUNA Server Framework for Java (5.x) Parent project.
 
@@ -1642,6 +1662,10 @@ The hierarchical structure of the project indicated below which is created in Ma
         Since [org.springframework.boot:spring-boot-dependencies:1.2.5.RELEASE] is specified as a parent project,  the definition of \ ``<dependencyManagement>`` \ defined into pom file of the spring-boot-dependencies also imported into pom file of the terasoluna-gfw-parent.
     * - | (5)
       - Spring Boot Dependencies project.
+
+.. raw:: latex
+
+   \newpage
 
 .. tip::
 
@@ -1709,6 +1733,9 @@ Relationship of bean definition file and structure of the Spring Framework appli
         mechanized such a way that it can be obtained by referring the application context of the Web application (parent context),
         hence it is possible to inject domain layer components for the application layer component.
 
+.. raw:: latex
+
+   \newpage
 
 .. note:: **About the operation when registered the same components in both application contexts.**
 

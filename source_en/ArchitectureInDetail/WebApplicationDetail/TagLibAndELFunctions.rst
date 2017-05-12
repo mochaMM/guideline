@@ -15,7 +15,7 @@ JSP Tag Library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Below are the JSP Tag Libraries offered by common library.
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
@@ -41,7 +41,7 @@ Below are the EL Functions offered by common library.
 
 **XSS counter measures**
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
@@ -61,7 +61,7 @@ Below are the EL Functions offered by common library.
 
 **URL related**
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
@@ -78,7 +78,7 @@ Below are the EL Functions offered by common library.
 
 **DOM related**
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
@@ -95,7 +95,7 @@ Below are the EL Functions offered by common library.
 
 **Utility**
 
- .. tabularcolumns:: |p{0.5\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
+ .. tabularcolumns:: |p{0.05\linewidth}|p{0.25\linewidth}|p{0.60\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 5 25 60
@@ -394,7 +394,7 @@ f:query() function specification
  .. note::
 
     A simple type property value of the specified object is converted into string using the convert method of \ ``org.springframework.format.support.DefaultFormattingConversionService``\.
-    Refer \ `Spring Framework Reference Documentation(Spring Type Conversion) <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#core-convert>`_\
+    Refer \ `Spring Framework Reference Documentation(Spring Type Conversion) <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#core-convert>`_\
     for the \ ``ConversionService``\.
 
 
@@ -457,6 +457,7 @@ f:query() function specification
      .. list-table::
         :header-rows: 1
         :widths: 45 30 25
+        :class: longtable
 
         * - Conditions
           - Conversion specification of parameter value

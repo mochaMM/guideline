@@ -72,6 +72,7 @@ Overview
 .. list-table:: **表-例外のハンドリング方法**
    :header-rows: 1
    :widths: 10 30 35 25
+   :class: longtable
 
    * - 項番
      - ハンドリング方法
@@ -103,6 +104,9 @@ Overview
        |
        | 2. :ref:`exception-handling-class-viewerror-label`
 
+.. raw:: latex
+
+   \newpage
 
 .. figure:: ./images/exception-handling-method.png
   :alt: handling method
@@ -361,6 +365,7 @@ Detail
 .. list-table:: **表-例外ハンドリングのパターン**
    :header-rows: 1
    :widths: 10 40 25 10 15
+   :class: longtable
 
    * - 項番
      - ハンドリングの目的
@@ -405,6 +410,9 @@ Detail
        | (ハンドリングルールを、\ ``web.xml``\ に指定する)
      - | Webアプリケーション
 
+.. raw:: latex
+
+   \newpage
 
 .. _exception-handling-class-from-middle-label:
 
@@ -723,6 +731,7 @@ How to use
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -755,6 +764,9 @@ How to use
     * - | (5)
       - | \ ``ExceptionCodeResolver``\ をDIする。
 
+ .. raw:: latex
+
+    \newpage
 
 ２． ログ定義を追加する。
 
@@ -849,7 +861,7 @@ How to use
         .. note:: **アプリケーションログ出力用のappender定義について**
 
              アプリケーションログ用のappenderは、例外出力用に個別に定義するのではなく、フレームワークや、アプリケーションコードで出力するログ用のappenderと、同じものを使うことを推奨する。
-             同じ出力先にすることで、例外の発生するまでの過程が追いやすくなる。
+             同じ出力先にすることで、例外が発生するまでの過程が追いやすくなる。
 
     * - | (3)
       - | 出力レベルを指定する。ExceptionLoggerでは、info, warn, errorの3種類のログを出力しているが、システム要件にあったレベルを指定すること。本ガイドラインでは、infoレベルを推奨する。
@@ -952,6 +964,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1018,6 +1031,10 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
                     <property name="prefix" value="/WEB-INF/views/" />
                     <property name="suffix" value=".jsp" />
                 </bean>
+
+ .. raw:: latex
+
+    \newpage
 
 \ ``HandlerExceptionResolver``\ でハンドリングされた例外を、ログに出力するためのインタセプタクラス（\ ``HandlerExceptionResolverLoggingInterceptor``\ ）と、AOPの設定を、bean定義に追加する。
 
@@ -1633,6 +1650,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
      .. list-table::
         :header-rows: 1
         :widths: 10 90
+        :class: longtable
 
         * - 項番
           - 説明
@@ -1771,6 +1789,7 @@ Appendix
 .. list-table:: **表- org.terasoluna.gfw.common.exception パッケージ配下のクラス**
    :header-rows: 1
    :widths: 10 20 65
+   :class: longtable
 
    * - 項番
      - クラス
@@ -1843,7 +1862,7 @@ Appendix
        | Notification
        | Exception
      - | 結果メッセージ（\ ``ResultMessages``\ ）を保持している例外であることを通知するための抽象例外クラスで、共通ライブラリでは、\ ``BusinessException``\ と、\ ``ResourceNotFoundException``\ が継承している。
-       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作としてはトランザクションはロールバックされる。
+       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作としてトランザクションはロールバックされる。
        | 本例外クラスを継承すると、\ ``ResultMessagesLoggingInterceptor``\ によって、warnレベルのログが出力される。
    * - | (11)
      - | SystemException
@@ -1854,6 +1873,9 @@ Appendix
      - | 例外コードを保持する役割があることを示すインタフェースで、共通ライブラリでは、\ ``SystemException``\ が実装している。
        | 本インタフェースを実装した例外クラスを作成すると、共通ライブラリから提供している例外ハンドリング処理にて、例外で保持している例外コードで、そのまま使われる。
 
+.. raw:: latex
+
+   \newpage
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.65\linewidth}|
 .. list-table:: **表- org.terasoluna.gfw.web.exception パッケージ配下のクラス**
@@ -1888,6 +1910,9 @@ Appendix
        | 本Filterを使用した場合、致命的なエラー、およびSpring MVC管理外で発生するすべての例外を、ログに出力することができる。
        | ログは、\ ``ExceptionLogger``\ を使用して出力している。
 
+.. raw:: latex
+
+   \newpage
 
 .. _exception-handling-about-systemexceptionresolver-label:
 
@@ -1900,6 +1925,7 @@ SystemExceptionResolverの設定項目について
 .. list-table:: **本編で説明していない設定項目一覧**
    :header-rows: 1
    :widths: 5 15 15 45 20
+   :class: longtable
 
    * - 項番
      - 項目名
@@ -1955,6 +1981,10 @@ SystemExceptionResolverの設定項目について
      - | HTTPレスポンス時のキャッシュ制御の有無(true:有 false:無)を指定する。
        | true:有を指定すると、キャッシュを無効にするためのHTTPレスポンスヘッダーが追加される。
      - | false:無
+
+.. raw:: latex
+
+   \newpage
 
 | (1)-(3)は、\ ``org.terasoluna.gfw.web.exception.SystemExceptionResolver``\ の設定項目。
 | (4)は、\ ``org.springframework.web.servlet.handler.SimpleMappingExceptionResolver``\ の設定項目。
@@ -2243,6 +2273,7 @@ DefaultHandlerExceptionResolverでハンドリングされるフレームワー�
 .. list-table::
    :header-rows: 1
    :widths: 10 60 20
+   :class: longtable
 
    * - 項番
      - ハンドリングされるフレームワーク例外

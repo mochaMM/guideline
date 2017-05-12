@@ -29,26 +29,26 @@ DIコンテナ
 DIコンテナとしてSpring Frameworkを利用する。
 
 
-* `Spring Framework 4.2 <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/beans.html>`_
+* `Spring Framework 4.3 <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/beans.html>`_
 
 MVCフレームワーク
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Web MVCフレームワークとしてSpring MVCを利用する。
 
-* `Spring MVC 4.2 <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/mvc.html>`_
+* `Spring MVC 4.3 <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/mvc.html>`_
 
 O/R Mapper
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 本ガイドラインでは、以下の\ **いずれか**\ を想定している。
 
-* `MyBatis 3.3 <http://mybatis.github.io/mybatis-3/>`_
+* `MyBatis 3.4 <http://mybatis.github.io/mybatis-3/>`_
 
   * Spring Frameworkとの連携ライブラリとして、\ `MyBatis-Spring <http://mybatis.github.io/spring/>`_\ を使用する。
 
 * `JPA2.1 <http://download.oracle.com/otn-pub/jcp/persistence-2_1-fr-eval-spec/JavaPersistence.pdf>`_
 
-  * プロバイダは、\ `Hibernate 4.3 <http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html_single/>`_\ を使用する。
+  * プロバイダは、\ `Hibernate 5.0 <http://docs.jboss.org/hibernate/orm/5.0/manual/en-US/html_single/>`_\ を使用する。
 
 .. note::
 
@@ -56,7 +56,7 @@ O/R Mapper
 
 .. warning::
 
-  どんなプロジェクトでもJPAを採用できるわけではない。"テーブルがほとんど正規化されていない"、"テーブルのカラム数が多すぎる"というテーブル設計がされている場合に、JPAの利用は難しい。
+  どんなプロジェクトでもJPAを採用できるわけではない。"テーブルがほとんど正規化されていない"、"テーブルのカラム数が多すぎる"というテーブル設計がされている場合には、JPAの利用は難しい。
 
   また、本ガイドラインではJPAの基本的な説明は行っておらず、JPA利用経験者がチーム内にいることが前提である。
 
@@ -74,7 +74,7 @@ Viewのレイアウトを共通化する場合は、
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 認証・認可のフレームワークとしてSpring Securityを利用する。
 
-* `Spring Security 4.0 <http://projects.spring.io/spring-security/>`_
+* `Spring Security 4.1 <http://projects.spring.io/spring-security/>`_
 
 .. tip::
 
@@ -95,7 +95,7 @@ Viewのレイアウトを共通化する場合は、
 
   * 実装は、\ `Hibernate Validator 5.2 <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/>`_\ を利用する。
 
-* 相関チェックには\ `Bean Validation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\ 、もしくは\ `Spring Validation <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ を利用する。
+* 相関チェックには\ `Bean Validation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\ 、もしくは\ `Spring Validation <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html#validator>`_\ を利用する。
 
   * 使い分けについては\ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\ を参照されたい。
 
@@ -119,7 +119,7 @@ Viewのレイアウトを共通化する場合は、
 利用するOSSのバージョン
 --------------------------------------------------------------------------------
 
-version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
+version 5.3.0.RELEASEで利用するOSSの一覧を以下に示す。
 
 .. tip::
 
@@ -135,7 +135,7 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     への依存関係を解決しており、
     TERASOLUNA Server Framework for Java (5.x)で使用するOSSのバージョンは、原則として、Spring IO platformの定義に準じている。
 
-    なお、version 5.2.0.RELEASEで指定しているSpring IO platformのバージョンは、`2.0.6.RELEASE <http://docs.spring.io/platform/docs/2.0.6.RELEASE/reference/htmlsingle/>`_\ である。
+    なお、version 5.3.0.RELEASEで指定しているSpring IO platformのバージョンは、`Athens-SR2 <http://docs.spring.io/platform/docs/Athens-SR2/reference/htmlsingle/>`_\ である。
 
 .. tabularcolumns:: |p{0.15\linewidth}|p{0.27\linewidth}|p{0.25\linewidth}|p{0.15\linewidth}|p{0.05\linewidth}|p{0.08\linewidth}|
 .. list-table::
@@ -152,139 +152,145 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - Spring
       - org.springframework
       - spring-aop
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-aspects
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-beans
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-context
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-context-support
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-core
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-expression
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-jdbc
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-orm
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-tx
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-web
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-webmvc
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-jms
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework
       - spring-messaging
-      - 4.2.7.RELEASE
+      - 4.3.5.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.data
       - spring-data-commons
-      - 1.11.4RELEASE
+      - 1.12.6.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-acl
-      - 4.0.4.RELEASE
+      - 4.1.4.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-config
-      - 4.0.4.RELEASE
+      - 4.1.4.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-core
-      - 4.0.4.RELEASE
+      - 4.1.4.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-taglibs
-      - 4.0.4.RELEASE
+      - 4.1.4.RELEASE
       - \*
       -
     * - Spring
       - org.springframework.security
       - spring-security-web
-      - 4.0.4.RELEASE
+      - 4.1.4.RELEASE
+      - \*
+      -
+    * - Spring
+      - org.springframework.security.oauth
+      - spring-security-oauth2
+      - 2.0.12.RELEASE
       - \*
       -
     * - MyBatis3
       - org.mybatis
       - mybatis
-      - 3.3.1
+      - 3.4.2
       -
       - \*1
     * - MyBatis3
       - org.mybatis
       - mybatis-spring
-      - 1.2.5
+      - 1.3.1
       -
       - \*1
     * - MyBatis3
       - org.mybatis
       - mybatis-typehandlers-jsr310
-      - 1.0.1
+      - 1.0.2
       -
       - \*1*6
     * - JPA(Hibernate)
@@ -302,19 +308,19 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - JPA(Hibernate)
       - org.hibernate
       - hibernate-core
-      - 4.3.11.Final
+      - 5.0.11.Final
       - \*
       - \*2
     * - JPA(Hibernate)
       - org.hibernate
       - hibernate-entitymanager
-      - 4.3.11.Final
+      - 5.0.11.Final
       - \*
       - \*2
     * - JPA(Hibernate)
       - org.hibernate.common
       - hibernate-commons-annotations
-      - 4.0.5.Final
+      - 5.0.1.Final
       - \*
       - \*2 \*4
     * - JPA(Hibernate)
@@ -326,31 +332,25 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - JPA(Hibernate)
       - org.javassist
       - javassist
-      - 3.18.1-GA
+      - 3.20.0-GA
       - \*
       - \*2
     * - JPA(Hibernate)
       - org.jboss
       - jandex
-      - 1.1.0.Final
-      - \*
-      - \*2 \*4
-    * - JPA(Hibernate)
-      - org.jboss.logging
-      - jboss-logging-annotations
-      - 1.2.0.Final
-      - \*
-      - \*2 \*4 \*5
-    * - JPA(Hibernate)
-      - org.jboss.spec.javax.transaction
-      - jboss-transaction-api_1.2_spec
-      - 1.0.0.Final
+      - 2.0.0.Final
       - \*
       - \*2 \*4
     * - JPA(Hibernate)
       - org.springframework.data
       - spring-data-jpa
-      - 1.9.4.RELEASE
+      - 1.10.6.RELEASE
+      - \*
+      - \*2
+    * - JPA(Hibernate)
+      - org.apache.geronimo.specs
+      - geronimo-jta_1.1_spec
+      - 1.1.1
       - \*
       - \*2
     * - DI
@@ -380,13 +380,13 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - ログ出力
       - ch.qos.logback
       - logback-classic
-      - 1.1.7
+      - 1.1.8
       - \*
       -
     * - ログ出力
       - ch.qos.logback
       - logback-core
-      - 1.1.7
+      - 1.1.8
       - \*
       - \*4
     * - ログ出力
@@ -398,43 +398,43 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - ログ出力
       - org.slf4j
       - jcl-over-slf4j
-      - 1.7.21
+      - 1.7.22
       - \*
       -
     * - ログ出力
       - org.slf4j
       - slf4j-api
-      - 1.7.21
+      - 1.7.22
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-annotations
-      - 2.6.7
+      - 2.8.5
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-core
-      - 2.6.7
+      - 2.8.5
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.core
       - jackson-databind
-      - 2.6.7
+      - 2.8.5
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.datatype
       - jackson-datatype-joda
-      - 2.6.7
+      - 2.8.5
       - \*
       -
     * - JSON
       - com.fasterxml.jackson.datatype
       - jackson-datatype-jsr310
-      - 2.6.7
+      - 2.8.5
       - \*
       - \*6
     * - 入力チェック
@@ -458,13 +458,13 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - 入力チェック
       - com.fasterxml
       - classmate
-      - 1.1.0
+      - 1.3.3
       - \*
       - \*4
     * - Bean変換
       - commons-beanutils
       - commons-beanutils
-      - 1.9.2
+      - 1.9.3
       - \*
       - \*3
     * - Bean変換
@@ -482,13 +482,13 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - Bean変換
       - org.apache.commons
       - commons-lang3
-      - 3.3.2
+      - 3.4
       - \*
       - \*3
     * - 日付操作
       - joda-time
       - joda-time
-      - 2.8.2
+      - 2.9.6
       - \*
       -
     * - 日付操作
@@ -500,13 +500,13 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - 日付操作
       - org.jadira.usertype
       - usertype.core
-      - 3.2.0.GA
+      - 5.0.0.GA
       -
       - \*2
     * - 日付操作
       - org.jadira.usertype
       - usertype.spi
-      - 3.2.0.GA
+      - 5.0.0.GA
       -
       - \*2
     * - コネクションプール
@@ -530,37 +530,37 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - Tiles
       - org.apache.tiles
       - tiles-api
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3
     * - Tiles
       - org.apache.tiles
       - tiles-core
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3
     * - Tiles
       - org.apache.tiles
       - tiles-jsp
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3
     * - Tiles
       - org.apache.tiles
       - tiles-servlet
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3
     * - Tiles
       - org.apache.tiles
       - tiles-template
-      - 3.0.5
+      - 3.0.7
       - \*
       - \*3 \*4
     * - Tiles
       - org.apache.tiles
       - tiles-autotag-core-runtime
-      - 1.1.0
+      - 1.2
       - \*
       - \*3 \*4
     * - Tiles
@@ -596,7 +596,7 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
     * - ユーティリティ
       - commons-io
       - commons-io
-      - 2.4
+      - 2.5
       - \*
       - \*3
     * - サーブレット
@@ -643,6 +643,7 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
 .. list-table::
     :header-rows: 1
     :widths: 5 15 40 20 10 10
+    :class: longtable
 
     * - 項番
       - プロジェクト名
@@ -777,6 +778,10 @@ version 5.2.0.RELEASEで利用するOSSの一覧を以下に示す。
       - 有
       - 有
 
+.. raw:: latex
+
+   \newpage
+
 #. | \ ``<dependency>``\ 要素ではないが、各プロジェクトの\ ``<parent>``\ 要素として組み込まれる。
 #. | \ ``<dependency>``\ 要素ではないが、\ ``<dependency>``\ 要素からの推移的依存関係として組み込まれる。
 #. | データアクセスに、MyBatis3を使用する場合に標準で組み込まれる共通ライブラリ
@@ -817,7 +822,7 @@ terasoluna-gfw-commonは以下の部品を提供している。
       - 汎用的に使用できる例外クラスを提供する。
     * -
       - 例外ロガー
-      - プリケーション内で発生した例外をログに出力するためのロガークラスを提供する。
+      - アプリケーション内で発生した例外をログに出力するためのロガークラスを提供する。
     * -
       - 例外コード
       - 例外クラスに対応する例外コード(メッセージID)を解決するための仕組み(クラス)を提供する。

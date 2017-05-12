@@ -47,6 +47,7 @@ The list of security requirements fulfilled by the application is shown below. T
 .. list-table::
     :header-rows: 1
     :widths: 10 20 30 40
+    :class: longtable
 
     * - Sr. No.
       - Classification
@@ -154,6 +155,10 @@ The list of security requirements fulfilled by the application is shown below. T
       - Audit log output
       - Output date and time, user name, operation details and operation results for each request in a log
 
+.. raw:: latex
+
+   \newpage
+
 Functions
 --------------------------------------------------------------------------------
 
@@ -228,6 +233,7 @@ Screen transition diagram is shown below. Screen transition in case of an error 
 .. list-table::
     :header-rows: 1
     :widths: 20 50 30
+    :class: longtable
 
     * - | Sr. No.
       - | Screen Name
@@ -275,6 +281,10 @@ Screen transition diagram is shown below. Screen transition in case of an error 
       - | Password change complete screen
       - | Authenticated users only
 
+.. raw:: latex
+
+   \newpage
+
 URL List
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 URL list is shown below.
@@ -283,6 +293,7 @@ URL list is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 20 15 15 40
+    :class: longtable
 
     * - Sr. No.
       - Process name
@@ -395,6 +406,10 @@ URL list is shown below.
       - /reissue/resetpassword?complete
       - Display password reissue complete screen
 
+.. raw:: latex
+
+   \newpage
+
 ER diagram
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -409,6 +424,7 @@ ER diagram in this application is shown below.
 .. list-table::
     :header-rows: 1
     :widths: 10 20 40 30
+    :class: longtable
 
     * - Sr. No.
       - Entity name
@@ -465,6 +481,10 @@ ER diagram in this application is shown below.
       - | token : token used when failed to reissue password
         | attemptDate : Date and time when password reissue was attempted
 
+.. raw:: latex
+
+   \newpage
+
 .. tip ::
 
    In order to determine initial password and password expiration, a design can also be adopted wherein the information such as last modified date and time of password is provided by adding a field to the account entity.
@@ -478,8 +498,8 @@ Implementation method and code description
 ================================================================================
 
 | Method of implementation in this application and the code are described for each classification of security requirements.
-| Only the minimum code required to fulfil the requirements for each classification is described here. Refer to `GitHub <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.2.0.RELEASE/secure-login-demo>`_ for the complete code.
-| SQL for initial data registration to run this application is placed `here <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.2.0.RELEASE/secure-login-demo/secure-login-env/src/main/resources/database>`_.
+| Only the minimum code required to fulfil the requirements for each classification is described here. Refer to `GitHub <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.0.RELEASE/secure-login-demo>`_ for the complete code.
+| SQL for initial data registration to run this application is placed `here <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.0.RELEASE/secure-login-demo/secure-login-demo/secure-login-env/src/main/resources/database>`_.
 
 .. note::
 
@@ -877,7 +897,7 @@ The code implemented according to the implementation method mentioned above is d
      \ ``@ Cacheable`` \  assigned to isInitialPassword and isCurrentPasswordExpired is an annotation to use the Spring Cache Abstraction function.
      The result for method arguments can be cached by assigning \ ``@Cacheable`` \  annotation.
      Access to database during each initial password and password expiration determination is prevented by the use of the cache thereby preventing performance degradation.
-     Refer to `Official document <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/cache.html>`__ for Cache Abstraction.
+     Refer to `Official document <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/cache.html>`__ for Cache Abstraction.
 
      Further, while using cache, it should be noted that it is necessary to clear the cache as and when needed.
      In this application, at the time of changing the password or during logout, clear the cache to determine password expiration and determine initial password again.
@@ -1532,7 +1552,7 @@ The code implemented according to the implementation method mentioned above is d
                if (!passwordEncoder.matches(newPassword, currentPassword)) {
                    return true;
                } else {
-       	           context.disableDefaultConstraintViolation();
+                   context.disableDefaultConstraintViolation();
                    context.buildConstraintViolationWithTemplate(message)
                            .addPropertyNode(newPasswordPropertyName).addConstraintViolation();
                    return false;
@@ -1564,7 +1584,7 @@ The code implemented according to the implementation method mentioned above is d
                if (result.isValid()) { // (10)
                    return true;
                } else {
-       	           context.disableDefaultConstraintViolation();
+                   context.disableDefaultConstraintViolation();
                    context.buildConstraintViolationWithTemplate(
                            encodedPasswordHistoryValidator.getMessages(result).get(0)) // (11)
                            .addPropertyNode(newPasswordPropertyName).addConstraintViolation();
@@ -1577,7 +1597,8 @@ The code implemented according to the implementation method mentioned above is d
     .. list-table::
        :header-rows: 1
        :widths: 10 90
-    
+       :class: longtable
+
        * - Sr. No.
          - Description
        * - | (1)
@@ -1603,6 +1624,9 @@ The code implemented according to the implementation method mentioned above is d
        * - | (11)
          - | Fetch the password validation error messages.
 
+    .. raw:: latex
+
+       \newpage
 
 * Password validation
 
@@ -2705,7 +2729,7 @@ Code description
        @Service
        @Transactional
        public class AuthenticationEventSharedServiceImpl implements
-       		AuthenticationEventSharedService {
+           AuthenticationEventSharedService {
 
            // omitted
            
@@ -3028,7 +3052,7 @@ Implementation method
 | While reissuing the password, an alternative to password is required to verify that the user is the owner of the account.
 | In this application, URL of password reissue screen and confidential information are used as the information to verify the user.
 | Create a random string and add it to URL to make the password reissue screen URL unique and difficult to guess. Create confidential information which is in the form of a random string and use it for authentication as a measure against accidental leakage of URL.
-| Create two random strings by different ways so that that it becomes impossible to guess a string from the other string.
+| Create two random strings by different ways so that it becomes impossible to guess a string from the other string.
 | In particular, fulfil the requirements by implementing the following process.
 
 * Creating and saving authentication information for password reissue
@@ -3297,7 +3321,8 @@ The code implemented according to the implementation method is described below.
     .. list-table::
        :header-rows: 1
        :widths: 10 90
-    
+       :class: longtable
+
        * - Sr. No.
          - Description
        * - | (1)
@@ -3324,6 +3349,10 @@ The code implemented according to the implementation method is described below.
          - | Register the authentication information for password reissue in the database.
        * - | (12)
          - | Return the created confidential information.
+
+    .. raw:: latex
+
+       \newpage
 
   * Implementation of Form
 
@@ -4308,9 +4337,9 @@ Code description
        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
        <mapper
-       	namespace="org.terasoluna.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository">
+        namespace="org.terasoluna.securelogin.domain.repository.passwordreissue.FailedPasswordReissueRepository">
 
-       	<select id="countByToken" resultType="_int">
+        <select id="countByToken" resultType="_int">
            <![CDATA[
                SELECT
                    COUNT(*)
@@ -4319,7 +4348,7 @@ Code description
                WHERE
                    token = #{token}
            ]]>
-       	</select>
+        </select>
 
         <insert id="create" parameterType="FailedPasswordReissue">
            <![CDATA[
@@ -4333,14 +4362,14 @@ Code description
            ]]>
         </insert>
 
-       	<delete id="deleteByToken">
+        <delete id="deleteByToken">
            <![CDATA[
-           	DELETE FROM
-           		failed_password_reissue
-           	WHERE
-           		token = #{token}
+            DELETE FROM
+                failed_password_reissue
+            WHERE
+                token = #{token}
            ]]>
-       	</delete>
+        </delete>
 
        </mapper>
 
@@ -4663,6 +4692,7 @@ Code implemented in accordance with the implementation method above is explained
   .. list-table::
      :header-rows: 1
      :widths: 10 90
+     :class: longtable
 
      * - Sr. No.
        - Description
@@ -4689,6 +4719,10 @@ Code implemented in accordance with the implementation method above is explained
      * - | (11)
        - | Check whether the string for input check is included in the prohibited characters - sequentially one character at a time and throw an exception if the prohibited character is included
          | \ ``InvalidCharacterException`` \  is an exception created by inheriting \ ``RuntimeException`` \. Code is omitted.
+
+  .. raw:: latex
+
+     \newpage
 
   .. tip::
 
@@ -5454,7 +5488,7 @@ How to implement
 
     Advice indicates a process which is executed for AOP within specified timing.
     Further, the place where advice can be embedded is called a joining point whereas set of join points where advice is embedded is called as a point cut
-    For AOP function offered by Spring, refer Official document - AOP <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/aop.html>`_ .
+    For AOP function offered by Spring, refer Official document - AOP <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/aop.html>`_ .
 
 Code description
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -5641,7 +5675,7 @@ Code implemented in accordance with the implementation method above is sequentia
 
      Spring AOP adopts a proxy method wherein a proxy class which has been auto-created handles the method calling.
      Note that, as a constraint of AOP of Proxy method, advice is not executed for the method calling of visibility other than \ ``public`` \  or the method calling within the same class.
-     For details, refer `Official document <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/aop.html#aop-understanding-aop-proxies>`__ .
+     For details, refer `Official document <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/aop.html#aop-understanding-aop-proxies>`__ .
 
   Output results of log are as below.
 
@@ -5719,7 +5753,8 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 10 90
-  
+   :class: longtable
+
    * - Sr. No.
      - Description
    * - | (1)
@@ -5733,6 +5768,10 @@ Overview
      - | An instance of \ ``org.passay.RuleResult`` \  is created as validation result using a validator.
    * - | (4)
      - | Password validation results can be fetched from \ ``RuleResult`` \  as a \ ``boolean`` \  value. Also, an error message can be fetched from \ ``RuleResult`` \  by using a validator.
+
+.. raw:: latex
+
+   \newpage
 
 Some of the classes of validation rules offered by Passay are shown in the table below.
 

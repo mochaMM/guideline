@@ -64,10 +64,15 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
     :alt: Constitution of Spring Mail
     :width: 100%
 
+.. raw:: latex
+
+   \newpage
+
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.60\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 20 60
+    :class: longtable
 
     * - 項番
       - コンポーネント
@@ -85,7 +90,7 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
     * - | (3)
       - | アプリケーション
         | (\ ``MimeMessagePreparator``\)
-      - | \ ``MimeMessageHelper``\ のメソッドを利用して、メール送信用のメッセージを(\ ``MimeMessage``\ )の作成する。
+      - | \ ``MimeMessageHelper``\ のメソッドを利用して、メール送信用のメッセージ(\ ``MimeMessage``\ )を作成する。
         |
         | \* \ ``SimpleMailMessage``\ を使用してメッセージを送信する場合はこの処理は呼びだされない。
     * - | (4)
@@ -94,6 +99,10 @@ Spring Frameworkはメール送信を行うためのコンポーネント（\ ``
     * - | (5)
       - | JavaMail
       - | メールサーバへメッセージを送信する。
+
+.. raw:: latex
+
+   \newpage
 
 \
 
@@ -190,17 +199,23 @@ JavaMailSenderの設定方法
       - アプリケーションサーバ
       - 参照ページ
     * - 1.
-      - Apache Tomcat 8
-      - | \ `Apache Tomcat 8 User Guide(JNDI Resources HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JavaMail_Sessions>`_\ (JavaMail Sessions)を参照されたい。
+      - Apache Tomcat 8.5
+      - | \ `Apache Tomcat 8.5 User Guide(JNDI Resources HOW-TO) <http://tomcat.apache.org/tomcat-8.5-doc/jndi-resources-howto.html#JavaMail_Sessions>`_\ (JavaMail Sessions)を参照されたい。
     * - 2.
+      - Apache Tomcat 8.0
+      - | \ `Apache Tomcat 8.0 User Guide(JNDI Resources HOW-TO) <http://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html#JavaMail_Sessions>`_\ (JavaMail Sessions)を参照されたい。
+    * - 3.
       - Oracle WebLogic Server 12c
       - \ `Oracle WebLogic Server 12.2.1.0 Documentation <http://docs.oracle.com/middleware/1221/wls/WLACH/taskhelp/mail/CreateMailSessions.html>`_\ を参照されたい。
-    * - 3.
-      - IBM WebSphere Application Server Version 8.5
-      - \ `WebSphere Application Server Version 8.5.5 documentation <https://www-01.ibm.com/support/knowledgecenter/SSD28V_8.5.5/com.ibm.websphere.wlp.core.doc/ae/twlp_admin_javamail.html>`_\ を参照されたい。
     * - 4.
+      - IBM WebSphere Application Server Version 9.0
+      - \ `WebSphere Application Server Version 9.0.0 documentation <https://www-01.ibm.com/support/knowledgecenter/SSD28V_9.0.0/com.ibm.websphere.wlp.core.doc/ae/twlp_admin_javamail.html>`_\ を参照されたい。
+    * - 5.
+      - Red Hat JBoss Enterprise Application Platform Version 7.0
+      - \ `JBoss Enterprise Application Platform 7.0 Product Documentation <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/configuration-guide/chapter-10-mail-subsystem>`_\ を参照されたい。
+    * - 6.
       - Red Hat JBoss Enterprise Application Platform Version 6.4
-      - \ `Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Mail_subsystem.html>`_\ を参照されたい。
+      - \ `JBoss Enterprise Application Platform 6.4 Product Documentation <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Administration_and_Configuration_Guide/chap-Mail_subsystem.html>`_\ を参照されたい。
 
 
 JNDI経由で取得したメールセッションをBeanとして登録するための設定を行う。
@@ -763,18 +778,18 @@ HTMLメールの送信
       - 例外クラス
       - 発生条件
     * - 1.
-      - `MailAuthenticationException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailAuthenticationException.html>`_
+      - `MailAuthenticationException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailAuthenticationException.html>`_
       - | 認証失敗時に発生する。
     * - 2.
-      - `MailParseException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailParseException.html>`_
+      - `MailParseException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailParseException.html>`_
       - | メールメッセージのプロパティに不正な値が設定されている場合に発生する。
     * - 3.
-      - `MailPreparationException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailPreparationException.html>`_
+      - `MailPreparationException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailPreparationException.html>`_
       - | メールメッセージを作成中に想定外のエラーが起きた場合に発生する。
           想定外のエラーとしては、例えばテンプレートライブラリで発生するエラーといったものがある。
         | \ ``MimeMessagePreparator``\ で発生した例外が\ ``MailPreparationException``\ にラップされてスローされる。
     * - 4.
-      - `MailSendException <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/mail/MailSendException.html>`_
+      - `MailSendException <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/mail/MailSendException.html>`_
       - | メールの送信エラーが起きた場合に発生する。
 
 .. note::
@@ -866,7 +881,7 @@ FreeMarkerを使用したメール本文の作成
 
     .. note::
 
-       上記以外の設定については、\ `FreeMarkerConfigurationFactoryBeanのJavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/ui/freemarker/FreeMarkerConfigurationFactoryBean.html>`_\ を参照されたい。
+       上記以外の設定については、\ `FreeMarkerConfigurationFactoryBeanのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/ui/freemarker/FreeMarkerConfigurationFactoryBean.html>`_\ を参照されたい。
        また、FreeMarker自体の設定については、\ `FreeMarker Manual (Programmer's Guide / The Configuration) <http://freemarker.org/docs/pgui_config.html>`_\ を参照されたい。
 
 * メール本文のテンプレートファイルを作成する。
@@ -912,14 +927,14 @@ FreeMarkerを使用したメール本文の作成
         @Inject
         JavaMailSender mailSender;
     
-    	@Inject
-    	Configuration freemarkerConfiguration; // (1)
-    	
+        @Inject
+        Configuration freemarkerConfiguration; // (1)
+        
         public void register(User user) {
             // omitted
             
             mailSender.send(new MimeMessagePreparator() {
-
+    
                 @Override
                 public void prepare(MimeMessage mimeMessage) throws Exception {
                     MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,

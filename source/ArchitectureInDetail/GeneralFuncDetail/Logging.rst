@@ -38,6 +38,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 10 15 35 40
+   :class: longtable
 
    * - ログレベル
      - カテゴリ
@@ -79,6 +80,10 @@ Overview
      - 例外発生の監視
      - | 例外発生時間、システムエラーに対応するメッセージID
        | ツールを用いて監視することを考慮し、出力内容は最低限とすること
+
+.. raw:: latex
+
+   \newpage
 
 | デバッグログ、アクセスログ、外部通信ログ、業務エラーログ、システムエラーログは、同一のファイルに出力する。
 | 本ガイドラインでは、上記を出力するログファイルを、アプリケーションログと呼ぶこととする。
@@ -146,6 +151,7 @@ Overview
 .. list-table::
    :header-rows: 1
    :widths: 15 85
+   :class: longtable
 
    * - カテゴリ
      - 出力ポイント
@@ -179,6 +185,10 @@ Overview
        | 詳細は、\ :doc:`../WebApplicationDetail/ExceptionHandling` \ を参照されたい。
    * - 監視ログ
      - 業務エラーログ、システムエラーログの出力タイミングと同様である。
+
+.. raw:: latex
+
+   \newpage
 
 .. note::
     ログを出力する際は、どこで出力されたかわかりやすくなるように、他のログと、全く同じ内容を出力にならないように注意すること。
@@ -312,6 +322,7 @@ logback.xml
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -353,6 +364,10 @@ logback.xml
    * - | (12)
      - | デフォルトでConsoleAppender, RollingFileAppender(アプリケーションログ)が使用されるように設定する。
 
+.. raw:: latex
+
+   \newpage
+
 .. tip:: **LTSV(Labeled Tab Separated Value)について**
 
     \ `LTSV <http://ltsv.org/>`_\ は、テキストデータのフォーマットの一つであり、主にログのフォーマットとして使用される。
@@ -362,7 +377,7 @@ logback.xml
     * フィールドの区切り文字としてタブを使用することで、他の区切り文字に比べてフィールドを分割しやすい。
     * フィールドにラベル(名前)を設けることで、フィールド定義の変更(定義位置の変更、フィールドの追加、フィールドの削除)を行ってもパース処理には影響を与えない。
 
-    また、エクセルに貼付けるだけで最低限のフォーマットが行える点も特徴の一つである。
+    また、エクセルに貼り付けるだけで最低限のフォーマットが行える点も特徴の一つである。
 
 |
 
@@ -747,6 +762,7 @@ How to extend
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -765,11 +781,11 @@ How to extend
        | 詳細は、\ :doc:`../../ArchitectureInDetail/WebApplicationDetail/MessageManagement`\ の\ :ref:`properties-display`\ を参照されたい。
    * - | (5)
      - | 国際化を考慮し\ ``setBasenames``\ メソッドを使用してプロパティファイルを指定する。
-       | \ ``setBasenames``\ の詳細は\ `ReloadableResourceBundleMessageSourceクラスのsetBasenamesのJavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/context/support/ReloadableResourceBundleMessageSource.html#setBasenames-java.lang.String...->`_\を参照されたい。
+       | \ ``setBasenames``\ の詳細は\ `ReloadableResourceBundleMessageSourceクラスのsetBasenamesのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/context/support/ReloadableResourceBundleMessageSource.html#setBasenames-java.lang.String...->`_\を参照されたい。
    * - | (6)
      - | Loggerラッパークラスにおいても、SLF4Jを使用する。ロギングライブラリの実装を直接使用しない。
    * - | (7)
-     - | DEBUGレベルのログ出力を許可してるか、判定する。
+     - | DEBUGレベルのログ出力を許可しているか、判定する。
        | 使用時の注意点については、\ :ref:`note-description-of-log-output`\ を参照されたい。
    * - | (8)
      - | 本実装例ではDEBUGレベルのログにはログIDを使わない。引数のログメッセージをそのまま、ログ出力する。
@@ -779,6 +795,9 @@ How to extend
      - | getMessageを呼び出す際にプロパティファイルにログIDが記載されていないと例外:\ ``NoSuchMessageException``\ が発生する。
        | そのため\ ``NoSuchMessageException``\ をcatchし、ログIDがプロパティファイルに定義されていない旨のログメッセージを出力する。
 
+.. raw:: latex
+
+   \newpage
 
 - `log-messages.properties`  (プロパティファイル)
 

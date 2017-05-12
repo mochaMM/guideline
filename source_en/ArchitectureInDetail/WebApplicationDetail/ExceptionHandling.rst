@@ -72,6 +72,7 @@ Exception handling methods
 .. list-table:: **Table - Exception Handling Methods**
    :header-rows: 1
    :widths: 10 30 35 25
+   :class: longtable
 
    * - Sr. No.
      - Handling Method
@@ -103,6 +104,9 @@ Exception handling methods
        |
        | 2. :ref:`exception-handling-class-viewerror-label`
 
+.. raw:: latex
+
+   \newpage
 
 .. figure:: ./images/exception-handling-method.png
   :alt: handling method
@@ -361,6 +365,7 @@ Exception Handling Patterns
 .. list-table:: **Table - Exception Handling Patterns**
    :header-rows: 1
    :widths: 10 40 25 10 15
+   :class: longtable
 
    * - Sr. No.
      - Purpose of handling
@@ -405,6 +410,9 @@ Exception Handling Patterns
        | (Handling rules are specified in \ ``web.xml``\ )
      - | Web application
 
+.. raw:: latex
+
+   \newpage
 
 .. _exception-handling-class-from-middle-label:
 
@@ -721,6 +729,7 @@ Common Settings
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -753,6 +762,9 @@ Common Settings
     * - | (5)
       - | Inject \ ``ExceptionCodeResolver``\  into the bean definition of \ ``ExceptionLogger``\ .
 
+ .. raw:: latex
+
+    \newpage
 
 2. Add log definition.
 
@@ -950,6 +962,7 @@ Add to bean definition, the class (\ ``SystemExceptionResolver``\ )  used for ha
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - Sr. No.
       - Description
@@ -1015,6 +1028,10 @@ Add to bean definition, the class (\ ``SystemExceptionResolver``\ )  used for ha
                     <property name="prefix" value="/WEB-INF/views/" />
                     <property name="suffix" value=".jsp" />
                 </bean>
+
+ .. raw:: latex
+
+    \newpage
 
 AOP settings and interceptor class (\ ``HandlerExceptionResolverLoggingInterceptor``\ ) in order to output the log of exceptions handled by \ ``HandlerExceptionResolver``\  should be added to bean definition.
 
@@ -1770,6 +1787,7 @@ Exception handling classes provided by the common library
 .. list-table:: **Table - Classes under org.terasoluna.gfw.common.exception package**
    :header-rows: 1
    :widths: 10 20 65
+   :class: longtable
 
    * - Sr. No.
      - Class
@@ -1852,6 +1870,9 @@ Exception handling classes provided by the common library
      - | This is an interface indicating that it has a role to hold the exception code; it is implemented by \ ``SystemException``\  in the common library.
        | If an exception class that implements this interface is created, it can be used with the exception handling mechanism of ExceptionCodeResolver, to use the exception code of this exception class as it is.
 
+.. raw:: latex
+
+   \newpage
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.65\linewidth}|
 .. list-table:: **Table - Classes under org.terasoluna.gfw.web.exception package**
@@ -1886,6 +1907,9 @@ Exception handling classes provided by the common library
        | When this Filter is used, fatal errors and all exceptions that are out of the boundary of Spring MVC can be output to log.
        | Log is output using \ ``ExceptionLogger``\ .
 
+.. raw:: latex
+
+   \newpage
 
 .. _exception-handling-about-systemexceptionresolver-label:
 
@@ -1898,6 +1922,7 @@ The settings should be performed depending on the requirements.
 .. list-table:: **List of settings not explained above**
    :header-rows: 1
    :widths: 5 15 15 45 20
+   :class: longtable
 
    * - Sr. No.
      - Field Name
@@ -1953,6 +1978,10 @@ The settings should be performed depending on the requirements.
      - | Set the flag (true: Yes, false: No) for cache control at the time of HTTP response.
        | If true: Yes is specified, HTTP response header to disable cache is added.
      - | false: No
+
+.. raw:: latex
+
+   \newpage
 
 | (1)-(3) are the settings of \ ``org.terasoluna.gfw.web.exception.SystemExceptionResolver``\ .
 | (4) is the setting of \ ``org.springframework.web.servlet.handler.SimpleMappingExceptionResolver``\ .
@@ -2241,6 +2270,7 @@ The mapping between framework exceptions handled using DefaultHandlerExceptionRe
 .. list-table::
    :header-rows: 1
    :widths: 10 60 20
+   :class: longtable
 
    * - Sr. No.
      - Handled framework exceptions

@@ -41,12 +41,13 @@
 セキュリティ要件
 --------------------------------------------------------------------------------
 
-本アプリケーションが満たすセキュリティ要件の一覧を以下に示す。各分類ごとに、:ref:`implement-description` にて実装例の解説を行う。
+本アプリケーションが満たすセキュリティ要件の一覧を以下に示す。分類ごとに、:ref:`implement-description` にて実装例の解説を行う。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.50\linewidth}|p{0.20\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 10 20 30 40
+    :class: longtable
 
     * - 項番
       - 分類
@@ -115,7 +116,7 @@
       - パスワード再発行画面のURLの漏えいに備え、秘密情報はメール以外の方法でユーザに配布する
     * - | (16)
       - :ref:`パスワード再発行実行時の検査 <reissue-info-validate>`
-      - パスワード再発行用の認証情報の有効期限の設定
+      - パスワード再発行用の認証情報に対する有効期限の設定
       - パスワード再発行画面のURLと秘密情報に有効期限を設定し、有効期限が切れた場合はパスワード再発行画面のURLと秘密情報を使用不能にする
     * - | (17)
       - :ref:`パスワード再発行の失敗上限回数の設定 <reissue-info-invalidate>`
@@ -153,6 +154,10 @@
       - :ref:`監査ログ出力 <audit-logging>`
       - 監査ログ出力
       - 各リクエストに対し、日時、ユーザ名、操作内容、操作結果をログ出力する
+
+.. raw:: latex
+
+   \newpage
 
 機能
 --------------------------------------------------------------------------------
@@ -227,6 +232,7 @@
 .. list-table::
     :header-rows: 1
     :widths: 20 50 30
+    :class: longtable
 
     * - | 項番
       - | 画面名
@@ -274,6 +280,10 @@
       - | パスワード変更完了画面
       - | 認証済みユーザのみ
 
+.. raw:: latex
+
+   \newpage
+
 URL一覧
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 URL一覧を以下に示す。
@@ -282,6 +292,7 @@ URL一覧を以下に示す。
 .. list-table::
     :header-rows: 1
     :widths: 10 20 15 15 40
+    :class: longtable
 
     * - 項番
       - プロセス名
@@ -394,6 +405,10 @@ URL一覧を以下に示す。
       - /reissue/resetpassword?complete
       - パスワード再発行完了画面を表示する
 
+.. raw:: latex
+
+   \newpage
+
 ER図
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -408,6 +423,7 @@ ER図
 .. list-table::
     :header-rows: 1
     :widths: 10 20 40 30
+    :class: longtable
 
     * - 項番
       - エンティティ名
@@ -464,6 +480,10 @@ ER図
       - | token : パスワード再発行に失敗した際に使用したtoken
         | attemptDate : パスワード再発行を試行した日時
 
+.. raw:: latex
+
+   \newpage
+
 .. tip ::
 
    初期パスワードやパスワード有効期限切れの判定を行うために、アカウントエンティティにフィールドを追加してパスワードの最終変更日時等の情報を持たせるといった設計も可能である。
@@ -477,8 +497,8 @@ ER図
 ================================================================================
 
 | セキュリティ要件の分類ごとに、本アプリケーションにおける実装の方法とコードの説明を行う。
-| ここでは各分類ごとに要件の実現のために必要最小限のコード片のみを掲載している。コード全体を確認したい場合は `GitHub <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.2.0.RELEASE/secure-login-demo>`_ を参照すること。
-| 本アプリケーションを動作させるための初期データ登録用SQLは `ここ <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.2.0.RELEASE/secure-login-demo/secure-login-env/src/main/resources/database>`_ に配置されている。
+| ここでは分類ごとで要件の実現のために必要最小限なコード片のみを掲載している。コード全体を確認したい場合は `GitHub <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.0.RELEASE/secure-login-demo>`_ を参照すること。
+| 本アプリケーションを動作させるための初期データ登録用SQLは `ここ <https://github.com/terasolunaorg/tutorial-apps/tree/release/5.3.0.RELEASE/secure-login-demo/secure-login-demo/secure-login-env/src/main/resources/database>`_ に配置されている。
 
 .. note::
 
@@ -876,7 +896,7 @@ ER図
      isInitialPassword および isCurrentPasswordExpired に付与されている \ ``@Cacheable``\ は Spring の Cache Abstraction 機能を使用するためのアノテーションである。
      \ ``@Cacheable`` \ アノテーションを付与することで、メソッドの引数に対する結果をキャッシュすることができる。
      ここでは、キャッシュの使用により初期パスワード判定、パスワード期限切れ判定のたびにデータベースへのアクセスが発生することを防止し、パフォーマンスの低下を防いでいる。
-     Cache Abstraction については `公式ドキュメント - Cache <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/cache.html>`_ を参照すること。
+     Cache Abstraction については `公式ドキュメント - Cache <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/cache.html>`_ を参照すること。
 
      尚、キャッシュを使用する際には、必要なタイミングでキャッシュをクリアする必要があることに注意すること。
      本アプリケーションではパスワード変更時や、ログアウト時には再度初期パスワード判定、パスワード期限切れ判定を行うためにキャッシュをクリアする。
@@ -1100,7 +1120,7 @@ ER図
 実装方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | パスワード変更時等にユーザが指定したパスワードの品質を検査するためには、 :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation` の機能を利用することができる。本アプリケーションではBean Validationを用いてパスワードの品質を検査する。
-| パスワードの品質として求められる要件はアプリケーションによって異なり、多岐に渡る。
+| パスワードの品質として求められる要件はアプリケーションによって異なり、多岐にわたる。
 | そこで、パスワード入力チェック用のライブラリとして `Passay <http://www.passay.org/>`_ を利用し、必要なBean Validationのアノテーションを作成する。
 | Passayではパスワード入力チェックで一般的に使用される機能の多くを提供しており、提供されていない機能についても標準機能を拡張することで容易に実装することができる。
 | Passayの概要については :ref:`Appendix <passay_overview>` を参照。
@@ -1178,7 +1198,7 @@ ER図
      * - 項番
        - 説明
      * - | (1)
-       - | パスワードが過去に使用したパスワードに含まれないをチェックするための\ ``org.passay.HistoryRule`` \を拡張する。
+       - | パスワードが過去に使用したパスワードに含まれないかをチェックするための\ ``org.passay.HistoryRule`` \を拡張する。
      * - | (2)
        - | パスワードのハッシュ化に用いている\ ``PasswordEncoder`` \ をインジェクションする。
      * - | (3)
@@ -1577,6 +1597,7 @@ ER図
     .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - 項番
          - 説明
@@ -1603,6 +1624,9 @@ ER図
        * - | (11)
          - | パスワード入力チェックエラーメッセージを取得する。
 
+    .. raw:: latex
+
+       \newpage
 
 * パスワードの入力チェック
 
@@ -2323,7 +2347,7 @@ ER図
   * ロックアウト状態の解除
 
     ロックアウト状態の判定に認証失敗イベントエンティティを使用しているため、認証失敗イベントエンティティを削除することでロックアウト状態を解除することができる。
-    ロックアウト解除機能の使用を管理権限を持つユーザに限定するための認可の設定と、ドメイン層・アプリケーション層の実装を行う。
+    ロックアウト解除機能の使用を「管理権限を持つユーザ」に限定するための認可の設定と、ドメイン層・アプリケーション層の実装を行う。
 
     * 認可の設定
 
@@ -3297,6 +3321,7 @@ ER図
     .. list-table::
        :header-rows: 1
        :widths: 10 90
+       :class: longtable
 
        * - 項番
          - 説明
@@ -3324,6 +3349,10 @@ ER図
          - | パスワード再発行用の認証情報をデータベースに登録する。
        * - | (12)
          - | 生成した秘密情報を返す。
+
+    .. raw:: latex
+
+       \newpage
 
   * Formの実装
 
@@ -3688,6 +3717,7 @@ ER図
      * - | (2)
        - | (1)で取得した値と、生成したパスワード再発行用の認証情報に含まれるトークンを使用して、ユーザに配布するパスワード再発行画面のURLを作成する。
          | URLの作成には \ ``org.springframework.web.util.UriComponentsBuilder`` \ を利用する。\ ``UriComponentsBuilder`` \ については、:ref:`RESTAppendixHyperMediaLink` の中で説明されている。
+         | 上記例では、作成されるURLのパス以下は"reissue/resetpassword?form&token=512f1a33-da20-4b9f-9e26-8961e9071618"のようになる。（token部分はランダムに生成される。）
      * - | (3)
        - | ユーザの登録メールアドレス宛てに、パスワード再発行画面のURLを本文に記したメールを送付する。
 
@@ -3698,7 +3728,7 @@ ER図
 --------------------------------------------------------------------------------
 実装する要件一覧
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-* :ref:`パスワード再発行用の認証情報の有効期限の設定 <sec-requirements>`
+* :ref:`パスワード再発行用の認証情報に対する有効期限の設定 <sec-requirements>`
 
 動作イメージ
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3724,7 +3754,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 | データベースから取得した認証情報中の秘密情報と、ユーザが入力した秘密情報が一致すれば認証成功であり、パスワードを再発行する。
 | 具体的には以下の三つの処理を実装することで要件を実現する。
 
-* パスワード再発行用の認証情報の有効期限の設定
+* パスワード再発行用の認証情報に対する有効期限の設定
 
   :ref:`reissue-info-create` で説明した処理の中で、生成した認証情報に有効期限を設定する。
 
@@ -3742,7 +3772,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 コード解説
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-* パスワード再発行用の認証情報の有効期限の設定
+* パスワード再発行用の認証情報に対する有効期限の設定
 
   パスワード再発行用の認証情報への有効期限の設定自体は、 :ref:`reissue-info-create` で説明した処理に含まれている。ここでは、関連する実装箇所のみ再掲する。
 
@@ -3888,6 +3918,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
            // omitted
 
+           @RequestMapping(value = "resetpassword", params = "form")
            public String showPasswordResetForm(PasswordResetForm form, Model model,
                    @RequestParam("token") String token) { // (1)
 
@@ -4234,7 +4265,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
   * Entityの実装
 
-    パスワード再発行失敗イベントエンティティの実装の実装は以下の通り。
+    パスワード再発行失敗イベントエンティティの実装は以下の通り。
 
     .. code-block:: java
 
@@ -4461,7 +4492,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      * - | (2)
        - | パスワード再発行用の認証情報に含まれるハッシュ化された秘密情報と、引数として与えられた秘密情報を比較する。
      * - | (3)
-       - | パスワード再発行失敗時の処理を行うSharedServiceのメソッド呼び出す。
+       - | パスワード再発行失敗時の処理を行うSharedServiceのメソッドを呼び出す。
      * - | (4)
        - | 実行時例外をthrowするが、パスワード再発行失敗時の処理は別のトランザクションで実行されるため、影響を与えることはない。
 
@@ -4662,6 +4693,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
   .. list-table::
      :header-rows: 1
      :widths: 10 90
+     :class: longtable
 
      * - 項番
        - 説明
@@ -4688,6 +4720,10 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
      * - | (11)
        - | 入力チェック対象の文字列を一文字ずつ順に、禁止文字に含まれているかどうかをチェックし、含まれている場合は例外を投げる
          | \ ``InvalidCharacterException`` \ は \ ``RuntimeException`` \を継承して作成した例外である。コードは省略する
+
+  .. raw:: latex
+
+     \newpage
 
   .. tip::
 
@@ -4863,7 +4899,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
          - | 正規表現を用いた入力チェックを行うために\ ``@Pattern`` \アノテーションを付与する
            | \ ``\P{Cntrl}`` \はJavaの正規表現において「制御文字以外の文字」を意味するため、\ ``^\\P{Cntrl}*$`` \は最初から最後まで制御文字を含まない文字列のみにマッチする
 
-    | 同様に、改行コードを許容する場合のアノテーションをの実装例を以下に示す。
+    | 同様に、改行コードを許容する場合のアノテーションの実装例を以下に示す。
 
     .. code-block:: java
 
@@ -5408,6 +5444,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 .. list-table::
    :header-rows: 1
    :widths: 30 70
+   :class: longtable
 
    * - 項目
      - 説明
@@ -5431,6 +5468,10 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
        | メソッド正常終了時："[COMPLETE SERVICE] ServiceClassName.methodName"
        | 例外発生時："[SERVICE THROWS EXCEPTION] ExceptionClassName.methodName"
 
+.. raw:: latex
+
+   \newpage
+
 実装方法
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | ログにユーザ名を出力するために、Spring Securityの認証情報からユーザ名を取得する。 ユーザ名の取得およびログ出力は\ :doc:`../ArchitectureInDetail/GeneralFuncDetail/Logging` \ で解説している \ ``org.terasoluna.gfw.security.web.logging.UserIdMDCPutFilter`` \ を用いて実現する。
@@ -5453,7 +5494,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
     アドバイスとは、AOPにおいて指定されたタイミングで実行する処理のことを指す。
     また、アドバイスを織り込むことのできる箇所のことをジョインポイントと呼び、どのジョインポイントにアドバイスを織り込むかを定義したものポイントカットと呼ぶ。
-    Springが提供するAOP機能に関しては、`公式ドキュメント - AOP <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/aop.html>`_ を参照すること。
+    Springが提供するAOP機能に関しては、`公式ドキュメント - AOP <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/aop.html>`_ を参照すること。
 
 コード解説
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -5640,7 +5681,7 @@ URLに含まれるトークンと秘密情報の組が正しい場合にのみ�
 
      SpringのAOPは、自動的に作成されたプロキシクラスがメソッド呼び出しをハンドリングする、プロキシ方式を採用している。
      プロキシ方式のAOPの制限として、可視性が\ ``public`` \以外のメソッドの呼び出しや、同一クラス内のメソッド呼び出しの際にはアドバイスが実行されない点に注意する必要がある。
-     詳細は `公式ドキュメント <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/aop.html#aop-understanding-aop-proxies>`_ を参照すること。
+     詳細は `公式ドキュメント <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/aop.html#aop-understanding-aop-proxies>`_ を参照すること。
 
   ログの出力結果を以下に示す。
 

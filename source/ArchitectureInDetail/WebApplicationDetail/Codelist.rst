@@ -205,7 +205,7 @@ JSPでのコードリスト使用
    * - | (2)
      - | CodeListInterceptor クラスをbean定義する。
    * - | (3)
-     - | 自動でリクエストスコープに設定するコードリストのbeanIDのパターンを設定する。
+     - | 自動でリクエストスコープに設定する、コードリストのbeanIDのパターンを設定する。
        | パターンには ``java.util.regex.Pattern`` で使用する正規表現を設定すること。
        | 上記例では、idが"CL\_XXX"形式で定義されているデータのみを対象とする。その場合、idが"CL\_"で始まらないbean定義は取り込まれない。
        | "CL\_"で定義したbeanIDは、リクエストスコープに設定されるため、JSPで使用可能となる。
@@ -488,6 +488,7 @@ JdbcCodeListの使用方法
 .. list-table::
    :header-rows: 1
    :widths: 10 90
+   :class: longtable
 
    * - 項番
      - 説明
@@ -516,6 +517,10 @@ JdbcCodeListの使用方法
      - | valueColumnプロパティに、MapのKeyに該当する値を設定する。この例ではauthority_idを設定している。
    * - | (8)
      - | labelColumnプロパティに、MapのValueに該当する値を設定する。この例ではauthority_nameを設定している。      
+
+.. raw:: latex
+
+   \newpage
 
 |
 
@@ -762,7 +767,7 @@ SimpleI18nCodeListの使用方法
 
 ``SimpleI18nCodeList``\ は行が\ ``Locale``\ 、列がコード値、セルの内容がラベルである2次元のテーブルをイメージすると理解しやすい。
 
-料金を選択するセレクトボックスの場合の例に上げると以下のようなテーブルができる。
+料金を選択するセレクトボックスの場合を例に挙げると以下のようなテーブルができる。
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.15\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|p{0.14\linewidth}|
 .. list-table::
@@ -936,6 +941,7 @@ SimpleI18nCodeListの使用方法
 .. list-table::
     :header-rows: 1
     :widths: 20 20 60
+    :class: longtable
   
     * - locale
       - code
@@ -976,6 +982,10 @@ SimpleI18nCodeListの使用方法
     * - | ja
       - | 50000
       - | 50,000円以下
+
+.. raw:: latex
+
+   \newpage
 
 .. warning::
 
@@ -1274,7 +1284,7 @@ JdbcCodeListは、ReloadableCodeListインターフェースを実装してい�
 #. Task Schedulerで実現する方法
 #. Controller(Service)クラスでrefreshメソッドを呼び出す方法
 
-本ガイドラインでは、\ `Springから提供されているTask Scheduler <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/scheduling.html>`_\ を使用して、コードリストを定期的にリロードする方式を基本的に推奨する。
+本ガイドラインでは、\ `Springから提供されているTask Scheduler <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/scheduling.html>`_\ を使用して、コードリストを定期的にリロードする方式を基本的に推奨する。
 
 ただし、任意のタイミングでコードリストをリフレッシュする必要がある場合はControllerクラスでrefreshメソッドを呼び出す方法で実現すればよい。
 
@@ -1330,7 +1340,7 @@ Task Schedulerの設定例について、以下に示す。
        | 平日の9-17時の毎時実行 「0 0 9-17 \* \* MON-FRI」
        |
        | 詳細はJavaDocを参照されたい。
-       | http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
+       | http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
 
 |
 
@@ -1357,7 +1367,7 @@ JdbcCodeListのrefreshメソッドをServiceクラスで呼び出す場合の実
 
     @Controller
     @RequestMapping(value = "codelist")
-    public class CodeListContoller {
+    public class CodeListController {
 
         @Inject
         CodeListService codeListService; // (1)

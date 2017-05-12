@@ -251,11 +251,15 @@ Spring Dataより提供されているページ検索用の機能は、以下の
    :width: 80%
    :align: center
 
+ .. raw:: latex
+
+    \newpage
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.70\linewidth}|p{0.20\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 70 20
+    :class: longtable
 
     * - 項番
       - 説明
@@ -291,6 +295,9 @@ Spring Dataより提供されているページ検索用の機能は、以下の
         | 共通ライブラリでは、この部分を「Page Link Text」と呼ぶ。
       - | 下記の「 :ref:`Note欄 <pagination_overview_paginationlink_pagelinktext>` 」を参照されたい。
 
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **「Inner Element」の数について**
 
@@ -376,6 +383,7 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
  .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - パラメータ名
@@ -426,6 +434,10 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
         | ``0`` を指定すると、「指定したページに移動するためのリンク」自体が出力されなくなる。
         | 例) 5
 
+ .. raw:: latex
+
+    \newpage
+
 |
 
  レイアウトを制御するためのパラメータを、全てデフォルトから変更した時に出力されるHTMLは以下の通り。
@@ -457,12 +469,17 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
 
 |
 
+ .. raw:: latex
+
+    \newpage
+
 **動作を制御するためのパラメータ**
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.25\linewidth}|p{0.65\linewidth}|
  .. list-table::
     :header-rows: 1
     :widths: 10 25 65
+    :class: longtable
 
     * - 項番
       - パラメータ名
@@ -491,7 +508,7 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
         | **「Page Link URL」に検索条件を引き継ぐ場合は、このパラメータに検索条件用のクエリ文字列を指定すること。**
         | **指定した値はURLエンコーディングされないため、URLエンコーディング済みのクエリ文字列を指定する必要がある。**
         |
-        | フォームオブジェクトに格納されている検索条件をURLエンコーディング済みのクエリ文字列に変換する場合は、共通ライブラリから提供しているELファクション(\ ``f:query(Object)``\)を使用すると、簡単に条件を引き継ぐことができる。
+        | フォームオブジェクトに格納されている検索条件をURLエンコーディング済みのクエリ文字列に変換する場合は、共通ライブラリから提供しているELファンクション(\ ``f:query(Object)``\)を使用すると、簡単に条件を引き継ぐことができる。
         |
         | terasoluna-gfw-web 1.0.1.RELEASE以上で利用可能なパラメータである。
     * - 5.
@@ -507,6 +524,10 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
         | \ ``true``\ を指定する事で、「Page Link URL」に該当ページを再表示するためのURL(デフォルト値は\ ``"?page={page}&size={size}"``\ )が設定される。(デフォルト値は\ ``false``\で、「Page Link URL」には\ ``disabledHref``\ 属性の値が設定される)
         |
         | terasoluna-gfw-web 5.0.0.RELEASE以上で利用可能なパラメータである。
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **disabledHrefの設定値について**
 
@@ -582,7 +603,7 @@ JSPタグライブラリのパラメータに値を指定することで、デ�
 
 ページネーション機能使用時の処理フロー
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Spring Dataより提供されているページネーション機能と、共通ライブラリから提供してるJSPタグライブラリを利用した際の処理フローは、以下の通り。
+Spring Dataより提供されているページネーション機能と、共通ライブラリから提供しているJSPタグライブラリを利用した際の処理フローは、以下の通り。
 
  .. figure:: ./images/pagination-overview_flow.png
    :alt: processing flow of pagination
@@ -592,6 +613,7 @@ Spring Dataより提供されているページネーション機能と、共通
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -618,11 +640,15 @@ Spring Dataより提供されているページネーション機能と、共通
     * - | (10)
       - | ページネーションリンクを押下すると、該当ページを表示するためリクエストが送信される。
 
+ .. raw:: latex
+
+    \newpage
+
  .. note:: **Repositoryの実装について**
 
     上記フローの(5)と(6)の処理は、使用するO/R Mapperによって実装方法が異なる。
 
-    * MyBatis3を使用する場合は、Java(Service)及びSQLマッピングファイルの実装が必要がある。
+    * MyBatis3を使用する場合は、Java(Service)及びSQLマッピングファイルの実装が必要である。
     * Spring Data JPAを使用する場合は、Spring Data JPAの機能で自動的で行われるため実装は不要である。
 
     具体的な実装例については、
@@ -1119,7 +1145,7 @@ JSPの実装(基本編)
       - 説明
     * - | (4)
       - | ページネーションリンクであることを示すクラス名を指定する。
-        | クラス名を指定することでスタイルシートで指定するスタイルの適用範囲をページネーションリンクに限定することができる。
+        | クラス名を指定することによってスタイルシートで指定するスタイルの適用範囲をページネーションリンクに限定することができる。
 
 - スタイルシート
 
@@ -1362,7 +1388,7 @@ JSPの実装(基本編)
         | 検索条件として ``word`` が存在する。
     * - | (2)
       - | ページ移動時のリクエストに検索条件を引き継ぐ場合は、 \ ``criteriaQuery``\属性に\ **URLエンコーディング済みのクエリ文字列**\を指定する。
-        | 検索条件をフォームオブジェクトに格納する場合は、共通ライブラリから提供しているELファクション( ``f:query(Object)`` ) を使用すると、簡単に条件を引き継ぐことができる。
+        | 検索条件をフォームオブジェクトに格納する場合は、共通ライブラリから提供しているELファンクション( ``f:query(Object)`` ) を使用すると、簡単に条件を引き継ぐことができる。
         | 上記例の場合、 \ ``"?page=ページ位置&size=取得件数&word=入力値"``\という形式のクエリ文字列が生成される。
         |
         | \ ``criteriaQuery``\属性は、terasoluna-gfw-web 1.0.1.RELEASE以上で利用可能な属性である。
@@ -1694,6 +1720,7 @@ Appendix
  .. list-table::
     :header-rows: 1
     :widths: 10 20 55 15
+    :class: longtable
 
     * - 項番
       - プロパティ名
@@ -1737,6 +1764,10 @@ Appendix
         | 本プロパティは、上記形式の中の ``delimiter`` の値を設定する。
         | この設定を変更する場合は、 ``SortHandlerMethodArgumentResolver`` の ``qualifierDelimiter`` 設定も合わせて変更する必要がある。
       - | ``"_"``
+
+ .. raw:: latex
+
+    \newpage
 
  .. note:: **maxPageSizeの設定値について**
 
@@ -1809,6 +1840,7 @@ Appendix
  .. list-table::
     :header-rows: 1
     :widths: 10 90
+    :class: longtable
 
     * - 項番
       - 説明
@@ -1835,6 +1867,10 @@ Appendix
       - | ``Order`` のコンストラクタの第1引数に、ソート順(ASC/DESC)を指定する。
     * - | (10)
       - | ``Order`` のコンストラクタの第2引数に、ソート項目を指定する。
+
+ .. raw:: latex
+
+    \newpage
 
 |
 

@@ -95,7 +95,7 @@ Validation
 
   * For implementation, \ `Hibernate Validator 5.2 <http://docs.jboss.org/hibernate/validator/5.2/reference/en-US/html/>`_\  is used.
 
-* For correlated items check, \ `BeanValidation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\  or \ `Spring Validation <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/validation.html>`_  is used.
+* For correlated items check, \ `BeanValidation <http://download.oracle.com/otn-pub/jcp/bean_validation-1_1-fr-eval-spec/bean-validation-specification.pdf>`_\  or \ `Spring Validation <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/validation.html>`_  is used.
 
   * Refer to \ :doc:`../ArchitectureInDetail/WebApplicationDetail/Validation`\  for determining the proper use. 
 
@@ -639,10 +639,11 @@ Building blocks of Common Library
 Basically, application development is possible using TERASOLUNA Server Framework for Java (5.x) without this library but "convenient to have" kind of existence.
 With the default settings, provided two blank projects, \ `Blank project of multi-project <https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank>`_\  and \ `Blank project of single-project <https://github.com/terasolunaorg/terasoluna-gfw-web-blank>`_\ , contains built-in Common Library as shown in the following listing. 
 
-.. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.40\linewidth}|p{0.20\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|
+.. tabularcolumns:: |p{0.05\linewidth}|p{0.15\linewidth}|p{0.40\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|
 .. list-table::
     :header-rows: 1
     :widths: 5 15 40 20 10 10
+    :class: longtable
 
     * - No.
       - Project Name
@@ -776,6 +777,10 @@ With the default settings, provided two blank projects, \ `Blank project of mult
       - No
       - Yes
       - Yes
+
+.. raw:: latex
+
+   \newpage
 
 #. | Incorporated as \ ``<parent>``\  element of each project and not as a \ ``<dependency>``\ element.
 #. | Incorporated as a transition dependency from  \ ``<dependency>``\  element and not as a \ ``<dependency>``\ element.

@@ -542,7 +542,7 @@ How to use
         | すると処理効率が下がり、性能劣化の原因になるので注意すること。
     * - | (4)
       - | \ ``JmsTemplate``\ をBean定義する。
-        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼出し）を代行する。
+        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼び出し）を代行する。
         | 設定可能な属性に関しては、下記の\ ``JmsTemplate``\ の属性一覧を参照されたい。
     * - | (5)
       - | \ ``JmsMessagingTemplate``\ をBean定義する。同期送信処理を代行する\ ``JmsTemplate``\ をインジェクションする。
@@ -555,6 +555,7 @@ How to use
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - 項番
       - 設定項目
@@ -628,6 +629,9 @@ How to use
       - | \ ``deliveryMode``\ 、\ ``priority``\ 、\ ``timeToLive``\ を有効にする場合は\ ``true``\ を設定する。
       - \-
       - \ ``false``\
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 
@@ -736,7 +740,7 @@ How to use
           
  .. note:: **業務ロジック内でJMSの例外ハンドリング**
     
-    \ `JMS (Java Message Service)のIntroduction <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ で触れられているように、Spring Frameworkでは検査例外を非検査例外に変換している。
+    \ `JMS (Java Message Service)のIntroduction <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ で触れられているように、Spring Frameworkでは検査例外を非検査例外に変換している。
     そのため、業務ロジック内でJMSの例外をハンドリングする場合は、非検査例外を扱う必要がある。
 
      .. tabularcolumns:: |p{0.20\linewidth}|p{0.60\linewidth}|p{0.20\linewidth}|
@@ -767,7 +771,7 @@ How to use
 
 \ ``JmsMessagingTemplate``\ の\ ``convertAndSend``\ メソッドの引数にKey-Value形式のヘッダ属性と値を指定することで、ヘッダ属性を編集して同期送信することが可能である。
 ヘッダの詳細については、\ `javax.jms.Messages  <https://docs.oracle.com/javaee/7/api/javax/jms/Message.html>`_\ を参照されたい。
-送信、応答メッセージなどを紐付ける役割の\ ``JMSCorrelationID``\ を同期送信時に指定する場合の実装例を示す。
+送信、応答メッセージなどを紐づける役割の\ ``JMSCorrelationID``\ を同期送信時に指定する場合の実装例を示す。
 
 
 - :file:`[projectName]-domain/src/main/java/com/example/domain/service/todo/TodoServiceImpl.java`
@@ -999,7 +1003,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
   JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
 
@@ -1159,6 +1163,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
  .. list-table::
     :header-rows: 1
     :widths: 10 26 64
+    :class: longtable
 
     * - 項番
       - 属性名
@@ -1167,7 +1172,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - xmlns:jms
       - | JMS Namespaceを定義する。
         | 値として\ ``http://www.springframework.org/schema/jms``\ を指定する。
-        | JMS Namespaceの詳細については、\ `JMS Namespace Support <http://docs.spring.io/autorepo/docs/spring-framework/4.2.7.RELEASE/spring-framework-reference/html/jms.html#jms-namespace>`_\ を参照されたい。
+        | JMS Namespaceの詳細については、\ `JMS Namespace Support <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace>`_\ を参照されたい。
     * - 
       - xsi:schemaLocation
       - | スキーマのURLを指定する。
@@ -1181,17 +1186,17 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         | \ ``<jms:listener-container/>``\ の属性には、利用したい\ ``ConnectionFactory``\ のBeanを指定できる\ ``connection-factory``\ 属性が存在する。\ ``connection-factory``\ 属性のデフォルト値は\ ``connectionFactory``\ である。
         | この例では、\ :ref:`JMSHowToUseConnectionFactory`\ で示した\ ``ConnectionFactory``\ のBean(Bean名は\ ``connectionFactory``\ )を利用するため、\ ``connection-factory``\ 属性を省略している。
         | \ ``<jms:listener-container/>``\ には、ここで紹介した以外の属性も存在する。
-        | 詳細については、\ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\ を参照されたい。
+        | 詳細については、\ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\ を参照されたい。
 
         .. warning::
 
             \ ``DefaultMessageListenerContainer``\ 内部には独自のキャッシュ機能が備わっているため、非同期受信の場合、\ ``CachingConnectionFactory``\ は使用してはいけない。
-            詳細については、\ `DefaultMessageListenerContainerのJavadoc <http://docs.spring.io/autorepo/docs/spring-framework/4.2.7.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\ を参照されたい。
+            詳細については、\ `DefaultMessageListenerContainerのJavadoc <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\ を参照されたい。
             上記のため、\ ``<jms:listener-container/>``\ の\ ``connection-factory``\ 属性には、\ :ref:`JMSHowToUseConnectionFactory`\ で定義した\ ``ConnectionFactory``\ を指定すること。
 
     * - 
       - \ ``concurrency``\
-      - | \ ``DefaultMessageListenerContainer``\ が管理する各リスナーメソッドの並列数の上限を指定する。
+      - | \ ``DefaultMessageListenerContainer``\ が管理するリスナーメソッドごとの並列数に対する上限を指定する。
         | \ ``concurrency``\ 属性のデフォルトは1である。
         | 並列数の下限と上限を指定することも可能である。例えば、下限を5、上限を10とする場合は"5-10"と指定する。
         | リスナーメソッドの並列数が設定した上限値に達した場合は、並列に処理されず待ち状態となる。
@@ -1225,7 +1230,9 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - \ ``transaction-manager``\
       - | 非同期受信時のトランザクション管理を行うBeanの名前を指定する。詳細については\ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\ を参照されたい。
 
+ .. raw:: latex
 
+    \newpage
 
 
 
@@ -1265,7 +1272,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
 
  \ ``@JmsListener``\ アノテーションの主な属性の一覧を以下に示す。
- 詳細やその他の属性については、\ `@JmsListenerアノテーションのJavadoc <http://docs.spring.io/spring-framework/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\ を参照されたい。
+ 詳細やその他の属性については、\ `@JmsListenerアノテーションのJavadoc <http://docs.spring.io/spring-framework/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/annotation/JmsListener.html#destination-->`_\ を参照されたい。
 
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.20\linewidth}|p{0.70\linewidth}|
@@ -1326,7 +1333,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - 説明
     * - | (1)
       - | 受信メッセージのヘッダ属性\ ``JMSReplyTo``\ の値を取得するために、\ ``@Header``\ アノテーションを指定する。
-        | JMSの標準ヘッダ属性を取得する場合に指定するキーの値については、\ `JmsHeadersの定数の定義 <https://static.javadoc.io/org.springframework/spring-jms/4.2.7.RELEASE/constant-values.html#org.springframework.jms.support.JmsHeaders.CORRELATION_ID>`_\ を参照されたい。
+        | JMSの標準ヘッダ属性を取得する場合に指定するキーの値については、\ `JmsHeadersの定数の定義 <https://static.javadoc.io/org.springframework/spring-jms/4.3.5.RELEASE/constant-values.html#org.springframework.jms.support.JmsHeaders.CORRELATION_ID>`_\ を参照されたい。
 
 
 .. _JMSHowToUseListenerContainerReSendMessage:
@@ -1367,7 +1374,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
      * - 項番
        - 説明
      * - | (1)
-       - | \ ``@SendTo``\ アノテーションを定義することで、処理結果の送信先のデフォルトのDestinationを指定できる。
+       - | \ ``@SendTo``\ アノテーションを定義することで、処理結果の送信先に対するデフォルトのDestinationを指定できる。
      * - | (2)
        - | \ ``@SendTo``\ アノテーションに定義したDestinationに送信するデータを返却する。
          | 許可されている返却値の型は\ ``org.springframework.messaging.Message``\ 、\ ``javax.jms.Message``\ 、\ ``String``\ 、\ ``byte``\ 配列、\ ``Map``\ 、\ ``Serializable``\ インタフェースを実装したクラス である。
@@ -1433,7 +1440,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
          - | メッセージ送信するオブジェクトを返却する。
 
    ヘッダ属性\ ``JMSReplyTo``\ はConsumer側で指定したデフォルトのDestinationよりも優先される。
-   詳細については、\ `Response management <http://docs.spring.io/spring/docs/4.2.7.RELEASE/spring-framework-reference/htmlsingle/#jms-annotated-response>`_\ を参照されたい。
+   詳細については、\ `Response management <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/htmlsingle/#jms-annotated-response>`_\ を参照されたい。
 
 
 .. _JMSHowToUseMessageSelectorForAsyncReceive:
@@ -1764,7 +1771,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
   JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
 
-  | \ `Distributed transactions in Spring, with and without XA <http://bit.ly/best-effort-1pc>`_\ 
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
   | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
 
   .. warning:: **メッセージ受信後にJMSプロバイダとの接続が切れた場合などでJMSプロバイダにトランザクションの処理結果が返らない場合**
@@ -2168,7 +2175,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         | すると処理効率が下がり、性能劣化の原因になるので注意すること。
     * - | (4)
       - | \ ``JmsTemplate``\ をBean定義する。
-        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼出し）を代行する。
+        | \ ``JmsTemplate``\ は低レベルのAPIハンドリング（JMS API呼び出し）を代行する。
         | 設定可能な属性に関しては、下記の\ ``JmsTemplate``\ の属性一覧を参照されたい。
     * - | (5)
       - | \ ``JmsMessagingTemplate``\ をBean定義する。同期受信処理を代行する\ ``JmsTemplate``\ をインジェクションする。
@@ -2181,6 +2188,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
  .. list-table::
     :header-rows: 1
     :widths: 5 20 50 15 10
+    :class: longtable
 
     * - 項番
       - 設定項目
@@ -2207,7 +2215,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
     * - 4.
       - \ ``sessionAcknowledgeMode``\
       - | \ ``sessionAcknowledgeMode``\ はセッションの確認応答モードを設定する。
-        | 詳細については\ `JmsTemplateのJavaDoc <http://docs.spring.io/spring/docs/4.2.7.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ を参照されたい。
+        | 詳細については\ `JmsTemplateのJavaDoc <http://docs.spring.io/spring/docs/4.3.5.RELEASE/javadoc-api/org/springframework/jms/core/JmsTemplate.html>`_\ を参照されたい。
 
         .. todo::
 
@@ -2240,6 +2248,10 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         | Destinationを明示的に指定しない場合、このDestinationが使用される。
       - \-
       - null(既定のDestinationなし)
+
+ .. raw:: latex
+
+    \newpage
 
 (\*1)\ ``org.springframework.jms.support.converter.SimpleMessageConverter``\ 
 
@@ -2296,7 +2308,7 @@ JMSプロバイダに依存する設定
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 JMSプロバイダごとに設定が異なる場合がある。
-以下にJMSプロバイダごとの設定についてを説明する。
+以下にJMSプロバイダごとの設定について説明する。
 
 
 Apache ActiveMQを利用する場合
@@ -2309,7 +2321,7 @@ Apache ActiveMQを利用する場合の設定について説明する。
   | JMSプロバイダによっては、固有の設定が必要な場合がある。
   | Apache ActiveMQでは、受信するメッセージのペイロードが許可されたオブジェクトで構成されていることを保障するために、環境変数をアプリケーションサーバの起動引数に追加する必要がある。
   | 詳細については、\ `ObjectMessage <http://activemq.apache.org/objectmessage.html>`_\ を参照されたい。
-  | Apache Tomcatを利用する場合の設定例を以下に示す。JBossの場合は\ `Service Configuration <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Installation_Guide/sect-Service_Configuration.html>`_\ を、Weblogicの場合は\ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\ を参照されたい。
+  | 環境変数をApache Tomcatの起動引数に追加する例を以下に示す。JBoss Enterprise Application Platform 7.0の場合は\ `Configuring JBoss EAP to Run as a Service <https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/7.0/paged/installation-guide/chapter-4-configuring-jboss-eap-to-run-as-a-service>`_\ を、JBoss Enterprise Application Platform 6.4の場合は\ `Service Configuration <https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.4/html/Installation_Guide/sect-Service_Configuration.html>`_\ を、Weblogicの場合は\ `Starting Managed Servers with a Startup Script <http://docs.oracle.com/middleware/1221/wls/START/overview.htm#START120>`_\ を参照されたい。
 
   - :file:`$CATALINA_HOME/bin/setenv.sh`
 
