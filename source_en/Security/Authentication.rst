@@ -918,17 +918,17 @@ BCryptPasswordEncoder
 .. warning:: **How to use SecureRandom**
   
     When \ ``SecureRandom``\  is to be used in Linux environment, a delay or timeout in the processing is likely to occur.
-    This event depends on the random number generator to be used and description is given in the Java Bug Database given below.
+    This event depends on the random number generator to be used and description is given in the document given below.
   
-    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6202721
+    * https://docs.oracle.com/javase/8/docs/api/java/security/SecureRandom.html 
   
-    It has been fixed in the subsequent versions of b20 of JDK 7.
+    When this event occurs, it can be avoided by adding one of the following settings.
   
-    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6521844
+    * Specify ``-Djava.security.egd=file:/dev/urandom`` while executing Java command.
   
-    If this event occurs, it can be avoided by adding following configuration to system property of JVM.
+    * Change ``securerandom.source=/dev/random` in ``${JAVA_HOME}/jre/lib/security/java.security`` to ``securerandom.source=/dev/urandom``.
   
-    * ``-Djava.security.egd=file:/dev/./urandom``
+    If this event occurs in the version prior to b19 of Java SE 7 (prior to official release), ``/dev/./urandom`` must be specified instead of ``/dev/urandom``. However, algorithm used by \ ``SecureRandom``\  cannot be avoided in case of \ ``NativePRNG``\.
 
 |
 
@@ -1355,6 +1355,28 @@ An audit log which records information like "When", "Who", "Which data" and "Typ
     Spring Security also offers a system to maintain coupling between components by coordinating with Spring MVC function.
     How to coordinate with Spring MVC is explained in ":ref:`SpringSecurityAuthenticationIntegrationWithSpringMVC`".
     **This guideline recommends fetching authentication information by using coordination with Spring MVC.**
+
+.. note::
+
+    When a filter (FORM_LOGIN_FILTER) for authentication is to be customized,
+    it is necessary to disable the following 2 \ ``SessionAuthenticationStrategy``\  classes, apart from specifying \ ``<sec:concurrency-control>``\  element.
+
+    * | ``org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy``
+      | A class to check number of sessions for each logged in user after successful authentication.
+
+    * | ``org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy``
+      | A class to register a session with successful authentication, in session management area.
+
+    In version 1.0.x.RELEASE dependent Spring Security 3.1, \ ``org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy``\  class is provided; however,
+    it is deprecated API from Spring Security 3.2 and it is abolished API from Spring Security 4.0.
+    When upgrading version from Spring Security 3.1 to Spring Security 3.2 or later versions, changes need to be made so that it can be used with combination of following classes.
+
+    * ``ConcurrentSessionControlAuthenticationStrategy`` (added in Spring Security 3.2)
+    * ``RegisterSessionAuthenticationStrategy`` (added in Spring Security 3.2)
+    * ``org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy``
+
+    For specific methods of definition,
+    refer to sample code of `Spring Security Reference -Web Application Security (Concurrency Control)- <http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/reference/htmlsingle/#concurrent-sessions>`_.
 
 |
 
@@ -2799,7 +2821,7 @@ A flag (checkbox field) to specify use of "Remember Me authentication" function 
             <!-- omitted -->
             <tr>
                 <td><label for="remember-me">Remember Me : </label></td>
-                <td><input name="remember-me" id="remember-me" type="checkbox" checked="checked"></td> <!-- (1) -->
+                <td><input name="remember-me" id="remember-me" type="checkbox" checked="checked" value="true"></td> <!-- (1) -->
             </tr>
             <!-- omitted -->
     </form:form>
@@ -2812,8 +2834,14 @@ A flag (checkbox field) to specify use of "Remember Me authentication" function 
     * - Sr. No.
       - Description
     * - | (1)
-      - | Add a flag (checkbox field) for specifying whether "Remember Me authentication" function is used and specify \ ``remember_me``\  in the field name (request parameter name).
+      - | Add a flag (checkbox item) to specify whether "Remember Me authentication" function is used, and specify \ ``remember-me``\  - a default value of \ ``remember-me-parameter``\  in field name (request parameter name).
+        | Set \ ``true``\  in \ ``value``\  attribute of checkbox.
         | If authentication process is carried out after ticking the checkbox, "Remember Me authentication" function is applied for subsequent requests.
+
+.. tip:: **About setup value of value attribute**
+
+   Description of setting \ ``true``\  in \ ``value``\  attribute is given in \ `rememberMeRequested - JavaDoc <http://docs.spring.io/autorepo/docs/spring-security/4.1.4.RELEASE/apidocs/org/springframework/security/web/authentication/rememberme/AbstractRememberMeServices.html#rememberMeRequested-javax.servlet.http.HttpServletRequest-java.lang.String->`_\ ,
+   however \ ``on``\ , \ ``yes``\  and \ ``1``\  can also be set in the implementation.
 
 .. raw:: latex
 

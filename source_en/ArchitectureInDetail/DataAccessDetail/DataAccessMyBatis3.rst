@@ -447,21 +447,9 @@ pom.xml settings
       - Add terasoluna-gfw-mybatis3 to dependencies.
         Dependency relation with MyBatis3 and MyBatis-Spring is defined in terasoluna-gfw-mybatis3.
         
- .. tip:: **How to configure when terasoluna-gfw-parent is not used as a Parent project**
- 
-    When terasoluna-gfw-parent project is not specified as a parent project, it becomes necessary to specify individual version as well.
-
-     .. code-block:: xml
-        :emphasize-lines: 4
- 
-        <dependency>
-            <groupId>org.terasoluna.gfw</groupId>
-            <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
-            <version>5.2.0.RELEASE</version>
-            <type>pom</type>
-        </dependency>
-        
-    In the above example, 5.2.0.RELEASE is specified. However, version used in the project should be specified.
+ .. note::
+ 	
+ 		In the above setting example, since it is assumed that the dependent library version is managed by the parent project terasoluna-gfw-parent, specifying the version in pom.xml is not necessary.
 
  .. Warning:: **Configuration while using in Java SE 7 environment**
 
@@ -522,7 +510,7 @@ Configuration example is as given below.
 - :file:`projectName-env/src/main/resources/META-INF/spring/projectName-env.xml`
 
  .. code-block:: xml
-    :emphasize-lines: 15-20
+    :emphasize-lines: 15-22
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -543,6 +531,8 @@ Configuration example is as given below.
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
             <!-- (2) -->
             <property name="dataSource" ref="dataSource" />
+            <!-- (3) -->
+            <property name="rollbackOnCommitFailure" value="true" />
         </bean>
 
         <!-- omitted -->
@@ -563,6 +553,11 @@ Configuration example is as given below.
       - Specify configured datasource bean in \ ``dataSource`` \  property.
 
         When SQL is executed in the transaction, connection is fetched from datasource specified here.
+    * - (3)
+      - \ Rollback process is called when an error occurs during commit.
+
+        By adding this setting, risk of "Unintentional commit which occurs when a connection with undefined operation returns to connection pool (commit while reusing a connection, implicit commit at the time of closing a connection etc)" can be reduced.
+        However, since an error is likely to occur at the time of rollback, it should be noted that a risk of occurrence of unintentional commit is still a possibility.
 
  .. note:: **bean ID of PlatformTransactionManager**
  
