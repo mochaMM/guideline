@@ -1779,7 +1779,7 @@ Perform the following settings when using Commons FileUpload.
 
     When using Apache Commons FileUpload, version 1.3.2 or above should be used.
 
-    Note that, if a version managed by Spring IO Platform 2.0.6.RELEASE which is in conformance with TERASOLUNA Server Framework for Java version 5.2.0.RELEASE is used, vulnerabilities reported in CVE-2014-0050 and CVE-2016-3092 do not occur.
+    Note that, if a version managed by Spring IO Platform 2.0.6.RELEASE which is in conformance with TERASOLUNA Server Framework for Java version 5.2.1.RELEASE is used, vulnerabilities reported in CVE-2014-0050 and CVE-2016-3092 do not occur.
     When Apache Commons FileUpload version is to be changed intentionally, a version wherein corresponding vulnerability has been addressed must be specified.
 
 |
