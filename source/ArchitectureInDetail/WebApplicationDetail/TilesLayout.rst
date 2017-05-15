@@ -225,7 +225,7 @@ Spring MVCとTilesの連携
        | valueはspring-mvcに取り込まれているpropertiesの中から取得する。(以下の説明では application-messages.propertiesに設定する。)
        | {1},{2}はControllerから返却されたView名の"\*/\*"の「*」の1つ目、2つ目に該当する。
    * - | (7)
-     - | bodyを定義しているjspファイルの置き場所について、{1},{2}にControllerから返却されたView名の”*/*”の「*」の1つ目、2つ目が一致するように設計する。これにより、Controllerから返却されるView名ごとの定義を記述する手間を省くことができる。
+     - | bodyを定義しているjspファイルの置き場所について、{1},{2}にControllerから返却されたView名の"\*/\*"の「*」の1つ目、2つ目が一致するように設計する。これにより、Controllerから返却されるView名ごとの定義を記述する手間を省くことができる。
 
  .. note::
 
@@ -480,7 +480,7 @@ Controllerから返却されるView名が"staff/createForm"となるように設
 
 **画面描画**
 
-リクエストに ``<contextPath>/staff/create?form`` が呼ばれると、
+View名に ``staff/createForm`` が指定されると、
 以下のようにTilesがレイアウトを構築して画面描画を行う。
 
  .. code-block:: xml
@@ -509,7 +509,7 @@ Controllerから返却されるView名が"staff/createForm"となるように設
    * - 項番
      - 説明
    * - | (1)
-     - | リクエストの時、親レイアウトである layouts が呼ばれ、テンプレートが /WEB-INF/views/layout/template.jspに設定される。
+     - | 該当するView名が指定された時、親レイアウトである layouts が呼ばれ、テンプレートが /WEB-INF/views/layout/template.jspに設定される。
    * - | (2)
      - | テンプレート /WEB-INF/views/layout/template.jsp内に存在する ``header`` に WEB-INF/views/layout/header.jspが設定される。
    * - | (3)
@@ -814,7 +814,7 @@ Controllerから返却されるView名が"staff/searchStaff"となるように�
 
 **画面描画**
 
-リクエストに ``<contextPath>/staff/search`` が呼ばれると、
+View名に ``staff/searchStaff`` が指定されると、
 以下のように別のレイアウトを構築して画面描画を行う。
 
 
@@ -844,7 +844,7 @@ Controllerから返却されるView名が"staff/searchStaff"となるように�
    * - 項番
      - 説明
    * - | (1)
-     - | 該当するリクエストの時、親レイアウトであるlayoutsOfSearchが呼ばれ、テンプレートが /WEB-INF/views/layout/templateSearch.jspに設定される。
+     - | 該当するView名が指定された時、親レイアウトであるlayoutsOfSearchが呼ばれ、テンプレートが /WEB-INF/views/layout/templateSearch.jspに設定される。
    * - | (2)
      - | テンプレート /WEB-INF/views/layout/templateSearch.jsp内に存在する ``header`` に WEB-INF/views/layout/header.jspが設定される。
    * - | (3)
