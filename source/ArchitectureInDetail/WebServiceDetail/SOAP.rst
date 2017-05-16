@@ -112,7 +112,7 @@ Spring FrameworkのJAX-WS連携機能について
     * - | (5)
       - | [サーバ] WebServiceインターフェースが呼び出されると実体としてWebService実装クラスが呼び出される。
         | SOAPサーバでは、WebServiceインターフェースの実装クラスとしてWebService実装クラスを用意する。
-        | このWebService実装クラスは、\ ``org.springframework.web.context.support.SpringBeanAutowiringSupport``\を継承することで、SpringのDIコンテナ上のBeanを\ ``@Inject``\などでインジェクションすることができる。
+        | このWebService実装クラスは、\ ``org.springframework.web.context.support.SpringBeanAutowiringSupport``\を継承することで、SpringのDIコンテナ上のBeanを\ ``@Autowired``\などでインジェクションすることができる。
     * - | (6)
       - | [サーバ] WebService実装クラスでは、業務処理を行うServiceを呼び出す。
     * - | (7)
@@ -566,12 +566,12 @@ webプロジェクト内にWebServiceインターフェースの実装クラス�
 
     import java.util.List;
 
-    import javax.inject.Inject;
     import javax.jws.HandlerChain;
     import javax.jws.WebService;
     import javax.xml.ws.BindingType;
     import javax.xml.ws.soap.SOAPBinding;
 
+    import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
     import com.example.domain.model.Todo;
@@ -589,7 +589,7 @@ webプロジェクト内にWebServiceインターフェースの実装クラス�
     @BindingType(SOAPBinding.SOAP12HTTP_BINDING) // (2)
     public class TodoWebServiceImpl extends SpringBeanAutowiringSupport implements TodoWebService { // (3)
 
-        @Inject // (4)
+        @Autowired // (4)
         TodoService todoService;
 
         @Override // (5)
@@ -1162,11 +1162,11 @@ Serviceからスローされる例外は以下を想定している。必要に�
     import java.util.Locale;
     import java.util.Set;
 
-    import javax.inject.Inject;
     import javax.validation.ConstraintViolation;
     import javax.validation.ConstraintViolationException;
     import javax.validation.Path;
 
+    import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.context.MessageSource;
     import org.springframework.security.access.AccessDeniedException;
     import org.springframework.stereotype.Component;
@@ -1185,13 +1185,13 @@ Serviceからスローされる例外は以下を想定している。必要に�
     @Component  // (1)
     public class WsExceptionHandler {
 
-        @Inject
+        @Autowired
         MessageSource messageSource; // (2)
 
-        @Inject
+        @Autowired
         ExceptionCodeResolver exceptionCodeResolver; // (3)
 
-        @Inject
+        @Autowired
         ExceptionLogger exceptionLogger; // (4)
 
         // (5)
@@ -1291,9 +1291,9 @@ Webサービスクラスにて、例外ハンドラーを呼び出す。以下�
             endpointInterface = "com.example.ws.todo.TodoWebService")
     @BindingType(SOAPBinding.SOAP12HTTP_BINDING)
     public class TodoWebServiceImpl extends SpringBeanAutowiringSupport implements TodoWebService {
-        @Inject
+        @Autowired
         TodoService todoService;
-        @Inject
+        @Autowired
         WsExceptionHandler handler; // (1)
 
         @Override
@@ -1382,13 +1382,13 @@ MTOMを利用した大容量のバイナリデータを扱う方法
     import java.util.List;
 
     import javax.activation.DataHandler;
-    import javax.inject.Inject;
     import javax.jws.HandlerChain;
     import javax.jws.WebService;
     import javax.xml.ws.BindingType;
     import javax.xml.ws.soap.MTOM;
     import javax.xml.ws.soap.SOAPBinding;
 
+    import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.web.context.support.SpringBeanAutowiringSupport;
     import org.terasoluna.gfw.common.exception.SystemException;
 
@@ -1407,7 +1407,7 @@ MTOMを利用した大容量のバイナリデータを扱う方法
     @BindingType(SOAPBinding.SOAP12HTTP_BINDING)
     public class TodoWebServiceImpl extends SpringBeanAutowiringSupport implements TodoWebService {
 
-        @Inject
+        @Autowired
         TodoService todoService;
 
         // omitted
@@ -1621,8 +1621,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
 
     import java.util.List;
 
-    import javax.inject.Inject;
-
+    import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Service;
 
     import com.example.domain.model.Todo;
@@ -1632,7 +1631,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
     @Service
     public class TodoServiceImpl implements TodoService {
 
-        @Inject
+        @Autowired
         TodoWebService todoWebService;
 
         @Override
@@ -2571,12 +2570,12 @@ Webサービス実装クラスをエンドポイントとして設定する。
 
     import java.util.List;
 
-    import javax.inject.Inject;
     import javax.jws.HandlerChain;
     import javax.jws.WebService;
     import javax.xml.ws.BindingType;
     import javax.xml.ws.soap.SOAPBinding;
 
+    import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
     import org.springframework.stereotype.Component;
