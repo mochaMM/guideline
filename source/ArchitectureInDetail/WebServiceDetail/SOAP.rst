@@ -113,6 +113,14 @@ Spring FrameworkのJAX-WS連携機能について
       - | [サーバ] WebServiceインターフェースが呼び出されると実体としてWebService実装クラスが呼び出される。
         | SOAPサーバでは、WebServiceインターフェースの実装クラスとしてWebService実装クラスを用意する。
         | このWebService実装クラスは、\ ``org.springframework.web.context.support.SpringBeanAutowiringSupport``\を継承することで、SpringのDIコンテナ上のBeanを\ ``@Autowired``\などでインジェクションすることができる。
+
+        .. Note::
+
+            SOAPサーバでは、@Injectではなく、@Autowiredでインジェクションすることを推奨する。
+            SOAPサーバでは、Springが実装するサーブレットではなく、JAX-WSエンジンが実装するサーブレット上で動作する。
+            この場合、@Injectの挙動がAPサーバが実装するDIの挙動に依存して、SpringのDIコンテナ上のBeanを認識できない場合がある。
+            安定してインジェクションを実施するために、Springが提供する@Autowiredの使用を推奨する。
+
     * - | (6)
       - | [サーバ] WebService実装クラスでは、業務処理を行うServiceを呼び出す。
     * - | (7)
