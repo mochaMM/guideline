@@ -116,10 +116,11 @@ Spring FrameworkのJAX-WS連携機能について
 
         .. Note::
 
-            SOAPサーバでは、@Injectではなく、@Autowiredでインジェクションすることを推奨する。
-            SOAPサーバでは、Springが実装するサーブレットではなく、JAX-WSエンジンが実装するサーブレット上で動作する。
-            この場合、@Injectの挙動がAPサーバが実装するDIの挙動に依存して、SpringのDIコンテナ上のBeanを認識できない場合がある。
-            安定してインジェクションを実施するために、Springが提供する@Autowiredの使用を推奨する。
+            SOAPサーバでは、\ ``@Inject``\ではなく、\ ``@Autowired``\でインジェクションすることを推奨する。
+            SOAPサーバでは、Springが実装するサーブレットではなく、JAX-WSエンジンが実装するサーブレット上で動作し、
+            JavaEEサーバによっては、インジェクションしたいBeanがJavaEEサーバのDIコンテナに登録されない場合がある。
+            \ ``@Inject``\の場合、JavaEEサーバが提供するDI機能で使用されるため、JavaEEサーバのDIコンテナに存在しないとエラーになってしまう。
+            上記に対して、\ ``@Autowired``\であればSpringのDI機能のみで使用されるため、意図せずJavaEEサーバのDI機能でエラーになるのを防止することができる。
 
     * - | (6)
       - | [サーバ] WebService実装クラスでは、業務処理を行うServiceを呼び出す。
