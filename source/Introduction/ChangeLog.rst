@@ -26,6 +26,12 @@
 
         * 改善内容の詳細は、\ `5.4.0のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.4.0%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
+    * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
+      - 記載内容の修正
+
+        * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更(\ `guideline#2763 <https://github.com/terasolunaorg/guideline/issues/2763>`_\ )
+
 
     * - 2017-03-17
       - \-
