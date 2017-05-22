@@ -1809,8 +1809,8 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
         <property name="customProperties">
             <map>
                 <!-- (2) -->
-                <entry key="com.sun.xml.internal.ws.connect.timeout" value-type="java.lang.Integer" value="${webservice.connect.timeout}"/>
-                <entry key="com.sun.xml.internal.ws.request.timeout" value-type="java.lang.Integer" value="${webservice.request.timeout}"/>
+                <entry key="com.sun.xml.internal.ws.connect.timeout" value="${webservice.connect.timeout}"/>
+                <entry key="com.sun.xml.internal.ws.request.timeout" value="${webservice.request.timeout}"/>
             </map>
         </property>
     </bean>
@@ -1835,6 +1835,19 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
     * - | (2)
       - | コネクションタイムアウトとリクエストタイムアウトを定義する。
         | それぞれの値をプロパティファイルに切り出した場合のサンプルである。
+
+        .. note::
+
+            weblogicで該当キーを指定する場合は、value-type属性でInteger型を指定する必要がある。
+
+             .. code-block:: xml
+
+                <property name="customProperties">
+                    <map>
+                        <entry key="com.sun.xml.internal.ws.connect.timeout" value-type="java.lang.Integer" value="${webservice.connect.timeout}"/>
+                        <entry key="com.sun.xml.internal.ws.request.timeout" value-type="java.lang.Integer" value="${webservice.request.timeout}"/>
+                    </map>
+                </property>
 
         .. warning:: **タイムアウト定義に使用するキーについて**
 
