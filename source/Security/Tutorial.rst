@@ -630,77 +630,22 @@ blankプロジェクトからの差分のみ説明する。
 
 起動時に実行されるSQLスクリプトの設定
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+本チュートリアルでは、アカウント情報を保持するデータベースとしてH2 Database(インメモリデータベース)を使用する。
+そのため、アプリケーション起動時にSQLを実行してデータベースを初期化する必要がある。
+
+ブランクプロジェクトには以下のように\ ``jdbc:initialize-database`` \が設定済みであり、\ ``${database}-schema.sql`` \にDDL文、\ ``${database}-dataload.sql`` \にDML文を追加するだけでアプリケーション起動時にSQLを実行してデータベースを初期化することができる。なお、ブランクプロジェクトの設定では\ ``first-springsecurity-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-schema.sql`` \及び\ ``H2-dataload.sql`` \が実行される。
 
 * src/main/resources/META-INF/spring/first-springsecurity-env.xml
 
-  SQLスクリプトの設定を追加する。
-  
   .. code-block:: xml
-     :emphasize-lines: 4-5,29-33
-  
-      <?xml version="1.0" encoding="UTF-8"?>
-      <beans xmlns="http://www.springframework.org/schema/beans"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
-          xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-          xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-              http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
-              http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-  
-          <bean id="dateFactory" class="org.terasoluna.gfw.common.date.DefaultDateFactory" />
-  
-          <bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-              destroy-method="close">
-              <property name="driverClassName" value="${database.driverClassName}" />
-              <property name="url" value="${database.url}" />
-              <property name="username" value="${database.username}" />
-              <property name="password" value="${database.password}" />
-              <property name="defaultAutoCommit" value="false" />
-              <property name="maxActive" value="${cp.maxActive}" />
-              <property name="maxIdle" value="${cp.maxIdle}" />
-              <property name="minIdle" value="${cp.minIdle}" />
-              <property name="maxWait" value="${cp.maxWait}" />
-          </bean>
 
+    <jdbc:initialize-database data-source="dataSource"
+        ignore-failures="ALL">
+        <jdbc:script location="classpath:/database/${database}-schema.sql" />
+        <jdbc:script location="classpath:/database/${database}-dataload.sql" />
+    </jdbc:initialize-database>
 
-          <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-              <constructor-arg index="0" ref="realDataSource" />
-          </bean>
-
-          <jdbc:initialize-database data-source="dataSource"
-              ignore-failures="ALL"><!-- (1) -->
-              <jdbc:script location="classpath:/database/${database}-schema.sql" /><!-- (2) -->
-              <jdbc:script location="classpath:/database/${database}-dataload.sql" /><!-- (3) -->
-          </jdbc:initialize-database>
-
-          <!--  REMOVE THIS LINE IF YOU USE JPA
-          <bean id="transactionManager"
-              class="org.springframework.orm.jpa.JpaTransactionManager">
-              <property name="entityManagerFactory" ref="entityManagerFactory" />
-          </bean>
-                REMOVE THIS LINE IF YOU USE JPA  -->
-          <bean id="transactionManager"
-              class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-              <property name="dataSource" ref="dataSource" />
-          </bean>
-      </beans>
-  
-  
-  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-  .. list-table::
-     :header-rows: 1
-     :widths: 10 90
-  
-     * - 項番
-       - 説明
-     * - | (1)
-       - | \ ``<jdbc:initialize-database>``\ タグで初期化SQLスクリプトの設定を行う。
-         | この設定は通常、開発中のみでしか使用しないため、xxx-env.xmlに定義する。
-     * - | (2)
-       - | DDLを設定する。雛形の設定ではxxx-infra.propertiesに\ ``database=H2``\ と定義されているため、H2-schema.sqlが実行される。
-     * - | (3)
-       - | DMLを設定する。雛形の設定ではxxx-infra.propertiesに\ ``database=H2``\ と定義されているため、H2-dataload.sqlが実行される。
-
-今回はインメモリのH2データベースを利用する。DDLとDMLを以下のように用意する。
+アカウント情報を保持するテーブルを作成するためのDDL文を作成する。
 
 * src/main/resources/database/H2-schema.sql
 
@@ -714,11 +659,10 @@ blankプロジェクトからの差分のみ説明する。
           constraint pk_tbl_account primary key (username)
       );
 
+デモユーザー(username=demo、password=demo)を登録するためのDML文を作成する。
+
 * src/main/resources/database/H2-dataload.sql
 
-    username=demo、passowrd=demoでログインできるテストユーザーを追加する。
-
-  
   .. code-block:: sql
 
       INSERT INTO account(username, password, first_name, last_name) VALUES('demo', '$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK', 'Taro', 'Yamada'); -- (1)

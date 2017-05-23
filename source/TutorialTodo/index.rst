@@ -1126,7 +1126,7 @@ todo-env.xmlの確認
 作成したブランクプロジェクトの\ ``src/main/resources/META-INF/spring/todo-env.xml``\は、以下のような設定となっている。
 
  .. code-block:: xml
-    :emphasize-lines: 11-13, 25-28, 36-40
+    :emphasize-lines: 11, 25, 30, 33, 38
 
     <?xml version="1.0" encoding="UTF-8"?>
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -1157,13 +1157,15 @@ todo-env.xmlの確認
             <constructor-arg index="0" ref="realDataSource" />
         </bean>
 
+        <!-- (3) -->
         <jdbc:initialize-database data-source="dataSource"
             ignore-failures="ALL">
+            <!-- (4) -->
             <jdbc:script location="classpath:/database/${database}-schema.sql" />
             <jdbc:script location="classpath:/database/${database}-dataload.sql" />
         </jdbc:initialize-database>
 
-        <!-- (3) -->
+        <!-- (5) -->
         <bean id="transactionManager"
             class="org.springframework.orm.jpa.JpaTransactionManager">
             <property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -1191,6 +1193,16 @@ todo-env.xmlの確認
        | JDBC関連のログを出力する機能をもったデータソースを指定している。
        | \ ``net.sf.log4jdbc.Log4jdbcProxyDataSource``\を使用すると、SQLなどのJDBC関連のログを出力できるため、デバッグに役立つ情報を出力することができる。
    * - | (3)
+     - | データベース初期化の設定。
+       | データベースを初期化するSQLファイルを実行するための設定を行っている。
+       |
+       | この設定は通常、開発中のみでしか使用しない(環境に依存する設定)ため、\ ``todo-env.xml`` \に定義されている。
+   * - | (4)
+     - | データベースを初期化するSQLファイルの設定。
+       | データベースを初期化するための、DDL文が記載されているSQLファイルとDML文が記載されているSQLファイルを指定している。
+       |
+       | ブランクプロジェクトの設定では\ ``todo-infra.properties`` \に\ ``database=H2`` \と定義されているため、\ ``H2-schema.sql`` \及び\ ``H2-dataload.sql`` \が実行される。
+   * - | (5)
      - | トランザクションマネージャの設定。idは、transactionManagerにすること。
        | 別の名前を指定する場合は、<tx:annotation-driven>タグにも、トランザクションマネージャ名を指定する必要がある。
 
