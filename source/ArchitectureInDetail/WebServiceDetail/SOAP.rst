@@ -1838,7 +1838,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
 
         .. note::
 
-            weblogicで該当キーを指定する場合は、\ ``value-type``\ 属性で\ ``Integer``\ 型を指定する必要がある。
+            WebLogicで該当キーを指定する場合は、\ ``value-type``\ 属性で\ ``Integer``\ 型を指定する必要がある。
 
              .. code-block:: xml
 
