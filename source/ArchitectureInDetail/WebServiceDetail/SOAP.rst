@@ -1845,7 +1845,7 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
 
             WebLogicで該当キーを指定する場合は、\ ``value-type``\ 属性で\ ``Integer``\ 型を指定する必要がある。
 
-            指定をしない場合、Webサービスクライアントがサーバとのコネクションの確立を試みる際に、使用するJAX-WS実装ライブラリが
+            指定をしない場合、使用するJAX-WS実装ライブラリが
             \ ``String``\ 型から\ ``Integer``\ 型へのキャストを試みて失敗し、結果的に\ ``ClassCastException``\ が原因の\ ``org.springframework.remoting.RemoteAccessException``\ 例外が発生する。
 
             設定の方法は以下のとおりである。
