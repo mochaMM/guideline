@@ -32,7 +32,6 @@
 
         * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更(\ `guideline#2763 <https://github.com/terasolunaorg/guideline/issues/2763>`_\ )
 
-        * クライアントのタイムアウトの設定で指定する内容の変更(\ `guideline#2775 <https://github.com/terasolunaorg/guideline/issues/2775>`_\ )
 
     * - 2017-03-17
       - \-
