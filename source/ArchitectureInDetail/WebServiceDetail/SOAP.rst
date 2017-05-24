@@ -1836,6 +1836,11 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
       - | コネクションタイムアウトとリクエストタイムアウトを定義する。
         | それぞれの値をプロパティファイルに切り出した場合のサンプルである。
 
+        .. warning:: **タイムアウト定義に使用するキーについて**
+
+            それぞれのタイムアウトを定義するキーはJAX-WSの実装により異なる値を設定する必要がある。
+            詳細は\ `JAX_WS-1166 Standardize timeout settings <https://java.net/jira/browse/JAX_WS-1166>`_\を参照されたい。
+
         .. note::
 
             WebLogicで該当キーを指定する場合は、\ ``value-type``\ 属性で\ ``Integer``\ 型を指定する必要がある。
@@ -1853,11 +1858,6 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
                         <entry key="com.sun.xml.internal.ws.request.timeout" value-type="java.lang.Integer" value="${webservice.request.timeout}"/>
                     </map>
                 </property>
-
-        .. warning:: **タイムアウト定義に使用するキーについて**
-
-            それぞれのタイムアウトを定義するキーはJAX-WSの実装により異なる値を設定する必要がある。
-            詳細は\ `JAX_WS-1166 Standardize timeout settings <https://java.net/jira/browse/JAX_WS-1166>`_\を参照されたい。
 
     * - | (3)
       - | \ ``[client projectName]-domain.xml``\ で定義したプロパティのキーの値を設定する。コネクションタイムアウトとリクエストタイムアウトを記述する。
