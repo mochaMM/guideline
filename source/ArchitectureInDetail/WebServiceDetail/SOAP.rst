@@ -1809,8 +1809,8 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
         <property name="customProperties">
             <map>
                 <!-- (2) -->
-                <entry key="com.sun.xml.internal.ws.connect.timeout" value-type="java.lang.Integer" value="${webservice.connect.timeout}"/>
-                <entry key="com.sun.xml.internal.ws.request.timeout" value-type="java.lang.Integer" value="${webservice.request.timeout}"/>
+                <entry key="com.sun.xml.internal.ws.connect.timeout" value="${webservice.connect.timeout}"/>
+                <entry key="com.sun.xml.internal.ws.request.timeout" value="${webservice.request.timeout}"/>
             </map>
         </property>
     </bean>
@@ -1840,6 +1840,24 @@ WebServiceインターフェースを実装したプロキシを生成する\ ``
 
             それぞれのタイムアウトを定義するキーはJAX-WSの実装により異なる値を設定する必要がある。
             詳細は\ `JAX_WS-1166 Standardize timeout settings <https://java.net/jira/browse/JAX_WS-1166>`_\を参照されたい。
+
+        .. note::
+
+            WebLogicで該当キーを指定する場合は、\ ``value-type``\ 属性で\ ``Integer``\ 型を指定する必要がある。
+
+            指定をしない場合、WebLogicのJAX-WS実装ライブラリが
+            \ ``String``\ 型から\ ``Integer``\ 型へのキャストを試みて失敗し、結果的に\ ``ClassCastException``\ が原因の\ ``org.springframework.remoting.RemoteAccessException``\ 例外が発生する。
+
+            設定の方法は以下のとおりである。
+
+             .. code-block:: xml
+
+                <property name="customProperties">
+                    <map>
+                        <entry key="com.sun.xml.internal.ws.connect.timeout" value-type="java.lang.Integer" value="${webservice.connect.timeout}"/>
+                        <entry key="com.sun.xml.internal.ws.request.timeout" value-type="java.lang.Integer" value="${webservice.request.timeout}"/>
+                    </map>
+                </property>
 
     * - | (3)
       - | \ ``[client projectName]-domain.xml``\ で定義したプロパティのキーの値を設定する。コネクションタイムアウトとリクエストタイムアウトを記述する。
