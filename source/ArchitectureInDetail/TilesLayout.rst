@@ -460,9 +460,7 @@ Tilesのカスタムタグの詳細は、\ `こちら <http://tiles.apache.org/f
 
 **Controller作成**
 
-
-Controllerを作成するとき、リクエストが ``<contextPath>/staff/create?form`` の場合、
-Controllerから返却されるView名が"staff/createForm"となるように設定する。
+Controllerを作成するとき、ControllerからView名として"staff/createForm"を返却する。
 
 - StaffCreateController.java
 
@@ -487,7 +485,7 @@ Controllerから返却されるView名が"staff/createForm"となるように設
 
 **画面描画**
 
-View名に ``staff/createForm`` が指定されると、
+View名に"staff/createForm"が指定されると、
 以下のようにTilesがレイアウトを構築して画面描画を行う。
 
  .. code-block:: xml
@@ -794,9 +792,7 @@ How to extend
 
 **Controller作成**
 
-
-Controllerを作成するとき、リクエストが ``<contextPath>/staff/search`` の場合、
-Controllerから返却されるView名が"staff/searchStaff"となるように設定する。
+Controllerを作成するとき、ControllerからView名として"staff/searchStaff"を返却する。
 
 - StaffSearchController.java
 
@@ -821,7 +817,7 @@ Controllerから返却されるView名が"staff/searchStaff"となるように�
 
 **画面描画**
 
-View名に ``staff/searchStaff`` が指定されると、
+View名に"staff/searchStaff"が指定されると、
 以下のように別のレイアウトを構築して画面描画を行う。
 
 
