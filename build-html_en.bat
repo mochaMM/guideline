@@ -6,4 +6,3 @@ SET SOURCEDIR=source_en
 SET BUILDDIR=build_en
 
 call make.bat html
-pause
