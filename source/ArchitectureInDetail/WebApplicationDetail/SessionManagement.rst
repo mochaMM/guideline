@@ -998,26 +998,15 @@ component-scanを使用する方法を、以下に示す。
 
     @Component
     @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS) // (1)
-    public class SessionCart implements Serializable {
+    public class Cart implements Serializable {
 
-        private static final long serialVersionUID = 1L;
+        // ...
 
-        private Cart cart;
-
-        public Cart getCart() {
-            if (cart == null) {
-                cart = new Cart();
-            }
-            return cart;
+        public void clearItems() { // (2)
+            cartItems.clear();
         }
 
-        public void setCart(Cart cart) {
-            this.cart = cart;
-        }
-
-        public void clearCart() { // (2)
-            cart.clearCart();
-        }
+        // ...
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1038,8 +1027,34 @@ component-scanを使用する方法を、以下に示す。
     JPAで扱うEntityクラスをsessionスコープのBeanとして定義すると、JPAのAPIでsessionスコープのBeanを直接扱うことができない(直接あつかうと、エラーとなる)。
     そのため、JPAで扱うことができるEntityオブジェクトへの変換処理が、必要になってしまう。
 
-    上記例では、\ ``Cart``\ というJPAのEntityクラスを、\ ``SessionCart``\ というラッパークラスに包んで、sessionスコープのBeanとしている。
+    下記例では、\ ``Cart``\ というJPAのEntityクラスを、\ ``SessionCart``\ というラッパークラスに包んで、sessionスコープのBeanとしている。
     こうすることで、JPAで扱うことができるEntityオブジェクトへの変換処理が不要となるため、Controllerで行う処理がシンプルになる。
+
+     .. code-block:: java
+
+        @Component
+        @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS) // (1)
+        public class SessionCart implements Serializable {
+
+            private static final long serialVersionUID = 1L;
+
+            private Cart cart;
+
+            public Cart getCart() {
+                if (cart == null) {
+                    cart = new Cart();
+                }
+                return cart;
+            }
+
+            public void setCart(Cart cart) {
+                this.cart = cart;
+            }
+
+            public void clearCart() { // (2)
+                cart.clearCart();
+            }
+        }
 
  .. note:: **scoped-proxyを有効化する理由について**
 
@@ -1049,7 +1064,7 @@ component-scanを使用する方法を、以下に示す。
 
  .. code-block:: xml
 
-    <context:component-scan base-package="xxx.yyy.zzz.app" /> // (2)
+    <context:component-scan base-package="xxx.yyy.zzz.app" /> // (3)
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -1058,7 +1073,7 @@ component-scanを使用する方法を、以下に示す。
 
     * - 項番
       - 説明
-    * - | (2)
+    * - | (3)
       - | ``<context:component-scan>`` 要素でベースとなるパッケージを指定する。
 
 |
@@ -1069,9 +1084,9 @@ Bean定義ファイル(XML)に定義する方法を、以下に示す。
 
  .. code-block:: xml
 
-    <beans:bean id="sessionCart" class="xxx.yyy.zzz.app.SessionCart"
-                scope="session"> <!-- (3) -->
-        <aop:scoped-proxy /> <!-- (4) -->
+    <beans:bean id="cart" class="xxx.yyy.zzz.app.Cart"
+                scope="session"> <!-- (4) -->
+        <aop:scoped-proxy /> <!-- (5) -->
     </beans:bean>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1081,9 +1096,9 @@ Bean定義ファイル(XML)に定義する方法を、以下に示す。
 
     * - 項番
       - 説明
-    * - | (3)
-      - | Beanのスコープを\ ``"session"``\ にする。
     * - | (4)
+      - | Beanのスコープを\ ``"session"``\ にする。
+    * - | (5)
       - | ``<aop:scoped-proxy />`` 要素を指定し、scoped-proxyを有効にする。
 
 sessionスコープのBeanの利用
@@ -1094,18 +1109,34 @@ sessionスコープのBeanの利用
  .. code-block:: java
 
     @Inject
-    SessionCart sessionCart; // (1)
+    Cart cart; // (1)
 
-    @RequestMapping(value = "add")
-    public String addCart(@Validated ItemForm form, BindingResult result) {
-        if (result.hasErrors()) {
-            return "item/item";
+    @Inject
+    ShoppingCartHelper shoppingCartHelper;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String cart(CartItemsForm form) {
+
+        List<CartItemForm> cartItemForms = shoppingCartHelper
+                .convertToCartItemForms(cart.getCartItems()); // (2)
+        form.setCartItemForms(cartItemForms);
+
+        return "ssmn/shoppingCart";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, params = "order")
+    public String shoppingOrderComfirm(@Validated CartItemsForm form,
+            BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute(cart);
+            return "ssmn/shoppingCart";
         }
-        CartItem cartItem = beanMapper.map(form, CartItem.class);
-        Cart addedCart = cartService.addCartItem(sessionCart.getCart(), // (2)
-                cartItem);
-        sessionCart.setCart(addedCart); // (3)
-        return "redirect:/cart";
+
+        shoppingCartHelper.setQuantityItems(cart, form.getCartItemForms());
+
+        model.addAttribute(cart); // (3)
+
+        return "forward:./order?order";
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1132,16 +1163,24 @@ sessionスコープのBeanの利用
 
  .. code-block:: jsp
 
-    <spring:eval var="cart" expression="@sessionCart.cart" />     <%-- (1) --%>
+    <spring:eval var="cart" expression="@cart" />     <%-- (1) --%>
     
     <%-- omitted --%>
     
-    <c:forEach var="item" items="${cart.cartItems}">     <%-- (2) --%>
-        <tr>
-            <td>${f:h(item.id)}</td>
-            <td>${f:h(item.itemCode)}</td>
-            <td>${f:h(item.quantity)}</td>
-        </tr>
+    <c:forEach var="cartItem" items="${cart.cartItems}"     <%-- (2) --%>
+        varStatus="rowStatus">
+        <spring:nestedPath
+            path="cartItemForms[${rowStatus.index}]">
+            <tr>
+                <td class="no">${rowStatus.count}</td>
+                <td class="itemId">${f:h(cartItem.itemId)}</td>
+                <td class="itemName">${f:h(cartItem.item.itemName)}</td>
+
+                <%-- omitted --%>
+
+            </tr>
+            <form:hidden path="itemId" />
+        </spring:nestedPath>
     </c:forEach>
     
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -1169,28 +1208,14 @@ sessionスコープのBeanの利用
 
  .. code-block:: java
 
-    @Controller
-    @RequestMapping("order")
-    public class OrderController {
-
         @Inject
-        SessionCart sessionCart; // (1)
+        Cart cart; // (1)
 
-        // ...
-
-        @RequestMapping(method = RequestMethod.POST)
-        public String order() {
-            // ...
-            return "redirect:/order?complete";
+        @RequestMapping(method = RequestMethod.GET, params = "complete")
+        public String createOrderComplete(SessionStatus sessionStatus) {
+            cart.clearItems(); // (2)
+            return "ssmn/shoppingOrderComplete";
         }
-
-        @RequestMapping(params = "complete", method = RequestMethod.GET)
-        public String complete(Model model, SessionStatus sessionStatus) {
-            sessionCart.clearCart(); // (2)
-            return "order/complete";
-        }
-
-    }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2033,10 +2058,9 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
 処理の仕様は、以下の通りとする。
 
 * 商品をカートに追加する処理を提供する。
-* カートに追加されている商品の、数量変更を行う処理を提供する。
 * カートに格納されている商品を、注文する処理を提供する。
-* 上記3つの処理は、それぞれ独立した機能として提供するため、別Controller(ItemController, CartController, OrderController)とする。
-* カートは、上記3つの処理で共有するため、セッションに格納する。
+* 上記2つの処理は、それぞれ独立した機能として提供するため、別Controller(ShoppingItemController, ShoppingCartController, ShoppingOrderController)とする。
+* カートは、上記2つの処理で共有するため、セッションに格納する。
 * 商品をカートに追加した場合は、カート画面に遷移する。
 
 画面遷移は、以下の通りとする。
@@ -2054,26 +2078,93 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
 
     @Component
     @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public class SessionCart implements Serializable {
+    public class Cart implements Serializable {
 
         private static final long serialVersionUID = 1L;
 
-        private Cart cart; // (1)
+        private String cartId;
 
-        public Cart getCart() {
-            if (cart == null) {
-                cart = new Cart();
+        private List<CartItem> cartItems;
+
+        public Cart() {
+            cartId = UUID.randomUUID().toString();
+            cartItems = new ArrayList<CartItem>();
+        }
+
+        public Cart(String cartId) {
+            this.cartId = cartId;
+        }
+
+        public String getCartId() {
+            return cartId;
+        }
+
+        public void setCartId(String cartId) {
+            this.cartId = cartId;
+        }
+
+        public List<CartItem> getCartItems() {
+            return cartItems;
+        }
+
+        public void setCartItems(List<CartItem> cartItems) {
+            this.cartItems = cartItems;
+        }
+
+        public void clearItems() {
+            cartItems.clear(); // (1)
+        }
+
+        public long getTotalPrice() {
+            long totalPrice = 0;
+            for (CartItem cartItem : cartItems) {
+                totalPrice += cartItem.getSubtotalPrice();
             }
-            return cart;
+            return totalPrice;
         }
 
-        public void setCart(Cart cart) {
-            this.cart = cart;
+        public CartItem findCartItem(String itemCode) {
+            CartItem storedCartItem = null;
+            for (CartItem targetStoredCartItem : cartItems) {
+                if (itemCode.equals(targetStoredCartItem.getItemId())) {
+                    storedCartItem = targetStoredCartItem;
+                    break;
+                }
+            }
+            return storedCartItem;
         }
 
-        public void clearCart() { // (2)
-            cart.clearCart();
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + ((cartId == null) ? 0 : cartId.hashCode());
+            return result;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            Cart other = (Cart) obj;
+            if (cartId == null) {
+                if (other.cartId != null)
+                    return false;
+            } else if (!cartId.equals(other.cartId))
+                return false;
+            return true;
+        }
+
+        @Override
+        public String toString() {
+            return "Cart [cartId=" + cartId + ", cartItems=" + cartItems
+                    + ", super.hashCode()=" + super.hashCode() + "]";
+        }
+
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2084,50 +2175,48 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - 項番
       - 説明
     * - | (1)
-      - | \ ``Cart``\ というEntity(Domainオブジェクト)をラップしている。
-    * - | (2)
       - | カートに追加された商品のオブジェクトを\ ``cart``\から削除し，カートが空の状態にする。
 
-- ItemController
+- ShoppingItemsController
 
  .. code-block:: java
 
+    @RequestMapping("shopping/items")
     @Controller
-    @RequestMapping("item")
-    public class ItemController {
+    @SessionAttributes("scopedTarget.cart")
+    public class ShoppingItemsController {
 
         @Inject
-        SessionCart sessionCart;
+        ItemService itemService;
 
-        @Inject
-        CartService cartService;
+        @RequestMapping(method = RequestMethod.GET, params = "init")
+        public String init(SessionStatus sessionStatus) {
+            sessionStatus.setComplete();
+            return "redirect:./items";
+        }
 
-        @Inject
-        Mapper beanMapper;
-
-        @ModelAttribute
-        public ItemForm setUpItemForm() {
-            return new ItemForm();
+        // (2)
+        @RequestMapping(method = RequestMethod.GET)
+        public String items(@PageableDefault(20) Pageable pageable, Model model) {
+            Page<Item> page = itemService.getItems(pageable);
+            model.addAttribute("page", page);
+            return "ssmn/shoppingItems";
         }
 
         // (3)
-        @RequestMapping
-        public String view(Model model) {
-            return "item/item";
+        @RequestMapping(value = "{itemId}", method = RequestMethod.GET)
+        public String item(@PathVariable("itemId") String itemId, Model model) {
+            Item item = itemService.getItem(itemId);
+            model.addAttribute(item);
+
+            CartItemForm form = new CartItemForm();
+            form.setItemId(itemId);
+
+            model.addAttribute(form); // (4)
+
+            return "ssmn/shoppingItem";
         }
 
-        // (4)
-        @RequestMapping(value = "add")
-        public String addCart(@Validated ItemForm form, BindingResult result) {
-            if (result.hasErrors()) {
-                return "item/item";
-            }
-            CartItem cartItem = beanMapper.map(form, CartItem.class);
-            Cart cart = cartService.addCartItem(sessionCart.getCart(), // (5)
-                    cartItem);
-            sessionCart.setCart(cart); // (6)
-            return "redirect:/cart"; // (7)
-        }
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2137,69 +2226,122 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
 
     * - 項番
       - 説明
-    * - | (3)
+    * - | (2)
       - | 商品画面を、表示するためのハンドラメソッド。
-    * - | (4)
+    * - | (3)
       - | 指定された商品を、カートに追加するためのハンドラメソッド。
-    * - | (5)
-      - | セッションに格納されている\ ``Cart``\ オブジェクトを、Serviceのメソッドに渡す。
-    * - | (6)
-      - | Serviceのメソッドから返却された\ ``Cart``\ オブジェクトを、sessionスコープのBeanに反映する。
-        | sessionスコープのBeanに反映することで、\ ``Cart``\ オブジェクトがセッションに格納される。
-    * - | (7)
-      - | 商品をカートに追加した後に、カート画面を表示するためのリクエストに、リダイレクトする。
-        | **別Controllerの画面に遷移する場合は、直接View(JSP)を呼び出すのではなく、画面を表示するためのリクエストにリダイレクトすることを推奨する。**
+    * - | (4)
+      - | 商品の情報を持つ\ ``CartItemForm``\ オブジェクトを、sessionスコープのBeanに反映する。sessionスコープのBeanに反映することで、\ ``CartItemFormt``\ オブジェクトがセッションに格納される。
 
-- CartController
+- ShoppingCartController
 
  .. code-block:: java
 
-    @Controller
-    @RequestMapping("cart")
-    public class CartController {
+        @RequestMapping("shopping/cart")
+        @TransactionTokenCheck("shopping/cart")
+        @Controller
+        public class ShoppingCartController {
 
-        @Inject
-        SessionCart sessionCart;
+            @Inject
+            Cart cart;
 
-        @Inject
-        CartService cartService;
+            @Inject
+            ShoppingCartHelper shoppingCartHelper;
 
-        @Inject
-        Mapper beanMapper;
+            // (5)
+            @RequestMapping(method = RequestMethod.GET)
+            @TransactionTokenCheck(value = "cart", type = TransactionTokenType.BEGIN)
+            public String cart(CartItemsForm form) {
 
-        @ModelAttribute
-        public CartForm setUpCartForm() {
-            return new CartForm();
+                List<CartItemForm> cartItemForms = shoppingCartHelper
+                        .convertToCartItemForms(cart.getCartItems());
+                form.setCartItemForms(cartItemForms);
+
+                return "ssmn/shoppingCart";
+            }
+
+            // (6)
+            @RequestMapping(method = RequestMethod.POST, params = "order")
+            @TransactionTokenCheck(value = "cart")
+            public String shoppingOrderComfirm(@Validated CartItemsForm form,
+                    BindingResult bindingResult, Model model) {
+                if (bindingResult.hasErrors()) {
+                    model.addAttribute(cart);
+                    return "ssmn/shoppingCart";
+                }
+
+                shoppingCartHelper.setQuantityItems(cart, form.getCartItemForms());
+
+                model.addAttribute(cart); // (7)
+
+                return "forward:./order?order";
+            }
         }
 
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :widths: 10 90
+    :header-rows: 1
+
+    * - 項番
+      - 説明
+    * - | (5)
+      - | sessionスコープのBeanの\ ``Cart``\ オブジェクトを\ ``CartItemForm``\オブジェクトに変換するメソッド。
+    * - | (6)
+      - | 注文処理を表示するためのハンドラメソット。
+    * - | (7)
+      - | Serviceのメソッドから返却された\ ``Cart``\ オブジェクトをsessionスコープのBeanに反映する。sessionスコープのBeanに反映することで、セッションに反映される。
+
+- ShoppingOrderController
+
+ .. code-block:: java
+
+    @RequestMapping("shopping/order")
+    @Controller
+    @TransactionTokenCheck("shopping/order")
+    public class ShoppingOrderController {
+
+        @Inject
+        Cart cart;
+
+        @Inject
+        ShoppingCartHelper shoppingCartHelper;
+
+        @Inject
+        OrderService orderService;
+
+
         // (8)
-        @RequestMapping
-        public String cart(CartForm form) {
-            beanMapper.map(sessionCart.getCart(), form);
-            return "cart/cart";
+        @RequestMapping(method = RequestMethod.POST, params = "order")
+        @TransactionTokenCheck(value = "order", type = TransactionTokenType.BEGIN)
+        public String shoppingOrderComfirm(Model model) {
+            model.addAttribute(cart);
+            return "ssmn/shoppingOrderConfirm";
         }
 
         // (9)
-        @RequestMapping(params = "edit", method = RequestMethod.POST)
-        public String edit(@Validated CartForm form, BindingResult result,
-                Model model) {
-            if (result.hasErrors()) {
-                return "cart/cart";
-            }
+        @RequestMapping(method = RequestMethod.POST)
+        @TransactionTokenCheck(value = "order")
+        public String createOrder(RedirectAttributes redirectAttributes) {
 
-            Cart cart = sessionCart.getCart();
-            Iterator<CartItemForm> itemForm = form.getCartItems().iterator();
-            for (CartItem item : cart.getCartItems()) {
-                beanMapper.map(itemForm.next(), item);
-            }
+            Order order = orderService.createOrder(shoppingCartHelper
+                    .convertCartToOrder(cart));
 
-            cart = cartService.saveCart(cart);
-            sessionCart.setCart(cart); // (10)
+            redirectAttributes.addFlashAttribute(order);
 
-            return "redirect:/cart"; // (11)
+            ResultMessages messages = ResultMessages.success()
+                    .add("i.sf.ssmn.0003");
+            redirectAttributes.addFlashAttribute(messages);
+
+            return "redirect:./order?complete";
         }
 
-
+        // (10)
+        @RequestMapping(method = RequestMethod.GET, params = "complete")
+        public String createOrderComplete(SessionStatus sessionStatus) {
+            cart.clearItems();
+            return "ssmn/shoppingOrderComplete";
+        }
     }
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -2210,53 +2352,149 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - 項番
       - 説明
     * - | (8)
-      - | カート画面(数量変更画面)を表示するためのハンドラメソッド。
+      - | 注文画面を、表示するためのハンドラメソッド。
     * - | (9)
-      - | 数量変更を、行うためのハンドラメソッド。
+      - | 注文処理を行うためのハンドラメソッド。
     * - | (10)
-      - | Serviceのメソッドから返却された\ ``Cart``\ オブジェクトをsessionスコープのBeanに反映する。
-        | sessionスコープのBeanに反映することで、セッションに反映される。
+      - | 注文完了画面を表示するためのハンドラメソッド。
+
+- 商品画面(JSP)
+
+ .. code-block:: jsp
+
+    <div id="wrapper">
+        <h1 id="screenTitle">商品</h1>
+        <div id="cartLink">
+            <a id="confirmCartLink"
+                href="../cart"
+                class="btn btn-info"><span
+                class="glyphicon glyphicon-shopping-cart"></span> カートを確認</a>
+        </div>
+        <div id="itemListLink">
+            <a id="continueShoppingLink"
+                href="../items"
+                class="btn btn-success"><span
+                class="glyphicon glyphicon-play"></span> ショッピングを続ける</a>
+        </div>
+        <form:form id="cartItemForm"
+            action="./cart"
+            cssClass="form-horizontal" method="post"
+            modelAttribute="cartItemForm">
+            <div class="form-group">
+                <label class="col col-md-2 control-label">商品番号</label>
+                <div class="col col-md-10">
+                    ${f:h(item.itemId)}
+                    <form:hidden path="itemId" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col col-md-2 control-label">商品名</label>
+                <div class="col col-md-10">${f:h(item.itemName)}</div>
+            </div>
+            <div class="form-group">
+                <label class="col col-md-2 control-label">価格</label>
+                <div class="col col-md-10">${f:h(item.price)}</div>
+            </div>
+            <div class="form-group">
+                <label class="col col-md-2 control-label">商品概要</label>
+                <div class="col col-md-10">${f:h(item.itemName)}</div>
+            </div>
+            <div class="form-group">
+                <div class="col col-md-10 col-md-offset-2">
+                    <%-- (11) --%>
+                    <form:button name="add" class="btn btn-default">カートへ追加</form:button>
+                    <span id="resultMessage" class="text-success"></span>
+                </div>
+            </div>
+        </form:form>
+    </div>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :widths: 10 90
+    :header-rows: 1
+
+    * - 項番
+      - 説明
     * - | (11)
-      - | 数量変更を行った後に、カート画面(数量変更画面)を表示するためのリクエストに、リダイレクトする。
-        | **更新処理を行った場合は、直接View(JSP)を呼び出すのではなく、画面を表示するためのリクエストにリダイレクトすることを推奨する。**
+      - | 商品を追加するためのボタン。
 
-- OrderController
+- カート画面(JSP)
 
- .. code-block:: java
+ .. code-block:: jsp
 
-    @Controller
-    @RequestMapping("order")
-    public class OrderController {
+    <div id="wrapper">
+        <h1 id="screenTitle">カート</h1>
+        <div id="itemListLink">
+            <a id="continueShoppingLink"
+                href="./items"
+                class="btn btn-success"><span
+                class="glyphicon glyphicon-play"></span> ショッピングを続ける</a>
+        </div>
 
-        @Inject
-        SessionCart sessionCart;
+        <%-- (12) --%>
+        <spring:eval var="cart" expression="@cart" />
 
-        @ModelAttribute
-        public OrderForm setUpOrderForm() {
-            return new OrderForm();
-        }
+        <c:choose>
+            <c:when test="${not empty cart}">
+                <form:form
+                    action="./cart"
+                    method="post" modelAttribute="cartItemsForm">
+                    <table
+                        class="table table-striped table-bordered table-condensed">
 
-        // (12)
-        @RequestMapping
-        public String view() {
-            return "order/order";
-        }
+                        <thead>
+                            <tr>
+                                <th class="no">No</th>
+                                <th class="itemId">商品番号</th>
+                                <th class="itemName">商品名</th>
+                                <th class="quantity">個数</th>
+                                <th class="price">価格</th>
+                            </tr>
+                        </thead>
 
-        // (13)
-        @RequestMapping(method = RequestMethod.POST)
-        public String order() {
-            // ...
-            return "redirect:/order?complete";
-        }
+                        <c:forEach var="cartItem" items="${cart.cartItems}"
+                            varStatus="rowStatus">
+                            <spring:nestedPath
+                                path="cartItemForms[${rowStatus.index}]">
+                                <tr>
+                                    <td class="no">${rowStatus.count}</td>
+                                    <td class="itemId">${f:h(cartItem.itemId)}</td>
+                                    <td class="itemName">${f:h(cartItem.item.itemName)}</td>
+                                    <td class="quantity"><form:input
+                                            path="quantity"
+                                            cssClass="quantity form-control" />
+                                        <form:errors cssClass="errorMessage"
+                                            path="quantity"></form:errors></td>
+                                    <td class="price"><fmt:formatNumber
+                                            value="${cartItem.subtotalPrice}"
+                                            pattern="###,###" /></td>
+                                </tr>
+                                <form:hidden path="itemId" />
+                            </spring:nestedPath>
+                        </c:forEach>
+                        <tr>
+                            <%-- (13) --%>
+                            <td class="buttonArea" colspan="4"><form:button
+                                    name="order" class="btn btn-default">注文へ</form:button></td>
+                            <td class="totalPrice"><fmt:formatNumber
+                                    value="${cart.totalPrice}"
+                                    pattern="###,###" /></td>
+                        </tr>
 
-        // (14)
-        @RequestMapping(params = "complete", method = RequestMethod.GET)
-        public String complete(Model model, SessionStatus sessionStatus) {
-            sessionCart.clearCart();
-            return "order/complete";
-        }
+                    </table>
 
-    }
+                </form:form>
+
+            </c:when>
+
+            <c:otherwise>
+                <spring:message code="label.sf.ssmn.0002" />
+            </c:otherwise>
+
+        </c:choose>
+
+    </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2266,170 +2504,66 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
     * - 項番
       - 説明
     * - | (12)
-      - | 注文画面を、表示するためのハンドラメソッド。
-    * - | (13)
-      - | 注文処理を行うためのハンドラメソッド。
-    * - | (14)
-      - | 注文完了画面を表示するためのハンドラメソッド。
-
-- 商品画面(JSP)
-
- .. code-block:: jsp
-
-    <html>
-    <head>
-    <title>Item</title>
-    </head>
-    <body>
-        <h1>Item</h1>
-        <form:form action="${pageContext.request.contextPath}/item/add" 
-            modelAttribute="itemForm">
-            <form:label path="itemCode">Item Code</form:label> : 
-            <form:input path="itemCode" />
-            <form:errors path="itemCode" />
-            <br>
-            <form:label path="quantity">Quantity</form:label> : 
-            <form:input path="quantity" />
-            <form:errors path="quantity" />
-            <div>
-                <%-- (15) --%>
-                <form:button>Add</form:button>
-            </div>
-        </form:form>
-        <div>
-            <a href="${pageContext.request.contextPath}/cart">Go to Cart</a>
-        </div>
-    </body>
-    </html>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :widths: 10 90
-    :header-rows: 1
-
-    * - 項番
-      - 説明
-    * - | (15)
-      - | 商品を追加するためのボタン。
-
-- カート画面(JSP)
-
- .. code-block:: jsp
-
-    <html>
-    <head>
-    <title>Cart</title>
-    </head>
-    <body>
-        <%-- (16) --%>
-        <spring:eval var="cart" experssion="@sessionCart.cart" />
-        <h1>Cart</h1>
-        <c:choose>
-            <c:when test="${ empty cart.cartItems }">
-                <div>Cart is empty.</div>
-            </c:when>
-            <c:otherwise>
-                CART ID :
-                ${f:h(cart.id)}
-                <form:form modelAttribute="cartForm">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>ITEM CODE</th>
-                                <th>QUANTITY</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="item" 
-                                items="${cart.cartItems}" 
-                                varStatus="rowStatus">
-                                <tr>
-                                    <td>${f:h(item.id)}</td>
-                                    <td>${f:h(item.itemCode)}</td>
-                                    <td>
-                                        <form:input 
-                                            path="cartItems[${rowStatus.index}].quantity" />
-                                        <form:errors 
-                                            path="cartItems[${rowStatus.index}].quantity" />
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                    <%-- (17) --%>
-                    <form:button name="edit">Save</form:button>
-                </form:form>
-            </c:otherwise>
-        </c:choose>
-        <c:if test="${ not empty cart.cartItems }">
-            <div>
-                <%-- (18) --%>
-                <a href="${pageContext.request.contextPath}/order">Go to Order</a>
-            </div>
-        </c:if>
-        <div>
-            <a href="${pageContext.request.contextPath}/item">Back to Item</a>
-        </div>
-    </body>
-    </html>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :widths: 10 90
-    :header-rows: 1
-
-    * - 項番
-      - 説明
-    * - | (16)
       - | SpEL式を用いてsessionスコープのBeanを参照する。
-    * - | (17)
-      - | 数量を更新するためのボタン。
-    * - | (18)
+    * - | (13)
       - | 注文画面を表示するためのリンク。
 
 - 注文画面(JSP)
 
  .. code-block:: jsp
 
-    <html>
-    <head>
-    <title>Order</title>
-    </head>
-    <body>
-        <spring:eval var="cart" experssion="@sessionCart.cart" />
-        <h1>Order</h1>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ITEM CODE</th>
-                    <th>QUANTITY</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="item" items="${cart.cartItems}" 
-                    varStatus="rowStatus">
+    <div id="wrapper">
+        <h1 id="screenTitle">注文確認</h1>
+
+        <spring:eval var="cart" expression="@cart" />
+
+        <form
+            action="./order"
+            method="post">
+            <table
+                class="table table-striped table-bordered table-condensed">
+
+                <thead>
                     <tr>
-                        <td>${f:h(item.id)}</td>
-                        <td>${f:h(item.itemCode)}</td>
-                        <td>${f:h(item.quantity)}</td>
+                        <th class="no">No</th>
+                        <th class="itemId">商品番号</th>
+                        <th class="itemName">商品名</th>
+                        <th class="quantity">個数</th>
+                        <th class="price">価格</th>
                     </tr>
+                </thead>
+
+                <c:forEach var="cartItem" items="${cart.cartItems}"
+                    varStatus="rowStatus">
+                        <tr>
+                            <td class="no">${rowStatus.count}</td>
+                            <td class="itemId">${f:h(cartItem.itemId)}</td>
+                            <td class="itemName">${f:h(cartItem.item.itemName)}</td>
+                            <td class="quantity">${f:h(cartItem.quantity)}</td>
+                            <td class="price"><fmt:formatNumber
+                                    value="${cartItem.subtotalPrice}"
+                                    pattern="###,###" /></td>
+                        </tr>
                 </c:forEach>
-            </tbody>
-        </table>
-        <form:form modelAttribute="orderForm">
-            <%-- (19) --%>
-            <form:button>Order</form:button>
-        </form:form>
-        <div>
-            <a href="${pageContext.request.contextPath}/cart">Back to Cart</a>
-        </div>
-        <div>
-            <a href="${pageContext.request.contextPath}/item">Back to Item</a>
-        </div>
-    </body>
-    </html>
+                <tr>
+                    <td class="buttonArea" colspan="4"><a
+                        id="confirmCartLink"
+                        href="./cart"
+                        class="btn btn-default">カートへ戻る</a>
+                        <%-- (14) --%>
+                        <button class="btn btn-default">注文確定</button></td>
+                    <td class="totalPrice"><fmt:formatNumber
+                            value="${cart.totalPrice}"
+                            pattern="###,###" /></td>
+                </tr>
+
+            </table>
+            <t:transaction />
+            <input type="hidden" name="${f:h(_csrf.parameterName)}"
+                value="${f:h(_csrf.token)}" />
+        </form>
+        <div id="checkFormInSession" style="visibility: hidden">${f:h(sessionScope['scopedTarget.cart'].getClass().getName())}</div>
+    </div>
 
  .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
  .. list-table::
@@ -2438,46 +2572,62 @@ sessionスコープのBeanを使った複数のControllerを跨いだ画面遷�
 
     * - 項番
       - 説明
-    * - | (19)
+    * - | (14)
       - | 注文するためのボタン。
 
 - 注文完了画面(JSP)
 
  .. code-block:: jsp
 
-    <html>
-    <head>
-    <title>Order Complete</title>
-    </head>
-    <body>
-        <h1>Order Complete</h1>
-        ORDER ID :
-        ${f:h(order.id)}
-        <table border="1">
-            <thead>
+    <div id="wrapper">
+    <h1 id="screenTitle">注文完了</h1>
+    <t:messagesPanel />
+    <div id="itemListLink">
+        <a id="continueShoppingLink"
+            href="./items"
+            class="btn btn-success"><span
+            class="glyphicon glyphicon-play"></span> ショッピングを続ける</a>
+    </div>
+
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th class="orderIdLabel">注文番号</th>
+            <td>${f:h(order.orderId)}</td>
+        </tr>
+    </table>
+    <table class="table table-striped table-bordered table-condensed">
+
+        <thead>
+            <tr>
+                <th class="no">No</th>
+                <th class="itemId">商品番号</th>
+                <th class="itemName">商品名</th>
+                <th class="quantity">個数</th>
+                <th class="price">価格</th>
+            </tr>
+        </thead>
+
+        <c:forEach var="orderItem" items="${order.orderItems}"
+            varStatus="rowStatus">
                 <tr>
-                    <th>ID</th>
-                    <th>ITEM CODE</th>
-                    <th>QUANTITY</th>
+                    <td class="no">${rowStatus.count}</td>
+                    <td class="itemId">${f:h(orderItem.itemId)}</td>
+                    <td class="itemName">${f:h(orderItem.item.itemName)}</td>
+                    <td class="quantity">${f:h(orderItem.quantity)}</td>
+                    <td class="price"><fmt:formatNumber
+                            value="${orderItem.subtotalPrice}"
+                            pattern="###,###" /></td>
                 </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="item" items="${order.orderItems}" 
-                    varStatus="rowStatus">
-                    <tr>
-                        <td>${f:h(item.id)}</td>
-                        <td>${f:h(item.itemCode)}</td>
-                        <td>${f:h(item.quantity)}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <br>
-        <div>
-            <a href="${pageContext.request.contextPath}/item">Back to Item</a>
-        </div>
-    </body>
-    </html>
+        </c:forEach>
+        <tr>
+            <td class="buttonArea" colspan="4"></td>
+            <td class="totalPrice"><fmt:formatNumber
+                    value="${order.totalPrice}" pattern="###,###" /></td>
+        </tr>
+
+    </table>
+    <div id="checkFormInSession" style="visibility: hidden">${f:h(sessionScope['scopedTarget.cart'].getCartItems().size())}</div>
+    </div>
 
 \
 
