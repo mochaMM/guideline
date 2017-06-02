@@ -453,7 +453,7 @@ Tilesのカスタムタグの詳細は、\ `こちら <http://tiles.apache.org/f
 
 **Controller作成**
 
-Controllerを作成するとき、ControllerからView名として"staff/createForm"を返却する。
+ControllerからView名として"staff/createForm"を返却する。
 
 - StaffCreateController.java
 
@@ -785,7 +785,7 @@ How to extend
 
 **Controller作成**
 
-Controllerを作成するとき、ControllerからView名として"staff/searchStaff"を返却する。
+ControllerからView名として"staff/searchStaff"を返却する。
 
 - StaffSearchController.java
 
