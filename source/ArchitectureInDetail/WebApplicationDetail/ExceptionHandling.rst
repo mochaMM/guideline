@@ -610,7 +610,7 @@ Detail
 #. **Controllerクラスは、メッセージ情報(ResultMessage)を生成し、画面表示用としてModelに設定する。**
 #. **Controllerクラスは、遷移先のView名を返却する。**
 #. ExceptionHandlerExceptionResolverは、Controllerより返却されたView名を返却する。
-#. HandlerExceptionResolverLoggingInterceptorは、ExceptionLoggerを呼び出し、例外コードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。
+#. HandlerExceptionResolverLoggingInterceptorは、ExceptionLoggerを呼び出し、HTTPステータスコードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。
 #. HandlerExceptionResolverLoggingInterceptorは、ExceptionHandlerExceptionResolverより返却されたView名を返却する。
 #. DispatcherServletは、返却されたView名に対応するJSPを呼び出す。
 #. **JSPは、MessagesPanelTagを使用して、メッセージ情報(ResultMessage)を取得し、メッセージ表示用のHTMLコードを生成する。**
@@ -637,7 +637,7 @@ Detail
 #. DispatcherServletは、SystemExceptionを捕捉し、SystemExceptionResolverを呼び出す。
 #. SystemExceptionResolverは、SystemExceptionから例外コードを取得し、画面表示用にHttpServletRequestに設定する(6')。
 #. SystemExceptionResolverは、SystemException発生時の遷移先のView名を返却する。
-#. HandlerExceptionResolverLoggingInterceptorは、ExceptionLoggerを呼び出し、例外コードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。
+#. HandlerExceptionResolverLoggingInterceptorは、ExceptionLoggerを呼び出し、HTTPステータスコードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。
 #. HandlerExceptionResolverLoggingInterceptorは、SystemExceptionResolverより返却されたView名を返却する。
 #. DispatcherServletは、返却されたView名に対応するJSPを呼び出す。
 #. **JSPは、HttpServletRequestより例外コードを取得し、メッセージ表示用のHTMLコードに埋め込む。**
@@ -662,7 +662,7 @@ Webアプリケーション単位でサーブレットコンテナがハンド�
   **図-Webアプリケーション単位でサーブレットコンテナがハンドリングする場合の基本フロー**
 
 4. DispatcherServletは、XxxErrorを捕捉し、ServletExceptionにラップしてスローする。
-#. ExceptionLoggingFilterは、ServletExceptionを捕捉し、ExceptionLoggerを呼び出す。ExceptionLoggerは、例外コードに対応するレベル(info, warn, error)のログ(監視ログとアプリケーションログ)を出力する。ExceptionLoggingFilterは、ServletExceptionを再スローする。
+#. ExceptionLoggingFilterは、ServletExceptionを捕捉し、ExceptionLoggerを呼び出す。ExceptionLoggerは、errorレベルのログ(監視ログとアプリケーションログ)を出力する。ExceptionLoggingFilterは、ServletExceptionを再スローする。
 #. ServletContainerは、ServletExceptionを捕捉し、サーバログにログを出力する。ログのレベルは、アプリケーションサーバによって異なる。
 #. ServletContainerは、``web.xml`` に定義されている遷移先(HTMLなど)を呼び出す。
 #. 呼び出された遷移先で生成されたレスポンスが表示される。
@@ -739,12 +739,12 @@ How to use
       - | \ ``ExceptionCodeResolver``\ を、bean定義に追加する。
     * - | (2)
       - | ハンドリング対象とする例外名と、適用する「例外コード(メッセージID)」のマッピングを指定する。
-        | 上記の設定例では、例外クラス(又は親クラス)のクラス名に、"BusinessException"が含まれている場合は、"w.xx.fw.8001"、 "ResourceNotFoundException"が含まれている場合は、"w.xx.fw.5001"が「例外コード(メッセージID)」となる。
+        | 上記の設定例では、例外クラス(又は親クラス)のクラス名に、"BusinessException"が含まれている場合は、"e.xx.fw.8001"、 "ResourceNotFoundException"が含まれている場合は、"e.xx.fw.5001"が「例外コード(メッセージID)」となる。
 
         .. note:: **例外コード(メッセージID)について**
 
              ここでは、"BusinessException"に、メッセージIDが指定されなかった場合の対応で定義をしているが、
-             後述の"BusinessException"を発生させる実装側で、「例外コード(メッセージID)」を指定することを推奨する。
+             後述の"BusinessException"を発生させる実装側で、メッセージIDを指定することを推奨する。
              "BusinessException"に対する「例外コード(メッセージID)」の指定は、"BusinessException"発生時に指定されなかった場合の救済策である。
 
         | **【プロジェクト毎にカスタマイズする箇所】**
@@ -755,8 +755,8 @@ How to use
 
         .. note:: **例外コード(メッセージID)について**
 
-             例外コードは、ログに出力するのみ。（画面での取得もできる。JSPへのリンク）
-             プロパティに定義している形式でなくとも、運用上でわかるIDにすることが可能である。
+             例外コードは、ExceptionLoggerによりログに出力される。（画面での取得も可能である。View(JSP)から例外コードを参照する方法については、\ :ref:`exception-handling-how-to-use-codingpoint-jsp-exceptioncode-label`\ を参照されたい。）
+             またコード体系については、プロパティに定義している形式でなくともよく、運用上でわかるコードにすることが可能である。
              例えば、MA7001等
 
     * - | (4)
@@ -1512,7 +1512,7 @@ Spring MVCの、デフォルトの例外ハンドリング機能によって行�
 
  .. warning::
 
-    \ ``exceptionLogger``\ で、log()を使用した場合には、errorレベルで出力されるため、デフォルトで監視ログにも出力される。
+    \ ``ExceptionLogger``\ でlogメソッドを使用した場合には、例外コードによりログレベルを判定する。アプリケーションログと同時に監視ログも出力したい場合は、デフォルト設定ではerrorレベルを監視ログに出力するため、errorメソッドを使用するとよい。
 
  .. code-block:: console
 
@@ -1889,7 +1889,7 @@ Appendix
      - | SystemException
        | Resolver
      - | \ ``<mvc:annotation-driven>``\ を指定した際に、自動的に登録される\ ``HandlerExceptionResolver``\ によって、ハンドリングされない例外をハンドリングするためのクラス。
-       | Spring MVCより提供されている\ ``SimpleMappingExceptionResolver``\ を継承し、例外コードのResultMessagesを、Viewから参照できるように機能追加を行っている。
+       | Spring MVCより提供されている\ ``SimpleMappingExceptionResolver``\ を継承し、例外コード及びResultMessagesを、Viewから参照できるように機能追加を行っている。
    * - | (14)
      - | HandlerException
        | ResolverLogging
@@ -1902,6 +1902,7 @@ Appendix
        |   4. "-99"の場合は ログ出力しない。
        | 本Interceptorを使用することで、Spring MVC管理下で発生する全ての例外を、ログに出力することができる。
        | ログは、\ ``ExceptionLogger``\ を使用して出力している。
+       | なお、HTTPレスポンスコードによるログ出力レベルの切り替えが、プロジェクトの要件に合わない場合は、logメソッドを拡張する事で、デフォルトの挙動を変更する事が可能である。
    * - | (15)
      - | ExceptionLogging
        | Filter
