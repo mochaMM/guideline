@@ -732,7 +732,7 @@ procedure要素の実装例
         price INT4 NOT NULL
     );
 
- .. code-block:: guess
+ .. code-block:: postgresql
 
     CREATE
         FUNCTION sales_item(p_itemno INT4) RETURNS TABLE (
