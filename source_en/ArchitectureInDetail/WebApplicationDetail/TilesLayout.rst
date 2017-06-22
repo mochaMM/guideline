@@ -177,7 +177,7 @@ How to configure is shown below.
 
 - tiles-definitions.xml
 
- .. code-block:: guess
+ .. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <!DOCTYPE tiles-definitions PUBLIC
@@ -544,7 +544,7 @@ Setting multiple layouts
 
 - tiles-definitions.xml
 
- .. code-block:: guess
+ .. code-block:: xml
    :emphasize-lines: 7-20
 
     <?xml version="1.0" encoding="UTF-8" ?>
