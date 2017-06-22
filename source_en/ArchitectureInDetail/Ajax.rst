@@ -492,7 +492,7 @@ Following example serves as the Ajax communication that returns a list matching 
 
 - Request data
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1,4
 
     GET /terasoluna-gfw-web-blank/ajax/search?freeWord= HTTP/1.1
@@ -510,7 +510,7 @@ Following example serves as the Ajax communication that returns a list matching 
 
 - Response data
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4, 8
 
     HTTP/1.1 200 OK
@@ -779,7 +779,7 @@ Following example is about the Ajax communication of receiving two numbers and r
 
 - Request data
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1,5,7,10,16
 
     POST /terasoluna-gfw-web-blank/ajax/plusForForm HTTP/1.1
@@ -803,7 +803,7 @@ Following example is about the Ajax communication of receiving two numbers and r
 
 - Response data
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4, 8
 
     HTTP/1.1 200 OK
@@ -819,7 +819,7 @@ Following example is about the Ajax communication of receiving two numbers and r
 
 - Response data in case of an input error
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 4, 9
 
     HTTP/1.1 400 Bad Request
@@ -931,7 +931,7 @@ Difference between this method and  "Posting form data" method, is explained.
 
 - Request data
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 10,16
 
     POST /terasoluna-gfw-web-blank/ajax/plusForJson HTTP/1.1
