@@ -446,11 +446,11 @@ This has same flow irrespective of snapshot release or official release.
 
  .. code-block:: bash
 
-  mvn org.apache.maven.plugins:maven-dependency-plugin:2.5:get \
-   -DgroupId=com.example \
-   -DartifactId=mywebapp \
-   -Dversion=0.0.1-SNAPSHOT \
-   -Dpackaging=war \
+  mvn org.apache.maven.plugins:maven-dependency-plugin:2.5:get^
+   -DgroupId=com.example^
+   -DartifactId=mywebapp^
+   -Dversion=0.0.1-SNAPSHOT^
+   -Dpackaging=war^
    -Ddest=${WORKSPACE}/target/mywebapp.war
 
  With this, mywebapp.war file is downloaded under the target directory.
