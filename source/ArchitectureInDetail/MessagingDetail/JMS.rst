@@ -216,6 +216,11 @@ Spring Frameworkのコンポーネントを使用したJMSの利用
     | JMSの\ ``MessageListener``\ として扱うメソッドであることを示すマーカアノテーション。
     | メッセージを受け取った際に処理を行うメソッドに対して\ ``@JmsListener``\ アノテーションを付与する。
 
+* \ ``org.springframework.jms.connection.JmsTransactionManager``
+    | JMSのコネクションとセッションをスレッドに紐付けるトランザクションマネージャ。
+
+* \ ``org.springframework.jms.connection.TransactionAwareConnectionFactoryProxy``
+    | JMSのコネクションをSpringトランザクションマネージャの管轄対象にする\ ``ConnectionFactory``\ のプロキシ。
 
 .. _JMSOverviewSyncSend:
 
@@ -922,84 +927,6 @@ How to use
 
 DBのトランザクション管理を行う必要があるアプリケーションでは、業務の要件をもとにJMSとDBのトランザクションの関連を精査した上でトランザクションの管理方針を決定すること。
 
-* **JMSとDBのトランザクションを分けてコミットやロールバックする場合**
-
-  | JMSのトランザクションとDBのトランザクションを分ける場合は個別にトランザクション境界を宣言する。
-  | 以下に、JMSのトランザクション管理に\ :ref:`JMSHowToUseSettingForSyncSendTransactionManagement`\ の\ ``sendJmsTransactionManager``\ を使用し、DBのトランザクション管理にBlankプロジェクトのデフォルトの設定で定義されている\ ``transactionManager``\ を使用する実装例を示す。
-  
- - :file:`[projectName]-domain/src/main/java/com/example/domain/service/todo/TransactionalTodoServiceImpl.java`
-
-   .. code-block:: java
-
-      package com.example.domain.service.todo;
-
-      import javax.inject.Inject; 
-      import org.springframework.jms.core.JmsMessagingTemplate;
-      import org.springframework.stereotype.Service; 
-      import org.springframework.transaction.annotation.Transactional; 
-      import com.example.domain.model.Todo;
-      
-      @Service
-      @Transactional("sendJmsTransactionManager")  // (1)
-      public class TransactionalTodoServiceImpl implements TransactionalTodoService {
-         @Inject
-         JmsMessagingTemplate jmsMessagingTemplate;
-
-         @Inject
-         TodoService todoService;
-
-         @Override
-         public void sendMessage(String message) {
-             Todo todo = new Todo();
-             // omitted
-             
-             jmsMessagingTemplate.convertAndSend("jms/queue/TodoMessageQueue", todo);
-
-             // omitted
-             todoService.update(todo);
-         }
-
-      }
-
-
- - :file:`src/main/java/com/example/domain/service/todo/TodoServiceImpl.java`
-
-   .. code-block:: java
-
-      import org.springframework.stereotype.Service;
-      import org.springframework.transaction.annotation.Transactional;
-      import com.example.domain.model.Todo;
-
-      @Transactional // (2)
-      @Service
-      public class TodoServiceImpl implements TodoService {
-          
-          @Override
-          public void update(Todo todo) {
-              // omitted
-          }
-      }
-
-
-   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-   .. list-table::
-      :header-rows: 1
-      :widths: 10 90
-
-      * - 項番
-        - 説明
-      * - | (1)
-        - | \ ``@Transactional``\ アノテーションを使用してJMSのトランザクション境界を宣言する。
-          | JMSのトランザクション管理を行う\ ``sendJmsTransactionManager``\ を指定する。
-      * - | (2)
-        - | \ ``@Transactional``\ アノテーションを使用してDBのトランザクション境界を宣言する。
-          | valueを省略しているため、デフォルトで、Bean名\ ``transactionManager``\ を参照する。
-          | \ ``@Transactional``\ アノテーションの詳細については、\ :doc:`../../ImplementationAtEachLayer/DomainLayer`\ の\ :ref:`service_transaction_management`\ を参照されたい。
-
-|
-
-* **JMSとDBのトランザクションを一度にコミットやロールバックする場合**
-
 
   JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
 
@@ -1016,7 +943,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
   | "Best Effort 1 Phase Commit"は\ ``org.springframework.data.transaction.ChainedTransactionManager``\ を利用することで実現する。
   | 以下に、JMSのトランザクション管理に\ :ref:`JMSHowToUseSettingForSyncSendTransactionManagement`\ の\ ``sendJmsTransactionManager``\ を使用し、DBのトランザクション管理にBlankプロジェクトのデフォルトの設定で定義されている\ ``transactionManager``\ を使用する設定例を示す。
 
-  - :file:`xxx-env.xml`
+  - :file:`[projectName]-domain/src/main/resources/META-INF/spring/[projectName]-env.xml`
 
    .. code-block:: xml
      
@@ -1130,11 +1057,51 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 | \ ``@JmsListener``\ アノテーションを利用した非同期受信の方法について説明をする。
 | 非同期受信の実装には下記の設定が必要となる。
 
+* \ ``ConnectionFactoryProxy``\ を設定する。
 * JMS Namespaceを定義する。
 * \ ``@JmsListener``\ アノテーションを有効化する。
 * DIコンテナで管理しているコンポーネントのメソッドに\ ``@JmsListener``\ アノテーションを指定する。
 
 | それぞれの詳細な実装方法について、以下に記述する。
+
+- :file:`[projectName]-domain/src/main/resources/META-INF/spring/[projectName]-infra.xml`
+
+ .. code-block:: xml
+
+    <!-- (1) -->
+    <bean id="connectionFactoryProxy" class="org.springframework.jms.connection.TransactionAwareConnectionFactoryProxy">
+        <!-- (2) -->
+        <property name="targetConnectionFactory" ref="connectionFactory"/>
+        <!-- (3) -->
+        <property name="synchedLocalTransactionAllowed" value="true"/>
+    </bean>
+
+ .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+ .. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``ConnectionFactory``\ を\ ``TransactionAwareConnectionFactoryProxy``\ でラップする。これによって、同一スレッドでのJMSメッセージ送受信処理に使用する接続オブジェクトを全て同一トランザクション配下に組み込める。
+    * - | (2)
+      - | \ ``targetConnectionFactory``\ プロパティには、アプリケーションサーバから取得した\ ``connectionFactory``\ をインジェクションする。
+    * - | (3)
+      - | \ ``synchedLocalTransactionAllowed``\ プロパティには、JMSメッセージの送受信で使用する接続オブジェクトをSpringが管理するトランザクション配下に含ませるために\ ``true``\ にする。
+
+ .. note:: **TransactionAwareConnectionFactoryProxyを使用する背景**
+
+   \ ``TransactionAwareConnectionFactoryProxy``\ を使用するのは、同一処理で行われる全てのJMSメッセージの受信と送信で同一の接続オブジェクトを参照するようさせるためである。それにより、非同期受信と同期送信(受信)処理を同一トランザクションで管理できるようになる。Spring-jmsでは非同期受信に使用する接続オブジェクトを独自で管理している。そのため、非同期受信と同期送信(受信)を同一処理で行う場合も異なる接続オブジェクトが使用され、トランザクションも別々になる。
+
+   \ ``TransactionAwareConnectionFactoryProxy``\ で\ ``ConnectionFactory``\ をラップすることでそれを同一にできる。
+
+   具体的には、非同期受信後にJMSメッセージの同期送信(受信)を行うようなシナリオで全てのJMSメッセージの送受信処理を同一のトランザクションで管理したいような場合に以下の対応を加える必要があることに留意されたい。
+
+   - \ ``ConnectionFactory``\ を\ ``TransactionAwareConnectionFactoryProxy``\ でラップする
+   - 非同期受信で使用される\ ``listener-container``\ の\ ``connection-factory``\ 属性に\ ``TransactionAwareConnectionFactoryProxy``\ を指定する (後述参照)
+   - 同期送信(受信)の両方で使用する\ ``JmsTemplate``\ の\ ``connectionFactory``\ プロパティに\ ``TransactionAwareConnectionFactoryProxy``\ をインジェクションする
+
 
 - :file:`[projectName]-web/src/main/resources/META-INF/spring/applicationContext.xml`
 
@@ -1154,10 +1121,10 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         <!-- (3) -->
         <jms:listener-container
             factory-id="jmsListenerContainerFactory"
+            connection-factory="connectionFactoryProxy"
             destination-resolver="destinationResolver"
             concurrency="1"
-            cache="consumer"
-            transaction-manager="jmsAsyncReceiveTransactionManager"/>
+            cache="consumer"/>
 
  .. tabularcolumns:: |p{0.05\linewidth}|p{0.21\linewidth}|p{0.74\linewidth}|
  .. list-table::
@@ -1183,8 +1150,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
     * - | (3)
       - \-
       - | \ ``<jms:listener-container/>``\ を利用して\ ``DefaultMessageListenerContainer``\ を生成するファクトリへパラメータを与えることで、\ ``DefaultMessageListenerContainer``\ の設定を行う。
-        | \ ``<jms:listener-container/>``\ の属性には、利用したい\ ``ConnectionFactory``\ のBeanを指定できる\ ``connection-factory``\ 属性が存在する。\ ``connection-factory``\ 属性のデフォルト値は\ ``connectionFactory``\ である。
-        | この例では、\ :ref:`JMSHowToUseConnectionFactory`\ で示した\ ``ConnectionFactory``\ のBean(Bean名は\ ``connectionFactory``\ )を利用するため、\ ``connection-factory``\ 属性を省略している。
+        | \ ``<jms:listener-container/>``\ の属性には、利用したい\ ``ConnectionFactory``\ のBeanを指定できる\ ``connection-factory``\ 属性が存在する。記述を省略するとデフォルト値の\ ``connectionFactory``\ となるため、\ :ref:`JMSHowToUseListenerContainer`\ で示した\ ``ConnectionFactory``\ のBean(Bean名は\ ``connectionFactoryProxy``\ )を明示的に指定する。
         | \ ``<jms:listener-container/>``\ には、ここで紹介した以外の属性も存在する。
         | 詳細については、\ `Attributes of the JMS <listener-container> element <http://docs.spring.io/spring/docs/4.3.5.RELEASE/spring-framework-reference/html/jms.html#jms-namespace-listener-container-tbl>`_\ を参照されたい。
 
@@ -1192,7 +1158,6 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
             \ ``DefaultMessageListenerContainer``\ 内部には独自のキャッシュ機能が備わっているため、非同期受信の場合、\ ``CachingConnectionFactory``\ は使用してはいけない。
             詳細については、\ `DefaultMessageListenerContainerのJavadoc <http://docs.spring.io/autorepo/docs/spring-framework/4.3.5.RELEASE/javadoc-api/org/springframework/jms/listener/DefaultMessageListenerContainer.html>`_\ を参照されたい。
-            上記のため、\ ``<jms:listener-container/>``\ の\ ``connection-factory``\ 属性には、\ :ref:`JMSHowToUseConnectionFactory`\ で定義した\ ``ConnectionFactory``\ を指定すること。
 
     * - 
       - \ ``concurrency``\
@@ -1226,9 +1191,6 @@ DBのトランザクション管理を行う必要があるアプリケーショ
            \ ``auto``\ の場合、\ ``transaction-manager``\ 属性の未設定時は、\ ``consumer``\ (\ ``Consumer``\ をキャッシュ)と同じ挙動となる。
            しかし、\ ``transaction-manager``\ 属性の設定時は、グローバルトランザクションなどによるアプリケーションサーバ内のプールを考慮して、\ ``none``\ (キャッシュが無効)と同じ挙動となる。
 
-    * - 
-      - \ ``transaction-manager``\
-      - | 非同期受信時のトランザクション管理を行うBeanの名前を指定する。詳細については\ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\ を参照されたい。
 
  .. raw:: latex
 
@@ -1609,38 +1571,12 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 トランザクション管理
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 | データの一貫性を保証する必要がある場合は、トランザクション管理機能を使用する。
-| \ ``<jms:listener-container/>``\ に対し、トランザクションマネージャを設定することで、非同期受信時のトランザクション管理を実現できる。
+| Spring JMS の \ ``DefaultMessageListenerContainer``\ には非同期受信のトランザクション管理の仕組みが組み込まれている。\ ``listener-container``\ の\ ``acknowledge``\ 属性でその機能を切り替えられる。それを利用した場合の実装例を以下に示す。
 
     .. note:: 
 
        メッセージがQueueに戻されると、そのメッセージが再度非同期受信されるため、エラーの原因が解決していない場合は、ロールバック、非同期受信を繰り返すこととなる。
        JMSプロバイダによっては、ロールバック後の再送信回数に閾値を設定でき、再送信された回数が閾値を超えた場合、Dead Letter Queueにメッセージを格納する。
-
-
-設定方法を以下に示す。
-
-- :file:`[projectName]-domain/src/main/resources/META-INF/spring/[projectName]-domain.xml`
-
- .. code-block:: xml
-
-    <!-- (1) -->
-    <bean id="jmsAsyncReceiveTransactionManager"
-       class="org.springframework.jms.connection.JmsTransactionManager">
-       <!-- (2) -->  
-       <property name="connectionFactory" ref="connectionFactory" />
-    </bean>
-
- .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
- .. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - | 非同期受信用の\ ``JmsTransactionManager``\ をBean定義する。
-    * - | (2)
-      - | トランザクションを管理する\ ``ConnectionFactory``\ を指定する。非同期受信の場合は、\ ``CachingConnectionFactory``\ を利用できないことに注意されたい。
 
 
 - :file:`[projectName]-web/src/main/resources/META-INF/spring/applicationContext.xml`
@@ -1650,11 +1586,12 @@ DBのトランザクション管理を行う必要があるアプリケーショ
     <!-- (1) -->
     <jms:listener-container
         factory-id="jmsListenerContainerFactory"
+        connection-factory="connectionFactoryProxy"
         destination-resolver="destinationResolver"
         concurrency="1"
         error-handler="jmsErrorHandler"
         cache="consumer"
-        transaction-manager="jmsAsyncReceiveTransactionManager"/>
+        acknowledge="transacted"/>
 
  .. tabularcolumns:: |p{0.05\linewidth}|p{0.26\linewidth}|p{0.69\linewidth}|
  .. list-table::
@@ -1669,18 +1606,15 @@ DBのトランザクション管理を行う必要があるアプリケーショ
       - | \ ``Connection``\ 、\ ``Session``\ や\ ``Consumer``\ などのキャッシュ対象を決定するために、キャッシュレベルを指定する。
         | デフォルトは\ ``auto``\ である。
         | \ :ref:`JMSHowToUseListenerContainer`\ で前述したように、アプリケーションサーバ内でConnectionなどをプールしない場合は\ ``consumer``\ を指定する。
-    * - 
-      - \ ``transaction-manager``\ 
-      - | 利用する\ ``JmsTransactionManager``\ のBean名を指定する。
-        | \ ``CachingConnectionFactory``\ を管理していない\ ``JmsTransactionManager``\ であることに注意されたい。
-        
- .. warning:: 
- 
+    * -
+      - \ ``acknowledge``\
+      - | トランザクションを有効にするため、確認応答モードに\ ``transacted``\ を指定する。デフォルトは\ ``auto``\ である。
+
+ .. warning::
+
     アプリケーションサーバによっては、アプリケーション内での\ ``Connection``\ や\ ``Session``\ のキャッシュを禁止している場合があるため、使用するアプリケーションサーバの仕様に応じてキャッシュの有効化、無効化を決定すること。
-
-|
-
-.. note:: **特定の例外の場合にロールバック以外の例外ハンドリングを行う方法** 
+ |
+.. note:: **特定の例外の場合にロールバック以外の例外ハンドリングを行う方法**
 
    トランザクション管理を有効にした場合、入力チェックなどで発生した例外を捕捉せずにthrowすると、ロールバックによってメッセージがQueueに戻される。
    リスナーメソッドはQueueに戻されたメッセージを再度非同期受信するため、非同期受信→エラー発生→ロールバックがJMSプロバイダの設定回数分繰り返されることになる。
@@ -1690,14 +1624,20 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
 DBのトランザクション管理を行う必要があるアプリケーションでは、業務の要件をもとにJMSとDBのトランザクションの関連を精査した上でトランザクションの管理方針を決定すること。
 
+  JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかることに留意されたい。非同期受信をグローバルトランザクションで管理したい場合は、\ ``<jms:listener-container/>``\ に対し\ ``transaction-manager``\ 属性を指定することで実現できる。また、同期送信のトランザクション管理で紹介した”Best Effort 1 Phase Commit”の\ ``ChainedTransactionManager``\ を非同期受信で用いるとJMSトランザクションとDBトランザクションが特殊なタイミングでコミットされるため、煩雑な設計を回避するためにも推奨されない。詳細は以下を参照されたい。
 
-* **JMSとDBのトランザクションを分けてコミットやロールバックする場合**
+  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\
+  | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\
 
-  | JMSのトランザクションはロールバックするが、DBのトランザクションのみをコミットしたい場合が存在する。
-  | その場合は、JMSとDBのトランザクションを別々に管理する必要がある。
-  | リスナーメソッドから呼び出すServiceクラスに\ ``@Transactional``\ アノテーションを定義することで、JMSとDBのトランザクションを分けたトランザクション管理が可能となる。
-  | JMSのトランザクション管理には\ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\ の\ ``jmsListenerContainerFactory``\ を使用し、DBのトランザクション管理にはBlankプロジェクトのデフォルトの設定で定義されている\ ``transactionManager``\ を使用する場合の実装例を以下に示す。
-  
+  .. warning::
+
+    **メッセージ受信後にJMSプロバイダとの接続が切れた場合などでJMSプロバイダにトランザクションの処理結果が返らない場合**
+
+    | メッセージ受信後にJMSプロバイダとの接続が切れた場合などで、JMSプロバイダにトランザクションの処理結果が返らない場合、トランザクションの扱いはJMSプロバイダに依存する。 そのため、\ **受信したメッセージの消失や、ロールバックによるメッセージの再処理などを考慮した設計**\ を行うこと。 特に、メッセージの消失が絶対に許されないような場合には、\ **メッセージの消失を補う仕組みを用意するか、グローバルトランザクションなどの利用を検討する**\ 必要がある。
+
+
+  本ガイドラインではグローバルトランザクションは使わずに、Spring JMSが内部で実装しているトランザクション管理に JMSのトランザクションは委ね、ブランクプロジェクトのデフォルトの設定で定義されている\ ``transactionManager``\ でDBのトランザクションを管理する設定例を示す。
+
   - :file:`[projectName]-web/src/main/java/com/example/listener/todo/TodoMessageListener.java`
   
    .. code-block:: java
@@ -1767,124 +1707,12 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
 |
 
-* **JMSとDBのトランザクションを一度にコミットやロールバックする場合**
-
-  JMSとDBのトランザクションの連携にはJTAによるグローバルトランザクションを使用する方法があるが、プロトコルの特性上、性能面のオーバーヘッドがかかるため、"Best Effort 1 Phase Commit"の使用を推奨する。詳細は以下を参照されたい。
-
-  | \ `Distributed transactions in Spring, with and without XA <http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring--with-and-without-xa.html>`_\ 
-  | \ `Spring Distributed transactions using Best Effort 1 Phase Commit <http://gharshangupta.blogspot.jp/2015/03/spring-distributed-transactions-using_2.html>`_\ 
-
-  .. warning:: **メッセージ受信後にJMSプロバイダとの接続が切れた場合などでJMSプロバイダにトランザクションの処理結果が返らない場合**
-    
-    メッセージ受信後にJMSプロバイダとの接続が切れた場合などで、JMSプロバイダにトランザクションの処理結果が返らない場合、トランザクションの扱いはJMSプロバイダに依存する。
-    そのため、\ **受信したメッセージの消失や、ロールバックによるメッセージの再処理などを考慮した設計**\ を行うこと。
-    特に、メッセージの消失が絶対に許されないような場合には、\ **メッセージの消失を補う仕組みを用意するか、グローバルトランザクションなどの利用を検討する**\ 必要がある。
-
-  | "Best Effort 1 Phase Commit"は\ ``org.springframework.data.transaction.ChainedTransactionManager``\ を利用することで実現する。
-  | 以下に、JMSのトランザクション管理に\ :ref:`JMSHowToUseTransactionManagementForAsyncReceive`\ の\ ``jmsAsyncReceiveTransactionManager``\ を使用し、DBのトランザクション管理にBlankプロジェクトのデフォルトの設定で定義されている\ ``transactionManager``\ を使用する設定例を示す。
-
-  - :file:`[projectName]-env/src/main/resources/META-INF/spring/[projectName]-env.xml`
-
-   .. code-block:: xml
-     
-      <!-- (1) -->
-      <bean id="chainedTransactionManager" class="org.springframework.data.transaction.ChainedTransactionManager">
-          <constructor-arg>
-              <list>
-                  <!-- (2) -->
-                  <ref bean="jmsAsyncReceiveTransactionManager" />
-                  <ref bean="transactionManager" />
-              </list>
-          </constructor-arg>
-      </bean>
-
-   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-   .. list-table::
-      :header-rows: 1
-      :widths: 10 90
-     
-      * - 項番
-        - 説明
-      * - | (1)
-        - | \ ``ChainedTransactionManager``\ をBean定義する。
-      * - | (2)
-        - | JMSとDBのトランザクションマネージャを指定する。
-          | 登録した順にトランザクションが開始され、登録した逆順にトランザクションがコミットされる。
-
-  - :file:`[projectName]-web/src/main/resources/META-INF/spring/applicationContext.xml`
-
-   .. code-block:: xml
-     
-      <!-- (1) -->
-      <jms:listener-container
-          factory-id="chainedTransactionJmsListenerContainerFactory"
-          destination-resolver="destinationResolver"
-          concurrency="1"
-          error-handler="jmsErrorHandler"
-          cache="consumer"
-          transaction-manager="chainedTransactionManager"
-          acknowledge="transacted"/>
-
-   .. tabularcolumns:: |p{0.05\linewidth}|p{0.26\linewidth}|p{0.69\linewidth}|
-   .. list-table::
-      :header-rows: 1
-      :widths: 10 26 64
-
-      * - 項番
-        - 属性名
-        - 内容
-      * - | (1)
-        - \-
-        - | \ ``ChainedTransactionManager``\ を利用するための\ ``<jms:listener-container/>``\ を定義する。
-      * - 
-        - \ ``factory-id``\ 
-        - | \ ``DefaultJmsListenerContainerFactory``\ のBean名を設定する。
-          | この例では、\ :ref:`JMSHowToUseListenerContainer`\ の\ ``<jms:listener-container/>``\ と併用することを考慮し、Bean名を\ ``chainedTransactionJmsListenerContainerFactory``\ としている。
-      * - 
-        - \ ``transaction-manager``\ 
-        - | \ ``ChainedTransactionManager``\ のBean名を指定する。
-      * - 
-        - \ ``acknowledge``\ 
-        - | トランザクションを有効にするため、確認応答モードに\ ``transacted``\ を指定する。デフォルトは\ ``auto``\ である。
-        
-          .. note::
-             
-             \ ``DefaultMessageListenerContainer``\ 内では、\ ``transaction-manager``\ 属性に\ ``org.springframework.transaction.support.ResourceTransactionManager``\ の実装クラスのBeanが指定された場合、そのBeanを利用したトランザクション管理が有効化される。
-             しかし、\ ``ChainedTransactionManager``\ は\ ``ResourceTransactionManager``\ を実装していないため、トランザクション管理が有効にならない。
-             トランザクション管理を有効にするには、\ ``acknowledge``\ 属性に\ ``transacted``\ を指定する必要がある。
-             これにより、トランザクション管理の対象となるSessionが生成され、\ ``ChainedTransactionManager``\ でのトランザクション管理が可能となる。
-
-  上記の設定を利用した実装例を以下に示す。
-
-  - :file:`[projectName]-web/src/main/java/com/example/listener/todo/TodoMessageListener.java`
-  
-   .. code-block:: java
-     
-     @Inject
-     TodoService todoService;
-
-     @JmsListener(containerFactory = "chainedTransactionJmsListenerContainerFactory", destination = "jms/queue/TodoMessageQueue") // (1)
-     public void receiveTodo(Todo todo) {
-         // omitted
-     }
-
-   .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-   .. list-table::
-      :header-rows: 1
-      :widths: 10 90
-
-      * - 項番
-        - 説明
-      * - | (1)
-        - | Bean名が\ ``chainedTransactionJmsListenerContainerFactory``\ の\ ``DefaultJmsListenerContainerFactory``\ を利用するため、\ ``containerFactory``\ 属性に\ ``chainedTransactionJmsListenerContainerFactory``\ を指定する。
-
 
   上記の設定、実装例に従ってアプリケーションを作成した場合の挙動について説明する。
 
   * **リスナーメソッドの処理が正常に終了した場合**
 
-   | JMSとDBのトランザクションをともにコミットする。
-   | JMS、DBの順にトランザクションを開始し、リスナーメソッドを実行した後に、DB、JMSの順にトランザクションを終了する。
+   | JMSトランザクションはSpringによって開始・コミットされ、DBのトランザクションマネージャによってDBのトランザクションを開始・コミットする。
 
     .. figure:: ./images_JMS/JMSDBTransactionAllCommit.png
         :alt: JMS/DB Transaction
@@ -1901,16 +1729,16 @@ DBのトランザクション管理を行う必要があるアプリケーショ
        * - | (2)
          - | DBのトランザクションを開始する。
        * - | (3)
-         - | リスナーメソッドが正常終了する。
-       * - | (4)
          - | DBのトランザクションをコミットし、DBのトランザクションを終了する。
+       * - | (4)
+         - | リスナーメソッドが正常終了する。
        * - | (5)
          - | JMSのトランザクションをコミットし、JMSのトランザクションを終了する。
 
 
-  * **リスナーメソッドまたは業務ロジックで予期せぬ例外が発生した場合**
+  * **業務ロジックで予期せぬ例外が発生した場合**
 
-   リスナーメソッドで例外が発生した場合
+   サービスで例外が発生した場合JMSトランザクションとDBトランザクションの両方をロールバックする。
 
     .. figure:: ./images_JMS/JMSDBTransactionAllRollback.png
         :alt: JMS/DB Transaction
@@ -1927,7 +1755,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
        * - | (2)
          - | DBのトランザクションを開始する。
        * - | (3)
-         - | リスナーメソッドまたは業務ロジックで予期しない例外が発生する。
+         - | 業務ロジックで予期しない例外が発生する。
        * - | (4)
          - | DBのトランザクションをロールバックし、DBのトランザクションを終了する。
        * - | (5)
@@ -1936,12 +1764,14 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
   * **メッセージ受信後にJMSプロバイダとの接続が切れた場合などで、DBのトランザクションのみコミットしてしまう場合**
 
-   | JMSのトランザクションの扱いはJMSプロバイダに依存するが、DBのトランザクションはコミットするため、JMSとDBの状態に不整合が生じる可能性がある。
+   | 非同期受信を伴う処理をグローバルトランザクションで管理しない場合は、DBトランザクションがコミットされてからJMSトランザクションをコミットするまでの間隔が比較的長い。JMSのトランザクションの扱いはJMSプロバイダに依存するが、その間に例外が発生するとDBのトランザクションはコミットしているため、JMSとDBの状態に不整合が生じる可能性がある。
+   |
    | JMSのトランザクションがロールバックされることを考慮し、同じメッセージを複数受信した場合のデータの完全性を保障する必要がある。
+   |
    | データの完全性を保障する方法の例を以下に示す。
 
    * 非同期受信後の処理が複数回実行された場合に、処理後の状態が同じになるような処理として設計する。
-   * \ ``JMSMessageID``\ を記録するよう設計する。メッセージの受信ごとに、過去に記録した\ ``JMSMessageID``\ と受信したメッセージの\ ``JMSMessageID``\ を比較し、一致した場合は受信したメッセージを破棄するよう設計する。
+   * \ ``JMSMessageID``\ を記録するよう設計する。メッセージの受信ごとに、過去に記録した\ ``JMSMessageID``\ と受信したメッセージの\ ``JMSMessageID``\ を比較し、一致した場合はそのメッセージが期待する処理が実施済みかどうかを確認してそれに応じて受信したメッセージを処理するように設計する。
 
     .. figure:: ./images_JMS/JMSDBTransactionUnexpectedError.png
         :alt: JMS/DB Transaction
@@ -1958,13 +1788,11 @@ DBのトランザクション管理を行う必要があるアプリケーショ
        * - | (2)
          - | DBのトランザクションを開始する。
        * - | (3)
-         - | リスナーメソッドが正常終了する。
-       * - | (4)
          - | DBのトランザクションをコミットし、DBのトランザクションを終了する。
+       * - | (4)
+         - | JMSのトランザクションのコミット前にJMSプロバイダとの接続が切れるなどの予期せぬエラーが発生する。
        * - | (5)
-         - | JMSプロバイダとの接続が切れるなどの予期せぬエラーが発生する。
-       * - | (6)
-         - | JMSのトランザクションのコミットに失敗している場合がある。
+         - | JMSのトランザクションのコミットに失敗する。
            | そのため、メッセージ消失などに備え、整合性を担保するための仕組みを用意する必要がある。
 
     .. note::
