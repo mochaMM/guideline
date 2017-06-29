@@ -189,7 +189,7 @@ Spring MVCとTilesの連携
 
 - tiles-definitions.xml
 
- .. code-block:: guess
+ .. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <!DOCTYPE tiles-definitions PUBLIC
@@ -551,7 +551,7 @@ How to extend
 
 - tiles-definitions.xml
 
- .. code-block:: guess
+ .. code-block:: xml
    :emphasize-lines: 7-20
 
     <?xml version="1.0" encoding="UTF-8" ?>
