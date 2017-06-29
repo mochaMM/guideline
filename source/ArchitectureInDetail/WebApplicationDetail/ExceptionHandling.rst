@@ -1129,7 +1129,7 @@ ResultMessagesを保持する例外(BisinessException,ResourceNotFoundException)
 
 - 出力ログ
 
- .. code-block:: guess
+ .. code-block:: text
 
     date:2013-09-25 19:51:52	thread:tomcat-http--3	X-Track:f94de92148f1489b9ceeac3b2f17c969	level:ERROR	logger:o.t.gfw.common.exception.ExceptionLogger        	message:[e.xx.fw.9001] An exception occurred processing JSP page /WEB-INF/views/exampleJSPException.jsp at line 13
 

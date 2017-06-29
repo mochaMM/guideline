@@ -944,7 +944,7 @@ NULL値とJDBC型のマッピング設定
 | \ ``null``\値を設定した際に、以下の様なスタックトレースを伴うエラーが発生した場合は、\ ``null``\値とJDBC型のマッピングが必要となる。
 | MyBatis3のデフォルトでは、\ ``OTHER``\と呼ばれる汎用的なJDBC型が指定されるが、\ ``OTHER``\だとエラーとなるJDBCドライバもある。
 
- .. code-block:: guess
+ .. code-block:: text
     :emphasize-lines: 1
 
     java.sql.SQLException: Invalid column type: 1111
@@ -5888,7 +5888,7 @@ MyBatis3から呼び出す方法について説明を行う。
 
 * ストアドプロシージャ（ファンクション）を登録する。
 
- .. code-block:: guess
+ .. code-block:: postgresql
 
     /* (1) */
     CREATE FUNCTION findTodo(pTodoId CHAR)
