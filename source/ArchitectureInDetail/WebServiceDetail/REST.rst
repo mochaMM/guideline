@@ -2831,7 +2831,7 @@ URIで指定されたMemberリソースのコレクションをページ検索�
 
 * リクエスト例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     GET /rest-api-web/api/v1/members?name=Smith&page=0&size=2 HTTP/1.1
@@ -2844,7 +2844,7 @@ URIで指定されたMemberリソースのコレクションをページ検索�
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 200 OK
@@ -2984,7 +2984,7 @@ URIで指定されたMemberリソースのコレクションをページ検索�
 
 * リクエスト例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     POST /rest-api-web/api/v1/members HTTP/1.1
@@ -3001,7 +3001,7 @@ URIで指定されたMemberリソースのコレクションをページ検索�
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 201 Created
@@ -3080,7 +3080,7 @@ URIで指定されたMemberリソースを取得するREST APIの実装例を、
 
 * リクエスト例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     GET /rest-api-web/api/v1/members/M000000003 HTTP/1.1
@@ -3093,7 +3093,7 @@ URIで指定されたMemberリソースを取得するREST APIの実装例を、
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 200 OK
@@ -3178,7 +3178,7 @@ URIで指定されたMemberリソースを更新するREST APIの実装例を、
 
 * リクエスト例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     PUT /rest-api-web/api/v1/members/M000000004 HTTP/1.1
@@ -3195,7 +3195,7 @@ URIで指定されたMemberリソースを更新するREST APIの実装例を、
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 200 OK
@@ -3270,7 +3270,7 @@ URIで指定されたMemberリソースを削除するREST APIの実装例を、
 
 * リクエスト例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     DELETE /rest-api-web/api/v1/members/M000000005 HTTP/1.1
@@ -3283,7 +3283,7 @@ URIで指定されたMemberリソースを削除するREST APIの実装例を、
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 204 No Content
@@ -3598,7 +3598,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 400 Bad Request
@@ -3842,7 +3842,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * 入力チェックエラー(単項目チェック、相関項目チェックエラー)が発生した場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 400 Bad Request
@@ -3859,7 +3859,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * JSONエラー(フォーマットエラーなど)が発生した場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 400 Bad Request
@@ -4024,7 +4024,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * リソースが見つからない場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 404 Not Found
@@ -4088,7 +4088,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * 業務エラーが発生した場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 409 Conflict
@@ -4150,7 +4150,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * 排他エラーが発生した場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 409 Conflict
@@ -4213,7 +4213,7 @@ RESTful Web Serviceで発生した例外のハンドリング方法について�
 
 * システムエラーが発生した場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 500 Internal Server Error
@@ -4587,7 +4587,7 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
 
 * 存在しないパスへリクエストを送った場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 404 Not Found
@@ -4603,7 +4603,7 @@ Filterでエラーが発生した場合や\ ``HttpServletResponse#sendError``\�
 
 * 致命的なエラーが発生した場合、以下のようなエラー応答が行われる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 500 Internal Server Error
@@ -5420,7 +5420,7 @@ JSONの中に関連リソースへのハイパーメディアリンクを含め�
 * | レスポンス例
   | 実際に動かすと、以下のようなレスポンスとなる。
 
- .. code-block:: guess
+ .. code-block:: http
 
     GET /rest-api-web/api/v1/members/M000000001 HTTP/1.1
     Accept: text/plain, application/json, application/*+json, */*
@@ -5555,7 +5555,7 @@ POST時のLocationヘッダの設定
 * | レスポンス例
   | 実際に動かすと、以下のようなレスポンスヘッダとなる。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4
 
     HTTP/1.1 201 Created
@@ -5665,7 +5665,7 @@ OPTIONSメソッドの実装
 
 * リクエスト例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     OPTIONS /rest-api-web/api/v1/members/M000000004 HTTP/1.1
@@ -5679,7 +5679,7 @@ OPTIONSメソッドの実装
 
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4
 
     HTTP/1.1 200 OK
@@ -5738,7 +5738,7 @@ HEADメソッドの実装
  
 * リクエスト例
  
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
  
     HEAD /rest-api-web/api/v1/members/M000000001 HTTP/1.1
@@ -5751,7 +5751,7 @@ HEADメソッドの実装
  
 * レスポンス例
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 4, 5
 
     HTTP/1.1 200 OK
