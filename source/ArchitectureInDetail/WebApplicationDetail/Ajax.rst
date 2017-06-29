@@ -499,7 +499,7 @@ Ajaxを使ってデータを取得する方法について説明する。
 
 - リクエストデータ
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1,4
 
     GET /terasoluna-gfw-web-blank/ajax/search?freeWord= HTTP/1.1
@@ -517,7 +517,7 @@ Ajaxを使ってデータを取得する方法について説明する。
 
 - レスポンスデータ
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4, 8
 
     HTTP/1.1 200 OK
@@ -791,7 +791,7 @@ Ajaxを使ってフォームのデータをPOSTし、処理結果を取得する
 
 - リクエストデータ
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1,5,7,10,16
 
     POST /terasoluna-gfw-web-blank/ajax/plusForForm HTTP/1.1
@@ -815,7 +815,7 @@ Ajaxを使ってフォームのデータをPOSTし、処理結果を取得する
 
 - レスポンスデータ
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4, 8
 
     HTTP/1.1 200 OK
@@ -832,7 +832,7 @@ Ajaxを使ってフォームのデータをPOSTし、処理結果を取得する
 - エラー時のレスポンスデータ
   下記のレスポンスデータは、入力エラーが発生時のものである。
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 4, 9
 
     HTTP/1.1 400 Bad Request
@@ -944,7 +944,7 @@ Ajaxを使ってフォームのデータをJSON形式に変換してからPOST�
 
 - リクエストデータ
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 10,16
 
     POST /terasoluna-gfw-web-blank/ajax/plusForJson HTTP/1.1
