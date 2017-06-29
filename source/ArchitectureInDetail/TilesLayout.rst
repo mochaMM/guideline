@@ -113,7 +113,7 @@ Spring MVCとTilesの連携
 
 - spring-mvc.xml
 
- .. code-block:: guess
+ .. code-block:: xml
 
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <!-- (1) -->
@@ -162,7 +162,7 @@ Spring MVCとTilesの連携
 
 - tiles-definitions.xml
 
- .. code-block:: guess
+ .. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <!DOCTYPE tiles-definitions PUBLIC
@@ -513,7 +513,7 @@ How to extend
 
 - tiles-definitions.xml
 
- .. code-block:: guess
+ .. code-block:: xml
    :emphasize-lines: 7-20
 
     <?xml version="1.0" encoding="UTF-8" ?>
