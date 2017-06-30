@@ -2834,7 +2834,7 @@ Example to implement the REST API wherein a page search is performed for member 
 
 * Request example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     GET /rest-api-web/api/v1/members?name=Smith&page=0&size=2 HTTP/1.1
@@ -2847,7 +2847,7 @@ Example to implement the REST API wherein a page search is performed for member 
 
 * Response Example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 200 OK
@@ -2987,7 +2987,7 @@ Example of implementation of REST API wherein a specified Member resource is cre
 
 * Request example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     POST /rest-api-web/api/v1/members HTTP/1.1
@@ -3004,7 +3004,7 @@ Example of implementation of REST API wherein a specified Member resource is cre
 
 * Response example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 201 Created
@@ -3083,7 +3083,7 @@ Implementation of REST API that fetches the Member resource specified by URI, is
 
 * Request example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     GET /rest-api-web/api/v1/members/M000000003 HTTP/1.1
@@ -3096,7 +3096,7 @@ Implementation of REST API that fetches the Member resource specified by URI, is
 
 * Response Example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 200 OK
@@ -3181,7 +3181,7 @@ Implementation of REST API that updates the Member resource specified in URI, is
 
 * Request example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     PUT /rest-api-web/api/v1/members/M000000004 HTTP/1.1
@@ -3198,7 +3198,7 @@ Implementation of REST API that updates the Member resource specified in URI, is
 
 * Response example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 200 OK
@@ -3273,7 +3273,7 @@ Implementation of REST API that deletes the Member resource specified by URI is 
 
 * Request example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     DELETE /rest-api-web/api/v1/members/M000000005 HTTP/1.1
@@ -3286,7 +3286,7 @@ Implementation of REST API that deletes the Member resource specified by URI is 
 
 * Response example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1
 
     HTTP/1.1 204 No Content
@@ -3602,7 +3602,7 @@ Implementation to output error information in response Body
 
 * Response example
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 400 Bad Request
@@ -3846,7 +3846,7 @@ Following three exceptions need to be handled in order to respond to input error
 
 * Following error response is sent when an input validation error (single field check error, correlated field check error) occurs.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 400 Bad Request
@@ -3863,7 +3863,7 @@ Following three exceptions need to be handled in order to respond to input error
 
 * Following error response is sent when JSON errors (format error etc.) occur.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 400 Bad Request
@@ -4028,7 +4028,7 @@ When a resource does not exist, implementation for responding to the "resource n
 
 * When resource is not found, following error response is generated.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 404 Not Found
@@ -4092,7 +4092,7 @@ For details on how to detect business error, refer to "\ :ref:`service-return-bu
 
 * Following error response is generated when a business error occurs.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 409 Conflict
@@ -4154,7 +4154,7 @@ Implementing exception handling for exclusive errors
 
 * When an exclusive error occurs, following error response is generated.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 409 Conflict
@@ -4217,7 +4217,7 @@ Refer to "\ :ref:`service-return-systemerrormessage-label`\" for the details on 
 
 * Following error response is generated when a system error occurs.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 500 Internal Server Error
@@ -4590,7 +4590,7 @@ Settings for handling an error that is notified to Servlet Container are explain
 
 * When the request is sent to a non-existing path, following error response is sent.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 8
 
     HTTP/1.1 404 Not Found
@@ -4606,7 +4606,7 @@ Settings for handling an error that is notified to Servlet Container are explain
 
 * When a fatal error occurs, following error response is sent.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 1, 9
 
     HTTP/1.1 500 Internal Server Error
@@ -5419,7 +5419,7 @@ Implementation for each resource
 * | Response example
   | Following response is obtained in actual operation.
 
- .. code-block:: guess
+ .. code-block:: http
 
     GET /rest-api-web/api/v1/members/M000000001 HTTP/1.1
     Accept: text/plain, application/json, application/*+json, */*
@@ -5552,7 +5552,7 @@ Implementation for each resource
 * | Response example
   | Following response header is obtained in the actual operation.
 
- .. code-block:: guess
+ .. code-block:: http
     :emphasize-lines: 4
 
     HTTP/1.1 201 Created

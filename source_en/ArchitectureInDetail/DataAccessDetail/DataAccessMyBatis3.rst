@@ -944,7 +944,7 @@ Mapping settings of NULL value and JDBC type
 | When setting \ ``null``\  value, if an error accompanied by following stack traces occurs, mapping of \ ``null``\  value and JDBC type becomes necessary.
 | By default, a generic JDBC type called \ ``OTHER``\  is specified in MyBatis3. However, an error may occur in JDBC driver due to \ ``OTHER``\.
 
- .. code-block:: guess
+ .. code-block:: text
     :emphasize-lines: 1
 
     java.sql.SQLException: Invalid column type: 1111
@@ -6010,7 +6010,7 @@ A function registered in PostgreSQL is called in the implementation example expl
 
 * Register a stored procedure (function).
 
- .. code-block:: guess
+ .. code-block:: postgresql
 
     /* (1) */
     CREATE FUNCTION findTodo(pTodoId CHAR)
