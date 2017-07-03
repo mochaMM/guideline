@@ -1850,24 +1850,24 @@ Appendix
    * - | (8)
      - | BusinessException
      - | ビジネスルールの違反を検知したことを通知するための例外クラスで、ドメイン層のロジックで発生させる例外である。
-       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作として、トランザクションは、ロールバックされる。
+       | \ ``java.lang.RuntimeException``\ を継承しているため、デフォルトの動作として、トランザクションは、ロールバックされる。
        | トランザクションをコミットしたい場合は、\ ``@Transactional``\ アノテーションの noRollbackFor 、または noRollbackForClassName に、本例外クラスを指定する必要がある。
    * - | (9)
      - | Resource
        | NotFoundException
      - | 指定されたリソース（データ）が、システム内に存在しないことを通知するための例外クラスで、主に、ドメイン層のロジックで発生させる例外である。
-       | ``java.lang.RumtimeException`` を継承しているため、デフォルトの動作として、トランザクションは、ロールバックされる。
+       | ``java.lang.RuntimeException`` を継承しているため、デフォルトの動作として、トランザクションは、ロールバックされる。
    * - | (10)
      - | ResultMessages
        | Notification
        | Exception
      - | 結果メッセージ（\ ``ResultMessages``\ ）を保持している例外であることを通知するための抽象例外クラスで、共通ライブラリでは、\ ``BusinessException``\ と、\ ``ResourceNotFoundException``\ が継承している。
-       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作としてトランザクションはロールバックされる。
+       | \ ``java.lang.RuntimeException``\ を継承しているため、デフォルトの動作としてトランザクションはロールバックされる。
        | 本例外クラスを継承すると、\ ``ResultMessagesLoggingInterceptor``\ によって、warnレベルのログが出力される。
    * - | (11)
      - | SystemException
      - | システム又はアプリケーションの異常を検知した事を通知するための例外クラスで、アプリケーション層又はドメイン層のロジックで発生させる例外である。
-       | \ ``java.lang.RumtimeException``\ を継承しているため、デフォルトの動作として、トランザクションは、ロールバックされる。
+       | \ ``java.lang.RuntimeException``\ を継承しているため、デフォルトの動作として、トランザクションは、ロールバックされる。
    * - | (12)
      - | ExceptionCodeProvider
      - | 例外コードを保持する役割があることを示すインタフェースで、共通ライブラリでは、\ ``SystemException``\ が実装している。
