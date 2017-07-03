@@ -36,7 +36,7 @@
       - :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`
       - 記載内容の修正
 
-        * \ ``<definition>`` \タグ(\ ``tiles-definitions.xml`` \)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の記述を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
+        * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
 
     * - 2017-03-17
       - \-
