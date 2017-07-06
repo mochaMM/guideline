@@ -616,8 +616,8 @@ This guideline explains how to use \ ``@PreAuthorize``\  and \ ``@PostAuthorize`
     * - | (1)
       - | AOP which performs authorization process for method calling is enabled if \ ``<sec:global-method-security>``\  tag is assigned.
     * - | (2)
-      - | Specify \ ``true``\  in \ ``pre-post-annotations``\  attribute.
-        | If \ ``true``\  is specified in \ ``pre-post-annotations``\  attribute, the annotation that can define an access policy by specifying Expression is enabled.
+      - | Specify \ ``enabled``\  in \ ``pre-post-annotations``\  attribute.
+        | If \ ``enabled``\  is specified in \ ``pre-post-annotations``\  attribute, the annotation that can define an access policy by specifying Expression is enabled.
 
 |
 

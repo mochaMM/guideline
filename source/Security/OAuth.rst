@@ -134,7 +134,7 @@ OAuth 2.0ではロールとして以下の4つを定義している。
         | (1) Webアプリケーション（web application）
         |     Webサーバー上で実行されるクライアント（コンフィデンシャル）。
         | (2) ユーザエージェントベースアプリケーション（user-agent-based application）
-        |     クライアントコードがWebサーバーからダウンロードされリソースオーナのユーザエージェント内で実行されるクライアント（パブリック）。Javascriptアプリケーションなど。
+        |     クライアントコードがWebサーバーからダウンロードされリソースオーナのユーザエージェント内で実行されるクライアント（パブリック）。JavaScriptアプリケーションなど。
         | (3) ネイティブアプリケーション（native application）
         |     リソースオーナのデバイス上にインストールされ実行されるクライアント（パブリック）。
 
@@ -217,9 +217,10 @@ OAuth 2.0では、グラントタイプとして以下の4つを定義してい�
         | 認可コードグラントはWebアプリケーションのように、コンフィデンシャルなクライアントがOAuth 2.0を利用する際に使用する。
     * - | インプリシットグラント
       - | インプリシットグラントのフローでは、認可コードグラントと同様に認可サーバが仲介するが、認可コードの代わりに直接アクセストークンを発行する。
-        | アクセストークンはURL中にエンコードされるため、リソースオーナや同一デバイス上の他のアプリケーションに漏えいする可能性があるほか、
+        | これにより応答性、効率性が高いため、スクリプト言語を使用してブラウザ上で実行されるクライアントに適している。
+        | しかし、アクセストークンがURL中にエンコードされるため、リソースオーナや同一デバイス上の他のアプリケーションに漏えいする可能性があるほか、
           クライアントの認証を行わないことから、他のクライアントに対して発行されたアクセストークンを不正に用いた成りすまし攻撃のリスクがある。
-        | インプリシットグラントはJavascriptで実装されたクライアントなどの、クライアントタイプがパブリックである場合のみ使用すること。
+        | セキュリティ上のリスクがあるため、応答性、効率性が求められるパブリックなクライアントでのみ使用すること。
     * - | リソースオーナパスワードクレデンシャルグラント
       - | リソースオーナパスワードクレデンシャルグラントのフローでは、クライアントがリソースオーナの認証情報を認可グラントとして使用して、直接アクセストークンを発行する。
         | クライアントへリソースオーナのクレデンシャルを共有する必要があるため、クライアントの信頼性が低い場合、クレデンシャルの不正利用や漏洩のリスクがある。
@@ -437,6 +438,15 @@ Spring Security OAuthは、Spring Framework(Spring MVC)やSpring Securityが提�
 
 なお、各ロール間のリクエストに対する認証・認可にはSpring Securityが提供する機能を利用するため、そちらの詳細は\ :doc:`../../Security/Authentication`\ 及び \ :doc:`../../Security/Authorization`\ を参照されたい。 
 
+.. note::
+
+    一般的に、OAuth 2.0では全てのアプリケーションを1つのプロバイダが提供するのではなく、プロバイダが認可サーバ、リソースサーバを提供し、それらと連携するクライアントのみを実装するようなケースも多くある。そういった場合に連携するアプリケーションがSpring Security OAuthを使用して実装されているとは限らない。
+    実装方法の解説では、Spring Security OAuth以外のアーキテクチャで実装されたアプリケーションと連携する方法についても、適宜Note等で補足していく。
+    
+    連携するアプリケーションの仕様に応じて、適宜本ガイドラインで紹介していている実装方法をカスタマイズして利用されたい。
+
+|
+
 Spring Security OAuthを使用して認可サーバ、リソースサーバ、クライアントを構築した場合、以下のような流れで処理が行われる。
 
 .. figure:: ./images/OAuth_OAuth2Architecture.png
@@ -490,7 +500,6 @@ Spring Security OAuthを使用して認可サーバ、リソースサーバ、�
     Spring Security OAuthが提供するエンドポイントはSpring MVCの機能を拡張して実現している。Spring Security OAuthが提供するエンドポイントには\ ``@FrameworkEndpoint``\ アノテーションがクラスに設定されている。
     これは\ ``@Controller``\ アノテーションで開発者がコンポーネントとして登録したクラスと競合させないためである。
     また、\ ``@FrameworkEndpoint``\ アノテーションでコンポーネントとして登録されたエンドポイントは、\ ``RequestMappingHandlerMapping``\ の拡張クラスである\ ``FrameworkEndpointHandlerMapping``\ がエンドポイントの\ ``@RequestMapping``\ アノテーションを読み取り、URLと合致する\ ``@FrameworkEndpoint``\ のメソッドを、Handlerクラスとして扱っている。
-
 
 |
 
@@ -672,6 +681,11 @@ Spring Security OAuthでは、クライアントの基本的な機能の実現�
 
 |
 
+.. note::
+
+    インプリシットグラントは一般的にJavaScriptなどで実装されたクライアントで採用されるため、本ガイドラインでもJavaScriptを用いて実装を行う方法を紹介する。
+
+|
 
 .. _HowToUse:
 
@@ -679,6 +693,23 @@ How to use
 --------------------------------------------------------------------------------
 
 Spring Security OAuthを使用するために必要となるBean定義例や実装方法について説明する。
+
+.. _OAuthHowToUseConfiguration:
+
+How to Useの構成
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+「\ :ref:`AuthorizationGrant`\」で示したとおり、OAuth 2.0ではグラントタイプにより認可サーバ、クライアント間のフローが異なる。
+そのため、アプリケーションがサポートするグラントタイプに沿った実装を行う必要がある。
+
+本ガイドラインでは、グラントタイプごとに認可サーバ、リソースサーバ、クライアントの実装方法の解説を行う。
+
+- *利用するグラントタイプに応じた読み進め方*
+    グラントタイプごとの実装方法については、まずは認可コードグラントで一通りの実装方法を解説し、その他のグラントタイプでは認可コードグラントからの変更点を解説する形式としている。
+    **どのグラントタイプを利用する場合も、必ず認可コードグラントでの解説を一読した上で、利用するグラントタイプの解説を読み進められたい。**
+- *作成するアプリケーションに応じた読み進め方*
+    認可サーバ、リソースサーバとクライアントの実装は独立しており、すべてのアプリケーションの実装方法を理解する必要はない。
+    **いずれかのみ実装したい場合は、実装したいアプリケーションの解説のみ読み進められたい。**
 
 |
 
@@ -715,23 +746,17 @@ Spring Security OAuthが提供しているクラスを使用するために、Sp
 
 |
 
-.. _OAuthHowToUseApplicationSettings:
+.. _ImplementationAutorizationCodeGrant:
 
-アプリケーションの設定
+認可コードグラントの実装
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Spring Security OAuthを使用するアプリケーションの設定について説明する。
+認可コードグラントを利用した認可サーバ、リソースサーバ、クライアントの実装方法について説明する。
 
-「\ :ref:`AuthorizationGrant`\」にて示したとおり、OAuth 2.0ではグラントタイプにより認可サーバ、クライアント間のフローが異なる。
-そのため、Spring Security OAuthを使用するアプリケーションでは、アプリケーションがサポートするグラントタイプに沿った設定を行う必要がある。
-グラントタイプ別の設定内容については各ロールの実装を参照。
-
-|
-
-.. _ImplementationOAuthAuthorizationServer:
+.. _ImplementationOAuthAuthorizationServerOfAutorizationCode:
 
 認可サーバの実装
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 認可サーバの実装方法について説明する。
 
@@ -741,7 +766,7 @@ Spring Security OAuthを使用するアプリケーションの設定につい�
 .. _OAuthAuthorizationServerCreateSettingFile:
 
 設定ファイルの作成（認可サーバ）
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 | 認可サーバに関する定義を行うための設定ファイルとして  \ ``oauth2-auth.xml``\ を作成する。
 | \ ``oauth2-auth.xml``\ では、認可サーバの機能を提供するためのエンドポイントのBean定義およびそれらのエンドポイントに対するセキュリティ設定、認可サーバのサポートするグラントタイプの設定を行う。
@@ -795,7 +820,7 @@ Spring Security OAuthを使用するアプリケーションの設定につい�
 .. _OAuthAuthorizationServerDefinition:
 
 認可サーバの定義
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 次に、認可サーバの定義を追加する。
 
 * ``oauth2-auth.xml``
@@ -806,10 +831,7 @@ Spring Security OAuthを使用するアプリケーションの設定につい�
              token-endpoint-url="/oth2/token"
              authorization-endpoint-url="/oth2/authorize" >  <!-- (1) -->
             <oauth2:authorization-code />  <!-- (2) -->
-            <oauth2:implicit />  <!-- (3) -->
-            <oauth2:refresh-token />  <!-- (4) -->
-            <oauth2:client-credentials />  <!-- (5) -->
-            <oauth2:password />  <!-- (6) -->
+            <oauth2:refresh-token />  <!-- (3) -->
         </oauth2:authorization-server>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -820,24 +842,29 @@ Spring Security OAuthを使用するアプリケーションの設定につい�
     * - 項番
       - 説明
     * - | (1)
-      - | \ ``<oauth2:authorization-server>``\ タグを使用し、認可サーバの設定を定義を行う。
+      - | \ ``<oauth2:authorization-server>``\ タグを使用し、認可サーバの定義を行う。
         | \ ``<oauth2:authorization-server>``\ タグを使用することで、認可を行うための認可エンドポイントと、アクセストークンを発行するためのトークンエンドポイントがコンポーネントとして登録される。
         | \ ``token-endpoint-url``\ 属性にトークンエンドポイントのURLを指定する。指定しない場合はデフォルト値である "/oauth/token" が指定される。
         | \ ``authorization-endpoint-url``\ 属性に認可エンドポイントのURLを指定する。指定しない場合はデフォルト値である "/oauth/authorize" が指定される。
     * - | (2)
-      - | \ ``<oauth2:authorization-code>``\ タグを使用して、認可コードグラントをサポートする。
+      - | \ ``<oauth2:authorization-code />``\ タグを使用して、認可コードグラントをサポートする。
     * - | (3)
-      - | \ ``<oauth2:implicit>``\ タグを使用して、インプリシットグラントをサポートする。
-    * - | (4)
-      - | \ ``<oauth2:refresh-token>``\ タグを使用して、リフレッシュトークンをサポートする。
-    * - | (5)
-      - | \ ``<oauth2:client-credentials>``\ タグを使用して、クライアントクレデンシャルグラントをサポートする。
-    * - | (6)
-      - | \ ``<oauth2:password>``\ タグを使用して、リソースオーナパスワードクレデンシャルグラントをサポートする。
+      - | \ ``<oauth2:refresh-token />``\ タグを使用して、リフレッシュトークンをサポートする。
+
+.. warning::
+
+    \ ``<oauth2:authorization-code />``\ タグと\ ``<oauth2:refresh-token />``\ タグは上記の順番で設定する必要がある。
+    
+    詳細は\ :ref:`OrderOfAuthoraizationServerSupportSetting`\を参照されたい。
+
+|
 
 .. note::
 
-    サポートするグラントタイプを複数指定する場合は上記の順番で指定する必要がある。
+    上記の設定ファイルは\ ``client-details-service-ref``\パラメータの設定を行っていないため、IDEによっては文法誤りによるエラーが検知されることがある。
+    後述する設定を追加することでエラーは解消される。
+
+|
 
 .. note::
 
@@ -848,7 +875,7 @@ Spring Security OAuthを使用するアプリケーションの設定につい�
     .. figure:: ./images/OAuth_ERDiagramCode.png
         :width: 30%
     
-    認可サーバの設定ファイルには、\ ``<oauth2:authorization-code>``\ タグの\ ``authorization-code-services-ref``\ に、認可コードをDB管理する\ ``org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices``\ のBean IDを指定する。
+    認可サーバの設定ファイルには、\ ``<oauth2:authorization-code />``\ タグの\ ``authorization-code-services-ref``\ に、認可コードをDB管理する\ ``org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices``\ のBean IDを指定する。
     \ ``JdbcAuthorizationCodeServices``\ のコンストラクタには、認可コード格納用のテーブルに接続するためのデータソースを指定する。
     認可コードをDBにて永続管理する場合の注意点については\ :ref:`OAuthAuthorizationServerHowToControllTarnsaction`\ を **必ず** 参照のこと。
     
@@ -875,7 +902,7 @@ Spring Security OAuthを使用するアプリケーションの設定につい�
 .. _OAuthAuthorizationServerClientAuthentication:
 
 クライアントの認証
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 エンドポイントに対してアクセスしてきたクライアントについては、登録済みのクライアントか確認するために認証を行う必要がある。
 クライアントの認証は、クライアントよりパラメータで渡されたクライアントIDとパスワードを、認可サーバで保持しているクライアント情報をもとに検証することで行う。認証にはBasic認証を用いて行う。
 
@@ -921,8 +948,6 @@ Spring Security OAuthではクライアント情報を取得するためのイ�
     * - | (5)
       - | リダイレクトURL情報を保持するテーブル。client_idを外部キーとし、クライアント情報と対応付けする。
         | web_server_redirect_uriカラムに、リソースオーナによる認可後にユーザエージェントをリダイレクトさせるURLを保持する。
-        | リダイレクトURLは認可コードグラント、インプリシットグラントの場合のみ使用される。
-        | 認可コードグラント、インプリシットグラント以外のグラントタイプを使用する場合はテーブル自体が不要となる。
         | クライアントが認可リクエスト時に申告するURLと、ホストとルートパスが一致するリダイレクトURLがない場合はエラーとなる。
         | クライアントが申告する可能性のあるURLの数だけレコードを登録する。
 
@@ -1061,10 +1086,7 @@ Spring Security OAuthではクライアント情報を取得するためのイ�
              authorization-endpoint-url="/oth2/authorize"
              client-details-service-ref="clientDetailsService">  <!-- (5) -->
             <oauth2:authorization-code />
-            <oauth2:implicit />
             <oauth2:refresh-token />
-            <oauth2:client-credentials />
-            <oauth2:password />
         </oauth2:authorization-server>
 
         <sec:authentication-manager id="clientAuthenticationManager">  <!-- (6) -->
@@ -1131,7 +1153,7 @@ Spring Security OAuthではクライアント情報を取得するためのイ�
 .. _OAuthAuthorizationServerResourceOwnerAuthentication:
 
 リソースオーナの認証
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 アクセストークンの取得に認可コードグラントを用いる場合、ログイン画面を用意する等、なんらかの方法でリソースオーナを認証する必要がある。
 
@@ -1194,7 +1216,7 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
 .. _OAuthAuthorizationServerHowToAuthorizeByScope: 
 
 スコープごとの認可
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 リソースオーナに認可を求める際に、要求されたスコープを一括で認可するのではなく、各スコープを個別に認可する場合の設定方法を説明する。
 
 認可サーバを再起動した際に認可情報を失わないよう永続管理するために、また複数台の認可サーバで認可情報を共有するためには、認可情報をDBで管理する必要がある。
@@ -1286,7 +1308,7 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
 .. _OAuthAuthorizationServerHowToCustomizeAuthorizeView: 
 
 スコープ認可画面のカスタマイズ
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 スコープ認可画面をカスタマイズしたい場合、コントローラとJSPを作成することでカスタマイズできる。以下ではスコープ認可画面のカスタマイズした場合の例を説明する。
 
@@ -1365,12 +1387,12 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
       - | \ ``user_oauth_approval``\ をhidden項目として埋め込むことで、Spring Security OAuthがリクエストパラメータに\ ``user_oauth_approval``\ を付与する。
         | リクエストパラメータに付与された\ ``user_oauth_approval``\ は、認可エンドポイントのスコープ認可を行うメソッドを実行するために用いられる。
     * - | (4)
-      - | CSRFを引き渡すために、HTMLの\ ``<form>``\ 要素の中に\ ``<sec:csrfInput>``\ 要素を指定する。
+      - | CSRFを引き渡すために、HTMLの\ ``<form>``\ 要素の中に\ ``<sec:csrfInput />``\ 要素を指定する。
 
 .. _OAuthAuthorizationServerHowToHandleError:
 
 認可リクエスト時のエラーハンドリング
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 認可エンドポイントで認可エラー（クライアント未存在エラー等のセキュリティに関わるエラーや、リダイレクトURLチェックエラー）が発生した場合、Spring Security OAuthが提供する\ ``OAuth2Exception``\ が\ ``throw``\され 、リクエストは(コンテキストパス)/oauth/errorにフォワードされる。
 そのため認可エンドポイントでの例外をハンドリングする場合は(コンテキストパス)/oauth/errorをハンドリングするコントローラを作成する必要がある。
@@ -1448,7 +1470,7 @@ Spring Securityの詳細については \ :doc:`../../Security/Authentication`\ 
 .. _OAuthAuthorizationServerHowToConfigureAccessToken:
 
 リソースサーバとのアクセストークン共有方法
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 リソースサーバがアクセストークンを元にリソースへのアクセスに対する認可判定を行えるよう、認可サーバは\ ``TokenServices``\ を介してアクセストークンを連携する。
 連携方法は以下に示すとおり複数存在する。
 
@@ -1519,10 +1541,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
              user-approval-handler-ref="userApprovalHandler"
              token-services-ref="tokenServices">  <!-- (1) -->
             <oauth2:authorization-code />
-            <oauth2:implicit />
             <oauth2:refresh-token />
-            <oauth2:client-credentials />
-            <oauth2:password />
         </oauth2:authorization-server>
 
         <bean id="tokenServices"
@@ -1600,7 +1619,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
 .. _OAuthAuthorizationServerHowToCancelToken:
 
 トークンの取り消し（認可サーバ）
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 発行したアクセストークンの取り消しの実装方法について説明する。
 
 アクセストークンの取り消しは、インタフェース\ ``ConsumerTokenService``\ を実装したクラスの
@@ -1608,7 +1627,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
 クラス \ ``DefaultTokenService``\ はインタフェース\ ``ConsumerTokenService``\ を実装している。
 
 アクセストークンの取り消し時に認可情報も削除することが可能である。
-認可コードグラントやインプリシットグラントを使用している場合に、アクセストークンの取り消し後に認可情報を削除せずに認可リクエストを行うと、前回の認可リクエスト時の認可情報が再利用される場合がある。
+アクセストークンの取り消し後に認可情報を削除せずに認可リクエストを行うと、前回の認可リクエスト時の認可情報が再利用される場合がある。
 前回の認可リクエスト時の認可情報は、認可情報の有効期限が有効であり、認可リクエストしたスコープが全て認可されている場合に再利用される。
 
 以下に、実装例を示す。
@@ -1762,7 +1781,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
 .. _OAuthAuthorizationServerHowToControllTarnsaction:
 
 トランザクション制御
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 認可サーバにおけるトランザクション制御の注意点について説明する。
 
 認可サーバにおいてSpring Security OAuthが取り扱う情報（認可コード、認可情報、トークン）をDBにて管理する場合には、トランザクション制御の考慮が必要となる。
@@ -1810,13 +1829,17 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
 
 |
 
-リソースサーバの実装
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _ImplementationOAuthResourceServerOfAutorizationCode:
 
-ここではTODOリソースのREST APIに対して認可設定を行う実装例を用いて、リソースサーバの実装方法について説明する。
+リソースサーバの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+リソースサーバの実装方法について説明する。
+
+ここではTODOリソースのREST APIに対して認可制御を実現する方法を説明する。
 
 設定ファイルの作成（リソースサーバ）
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 リソースサーバを実装する際には新たにOAuth 2.0用のBean定義ファイルを作成する。
 
@@ -1870,7 +1893,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
     * - 項番
       - 説明
     * - | (1)
-      - | \ ``pattern``\属性にはOAuth 2.0の認可設定の対象とするパスのパターンを指定する。
+      - | \ ``pattern``\属性には認可制御の対象とするパスのパターンを指定する。
         | \ ``entry-point-ref``\には\ ``OAuth2AuthenticationEntryPoint``\のBeanを指定する。ここでの設定は定義上必要だが指定したBeanは使用されない。
           実際に使用されるのは後述する\ ``OAuth2AuthenticationProcessingFilter``\に指定している\ ``OAuth2AuthenticationEntryPoint``\のBeanである。
     * - | (2)
@@ -1929,7 +1952,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
 |
 
 リソースにアクセス可能なスコープの設定
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 リソースごとにアクセス可能なスコープを定義するために、OAuth 2.0用のBean定義ファイルに
 スコープの定義とSpEL式をサポートするためのBean定義を追加する。
@@ -1992,7 +2015,7 @@ HTTPアクセスを介した連携ついては本節のHow To Extendにて説明
         | ここではSpEL式を用いて指定を行っている。
     * - | (3)
       - | \ ``OAuth2WebSecurityExpressionHandler``\をBean定義する。
-        | このBeanを定義することでSpring Security OAuthが提供するOAuth 2.0の認可設定を行うためのSpELがサポートされる。
+        | このBeanを定義することでSpring Security OAuthが提供する認可制御を行うためのSpELがサポートされる。
         | なお、``id``\属性に指定した値がこのbeanのidとなる。
 
 |
@@ -2034,7 +2057,7 @@ Spring Security OAuthが用意している主なExpressionを紹介する。
 |
 
 アクセストークンに関する設定（リソースサーバ）
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 認可サーバとリソースサーバはアクセストークンを\ ``TokenServices``\を介して連携する。
 
@@ -2067,8 +2090,10 @@ Spring Security OAuthが用意している主なExpressionを紹介する。
 
 |
 
+.. _OAuthResourceServerGetPrincipal:
+
 ユーザ情報の取得
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 リソースサーバでは、\ :ref:`SpringSecurityAuthenticationIntegrationWithSpringMVC`\で説明されている認証情報の取得方法と同様に、Controllerクラスのメソッド引数に\ ``UserDetails``\ を指定し\ ``@AuthenticationPrincipal``\ アノテーションを付与することにより認証されたリソースオーナの情報を受け取ることができる。
 以下に実装例を示す。
@@ -2101,11 +2126,10 @@ Spring Security OAuthが用意している主なExpressionを紹介する。
     * - | (1)
       - | \ 引数 \ ``user``\にリソースオーナの認証情報が格納される。
 
-\ ``UserDetails``\ を指定した実装の場合、認証処理が行われないクライアントクレデンシャルグラントでは意図した情報が取得できないため注意が必要である。
-クライアントクレデンシャルグラントを使用する場合は、Controllerのメソッド引数として\ ``String``\ を指定し\ ``@AuthenticationPrincipal``\ アノテーションを付与することによりクライアントIDを取得することができる。
+|
 
-また、\ ``UserDetails``\ を指定した実装の場合、クライアントID等のクライアントの認証情報は取得できない。
-クライアントの認証情報を取得する場合は、Controllerクラスのメソッド引数に\ ``OAuth2Authentication``\ を指定することで可能である。
+
+クライアントの認証情報を取得したい場合は、Controllerクラスのメソッド引数に\ ``OAuth2Authentication``\ を指定する。
 以下にControllerクラスのメソッド引数に\ ``OAuth2Authentication``\ を指定してクライアントとリソースオーナの認証情報を取得する例を示す。
 
 .. code-block:: java
@@ -2150,46 +2174,24 @@ Spring Security OAuthが用意している主なExpressionを紹介する。
 
 | 
 
+
+.. _ImplementationOAuthClientServerOfAutorizationCode:
+
 クライアントの実装
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-クライアントの実装方法は、使用するグラントタイプにより、大きく以下の２つに分類される。
-
-
-.. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 35 65
-
-    * - 実装方法
-      - グラントタイプ
-    * - | OAuth2RestTemplate
-      - | 認可コードグラント
-        | リソースオーナパスワードクレデンシャルグラント
-        | クライアントクレデンシャルグラント
-    * - | Javascript
-      - | インプリシットグラント
-
-本ガイドラインでは、上記の分類にて\ :ref:`OAuthClientUsingOAuth2RestTemplate`\ 、\ :ref:`OAuthClientUsingJavaScript`\ をそれぞれ説明する。
-
-|
-
-.. _OAuthClientUsingOAuth2RestTemplate:
-
-OAuth2RestTemplateを使用したリソースへのアクセス
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-認可コードグラント、リソースオーナパスワードクレデンシャルグラント、クライアントクレデンシャルグラント向けの
-クライアントの実装として、\ ``OAuth2RestTemplate``\ を使用してリソースへのアクセスを実現する方法を説明する。
+クライアントの実装方法について説明する。
 
-Spring Security OAuthでは、\ ``RestOperations``\ のOAuth 2.0向けの実装として\ ``OAuth2RestTemplate``\ を提供している。
+ここでは\ ``OAuth2RestTemplate``\ を使用して実現する方法を説明する。
 
 \ ``OAuth2RestTemplate``\ では、OAuth 2.0独自の機能として、\ ``AccessTokenProvider``\ によるグラントタイプに応じた
 アクセストークンの取得や、\ ``OAuth2ClientContext``\ による複数リクエスト間でのアクセストークンの共有、リソースサーバへのアクセス時のエラーハンドリングといった機能を実装している。
 
+クライアントでは、\ ``OAuth2RestTemplate``\を利用し、グラントタイプやスコープなどのアプリケーション用件に沿ったパラメータを定義することで、OAuth 2.0機能を使用したリソースへのアクセスが可能となる。
 
-クライアントでは、\ ``OAuth2RestTemplate``\を利用し、グラントタイプやスコープなどのアプリケーション要件に沿った
-パラメータを定義することで、OAuth 2.0機能を使用したリソースへのアクセスが可能となる。
+.. note:: 
+
+    Spring Security OAuth以外のアーキテクチャで実装されているリソースサーバにアクセスする場合は、REST APIでのアクセスを受け付けているか確認されたい。リソースサーバのAPIが異なる場合は\ `OAuth2RestTemplate`\以外の手段でアクセスする必要がある。
 
 |
 
@@ -2362,12 +2364,7 @@ OAuth2ClientContextFilterの適用
 OAuth2RestTemplateの設定
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-各グラントタイプごとの\ ``OAuth2RestTemplate``\の設定方法を説明する。
-
-認可コードグラント使用時のリソースの設定
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-認可コードグラントでアクセスする場合の\ ``OAuth2RestTemplate``\の設定例を示す。
+\ ``OAuth2RestTemplate``\の設定例を示す。
 
 * ``oauth2-client.xml``
 
@@ -2447,139 +2444,13 @@ OAuth2RestTemplateの設定
                          client-authentication-scheme="form" />
 
 
-.. _OAuth2ResourceOwnerPasswordCredentialGrantResourceSettings:
-
-リソースオーナパスワードクレデンシャルグラント使用時のリソースの設定
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-| リソースオーナパスワードクレデンシャルグラントでは、クライアントがリソースオーナのユーザ名およびパスワードを使用してアクセストークンの発行を依頼する。
-| \ ``OAuth2RestTemplate``\にはリソースオーナのユーザ名およびパスワードをそれぞれパラメータとして設定する必要があるが、
-  複数のリソースオーナが同じクライアントを利用する場合、リソースオーナ毎に設定内容を切り替える考慮が必要となる。
-| ここでは、\ ``OAuth2RestTemplate``\のリソースをSessionスコープのBeanで設定し、そのBeanにリソースオーナの情報を格納することによって、
-  リソースオーナ毎の設定内容の切り替えを実現する方法を説明する。
-
-リソースオーナパスワードクレデンシャルグラントでアクセスする場合の\ ``OAuth2RestTemplate``\の設定例を示す。
-
-リソースオーナ毎に設定内容を切り替えられるよう、\ ``ResourceOwnerPasswordResourceDetails``\ をSessionスコープで定義し、\ ``OAuth2RestTemplate``\への設定を行う。
-
-* ``oauth2-client.xml``
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
-        xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-        xsi:schemaLocation="
-            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-            http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2.xsd
-            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-        ">
-
-        <!-- omitted -->
-
-        <bean id="todoPasswordGrantResource" class="org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails"
-            scope="session"> 
-            <aop:scoped-proxy>
-            <property name="clientId" value="firstSec" />
-            <property name="clientSecret" value="firstSecSecret" />
-            <property name="accessTokenUri" value="${auth.serverUrl}/oth2/token" />
-            <property name="scope" value="READ,WRITE" />
-        </bean> <!-- (1) -->
-
-        <oauth2:rest-template id="todoPasswordGrantResourceRestTemplate" resource="todoPasswordGrantResource" /> <!-- (2) -->
-
-
-
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - | \ ``OAuth2RestTemplate``\が参照する、アクセス対象となるリソースに関する詳細情報を定義する。
-        | 各項目の設定値については下記表を参照のこと。
-    * - | (2)
-      - | \ ``OAuth2RestTemplate``\を定義する。
-        | \ ``id``\には\ ``OAuth2RestTemplate``\ のBean IDを指定する。
-        | \ ``resource``\には(1)で定義したBeanの\ ``id``\ を指定する。
-
-
-|
-
-     .. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
-     .. list-table::
-         :header-rows: 1
-         :widths: 35 65
-
-         * - 項目
-           - 説明
-         * - | \ ``class``\
-           - | \ ``OAuth2RestTemplate``\のリソースとするBeanを指定する。ここでは\ ``ResourceOwnerPasswordResourceDetails``\を指定する。
-         * - | \ ``scope``\
-           - | sessionを指定し、スコープ範囲をHTTPSessionとする。
-         * - | \ ``<aop:scoped-proxy>``\
-           - | SessionスコープのBeanをSingletonのBeanである\ ``OAuth2RestTemplate``\ にインジェクションするため設定する。
-             | これは、SessionスコープのBeanよりSingletonのBeanの方がライフサイクルが長いため必要になる設定である。
-             | このタグを使用するために\ ``aop``\のネームスペースとスキーマを追加している。
-         * - | \ ``clientId``\プロパティ
-           - |  Beanの\ ``clientId``\に対して認可サーバにてクライントを識別するIDを設定する。
-         * - | \ ``clientSecret``\プロパティ
-           - | Beanの\ ``clientSecrett``\に対して認可サーバにてクライアントの認証に用いるパスワードを設定する。
-         * - | \ ``accessTokenUri``\プロパティ
-           - | アクセストークンの発行を依頼するための認可サーバのエンドポイントのURLを指定する。
-         * - | \ ``scope``\プロパティ
-           - | Beanの\ ``scope``\に対して認可を要求するスコープの一覧を設定する。
-
-|
-
 .. note::
 
-    リソースオーナのユーザ名、パスワードの取得は、アクセスが必要となったタイミングでクライアントの画面等でリソースオーナから入力され、Beanに格納することを想定している。
-    本ガイドラインでは、ユーザ名、パスワードの具体的な取得方法については説明を割愛する。
-
-.. warning::
-
-    本ガイドラインで説明している認可サーバでは、認証に使用するパスワードに対してハッシュ化の後比較検証を行うため、\ ``ResourceOwnerPasswordResourceDetails``\に設定するパスワードは平文である必要がある。
-    クライアントがリソースオーナのパスワードを平文で扱うことによるリスクが高いため、リソースオーナパスワードクレデンシャルグラントは
-    クライアント-リソースオーナ間で高い信頼関係があり、かつクライアントがセキュアな環境に配置されているなどの非常に限定的な状況でのみ利用すること。
-    認可サーバにおけるハッシュ化の設定については \ :ref:`OAuthAuthorizationServerClientAuthentication`\ を参照のこと。
+    Spring Security OAuth以外のアーキテクチャで実装されている認可サーバに対してアクセストークンの発行を依頼する場合は
+    リクエストパラメータが上記とは異なる可能性があるため注意されたい。
+    その場合はアーキテクチャの仕様を確認し、必要なリクエストパラメータを設定されたい。
 
 |
-
-クライアントクレデンシャルグラント使用時のリソースの設定
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-クライアントクレデンシャルグラントでアクセスする場合の\ ``OAuth2RestTemplate``\の設定例を示す。
-
-なお、認可コードグラントと共通する設定についての解説は割愛する。
-
-* ``oauth2-client.xml``
-
-.. code-block:: xml
-
-    <oauth2:resource id="todoClientGrantResource" client-id="firstSecClient"
-                    client-secret="firstSecSecret"
-                    type="client_credentials"
-                    access-token-uri="${auth.serverUrl}/oth2/token" /> <!-- (1) -->
-
-    <oauth2:rest-template resource=id="todoClientGrantResourceRestTemplate" resource="todoClientGrantResource" />
-
-
-.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
-.. list-table::
-    :header-rows: 1
-    :widths: 10 90
-
-    * - 項番
-      - 説明
-    * - | (1)
-      - | \ ``type``\属性にはグラントタイプを指定する。クライアントクレデンシャルグラントの場合\ ``client_credentials``\を指定する。
-
 
 リソースサーバへのアクセス
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -2639,16 +2510,258 @@ OAuth2RestTemplateの設定
 
 |
 
-.. _OAuthClientUsingJavaScript:
 
-JavaScriptを使用したリソースへのアクセス
+.. _OAuthClientServerHowToCancelToken:
+
+トークンの取り消し（クライアントサーバ）
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+発行したアクセストークンの取り消しの実装方法について説明する。
+
+| アクセストークンの取り消しは、認可サーバにリクエストを行い、\ ``TokenStore``\ からアクセストークンの削除を行う。認可サーバへのリクエスト時はクライアントのBasic認証を行うため、Basic認証用のリクエストヘッダを設定する。
+| 認可サーバのトークンの取り消しについては \ :ref:`OAuthAuthorizationServerHowToCancelToken`\ を参照されたい。
+| クライアントサーバはアクセストークンの取り消しを認可サーバにリクエスト後、\ ``OAuth2RestTemplate``\で保持しているアクセストークンを削除する必要がある。
+
+
+以下に、実装例を示す。
+
+まず、認可サーバにトークン取り消し要求を行うための\ ``RestTemplate``\の設定を設定ファイルに追記する。
+
+* ``oauth2-client.xml``
+
+.. code-block:: xml
+    
+    <!-- (1) -->
+    <bean id="revokeRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="interceptors">
+            <list>
+                <ref bean="basicAuthInterceptor" />
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="basicAuthInterceptor" class="com.example.oauth2.client.restclient.BasicAuthInterceptor" />
+
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | 認可サーバにトークン取り消し要求を行うための\ ``RestTemplate``\ をBean定義する。
+        | Basic認証用のリクエストヘッダを設定するため、\ ``interceptors``\ プロパティに\ ``ClientHttpRequestInterceptor``\ の実装クラスを指定する。
+        | Basic認証用のリクエストヘッダを設定する\ ``ClientHttpRequestInterceptor``\ の実装クラスの実装方法については\ :ref:`RestClientHowToExtendClientHttpRequestInterceptorBasicAuthentication`\ を参照されたい。
+
+
+トークンの取り消しを行うサービスクラスのインタフェースと実装クラスを作成する。
+
+* ``RevokeTokenClientService.java``
+
+.. code-block:: java
+
+    public interface RevokeTokenClientService {
+        
+        String revokeToken();
+        
+    }
+
+* ``RevokeTokenClientServiceImpl.java``
+
+.. code-block:: java
+
+    @Service
+    public class RevokeTokenClientServiceImpl implements RevokeTokenClientService {
+    
+        @Value("${auth.serverUrl}/api/v1/oth2/tokens/revoke")
+        String revokeTokenUrl; // (1)
+        
+        @Inject
+        @Named("todoAuthCodeGrantResourceRestTemplate")
+        OAuth2RestOperations oauth2RestOperations; // (2)
+        
+        @Inject
+        @Named("revokeRestTemplate")
+        RestOperations revokeRestOperations; // (3)
+        
+        @Override
+        public String revokeToken() {
+            
+            String token = getTokenValue(oauth2RestOperations);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            MultiValueMap<String, String> variables = new LinkedMultiValueMap<String, String>();
+            variables.add("token", token);
+            
+            String result = revokeRestOperations.postForObject(revokeTokenUrl,
+                new HttpEntity<MultiValueMap<String, String>>(variables, headers),
+                String.class); // (4)
+            // (5)
+            if ("success".equals(result)) {
+                initContextToken(oauth2RestOperations);
+            }
+            return result;
+        }
+    
+        // (6)
+        private String getTokenValue(OAuth2RestOperations oauth2RestOperations) {
+            String tokenValue = "";
+            OAuth2AccessToken token = oauth2RestOperations.getAccessToken();
+            if (token != null) {
+                tokenValue = token.getValue();
+            }
+            return tokenValue;
+        }
+    
+        // (7)
+        private void initContextToken(OAuth2RestOperations oauth2RestOperations) {
+            oauth2RestOperations.getOAuth2ClientContext().setAccessToken(null);
+        }
+    }
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | アクセストークンの取り消しを認可サーバに依頼する際に使用するURL。
+    * - | (2)
+      - | 取り消しを行うアクセストークンを保持している\ ``OAuth2RestTemplate``\ をインジェクションする。
+    * - | (3)
+      - | アクセストークンの取り消しを行う\ ``RestTemplate``\ をインジェクションする。
+    * - | (4)
+      - | 認可サーバにアクセストークンの取り消しを行うために、RESTでメソッドPOSTでアクセスする。
+        | 取り消しを行うアクセストークンの値を認可サーバに渡すためにリクエストパラメータに設定する。
+        | アクセストークンは(5)で定義している\ ``getTokenValue``\ メソッドに\ ``OAuth2RestOperations``\ を渡して取得する。
+    * - | (5)
+      - | 認可サーバの処理結果を判定し、正常の場合のみ\ ``OAuth2RestOperations``\で保持しているアクセストークンを削除する。
+        | アクセストークンの削除は(6)で定義している\ ``initContextToken``\ メソッドにアクセストークンを保持している\ ``OAuth2RestOperations``\ を渡して削除する。
+    * - | (6)
+      - | \ ``OAuth2RestOperations``\ で保持しているアクセストークンを取得するメソッド。
+        | パラメータとして渡された\ ``OAuth2RestOperations``\ の\ ``getAccessToken``\ メソッドを呼び出すことでアクセストークンを取得し、返却する。
+    * - | (7)
+      - | \ ``OAuth2RestOperations``\ で保持しているアクセストークンを削除するメソッド。
+        | パラメータとして渡された\ ``OAuth2RestOperations``\ の\ ``setAccessToken``\ メソッドにnullを渡すことでアクセストークンを削除する。
+
+
+
+| クライアントは上記で作成したサービスをアクセストークンが不要になったタイミングで呼び出すことでトークンの取り消しを行う。
+| Spring Security OAuthのデフォルト実装ではセッションスコープでアクセストークンを保持するため、クライアントのユーザがログアウトした場合やセッションタイムアウトによってセッションが破棄されるタイミングでトークンの取り消しを行うことが考えられる。
+
+
+.. note::
+
+    Spring Security OAuth以外のアーキテクチャで実装されている認可サーバでは、アクセストークンの削除をREST APIで受け付けていない場合がある。
+    
+    その場合は認可サーバのアーキテクチャ仕様を確認し、適切に実装する必要がある。
+
+|
+
+.. _ImplementationImplicitGrant:
+
+インプリシットグラントの実装
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+インプリシットグラントを利用した認可サーバ、リソースサーバ、クライアントの実装方法について解説する。
+
+解説は認可コードグラントからの変更点のみを対象に行っている。変更点以外の実装、解説については\ :ref:`ImplementationAutorizationCodeGrant`\を参照されたい。
+
+以下に認可コードグラントの実装から各サーバを実装する際の変更点を示す。
+
+.. tabularcolumns:: |p{0.30\linewidth}|p{0.70\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 30 70
+    
+    * - サーバ
+      - 認可コードグラントからの変更点
+    * - 認可サーバ
+      - \ :ref:`OAuthAuthorizationServerDefinition`\
+    * - リソースサーバ
+      - なし
+    * - クライアント
+      - \ :ref:`ImplementationOAuthClientServerOfAutorizationCode`\の全て
+
+| 
+
+.. _ImplementationOAuthAuthorizationServerOfImplicit:
+
+認可サーバの実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-インプリシットグラントでは、Webブラウザなどのユーザエージェントが認可サーバに対して認可の要求を行う。
+認可コードグラントの実装から\ ``oauth2-auth.xml``\を変更する必要がある。
 
-そのため、通常、インプリシットグラントはWebブラウザ上で動作するJavaScriptなどで利用されるが、
-Spring Security OAuthではJavaScriptライブラリを提供していないため、インプリシットグラントを使用する場合は
-独自にクライアントを実装する必要がある。
+\ ``oauth2-auth.xml``\以外の実装は\ :ref:`ImplementationOAuthAuthorizationServerOfAutorizationCode`\を参照し作成されたい。
+
+
+認可サーバの定義
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+認可コードグラントからの\ ``oauth2-auth.xml``\の変更点を以下に示す。
+
+* ``oauth2-auth.xml``
+
+.. code-block:: xml
+
+        <oauth2:authorization-server
+            client-details-service-ref="clientDetailsService"
+            token-endpoint-url="/oth2/token"
+            authorization-endpoint-url="/oth2/authorize"
+            user-approval-handler-ref="userApprovalHandler"
+            token-services-ref="tokenServices">
+            <oauth2:implicit />  <!-- (1) -->
+            <oauth2:refresh-token /> 
+        </oauth2:authorization-server>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``<oauth2:implicit />``\ タグを使用して、インプリシットグラントをサポートする。
+
+|
+
+.. warning::
+
+    \ ``<oauth2:implicit />``\ タグと\ ``<oauth2:refresh-token />``\ タグは上記の順番で設定する必要がある。
+    
+    詳細は\ :ref:`OrderOfAuthoraizationServerSupportSetting`\を参照されたい。
+
+|
+
+.. _ImplementationOAuthResourceServerOfImplicit:
+
+リソースサーバの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+認可コードグラントの実装から変更は不要である。
+
+実装は\ :ref:`ImplementationOAuthResourceServerOfAutorizationCode`\を参照し作成されたい。
+
+.. _ImplementationOAuthClientServerOfImplicit:
+
+クライアントの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+インプリシットグラントでは一般的にJavaScriptなどで実装されたクライアントが採用される。
+
+Spring Security OAuthではJava以外のライブラリを提供していないため、本ガイドラインではJavaScriptを用いて独自にクライアントを実装する方法について解説する。
+
+以下にJavaScript及びjspの実装例を示す。
+
+.. _OAuthClientUsingJavaScript:
+
+JavaScriptを使用したリソースサーバへのアクセス
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 本ガイドラインでは、インプリシットグラント向けのクライアントの実装として、JavaScriptを使用してリソースサーバから
 JSON形式のデータを取得し、画面に表示させる方法を説明する。
@@ -2659,7 +2772,7 @@ JSON形式のデータを取得し、画面に表示させる方法を説明す�
     jsファイルと合わせて \ ``src/main/webapp``\  配下に格納されていることを想定している。
 
 
-OAuth 2.0機能を独自に実装したAPI例を示す。
+まず、クライアントが利用するOAuth 2.0機能を独自に実装したAPIを作成する。実装例を以下に示す。
 
 * ``oauth2.js``
 
@@ -2961,7 +3074,7 @@ OAuth 2.0機能を独自に実装したAPI例を示す。
 
 |
 
-以下にクライアントの実装例を示す。
+次に、前述したAPIを利用してリソースへのアクセスを行うクライアントを実装する。
 
 * ``todoList.jsp``
 
@@ -3056,42 +3169,80 @@ OAuth 2.0機能を独自に実装したAPI例を示す。
 
 |
 
+.. note::
+
+    Spring Security OAuth以外のアーキテクチャで実装されている認可サーバに対してアクセストークンの発行を依頼する場合は
+    リクエストパラメータが上記とは異なる可能性があるため注意されたい。
+    その場合はアーキテクチャの仕様を確認し、必要なリクエストパラメータを設定されたい。
+
+|
+
  .. todo:: **TBD**
 
     JavaScriptで作られたクライアントから同一ドメインでない認可サーバやリソースサーバへのアクセスを行う場合、認可サーバやリソースサーバで\ ``Cross-Origin Resource Sharing``\のサポートが必要になる。
 
     詳細については、次版以降に記載する予定である。
 
-.. _OAuthClientServerHowToCancelToken:
+|
 
-トークンの取り消し（クライアントサーバ）
+.. _ImplementationResourceOwnerPasswordCredentialsGrant:
+
+リソースオーナパスワードクレデンシャルグラントの実装
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+リソースオーナパスワードクレデンシャルグラントを利用した認可サーバ、リソースサーバ、クライアントの実装方法について説明する。
+
+解説は認可コードグラントからの変更点のみを対象に行っている。変更点以外の実装、解説については\ :ref:`ImplementationAutorizationCodeGrant`\を参照されたい。
+
+以下に認可コードグラントの実装から各サーバを実装する際の変更点を示す。
+
+.. tabularcolumns:: |p{0.30\linewidth}|p{0.70\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 30 70
+    
+    * - サーバ
+      - 認可コードグラントからの変更点
+    * - 認可サーバ
+      - | \ :ref:`OAuthAuthorizationServerDefinition`\
+        | \ :ref:`OAuthAuthorizationServerClientAuthentication`\
+        | \ :ref:`OAuthAuthorizationServerHowToCancelToken`\
+    * - リソースサーバ
+      - なし
+    * - クライアント
+      - \ :ref:`OAuth2RestTemplateSettings`\
+
+| 
+
+.. _ImplementationOAuthAuthorizationServerOfPassword:
+
+認可サーバの実装
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-発行したアクセストークンの取り消しの実装方法について説明する。
 
-| アクセストークンの取り消しは、認可サーバにリクエストを行い、\ ``TokenStore``\ からアクセストークンの削除を行う。認可サーバへのリクエスト時はクライアントのBasic認証を行うため、Basic認証用のリクエストヘッダを設定する。
-| 認可サーバのトークンの取り消しについては \ :ref:`OAuthAuthorizationServerHowToCancelToken`\ を参照されたい。
-| クライアントサーバはアクセストークンの取り消しを認可サーバにリクエスト後、\ ``OAuth2RestTemplate``\で保持しているアクセストークンを削除する必要がある。
+認可コードグラントの実装から\ ``oauth2-auth.xml``\を変更し、DB及びServiceクラスから不要な定義を削除する必要がある。
+
+\ ``oauth2-auth.xml``\以外の実装は\ :ref:`ImplementationOAuthAuthorizationServerOfAutorizationCode`\を参照し作成されたい。
 
 
-以下に、実装例を示す。
+認可サーバの定義
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-まず、認可サーバにトークン取り消し要求を行うための\ ``RestTemplate``\の設定を設定ファイルに追記する。
+認可コードグラントからの\ ``oauth2-auth.xml``\の変更点を以下に示す。
 
-* ``oauth2-client.xml``
+* ``oauth2-auth.xml``
 
 .. code-block:: xml
-    
-    <!-- (1) -->
-    <bean id="revokeRestTemplate" class="org.springframework.web.client.RestTemplate">
-        <property name="interceptors">
-            <list>
-                <ref bean="basicAuthInterceptor" />
-            </list>
-        </property>
-    </bean>
-    
-    <bean id="basicAuthInterceptor" class="com.example.oauth2.client.restclient.BasicAuthInterceptor" />
 
+        <oauth2:authorization-server
+            client-details-service-ref="clientDetailsService"
+            token-endpoint-url="/oth2/token"
+            authorization-endpoint-url="/oth2/authorize"
+            user-approval-handler-ref="userApprovalHandler"
+            token-services-ref="tokenServices">
+            <oauth2:refresh-token /> 
+            <oauth2:password />  <!-- (1) -->
+        </oauth2:authorization-server>
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
 .. list-table::
@@ -3101,73 +3252,375 @@ OAuth 2.0機能を独自に実装したAPI例を示す。
     * - 項番
       - 説明
     * - | (1)
-      - | 認可サーバにトークン取り消し要求を行うための\ ``RestTemplate``\ をBean定義する。
-        | Basic認証用のリクエストヘッダを設定するため、\ ``interceptors``\ プロパティに\ ``ClientHttpRequestInterceptor``\ の実装クラスを指定する。
-        | Basic認証用のリクエストヘッダを設定する\ ``ClientHttpRequestInterceptor``\ の実装クラスの実装方法については\ :ref:`RestClientHowToExtendClientHttpRequestInterceptorBasicAuthentication`\ を参照されたい。
+      - | \ ``<oauth2:password />``\ タグを使用して、リソースオーナパスワードクレデンシャルグラントをサポートする。
+
+|
+
+.. warning::
+
+    \ ``<oauth2:password />``\ タグと\ ``<oauth2:refresh-token />``\ タグは上記の順番で設定する必要がある。
+    
+    詳細は\ :ref:`OrderOfAuthoraizationServerSupportSetting`\を参照されたい。
+
+|
+
+クライアントの認証
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+リソースオーナパスワードクレデンシャルグラントでは\ :ref:`AuthorizationGrant`\で説明したとおりアクセストークンを直接発行する。
+そのため、リソースオーナに対して認可の要求は行われず、ユーザエージェントのリダイレクトは発生しない。
+
+認可コードグラントの\ :ref:`OAuthAuthorizationServerClientAuthentication`\で定義したテーブル、\ ``web_server_redirect_uris``\は不要となるため削除する。
 
 
-トークンの取り消しを行うサービスクラスのインタフェースと実装クラスを作成する。
+トークンの取り消し（認可サーバ）
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-* ``RevokeTokenClientService.java``
+認可コードグラントの実装では、\ ``RevokeTokenServiceImpl.java``\にて認可サーバのトークンの取り消しに合わせて、認可情報の取り消しを行っている。
 
-.. code-block:: java
+リソースオーナに対して認可の要求を行わないリソースオーナパスワードクレデンシャルグラントでは認可情報の取り消しが不要であるため、この処理を削除する。
 
-    public interface RevokeTokenClientService {
-        
-        String revokeToken();
-        
-    }
+以下に、認可情報の取り消しをコメントアウトした\ ``RevokeTokenServiceImpl.java``\を示す。
 
-* ``RevokeTokenClientServiceImpl.java``
+* ``RevokeTokenServiceImpl.java``
 
 .. code-block:: java
 
     @Service
-    public class RevokeTokenClientServiceImpl implements RevokeTokenClientService {
-    
-        @Value("${auth.serverUrl}/api/v1/oth2/tokens/revoke")
-        String revokeTokenUrl; // (1)
+    @Transactional
+    public class RevokeTokenServiceImpl implements RevokeTokenService {
         
         @Inject
-        @Named("todoAuthCodeGrantResourceRestTemplate")
-        OAuth2RestOperations oauth2RestOperations; // (2)
+        ConsumerTokenServices consumerService;
         
         @Inject
-        @Named("revokeRestTemplate")
-        RestOperations revokeRestOperations; // (3)
+        TokenStore tokenStore;
         
-        @Override
-        public String revokeToken() {
-            
-            String token = getTokenValue(oauth2RestOperations);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-            MultiValueMap<String, String> variables = new LinkedMultiValueMap<String, String>();
-            variables.add("token", token);
-            
-            String result = revokeRestOperations.postForObject(revokeTokenUrl,
-                new HttpEntity<MultiValueMap<String, String>>(variables, headers),
-                String.class); // (4)
-            // (5)
-            if ("success".equals(result)) {
-                initContextToken(oauth2RestOperations);
+        @Inject
+        ApprovalStore approvalStore;
+        
+        public String revokeToken(String tokenValue, String clientId){
+        
+            OAuth2Authentication authentication = tokenStore.readAuthentication(tokenValue);
+            if (authentication != null) {
+                if (clientId.equals(authentication.getOAuth2Request().getClientId())) {
+                    /* Authentication user = authentication.getUserAuthentication();
+                    if (user != null) {
+                        Collection<Approval> approvals = new ArrayList<Approval>();
+                        for (String scope : authentication.getOAuth2Request().getScope()) {
+                            approvals.add(
+                                    new Approval(user.getName(), clientId, scope, new Date(), ApprovalStatus.APPROVED));
+                        }
+                        approvalStore.revokeApprovals(approvals);
+                    } */
+                    consumerService.revokeToken(tokenValue);
+                    return "success";
+                    
+                } else {
+                    return "invalid client";
+                }
+            } else {
+                return "invalid token";
             }
-            return result;
         }
+    }
+
+|
+
+.. _ImplementationOAuthResourceServerOfPassword:
+
+リソースサーバの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+認可コードグラントの実装から変更は不要である。
+
+実装は\ :ref:`ImplementationOAuthResourceServerOfAutorizationCode`\を参照し作成されたい。
+
+.. _ImplementationOAuthClientServerOfPassword:
+
+クライアントの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+認可コードグラントの実装から\ ``oauth2-client.xml``\を変更する必要がある。
+
+\ ``oauth2-client.xml``\以外の実装は\ :ref:`ImplementationOAuthClientServerOfAutorizationCode`\を参照し作成されたい。
+
+
+.. _OAuth2ResourceOwnerPasswordCredentialGrantResourceSettings:
+
+OAuth2RestTemplateの設定
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+| リソースオーナパスワードクレデンシャルグラントでは、クライアントがリソースオーナのユーザ名およびパスワードを使用してアクセストークンの発行を依頼する。
+| \ ``OAuth2RestTemplate``\にはリソースオーナのユーザ名およびパスワードをそれぞれパラメータとして設定する必要があるが、
+  複数のリソースオーナが同じクライアントを利用する場合、リソースオーナ毎に設定内容を切り替える考慮が必要となる。
+| ここでは、\ ``OAuth2RestTemplate``\のリソースをSessionスコープのBeanで設定し、そのBeanにリソースオーナの情報を格納することによって、
+  リソースオーナ毎の設定内容の切り替えを実現する方法を説明する。
+
+\ ``OAuth2RestTemplate``\の設定例を以下に示す。
+
+リソースオーナ毎に設定内容を切り替えられるよう、\ ``ResourceOwnerPasswordResourceDetails``\ をSessionスコープで定義し、\ ``OAuth2RestTemplate``\への設定を行う。
+
+* ``oauth2-client.xml``
+
+.. code-block:: xml
+
+    <bean id="todoPasswordGrantResource" class="org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails"
+        scope="session">
+        <aop:scoped-proxy>
+        <property name="clientId" value="firstSec" />
+        <property name="clientSecret" value="firstSecSecret" />
+        <property name="accessTokenUri" value="${auth.serverUrl}/oth2/token" />
+        <property name="scope" value="READ,WRITE" />
+    </bean> <!-- (1) -->
+
+    <oauth2:rest-template id="todoPasswordGrantResourceRestTemplate" resource="todoPasswordGrantResource" /> <!-- (2) -->
+
+
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``OAuth2RestTemplate``\が参照する、アクセス対象となるリソースに関する詳細情報を定義する。
+        | 各項目の設定値については下記表を参照のこと。
+    * - | (2)
+      - | \ ``OAuth2RestTemplate``\を定義する。
+        | \ ``id``\には\ ``OAuth2RestTemplate``\ のBean IDを指定する。
+        | \ ``resource``\には(1)で定義したBeanの\ ``id``\ を指定する。
+
+
+|
+
+     .. tabularcolumns:: |p{0.35\linewidth}|p{0.65\linewidth}|
+     .. list-table::
+         :header-rows: 1
+         :widths: 35 65
+
+         * - 項目
+           - 説明
+         * - | \ ``class``\
+           - | \ ``OAuth2RestTemplate``\のリソースとするBeanを指定する。ここでは\ ``ResourceOwnerPasswordResourceDetails``\を指定する。
+         * - | \ ``scope``\
+           - | sessionを指定し、スコープ範囲をHTTPSessionとする。
+         * - | \ ``<aop:scoped-proxy>``\
+           - | SessionスコープのBeanをSingletonのBeanである\ ``OAuth2RestTemplate``\ にインジェクションするため設定する。
+             | これは、SessionスコープのBeanよりSingletonのBeanの方がライフサイクルが長いため必要になる設定である。
+             | このタグを使用するために\ ``aop``\のネームスペースとスキーマを追加している。
+         * - | \ ``clientId``\プロパティ
+           - |  Beanの\ ``clientId``\に対して認可サーバにてクライントを識別するIDを設定する。
+         * - | \ ``clientSecret``\プロパティ
+           - | Beanの\ ``clientSecrett``\に対して認可サーバにてクライアントの認証に用いるパスワードを設定する。
+         * - | \ ``accessTokenUri``\プロパティ
+           - | アクセストークンの発行を依頼するための認可サーバのエンドポイントのURLを指定する。
+         * - | \ ``scope``\プロパティ
+           - | Beanの\ ``scope``\に対して認可を要求するスコープの一覧を設定する。
+
+|
+
+.. note::
+
+    Spring Security OAuth以外のアーキテクチャで実装されている認可サーバに対してアクセストークンの発行を依頼する場合は
+    リクエストパラメータが上記とは異なる可能性があるため注意されたい。
+    その場合はアーキテクチャの仕様を確認し、必要なリクエストパラメータを設定されたい。
+
+|
+
+.. note::
+
+    リソースオーナのユーザ名、パスワードの取得は、アクセスが必要となったタイミングでクライアントの画面等でリソースオーナから入力され、Beanに格納することを想定している。
+    本ガイドラインでは、ユーザ名、パスワードの具体的な取得方法については説明を割愛する。
+
+.. warning::
+
+    本ガイドラインで説明している認可サーバでは、認証に使用するパスワードに対してハッシュ化の後比較検証を行うため、\ ``ResourceOwnerPasswordResourceDetails``\に設定するパスワードは平文である必要がある。
+    クライアントがリソースオーナのパスワードを平文で扱うことによるリスクが高いため、リソースオーナパスワードクレデンシャルグラントは
+    クライアント-リソースオーナ間で高い信頼関係があり、かつクライアントがセキュアな環境に配置されているなどの非常に限定的な状況でのみ利用すること。
+    認可サーバにおけるハッシュ化の設定については \ :ref:`OAuthAuthorizationServerClientAuthentication`\ を参照のこと。
+
+|
+
+
+.. _ClientCredentialsGrant:
+
+クライアントクレデンシャルグラントの実装
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+クライアントクレデンシャルグラントを利用した認可サーバ、リソースサーバ、クライアントの実装方法について説明する。
+
+解説は認可コードグラントからの変更点のみを対象に行っている。変更点以外の実装、解説については\ :ref:`ImplementationAutorizationCodeGrant`\を参照されたい。
+
+以下に認可コードグラントの実装から各サーバを実装する際の変更点を示す。
+
+.. tabularcolumns:: |p{0.30\linewidth}|p{0.70\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 30 70
     
-        // (6)
-        private String getTokenValue(OAuth2RestOperations oauth2RestOperations) {
-            String tokenValue = "";
-            OAuth2AccessToken token = oauth2RestOperations.getAccessToken();
-            if (token != null) {
-                tokenValue = token.getValue();
+    * - サーバ
+      - 認可コードグラントからの変更点
+    * - 認可サーバ
+      - | \ :ref:`OAuthAuthorizationServerDefinition`\
+        | \ :ref:`OAuthAuthorizationServerClientAuthentication`\
+        | \ :ref:`OAuthAuthorizationServerHowToCancelToken`\
+    * - リソースサーバ
+      - \ :ref:`OAuthResourceServerGetPrincipal`\
+    * - クライアント
+      - \ :ref:`OAuth2RestTemplateSettings`\
+
+| 
+
+.. _ImplementationOAuthAuthorizationServerOfClientCredentials:
+
+認可サーバの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+認可コードグラントの実装から\ ``oauth2-auth.xml``\を変更し、DB及びServiceクラスから不要な定義を削除する必要がある。
+
+\ ``oauth2-auth.xml``\以外の実装は\ :ref:`ImplementationOAuthAuthorizationServerOfAutorizationCode`\を参照し作成されたい。
+
+
+認可サーバの定義
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+認可コードグラントからの\ ``oauth2-auth.xml``\の変更点を以下に示す。
+
+* ``oauth2-auth.xml``
+
+.. code-block:: xml
+
+        <oauth2:authorization-server
+            client-details-service-ref="clientDetailsService"
+            token-endpoint-url="/oth2/token"
+            authorization-endpoint-url="/oth2/authorize"
+            user-approval-handler-ref="userApprovalHandler"
+            token-services-ref="tokenServices">
+            <oauth2:refresh-token />
+            <oauth2:client-credentials />  <!-- (1) -->
+        </oauth2:authorization-server>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``<oauth2:client-credentials />``\ タグを使用して、クライアントクレデンシャルグラントをサポートする。
+
+|
+
+.. warning::
+
+    \ ``<oauth2:client-credentials />``\ タグと\ ``<oauth2:refresh-token />``\ タグは上記の順番で設定する必要がある。
+    
+    詳細は\ :ref:`OrderOfAuthoraizationServerSupportSetting`\を参照されたい。
+
+|
+
+クライアントの認証
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+クライアントクレデンシャルグラントでは\ :ref:`AuthorizationGrant`\で説明したとおりアクセストークンを直接発行する。
+そのため、リソースオーナに対して認可の要求は行われず、ユーザエージェントのリダイレクトは発生しない。
+
+認可コードグラントの\ :ref:`OAuthAuthorizationServerClientAuthentication`\で定義したテーブル、\ ``web_server_redirect_uris``\は不要となるため削除する。
+
+
+トークンの取り消し（認可サーバ）
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+認可コードグラントの実装では、\ ``RevokeTokenServiceImpl.java``\にて認可サーバのトークンの取り消しに合わせて、認可情報の取り消しを行っている。
+
+リソースオーナに対して認可の要求を行わないクライアントクレデンシャルグラントでは認可情報の取り消しが不要であるため、この処理を削除する。
+
+以下に、認可情報の取り消しをコメントアウトした\ ``RevokeTokenServiceImpl.java``\を示す。
+
+* ``RevokeTokenServiceImpl.java``
+
+.. code-block:: java
+
+    @Service
+    @Transactional
+    public class RevokeTokenServiceImpl implements RevokeTokenService {
+        
+        @Inject
+        ConsumerTokenServices consumerService;
+        
+        @Inject
+        TokenStore tokenStore;
+        
+        @Inject
+        ApprovalStore approvalStore;
+        
+        public String revokeToken(String tokenValue, String clientId){
+        
+            OAuth2Authentication authentication = tokenStore.readAuthentication(tokenValue);
+            if (authentication != null) {
+                if (clientId.equals(authentication.getOAuth2Request().getClientId())) {
+                    /* Authentication user = authentication.getUserAuthentication();
+                    if (user != null) {
+                        Collection<Approval> approvals = new ArrayList<Approval>();
+                        for (String scope : authentication.getOAuth2Request().getScope()) {
+                            approvals.add(
+                                    new Approval(user.getName(), clientId, scope, new Date(), ApprovalStatus.APPROVED));
+                        }
+                        approvalStore.revokeApprovals(approvals);
+                    } */
+                    consumerService.revokeToken(tokenValue);
+                    return "success";
+                    
+                } else {
+                    return "invalid client";
+                }
+            } else {
+                return "invalid token";
             }
-            return tokenValue;
         }
-    
-        // (7)
-        private void initContextToken(OAuth2RestOperations oauth2RestOperations) {
-            oauth2RestOperations.getOAuth2ClientContext().setAccessToken(null);
+    }
+
+|
+
+.. _ImplementationOAuthResourceServerOfClientCredentials:
+
+リソースサーバの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+認可コードグラントの実装から\ :ref:`OAuthResourceServerGetPrincipal`\について変更する必要がある。
+
+\ :ref:`OAuthResourceServerGetPrincipal`\以外の実装は\ :ref:`ImplementationOAuthResourceServerOfAutorizationCode`\を参照されたい。
+
+ユーザ情報の取得
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+ユーザの認証が行われないクライアントクレデンシャルグラントではリソースオーナの情報がSpring Securityに保持されない。
+
+このため認可コードグラントでの実装のように、Controllerクラスの引数として\ ``@AuthenticationPrincipal``\ アノテーションを付与した\ ``UserDetails``\ や\ ``OAuth2Authentication``\ を指定してもリソースオーナの情報を受け取ることはできない。
+
+代わりに、クライアントの情報を保持しているため、Controllerのメソッド引数に\ ``String``\ を指定し\ ``@AuthenticationPrincipal``\ アノテーションを付与することによりクライアントIDを取得することができる。
+
+認可コードグラントからの変更点を以下に示す。
+
+.. code-block:: java
+
+    @RestController
+    @RequestMapping("api")
+    public class TodoRestController {
+        
+        // omitted
+
+        @RequestMapping(value = "todos", method = RequestMethod.GET)
+        @ResponseStatus(HttpStatus.OK)
+        public Collection<Todo> list(@AuthenticationPrincipal String clientId) { // (1)
+        
+            // omitted
+        
         }
     }
 
@@ -3179,35 +3632,122 @@ OAuth 2.0機能を独自に実装したAPI例を示す。
     * - 項番
       - 説明
     * - | (1)
-      - | アクセストークンの取り消しを認可サーバに依頼する際に使用するURL。
-    * - | (2)
-      - | 取り消しを行うアクセストークンを保持している\ ``OAuth2RestTemplate``\ をインジェクションする。
-    * - | (3)
-      - | アクセストークンの取り消しを行う\ ``RestTemplate``\ をインジェクションする。
-    * - | (4)
-      - | 認可サーバにアクセストークンの取り消しを行うために、RESTでメソッドPOSTでアクセスする。
-        | 取り消しを行うアクセストークンの値を認可サーバに渡すためにリクエストパラメータに設定する。
-        | アクセストークンは(5)で定義している\ ``getTokenValue``\ メソッドに\ ``OAuth2RestOperations``\ を渡して取得する。
-    * - | (5)
-      - | 認可サーバの処理結果を判定し、正常の場合のみ\ ``OAuth2RestOperations``\で保持しているアクセストークンを削除する。
-        | アクセストークンの削除は(6)で定義している\ ``initContextToken``\ メソッドにアクセストークンを保持している\ ``OAuth2RestOperations``\ を渡して削除する。
-    * - | (6)
-      - | \ ``OAuth2RestOperations``\ で保持しているアクセストークンを取得するメソッド。
-        | パラメータとして渡された\ ``OAuth2RestOperations``\ の\ ``getAccessToken``\ メソッドを呼び出すことでアクセストークンを取得し、返却する。
-    * - | (7)
-      - | \ ``OAuth2RestOperations``\ で保持しているアクセストークンを削除するメソッド。
-        | パラメータとして渡された\ ``OAuth2RestOperations``\ の\ ``setAccessToken``\ メソッドにnullを渡すことでアクセストークンを削除する。
+      - | \ 引数 \ ``clientId``\にクライアントIDが格納される。
+
+| 
+
+.. _ImplementationOAuthClientServerOfClientCredentials:
+
+クライアントの実装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+認可コードグラントの実装から\ ``oauth2-client.xml``\を変更する必要がある。
+
+\ ``oauth2-client.xml``\以外の実装は\ :ref:`ImplementationOAuthClientServerOfAutorizationCode`\を参照し作成されたい。
+
+OAuth2RestTemplateの設定
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+\ ``OAuth2RestTemplate``\の設定例を以下に示す。
+
+* ``oauth2-client.xml``
+
+.. code-block:: xml
+
+    <oauth2:resource id="todoClientGrantResource" client-id="firstSecClient"
+                    client-secret="firstSecSecret"
+                    type="client_credentials"
+                    access-token-uri="${auth.serverUrl}/oth2/token" /> <!-- (1) -->
+
+    <oauth2:rest-template resource=id="todoClientGrantResourceRestTemplate" resource="todoClientGrantResource" />
 
 
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
 
-| クライアントは上記で作成したサービスをアクセストークンが不要になったタイミングで呼び出すことでトークンの取り消しを行う。
-| Spring Security OAuthのデフォルト実装ではセッションスコープでアクセストークンを保持するため、クライアントのユーザがログアウトした場合やセッションタイムアウトによってセッションが破棄されるタイミングでトークンの取り消しを行うことが考えられる。
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ ``type``\属性にはグラントタイプを指定する。クライアントクレデンシャルグラントの場合\ ``client_credentials``\を指定する。
+
+|
+
+.. note::
+
+    Spring Security OAuth以外のアーキテクチャで実装されている認可サーバに対してアクセストークンの発行を依頼する場合は
+    リクエストパラメータが上記とは異なる可能性があるため注意されたい。
+    その場合はアーキテクチャの仕様を確認し、必要なリクエストパラメータを設定されたい。
+
+|
 
 
 .. _OAuthHowToExtend:
 
 How to extend
 --------------------------------------------------------------------------------
+
+.. _OrderOfAuthoraizationServerSupportSetting:
+
+認可サーバで複数のグラントタイプをサポートする場合
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+\ :ref:`AuthorizationGrant`\で紹介したように認可サーバは複数のグラントタイプをサポートすることができる。
+
+グラントタイプを複数指定する場合、タグの順番はXMLスキーマで定められているため以下の表の番号順に設定する必要がある。
+
+番号順に設定を行わないと、アプリケーション起動時にXML解釈の失敗により\ ``XmlBeanDefinitionStoreException``\が発生する。
+
+.. tabularcolumns:: |p{0.20\linewidth}|p{0.80\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 20 80
+
+    * - 順番
+      - タグ
+    * - 1
+      - \ `<oauth2:authorization-code />`\
+    * - 2
+      - \ `<oauth2:implicit />`\
+    * - 3
+      - \ `<oauth2:refresh-token />`\
+    * - 4
+      - \ `<oauth2:client-credentials />`\
+    * - 5
+      - \ `<oauth2:password />`\
+
+|
+
+例として、認可コードグラント、リソースオーナパスワードクレデンシャルグラントおよびリフレッシュトークンをサポートする場合の設定例を以下に示す。
+
+* ``oauth2-auth.xml``
+
+.. code-block:: xml
+
+        <oauth2:authorization-server
+             token-endpoint-url="/oth2/token"
+             authorization-endpoint-url="/oth2/authorize" >
+            <oauth2:authorization-code />  <!-- (1) -->
+            <oauth2:refresh-token />  <!-- (2) -->
+            <oauth2:password />  <!-- (3) -->
+        </oauth2:authorization-server>
+
+.. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
+.. list-table::
+    :header-rows: 1
+    :widths: 10 90
+
+    * - 項番
+      - 説明
+    * - | (1)
+      - | \ `<oauth2:authorization-code />`\タグを使用して、認可コードグラントをサポートする。
+    * - | (2)
+      - | \ `<oauth2:refresh-token />`\タグを使用して、リフレッシュトークンをサポートする。
+    * - | (3)
+      - | \ `<oauth2:password />`\タグを使用して、リソースオーナパスワードクレデンシャルグラントをサポートする。
+
 
 エンドポイントを介した認可サーバとリソースサーバの連携
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
