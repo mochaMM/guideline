@@ -10,6 +10,24 @@
       - 更新箇所
       - 更新内容
 
+    * - 2017-XX-XX
+      - \-
+      - 5.2.2 RELEASE版公開
+
+        * 更新内容の詳細は、\ `5.2.2のIssue一覧 <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.2.2%20is%3Aissue%20is%3Aclosed%20>`_\ を参照されたい。
+
+    * -
+      - 全般
+      - ガイドラインの誤記(タイプミスや単純な記述ミスなど)の修正
+
+        * 修正内容の詳細は、\ `5.2.2のIssue一覧(clerical error) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=%20label%3A5.2.2%20is%3Aclosed%20label%3A%22clerical%20error%22%20>`_\ を参照されたい。
+
+    * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`
+      - 記載内容の修正
+
+        * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
+
     * - 2017-03-17
       - \-
       - 5.2.1 RELEASE版公開
