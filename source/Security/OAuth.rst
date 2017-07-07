@@ -3090,7 +3090,10 @@ OAuth 2.0機能を独自に実装したAPI例を示す。
         </property>
     </bean>
     
-    <bean id="basicAuthInterceptor" class="com.example.oauth2.client.restclient.BasicAuthInterceptor" />
+    <bean id="basicAuthInterceptor" class="org.springframework.http.client.support.BasicAuthorizationInterceptor">
+        <constructor-arg index="0" value="${api.auth.username}" />
+        <constructor-arg index="1" value="${api.auth.password}" />
+    </bean>
 
 
 .. tabularcolumns:: |p{0.10\linewidth}|p{0.90\linewidth}|
@@ -3102,8 +3105,8 @@ OAuth 2.0機能を独自に実装したAPI例を示す。
       - 説明
     * - | (1)
       - | 認可サーバにトークン取り消し要求を行うための\ ``RestTemplate``\ をBean定義する。
-        | Basic認証用のリクエストヘッダを設定するため、\ ``interceptors``\ プロパティに\ ``ClientHttpRequestInterceptor``\ の実装クラスを指定する。
-        | Basic認証用のリクエストヘッダを設定する\ ``ClientHttpRequestInterceptor``\ の実装クラスの実装方法については\ :ref:`RestClientHowToExtendClientHttpRequestInterceptorBasicAuthentication`\ を参照されたい。
+        | Basic認証用のリクエストヘッダを設定するため、\ ``interceptors``\ プロパティに\ ``ClientHttpRequestInterceptor``\ の実装クラスである\ ``BasicAuthorizationInterceptor``\ を指定する。
+        | \ ``BasicAuthorizationInterceptor``\ の設定については\ :ref:`RestClientBasicAuthorizationInterceptorBeanDefinition`\ を参照されたい。
 
 
 トークンの取り消しを行うサービスクラスのインタフェースと実装クラスを作成する。
