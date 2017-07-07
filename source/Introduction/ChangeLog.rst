@@ -33,6 +33,12 @@
         * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
 
     * -
+      - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
+      - Spring Framework 4.3対応に伴う修正
+
+        * Basic認証用のリクエストヘッダの設定に関する記載を変更(\ `guideline#2742 <https://github.com/terasolunaorg/guideline/issues/2742>`_\ )
+
+    * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/SOAP`
       - 記載内容の修正
 
