@@ -144,7 +144,7 @@ Spring Securityのモジュール
     * - \ ``spring-security-remoting``\
       - JNDI経由でDNSにアクセス、Basic認証が必要なWebサイトにアクセス、Spring Securityを使用してセキュリティ対策しているメソッドにRMI経由でアクセスする際に必要となるコンポーネントが格納されている。
     * - \ ``spring-security-aspects``\
-      - Javaのメソッドに対して認可機能を適用する際にAspectJの機能を使用する際に必要となるコンポーネントが格納されている。
+      - AspectJを使用してJavaのメソッドに認可機能を適用する際、必要となるコンポーネントが格納されている。
         このモジュールは、AOPとしてSpring AOPを使う場合は不要である。
     * - \ ``spring-security-messaging``\ \ [#fSpringSecurityArchitecture5]_\ 
       - SpringのWeb Socket機能に対してセキュリティ対策を追加するためのコンポーネントが格納されている。 
