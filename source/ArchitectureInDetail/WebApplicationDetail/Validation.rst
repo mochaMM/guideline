@@ -4752,7 +4752,6 @@ terasoluna-gfw-validatorのチェックルール
     import javax.validation.Constraint;
     import javax.validation.OverridesAttribute;
     import javax.validation.Payload;
-    import javax.validation.ReportAsSingleViolation;
     
     import org.terasoluna.gfw.common.validator.constraints.Compare;
     
@@ -4760,20 +4759,19 @@ terasoluna-gfw-validatorのチェックルール
     @Constraint(validatedBy = {})
     @Target({ TYPE, ANNOTATION_TYPE }) // (1)
     @Retention(RUNTIME)
-    @ReportAsSingleViolation // (2)
-    @Compare(left = "", right = "", operator = Compare.Operator.EQUAL, requireBoth = true) // (3)
+    @Compare(left = "", right = "", operator = Compare.Operator.EQUAL, requireBoth = true, message = "{com.example.sample.domain.validation.Confirm.message}") // (2)
     public @interface Confirm {
     
-        String message() default "{com.example.sample.domain.validation.Confirm.message}"; // (4)
+        String message() default "";
     
         Class<?>[] groups() default {};
     
         Class<? extends Payload>[] payload() default {};
     
-        @OverridesAttribute(constraint = Compare.class, name = "left") // (5)
+        @OverridesAttribute(constraint = Compare.class, name = "left") // (3)
         String field();
     
-        @OverridesAttribute(constraint = Compare.class, name = "right") // (6)
+        @OverridesAttribute(constraint = Compare.class, name = "right") // (4)
         String confirmField();
     
         @Documented
@@ -4794,14 +4792,10 @@ terasoluna-gfw-validatorのチェックルール
     * - | (1)
       - | このアノテーションを付与できる場所を、クラスまたはアノテーションに限定する。
     * - | (2)
-      - | エラー時にこのアノテーションの\ ``message``\ 属性に指定したメッセージが使用されるようにする。
+      - | \ ``@Compare``\ アノテーションの\ ``operator``\ 属性に\ ``Compare.Operator.EQUAL``\ (同値であること)を指定する。どちらか一方が未入力の場合はエラーとするため、\ ``requireBoth``\ 属性に\ ``true``\ を指定する。\ ``message``\ 属性にエラー時に使用されるメッセージを指定する。
     * - | (3)
-      - | \ ``@Compare``\ アノテーションの\ ``operator``\ 属性に\ ``Compare.Operator.EQUAL``\ (同値であること)を指定する。どちらか一方が未入力の場合はエラーとするため、\ ``requireBoth``\ 属性に\ ``true``\ を指定する。
-    * - | (4)
-      - | エラーメッセージのデフォルト値を定義する。
-    * - | (5)
       - | \ ``@Compare``\ アノテーションの\ ``left``\ 属性をオーバーライドし、属性名を\ ``field``\ に変更する。
-    * - | (6)
+    * - | (4)
       - | 同様に\ ``right``\ 属性をオーバーライドし、属性名を\ ``confirmField``\ に変更する。
 
 \ :ref:`Validation_correlation_item_check`\ で実装したアノテーションの代わりに、上記で作成したアノテーションを使用する。
