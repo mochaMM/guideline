@@ -4798,6 +4798,10 @@ terasoluna-gfw-validatorのチェックルール
     * - | (4)
       - | 同様に\ ``right``\ 属性をオーバーライドし、属性名を\ ``confirmField``\ に変更する。
 
+.. note::
+
+    \ ``@ReportAsSingleViolation``\ を使ってメッセージを指定すると、\ ``left``\ 属性に指定したプロパティに割り当てられた\ ``@Compare``\ のエラー情報がクリアされ、\ ``@Confirm``\ に対するエラー情報がオブジェクトに割り当てられてしまい、メッセージが正しく表示されない。
+
 \ :ref:`Validation_correlation_item_check`\ で実装したアノテーションの代わりに、上記で作成したアノテーションを使用する。
 
 .. code-block:: java
