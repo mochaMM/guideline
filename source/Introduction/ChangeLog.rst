@@ -27,6 +27,12 @@
         * 改善内容の詳細は、\ `5.3.1のIssue一覧(improvement) <https://github.com/terasolunaorg/guideline/issues?utf8=%E2%9C%93&q=label%3A5.3.1%20label%3Aimprovement%20is%3Aclosed%20>`_\ を参照されたい。
 
     * -
+      - :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`
+      - 記載内容の修正
+
+        * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
+
+    * -
       - :doc:`../ArchitectureInDetail/WebServiceDetail/RestClient`
       - Spring Framework 4.3対応に伴う修正
 
@@ -37,12 +43,6 @@
       - 記載内容の修正
 
         * SOAP Web Serviceの実装に伴うインジェクションで使用するアノテーションを\ ``@Inject`` \から\ ``@Autowired`` \に変更(\ `guideline#2763 <https://github.com/terasolunaorg/guideline/issues/2763>`_\ )
-
-    * -
-      - :doc:`../ArchitectureInDetail/WebApplicationDetail/TilesLayout`
-      - 記載内容の修正
-
-        * \ ``<definition>`` \タグ(Tiles定義ファイル)の\ ``name`` \属性のマッチングに関する説明、及び関連する箇所の誤解を招く表現を修正(\ `guideline#2717 <https://github.com/terasolunaorg/guideline/issues/2717>`_\ )
 
 
     * - 2017-03-17
