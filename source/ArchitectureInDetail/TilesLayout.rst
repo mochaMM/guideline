@@ -149,11 +149,11 @@ Spring MVCとTilesの連携
      - | InternalResourceViewResolverを定義する。
        | /WEB-INF/views/配下のjspファイルを対象にしている。
        | property定義のorderで"2"を指定することで、Tilesを定義した設定 tiles-definitions.xmlに該当しない場合、 ``org.springframework.web.servlet.view.InternalResourceViewResolver`` を使うように優先順を定義する。
-       | 読み込んだjspのファイル名が、Tiles定義ファイル内definitionタグのname属性のパターンに合致しない場合、 ``org.springframework.web.servlet.view.InternalResourceViewResolver`` が使用される。
+       | Controllerから返却されたView名が、Tiles定義ファイル内のdefinition要素のname属性のパターンに合致しない場合、 ``org.springframework.web.servlet.view.InternalResourceViewResolver`` が使用される。
    * - | (2)
      - | TilesViewResovlerを定義する。
        | property定義のorderで"1"を指定することで、最初にTilesを定義した設定tiles-definitions.xmlを使うように優先順を定義する。
-       | 読み込んだjspのファイル名が、Tiles定義ファイル内definitionタグのname属性のパターンに合致する場合、 ``org.springframework.web.servlet.view.tiles2.TilesViewResolver`` が使用される。
+       | Controllerから返却されたView名が、Tiles定義ファイル内のdefinition要素のname属性のパターンに合致する場合、 ``org.springframework.web.servlet.view.tiles2.TilesViewResolver`` が使用される。
    * - | (3)
      - | Tilesの定義ファイルの場所を指定する。
        | /WEB-INF/tiles/tiles-definitions.xmlを読み込む。
@@ -203,15 +203,14 @@ Spring MVCとTilesの連携
    * - | (4)
      - | footerを定義しているjspファイルを指定する。
    * - | (5)
-     - | 描画のリクエストの際にnameのパターンと同じ場合に呼ばれるレイアウト定義。
+     - | 描画の際にControllerから返却されたView名がnameのパターンと同じ場合に呼ばれるレイアウト定義。
        | extendsしている layouts定義も適用される。
    * - | (6)
      - | タイトルを指定する。
        | valueはspring-mvcに取り込まれているpropertiesの中から取得する。(以下の説明では application-messages.propertiesに設定する。)
-       | {1},{2}はリクエストの"\*/\*"の「*」の1つ目、2つ目に該当する。
+       | {1},{2}はControllerから返却されたView名の"\*/\*"の「*」の1つ目、2つ目に該当する。
    * - | (7)
-     - | bodyを定義しているjspファイルの置き場所について、{1}にリクエストパス、{2}にJSP名が一致するように設計する。
-       | これにより、リクエストごとの定義を記述する手間を省くことができる。
+     - | bodyを定義しているjspファイルの置き場所について、{1},{2}にControllerから返却されたView名の"\*/\*"の「*」の1つ目、2つ目が一致するように設計する。これにより、Controllerから返却されるView名ごとの定義を記述する手間を省くことができる。
 
  .. note::
 
@@ -423,9 +422,7 @@ Tilesを使用するためにカスタムタグ(TLD)を設定する必要があ�
 
 **Controller作成**
 
-
-Controllerを作成するとき、リクエストが ``<contextPath>/staff/create?form`` の場合、
-Controllerからのリターンが"staff/createForm"となるように設定する。
+ControllerからView名として"staff/createForm"を返却する。
 
 - StaffCreateController.java
 
@@ -450,7 +447,7 @@ Controllerからのリターンが"staff/createForm"となるように設定す�
 
 **画面描画**
 
-リクエストに ``<contextPath>/staff/create?form`` が呼ばれると、
+View名に"staff/createForm"が指定されると、
 以下のようにTilesがレイアウトを構築して画面描画を行う。
 
  .. code-block:: xml
@@ -479,7 +476,7 @@ Controllerからのリターンが"staff/createForm"となるように設定す�
    * - 項番
      - 説明
    * - | (1)
-     - | リクエストの時、親レイアウトである layouts が呼ばれ、テンプレートが /WEB-INF/views/layout/template.jspに設定される。
+     - | 該当するView名が指定された時、親レイアウトである layouts が呼ばれ、テンプレートが /WEB-INF/views/layout/template.jspに設定される。
    * - | (2)
      - | テンプレート /WEB-INF/views/layout/template.jsp内に存在する ``header`` に WEB-INF/views/layout/header.jspが設定される。
    * - | (3)
@@ -563,22 +560,21 @@ How to extend
      - | 今回追加するレイアウト構成の親定義。
        | 別のレイアウトを使用する場合、difinitionタグのname属性について、既存のレイアウト定義"layouts"と重複しないようにする。
    * - | (2)
-     - | 今回追加するレイアウトについて、描画のリクエストの際にnameのパターンと同じ場合に呼ばれるレイアウト定義。
-       | リクエストが<contextPath>/\*/search\*に該当する場合、このレイアウト定義が読み込まれる。
+     - | 今回追加するレイアウトについて、描画の際にControllerから返却されたView名がnameのパターンと同じ場合に呼ばれるレイアウト定義。
+       | View名が"\*/search\*"に該当する場合、このレイアウト定義が読み込まれる。
        | extendsしている レイアウト定義"layoutsOfSearch"も適用される。
    * - | (3)
      - | 今回追加するレイアウトで使用するタイトルを指定する。
        | valueはspring-mvcに取り込まれているpropertiesの中から取得する。(以下の説明では application-messages.propertiesに設定する。)
-       | {1}はリクエストの"\*/search\*"の「*」の1つ目。
-       | {2}はリクエストの"\*/search\*"の"search*"に該当する為、先頭が"search"で始まる必要がある。
+       | {1}はControllerから返却されるView名の"\*/search\*"の「\*」の1つ目、"search{2}"はView名の"\*/search\*"の"search\*"に該当する為、先頭が"search"で始まる必要がある。
    * - | (4)
-     - | bodyを定義しているjspファイルの置き場所について、{1}にリクエストパス、{2}に先頭に"search"を含んだJSPファイル名が一致するように設計する。
+     - | bodyを定義しているjspファイルの置き場所について、{1}にControllerから返却されるView名の"\*/search\*"の「\*」の1つ目、"search{2}"はView名の"\*/search\*"の"search\*"であるため、先頭に"search"を含んだJSPファイル名が一致するように設計する。
        | JSPファイルの置き場所の構成によってvalue属性の値を変更する必要がある。
 
  .. note::
 
-     リクエストがdefinitionタグのname属性のパターンに複数該当する場合、上から順に確認し、1番最初に該当するパターンが採用される。
-     上記の場合、スタッフ検索画面へのリクエストが複数パターンに該当するため、1番上にレイアウト定義している。
+     Controllerから返却されるView名がdefinitionタグのname属性のパターンに複数該当する場合、上から順に確認し、1番最初に該当するパターンが採用される。
+     上記の場合、スタッフ検索画面のView名が、definitionタグのname属性のパターンに複数該当するため、1番上にレイアウト定義している。
 
 - `application-messages.properties`
 
@@ -597,8 +593,8 @@ How to extend
      - 説明
    * - | (1)
      - | 今回追加するメッセージ。
-       | "staff"はリクエストの"\*/search\*"の「*」の1つ目。
-       | "searchStaff"はリクエストの"\*/search\*"の"search\*"に該当する為、先頭が"search"で始まる必要がある。
+       | "staff"はControllerから返却されたView名の"\*/search\*"の「*」の1つ目。
+       | "searchStaff"はControllerから返却されたView名の"\*/search\*"の"search\*"に該当する為、先頭が"search"で始まる必要がある。
 
 **レイアウト作成**
 
@@ -758,9 +754,7 @@ How to extend
 
 **Controller作成**
 
-
-Controllerを作成するとき、リクエストが ``<contextPath>/staff/search`` の場合、
-Controllerからのリターンが"staff/searchStaff"となるように設定する。
+ControllerからView名として"staff/searchStaff"を返却する。
 
 - StaffSearchController.java
 
@@ -785,7 +779,7 @@ Controllerからのリターンが"staff/searchStaff"となるように設定す
 
 **画面描画**
 
-リクエストに ``<contextPath>/staff/search`` が呼ばれると、
+View名に"staff/searchStaff"が指定されると、
 以下のように別のレイアウトを構築して画面描画を行う。
 
 
@@ -815,7 +809,7 @@ Controllerからのリターンが"staff/searchStaff"となるように設定す
    * - 項番
      - 説明
    * - | (1)
-     - | 該当するリクエストの時、親レイアウトであるlayoutsOfSearchが呼ばれ、テンプレートが /WEB-INF/views/layout/templateSearch.jspに設定される。
+     - | 該当するView名が指定された時、親レイアウトであるlayoutsOfSearchが呼ばれ、テンプレートが /WEB-INF/views/layout/templateSearch.jspに設定される。
    * - | (2)
      - | テンプレート /WEB-INF/views/layout/templateSearch.jsp内に存在する ``header`` に WEB-INF/views/layout/header.jspが設定される。
    * - | (3)
@@ -823,7 +817,7 @@ Controllerからのリターンが"staff/searchStaff"となるように設定す
    * - | (4)
      - | テンプレート /WEB-INF/views/layout/templateSearch.jsp内に存在する ``footer`` に /WEB-INF/views/layout/footer.jspが設定される。
    * - | (5)
-     - | リクエストが<contextPath>/\*/search\*に該当する場合、このレイアウト定義が読み込まれる。
+     - | Controllerから返却されたView名が"\*/search\*"に該当する場合、このレイアウト定義が読み込まれる。
        | その時、親レイアウトである"layoutsOfSearch"も読み込まれる。
    * - | (6)
      - | staffが{1}、searchStaffが"search{2}"となり、spring-mvcに取り込まれているpropertiesから ``title.staff.searchStaff`` をkeyにvalueを取得する。
