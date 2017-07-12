@@ -1140,16 +1140,16 @@ DBのトランザクション管理を行う必要があるアプリケーショ
         | \ ``@JmsListener``\ アノテーションがデフォルトでBean名\ ``jmsListenerContainerFactory``\ を参照するため、\ ``<jms:listener-container/>``\ が一つの場合はBean名を\ ``jmsListenerContainerFactory``\ とすることを推奨する。
     * -
       - \ ``cache``\
-      - | \ ``Connection``\ 、\ ``Session``\ や\ ``Consumer``\ などのキャッシュ対象を決定するために、キャッシュレベルを指定する。
+      - | \ ``Connection``\ 、\ ``Session``\ や\ ``MessageConsumer``\ などのキャッシュ対象を決定するために、キャッシュレベルを指定する。
+        | \ ``connection``\ , \ ``session``\ , \ ``consumer``\ , \ ``none``\ (キャッシュしない), \ ``auto``\ (自動的に選択)のいずれかより選択する。
         | デフォルトは\ ``auto``\ である。
 
         .. note::
 
-           | \ ``auto``\ を指定した時の挙動
-           | 非同期受信をトランザクション管理するためにJTAトランザクションを使用する際に、\ ``<jms:listener-container/>``\ の\ ``transaction-manager``\ 属性を設定する。
-             transaction-manager属性の設定時は、グローバルトランザクションなどによるアプリケーションサーバ内のプールを考慮して、\ ``none``\ (キャッシュが無効)と同じ挙動となる。
-             逆に設定しない場合は、\ ``consumer``\ (\ ``Consumer``\ をキャッシュ)と同じ挙動となる。アプリケーションサーバ内で\ ``Connection``\ などをプールしない場合は、性能向上のため、\ ``Consumer``\ を指定することを推奨する。
-
+            \ ``auto``\ を指定した場合、\ ``transaction-manager``\ 属性の指定有無によって、挙動が変わる。
+            指定した場合は \ ``none``\ 指定時と同様となり、指定しない場合は \ ``consumer``\ 指定時と同様となる。
+            これは、\ ``transaction-manager``\ 属性が、JTAトランザクションを使用する場合にのみ指定することに起因している。
+            アプリケーションサーバ内で\ ``Connection``\ や \ ``Session``\ などをプールしない場合は、性能向上のため \ ``consumer``\ を指定することを検討すること。
 
  .. raw:: latex
 
@@ -1594,16 +1594,21 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
 
 DBのトランザクション管理を行う必要があるアプリケーションでは、業務の要件をもとにJMSとDBのトランザクションの関連を精査した上でトランザクションの管理方針を決定すること。
+非同期受信でJMSとDBのトランザクションを連携させるには以下のような方法が考えられる。
 
-  非同期受信でJMSとDBのトランザクションを連携させるには以下のような方法が考えられる。
+#. JTAによるグローバルトランザクションを使用する方法
+#. ”Best Effort 1 Phase Commit”を使用する方法
+#. JMSとDBのトランザクションを個別に指定する方法
 
-  #. JTAによるグローバルトランザクションを使用する方法
-  #. ”Best Effort 1 Phase Commit”を使用する方法
-  #. JMSとDBのトランザクションを個別に指定する方法
-
-  この中のJMSとDBのトランザクションを分離させる方法を検討されたい。同期送信のトランザクション管理(\ :ref:`JMSHowToUseSettingForSyncSendTransactionManagement`\ )でも紹介したようにJTAによるグローバルトランザクションは、プロトコルの特性上、性能面のオーバーヘッドがかかる。そのため、同期送信では”Best Effort 1 Phase Commit”を使用するトランザクション管理方法を紹介したが、非同期受信ではトランザクションが不適切な構成になるため推奨されない。
-  一般的に、リカバリの観点からDBトランザクション境界よりJMSトランザクション境界を外側に置く。Springの\ ``DefaultMessageListenerContainer``\ を使用する場合、内部に独自のトランザクション管理機構を持つために、JTA用の設定である  \ ``jms:listener-container``\ の \ ``transaction-manager``\ 属性を活用し”Best Effort 1 Phase Commit”を実現しようとすると、DBトランザクション境界がJMSトランザクション境界の外側になってしまう。結果、非同期で受信したメッセージが正常に処理されたにもかかわらず、DBトランザクションがロールバックされる可能性が生じる。
-  よって、非同期受信ではJMSとDBのトランザクションを個別に指定する方法が望ましい。
+このうち、以下を理由にJMSとDBのトランザクションを個別に指定する方法の利用を検討されたい。
+同期送信のトランザクション管理(\ :ref:`JMSHowToUseSettingForSyncSendTransactionManagement`\ )でも紹介したようにJTAによるグローバルトランザクションは、
+プロトコルの特性上、性能面のオーバヘッドがかかる。
+これを解消するため、同期送信では”Best Effort 1 Phase Commit”を使用するトランザクション管理方法を紹介したが、非同期受信ではトランザクションが不適切な構成になるため推奨されない。
+一般的に、リカバリの観点からDBトランザクション境界よりJMSトランザクション境界を外側に置く。
+Springの\ ``DefaultMessageListenerContainer``\ を使用する場合、内部に独自のトランザクション管理機構を持つために、
+JTA用の設定である  \ ``jms:listener-container``\ の \ ``transaction-manager``\ 属性を活用し”Best Effort 1 Phase Commit”を実現しようとすると、
+DBトランザクション境界がJMSトランザクション境界の外側になってしまう。
+結果、非同期で受信したメッセージが正常に処理されたにもかかわらず、DBトランザクションがロールバックされる可能性が生じる。
 
   .. warning:: **メッセージ受信後にJMSプロバイダとの接続が切れた場合などでJMSプロバイダにトランザクションの処理結果が返らない場合**
 
@@ -1685,7 +1690,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
 
   * **リスナーメソッドの処理が正常に終了した場合**
 
-   | \ ``DefaultMessageListenerContainer``\ によってJMSトランザクションは開始・コミットされ、DBのトランザクションマネージャによってDBのトランザクションは開始・コミットする。
+   | \ ``DefaultMessageListenerContainer``\ がJMSトランザクションを開始・コミットし、DBのトランザクションマネージャがDBのトランザクションを開始・コミットする。
 
     .. figure:: ./images_JMS/JMSDBTransactionAllCommit.png
         :alt: JMS/DB Transaction
@@ -1743,12 +1748,12 @@ DBのトランザクション管理を行う必要があるアプリケーショ
    * DBトランザクションのコミット後でJMSトランザクションをコミットする前に例外が発生した場合
 
    そのような場合に、JMSのトランザクションをロールバックした後に再度同じメッセージを処理することもあれば、送信側によって同一内容のメッセージを複数回送信してしまうことがある。そのような背景で同じメッセージを複数受信した場合でもデータの完全性を保障する必要がある。
-   その対策として、\ ``JMSMessageID``\ 、または、\ ``JMSProperty``\ や\ ``Body``\に含まれる、リクエストを一意に特定するための情報を記録する方法がある。
+   その対策として、\ ``JMSMessageID``\ 、または、\ ``Property``\ や\ ``Body``\に含まれる、リクエストを一意に特定するための情報を記録する方法がある。
    これは、メッセージの受信ごとに過去に記録した情報と比較し、処理の状況に応じて処理し分けることを意味する。
    なお、以下のとおり、利用する情報によって対応できる事象に差がある。
 
    * \ ``JMSMessageID``\ を記録する場合、メッセージがロールバックされた際の二重処理にのみ対応できる。
-   * \ ``JMSProperty``\ や\ ``Body``\ の一部を記録する場合、メッセージがロールバックされた際に加えて、異常時などに業務上同一の意味をもつメッセージが複数回送信された際の二重処理にも対応できる。
+   * \ ``Property``\ や\ ``Body``\ の一部を記録する場合、メッセージがロールバックされた際に加えて、異常時などに業務上同一の意味をもつメッセージが複数回送信された際の二重処理にも対応できる。
 
     .. figure:: ./images_JMS/JMSDBTransactionUnexpectedError.png
         :alt: JMS/DB Transaction
@@ -1968,7 +1973,7 @@ DBのトランザクション管理を行う必要があるアプリケーショ
     * - 項番
       - 説明
     * - | (1)
-      - | \ ``Session``\ 、\ ``MessageProducer``\ /\ ``Consumer``\ のキャッシュを行う\ ``org.springframework.jms.connection.CachingConnectionFactory``\ をBean定義する。
+      - | \ ``Session``\ 、\ ``MessageProducer``\ , \ ``MessageProducer``\ のキャッシュを行う\ ``org.springframework.jms.connection.CachingConnectionFactory``\ をBean定義する。
         | Bean定義もしくはJNDI名でルックアップしたJMSプロバイダ固有の\ ``ConnectionFactory``\ をそのまま使うのではなく、
           \ ``CachingConnectionFactory``\ にラップして使用することで、キャッシュ機能を使用することができる。
     * - | (2)
